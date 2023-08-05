@@ -1,0 +1,15 @@
+query deprecatedResolveCoreferences($text: String!) {
+  callNlpDoc(text: $text) {
+    coref: extension {
+      detected: has_coref
+      resolvedOutput: coref_resolved
+      clusters: coref_scores {
+        mention
+        references: scores {
+          match: mention
+          score
+        }
+      }
+    }
+  }
+}

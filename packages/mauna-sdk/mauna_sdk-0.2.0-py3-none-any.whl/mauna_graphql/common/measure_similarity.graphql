@@ -1,0 +1,11 @@
+query measureSimilarity($sentence: String!, $compareWith: [String!]!) {
+  result: callMeasureSimilarity(
+    sentence: $sentence
+    compareWith: $compareWith
+  ) {
+    scores: result {
+      score
+      sentencePair
+    }
+  }
+}

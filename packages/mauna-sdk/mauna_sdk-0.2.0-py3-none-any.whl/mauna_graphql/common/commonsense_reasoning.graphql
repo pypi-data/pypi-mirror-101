@@ -1,0 +1,6 @@
+query commonsenseReasoning($text: String!, $categories: [Categories!]!) {
+  result: callCommonsense(text: $text, categories: $categories) {
+    category: name
+    predictions: texts
+  }
+}

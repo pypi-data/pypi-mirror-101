@@ -1,0 +1,9 @@
+query deprecatedGetSentiment($text: String!) {
+  callNlpDoc(text: $text) {
+    sentiment
+    sentences: sents {
+      text
+      sentiment
+    }
+  }
+}

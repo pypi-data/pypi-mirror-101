@@ -1,0 +1,18 @@
+query deprecatedParseText($text: String!) {
+  callNlpDoc(text: $text) {
+    categories: cats {
+      label
+      score
+    }
+    entities: ents {
+      label
+      lemma
+      text
+    }
+    sentences: sents {
+      text
+      label
+      lemma
+    }
+  }
+}

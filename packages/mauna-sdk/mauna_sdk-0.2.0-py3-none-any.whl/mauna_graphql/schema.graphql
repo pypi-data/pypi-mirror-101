@@ -1,0 +1,10383 @@
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
+
+scalar _text
+
+"""
+Boolean expression to compare columns of type "_text". All fields are combined with logical 'AND'.
+"""
+input _text_comparison_exp {
+  _eq: _text
+  _gt: _text
+  _gte: _text
+  _in: [_text!]
+  _is_null: Boolean
+  _lt: _text
+  _lte: _text
+  _neq: _text
+  _nin: [_text!]
+}
+
+"""
+Output format
+"""
+enum ACEOutputType {
+  drs
+  drshtml
+  drspp
+  drsxml
+  fol
+  owlfss
+  owlfsspp
+  owlrdf
+  owlxml
+  paraphrase
+  paraphrase1
+  paraphrase2
+  pnf
+  ruleml
+  syntax
+  syntaxd
+  syntaxdpp
+  syntaxpp
+  tokens
+  tptp
+}
+
+"""
+Output type
+"""
+type ACEResult {
+  """
+  APE output
+  """
+  result: String
+}
+
+enum Agent {
+  BOT
+  USER
+}
+
+scalar app_status
+
+"""
+Boolean expression to compare columns of type "app_status". All fields are combined with logical 'AND'.
+"""
+input app_status_comparison_exp {
+  _eq: app_status
+  _gt: app_status
+  _gte: app_status
+  _in: [app_status!]
+  _is_null: Boolean
+  _lt: app_status
+  _lte: app_status
+  _neq: app_status
+  _nin: [app_status!]
+}
+
+"""
+columns and relationships of "apps"
+"""
+type apps {
+  """
+  An array relationship
+  """
+  conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): [conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): conversations_aggregate!
+  created_at: timestamptz!
+
+  """
+  An object relationship
+  """
+  developer: developers!
+  developer_id: Int!
+
+  """
+  An array relationship
+  """
+  kv_store(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): [kv_store!]!
+
+  """
+  An aggregate relationship
+  """
+  kv_store_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): kv_store_aggregate!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  object_id: Int!
+  scope_name: String
+  slug: String!
+  status: app_status!
+}
+
+"""
+aggregated selection of "apps"
+"""
+type apps_aggregate {
+  aggregate: apps_aggregate_fields
+  nodes: [apps!]!
+}
+
+"""
+aggregate fields of "apps"
+"""
+type apps_aggregate_fields {
+  avg: apps_avg_fields
+  count(columns: [apps_select_column!], distinct: Boolean): Int!
+  max: apps_max_fields
+  min: apps_min_fields
+  stddev: apps_stddev_fields
+  stddev_pop: apps_stddev_pop_fields
+  stddev_samp: apps_stddev_samp_fields
+  sum: apps_sum_fields
+  var_pop: apps_var_pop_fields
+  var_samp: apps_var_samp_fields
+  variance: apps_variance_fields
+}
+
+"""
+order by aggregate values of table "apps"
+"""
+input apps_aggregate_order_by {
+  avg: apps_avg_order_by
+  count: order_by
+  max: apps_max_order_by
+  min: apps_min_order_by
+  stddev: apps_stddev_order_by
+  stddev_pop: apps_stddev_pop_order_by
+  stddev_samp: apps_stddev_samp_order_by
+  sum: apps_sum_order_by
+  var_pop: apps_var_pop_order_by
+  var_samp: apps_var_samp_order_by
+  variance: apps_variance_order_by
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input apps_append_input {
+  metadata: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "apps"
+"""
+input apps_arr_rel_insert_input {
+  data: [apps_insert_input!]!
+
+  """
+  on conflict condition
+  """
+  on_conflict: apps_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type apps_avg_fields {
+  developer_id: Float
+  object_id: Float
+}
+
+"""
+order by avg() on columns of table "apps"
+"""
+input apps_avg_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "apps". All fields are combined with a logical 'AND'.
+"""
+input apps_bool_exp {
+  _and: [apps_bool_exp!]
+  _not: apps_bool_exp
+  _or: [apps_bool_exp!]
+  conversations: conversations_bool_exp
+  created_at: timestamptz_comparison_exp
+  developer: developers_bool_exp
+  developer_id: Int_comparison_exp
+  kv_store: kv_store_bool_exp
+  metadata: jsonb_comparison_exp
+  object_id: Int_comparison_exp
+  scope_name: String_comparison_exp
+  slug: String_comparison_exp
+  status: app_status_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "apps"
+"""
+enum apps_constraint {
+  """
+  unique or primary key constraint
+  """
+  apps_object_id_key
+
+  """
+  unique or primary key constraint
+  """
+  apps_slug_key
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input apps_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input apps_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input apps_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "apps"
+"""
+input apps_inc_input {
+  developer_id: Int
+  object_id: Int
+}
+
+"""
+input type for inserting data into table "apps"
+"""
+input apps_insert_input {
+  conversations: conversations_arr_rel_insert_input
+  created_at: timestamptz
+  developer: developers_obj_rel_insert_input
+  developer_id: Int
+  kv_store: kv_store_arr_rel_insert_input
+  metadata: jsonb
+  object_id: Int
+  scope_name: String
+  slug: String
+  status: app_status
+}
+
+"""
+aggregate max on columns
+"""
+type apps_max_fields {
+  created_at: timestamptz
+  developer_id: Int
+  object_id: Int
+  scope_name: String
+  slug: String
+}
+
+"""
+order by max() on columns of table "apps"
+"""
+input apps_max_order_by {
+  created_at: order_by
+  developer_id: order_by
+  object_id: order_by
+  scope_name: order_by
+  slug: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type apps_min_fields {
+  created_at: timestamptz
+  developer_id: Int
+  object_id: Int
+  scope_name: String
+  slug: String
+}
+
+"""
+order by min() on columns of table "apps"
+"""
+input apps_min_order_by {
+  created_at: order_by
+  developer_id: order_by
+  object_id: order_by
+  scope_name: order_by
+  slug: order_by
+}
+
+"""
+response of any mutation on the table "apps"
+"""
+type apps_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [apps!]!
+}
+
+"""
+input type for inserting object relation for remote table "apps"
+"""
+input apps_obj_rel_insert_input {
+  data: apps_insert_input!
+
+  """
+  on conflict condition
+  """
+  on_conflict: apps_on_conflict
+}
+
+"""
+on conflict condition type for table "apps"
+"""
+input apps_on_conflict {
+  constraint: apps_constraint!
+  update_columns: [apps_update_column!]!
+  where: apps_bool_exp
+}
+
+"""
+Ordering options when selecting data from "apps".
+"""
+input apps_order_by {
+  conversations_aggregate: conversations_aggregate_order_by
+  created_at: order_by
+  developer: developers_order_by
+  developer_id: order_by
+  kv_store_aggregate: kv_store_aggregate_order_by
+  metadata: order_by
+  object_id: order_by
+  scope_name: order_by
+  slug: order_by
+  status: order_by
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input apps_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "apps"
+"""
+enum apps_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  developer_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope_name
+
+  """
+  column name
+  """
+  slug
+
+  """
+  column name
+  """
+  status
+}
+
+"""
+input type for updating data in table "apps"
+"""
+input apps_set_input {
+  created_at: timestamptz
+  developer_id: Int
+  metadata: jsonb
+  object_id: Int
+  scope_name: String
+  slug: String
+  status: app_status
+}
+
+"""
+aggregate stddev on columns
+"""
+type apps_stddev_fields {
+  developer_id: Float
+  object_id: Float
+}
+
+"""
+order by stddev() on columns of table "apps"
+"""
+input apps_stddev_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type apps_stddev_pop_fields {
+  developer_id: Float
+  object_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "apps"
+"""
+input apps_stddev_pop_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type apps_stddev_samp_fields {
+  developer_id: Float
+  object_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "apps"
+"""
+input apps_stddev_samp_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type apps_sum_fields {
+  developer_id: Int
+  object_id: Int
+}
+
+"""
+order by sum() on columns of table "apps"
+"""
+input apps_sum_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+update columns of table "apps"
+"""
+enum apps_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  developer_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope_name
+
+  """
+  column name
+  """
+  slug
+
+  """
+  column name
+  """
+  status
+}
+
+"""
+aggregate var_pop on columns
+"""
+type apps_var_pop_fields {
+  developer_id: Float
+  object_id: Float
+}
+
+"""
+order by var_pop() on columns of table "apps"
+"""
+input apps_var_pop_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type apps_var_samp_fields {
+  developer_id: Float
+  object_id: Float
+}
+
+"""
+order by var_samp() on columns of table "apps"
+"""
+input apps_var_samp_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type apps_variance_fields {
+  developer_id: Float
+  object_id: Float
+}
+
+"""
+order by variance() on columns of table "apps"
+"""
+input apps_variance_order_by {
+  developer_id: order_by
+  object_id: order_by
+}
+
+"""
+columns and relationships of "atomic.data"
+"""
+type atomic_data {
+  event: String
+  o_effect: _text
+  o_react: _text
+  o_want: _text
+  prefix: _text
+  x_attr: _text
+  x_effect: _text
+  x_intent: _text
+  x_need: _text
+  x_react: _text
+  x_want: _text
+}
+
+"""
+aggregated selection of "atomic.data"
+"""
+type atomic_data_aggregate {
+  aggregate: atomic_data_aggregate_fields
+  nodes: [atomic_data!]!
+}
+
+"""
+aggregate fields of "atomic.data"
+"""
+type atomic_data_aggregate_fields {
+  count(columns: [atomic_data_select_column!], distinct: Boolean): Int!
+  max: atomic_data_max_fields
+  min: atomic_data_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "atomic.data". All fields are combined with a logical 'AND'.
+"""
+input atomic_data_bool_exp {
+  _and: [atomic_data_bool_exp!]
+  _not: atomic_data_bool_exp
+  _or: [atomic_data_bool_exp!]
+  event: String_comparison_exp
+  o_effect: _text_comparison_exp
+  o_react: _text_comparison_exp
+  o_want: _text_comparison_exp
+  prefix: _text_comparison_exp
+  x_attr: _text_comparison_exp
+  x_effect: _text_comparison_exp
+  x_intent: _text_comparison_exp
+  x_need: _text_comparison_exp
+  x_react: _text_comparison_exp
+  x_want: _text_comparison_exp
+}
+
+"""
+input type for inserting data into table "atomic.data"
+"""
+input atomic_data_insert_input {
+  event: String
+  o_effect: _text
+  o_react: _text
+  o_want: _text
+  prefix: _text
+  x_attr: _text
+  x_effect: _text
+  x_intent: _text
+  x_need: _text
+  x_react: _text
+  x_want: _text
+}
+
+"""
+aggregate max on columns
+"""
+type atomic_data_max_fields {
+  event: String
+}
+
+"""
+aggregate min on columns
+"""
+type atomic_data_min_fields {
+  event: String
+}
+
+"""
+response of any mutation on the table "atomic.data"
+"""
+type atomic_data_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [atomic_data!]!
+}
+
+"""
+Ordering options when selecting data from "atomic.data".
+"""
+input atomic_data_order_by {
+  event: order_by
+  o_effect: order_by
+  o_react: order_by
+  o_want: order_by
+  prefix: order_by
+  x_attr: order_by
+  x_effect: order_by
+  x_intent: order_by
+  x_need: order_by
+  x_react: order_by
+  x_want: order_by
+}
+
+"""
+select columns of table "atomic.data"
+"""
+enum atomic_data_select_column {
+  """
+  column name
+  """
+  event
+
+  """
+  column name
+  """
+  o_effect
+
+  """
+  column name
+  """
+  o_react
+
+  """
+  column name
+  """
+  o_want
+
+  """
+  column name
+  """
+  prefix
+
+  """
+  column name
+  """
+  x_attr
+
+  """
+  column name
+  """
+  x_effect
+
+  """
+  column name
+  """
+  x_intent
+
+  """
+  column name
+  """
+  x_need
+
+  """
+  column name
+  """
+  x_react
+
+  """
+  column name
+  """
+  x_want
+}
+
+"""
+input type for updating data in table "atomic.data"
+"""
+input atomic_data_set_input {
+  event: String
+  o_effect: _text
+  o_react: _text
+  o_want: _text
+  prefix: _text
+  x_attr: _text
+  x_effect: _text
+  x_intent: _text
+  x_need: _text
+  x_react: _text
+  x_want: _text
+}
+
+"""
+Audio encoding
+"""
+enum AudioEncoding {
+  AUDIO_ENCODING_UNSPECIFIED
+  LINEAR16
+  MP3
+  OGG_OPUS
+}
+
+"""
+Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+
+"""
+Categories applied to whole document (label, score), or to spans (start, end, label, score).
+"""
+type Cat {
+  end: Int
+  label: String
+  score: Float
+  start: Int
+}
+
+enum Categories {
+  all
+  oEffect
+  oReact
+  oWant
+  xAttr
+  xEffect
+  xIntent
+  xNeed
+  xReact
+  xWant
+}
+
+"""
+Chitchat results
+"""
+type ChitchatResponse {
+  response: String
+}
+
+"""
+Output result
+"""
+type ComposeResult {
+  """
+  Resulting JSON
+  """
+  result: JSON
+}
+
+"""
+columns and relationships of "conceptnet.data"
+"""
+type conceptnet_data {
+  end: String!
+  relation: String!
+  start: String!
+  uri: String!
+  weight: numeric!
+}
+
+"""
+aggregated selection of "conceptnet.data"
+"""
+type conceptnet_data_aggregate {
+  aggregate: conceptnet_data_aggregate_fields
+  nodes: [conceptnet_data!]!
+}
+
+"""
+aggregate fields of "conceptnet.data"
+"""
+type conceptnet_data_aggregate_fields {
+  avg: conceptnet_data_avg_fields
+  count(columns: [conceptnet_data_select_column!], distinct: Boolean): Int!
+  max: conceptnet_data_max_fields
+  min: conceptnet_data_min_fields
+  stddev: conceptnet_data_stddev_fields
+  stddev_pop: conceptnet_data_stddev_pop_fields
+  stddev_samp: conceptnet_data_stddev_samp_fields
+  sum: conceptnet_data_sum_fields
+  var_pop: conceptnet_data_var_pop_fields
+  var_samp: conceptnet_data_var_samp_fields
+  variance: conceptnet_data_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type conceptnet_data_avg_fields {
+  weight: Float
+}
+
+"""
+Boolean expression to filter rows from the table "conceptnet.data". All fields are combined with a logical 'AND'.
+"""
+input conceptnet_data_bool_exp {
+  _and: [conceptnet_data_bool_exp!]
+  _not: conceptnet_data_bool_exp
+  _or: [conceptnet_data_bool_exp!]
+  end: String_comparison_exp
+  relation: String_comparison_exp
+  start: String_comparison_exp
+  uri: String_comparison_exp
+  weight: numeric_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "conceptnet.data"
+"""
+enum conceptnet_data_constraint {
+  """
+  unique or primary key constraint
+  """
+  data_start_relation_end_key
+
+  """
+  unique or primary key constraint
+  """
+  data_uri_key
+}
+
+"""
+input type for incrementing numeric columns in table "conceptnet.data"
+"""
+input conceptnet_data_inc_input {
+  weight: numeric
+}
+
+"""
+input type for inserting data into table "conceptnet.data"
+"""
+input conceptnet_data_insert_input {
+  end: String
+  relation: String
+  start: String
+  uri: String
+  weight: numeric
+}
+
+"""
+aggregate max on columns
+"""
+type conceptnet_data_max_fields {
+  end: String
+  relation: String
+  start: String
+  uri: String
+  weight: numeric
+}
+
+"""
+aggregate min on columns
+"""
+type conceptnet_data_min_fields {
+  end: String
+  relation: String
+  start: String
+  uri: String
+  weight: numeric
+}
+
+"""
+response of any mutation on the table "conceptnet.data"
+"""
+type conceptnet_data_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [conceptnet_data!]!
+}
+
+"""
+on conflict condition type for table "conceptnet.data"
+"""
+input conceptnet_data_on_conflict {
+  constraint: conceptnet_data_constraint!
+  update_columns: [conceptnet_data_update_column!]!
+  where: conceptnet_data_bool_exp
+}
+
+"""
+Ordering options when selecting data from "conceptnet.data".
+"""
+input conceptnet_data_order_by {
+  end: order_by
+  relation: order_by
+  start: order_by
+  uri: order_by
+  weight: order_by
+}
+
+"""
+select columns of table "conceptnet.data"
+"""
+enum conceptnet_data_select_column {
+  """
+  column name
+  """
+  end
+
+  """
+  column name
+  """
+  relation
+
+  """
+  column name
+  """
+  start
+
+  """
+  column name
+  """
+  uri
+
+  """
+  column name
+  """
+  weight
+}
+
+"""
+input type for updating data in table "conceptnet.data"
+"""
+input conceptnet_data_set_input {
+  end: String
+  relation: String
+  start: String
+  uri: String
+  weight: numeric
+}
+
+"""
+aggregate stddev on columns
+"""
+type conceptnet_data_stddev_fields {
+  weight: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type conceptnet_data_stddev_pop_fields {
+  weight: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type conceptnet_data_stddev_samp_fields {
+  weight: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type conceptnet_data_sum_fields {
+  weight: numeric
+}
+
+"""
+update columns of table "conceptnet.data"
+"""
+enum conceptnet_data_update_column {
+  """
+  column name
+  """
+  end
+
+  """
+  column name
+  """
+  relation
+
+  """
+  column name
+  """
+  start
+
+  """
+  column name
+  """
+  uri
+
+  """
+  column name
+  """
+  weight
+}
+
+"""
+aggregate var_pop on columns
+"""
+type conceptnet_data_var_pop_fields {
+  weight: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type conceptnet_data_var_samp_fields {
+  weight: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type conceptnet_data_variance_fields {
+  weight: Float
+}
+
+input conceptnet_search_relations_args {
+  limit_to: numeric
+  search: String
+}
+
+interface Container {
+  """
+  A boolean value indicating whether a word vector is associated with the object.
+  """
+  has_vector: Boolean
+
+  """
+  A scalar value indicating the positivity or negativity of the object.
+  """
+  sentiment: Float
+
+  """
+  Verbatim text content.
+  """
+  text: String
+
+  """
+  Text content, with trailing space character if present.
+  """
+  text_with_ws: String
+
+  """
+  A real-valued meaning representation.
+  """
+  vector: [Float]
+
+  """
+  The L2 norm of the document’s vector representation.
+  """
+  vector_norm: Float
+}
+
+input ContextObject {
+  """
+  Dialog turn content
+  """
+  content: String
+}
+
+"""
+SLING document container
+"""
+type ContextResult {
+  """
+  SLING document
+  """
+  context: SlingDocument
+}
+
+"""
+columns and relationships of "conversations"
+"""
+type conversations {
+  """
+  An object relationship
+  """
+  app: apps!
+  app_id: Int!
+  created_at: timestamptz!
+  destroyed_at: timestamptz
+
+  """
+  An object relationship
+  """
+  end_user: end_users!
+
+  """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
+  end_user_id: Int!
+
+  """
+  An array relationship
+  """
+  kv_store(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): [kv_store!]!
+
+  """
+  An aggregate relationship
+  """
+  kv_store_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): kv_store_aggregate!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  object_id: Int!
+  scope_name: String
+
+  """
+  An array relationship
+  """
+  utterances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): [utterances!]!
+
+  """
+  An aggregate relationship
+  """
+  utterances_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): utterances_aggregate!
+}
+
+"""
+aggregated selection of "conversations"
+"""
+type conversations_aggregate {
+  aggregate: conversations_aggregate_fields
+  nodes: [conversations!]!
+}
+
+"""
+aggregate fields of "conversations"
+"""
+type conversations_aggregate_fields {
+  avg: conversations_avg_fields
+  count(columns: [conversations_select_column!], distinct: Boolean): Int!
+  max: conversations_max_fields
+  min: conversations_min_fields
+  stddev: conversations_stddev_fields
+  stddev_pop: conversations_stddev_pop_fields
+  stddev_samp: conversations_stddev_samp_fields
+  sum: conversations_sum_fields
+  var_pop: conversations_var_pop_fields
+  var_samp: conversations_var_samp_fields
+  variance: conversations_variance_fields
+}
+
+"""
+order by aggregate values of table "conversations"
+"""
+input conversations_aggregate_order_by {
+  avg: conversations_avg_order_by
+  count: order_by
+  max: conversations_max_order_by
+  min: conversations_min_order_by
+  stddev: conversations_stddev_order_by
+  stddev_pop: conversations_stddev_pop_order_by
+  stddev_samp: conversations_stddev_samp_order_by
+  sum: conversations_sum_order_by
+  var_pop: conversations_var_pop_order_by
+  var_samp: conversations_var_samp_order_by
+  variance: conversations_variance_order_by
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input conversations_append_input {
+  metadata: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "conversations"
+"""
+input conversations_arr_rel_insert_input {
+  data: [conversations_insert_input!]!
+
+  """
+  on conflict condition
+  """
+  on_conflict: conversations_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type conversations_avg_fields {
+  app_id: Float
+  end_user_id: Float
+  object_id: Float
+}
+
+"""
+order by avg() on columns of table "conversations"
+"""
+input conversations_avg_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "conversations". All fields are combined with a logical 'AND'.
+"""
+input conversations_bool_exp {
+  _and: [conversations_bool_exp!]
+  _not: conversations_bool_exp
+  _or: [conversations_bool_exp!]
+  app: apps_bool_exp
+  app_id: Int_comparison_exp
+  created_at: timestamptz_comparison_exp
+  destroyed_at: timestamptz_comparison_exp
+  end_user: end_users_bool_exp
+  end_user_conversations: end_user_conversations_bool_exp
+  end_user_id: Int_comparison_exp
+  kv_store: kv_store_bool_exp
+  metadata: jsonb_comparison_exp
+  object_id: Int_comparison_exp
+  scope_name: String_comparison_exp
+  utterances: utterances_bool_exp
+}
+
+"""
+unique or primary key constraints on table "conversations"
+"""
+enum conversations_constraint {
+  """
+  unique or primary key constraint
+  """
+  conversations_object_id_key
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input conversations_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input conversations_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input conversations_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "conversations"
+"""
+input conversations_inc_input {
+  app_id: Int
+  end_user_id: Int
+  object_id: Int
+}
+
+"""
+input type for inserting data into table "conversations"
+"""
+input conversations_insert_input {
+  app: apps_obj_rel_insert_input
+  app_id: Int
+  created_at: timestamptz
+  destroyed_at: timestamptz
+  end_user: end_users_obj_rel_insert_input
+  end_user_conversations: end_user_conversations_arr_rel_insert_input
+  end_user_id: Int
+  kv_store: kv_store_arr_rel_insert_input
+  metadata: jsonb
+  object_id: Int
+  scope_name: String
+  utterances: utterances_arr_rel_insert_input
+}
+
+"""
+aggregate max on columns
+"""
+type conversations_max_fields {
+  app_id: Int
+  created_at: timestamptz
+  destroyed_at: timestamptz
+  end_user_id: Int
+  object_id: Int
+  scope_name: String
+}
+
+"""
+order by max() on columns of table "conversations"
+"""
+input conversations_max_order_by {
+  app_id: order_by
+  created_at: order_by
+  destroyed_at: order_by
+  end_user_id: order_by
+  object_id: order_by
+  scope_name: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type conversations_min_fields {
+  app_id: Int
+  created_at: timestamptz
+  destroyed_at: timestamptz
+  end_user_id: Int
+  object_id: Int
+  scope_name: String
+}
+
+"""
+order by min() on columns of table "conversations"
+"""
+input conversations_min_order_by {
+  app_id: order_by
+  created_at: order_by
+  destroyed_at: order_by
+  end_user_id: order_by
+  object_id: order_by
+  scope_name: order_by
+}
+
+"""
+response of any mutation on the table "conversations"
+"""
+type conversations_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [conversations!]!
+}
+
+"""
+input type for inserting object relation for remote table "conversations"
+"""
+input conversations_obj_rel_insert_input {
+  data: conversations_insert_input!
+
+  """
+  on conflict condition
+  """
+  on_conflict: conversations_on_conflict
+}
+
+"""
+on conflict condition type for table "conversations"
+"""
+input conversations_on_conflict {
+  constraint: conversations_constraint!
+  update_columns: [conversations_update_column!]!
+  where: conversations_bool_exp
+}
+
+"""
+Ordering options when selecting data from "conversations".
+"""
+input conversations_order_by {
+  app: apps_order_by
+  app_id: order_by
+  created_at: order_by
+  destroyed_at: order_by
+  end_user: end_users_order_by
+  end_user_conversations_aggregate: end_user_conversations_aggregate_order_by
+  end_user_id: order_by
+  kv_store_aggregate: kv_store_aggregate_order_by
+  metadata: order_by
+  object_id: order_by
+  scope_name: order_by
+  utterances_aggregate: utterances_aggregate_order_by
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input conversations_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "conversations"
+"""
+enum conversations_select_column {
+  """
+  column name
+  """
+  app_id
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  destroyed_at
+
+  """
+  column name
+  """
+  end_user_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope_name
+}
+
+"""
+input type for updating data in table "conversations"
+"""
+input conversations_set_input {
+  app_id: Int
+  created_at: timestamptz
+  destroyed_at: timestamptz
+  end_user_id: Int
+  metadata: jsonb
+  object_id: Int
+  scope_name: String
+}
+
+"""
+aggregate stddev on columns
+"""
+type conversations_stddev_fields {
+  app_id: Float
+  end_user_id: Float
+  object_id: Float
+}
+
+"""
+order by stddev() on columns of table "conversations"
+"""
+input conversations_stddev_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type conversations_stddev_pop_fields {
+  app_id: Float
+  end_user_id: Float
+  object_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "conversations"
+"""
+input conversations_stddev_pop_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type conversations_stddev_samp_fields {
+  app_id: Float
+  end_user_id: Float
+  object_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "conversations"
+"""
+input conversations_stddev_samp_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type conversations_sum_fields {
+  app_id: Int
+  end_user_id: Int
+  object_id: Int
+}
+
+"""
+order by sum() on columns of table "conversations"
+"""
+input conversations_sum_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+"""
+update columns of table "conversations"
+"""
+enum conversations_update_column {
+  """
+  column name
+  """
+  app_id
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  destroyed_at
+
+  """
+  column name
+  """
+  end_user_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope_name
+}
+
+"""
+aggregate var_pop on columns
+"""
+type conversations_var_pop_fields {
+  app_id: Float
+  end_user_id: Float
+  object_id: Float
+}
+
+"""
+order by var_pop() on columns of table "conversations"
+"""
+input conversations_var_pop_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type conversations_var_samp_fields {
+  app_id: Float
+  end_user_id: Float
+  object_id: Float
+}
+
+"""
+order by var_samp() on columns of table "conversations"
+"""
+input conversations_var_samp_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type conversations_variance_fields {
+  app_id: Float
+  end_user_id: Float
+  object_id: Float
+}
+
+"""
+order by variance() on columns of table "conversations"
+"""
+input conversations_variance_order_by {
+  app_id: order_by
+  end_user_id: order_by
+  object_id: order_by
+}
+
+type CorefCluster {
+  i: Int
+}
+
+type CorefScores {
+  mention: String
+  scores: [Scores]
+}
+
+"""
+columns and relationships of "developers"
+"""
+type developers {
+  active: Boolean!
+  api_key: String!
+
+  """
+  An array relationship
+  """
+  apps(
+    """
+    distinct select on columns
+    """
+    distinct_on: [apps_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [apps_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: apps_bool_exp
+  ): [apps!]!
+
+  """
+  An aggregate relationship
+  """
+  apps_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [apps_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [apps_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: apps_bool_exp
+  ): apps_aggregate!
+  created_at: timestamptz!
+  email: String!
+
+  """
+  An array relationship
+  """
+  events(
+    """
+    distinct select on columns
+    """
+    distinct_on: [events_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [events_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: events_bool_exp
+  ): [events!]!
+
+  """
+  An aggregate relationship
+  """
+  events_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [events_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [events_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: events_bool_exp
+  ): events_aggregate!
+  github_handle: String
+
+  """
+  An array relationship
+  """
+  invites(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): [invites!]!
+
+  """
+  An aggregate relationship
+  """
+  invites_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): invites_aggregate!
+
+  """
+  An array relationship
+  """
+  kv_stores(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): [kv_store!]!
+
+  """
+  An aggregate relationship
+  """
+  kv_stores_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): kv_store_aggregate!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  name: String!
+  object_id: Int!
+  onboarded: Boolean!
+  uid: String!
+}
+
+"""
+aggregated selection of "developers"
+"""
+type developers_aggregate {
+  aggregate: developers_aggregate_fields
+  nodes: [developers!]!
+}
+
+"""
+aggregate fields of "developers"
+"""
+type developers_aggregate_fields {
+  avg: developers_avg_fields
+  count(columns: [developers_select_column!], distinct: Boolean): Int!
+  max: developers_max_fields
+  min: developers_min_fields
+  stddev: developers_stddev_fields
+  stddev_pop: developers_stddev_pop_fields
+  stddev_samp: developers_stddev_samp_fields
+  sum: developers_sum_fields
+  var_pop: developers_var_pop_fields
+  var_samp: developers_var_samp_fields
+  variance: developers_variance_fields
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input developers_append_input {
+  metadata: jsonb
+}
+
+"""
+aggregate avg on columns
+"""
+type developers_avg_fields {
+  object_id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "developers". All fields are combined with a logical 'AND'.
+"""
+input developers_bool_exp {
+  _and: [developers_bool_exp!]
+  _not: developers_bool_exp
+  _or: [developers_bool_exp!]
+  active: Boolean_comparison_exp
+  api_key: String_comparison_exp
+  apps: apps_bool_exp
+  created_at: timestamptz_comparison_exp
+  email: String_comparison_exp
+  events: events_bool_exp
+  github_handle: String_comparison_exp
+  invites: invites_bool_exp
+  kv_stores: kv_store_bool_exp
+  metadata: jsonb_comparison_exp
+  name: String_comparison_exp
+  object_id: Int_comparison_exp
+  onboarded: Boolean_comparison_exp
+  uid: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "developers"
+"""
+enum developers_constraint {
+  """
+  unique or primary key constraint
+  """
+  developers_api_key_key
+
+  """
+  unique or primary key constraint
+  """
+  developers_email_key
+
+  """
+  unique or primary key constraint
+  """
+  developers_github_handle_key
+
+  """
+  unique or primary key constraint
+  """
+  developers_object_id_key
+
+  """
+  unique or primary key constraint
+  """
+  developers_uid_key
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input developers_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input developers_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input developers_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "developers"
+"""
+input developers_inc_input {
+  object_id: Int
+}
+
+"""
+input type for inserting data into table "developers"
+"""
+input developers_insert_input {
+  active: Boolean
+  api_key: String
+  apps: apps_arr_rel_insert_input
+  created_at: timestamptz
+  email: String
+  events: events_arr_rel_insert_input
+  github_handle: String
+  invites: invites_arr_rel_insert_input
+  kv_stores: kv_store_arr_rel_insert_input
+  metadata: jsonb
+  name: String
+  object_id: Int
+  onboarded: Boolean
+  uid: String
+}
+
+"""
+aggregate max on columns
+"""
+type developers_max_fields {
+  api_key: String
+  created_at: timestamptz
+  email: String
+  github_handle: String
+  name: String
+  object_id: Int
+  uid: String
+}
+
+"""
+aggregate min on columns
+"""
+type developers_min_fields {
+  api_key: String
+  created_at: timestamptz
+  email: String
+  github_handle: String
+  name: String
+  object_id: Int
+  uid: String
+}
+
+"""
+response of any mutation on the table "developers"
+"""
+type developers_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [developers!]!
+}
+
+"""
+input type for inserting object relation for remote table "developers"
+"""
+input developers_obj_rel_insert_input {
+  data: developers_insert_input!
+
+  """
+  on conflict condition
+  """
+  on_conflict: developers_on_conflict
+}
+
+"""
+on conflict condition type for table "developers"
+"""
+input developers_on_conflict {
+  constraint: developers_constraint!
+  update_columns: [developers_update_column!]!
+  where: developers_bool_exp
+}
+
+"""
+Ordering options when selecting data from "developers".
+"""
+input developers_order_by {
+  active: order_by
+  api_key: order_by
+  apps_aggregate: apps_aggregate_order_by
+  created_at: order_by
+  email: order_by
+  events_aggregate: events_aggregate_order_by
+  github_handle: order_by
+  invites_aggregate: invites_aggregate_order_by
+  kv_stores_aggregate: kv_store_aggregate_order_by
+  metadata: order_by
+  name: order_by
+  object_id: order_by
+  onboarded: order_by
+  uid: order_by
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input developers_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "developers"
+"""
+enum developers_select_column {
+  """
+  column name
+  """
+  active
+
+  """
+  column name
+  """
+  api_key
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  email
+
+  """
+  column name
+  """
+  github_handle
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  onboarded
+
+  """
+  column name
+  """
+  uid
+}
+
+"""
+input type for updating data in table "developers"
+"""
+input developers_set_input {
+  active: Boolean
+  api_key: String
+  created_at: timestamptz
+  email: String
+  github_handle: String
+  metadata: jsonb
+  name: String
+  object_id: Int
+  onboarded: Boolean
+  uid: String
+}
+
+"""
+aggregate stddev on columns
+"""
+type developers_stddev_fields {
+  object_id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type developers_stddev_pop_fields {
+  object_id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type developers_stddev_samp_fields {
+  object_id: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type developers_sum_fields {
+  object_id: Int
+}
+
+"""
+update columns of table "developers"
+"""
+enum developers_update_column {
+  """
+  column name
+  """
+  active
+
+  """
+  column name
+  """
+  api_key
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  email
+
+  """
+  column name
+  """
+  github_handle
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  onboarded
+
+  """
+  column name
+  """
+  uid
+}
+
+"""
+aggregate var_pop on columns
+"""
+type developers_var_pop_fields {
+  object_id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type developers_var_samp_fields {
+  object_id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type developers_variance_fields {
+  object_id: Float
+}
+
+"""
+One of the alternatives, among which the next turn must be chosen
+"""
+type DialogAlternative {
+  """
+  Content of the utterance
+  """
+  alternative: String
+
+  """
+  Confidence of the utterance
+  """
+  confidence: Float
+}
+
+type DocExtension {
+  coref_clusters: [CorefCluster]
+  coref_resolved: String
+  coref_scores: [CorefScores]
+  has_coref: Boolean
+  has_nfh: Boolean
+  nfh: [Span]
+  nfh_items: [Span]
+}
+
+"""
+Audio encoding
+"""
+enum Encoding {
+  AMR
+  AMR_WB
+  ENCODING_UNSPECIFIED
+  FLAC
+  LINEAR16
+  MP3
+  MULAW
+  OGG_OPUS
+  SPEEX_WITH_HEADER_BYTE
+}
+
+"""
+columns and relationships of "end_user_conversations"
+"""
+type end_user_conversations {
+  """
+  An object relationship
+  """
+  conversation: conversations!
+  conversation_id: Int!
+
+  """
+  An object relationship
+  """
+  end_user: end_users!
+  end_user_id: Int!
+}
+
+"""
+aggregated selection of "end_user_conversations"
+"""
+type end_user_conversations_aggregate {
+  aggregate: end_user_conversations_aggregate_fields
+  nodes: [end_user_conversations!]!
+}
+
+"""
+aggregate fields of "end_user_conversations"
+"""
+type end_user_conversations_aggregate_fields {
+  avg: end_user_conversations_avg_fields
+  count(
+    columns: [end_user_conversations_select_column!]
+    distinct: Boolean
+  ): Int!
+  max: end_user_conversations_max_fields
+  min: end_user_conversations_min_fields
+  stddev: end_user_conversations_stddev_fields
+  stddev_pop: end_user_conversations_stddev_pop_fields
+  stddev_samp: end_user_conversations_stddev_samp_fields
+  sum: end_user_conversations_sum_fields
+  var_pop: end_user_conversations_var_pop_fields
+  var_samp: end_user_conversations_var_samp_fields
+  variance: end_user_conversations_variance_fields
+}
+
+"""
+order by aggregate values of table "end_user_conversations"
+"""
+input end_user_conversations_aggregate_order_by {
+  avg: end_user_conversations_avg_order_by
+  count: order_by
+  max: end_user_conversations_max_order_by
+  min: end_user_conversations_min_order_by
+  stddev: end_user_conversations_stddev_order_by
+  stddev_pop: end_user_conversations_stddev_pop_order_by
+  stddev_samp: end_user_conversations_stddev_samp_order_by
+  sum: end_user_conversations_sum_order_by
+  var_pop: end_user_conversations_var_pop_order_by
+  var_samp: end_user_conversations_var_samp_order_by
+  variance: end_user_conversations_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "end_user_conversations"
+"""
+input end_user_conversations_arr_rel_insert_input {
+  data: [end_user_conversations_insert_input!]!
+
+  """
+  on conflict condition
+  """
+  on_conflict: end_user_conversations_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type end_user_conversations_avg_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by avg() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_avg_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "end_user_conversations". All fields are combined with a logical 'AND'.
+"""
+input end_user_conversations_bool_exp {
+  _and: [end_user_conversations_bool_exp!]
+  _not: end_user_conversations_bool_exp
+  _or: [end_user_conversations_bool_exp!]
+  conversation: conversations_bool_exp
+  conversation_id: Int_comparison_exp
+  end_user: end_users_bool_exp
+  end_user_id: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "end_user_conversations"
+"""
+enum end_user_conversations_constraint {
+  """
+  unique or primary key constraint
+  """
+  end_user_conversations_end_user_id_key
+
+  """
+  unique or primary key constraint
+  """
+  end_user_conversations_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "end_user_conversations"
+"""
+input end_user_conversations_inc_input {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+input type for inserting data into table "end_user_conversations"
+"""
+input end_user_conversations_insert_input {
+  conversation: conversations_obj_rel_insert_input
+  conversation_id: Int
+  end_user: end_users_obj_rel_insert_input
+  end_user_id: Int
+}
+
+"""
+aggregate max on columns
+"""
+type end_user_conversations_max_fields {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+order by max() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_max_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type end_user_conversations_min_fields {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+order by min() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_min_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+response of any mutation on the table "end_user_conversations"
+"""
+type end_user_conversations_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [end_user_conversations!]!
+}
+
+"""
+on conflict condition type for table "end_user_conversations"
+"""
+input end_user_conversations_on_conflict {
+  constraint: end_user_conversations_constraint!
+  update_columns: [end_user_conversations_update_column!]!
+  where: end_user_conversations_bool_exp
+}
+
+"""
+Ordering options when selecting data from "end_user_conversations".
+"""
+input end_user_conversations_order_by {
+  conversation: conversations_order_by
+  conversation_id: order_by
+  end_user: end_users_order_by
+  end_user_id: order_by
+}
+
+"""
+primary key columns input for table: end_user_conversations
+"""
+input end_user_conversations_pk_columns_input {
+  conversation_id: Int!
+  end_user_id: Int!
+}
+
+"""
+select columns of table "end_user_conversations"
+"""
+enum end_user_conversations_select_column {
+  """
+  column name
+  """
+  conversation_id
+
+  """
+  column name
+  """
+  end_user_id
+}
+
+"""
+input type for updating data in table "end_user_conversations"
+"""
+input end_user_conversations_set_input {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+aggregate stddev on columns
+"""
+type end_user_conversations_stddev_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_stddev_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type end_user_conversations_stddev_pop_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_stddev_pop_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type end_user_conversations_stddev_samp_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_stddev_samp_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type end_user_conversations_sum_fields {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+order by sum() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_sum_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+update columns of table "end_user_conversations"
+"""
+enum end_user_conversations_update_column {
+  """
+  column name
+  """
+  conversation_id
+
+  """
+  column name
+  """
+  end_user_id
+}
+
+"""
+aggregate var_pop on columns
+"""
+type end_user_conversations_var_pop_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by var_pop() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_var_pop_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type end_user_conversations_var_samp_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by var_samp() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_var_samp_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type end_user_conversations_variance_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by variance() on columns of table "end_user_conversations"
+"""
+input end_user_conversations_variance_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+columns and relationships of "end_users"
+"""
+type end_users {
+  """
+  An array relationship
+  """
+  conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): [conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): conversations_aggregate!
+  created_at: timestamptz!
+
+  """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
+
+  """
+  An array relationship
+  """
+  kv_store(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): [kv_store!]!
+
+  """
+  An aggregate relationship
+  """
+  kv_store_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): kv_store_aggregate!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  object_id: Int!
+  scope_name: String
+
+  """
+  An array relationship
+  """
+  utterances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): [utterances!]!
+
+  """
+  An aggregate relationship
+  """
+  utterances_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): utterances_aggregate!
+  uuid: String!
+}
+
+"""
+aggregated selection of "end_users"
+"""
+type end_users_aggregate {
+  aggregate: end_users_aggregate_fields
+  nodes: [end_users!]!
+}
+
+"""
+aggregate fields of "end_users"
+"""
+type end_users_aggregate_fields {
+  avg: end_users_avg_fields
+  count(columns: [end_users_select_column!], distinct: Boolean): Int!
+  max: end_users_max_fields
+  min: end_users_min_fields
+  stddev: end_users_stddev_fields
+  stddev_pop: end_users_stddev_pop_fields
+  stddev_samp: end_users_stddev_samp_fields
+  sum: end_users_sum_fields
+  var_pop: end_users_var_pop_fields
+  var_samp: end_users_var_samp_fields
+  variance: end_users_variance_fields
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input end_users_append_input {
+  metadata: jsonb
+}
+
+"""
+aggregate avg on columns
+"""
+type end_users_avg_fields {
+  object_id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "end_users". All fields are combined with a logical 'AND'.
+"""
+input end_users_bool_exp {
+  _and: [end_users_bool_exp!]
+  _not: end_users_bool_exp
+  _or: [end_users_bool_exp!]
+  conversations: conversations_bool_exp
+  created_at: timestamptz_comparison_exp
+  end_user_conversations: end_user_conversations_bool_exp
+  kv_store: kv_store_bool_exp
+  metadata: jsonb_comparison_exp
+  object_id: Int_comparison_exp
+  scope_name: String_comparison_exp
+  utterances: utterances_bool_exp
+  uuid: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "end_users"
+"""
+enum end_users_constraint {
+  """
+  unique or primary key constraint
+  """
+  end_users_object_id_key
+
+  """
+  unique or primary key constraint
+  """
+  end_users_uuid_key
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input end_users_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input end_users_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input end_users_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "end_users"
+"""
+input end_users_inc_input {
+  object_id: Int
+}
+
+"""
+input type for inserting data into table "end_users"
+"""
+input end_users_insert_input {
+  conversations: conversations_arr_rel_insert_input
+  created_at: timestamptz
+  end_user_conversations: end_user_conversations_arr_rel_insert_input
+  kv_store: kv_store_arr_rel_insert_input
+  metadata: jsonb
+  object_id: Int
+  scope_name: String
+  utterances: utterances_arr_rel_insert_input
+  uuid: String
+}
+
+"""
+aggregate max on columns
+"""
+type end_users_max_fields {
+  created_at: timestamptz
+  object_id: Int
+  scope_name: String
+  uuid: String
+}
+
+"""
+aggregate min on columns
+"""
+type end_users_min_fields {
+  created_at: timestamptz
+  object_id: Int
+  scope_name: String
+  uuid: String
+}
+
+"""
+response of any mutation on the table "end_users"
+"""
+type end_users_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [end_users!]!
+}
+
+"""
+input type for inserting object relation for remote table "end_users"
+"""
+input end_users_obj_rel_insert_input {
+  data: end_users_insert_input!
+
+  """
+  on conflict condition
+  """
+  on_conflict: end_users_on_conflict
+}
+
+"""
+on conflict condition type for table "end_users"
+"""
+input end_users_on_conflict {
+  constraint: end_users_constraint!
+  update_columns: [end_users_update_column!]!
+  where: end_users_bool_exp
+}
+
+"""
+Ordering options when selecting data from "end_users".
+"""
+input end_users_order_by {
+  conversations_aggregate: conversations_aggregate_order_by
+  created_at: order_by
+  end_user_conversations_aggregate: end_user_conversations_aggregate_order_by
+  kv_store_aggregate: kv_store_aggregate_order_by
+  metadata: order_by
+  object_id: order_by
+  scope_name: order_by
+  utterances_aggregate: utterances_aggregate_order_by
+  uuid: order_by
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input end_users_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "end_users"
+"""
+enum end_users_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope_name
+
+  """
+  column name
+  """
+  uuid
+}
+
+"""
+input type for updating data in table "end_users"
+"""
+input end_users_set_input {
+  created_at: timestamptz
+  metadata: jsonb
+  object_id: Int
+  scope_name: String
+  uuid: String
+}
+
+"""
+aggregate stddev on columns
+"""
+type end_users_stddev_fields {
+  object_id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type end_users_stddev_pop_fields {
+  object_id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type end_users_stddev_samp_fields {
+  object_id: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type end_users_sum_fields {
+  object_id: Int
+}
+
+"""
+update columns of table "end_users"
+"""
+enum end_users_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope_name
+
+  """
+  column name
+  """
+  uuid
+}
+
+"""
+aggregate var_pop on columns
+"""
+type end_users_var_pop_fields {
+  object_id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type end_users_var_samp_fields {
+  object_id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type end_users_variance_fields {
+  object_id: Float
+}
+
+"""
+columns and relationships of "events"
+"""
+type events {
+  action: String
+  changed_fields(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb
+  developer_id: String
+  table: String
+  timestamp: timestamptz
+}
+
+"""
+aggregated selection of "events"
+"""
+type events_aggregate {
+  aggregate: events_aggregate_fields
+  nodes: [events!]!
+}
+
+"""
+aggregate fields of "events"
+"""
+type events_aggregate_fields {
+  count(columns: [events_select_column!], distinct: Boolean): Int!
+  max: events_max_fields
+  min: events_min_fields
+}
+
+"""
+order by aggregate values of table "events"
+"""
+input events_aggregate_order_by {
+  count: order_by
+  max: events_max_order_by
+  min: events_min_order_by
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input events_append_input {
+  changed_fields: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "events"
+"""
+input events_arr_rel_insert_input {
+  data: [events_insert_input!]!
+}
+
+"""
+Boolean expression to filter rows from the table "events". All fields are combined with a logical 'AND'.
+"""
+input events_bool_exp {
+  _and: [events_bool_exp!]
+  _not: events_bool_exp
+  _or: [events_bool_exp!]
+  action: String_comparison_exp
+  changed_fields: jsonb_comparison_exp
+  developer_id: String_comparison_exp
+  table: String_comparison_exp
+  timestamp: timestamptz_comparison_exp
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input events_delete_at_path_input {
+  changed_fields: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input events_delete_elem_input {
+  changed_fields: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input events_delete_key_input {
+  changed_fields: String
+}
+
+"""
+input type for inserting data into table "events"
+"""
+input events_insert_input {
+  action: String
+  changed_fields: jsonb
+  developer_id: String
+  table: String
+  timestamp: timestamptz
+}
+
+"""
+aggregate max on columns
+"""
+type events_max_fields {
+  action: String
+  developer_id: String
+  table: String
+  timestamp: timestamptz
+}
+
+"""
+order by max() on columns of table "events"
+"""
+input events_max_order_by {
+  action: order_by
+  developer_id: order_by
+  table: order_by
+  timestamp: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type events_min_fields {
+  action: String
+  developer_id: String
+  table: String
+  timestamp: timestamptz
+}
+
+"""
+order by min() on columns of table "events"
+"""
+input events_min_order_by {
+  action: order_by
+  developer_id: order_by
+  table: order_by
+  timestamp: order_by
+}
+
+"""
+response of any mutation on the table "events"
+"""
+type events_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [events!]!
+}
+
+"""
+Ordering options when selecting data from "events".
+"""
+input events_order_by {
+  action: order_by
+  changed_fields: order_by
+  developer_id: order_by
+  table: order_by
+  timestamp: order_by
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input events_prepend_input {
+  changed_fields: jsonb
+}
+
+"""
+select columns of table "events"
+"""
+enum events_select_column {
+  """
+  column name
+  """
+  action
+
+  """
+  column name
+  """
+  changed_fields
+
+  """
+  column name
+  """
+  developer_id
+
+  """
+  column name
+  """
+  table
+
+  """
+  column name
+  """
+  timestamp
+}
+
+"""
+input type for updating data in table "events"
+"""
+input events_set_input {
+  action: String
+  changed_fields: jsonb
+  developer_id: String
+  table: String
+  timestamp: timestamptz
+}
+
+"""
+columns and relationships of "history"
+"""
+type history {
+  """
+  An object relationship
+  """
+  conversation: conversations
+  conversation_id: Int
+  interval: timestamptz
+  updated_at: timestamptz
+  utterances(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb
+  window: tstzrange
+}
+
+"""
+aggregated selection of "history"
+"""
+type history_aggregate {
+  aggregate: history_aggregate_fields
+  nodes: [history!]!
+}
+
+"""
+aggregate fields of "history"
+"""
+type history_aggregate_fields {
+  avg: history_avg_fields
+  count(columns: [history_select_column!], distinct: Boolean): Int!
+  max: history_max_fields
+  min: history_min_fields
+  stddev: history_stddev_fields
+  stddev_pop: history_stddev_pop_fields
+  stddev_samp: history_stddev_samp_fields
+  sum: history_sum_fields
+  var_pop: history_var_pop_fields
+  var_samp: history_var_samp_fields
+  variance: history_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type history_avg_fields {
+  conversation_id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "history". All fields are combined with a logical 'AND'.
+"""
+input history_bool_exp {
+  _and: [history_bool_exp!]
+  _not: history_bool_exp
+  _or: [history_bool_exp!]
+  conversation: conversations_bool_exp
+  conversation_id: Int_comparison_exp
+  interval: timestamptz_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  utterances: jsonb_comparison_exp
+  window: tstzrange_comparison_exp
+}
+
+"""
+aggregate max on columns
+"""
+type history_max_fields {
+  conversation_id: Int
+  interval: timestamptz
+  updated_at: timestamptz
+}
+
+"""
+aggregate min on columns
+"""
+type history_min_fields {
+  conversation_id: Int
+  interval: timestamptz
+  updated_at: timestamptz
+}
+
+"""
+Ordering options when selecting data from "history".
+"""
+input history_order_by {
+  conversation: conversations_order_by
+  conversation_id: order_by
+  interval: order_by
+  updated_at: order_by
+  utterances: order_by
+  window: order_by
+}
+
+"""
+select columns of table "history"
+"""
+enum history_select_column {
+  """
+  column name
+  """
+  conversation_id
+
+  """
+  column name
+  """
+  interval
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  utterances
+
+  """
+  column name
+  """
+  window
+}
+
+"""
+aggregate stddev on columns
+"""
+type history_stddev_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type history_stddev_pop_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type history_stddev_samp_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type history_sum_fields {
+  conversation_id: Int
+}
+
+"""
+aggregate var_pop on columns
+"""
+type history_var_pop_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type history_var_samp_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type history_variance_fields {
+  conversation_id: Float
+}
+
+"""
+Pipe input type
+"""
+input InputPipe {
+  """
+  Variable bindings
+  """
+  context: JSON
+
+  """
+  Service query name
+  """
+  op: String
+
+  """
+  Transform logic
+  """
+  transform: String
+}
+
+"""
+Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+  _gt: Int
+  _gte: Int
+  _in: [Int!]
+  _is_null: Boolean
+  _lt: Int
+  _lte: Int
+  _neq: Int
+  _nin: [Int!]
+}
+
+"""
+columns and relationships of "invites"
+"""
+type invites {
+  accepted: Boolean!
+  created_at: timestamptz!
+
+  """
+  An object relationship
+  """
+  developer: developers!
+  invited_email: String!
+  inviter_id: Int!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  object_id: Int!
+  resend_count: Int!
+}
+
+"""
+aggregated selection of "invites"
+"""
+type invites_aggregate {
+  aggregate: invites_aggregate_fields
+  nodes: [invites!]!
+}
+
+"""
+aggregate fields of "invites"
+"""
+type invites_aggregate_fields {
+  avg: invites_avg_fields
+  count(columns: [invites_select_column!], distinct: Boolean): Int!
+  max: invites_max_fields
+  min: invites_min_fields
+  stddev: invites_stddev_fields
+  stddev_pop: invites_stddev_pop_fields
+  stddev_samp: invites_stddev_samp_fields
+  sum: invites_sum_fields
+  var_pop: invites_var_pop_fields
+  var_samp: invites_var_samp_fields
+  variance: invites_variance_fields
+}
+
+"""
+order by aggregate values of table "invites"
+"""
+input invites_aggregate_order_by {
+  avg: invites_avg_order_by
+  count: order_by
+  max: invites_max_order_by
+  min: invites_min_order_by
+  stddev: invites_stddev_order_by
+  stddev_pop: invites_stddev_pop_order_by
+  stddev_samp: invites_stddev_samp_order_by
+  sum: invites_sum_order_by
+  var_pop: invites_var_pop_order_by
+  var_samp: invites_var_samp_order_by
+  variance: invites_variance_order_by
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input invites_append_input {
+  metadata: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "invites"
+"""
+input invites_arr_rel_insert_input {
+  data: [invites_insert_input!]!
+
+  """
+  on conflict condition
+  """
+  on_conflict: invites_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type invites_avg_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by avg() on columns of table "invites"
+"""
+input invites_avg_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "invites". All fields are combined with a logical 'AND'.
+"""
+input invites_bool_exp {
+  _and: [invites_bool_exp!]
+  _not: invites_bool_exp
+  _or: [invites_bool_exp!]
+  accepted: Boolean_comparison_exp
+  created_at: timestamptz_comparison_exp
+  developer: developers_bool_exp
+  invited_email: String_comparison_exp
+  inviter_id: Int_comparison_exp
+  metadata: jsonb_comparison_exp
+  object_id: Int_comparison_exp
+  resend_count: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "invites"
+"""
+enum invites_constraint {
+  """
+  unique or primary key constraint
+  """
+  invites_inviter_id_invited_email_key
+
+  """
+  unique or primary key constraint
+  """
+  invites_object_id_key
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input invites_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input invites_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input invites_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "invites"
+"""
+input invites_inc_input {
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+input type for inserting data into table "invites"
+"""
+input invites_insert_input {
+  accepted: Boolean
+  created_at: timestamptz
+  developer: developers_obj_rel_insert_input
+  invited_email: String
+  inviter_id: Int
+  metadata: jsonb
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+aggregate max on columns
+"""
+type invites_max_fields {
+  created_at: timestamptz
+  invited_email: String
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+order by max() on columns of table "invites"
+"""
+input invites_max_order_by {
+  created_at: order_by
+  invited_email: order_by
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type invites_min_fields {
+  created_at: timestamptz
+  invited_email: String
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+order by min() on columns of table "invites"
+"""
+input invites_min_order_by {
+  created_at: order_by
+  invited_email: order_by
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+response of any mutation on the table "invites"
+"""
+type invites_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [invites!]!
+}
+
+"""
+on conflict condition type for table "invites"
+"""
+input invites_on_conflict {
+  constraint: invites_constraint!
+  update_columns: [invites_update_column!]!
+  where: invites_bool_exp
+}
+
+"""
+Ordering options when selecting data from "invites".
+"""
+input invites_order_by {
+  accepted: order_by
+  created_at: order_by
+  developer: developers_order_by
+  invited_email: order_by
+  inviter_id: order_by
+  metadata: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input invites_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "invites"
+"""
+enum invites_select_column {
+  """
+  column name
+  """
+  accepted
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  invited_email
+
+  """
+  column name
+  """
+  inviter_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  resend_count
+}
+
+"""
+input type for updating data in table "invites"
+"""
+input invites_set_input {
+  accepted: Boolean
+  created_at: timestamptz
+  invited_email: String
+  inviter_id: Int
+  metadata: jsonb
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+aggregate stddev on columns
+"""
+type invites_stddev_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by stddev() on columns of table "invites"
+"""
+input invites_stddev_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type invites_stddev_pop_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by stddev_pop() on columns of table "invites"
+"""
+input invites_stddev_pop_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type invites_stddev_samp_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by stddev_samp() on columns of table "invites"
+"""
+input invites_stddev_samp_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type invites_sum_fields {
+  inviter_id: Int
+  object_id: Int
+  resend_count: Int
+}
+
+"""
+order by sum() on columns of table "invites"
+"""
+input invites_sum_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+update columns of table "invites"
+"""
+enum invites_update_column {
+  """
+  column name
+  """
+  accepted
+
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  invited_email
+
+  """
+  column name
+  """
+  inviter_id
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  resend_count
+}
+
+"""
+aggregate var_pop on columns
+"""
+type invites_var_pop_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by var_pop() on columns of table "invites"
+"""
+input invites_var_pop_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type invites_var_samp_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by var_samp() on columns of table "invites"
+"""
+input invites_var_samp_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type invites_variance_fields {
+  inviter_id: Float
+  object_id: Float
+  resend_count: Float
+}
+
+"""
+order by variance() on columns of table "invites"
+"""
+input invites_variance_order_by {
+  inviter_id: order_by
+  object_id: order_by
+  resend_count: order_by
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+scalar jsonb
+
+"""
+Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'.
+"""
+input jsonb_comparison_exp {
+  """
+  is the column contained in the given json value
+  """
+  _contained_in: jsonb
+
+  """
+  does the column contain the given json value at the top level
+  """
+  _contains: jsonb
+  _eq: jsonb
+  _gt: jsonb
+  _gte: jsonb
+
+  """
+  does the string exist as a top-level key in the column
+  """
+  _has_key: String
+
+  """
+  do all of these strings exist as top-level keys in the column
+  """
+  _has_keys_all: [String!]
+
+  """
+  do any of these strings exist as top-level keys in the column
+  """
+  _has_keys_any: [String!]
+  _in: [jsonb!]
+  _is_null: Boolean
+  _lt: jsonb
+  _lte: jsonb
+  _neq: jsonb
+  _nin: [jsonb!]
+}
+
+"""
+columns and relationships of "kv_scope_enum"
+"""
+type kv_scope_enum {
+  value: String!
+}
+
+"""
+aggregated selection of "kv_scope_enum"
+"""
+type kv_scope_enum_aggregate {
+  aggregate: kv_scope_enum_aggregate_fields
+  nodes: [kv_scope_enum!]!
+}
+
+"""
+aggregate fields of "kv_scope_enum"
+"""
+type kv_scope_enum_aggregate_fields {
+  count(columns: [kv_scope_enum_select_column!], distinct: Boolean): Int!
+  max: kv_scope_enum_max_fields
+  min: kv_scope_enum_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "kv_scope_enum". All fields are combined with a logical 'AND'.
+"""
+input kv_scope_enum_bool_exp {
+  _and: [kv_scope_enum_bool_exp!]
+  _not: kv_scope_enum_bool_exp
+  _or: [kv_scope_enum_bool_exp!]
+  value: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "kv_scope_enum"
+"""
+enum kv_scope_enum_constraint {
+  """
+  unique or primary key constraint
+  """
+  kv_scope_enum_pkey
+}
+
+"""
+input type for inserting data into table "kv_scope_enum"
+"""
+input kv_scope_enum_insert_input {
+  value: String
+}
+
+"""
+aggregate max on columns
+"""
+type kv_scope_enum_max_fields {
+  value: String
+}
+
+"""
+aggregate min on columns
+"""
+type kv_scope_enum_min_fields {
+  value: String
+}
+
+"""
+response of any mutation on the table "kv_scope_enum"
+"""
+type kv_scope_enum_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [kv_scope_enum!]!
+}
+
+"""
+on conflict condition type for table "kv_scope_enum"
+"""
+input kv_scope_enum_on_conflict {
+  constraint: kv_scope_enum_constraint!
+  update_columns: [kv_scope_enum_update_column!]!
+  where: kv_scope_enum_bool_exp
+}
+
+"""
+Ordering options when selecting data from "kv_scope_enum".
+"""
+input kv_scope_enum_order_by {
+  value: order_by
+}
+
+"""
+primary key columns input for table: kv_scope_enum
+"""
+input kv_scope_enum_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "kv_scope_enum"
+"""
+enum kv_scope_enum_select_column {
+  """
+  column name
+  """
+  value
+}
+
+"""
+input type for updating data in table "kv_scope_enum"
+"""
+input kv_scope_enum_set_input {
+  value: String
+}
+
+"""
+update columns of table "kv_scope_enum"
+"""
+enum kv_scope_enum_update_column {
+  """
+  column name
+  """
+  value
+}
+
+"""
+columns and relationships of "kv_store"
+"""
+type kv_store {
+  created_at: timestamptz!
+  created_by: Int!
+
+  """
+  An object relationship
+  """
+  developer: developers!
+  key: String!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  object_id: Int!
+  scope: String!
+  scope_object_id: Int!
+  updated_at: timestamptz!
+  value(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+}
+
+"""
+aggregated selection of "kv_store"
+"""
+type kv_store_aggregate {
+  aggregate: kv_store_aggregate_fields
+  nodes: [kv_store!]!
+}
+
+"""
+aggregate fields of "kv_store"
+"""
+type kv_store_aggregate_fields {
+  avg: kv_store_avg_fields
+  count(columns: [kv_store_select_column!], distinct: Boolean): Int!
+  max: kv_store_max_fields
+  min: kv_store_min_fields
+  stddev: kv_store_stddev_fields
+  stddev_pop: kv_store_stddev_pop_fields
+  stddev_samp: kv_store_stddev_samp_fields
+  sum: kv_store_sum_fields
+  var_pop: kv_store_var_pop_fields
+  var_samp: kv_store_var_samp_fields
+  variance: kv_store_variance_fields
+}
+
+"""
+order by aggregate values of table "kv_store"
+"""
+input kv_store_aggregate_order_by {
+  avg: kv_store_avg_order_by
+  count: order_by
+  max: kv_store_max_order_by
+  min: kv_store_min_order_by
+  stddev: kv_store_stddev_order_by
+  stddev_pop: kv_store_stddev_pop_order_by
+  stddev_samp: kv_store_stddev_samp_order_by
+  sum: kv_store_sum_order_by
+  var_pop: kv_store_var_pop_order_by
+  var_samp: kv_store_var_samp_order_by
+  variance: kv_store_variance_order_by
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input kv_store_append_input {
+  metadata: jsonb
+  value: jsonb
+}
+
+"""
+input type for inserting array relation for remote table "kv_store"
+"""
+input kv_store_arr_rel_insert_input {
+  data: [kv_store_insert_input!]!
+
+  """
+  on conflict condition
+  """
+  on_conflict: kv_store_on_conflict
+}
+
+"""
+aggregate avg on columns
+"""
+type kv_store_avg_fields {
+  created_by: Float
+  object_id: Float
+  scope_object_id: Float
+}
+
+"""
+order by avg() on columns of table "kv_store"
+"""
+input kv_store_avg_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "kv_store". All fields are combined with a logical 'AND'.
+"""
+input kv_store_bool_exp {
+  _and: [kv_store_bool_exp!]
+  _not: kv_store_bool_exp
+  _or: [kv_store_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  created_by: Int_comparison_exp
+  developer: developers_bool_exp
+  key: String_comparison_exp
+  metadata: jsonb_comparison_exp
+  object_id: Int_comparison_exp
+  scope: String_comparison_exp
+  scope_object_id: Int_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  value: jsonb_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "kv_store"
+"""
+enum kv_store_constraint {
+  """
+  unique or primary key constraint
+  """
+  kv_store_key_key
+
+  """
+  unique or primary key constraint
+  """
+  kv_store_object_id_key
+
+  """
+  unique or primary key constraint
+  """
+  kv_store_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input kv_store_delete_at_path_input {
+  metadata: [String!]
+  value: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input kv_store_delete_elem_input {
+  metadata: Int
+  value: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input kv_store_delete_key_input {
+  metadata: String
+  value: String
+}
+
+"""
+input type for incrementing numeric columns in table "kv_store"
+"""
+input kv_store_inc_input {
+  created_by: Int
+  object_id: Int
+  scope_object_id: Int
+}
+
+"""
+input type for inserting data into table "kv_store"
+"""
+input kv_store_insert_input {
+  created_at: timestamptz
+  created_by: Int
+  developer: developers_obj_rel_insert_input
+  key: String
+  metadata: jsonb
+  object_id: Int
+  scope: String
+  scope_object_id: Int
+  updated_at: timestamptz
+  value: jsonb
+}
+
+"""
+aggregate max on columns
+"""
+type kv_store_max_fields {
+  created_at: timestamptz
+  created_by: Int
+  key: String
+  object_id: Int
+  scope: String
+  scope_object_id: Int
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "kv_store"
+"""
+input kv_store_max_order_by {
+  created_at: order_by
+  created_by: order_by
+  key: order_by
+  object_id: order_by
+  scope: order_by
+  scope_object_id: order_by
+  updated_at: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type kv_store_min_fields {
+  created_at: timestamptz
+  created_by: Int
+  key: String
+  object_id: Int
+  scope: String
+  scope_object_id: Int
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "kv_store"
+"""
+input kv_store_min_order_by {
+  created_at: order_by
+  created_by: order_by
+  key: order_by
+  object_id: order_by
+  scope: order_by
+  scope_object_id: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "kv_store"
+"""
+type kv_store_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [kv_store!]!
+}
+
+"""
+on conflict condition type for table "kv_store"
+"""
+input kv_store_on_conflict {
+  constraint: kv_store_constraint!
+  update_columns: [kv_store_update_column!]!
+  where: kv_store_bool_exp
+}
+
+"""
+Ordering options when selecting data from "kv_store".
+"""
+input kv_store_order_by {
+  created_at: order_by
+  created_by: order_by
+  developer: developers_order_by
+  key: order_by
+  metadata: order_by
+  object_id: order_by
+  scope: order_by
+  scope_object_id: order_by
+  updated_at: order_by
+  value: order_by
+}
+
+"""
+primary key columns input for table: kv_store
+"""
+input kv_store_pk_columns_input {
+  key: String!
+  scope: String!
+  scope_object_id: Int!
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input kv_store_prepend_input {
+  metadata: jsonb
+  value: jsonb
+}
+
+"""
+select columns of table "kv_store"
+"""
+enum kv_store_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  created_by
+
+  """
+  column name
+  """
+  key
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope
+
+  """
+  column name
+  """
+  scope_object_id
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+input type for updating data in table "kv_store"
+"""
+input kv_store_set_input {
+  created_at: timestamptz
+  created_by: Int
+  key: String
+  metadata: jsonb
+  object_id: Int
+  scope: String
+  scope_object_id: Int
+  updated_at: timestamptz
+  value: jsonb
+}
+
+"""
+aggregate stddev on columns
+"""
+type kv_store_stddev_fields {
+  created_by: Float
+  object_id: Float
+  scope_object_id: Float
+}
+
+"""
+order by stddev() on columns of table "kv_store"
+"""
+input kv_store_stddev_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type kv_store_stddev_pop_fields {
+  created_by: Float
+  object_id: Float
+  scope_object_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "kv_store"
+"""
+input kv_store_stddev_pop_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type kv_store_stddev_samp_fields {
+  created_by: Float
+  object_id: Float
+  scope_object_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "kv_store"
+"""
+input kv_store_stddev_samp_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type kv_store_sum_fields {
+  created_by: Int
+  object_id: Int
+  scope_object_id: Int
+}
+
+"""
+order by sum() on columns of table "kv_store"
+"""
+input kv_store_sum_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+update columns of table "kv_store"
+"""
+enum kv_store_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  created_by
+
+  """
+  column name
+  """
+  key
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+
+  """
+  column name
+  """
+  scope
+
+  """
+  column name
+  """
+  scope_object_id
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+aggregate var_pop on columns
+"""
+type kv_store_var_pop_fields {
+  created_by: Float
+  object_id: Float
+  scope_object_id: Float
+}
+
+"""
+order by var_pop() on columns of table "kv_store"
+"""
+input kv_store_var_pop_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type kv_store_var_samp_fields {
+  created_by: Float
+  object_id: Float
+  scope_object_id: Float
+}
+
+"""
+order by var_samp() on columns of table "kv_store"
+"""
+input kv_store_var_samp_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type kv_store_variance_fields {
+  created_by: Float
+  object_id: Float
+  scope_object_id: Float
+}
+
+"""
+order by variance() on columns of table "kv_store"
+"""
+input kv_store_variance_order_by {
+  created_by: order_by
+  object_id: order_by
+  scope_object_id: order_by
+}
+
+"""
+columns and relationships of "last_utterance"
+"""
+type last_utterance {
+  """
+  An object relationship
+  """
+  conversation: conversations
+  conversation_id: Int
+  interval: timestamptz
+  speaker_type: String
+  updated_at: timestamptz
+  utterance: String
+}
+
+"""
+aggregated selection of "last_utterance"
+"""
+type last_utterance_aggregate {
+  aggregate: last_utterance_aggregate_fields
+  nodes: [last_utterance!]!
+}
+
+"""
+aggregate fields of "last_utterance"
+"""
+type last_utterance_aggregate_fields {
+  avg: last_utterance_avg_fields
+  count(columns: [last_utterance_select_column!], distinct: Boolean): Int!
+  max: last_utterance_max_fields
+  min: last_utterance_min_fields
+  stddev: last_utterance_stddev_fields
+  stddev_pop: last_utterance_stddev_pop_fields
+  stddev_samp: last_utterance_stddev_samp_fields
+  sum: last_utterance_sum_fields
+  var_pop: last_utterance_var_pop_fields
+  var_samp: last_utterance_var_samp_fields
+  variance: last_utterance_variance_fields
+}
+
+"""
+aggregate avg on columns
+"""
+type last_utterance_avg_fields {
+  conversation_id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "last_utterance". All fields are combined with a logical 'AND'.
+"""
+input last_utterance_bool_exp {
+  _and: [last_utterance_bool_exp!]
+  _not: last_utterance_bool_exp
+  _or: [last_utterance_bool_exp!]
+  conversation: conversations_bool_exp
+  conversation_id: Int_comparison_exp
+  interval: timestamptz_comparison_exp
+  speaker_type: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  utterance: String_comparison_exp
+}
+
+"""
+aggregate max on columns
+"""
+type last_utterance_max_fields {
+  conversation_id: Int
+  interval: timestamptz
+  speaker_type: String
+  updated_at: timestamptz
+  utterance: String
+}
+
+"""
+aggregate min on columns
+"""
+type last_utterance_min_fields {
+  conversation_id: Int
+  interval: timestamptz
+  speaker_type: String
+  updated_at: timestamptz
+  utterance: String
+}
+
+"""
+Ordering options when selecting data from "last_utterance".
+"""
+input last_utterance_order_by {
+  conversation: conversations_order_by
+  conversation_id: order_by
+  interval: order_by
+  speaker_type: order_by
+  updated_at: order_by
+  utterance: order_by
+}
+
+"""
+select columns of table "last_utterance"
+"""
+enum last_utterance_select_column {
+  """
+  column name
+  """
+  conversation_id
+
+  """
+  column name
+  """
+  interval
+
+  """
+  column name
+  """
+  speaker_type
+
+  """
+  column name
+  """
+  updated_at
+
+  """
+  column name
+  """
+  utterance
+}
+
+"""
+aggregate stddev on columns
+"""
+type last_utterance_stddev_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type last_utterance_stddev_pop_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type last_utterance_stddev_samp_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type last_utterance_sum_fields {
+  conversation_id: Int
+}
+
+"""
+aggregate var_pop on columns
+"""
+type last_utterance_var_pop_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type last_utterance_var_samp_fields {
+  conversation_id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type last_utterance_variance_fields {
+  conversation_id: Float
+}
+
+"""
+Intent matching output
+"""
+type MatchIntentOutput {
+  """
+  A list of matches found
+  """
+  matches: [PhraseMatch]
+
+  """
+  A list of processing errors if any
+  """
+  warnings: [String]
+}
+
+"""
+mutation root
+"""
+type mutation_root {
+  """
+  delete data from the table: "apps"
+  """
+  delete_apps(
+    """
+    filter the rows which have to be deleted
+    """
+    where: apps_bool_exp!
+  ): apps_mutation_response
+
+  """
+  delete data from the table: "atomic.data"
+  """
+  delete_atomic_data(
+    """
+    filter the rows which have to be deleted
+    """
+    where: atomic_data_bool_exp!
+  ): atomic_data_mutation_response
+
+  """
+  delete data from the table: "conceptnet.data"
+  """
+  delete_conceptnet_data(
+    """
+    filter the rows which have to be deleted
+    """
+    where: conceptnet_data_bool_exp!
+  ): conceptnet_data_mutation_response
+
+  """
+  delete data from the table: "conversations"
+  """
+  delete_conversations(
+    """
+    filter the rows which have to be deleted
+    """
+    where: conversations_bool_exp!
+  ): conversations_mutation_response
+
+  """
+  delete data from the table: "developers"
+  """
+  delete_developers(
+    """
+    filter the rows which have to be deleted
+    """
+    where: developers_bool_exp!
+  ): developers_mutation_response
+
+  """
+  delete data from the table: "end_user_conversations"
+  """
+  delete_end_user_conversations(
+    """
+    filter the rows which have to be deleted
+    """
+    where: end_user_conversations_bool_exp!
+  ): end_user_conversations_mutation_response
+
+  """
+  delete single row from the table: "end_user_conversations"
+  """
+  delete_end_user_conversations_by_pk(
+    conversation_id: Int!
+    end_user_id: Int!
+  ): end_user_conversations
+
+  """
+  delete data from the table: "end_users"
+  """
+  delete_end_users(
+    """
+    filter the rows which have to be deleted
+    """
+    where: end_users_bool_exp!
+  ): end_users_mutation_response
+
+  """
+  delete data from the table: "events"
+  """
+  delete_events(
+    """
+    filter the rows which have to be deleted
+    """
+    where: events_bool_exp!
+  ): events_mutation_response
+
+  """
+  delete data from the table: "invites"
+  """
+  delete_invites(
+    """
+    filter the rows which have to be deleted
+    """
+    where: invites_bool_exp!
+  ): invites_mutation_response
+
+  """
+  delete data from the table: "kv_scope_enum"
+  """
+  delete_kv_scope_enum(
+    """
+    filter the rows which have to be deleted
+    """
+    where: kv_scope_enum_bool_exp!
+  ): kv_scope_enum_mutation_response
+
+  """
+  delete single row from the table: "kv_scope_enum"
+  """
+  delete_kv_scope_enum_by_pk(value: String!): kv_scope_enum
+
+  """
+  delete data from the table: "kv_store"
+  """
+  delete_kv_store(
+    """
+    filter the rows which have to be deleted
+    """
+    where: kv_store_bool_exp!
+  ): kv_store_mutation_response
+
+  """
+  delete single row from the table: "kv_store"
+  """
+  delete_kv_store_by_pk(
+    key: String!
+    scope: String!
+    scope_object_id: Int!
+  ): kv_store
+
+  """
+  delete data from the table: "objects"
+  """
+  delete_objects(
+    """
+    filter the rows which have to be deleted
+    """
+    where: objects_bool_exp!
+  ): objects_mutation_response
+
+  """
+  delete single row from the table: "objects"
+  """
+  delete_objects_by_pk(object_id: Int!): objects
+
+  """
+  delete data from the table: "speaker_type_enum"
+  """
+  delete_speaker_type_enum(
+    """
+    filter the rows which have to be deleted
+    """
+    where: speaker_type_enum_bool_exp!
+  ): speaker_type_enum_mutation_response
+
+  """
+  delete single row from the table: "speaker_type_enum"
+  """
+  delete_speaker_type_enum_by_pk(value: String!): speaker_type_enum
+
+  """
+  delete data from the table: "utterances"
+  """
+  delete_utterances(
+    """
+    filter the rows which have to be deleted
+    """
+    where: utterances_bool_exp!
+  ): utterances_mutation_response
+
+  """
+  insert data into the table: "apps"
+  """
+  insert_apps(
+    """
+    the rows to be inserted
+    """
+    objects: [apps_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: apps_on_conflict
+  ): apps_mutation_response
+
+  """
+  insert a single row into the table: "apps"
+  """
+  insert_apps_one(
+    """
+    the row to be inserted
+    """
+    object: apps_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: apps_on_conflict
+  ): apps
+
+  """
+  insert data into the table: "atomic.data"
+  """
+  insert_atomic_data(
+    """
+    the rows to be inserted
+    """
+    objects: [atomic_data_insert_input!]!
+  ): atomic_data_mutation_response
+
+  """
+  insert a single row into the table: "atomic.data"
+  """
+  insert_atomic_data_one(
+    """
+    the row to be inserted
+    """
+    object: atomic_data_insert_input!
+  ): atomic_data
+
+  """
+  insert data into the table: "conceptnet.data"
+  """
+  insert_conceptnet_data(
+    """
+    the rows to be inserted
+    """
+    objects: [conceptnet_data_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: conceptnet_data_on_conflict
+  ): conceptnet_data_mutation_response
+
+  """
+  insert a single row into the table: "conceptnet.data"
+  """
+  insert_conceptnet_data_one(
+    """
+    the row to be inserted
+    """
+    object: conceptnet_data_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: conceptnet_data_on_conflict
+  ): conceptnet_data
+
+  """
+  insert data into the table: "conversations"
+  """
+  insert_conversations(
+    """
+    the rows to be inserted
+    """
+    objects: [conversations_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: conversations_on_conflict
+  ): conversations_mutation_response
+
+  """
+  insert a single row into the table: "conversations"
+  """
+  insert_conversations_one(
+    """
+    the row to be inserted
+    """
+    object: conversations_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: conversations_on_conflict
+  ): conversations
+
+  """
+  insert data into the table: "developers"
+  """
+  insert_developers(
+    """
+    the rows to be inserted
+    """
+    objects: [developers_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: developers_on_conflict
+  ): developers_mutation_response
+
+  """
+  insert a single row into the table: "developers"
+  """
+  insert_developers_one(
+    """
+    the row to be inserted
+    """
+    object: developers_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: developers_on_conflict
+  ): developers
+
+  """
+  insert data into the table: "end_user_conversations"
+  """
+  insert_end_user_conversations(
+    """
+    the rows to be inserted
+    """
+    objects: [end_user_conversations_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: end_user_conversations_on_conflict
+  ): end_user_conversations_mutation_response
+
+  """
+  insert a single row into the table: "end_user_conversations"
+  """
+  insert_end_user_conversations_one(
+    """
+    the row to be inserted
+    """
+    object: end_user_conversations_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: end_user_conversations_on_conflict
+  ): end_user_conversations
+
+  """
+  insert data into the table: "end_users"
+  """
+  insert_end_users(
+    """
+    the rows to be inserted
+    """
+    objects: [end_users_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: end_users_on_conflict
+  ): end_users_mutation_response
+
+  """
+  insert a single row into the table: "end_users"
+  """
+  insert_end_users_one(
+    """
+    the row to be inserted
+    """
+    object: end_users_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: end_users_on_conflict
+  ): end_users
+
+  """
+  insert data into the table: "events"
+  """
+  insert_events(
+    """
+    the rows to be inserted
+    """
+    objects: [events_insert_input!]!
+  ): events_mutation_response
+
+  """
+  insert a single row into the table: "events"
+  """
+  insert_events_one(
+    """
+    the row to be inserted
+    """
+    object: events_insert_input!
+  ): events
+
+  """
+  insert data into the table: "invites"
+  """
+  insert_invites(
+    """
+    the rows to be inserted
+    """
+    objects: [invites_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: invites_on_conflict
+  ): invites_mutation_response
+
+  """
+  insert a single row into the table: "invites"
+  """
+  insert_invites_one(
+    """
+    the row to be inserted
+    """
+    object: invites_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: invites_on_conflict
+  ): invites
+
+  """
+  insert data into the table: "kv_scope_enum"
+  """
+  insert_kv_scope_enum(
+    """
+    the rows to be inserted
+    """
+    objects: [kv_scope_enum_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: kv_scope_enum_on_conflict
+  ): kv_scope_enum_mutation_response
+
+  """
+  insert a single row into the table: "kv_scope_enum"
+  """
+  insert_kv_scope_enum_one(
+    """
+    the row to be inserted
+    """
+    object: kv_scope_enum_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: kv_scope_enum_on_conflict
+  ): kv_scope_enum
+
+  """
+  insert data into the table: "kv_store"
+  """
+  insert_kv_store(
+    """
+    the rows to be inserted
+    """
+    objects: [kv_store_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: kv_store_on_conflict
+  ): kv_store_mutation_response
+
+  """
+  insert a single row into the table: "kv_store"
+  """
+  insert_kv_store_one(
+    """
+    the row to be inserted
+    """
+    object: kv_store_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: kv_store_on_conflict
+  ): kv_store
+
+  """
+  insert data into the table: "objects"
+  """
+  insert_objects(
+    """
+    the rows to be inserted
+    """
+    objects: [objects_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: objects_on_conflict
+  ): objects_mutation_response
+
+  """
+  insert a single row into the table: "objects"
+  """
+  insert_objects_one(
+    """
+    the row to be inserted
+    """
+    object: objects_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: objects_on_conflict
+  ): objects
+
+  """
+  insert data into the table: "speaker_type_enum"
+  """
+  insert_speaker_type_enum(
+    """
+    the rows to be inserted
+    """
+    objects: [speaker_type_enum_insert_input!]!
+
+    """
+    on conflict condition
+    """
+    on_conflict: speaker_type_enum_on_conflict
+  ): speaker_type_enum_mutation_response
+
+  """
+  insert a single row into the table: "speaker_type_enum"
+  """
+  insert_speaker_type_enum_one(
+    """
+    the row to be inserted
+    """
+    object: speaker_type_enum_insert_input!
+
+    """
+    on conflict condition
+    """
+    on_conflict: speaker_type_enum_on_conflict
+  ): speaker_type_enum
+
+  """
+  insert data into the table: "utterances"
+  """
+  insert_utterances(
+    """
+    the rows to be inserted
+    """
+    objects: [utterances_insert_input!]!
+  ): utterances_mutation_response
+
+  """
+  insert a single row into the table: "utterances"
+  """
+  insert_utterances_one(
+    """
+    the row to be inserted
+    """
+    object: utterances_insert_input!
+  ): utterances
+
+  """
+  update data of the table: "apps"
+  """
+  update_apps(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: apps_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: apps_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: apps_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: apps_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: apps_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: apps_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: apps_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: apps_bool_exp!
+  ): apps_mutation_response
+
+  """
+  update data of the table: "atomic.data"
+  """
+  update_atomic_data(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: atomic_data_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: atomic_data_bool_exp!
+  ): atomic_data_mutation_response
+
+  """
+  update data of the table: "conceptnet.data"
+  """
+  update_conceptnet_data(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: conceptnet_data_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: conceptnet_data_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: conceptnet_data_bool_exp!
+  ): conceptnet_data_mutation_response
+
+  """
+  update data of the table: "conversations"
+  """
+  update_conversations(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: conversations_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: conversations_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: conversations_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: conversations_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: conversations_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: conversations_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: conversations_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: conversations_bool_exp!
+  ): conversations_mutation_response
+
+  """
+  update data of the table: "developers"
+  """
+  update_developers(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: developers_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: developers_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: developers_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: developers_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: developers_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: developers_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: developers_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: developers_bool_exp!
+  ): developers_mutation_response
+
+  """
+  update data of the table: "end_user_conversations"
+  """
+  update_end_user_conversations(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: end_user_conversations_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: end_user_conversations_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: end_user_conversations_bool_exp!
+  ): end_user_conversations_mutation_response
+
+  """
+  update single row of the table: "end_user_conversations"
+  """
+  update_end_user_conversations_by_pk(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: end_user_conversations_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: end_user_conversations_set_input
+    pk_columns: end_user_conversations_pk_columns_input!
+  ): end_user_conversations
+
+  """
+  update data of the table: "end_users"
+  """
+  update_end_users(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: end_users_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: end_users_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: end_users_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: end_users_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: end_users_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: end_users_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: end_users_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: end_users_bool_exp!
+  ): end_users_mutation_response
+
+  """
+  update data of the table: "events"
+  """
+  update_events(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: events_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: events_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: events_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: events_delete_key_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: events_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: events_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: events_bool_exp!
+  ): events_mutation_response
+
+  """
+  update data of the table: "invites"
+  """
+  update_invites(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: invites_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: invites_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: invites_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: invites_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: invites_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: invites_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: invites_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: invites_bool_exp!
+  ): invites_mutation_response
+
+  """
+  update data of the table: "kv_scope_enum"
+  """
+  update_kv_scope_enum(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: kv_scope_enum_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: kv_scope_enum_bool_exp!
+  ): kv_scope_enum_mutation_response
+
+  """
+  update single row of the table: "kv_scope_enum"
+  """
+  update_kv_scope_enum_by_pk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: kv_scope_enum_set_input
+    pk_columns: kv_scope_enum_pk_columns_input!
+  ): kv_scope_enum
+
+  """
+  update data of the table: "kv_store"
+  """
+  update_kv_store(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: kv_store_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: kv_store_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: kv_store_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: kv_store_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: kv_store_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: kv_store_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: kv_store_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: kv_store_bool_exp!
+  ): kv_store_mutation_response
+
+  """
+  update single row of the table: "kv_store"
+  """
+  update_kv_store_by_pk(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: kv_store_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: kv_store_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: kv_store_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: kv_store_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: kv_store_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: kv_store_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: kv_store_set_input
+    pk_columns: kv_store_pk_columns_input!
+  ): kv_store
+
+  """
+  update data of the table: "objects"
+  """
+  update_objects(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: objects_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: objects_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: objects_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: objects_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: objects_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: objects_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: objects_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: objects_bool_exp!
+  ): objects_mutation_response
+
+  """
+  update single row of the table: "objects"
+  """
+  update_objects_by_pk(
+    """
+    append existing jsonb value of filtered columns with new jsonb value
+    """
+    _append: objects_append_input
+
+    """
+    delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+    """
+    _delete_at_path: objects_delete_at_path_input
+
+    """
+    delete the array element with specified index (negative integers count from
+    the end). throws an error if top level container is not an array
+    """
+    _delete_elem: objects_delete_elem_input
+
+    """
+    delete key/value pair or string element. key/value pairs are matched based on their key value
+    """
+    _delete_key: objects_delete_key_input
+
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: objects_inc_input
+
+    """
+    prepend existing jsonb value of filtered columns with new jsonb value
+    """
+    _prepend: objects_prepend_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: objects_set_input
+    pk_columns: objects_pk_columns_input!
+  ): objects
+
+  """
+  update data of the table: "speaker_type_enum"
+  """
+  update_speaker_type_enum(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: speaker_type_enum_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: speaker_type_enum_bool_exp!
+  ): speaker_type_enum_mutation_response
+
+  """
+  update single row of the table: "speaker_type_enum"
+  """
+  update_speaker_type_enum_by_pk(
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: speaker_type_enum_set_input
+    pk_columns: speaker_type_enum_pk_columns_input!
+  ): speaker_type_enum
+
+  """
+  update data of the table: "utterances"
+  """
+  update_utterances(
+    """
+    increments the numeric columns with given value of the filtered values
+    """
+    _inc: utterances_inc_input
+
+    """
+    sets the columns of the filtered rows to the given values
+    """
+    _set: utterances_set_input
+
+    """
+    filter the rows which have to be updated
+    """
+    where: utterances_bool_exp!
+  ): utterances_mutation_response
+}
+
+type NlpBatch {
+  batch_id: UUID
+  docs: [NlpDoc]
+}
+
+"""
+A container for accessing linguistic annotations.
+Access sentences and named entities.
+"""
+type NlpDoc implements Container {
+  cats: [Cat]
+
+  """
+  The named entities in the document. Returns a list of named entity Span
+  objects, if the entity recognizer has been applied.
+  """
+  ents: [Span]
+  extension: DocExtension
+
+  """
+  A boolean value indicating whether a word vector is associated with the object.
+  """
+  has_vector: Boolean
+  id: Int
+
+  """
+  The base noun phrases in the document.
+      Returns a list of base noun-phrase Span objects, if the document has been syntactically parsed.
+      A base noun phrase, or “NP chunk”, is a noun phrase that does not permit
+  other NPs to be nested within it – so no NP-level coordination, no
+  prepositional phrases, and no relative clauses.
+  """
+  noun_chunks: [Span]
+  sentiment: Float
+
+  """
+  The the sentences in the document.
+      Sentence spans have no label. To improve accuracy on informal texts, spaCy
+  calculates sentence boundaries from the syntactic dependency parse.
+      If the parser is disabled, the sents iterator will be unavailable.
+  """
+  sents: [Span]
+
+  """
+  Verbatim text content.
+  """
+  text: String
+
+  """
+  Text content, with trailing space character if present.
+  """
+  text_with_ws: String
+
+  """
+  The tokens of the document.
+  """
+  tokens: [Token]
+
+  """
+  A real-valued meaning representation.
+  """
+  vector: [Float]
+
+  """
+  The L2 norm of the document’s vector representation.
+  """
+  vector_norm: Float
+}
+
+scalar numeric
+
+"""
+Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'.
+"""
+input numeric_comparison_exp {
+  _eq: numeric
+  _gt: numeric
+  _gte: numeric
+  _in: [numeric!]
+  _is_null: Boolean
+  _lt: numeric
+  _lte: numeric
+  _neq: numeric
+  _nin: [numeric!]
+}
+
+"""
+columns and relationships of "objects"
+"""
+type objects {
+  created_at: timestamptz!
+  metadata(
+    """
+    JSON select path
+    """
+    path: String
+  ): jsonb!
+  object_id: Int!
+}
+
+"""
+aggregated selection of "objects"
+"""
+type objects_aggregate {
+  aggregate: objects_aggregate_fields
+  nodes: [objects!]!
+}
+
+"""
+aggregate fields of "objects"
+"""
+type objects_aggregate_fields {
+  avg: objects_avg_fields
+  count(columns: [objects_select_column!], distinct: Boolean): Int!
+  max: objects_max_fields
+  min: objects_min_fields
+  stddev: objects_stddev_fields
+  stddev_pop: objects_stddev_pop_fields
+  stddev_samp: objects_stddev_samp_fields
+  sum: objects_sum_fields
+  var_pop: objects_var_pop_fields
+  var_samp: objects_var_samp_fields
+  variance: objects_variance_fields
+}
+
+"""
+append existing jsonb value of filtered columns with new jsonb value
+"""
+input objects_append_input {
+  metadata: jsonb
+}
+
+"""
+aggregate avg on columns
+"""
+type objects_avg_fields {
+  object_id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "objects". All fields are combined with a logical 'AND'.
+"""
+input objects_bool_exp {
+  _and: [objects_bool_exp!]
+  _not: objects_bool_exp
+  _or: [objects_bool_exp!]
+  created_at: timestamptz_comparison_exp
+  metadata: jsonb_comparison_exp
+  object_id: Int_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "objects"
+"""
+enum objects_constraint {
+  """
+  unique or primary key constraint
+  """
+  objects_pkey
+}
+
+"""
+delete the field or element with specified path (for JSON arrays, negative integers count from the end)
+"""
+input objects_delete_at_path_input {
+  metadata: [String!]
+}
+
+"""
+delete the array element with specified index (negative integers count from the
+end). throws an error if top level container is not an array
+"""
+input objects_delete_elem_input {
+  metadata: Int
+}
+
+"""
+delete key/value pair or string element. key/value pairs are matched based on their key value
+"""
+input objects_delete_key_input {
+  metadata: String
+}
+
+"""
+input type for incrementing numeric columns in table "objects"
+"""
+input objects_inc_input {
+  object_id: Int
+}
+
+"""
+input type for inserting data into table "objects"
+"""
+input objects_insert_input {
+  created_at: timestamptz
+  metadata: jsonb
+  object_id: Int
+}
+
+"""
+aggregate max on columns
+"""
+type objects_max_fields {
+  created_at: timestamptz
+  object_id: Int
+}
+
+"""
+aggregate min on columns
+"""
+type objects_min_fields {
+  created_at: timestamptz
+  object_id: Int
+}
+
+"""
+response of any mutation on the table "objects"
+"""
+type objects_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [objects!]!
+}
+
+"""
+on conflict condition type for table "objects"
+"""
+input objects_on_conflict {
+  constraint: objects_constraint!
+  update_columns: [objects_update_column!]!
+  where: objects_bool_exp
+}
+
+"""
+Ordering options when selecting data from "objects".
+"""
+input objects_order_by {
+  created_at: order_by
+  metadata: order_by
+  object_id: order_by
+}
+
+"""
+primary key columns input for table: objects
+"""
+input objects_pk_columns_input {
+  object_id: Int!
+}
+
+"""
+prepend existing jsonb value of filtered columns with new jsonb value
+"""
+input objects_prepend_input {
+  metadata: jsonb
+}
+
+"""
+select columns of table "objects"
+"""
+enum objects_select_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+}
+
+"""
+input type for updating data in table "objects"
+"""
+input objects_set_input {
+  created_at: timestamptz
+  metadata: jsonb
+  object_id: Int
+}
+
+"""
+aggregate stddev on columns
+"""
+type objects_stddev_fields {
+  object_id: Float
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type objects_stddev_pop_fields {
+  object_id: Float
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type objects_stddev_samp_fields {
+  object_id: Float
+}
+
+"""
+aggregate sum on columns
+"""
+type objects_sum_fields {
+  object_id: Int
+}
+
+"""
+update columns of table "objects"
+"""
+enum objects_update_column {
+  """
+  column name
+  """
+  created_at
+
+  """
+  column name
+  """
+  metadata
+
+  """
+  column name
+  """
+  object_id
+}
+
+"""
+aggregate var_pop on columns
+"""
+type objects_var_pop_fields {
+  object_id: Float
+}
+
+"""
+aggregate var_samp on columns
+"""
+type objects_var_samp_fields {
+  object_id: Float
+}
+
+"""
+aggregate variance on columns
+"""
+type objects_variance_fields {
+  object_id: Float
+}
+
+"""
+column ordering options
+"""
+enum order_by {
+  """
+  in ascending order, nulls last
+  """
+  asc
+
+  """
+  in ascending order, nulls first
+  """
+  asc_nulls_first
+
+  """
+  in ascending order, nulls last
+  """
+  asc_nulls_last
+
+  """
+  in descending order, nulls first
+  """
+  desc
+
+  """
+  in descending order, nulls first
+  """
+  desc_nulls_first
+
+  """
+  in descending order, nulls last
+  """
+  desc_nulls_last
+}
+
+type PairSimilarity {
+  """
+  Similarity score
+  """
+  score: Float
+
+  """
+  Similarity sentences pair
+  """
+  sentencePair: [String]
+}
+
+type Paraphrase {
+  paraphrases: [String]
+}
+
+"""
+A phrase match
+"""
+type PhraseMatch {
+  """
+  The intent that get a match
+  """
+  matched_intent: String
+
+  """
+  Similatiry measure
+  """
+  similarity: Float
+
+  """
+  A list of word matches
+  """
+  word_matches: [WordMatch]
+}
+
+type query_root {
+  """
+  An array relationship
+  """
+  apps(
+    """
+    distinct select on columns
+    """
+    distinct_on: [apps_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [apps_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: apps_bool_exp
+  ): [apps!]!
+
+  """
+  An aggregate relationship
+  """
+  apps_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [apps_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [apps_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: apps_bool_exp
+  ): apps_aggregate!
+
+  """
+  fetch data from the table: "atomic.data"
+  """
+  atomic_data(
+    """
+    distinct select on columns
+    """
+    distinct_on: [atomic_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [atomic_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: atomic_data_bool_exp
+  ): [atomic_data!]!
+
+  """
+  fetch aggregated fields from the table: "atomic.data"
+  """
+  atomic_data_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [atomic_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [atomic_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: atomic_data_bool_exp
+  ): atomic_data_aggregate!
+
+  """
+  Apply voice CSS to the SSML input
+  """
+  callApplyVoiceCSS(styled_ssml: String, voice_css: String): SSMLResult
+
+  """
+  Perform chit chat
+  """
+  callChitchat(history: [Turn!], input: String): ChitchatResponse
+
+  """
+  Predict categories
+  """
+  callCommonsense(
+    """
+    Categories to pull out of text
+    """
+    categories: [Categories] = null
+
+    """
+    Text string
+    """
+    text: String!
+  ): [RelationResult]
+
+  """
+  Execute composition pipeline
+  """
+  callCompose(init: JSON, pipeline: [InputPipe]!): ComposeResult
+
+  """
+  Call the intent matching functionality
+  """
+  callMatchIntent(
+    input: String = null
+    possible_intents: [String] = null
+    similarity_threshold: Float = 0.8
+  ): MatchIntentOutput
+
+  """
+  Measure sentences similarity
+  """
+  callMeasureSimilarity(
+    compareWith: [String]
+    sentence: String
+  ): SentenceSimilarityScores
+
+  """
+  Perform next dialog turn prediction
+  """
+  callNextDialogTurn(
+    """
+    Alternatives to choose from
+    """
+    alternatives: [String]
+
+    """
+    Utterances history
+    """
+    history: [String]
+  ): [DialogAlternative]
+  callNlpBatch(
+    batch_id: String
+    batch_size: Int
+    disable: [String] = []
+    model: String = "en_core_web_md"
+    next: Int
+    texts: [String]
+  ): NlpBatch
+  callNlpDoc(
+    disable: [String] = []
+    model: String = "en_core_web_md"
+    text: String!
+  ): NlpDoc
+  callParaphraseSentence(
+    input: String
+    number_of_paraphrases: Int = 10
+  ): Paraphrase
+
+  """
+  Parse ACE sentence
+  """
+  callParseACE(format: ACEOutputType, guess: Boolean, text: String!): ACEResult
+
+  """
+  Parse frame semantics for a list of dialog turns
+  """
+  callParseContext(
+    """
+    List of possible turns
+    """
+    turns: [ContextObject]
+  ): [ContextResult]
+
+  """
+  Predict relations
+  """
+  callPredictRelation(
+    """
+    Relations to pull out of text
+    """
+    relations: [Relations] = null
+
+    """
+    Text string
+    """
+    text: String!
+  ): [RelationResult]
+  callShowDocs(service: ServiceName): ServiceInfo
+
+  """
+  Convert speech to text
+  """
+  callSpeechToText(audioB64: String!, config: STTConfig): [STTResult]
+
+  """
+  Convert text to speech
+  """
+  callTextToSpeech(config: TTSConfig, text: String!): TTSResult
+
+  """
+  fetch data from the table: "conceptnet.data"
+  """
+  conceptnet_data(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): [conceptnet_data!]!
+
+  """
+  fetch aggregated fields from the table: "conceptnet.data"
+  """
+  conceptnet_data_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): conceptnet_data_aggregate!
+
+  """
+  execute function "conceptnet.search_relations" which returns "conceptnet.data"
+  """
+  conceptnet_search_relations(
+    """
+    input parameters for function "conceptnet.search_relations"
+    """
+    args: conceptnet_search_relations_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): [conceptnet_data!]!
+
+  """
+  execute function "conceptnet.search_relations" and query aggregates on result of table type "conceptnet.data"
+  """
+  conceptnet_search_relations_aggregate(
+    """
+    input parameters for function "conceptnet.search_relations"
+    """
+    args: conceptnet_search_relations_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): conceptnet_data_aggregate!
+
+  """
+  An array relationship
+  """
+  conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): [conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): conversations_aggregate!
+
+  """
+  fetch data from the table: "developers"
+  """
+  developers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [developers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [developers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: developers_bool_exp
+  ): [developers!]!
+
+  """
+  fetch aggregated fields from the table: "developers"
+  """
+  developers_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [developers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [developers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: developers_bool_exp
+  ): developers_aggregate!
+
+  """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
+
+  """
+  fetch data from the table: "end_user_conversations" using primary key columns
+  """
+  end_user_conversations_by_pk(
+    conversation_id: Int!
+    end_user_id: Int!
+  ): end_user_conversations
+
+  """
+  fetch data from the table: "end_users"
+  """
+  end_users(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_users_bool_exp
+  ): [end_users!]!
+
+  """
+  fetch aggregated fields from the table: "end_users"
+  """
+  end_users_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_users_bool_exp
+  ): end_users_aggregate!
+
+  """
+  An array relationship
+  """
+  events(
+    """
+    distinct select on columns
+    """
+    distinct_on: [events_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [events_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: events_bool_exp
+  ): [events!]!
+
+  """
+  An aggregate relationship
+  """
+  events_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [events_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [events_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: events_bool_exp
+  ): events_aggregate!
+
+  """
+  fetch data from the table: "history"
+  """
+  history(
+    """
+    distinct select on columns
+    """
+    distinct_on: [history_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [history_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: history_bool_exp
+  ): [history!]!
+
+  """
+  fetch aggregated fields from the table: "history"
+  """
+  history_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [history_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [history_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: history_bool_exp
+  ): history_aggregate!
+
+  """
+  An array relationship
+  """
+  invites(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): [invites!]!
+
+  """
+  An aggregate relationship
+  """
+  invites_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): invites_aggregate!
+
+  """
+  fetch data from the table: "kv_scope_enum"
+  """
+  kv_scope_enum(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_scope_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_scope_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_scope_enum_bool_exp
+  ): [kv_scope_enum!]!
+
+  """
+  fetch aggregated fields from the table: "kv_scope_enum"
+  """
+  kv_scope_enum_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_scope_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_scope_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_scope_enum_bool_exp
+  ): kv_scope_enum_aggregate!
+
+  """
+  fetch data from the table: "kv_scope_enum" using primary key columns
+  """
+  kv_scope_enum_by_pk(value: String!): kv_scope_enum
+
+  """
+  An array relationship
+  """
+  kv_store(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): [kv_store!]!
+
+  """
+  An aggregate relationship
+  """
+  kv_store_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): kv_store_aggregate!
+
+  """
+  fetch data from the table: "kv_store" using primary key columns
+  """
+  kv_store_by_pk(key: String!, scope: String!, scope_object_id: Int!): kv_store
+
+  """
+  fetch data from the table: "last_utterance"
+  """
+  last_utterance(
+    """
+    distinct select on columns
+    """
+    distinct_on: [last_utterance_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [last_utterance_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: last_utterance_bool_exp
+  ): [last_utterance!]!
+
+  """
+  fetch aggregated fields from the table: "last_utterance"
+  """
+  last_utterance_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [last_utterance_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [last_utterance_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: last_utterance_bool_exp
+  ): last_utterance_aggregate!
+
+  """
+  fetch data from the table: "objects"
+  """
+  objects(
+    """
+    distinct select on columns
+    """
+    distinct_on: [objects_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [objects_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: objects_bool_exp
+  ): [objects!]!
+
+  """
+  fetch aggregated fields from the table: "objects"
+  """
+  objects_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [objects_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [objects_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: objects_bool_exp
+  ): objects_aggregate!
+
+  """
+  fetch data from the table: "objects" using primary key columns
+  """
+  objects_by_pk(object_id: Int!): objects
+
+  """
+  fetch data from the table: "speaker_type_enum"
+  """
+  speaker_type_enum(
+    """
+    distinct select on columns
+    """
+    distinct_on: [speaker_type_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [speaker_type_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: speaker_type_enum_bool_exp
+  ): [speaker_type_enum!]!
+
+  """
+  fetch aggregated fields from the table: "speaker_type_enum"
+  """
+  speaker_type_enum_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [speaker_type_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [speaker_type_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: speaker_type_enum_bool_exp
+  ): speaker_type_enum_aggregate!
+
+  """
+  fetch data from the table: "speaker_type_enum" using primary key columns
+  """
+  speaker_type_enum_by_pk(value: String!): speaker_type_enum
+
+  """
+  An array relationship
+  """
+  utterances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): [utterances!]!
+
+  """
+  An aggregate relationship
+  """
+  utterances_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): utterances_aggregate!
+}
+
+type RelationResult {
+  """
+  Relation name
+  """
+  name: String
+
+  """
+  Related texts
+  """
+  texts: [String]
+}
+
+"""
+Relation type
+"""
+enum Relations {
+  AtLocation
+  CapableOf
+  Causes
+  CausesDesire
+  CreatedBy
+  DefinedAs
+  DesireOf
+  Desires
+  HasA
+  HasFirstSubevent
+  HasLastSubevent
+  HasPainCharacter
+  HasPainIntensity
+  HasPrerequisite
+  HasProperty
+  HasSubevent
+  InheritsFrom
+  InstanceOf
+  IsA
+  LocatedNear
+  LocationOfAction
+  MadeOf
+  MotivatedByGoal
+  NotCapableOf
+  NotDesires
+  NotHasA
+  NotHasProperty
+  NotIsA
+  NotMadeOf
+  PartOf
+  ReceivesAction
+  RelatedTo
+  SymbolOf
+  UsedFor
+  all
+}
+
+type Scores {
+  mention: String
+  score: Float
+}
+
+"""
+Sentence similarity score
+"""
+type SentenceSimilarityScores {
+  """
+  A list of pair similarity results
+  """
+  result: [PairSimilarity]
+}
+
+type ServiceInfo {
+  enums: String
+  inputs: String
+  interfaces: String
+  objects: String
+  queries: String
+  scalars: String
+  schema: String
+}
+
+enum ServiceName {
+  ace_parser
+  compose_services
+  context_frame_parser
+  docs
+  intent_matcher
+  nlu_service
+  paraphrase_sentences
+  sentence_similarity
+  speech_to_text
+  text_to_speech
+  turn_prediction
+  voice_css_render
+}
+
+"""
+SLING document
+"""
+type SlingDocument {
+  """
+  List of mentions
+  """
+  mentions: [SlingMention]
+
+  """
+  Document text
+  """
+  text: String
+}
+
+"""
+SLING mention
+"""
+type SlingMention {
+  """
+  List of words this mention evokes
+  """
+  evokes: [String]
+
+  """
+  Mention phrase
+  """
+  phrase: String
+}
+
+"""
+A slice from a Doc object.
+"""
+type Span implements Container {
+  conjuncts: [Token]
+  end: Int
+  ents: [Span]
+  extension: SpanExtension
+
+  """
+  A boolean value indicating whether a word vector is associated with the object.
+  """
+  has_vector: Boolean
+  label: String
+  lefts: [Token]
+  lemma: String
+  rights: [Token]
+  root: Token
+
+  """
+  A scalar value indicating the positivity or negativity of the object.
+  """
+  sentiment: Float
+  start: Int
+  subtree: [Token]
+
+  """
+  Verbatim text content.
+  """
+  text: String
+
+  """
+  Text content, with trailing space character if present.
+  """
+  text_with_ws: String
+  tokens: [Token]
+
+  """
+  A real-valued meaning representation.
+  """
+  vector: [Float]
+
+  """
+  The L2 norm of the document’s vector representation.
+  """
+  vector_norm: Float
+}
+
+type SpanExtension {
+  coref_cluster: CorefCluster
+  coref_scores: [Scores]
+  has_nfh: Boolean
+  is_coref: Boolean
+  is_nfh: Boolean
+}
+
+"""
+columns and relationships of "speaker_type_enum"
+"""
+type speaker_type_enum {
+  """
+  An array relationship
+  """
+  utterances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): [utterances!]!
+
+  """
+  An aggregate relationship
+  """
+  utterances_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): utterances_aggregate!
+  value: String!
+}
+
+"""
+aggregated selection of "speaker_type_enum"
+"""
+type speaker_type_enum_aggregate {
+  aggregate: speaker_type_enum_aggregate_fields
+  nodes: [speaker_type_enum!]!
+}
+
+"""
+aggregate fields of "speaker_type_enum"
+"""
+type speaker_type_enum_aggregate_fields {
+  count(columns: [speaker_type_enum_select_column!], distinct: Boolean): Int!
+  max: speaker_type_enum_max_fields
+  min: speaker_type_enum_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "speaker_type_enum". All fields are combined with a logical 'AND'.
+"""
+input speaker_type_enum_bool_exp {
+  _and: [speaker_type_enum_bool_exp!]
+  _not: speaker_type_enum_bool_exp
+  _or: [speaker_type_enum_bool_exp!]
+  utterances: utterances_bool_exp
+  value: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "speaker_type_enum"
+"""
+enum speaker_type_enum_constraint {
+  """
+  unique or primary key constraint
+  """
+  speaker_type_enum_pkey
+}
+
+enum speaker_type_enum_enum {
+  bot
+  user
+}
+
+"""
+Boolean expression to compare columns of type "speaker_type_enum_enum". All fields are combined with logical 'AND'.
+"""
+input speaker_type_enum_enum_comparison_exp {
+  _eq: speaker_type_enum_enum
+  _in: [speaker_type_enum_enum!]
+  _is_null: Boolean
+  _neq: speaker_type_enum_enum
+  _nin: [speaker_type_enum_enum!]
+}
+
+"""
+input type for inserting data into table "speaker_type_enum"
+"""
+input speaker_type_enum_insert_input {
+  utterances: utterances_arr_rel_insert_input
+  value: String
+}
+
+"""
+aggregate max on columns
+"""
+type speaker_type_enum_max_fields {
+  value: String
+}
+
+"""
+aggregate min on columns
+"""
+type speaker_type_enum_min_fields {
+  value: String
+}
+
+"""
+response of any mutation on the table "speaker_type_enum"
+"""
+type speaker_type_enum_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [speaker_type_enum!]!
+}
+
+"""
+input type for inserting object relation for remote table "speaker_type_enum"
+"""
+input speaker_type_enum_obj_rel_insert_input {
+  data: speaker_type_enum_insert_input!
+
+  """
+  on conflict condition
+  """
+  on_conflict: speaker_type_enum_on_conflict
+}
+
+"""
+on conflict condition type for table "speaker_type_enum"
+"""
+input speaker_type_enum_on_conflict {
+  constraint: speaker_type_enum_constraint!
+  update_columns: [speaker_type_enum_update_column!]!
+  where: speaker_type_enum_bool_exp
+}
+
+"""
+Ordering options when selecting data from "speaker_type_enum".
+"""
+input speaker_type_enum_order_by {
+  utterances_aggregate: utterances_aggregate_order_by
+  value: order_by
+}
+
+"""
+primary key columns input for table: speaker_type_enum
+"""
+input speaker_type_enum_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "speaker_type_enum"
+"""
+enum speaker_type_enum_select_column {
+  """
+  column name
+  """
+  value
+}
+
+"""
+input type for updating data in table "speaker_type_enum"
+"""
+input speaker_type_enum_set_input {
+  value: String
+}
+
+"""
+update columns of table "speaker_type_enum"
+"""
+enum speaker_type_enum_update_column {
+  """
+  column name
+  """
+  value
+}
+
+"""
+Output result
+"""
+type SSMLResult {
+  """
+  Rendered SSML
+  """
+  ssml: String
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+  _gt: String
+  _gte: String
+
+  """
+  does the column match the given case-insensitive pattern
+  """
+  _ilike: String
+  _in: [String!]
+
+  """
+  does the column match the given POSIX regular expression, case insensitive
+  """
+  _iregex: String
+  _is_null: Boolean
+
+  """
+  does the column match the given pattern
+  """
+  _like: String
+  _lt: String
+  _lte: String
+  _neq: String
+
+  """
+  does the column NOT match the given case-insensitive pattern
+  """
+  _nilike: String
+  _nin: [String!]
+
+  """
+  does the column NOT match the given POSIX regular expression, case insensitive
+  """
+  _niregex: String
+
+  """
+  does the column NOT match the given pattern
+  """
+  _nlike: String
+
+  """
+  does the column NOT match the given POSIX regular expression, case sensitive
+  """
+  _nregex: String
+
+  """
+  does the column NOT match the given SQL regular expression
+  """
+  _nsimilar: String
+
+  """
+  does the column match the given POSIX regular expression, case sensitive
+  """
+  _regex: String
+
+  """
+  does the column match the given SQL regular expression
+  """
+  _similar: String
+}
+
+"""
+Speech to text config
+"""
+input STTConfig {
+  """
+  Audio encoding
+  """
+  encoding: Encoding
+
+  """
+  Language code
+  """
+  languageCode: String
+
+  """
+  Maximum number of the output alternatives
+  """
+  maxAlternatives: Int
+
+  """
+  Profanity filter flag
+  """
+  profanityFilter: Boolean
+
+  """
+  Audio Sample rate
+  """
+  sampleRate: Int
+}
+
+"""
+Output result
+"""
+type STTResult {
+  """
+  A list of alternatives
+  """
+  alternatives: [TextAlternative]
+}
+
+type subscription_root {
+  """
+  An array relationship
+  """
+  apps(
+    """
+    distinct select on columns
+    """
+    distinct_on: [apps_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [apps_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: apps_bool_exp
+  ): [apps!]!
+
+  """
+  An aggregate relationship
+  """
+  apps_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [apps_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [apps_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: apps_bool_exp
+  ): apps_aggregate!
+
+  """
+  fetch data from the table: "atomic.data"
+  """
+  atomic_data(
+    """
+    distinct select on columns
+    """
+    distinct_on: [atomic_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [atomic_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: atomic_data_bool_exp
+  ): [atomic_data!]!
+
+  """
+  fetch aggregated fields from the table: "atomic.data"
+  """
+  atomic_data_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [atomic_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [atomic_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: atomic_data_bool_exp
+  ): atomic_data_aggregate!
+
+  """
+  fetch data from the table: "conceptnet.data"
+  """
+  conceptnet_data(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): [conceptnet_data!]!
+
+  """
+  fetch aggregated fields from the table: "conceptnet.data"
+  """
+  conceptnet_data_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): conceptnet_data_aggregate!
+
+  """
+  execute function "conceptnet.search_relations" which returns "conceptnet.data"
+  """
+  conceptnet_search_relations(
+    """
+    input parameters for function "conceptnet.search_relations"
+    """
+    args: conceptnet_search_relations_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): [conceptnet_data!]!
+
+  """
+  execute function "conceptnet.search_relations" and query aggregates on result of table type "conceptnet.data"
+  """
+  conceptnet_search_relations_aggregate(
+    """
+    input parameters for function "conceptnet.search_relations"
+    """
+    args: conceptnet_search_relations_args!
+
+    """
+    distinct select on columns
+    """
+    distinct_on: [conceptnet_data_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conceptnet_data_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conceptnet_data_bool_exp
+  ): conceptnet_data_aggregate!
+
+  """
+  An array relationship
+  """
+  conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): [conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: conversations_bool_exp
+  ): conversations_aggregate!
+
+  """
+  fetch data from the table: "developers"
+  """
+  developers(
+    """
+    distinct select on columns
+    """
+    distinct_on: [developers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [developers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: developers_bool_exp
+  ): [developers!]!
+
+  """
+  fetch aggregated fields from the table: "developers"
+  """
+  developers_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [developers_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [developers_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: developers_bool_exp
+  ): developers_aggregate!
+
+  """
+  An array relationship
+  """
+  end_user_conversations(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): [end_user_conversations!]!
+
+  """
+  An aggregate relationship
+  """
+  end_user_conversations_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_user_conversations_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_user_conversations_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_user_conversations_bool_exp
+  ): end_user_conversations_aggregate!
+
+  """
+  fetch data from the table: "end_user_conversations" using primary key columns
+  """
+  end_user_conversations_by_pk(
+    conversation_id: Int!
+    end_user_id: Int!
+  ): end_user_conversations
+
+  """
+  fetch data from the table: "end_users"
+  """
+  end_users(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_users_bool_exp
+  ): [end_users!]!
+
+  """
+  fetch aggregated fields from the table: "end_users"
+  """
+  end_users_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [end_users_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [end_users_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: end_users_bool_exp
+  ): end_users_aggregate!
+
+  """
+  An array relationship
+  """
+  events(
+    """
+    distinct select on columns
+    """
+    distinct_on: [events_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [events_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: events_bool_exp
+  ): [events!]!
+
+  """
+  An aggregate relationship
+  """
+  events_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [events_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [events_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: events_bool_exp
+  ): events_aggregate!
+
+  """
+  fetch data from the table: "history"
+  """
+  history(
+    """
+    distinct select on columns
+    """
+    distinct_on: [history_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [history_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: history_bool_exp
+  ): [history!]!
+
+  """
+  fetch aggregated fields from the table: "history"
+  """
+  history_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [history_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [history_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: history_bool_exp
+  ): history_aggregate!
+
+  """
+  An array relationship
+  """
+  invites(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): [invites!]!
+
+  """
+  An aggregate relationship
+  """
+  invites_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [invites_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [invites_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: invites_bool_exp
+  ): invites_aggregate!
+
+  """
+  fetch data from the table: "kv_scope_enum"
+  """
+  kv_scope_enum(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_scope_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_scope_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_scope_enum_bool_exp
+  ): [kv_scope_enum!]!
+
+  """
+  fetch aggregated fields from the table: "kv_scope_enum"
+  """
+  kv_scope_enum_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_scope_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_scope_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_scope_enum_bool_exp
+  ): kv_scope_enum_aggregate!
+
+  """
+  fetch data from the table: "kv_scope_enum" using primary key columns
+  """
+  kv_scope_enum_by_pk(value: String!): kv_scope_enum
+
+  """
+  An array relationship
+  """
+  kv_store(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): [kv_store!]!
+
+  """
+  An aggregate relationship
+  """
+  kv_store_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [kv_store_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [kv_store_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: kv_store_bool_exp
+  ): kv_store_aggregate!
+
+  """
+  fetch data from the table: "kv_store" using primary key columns
+  """
+  kv_store_by_pk(key: String!, scope: String!, scope_object_id: Int!): kv_store
+
+  """
+  fetch data from the table: "last_utterance"
+  """
+  last_utterance(
+    """
+    distinct select on columns
+    """
+    distinct_on: [last_utterance_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [last_utterance_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: last_utterance_bool_exp
+  ): [last_utterance!]!
+
+  """
+  fetch aggregated fields from the table: "last_utterance"
+  """
+  last_utterance_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [last_utterance_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [last_utterance_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: last_utterance_bool_exp
+  ): last_utterance_aggregate!
+
+  """
+  fetch data from the table: "objects"
+  """
+  objects(
+    """
+    distinct select on columns
+    """
+    distinct_on: [objects_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [objects_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: objects_bool_exp
+  ): [objects!]!
+
+  """
+  fetch aggregated fields from the table: "objects"
+  """
+  objects_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [objects_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [objects_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: objects_bool_exp
+  ): objects_aggregate!
+
+  """
+  fetch data from the table: "objects" using primary key columns
+  """
+  objects_by_pk(object_id: Int!): objects
+
+  """
+  fetch data from the table: "speaker_type_enum"
+  """
+  speaker_type_enum(
+    """
+    distinct select on columns
+    """
+    distinct_on: [speaker_type_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [speaker_type_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: speaker_type_enum_bool_exp
+  ): [speaker_type_enum!]!
+
+  """
+  fetch aggregated fields from the table: "speaker_type_enum"
+  """
+  speaker_type_enum_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [speaker_type_enum_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [speaker_type_enum_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: speaker_type_enum_bool_exp
+  ): speaker_type_enum_aggregate!
+
+  """
+  fetch data from the table: "speaker_type_enum" using primary key columns
+  """
+  speaker_type_enum_by_pk(value: String!): speaker_type_enum
+
+  """
+  An array relationship
+  """
+  utterances(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): [utterances!]!
+
+  """
+  An aggregate relationship
+  """
+  utterances_aggregate(
+    """
+    distinct select on columns
+    """
+    distinct_on: [utterances_select_column!]
+
+    """
+    limit the number of rows returned
+    """
+    limit: Int
+
+    """
+    skip the first n rows. Use only with order_by
+    """
+    offset: Int
+
+    """
+    sort the rows by one or more columns
+    """
+    order_by: [utterances_order_by!]
+
+    """
+    filter the rows returned
+    """
+    where: utterances_bool_exp
+  ): utterances_aggregate!
+}
+
+"""
+Output text alternative
+"""
+type TextAlternative {
+  """
+  Output text
+  """
+  transcript: String
+}
+
+scalar timestamptz
+
+"""
+Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+  _gt: timestamptz
+  _gte: timestamptz
+  _in: [timestamptz!]
+  _is_null: Boolean
+  _lt: timestamptz
+  _lte: timestamptz
+  _neq: timestamptz
+  _nin: [timestamptz!]
+}
+
+"""
+An individual token — i.e. a word, punctuation symbol, whitespace, etc.
+"""
+type Token implements Container {
+  ancestors: [Token]
+  children: [Token]
+  cluster: Int
+  conjuncts: [Token]
+  dep: String
+
+  """
+  The ending character offset of the token within the parent document.
+  """
+  end: Int
+  ent_iob: String
+  ent_type: String
+  extension: TokenExtension
+
+  """
+  A boolean value indicating whether a word vector is associated with the object.
+  """
+  has_vector: Boolean
+  head: Token
+
+  """
+  The index of the token within the parent document.
+  """
+  id: Int
+  is_alpha: Boolean
+  is_ascii: Boolean
+  is_bracket: Boolean
+  is_currency: Boolean
+  is_digit: Boolean
+  is_left_punct: Boolean
+  is_lower: Boolean
+  is_oov: Boolean
+  is_punct: Boolean
+  is_quote: Boolean
+  is_right_punct: Boolean
+  is_sent_start: Boolean
+  is_space: Boolean
+  is_stop: Boolean
+  is_title: Boolean
+  is_upper: Boolean
+  lang: String
+  left_edge: Token
+  lefts: [Token]
+  lemma: String
+  like_email: Boolean
+  like_num: Boolean
+  like_url: Boolean
+  lower: String
+  norm: String
+
+  """
+  Verbatim text content (identical to Token.text).
+      Exists mostly for consistency with the other attributes.
+  """
+  orth: String
+
+  """
+  Coarse-grained part-of-speech.
+  """
+  pos: String
+  prefix: String
+  prob: Float
+  right_edge: Token
+  rights: [Token]
+
+  """
+  A scalar value indicating the positivity or negativity of the object.
+  """
+  sentiment: Float
+  shape: String
+
+  """
+  The starting character offset of the token within the parent document.
+  """
+  start: Int
+  subtree: [Token]
+  suffix: String
+
+  """
+  Fine-grained part-of-speech.
+  """
+  tag: String
+
+  """
+  Verbatim text content.
+  """
+  text: String
+
+  """
+  Text content, with trailing space character if present.
+  """
+  text_with_ws: String
+
+  """
+  A real-valued meaning representation.
+  """
+  vector: [Float]
+
+  """
+  The L2 norm of the document’s vector representation.
+  """
+  vector_norm: Float
+  whitespace: String
+}
+
+type TokenExtension {
+  coref_clusters: [CorefCluster]
+  in_coref: Boolean
+  is_deter_nfh: Boolean
+  is_implicit: Boolean
+  is_nfh: Boolean
+  nfh_head: String
+}
+
+scalar tstzrange
+
+"""
+Boolean expression to compare columns of type "tstzrange". All fields are combined with logical 'AND'.
+"""
+input tstzrange_comparison_exp {
+  _eq: tstzrange
+  _gt: tstzrange
+  _gte: tstzrange
+  _in: [tstzrange!]
+  _is_null: Boolean
+  _lt: tstzrange
+  _lte: tstzrange
+  _neq: tstzrange
+  _nin: [tstzrange!]
+}
+
+"""
+Input config
+"""
+input TTSConfig {
+  """
+  Audio encoding
+  """
+  encoding: AudioEncoding
+
+  """
+  Language code
+  """
+  languageCode: String
+
+  """
+  Audio sample rate
+  """
+  sampleRate: Float
+
+  """
+  Voice gender
+  """
+  voiceGender: String
+}
+
+"""
+Output result
+"""
+type TTSResult {
+  """
+  Resulting audio as a base64 string
+  """
+  audioB64: String
+}
+
+"""
+An object representing a single turn by an agent
+"""
+input Turn {
+  agent: Agent
+  said: String
+}
+
+"""
+columns and relationships of "utterances"
+"""
+type utterances {
+  """
+  An object relationship
+  """
+  conversation: conversations!
+  conversation_id: Int!
+
+  """
+  An object relationship
+  """
+  end_user: end_users
+  end_user_id: Int
+  normalized_utterance: String!
+  speaker_type: speaker_type_enum_enum!
+
+  """
+  An object relationship
+  """
+  speaker_type_enum: speaker_type_enum!
+  timestamp: timestamptz!
+  utterance: String!
+}
+
+"""
+aggregated selection of "utterances"
+"""
+type utterances_aggregate {
+  aggregate: utterances_aggregate_fields
+  nodes: [utterances!]!
+}
+
+"""
+aggregate fields of "utterances"
+"""
+type utterances_aggregate_fields {
+  avg: utterances_avg_fields
+  count(columns: [utterances_select_column!], distinct: Boolean): Int!
+  max: utterances_max_fields
+  min: utterances_min_fields
+  stddev: utterances_stddev_fields
+  stddev_pop: utterances_stddev_pop_fields
+  stddev_samp: utterances_stddev_samp_fields
+  sum: utterances_sum_fields
+  var_pop: utterances_var_pop_fields
+  var_samp: utterances_var_samp_fields
+  variance: utterances_variance_fields
+}
+
+"""
+order by aggregate values of table "utterances"
+"""
+input utterances_aggregate_order_by {
+  avg: utterances_avg_order_by
+  count: order_by
+  max: utterances_max_order_by
+  min: utterances_min_order_by
+  stddev: utterances_stddev_order_by
+  stddev_pop: utterances_stddev_pop_order_by
+  stddev_samp: utterances_stddev_samp_order_by
+  sum: utterances_sum_order_by
+  var_pop: utterances_var_pop_order_by
+  var_samp: utterances_var_samp_order_by
+  variance: utterances_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "utterances"
+"""
+input utterances_arr_rel_insert_input {
+  data: [utterances_insert_input!]!
+}
+
+"""
+aggregate avg on columns
+"""
+type utterances_avg_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by avg() on columns of table "utterances"
+"""
+input utterances_avg_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "utterances". All fields are combined with a logical 'AND'.
+"""
+input utterances_bool_exp {
+  _and: [utterances_bool_exp!]
+  _not: utterances_bool_exp
+  _or: [utterances_bool_exp!]
+  conversation: conversations_bool_exp
+  conversation_id: Int_comparison_exp
+  end_user: end_users_bool_exp
+  end_user_id: Int_comparison_exp
+  normalized_utterance: String_comparison_exp
+  speaker_type: speaker_type_enum_enum_comparison_exp
+  speaker_type_enum: speaker_type_enum_bool_exp
+  timestamp: timestamptz_comparison_exp
+  utterance: String_comparison_exp
+}
+
+"""
+input type for incrementing numeric columns in table "utterances"
+"""
+input utterances_inc_input {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+input type for inserting data into table "utterances"
+"""
+input utterances_insert_input {
+  conversation: conversations_obj_rel_insert_input
+  conversation_id: Int
+  end_user: end_users_obj_rel_insert_input
+  end_user_id: Int
+  normalized_utterance: String
+  speaker_type: speaker_type_enum_enum
+  speaker_type_enum: speaker_type_enum_obj_rel_insert_input
+  timestamp: timestamptz
+  utterance: String
+}
+
+"""
+aggregate max on columns
+"""
+type utterances_max_fields {
+  conversation_id: Int
+  end_user_id: Int
+  normalized_utterance: String
+  timestamp: timestamptz
+  utterance: String
+}
+
+"""
+order by max() on columns of table "utterances"
+"""
+input utterances_max_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+  normalized_utterance: order_by
+  timestamp: order_by
+  utterance: order_by
+}
+
+"""
+aggregate min on columns
+"""
+type utterances_min_fields {
+  conversation_id: Int
+  end_user_id: Int
+  normalized_utterance: String
+  timestamp: timestamptz
+  utterance: String
+}
+
+"""
+order by min() on columns of table "utterances"
+"""
+input utterances_min_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+  normalized_utterance: order_by
+  timestamp: order_by
+  utterance: order_by
+}
+
+"""
+response of any mutation on the table "utterances"
+"""
+type utterances_mutation_response {
+  """
+  number of rows affected by the mutation
+  """
+  affected_rows: Int!
+
+  """
+  data from the rows affected by the mutation
+  """
+  returning: [utterances!]!
+}
+
+"""
+Ordering options when selecting data from "utterances".
+"""
+input utterances_order_by {
+  conversation: conversations_order_by
+  conversation_id: order_by
+  end_user: end_users_order_by
+  end_user_id: order_by
+  normalized_utterance: order_by
+  speaker_type: order_by
+  speaker_type_enum: speaker_type_enum_order_by
+  timestamp: order_by
+  utterance: order_by
+}
+
+"""
+select columns of table "utterances"
+"""
+enum utterances_select_column {
+  """
+  column name
+  """
+  conversation_id
+
+  """
+  column name
+  """
+  end_user_id
+
+  """
+  column name
+  """
+  normalized_utterance
+
+  """
+  column name
+  """
+  speaker_type
+
+  """
+  column name
+  """
+  timestamp
+
+  """
+  column name
+  """
+  utterance
+}
+
+"""
+input type for updating data in table "utterances"
+"""
+input utterances_set_input {
+  conversation_id: Int
+  end_user_id: Int
+  normalized_utterance: String
+  speaker_type: speaker_type_enum_enum
+  timestamp: timestamptz
+  utterance: String
+}
+
+"""
+aggregate stddev on columns
+"""
+type utterances_stddev_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev() on columns of table "utterances"
+"""
+input utterances_stddev_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate stddev_pop on columns
+"""
+type utterances_stddev_pop_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev_pop() on columns of table "utterances"
+"""
+input utterances_stddev_pop_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate stddev_samp on columns
+"""
+type utterances_stddev_samp_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by stddev_samp() on columns of table "utterances"
+"""
+input utterances_stddev_samp_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate sum on columns
+"""
+type utterances_sum_fields {
+  conversation_id: Int
+  end_user_id: Int
+}
+
+"""
+order by sum() on columns of table "utterances"
+"""
+input utterances_sum_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate var_pop on columns
+"""
+type utterances_var_pop_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by var_pop() on columns of table "utterances"
+"""
+input utterances_var_pop_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate var_samp on columns
+"""
+type utterances_var_samp_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by var_samp() on columns of table "utterances"
+"""
+input utterances_var_samp_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+aggregate variance on columns
+"""
+type utterances_variance_fields {
+  conversation_id: Float
+  end_user_id: Float
+}
+
+"""
+order by variance() on columns of table "utterances"
+"""
+input utterances_variance_order_by {
+  conversation_id: order_by
+  end_user_id: order_by
+}
+
+"""
+Leverages the internal Python implmeentation of UUID (uuid.UUID) to provide native UUID objects
+in fields, resolvers and input.
+"""
+scalar UUID
+
+"""
+A word match
+"""
+type WordMatch {
+  """
+  Match explanation
+  """
+  explanation: String
+
+  """
+  A word extracted by the match
+  """
+  extracted_word: String
+
+  """
+  Type of the match
+  """
+  match_type: String
+
+  """
+  Similarity measure
+  """
+  similarity: Float
+
+  """
+  Slot filled by the match
+  """
+  slot: String
+}
