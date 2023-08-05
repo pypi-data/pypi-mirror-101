@@ -1,0 +1,36 @@
+CentOS Linux-7:
+  pkgs:
+    - ipset
+    - iptables
+    - logrotate
+    - python36-m2crypto
+    - swig
+CentOS Linux-8:
+  pkgs:
+    - ipset
+    - iptables
+    - logrotate
+    - python3-m2crypto
+    - swig
+Sangoma Linux-7:
+  pkgs:
+    - ipset
+    - iptables
+    - logrotate
+    - swig
+    - openssl-devel
+    - python36u-devel
+    - gcc
+  pypi_pkgs:
+    - M2Crypto
+  locale: en_US.UTF-8
+Ubuntu-18.04:
+  pkgs:
+    - ipset
+    - iptables
+    - logrotate
+    - swig
+    - gcc
+    - libssl-dev
+  pypi_pkgs:
+    - M2Crypto
