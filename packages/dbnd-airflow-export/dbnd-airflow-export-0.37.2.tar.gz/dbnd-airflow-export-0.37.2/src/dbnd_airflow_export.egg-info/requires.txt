@@ -1,0 +1,16 @@
+dbnd==0.37.2
+setuptools
+six
+
+[:python_version <= "2.7"]
+pygit2==0.28.2
+
+[:python_version >= "3.0"]
+pygit2==1.5.0
+
+[tests]
+pytest==4.5.0
+mock
+WTForms<2.3.0
+apache-airflow==1.10.9
+sh
