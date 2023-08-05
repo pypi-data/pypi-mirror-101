@@ -1,0 +1,1 @@
+Read all about this library and how to use it at https://github.com/TricolorHen061/discordpy-slash
