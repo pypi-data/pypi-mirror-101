@@ -1,0 +1,152 @@
+Metadata-Version: 2.1
+Name: panel-highcharts
+Version: 20210403.1.3
+Summary: A python package enabling you to use HighCharts with Jupyter, HoloViz Panel and
+    the rest of the tools you know and love
+Home-page: https://github.com/MarcSkovMadsen/panel-highcharts
+Author: Marc Skov Madsen
+Author-email: marc.skov.madsen@gmail.com
+License: MIT
+Platform: Windows
+Platform: Mac OS X
+Platform: Linux
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Legal Industry
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Office/Business
+Classifier: Topic :: Office/Business :: Financial
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: panel (==0.11)
+Requires-Dist: bokeh (==2.3)
+Provides-Extra: all
+Requires-Dist: autoflake ; extra == 'all'
+Requires-Dist: invoke ; extra == 'all'
+Requires-Dist: isort ; extra == 'all'
+Requires-Dist: jupyter-repo2docker ; extra == 'all'
+Requires-Dist: jupyterlab ; extra == 'all'
+Requires-Dist: mypy ; extra == 'all'
+Requires-Dist: notebook ; extra == 'all'
+Requires-Dist: pylint (>=2.6.0) ; extra == 'all'
+Requires-Dist: pytest ; extra == 'all'
+Requires-Dist: pytest-cov ; extra == 'all'
+Requires-Dist: rope ; extra == 'all'
+Requires-Dist: twine ; extra == 'all'
+Requires-Dist: wheel ; extra == 'all'
+Provides-Extra: doc
+Provides-Extra: examples
+Requires-Dist: notebook ; extra == 'examples'
+Requires-Dist: jupyterlab ; extra == 'examples'
+Provides-Extra: recommended
+Provides-Extra: tests
+Requires-Dist: autoflake ; extra == 'tests'
+Requires-Dist: invoke ; extra == 'tests'
+Requires-Dist: isort ; extra == 'tests'
+Requires-Dist: jupyter-repo2docker ; extra == 'tests'
+Requires-Dist: mypy ; extra == 'tests'
+Requires-Dist: pylint (>=2.6.0) ; extra == 'tests'
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+Requires-Dist: rope ; extra == 'tests'
+Requires-Dist: twine ; extra == 'tests'
+Requires-Dist: wheel ; extra == 'tests'
+
+# Panel HighCharts
+
+THIS IS APLHA SOFTWARE. I BELIEVE THINGS WORK, BUT THE PACKAGE NEEDS TO BE USED TO TELL. AND USAGE MIGHT ALSO CHANGE THE API.
+
+The `panel-highcharts` package makes it easy to use [Highcharts](https://www.highcharts.com/) from Python for exploratory analysis in a Jupyter Notebook or as a [Panel](https://panel.holoviz.org) Web App.
+
+<div align="center" style="margin-right:10%;margin-left:10%; max-height: 250px" >
+    <a href="https://panel.holoviz.org"><img
+    alt="Panel"
+    src="https://raw.githubusercontent.com/MarcSkovMadsen/panel-highcharts/main/assets/images/panel_logo.png"
+    style="max-width:40%;height:255px;margin-right:20px"></a>
+    <a href="https://www.highcharts.com/blog/products/highcharts/"><img
+    alt="HighCharts"
+    src="https://raw.githubusercontent.com/MarcSkovMadsen/panel-highcharts/main/assets/images/highcharts_logo.png"
+    style="max-width:40%;height:200px"
+    ></a>
+</div>
+
+## License
+
+The `panel-highcarts` python package and repository is open source and free to use (MIT License), however **Highcharts itself requires a license for commercial use**. For more info see the Highcharts license [FAQs](https://shop.highsoft.com/faq).
+
+## Installation
+
+With `pip`
+
+```bash
+pip install panel-highcharts
+```
+
+## Usage
+
+From with a Jupyter Notebook
+
+```python
+import panel_highcharts as ph
+
+import panel as pn
+pn.extension('highchart')
+```
+
+```python
+configuration = {
+    "title": {"text": "HighChart Pane"},
+    "series": [
+        {
+            "name": "series1",
+            "data": [1, 2, 3, 4, 5],
+        }
+    ]
+}
+```
+
+```python
+ph.HighChart(object=configuration, sizing_mode="stretch_width")
+```
+
+![Basic Example](assets/images/panel-highcharts-basic-example.png)
+
+## Reference Guide
+
+- [HighChart Reference Guide](https://github.com/MarcSkovMadsen/panel-highcharts/blob/main/examples/HighChart.ipynb)
+
+## Examples
+
+- [Networkgraph](https://github.com/MarcSkovMadsen/panel-highcharts/blob/main/examples/Network.ipynb)
+
+## Roadmap
+
+- Deploy to Binder
+- Add more examples
+- Add some apps (for Binder)
+- Distribute as conda package
+- Support [HighStock](https://www.highcharts.com/demo/stock)
+- Support [HighMap](https://www.highcharts.com/demo/maps)
+- Support [HighGantt](https://www.highcharts.com/blog/products/gantt/)
+- Support [HighEditor](https://www.highcharts.com/products/highcharts-editor/)
+
+## Change Log
+
+- 20210403: First Release to PyPi
+
