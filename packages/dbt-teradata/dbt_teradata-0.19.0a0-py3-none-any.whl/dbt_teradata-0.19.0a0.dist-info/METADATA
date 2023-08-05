@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: dbt-teradata
+Version: 0.19.0a0
+Summary: The Teradata adapter plugin for dbt (data build tool)
+Home-page: https://github.com/dbeatty10/dbt-teradata
+Author: Doug Beatty
+Author-email: doug.beatty@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6.2
+Description-Content-Type: text/markdown
+Requires-Dist: dbt-core (==0.19.0)
+Requires-Dist: teradatasql (>=16.20.0.0)
+
+# dbt-teradata
+
+This plugin ports [dbt](https://getdbt.com) functionality to Teradata.
+
+
