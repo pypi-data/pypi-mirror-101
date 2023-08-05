@@ -1,0 +1,28 @@
+from datetime import datetime, timedelta, date, time
+import time as time_module
+
+
+def to_timestamp(val: datetime, unit='second'):
+    if not val:
+        return None
+    if unit == 'millisecond':
+        return int(val.timestamp()) * 1000
+    return int(val.timestamp())
+
+
+def strftime(t: datetime = None):
+    if not t:
+        t = datetime.now()
+    return t.strftime('%Y-%m-%d %H:%M:%S')
+
+
+def get_end_time_of_day(day_delta=0):
+    return datetime.combine(date.today(), time.max) + timedelta(days=day_delta)
+
+
+def get_begin_time_of_day(day_delta=0):
+    return datetime.combine(date.today(), time.min) + timedelta(days=day_delta)
+
+
+def current_milli_time():
+    return round(time_module.time() * 1000)
