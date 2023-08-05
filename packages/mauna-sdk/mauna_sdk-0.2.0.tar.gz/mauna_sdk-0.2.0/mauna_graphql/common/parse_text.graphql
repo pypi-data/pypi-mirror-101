@@ -1,0 +1,18 @@
+query parseText($text: String!) {
+  result: callNlpDoc(text: $text) {
+    categories: cats {
+      label
+      score
+    }
+    entities: ents {
+      label
+      lemma
+      text
+    }
+    sentences: sents {
+      text
+      label
+      lemma
+    }
+  }
+}

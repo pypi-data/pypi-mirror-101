@@ -1,0 +1,5 @@
+query parseACE($text: String!, $format: ACEOutputType!) {
+  result: callParseACE(text: $text, format: $format, guess: true) {
+    parsed: result
+  }
+}

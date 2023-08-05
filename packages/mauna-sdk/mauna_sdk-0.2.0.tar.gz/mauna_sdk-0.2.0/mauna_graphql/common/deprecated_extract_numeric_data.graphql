@@ -1,0 +1,10 @@
+query deprecatedExtractNumericData($text: String!) {
+  callNlpDoc(text: $text) {
+    tokens {
+      numeric_analysis: extension {
+        data: nfh_head
+        has_numeric: is_nfh
+      }
+    }
+  }
+}

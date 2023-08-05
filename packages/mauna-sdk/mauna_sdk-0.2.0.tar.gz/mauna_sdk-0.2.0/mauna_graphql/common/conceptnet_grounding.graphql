@@ -1,0 +1,6 @@
+query conceptnetGrounding($text: String!, $relations: [Relations]!) {
+  result: callPredictRelation(text: $text, relations: $relations) {
+    relation: name
+    predictions: texts
+  }
+}

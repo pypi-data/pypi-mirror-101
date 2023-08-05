@@ -1,0 +1,7 @@
+query speechToText($audio: String!) {
+  result: callSpeechToText(audioB64: $audio) {
+    transcript: alternatives {
+      text: transcript
+    }
+  }
+}

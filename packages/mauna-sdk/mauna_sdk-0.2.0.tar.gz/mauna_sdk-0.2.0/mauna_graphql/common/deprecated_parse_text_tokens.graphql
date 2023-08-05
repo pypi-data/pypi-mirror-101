@@ -1,0 +1,23 @@
+query deprecatedParseTextTokens($text: String!) {
+  callNlpDoc(text: $text) {
+    tokens {
+      dependency: dep
+      entity_type: ent_type
+      is_alpha
+      is_currency
+      is_digit
+      is_oov
+      is_sent_start
+      is_stop
+      is_title
+      lemma
+      like_email
+      like_num
+      like_url
+      part_of_speech: pos
+      prob
+      tag
+      text
+    }
+  }
+}

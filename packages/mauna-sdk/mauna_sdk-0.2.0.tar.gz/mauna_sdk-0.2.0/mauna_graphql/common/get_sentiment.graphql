@@ -1,0 +1,9 @@
+query getSentiment($text: String!) {
+  result: callNlpDoc(text: $text) {
+    sentiment
+    sentences: sents {
+      text
+      sentiment
+    }
+  }
+}
