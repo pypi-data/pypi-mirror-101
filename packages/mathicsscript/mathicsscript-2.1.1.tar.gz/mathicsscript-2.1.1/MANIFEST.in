@@ -1,0 +1,10 @@
+include README.rst
+include NEWS.rst
+include ChangeLog
+include COPYING
+include Makefile
+include mathicsscript/inputrc-no-unicode
+include mathicsscript/inputrc-unicode
+recursive-include mathicsscript *.py
+recursive-include test *.py *.m
+recursive-exclude __pycache__ *.pyc

@@ -1,0 +1,767 @@
+2021-04-04  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/version.py: Get ready for release 2.1.1
+
+2021-04-04  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/osx.yml, Makefile, setup.py: Administrivia...  * Include GNU Readline inputrc in package * `make develop` should
+	build inputrc files * Need newer Mathics_Scanner that doesn't have bug in inputrc
+	generation
+
+2021-04-03  rocky <rb@dustyfeet.com>
+
+	* MANIFEST.in: Add GNU Readline inputrc files
+
+2021-04-03  rocky <rb@dustyfeet.com>
+
+	* setup.py: correct settings.m location in setup.py
+
+2021-04-03  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/version.py: Bump version to dev
+
+2021-04-03  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, admin-tools/pyenv-versions, mathicsscript/__main__.py,
+	mathicsscript/version.py, setup.py: Get ready for release 2.1.0
+
+2021-03-28  rocky <rb@dustyfeet.com>
+
+	* setup.py: Accept new mathicsscanner version
+
+2021-03-27  rocky <rb@dustyfeet.com>
+
+	* README.rst: Add repology badge
+
+2021-03-14  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py: Default value assignment typo
+
+2021-03-14  rocky <rb@dustyfeet.com>
+
+	* admin-tools/pyenv-versions: Administrivia
+
+2021-03-14  rb@dustyfeet.conf <rocky>
+
+	* mathicsscript/__main__.py, mathicsscript/termshell.py: No GNU
+	readline implies on ASCII escapes around "In[] :="
+
+2021-03-13  rb@dustyfeet.conf <rocky>
+
+	* .github/workflows/osx.yml: Bang on workflows osx CI
+
+2021-03-13  rb@dustyfeet.conf <rocky>
+
+	* mathicsscript/__main__.py, mathicsscript/termshell.py,
+	test/test_completion.py: Windows tolerance and default option
+	setting * Workaround anaconda not having the GNU readline module.  * Correct help string for --completion * Set reasonable --unicode and --readline defaults based on
+	environment * Show defaults for those options that are set in the environment
+
+2021-02-20  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/version.py: bump version to dev
+
+2021-02-20  rocky <rb@dustyfeet.com>
+
+	* README.rst: Try to fix screenshot using another link
+
+2021-02-20  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, mathicsscript/version.py: Get ready for release 2.0.1
+
+2021-02-20  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #26 from Mathics3/file-arg-fix Fix mathicsscript -f FILE
+
+2021-02-14  rocky <rb@dustyfeet.com>
+
+	* MANIFEST.in, mathicsscript/version.py, setup.py: Administrivia.
+	Bump to dev version
+
+2021-02-14  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, mathicsscript/version.py: Get ready for release 2.0.0
+
+2021-02-14  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #24 from Mathics3/rc1 Release candidate 1.2.0
+
+2021-02-07  rocky <rb@dustyfeet.com>
+
+	* : Add screenshot
+
+2021-02-07  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__init__.py: Bump copyright
+
+2021-02-07  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, mathicsscript/version.py, setup.py: Get ready for release
+	2.0.0.rc1
+
+2021-02-07  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/version.py: 1.1.0rc1
+
+2021-02-07  rocky <rb@dustyfeet.com>
+
+	* Makefile: No unicode fixes
+
+2021-02-07  rocky <rb@dustyfeet.com>
+
+	* admin-tools/make-dist.sh, setup.py: Administrivia
+
+2021-02-06  rocky <rb@dustyfeet.com>
+
+	* Makefile, mathicsscript/.gitignore,
+	mathicsscript/inputrc-greek-letters: Use mathics-scanner routine to
+	gen inputrc
+
+2021-02-06  rocky <rb@dustyfeet.com>
+
+	* .gitignore, Makefile, admin-tools/generate-inputrc.py,
+	mathicsscript/inputrc-no-unicode, mathicsscript/inputrc-unicode: Use
+	mathics-scanner routine to built inputrc
+
+2021-01-27  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* admin-tools/generate-inputrc.py: Fixed typo
+
+2021-01-27  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* admin-tools/generate-inputrc.py: Cleaned the code
+
+2021-01-27  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* Makefile, admin-tools/generate-inputrc.py, mathicsscript/inputrc,
+	mathicsscript/inputrc-greek-letters,
+	mathicsscript/inputrc-no-unicode, mathicsscript/inputrc-unicode,
+	setup.py: Procedurally generate the inputrc files
+
+2021-02-06  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #22 from Mathics3/use-mathics-scanner-release Use released Mathics-Scanner
+
+2021-02-06  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/osx.yml, .github/workflows/ubuntu.yml,
+	mathicsscript/__main__.py, mathicsscript/termshell.py, setup.py,
+	test/helper.py: Use released Mathics-Scanner
+
+2021-01-30  mmatera <matera@fisica.unlp.edu.ar>
+
+	* mathicsscript/format.py: clean
+
+2021-01-24  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #17 from Mathics3/mathics-scanner-import-dup Scanner import fixes (dup)
+
+2021-01-23  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/osx.yml, .github/workflows/ubuntu.yml: Mix CI
+	fixes
+
+2021-01-23  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : commit bdf9149c8ff10939781eb73fa6a9b2cd4224306f Author: rocky
+	<rb@dustyfeet.com> Date:   Sat Jan 23 17:58:35 2021 -0500
+
+2021-01-23  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/{osx.yml => osx.yml-save},
+	.github/workflows/{ubuntu.yml => ubuntu.yml-save}: Try to address CI
+	failures
+
+2021-01-23  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/osx.yml, .github/workflows/ubuntu.yaml,
+	.github/workflows/ubuntu.yml: Go over github workflow
+
+2021-01-23  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/inputrc-no-unicode,
+	mathicsscript/termshell.py: Scanner import fixes __main__.py, termshell.py: import mathics_scanner
+	inputrc-no-unicode: remove translations that aren't surrounded in
+	escape
+
+2021-01-23  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/osx.yml: Small workflows tweak
+
+2021-01-22  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #14 from
+	Mathics3/revert-13-mathics-scanner-import Revert "Mathics scanner import"
+
+2021-01-22  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #13 from Mathics3/mathics-scanner-import Mathics scanner import
+
+2021-01-22  R. Bernstein <rocky@users.noreply.github.com>
+
+	* .github/workflows/osx.yml: Create osx.yml
+
+2021-01-20  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* setup.py: Fixed typo
+
+2021-01-20  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* mathicsscript/__main__.py, mathicsscript/format.py,
+	mathicsscript/termshell.py, setup.py: Import stuff directly from
+	mathics-scanner
+
+2021-01-12  Gark Garcia <37553739+GarkGarcia@users.noreply.github.com>
+
+	* : Merge pull request #11 from Mathics3/update-inputrc Update inputrc-no-unicode
+
+2021-01-12  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* mathicsscript/termshell.py: Fixed the previous issues with the
+	histfile and XDG
+
+2021-01-12  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* convert.py: Removed the conversion script from the repo
+
+2021-01-12  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* convert.py, mathicsscript/inputrc-no-unicode: Updated
+	inputrc-no-unicode
+
+2021-01-09  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, mathicsscript/__main__.py, mathicsscript/termshell.py: 
+	`-e` `--execute` is better suited for embedded use This options adds `--quiet` and shows just evaluation output as
+	text--execute
+
+2021-01-08  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #9 from
+	Mathics3/use-replace_wl_with_unicode-from-core Use replace_wl_with_unicode and replace_unicode_with_wl from mathics
+
+2021-01-09  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* mathicsscript/inputrc-unicode: Added new entries to
+	inputrc-unicode
+
+2021-01-09  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* mathicsscript/termshell.py: Fixed typo
+
+2021-01-09  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* mathicsscript/termshell.py: Imported replace_unicode_with_wl
+
+2021-01-09  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* mathicsscript/__main__.py, mathicsscript/termshell.py: Use
+	replace_wl_with_unicode and replace_unicode_with_wl from mathics
+
+2021-01-03  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Guard agains None eval returns
+
+2021-01-02  rocky <rb@dustyfeet.com>
+
+	* : commit ce3087951680c9c307cd37ffc97bc77a75fdde7e Author: rocky
+	<rb@dustyfeet.com> Date:   Fri Jan 1 23:39:54 2021 -0500
+
+2021-01-01  rocky <rb@dustyfeet.com>
+
+	* : commit 1c360f15736ac062bc1b2d2643f26eaf4f771391 Author: rocky
+	<rb@dustyfeet.com> Date:   Fri Jan 1 06:20:10 2021 -0500
+
+2020-12-31  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Wrong variable name
+
+2020-12-30  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #8 from Mathics3/add-! Start ! to allow running of OS commands
+
+2020-12-30  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py: Start ! to allow running of OS commands
+
+2020-12-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Add derivative "d"
+
+2020-12-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Use numpy style docstring
+
+2020-12-26  rocky <rb@dustyfeet.com>
+
+	* README.rst: Adjust features list
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py: FullForm setting bug, yet again
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: UseUnicode -> $UseUnicode
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py: Typo
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/{basic.yml => ubuntu.yml}, README.rst: Tweak CI
+	info
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, README.rst: Update README.rst
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, README.rst, admin-tools/pyenv-versions,
+	mathicsscript/__main__.py, mathicsscript/settings.m,
+	mathicsscript/termshell.py, test/__init__.py, test/helper.py,
+	test/test_settings.py: Get ready for release 1.1.2 Add Settings`MathicsScriptVersion.
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/version.py: Get ready for release 1.1.2
+
+2020-12-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py: Two small tweaks * Fix testing of Settings`ShowFullForm now that we use Booleans * Show mathicsscript version on startup
+
+2020-12-24  rocky <rb@dustyfeet.com>
+
+	* setup.py: Bump min Mathics3 version
+
+2020-12-23  rocky <rb@dustyfeet.com>
+
+	* : commit 3d669622cd2ce517d35c12ba4478ad0b2638946d Author: rocky
+	<rb@dustyfeet.com> Date:   Wed Dec 23 22:00:17 2020 -0500
+
+2020-12-22  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #7 from Mathics3/unicode-option Start to suport Unicode as a CLI option
+
+2020-12-22  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/settings.m: Use
+	True/False for bool options...  Now that Mathics will soon be fixed.
+
+2020-12-20  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/inputrc, mathicsscript/inputrc-no-unicode,
+	mathicsscript/inputrc-unicode: Add some Script Capital letters
+
+2020-12-19  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/format.py,
+	mathicsscript/inputrc, mathicsscript/inputrc-no-unicode,
+	mathicsscript/inputrc-unicode, mathicsscript/termshell.py,
+	setup.py, test/test_completion.py: Start to suport Unicode as a CLI
+	option
+
+2020-12-12  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/termshell.py: Handle
+	Unicode/WL charcter code mismatches
+
+2020-12-12  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/inputrc: Add letters with
+	dots under them These are the "Formal" lettters.
+
+2020-12-12  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py, mathicsscript/termshell.py: Some small
+	changes
+
+2020-12-09  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: System'Graph is text, for now.
+
+2020-12-08  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Use equal aspect ratio on ciruclar graphs
+
+2020-12-07  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Remove print statements
+
+2020-12-07  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/format.py: 
+	FindSpannngTree: use layout style of parent graph
+
+2020-12-07  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/inputrc: Add Unicode directed and undirected edges
+
+2020-12-06  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Adjust dynamic sizing on circular graphs
+
+2020-12-06  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Handle spiral_equidistant
+
+2020-12-06  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Format options tweaks
+
+2020-12-05  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Add VertexShapeFunction
+
+2020-12-05  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Handle circular graphs better
+
+2020-12-05  rocky <rb@dustyfeet.com>
+
+	* Makefile, mathicsscript/format.py, mathicsscript/termshell.py: 4
+	Great changes...  * Adjust font size based on node size * Start a harmonize draw parameters function * Add makefile target "runner" to use watchgod to look for Python   changes * tolerate 1.1.0 Mathics result type
+
+2020-12-04  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Handel labeled nodes better Change color to white if we have node labels Change code slightly to facilitate expanding.
+
+2020-12-04  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: format tree handles undirected edges
+	better
+
+2020-12-04  rocky <rb@dustyfeet.com>
+
+	* : Merge github.com:Mathics3/mathicsscript
+
+2020-12-03  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/inputrc: Some support for DirectedEdge although not totally satisfying
+
+2020-12-03  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py: Small changes
+
+2020-12-03  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #6 from Mathics3/handle-graphics Start to handle matplotlib.pyplot for graphs
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/version.py: Bump version to reflect we are in dev
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Adjust node as nodes get closer together
+	in trees
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Simplify graph formatting
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: PlotTheme -> GraphLayout. Set Plot Title
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Graph option robustness
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Better tree formatting
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Add Graph VertexLabeling property
+
+2020-11-29  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Handle trees
+
+2020-11-28  rocky <rb@dustyfeet.com>
+
+	* setup.py: For now, require networkx
+
+2020-11-28  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/format.py: Start handling graph layouts
+
+2020-11-28  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/format.py,
+	mathicsscript/termshell.py: Start to handle matplotlib.pyplot for
+	graphs
+
+2020-11-27  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/mmalexer.py, mathicsscript/termshell.py, setup.py: 
+	Can't use mathematica.lexer for now..  Sigh. It has promise. But recent Python gives now gives these...      FutureWarning: Possible nested set at position ...
+
+2020-11-27  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Revert HISTFILE location This is not working under Ubuntu. Will investigate later
+
+2020-11-27  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #5 from Mathics3/xdg Made mathicsscript XDG compatible
+
+2020-11-27  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* mathicsscript/termshell.py: Fixed typo
+
+2020-11-27  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
+
+	* __main__.py, mathicsscript/termshell.py: Made mathicsscript XDG
+	compatible
+
+2020-11-26  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/settings.m,
+	mathicsscript/termshell.py, settings/settings.m: Add
+	Settings`$PygmentsShowTokens
+
+2020-11-26  rocky <rb@dustyfeet.com>
+
+	* : commit e965162590c7aa6399ef7f198a86b7b76e17c572 Author: rocky
+	<rb@dustyfeet.com> Date:   Thu Nov 26 14:02:39 2020 -0500
+
+2020-11-22  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__init__.py: Correct __init__.py so
+	help(mathicsscript) works
+
+2020-11-21  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.rst: RsT typo
+
+2020-11-21  rocky <rb@dustyfeet.com>
+
+	* README.rst: Add CI status
+
+2020-11-21  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/basic.yml: Improve workflows CI section title
+
+2020-11-21  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Deal with \[ in docstring
+
+2020-11-21  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/basic.yml: Small typo
+
+2020-11-21  rocky <rb@dustyfeet.com>
+
+	* .github/workflows/basic.yml: Try workflows CI
+
+2020-11-21  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, test/test_returncode.py: Correct
+	evaluation return code handling
+
+2020-11-19  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #4 from Mathics3/settings Settings
+
+2020-11-18  mmatera <matera@fisica.unlp.edu.ar>
+
+	* mathicsscript/termshell.py: Protect and Lock
+	PygmentsStylesAvailable
+
+2020-11-18  mmatera <matera@fisica.unlp.edu.ar>
+
+	* mathicsscript/__main__.py, mathicsscript/settings.m,
+	mathicsscript/termshell.py: improving the interface for setting
+	pygments styles
+
+2020-11-18  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/settings.m,
+	mathicsscript/termshell.py, settings/settings.m, setup.py: 
+	Miscellaneous changes Settings`$ShowFullForm -> Settings`$ShowFullFormInput The old name has already caused too much confusion.  Check Pygments style and give a columnized list when the name is
+	invalid. Also make sure to reset the Mathics variable to a the last
+	valid value when an invalid one is set.
+
+2020-11-17  mmatera <matera@fisica.unlp.edu.ar>
+
+	* : commit ee7ea8229d6f4afb37be0de1461073a05f408f61 Author: mmatera
+	<matera@fisica.unlp.edu.ar> Date:   Tue Nov 17 19:35:38 2020 -0300
+
+2020-11-17  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/settings.py,
+	mathicsscript/termshell.py: hook Settings`... values to behavior
+	changes __main__.py ----------- initializing termshell object `shell` will set the default Pygments
+	style.  We should pick up that value to stor in
+	Settings`PygmentsStyle Right now, `from_python()` converts a boolean into 0 or 1. I don't
+	know if that is what it _should_ do, bit since that is the behavior
+	now, we need to retrieve it as an integer or fix up `is_true()` so
+	that it distinguishes 0 from 1. I went with Mathics' current
+	behavior.  If we improve either `from_python()` or `is_true` we may revisit
+	this code.  termshell.py ------------ When changing styles we need to recreate a terminal formatter.
+	`change_pygments_style()` was added to do this.  settings.py ----------- remove since we'll do this differently
+
+2020-11-17  mmatera <matera@fisica.unlp.edu.ar>
+
+	* mathicsscript/__main__.py: now it works :)
+
+2020-11-17  Juan Mauricio Matera <matera@fisica.unlp.edu.ar>
+
+	* mathicsscript/__main__.py: Using settings variables to set the
+	format
+
+2020-11-17  Juan Mauricio Matera <matera@fisica.unlp.edu.ar>
+
+	* setup.py: Install default settings
+
+2020-11-17  Juan Mauricio Matera <matera@fisica.unlp.edu.ar>
+
+	* settings/settings.m: Create settings.m This file holds the default definitions, and can be modified by
+	users.
+
+2020-11-15  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/termshell.py: Tweak code: MS/Windows pyreadline doesn't handle remove_history_item Show
+	pygements styles when an invalid one is given Use "inkpot" for dark,
+	and "colorful" for  light.
+
+2020-11-14  rocky <rb@dustyfeet.com>
+
+	* README.rst: Update badges
+
+2020-11-14  rocky <rb@dustyfeet.com>
+
+	* .pre-commit-config.yaml, NEWS.md, admin-tools/make-dist.sh,
+	mathicsscript/settings.py, mathicsscript/version.py, setup.py: Get
+	ready for release 1.1.0
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* Makefile, README.rst, mathicsscript/__main__.py,
+	mathicsscript/termshell.py, setup.py, test/test_completion.py,
+	test/test_term_background.py: Administrivia: * add 1st pytest - command completion * add Makefile "clean" target * blacken some files * Don't do default pymodules
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* .pre-commit-config.yaml: Add pre-commit hook to blacken
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Try git commit hook
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/termshell.py: Bang on readline completion Since [ is no longer in set_completer_delims, we have to split the
+	line on the last one of these before we complete.  For example "Integrate[Si" has to split of "Si" to complete against,
+	but prepend "Integrate[" to any completions.  The same thing is true for symbol names.
+
+2020-10-25  rocky <rb@dustyfeet.com>
+
+	* README.rst, mathicsscript/__main__.py, mathicsscript/mmalexer.py,
+	mathicsscript/term_background.py, mathicsscript/termshell.py,
+	screenshots/README.md, screenshots/mathicsscript1.cast,
+	screenshots/mathicsscript2.cast, setup.py: Improve lexer, style, add
+	screenshot lexer: $ is allowed in an identifier styles: Go with pariaso as the
+	       default style.  Note - this has an entry for NameSpace whereas
+	       something like stat doesn't screenshots:   one for tab completion and entering symbols   another for multi-line entry and history across sessions
+
+2020-10-24  rocky <rb@dustyfeet.com>
+
+	* NEWS.md, admin-tools/git2cl, admin-tools/make-dist.sh,
+	admin-tools/pyenv-versions, mathicsscript/term_background.py,
+	mathicsscript/version.py, setup.py, test/test_term_background.py: 
+	Get ready for release 1.1.0rc1
+
+2020-10-21  R. Bernstein <rocky@users.noreply.github.com>
+
+	* README.rst: Update README.rst
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/__main__.py, mathicsscript/termshell.py: A couple of
+	bugs
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* Makefile, mathicsscript/termshell.py, setup.py: Administrivia
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* Makefile, rst2html.py, setup.py: Administrivia * Add mathicsscript/inputrc to distribution * Add rst-check and sdist Makefile targets
+
+2020-10-18  rocky <rb@dustyfeet.com>
+
+	* : commit db3e1b5135e7df18e4f5065b3fe4e74bac8cff7f Author: rocky
+	<rb@dustyfeet.com> Date:   Sun Oct 18 17:08:11 2020 -0400
+
+2020-10-17  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Extended terminal handling
+
+2020-10-16  rocky <rb@dustyfeet.com>
+
+	* mathicsscript/inputrc, mathicsscript/termshell.py: Start adding
+	extended terminal handling
+
+2020-10-14  rocky <rb@dustyfeet.com>
+
+	* MANIFEST.in, README.rst, mathicsscript/inputrc,
+	mathicsscript/termshell.py: Limited inputrc for pi, deg, \TeX greek
+	etc
+
+2020-10-03  R. Bernstein <rocky@users.noreply.github.com>
+
+	* : Merge pull request #1 from Mathics3/history-multiline-entry Make logical lines be one history item
+
+2020-09-29  rocky <rb@dustyfeet.com>
+
+	* README.rst: Add a README
+
+2020-09-28  rocky <rb@dustyfeet.com>
+
+	* .gitignore, Makefile, {tmathics => mathicsscript}/__init__.py,
+	{tmathics => mathicsscript}/__main__.py, mathicsscript/settings.py,
+	{tmathics => mathicsscript}/term_background.py, {tmathics =>
+	mathicsscript}/termshell.py, {tmathics =>
+	mathicsscript}/version.py, setup.py: rename tmathics->mathicsscript
+
+2020-09-24  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py: WIP svg image handling
+
+2020-09-24  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py, tmathics/termshell.py: Handle MathMLForm
+	more properly
+
+2020-09-23  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py, tmathics/termshell.py: Split out
+	TerminalShell from main program
+
+2020-09-23  rocky <rocky@gnu.org>
+
+	* tmathics/__main__.py: Small corrections
+
+2020-09-22  rocky <rb@dustyfeet.com>
+
+	* tmathics/__main__.py: Read and write GNU Readline History
+
+2020-09-22  rocky <rocky@gnu.org>
+
+	* setup.py, tmathics/__main__.py: Start using pygments for coloring
+	output
+
+2020-09-22  rocky <rocky@gnu.org>
+
+	* tmathics/__main__.py: Convert to using click
+
+2020-09-21  rocky <rocky@gnu.org>
+
+	* Cull code from Mathics/main and revise ...  colorama is no longer optional.  We'll be using click soon.  Start
+	to pull in my better terminal-detection script.
+
