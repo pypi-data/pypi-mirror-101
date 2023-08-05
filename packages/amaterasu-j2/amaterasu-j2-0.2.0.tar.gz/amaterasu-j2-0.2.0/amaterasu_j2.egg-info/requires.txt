@@ -1,0 +1,9 @@
+requests
+pyyaml
+wandbox-api>=0.9.28
+kamidana
+
+[test]
+importlib-metadata<2,>=0.12
+tox
+pytest
