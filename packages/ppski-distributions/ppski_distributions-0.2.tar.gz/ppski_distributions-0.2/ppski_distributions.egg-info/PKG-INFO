@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: ppski-distributions
+Version: 0.2
+Summary: Gaussian and Binomial distributions
+Home-page: UNKNOWN
+Author: Paula Pawlowski
+Author-email: paula.pwski@gmail.com
+License: UNKNOWN
+Description: # ppski-distributions package
+        
+        A package intended for practice with PyPi. The files are unoriginal and copied from the Udacity Machine Learning Engineer Nanodegree course.
+        
+        
+        # Use
+        ```
+        >>> from ppski_distributions import Gaussian, Binomial
+        >>> Gaussian(10,7)
+        mean 10, standard deviation 7
+        >>> from ppski_distributions import Binomial
+        >>> Binomial(.4, 25)
+        mean 10.0, standard deviation 2.449489742783178, p 0.4, n 25
+        ```
+        
+        # Files
+        - `Binomialdistribution`
+        - `Gaussiandistribution`
+        - `Generaldistribution` 
+        
+        
+        # Installation
+        
+        ```
+        pip install ppski-distributions
+        ```
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
