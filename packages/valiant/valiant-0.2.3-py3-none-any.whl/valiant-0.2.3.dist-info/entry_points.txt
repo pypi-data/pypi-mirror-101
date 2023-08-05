@@ -1,0 +1,9 @@
+[console_scripts]
+valiant=valiant.console:main
+
+[valiant.report]
+basic=valiant.plugins.reports.basic:BasicReportPlugin
+demo=valiant.plugins.reports.demo:DemoReportPlugin
+safety=valiant.plugins.reports.safety:SafetyReportPlugin
+spdx=valiant.plugins.reports.spdx:SpdxLicenseReportPlugin
+
