@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pydict-filter"
+version = "0.1.3"
+description = "This package will help you to smart filter dictionary fields."
+authors = ["Kamenlom <ivashchenko.roman111@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+homepage = "https://github.com/Nextpertise/py-dict-filter"
+repository = "https://github.com/Nextpertise/py-dict-filter"
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = "^3.5"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
