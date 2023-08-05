@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "linguappt"
+version = "0.1.6"
+description = "PPT generator for language learning"
+authors = ["Phoenix Grey <phoenix.grey0108@gmail.com>"]
+repository = "https://github.com/qishe-nlp/linguappt"
+readme = "README.md"
+documentation = "https://qishe-nlp.github.io/linguappt/"
+keywords = ["ppt", "language", "auto"] 
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+python-pptx = "^0.6.18"
+pdf2image = "^1.12.1"
+click = "^7.1.1"
+sphinx-rtd-theme = "^0.5.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+Sphinx = "^3.5.3"
+
+[tool.poetry.scripts]
+lingua_pptx_validate = 'linguappt.entry.validation:validate'
+
+lingua_vocabppt = 'linguappt._entry.command:vocabppt'
+lingua_phraseppt = 'linguappt._entry.command:phraseppt'
+
+lingua_pptx2pdf2images = 'linguappt._entry.command:pptx2pdf2images'
+
+lingua_csv2media = "linguappt._entry.command:csv2media"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
