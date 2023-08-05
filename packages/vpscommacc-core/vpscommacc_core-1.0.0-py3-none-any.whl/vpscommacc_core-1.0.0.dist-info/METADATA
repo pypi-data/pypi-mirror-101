@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: vpscommacc-core
+Version: 1.0.0
+Summary: Набор полезных функций для повседневной работы и уменьшения размера кода
+Home-page: https://github.com/vpscommacc
+Author: vpscommacc
+Author-email: vps.commacc@yandex.ru
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Natural Language :: Russian
+Classifier: Intended Audience :: Developers
+Classifier: License :: Freely Distributable
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+# Core VPScommacc
+
+## file.py
+* Отсортировать csv-файл по определенной колонке
+* Записать одну строку в csv-файл
+* Записать несколько строк в csv-файл
+
+## mix.py
+* Вычесть из первого списка элементы второго списка
+* Найти элементы присутствующие в обоих списках
+
+## path.py
+* Получить все файлы из директории с полными путями (рекурсивно или нет)
+* Получить путь к директории относительно текущей
+* Получить путь к текущей директории
+
+
+## regexp.py
+* Очистить строку от всех html-тегов
+* Получить все символы из текста (кириллица или латиница)
+* Получить все цифры из текста
+
+
+## time.py
+* Получить порядковый номер дня недели
+* Получить UNIX-метку
+* Получить текущие дату и время
+* Дата и время в русском формате
+* Дата и время в английском формате
+
+
