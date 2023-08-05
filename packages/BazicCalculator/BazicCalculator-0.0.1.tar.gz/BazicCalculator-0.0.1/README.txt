@@ -1,0 +1,1 @@
+This calculator is a basic library for beginners to understand more about how the Python Programming Language works, how computers process data, and many more. This library will be updated about every month or so. 
