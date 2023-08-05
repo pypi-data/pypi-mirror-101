@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: fnvstring
+Version: 0.9.5
+Summary: Python fnv hash string implementation
+Home-page: https://github.com/davidvicenteranz/fnvstring
+Author: David Vicente
+Author-email: dvicente74@gmail.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/davidvicenteranz/fnvstring
+Project-URL: Documentation, https://github.com/davidvicenteranz/fnvstring
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Requires-Dist: importlib-metadata
+
+fnvstring
+=========
+
+**fnvstring** is a hash implementation of the Fowler–Noll–Vo non-cryptographic
+function.
+
+Installation
+^^^^^^^^^^^^
+
+.. code:: shell
+
+   $ pip install fnvstring
+
+.
+
+Usage
+~~~~~
+
+usage in terminal
+-----------------
+
+You can hash any string from terminal just typing
+
+.. code:: shell
+
+   $ fnvstring "Hello World!"
+   rzWLzszm9JE
+
+usage in code
+-------------
+
+.. code:: python
+
+   from fnvstring import Fvn64SaltedHasher
+   my_hasher = Fvn64SaltedHasher(salt='Any$tringYouWant, even none')
+   print(my_hasher.hash('Hello World!')) # Must output dcSEMoww20o if you dont chant the salt param
+
+
+
