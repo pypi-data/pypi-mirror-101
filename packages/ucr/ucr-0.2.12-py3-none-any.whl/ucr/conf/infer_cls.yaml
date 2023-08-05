@@ -1,0 +1,20 @@
+defaults:
+    - preprocess: 
+        cls
+    - architecture: 
+        cls_ppocr_mobile
+    - postprocess: 
+        cls
+    - hydra/job_logging: custom
+    - hydra/output: custom 
+
+job_name: cls_infer
+level: INFO
+batch_size: 8
+device: cuda
+threshold: 0.9
+label_list: ['0','180']
+
+input: test/
+model_location: 
+# models/cls/cls_ch_sim_ppocr_mobile.pt
