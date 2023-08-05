@@ -1,0 +1,4 @@
+include LICENSE
+recursive-include build *.py
+recursive-include dist *.whl
+recursive-include src *.pyc
