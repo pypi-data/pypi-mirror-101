@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: max-entropy
+Version: 0.0.1
+Summary: Scipy-style maximum entropy distributions
+Home-page: https://dsbowen.gitlab.io/maxentropy
+Author: Dillon Bowen
+Author-email: dsbowen@wharton.upenn.edu
+License: UNKNOWN
+Description: # Maximum entropy distributions
+        
+        [![pipeline status](https://gitlab.com/dsbowen/maxentropy/badges/master/pipeline.svg)](https://gitlab.com/dsbowen/maxentropy/-/commits/master)
+        [![coverage report](https://gitlab.com/dsbowen/maxentropy/badges/master/coverage.svg)](https://gitlab.com/dsbowen/maxentropy/-/commits/master)
+        [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+        [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gl/dsbowen%2Fmaxentropy/HEAD?filepath=examples%2Fexample_notebook.ipynb)
+        
+        This package implements scipy-style maximum entropy distributions.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
