@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: pdfslim
+Version: 1.0.3
+Summary: `pdfslim` takes a number of PDF files and tries to optimize them through a suitable call to `ghostscript`.
+Home-page: https://github.com/FedericoStra/pdfslim
+Author: Federico Stra
+Author-email: stra.federico@gmail.com
+License: GPLv3
+Project-URL: Code, https://github.com/FedericoStra/pdfslim
+Project-URL: Issue tracker, https://github.com/FedericoStra/pdfslim/issues
+Description: PDF-Slim
+        ==========
+        
+        **PDF-Slim** v1.0.3 by *Federico Stra*
+        
+        Summary
+        -------
+        
+        `pdfslim` takes a number of PDF files and tries to optimize them through a suitable call to `ghostscript`. It is specifically fitted to reduce teh size of scanned papers, containing images with humongous resolution.
+        
+        Installation
+        ------------
+        
+        To install `pdfslim` for the first time or upgrade it to the latest version, run the following command at your shell:
+        
+        ```bash
+        pip install --upgrade pdfslim
+        ```
+        
+Keywords: PDF,GhostScript
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Natural Language :: English
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Office/Business
+Classifier: Topic :: System :: Archiving :: Compression
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
