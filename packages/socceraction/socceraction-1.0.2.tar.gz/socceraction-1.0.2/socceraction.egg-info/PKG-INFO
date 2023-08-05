@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: socceraction
+Version: 1.0.2
+Summary: Convert soccer event stream data to the SPADL format and value on-the-ball player actions
+Home-page: https://github.com/ML-KULeuven/socceraction
+Author: Tom Decroos
+Author-email: tom.decroos.be@gmail.com
+License: MIT
+Description: 
+        Socceraction is a Python package containing
+        
+        - **SPADL** (Soccer Player Action Description Language): a unified and expressive language for on-the-ball player actions in soccer
+        - **VAEP** (Valuing Actions by Estimating Probabilities): a framework to value actions on their expected impact on the score line
+        - **xT** (Expected Threat): an alternative framework to value ball-progressing actions using a possession-based Markov model.
+        
+        For more information, see https://github.com/ML-KULeuven/socceraction
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
