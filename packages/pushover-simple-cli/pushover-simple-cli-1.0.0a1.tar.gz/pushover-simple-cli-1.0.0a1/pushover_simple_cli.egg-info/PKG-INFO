@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: pushover-simple-cli
+Version: 1.0.0a1
+Summary: Send quick notifications to pushover
+Home-page: https://github.com/alexrudy/pushover
+Author: Alex Rudy
+Author-email: pushover@alexrudy.net
+License: BSD license
+Description: ========
+        pushover
+        ========
+        
+        Send quick notifications to pushover
+        
+        
+        * Free software: BSD license
+        * Documentation: https://pushover.readthedocs.io.
+        
+        
+        Example
+        -------
+        
+        You can use pushover to notify yourself of the status of the most recently run command when it finishes::
+        
+            make test; pushover -s$? "make test finished!"
+        
+Keywords: pushover
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: !=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7
+Description-Content-Type: text/x-rst
