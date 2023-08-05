@@ -1,0 +1,19 @@
+#include AUTHORS.rst
+#include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+include tox.ini
+include dev-requirements.in
+include dev-requirements.txt
+include requirements.in
+include requirements.txt
+include .pylintrc
+include .travis.yml
+
+recursive-include examples *
+recursive-include src/crcengine/templates *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
