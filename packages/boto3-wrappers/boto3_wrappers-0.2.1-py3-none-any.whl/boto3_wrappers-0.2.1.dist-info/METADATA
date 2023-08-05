@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: boto3-wrappers
+Version: 0.2.1
+Summary: Wrapper classes for boto3.
+Home-page: https://github.com/lctnstn/boto3-wrappers
+Author: Nathan Lichtenstein
+Author-email: nathan@lctnstn.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: boto3 (>=1.17.43)
+Requires-Dist: botocore (>=1.20.43)
+Requires-Dist: jmespath (>=0.10.0)
+Requires-Dist: loguru (>=0.5.3)
+Requires-Dist: python-dateutil (>=2.8.1)
+Requires-Dist: s3transfer (>=0.3.6)
+Requires-Dist: six (>=1.15.0)
+Requires-Dist: urllib3 (>=1.26.4)
+
+Wrapper classes for boto3.
+
+
