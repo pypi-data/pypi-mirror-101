@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: ds-example-plugin
+Version: 1
+Summary: Example plugin for data_slicer`s PIT.
+Home-page: https://github.com/kuadrat/ds_example_plugin.git
+Author: Kevin Kramer
+Author-email: kevin.kramer@uzh.ch
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: data-slicer (>=0.0.12)
+Requires-Dist: scipy (>=1.3.3)
+
+# ds_example_plugin
+
+A plugin for [`data_slicer`'s](https://github.com/kuadrat/data-slicer) PIT 
+that simply serves as an example for how to make such a plugin.
+
+It only adds minimal functionality to PIT, namely the function `blur` which
+applies a Gaussian filter to the displayed data and the function 
+`example_function` which just prints out a message to PIT's ipython console.  
+As such, it really is not particularly useful beyond illustrative purposes.
+
+Refer to the [documentation of `data_slicer`]() for more information.
+
+
+
