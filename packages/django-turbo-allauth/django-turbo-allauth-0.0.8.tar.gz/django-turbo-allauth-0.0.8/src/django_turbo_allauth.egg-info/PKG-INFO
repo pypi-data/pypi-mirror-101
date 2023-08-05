@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: django-turbo-allauth
+Version: 0.0.8
+Summary: Hotwired/Turbo subclasses for allauth views
+Home-page: https://github.com/hotwire-django/django-turbo-allauth
+Author: Dan Jacob
+Author-email: danjac2018@gmail.com
+License: MIT
+Description: ## Hotwired/Turbo django-allauth integration
+        
+        This package provides subclasses modifying the django-allauth views https://github.com/pennersr/django-allauth to provide valid return codes.
+        
+        This package is required in order to provide allauth compatability with Turbo. Turbo form validation either setting the attribute *data-turbo="false"* in the form, or returning a 4** response. This provides subclasses for the latter.
+        
+        **Disclaimer**: the Hotwired/Turbo client libraries are, at time of writing, still in Beta. We expect there will be breaking changes until the first stable release. This package, and the Turbo client, should therefore be used with caution in a production environment. The version used in testing is *@hotwired/turbo==7.0.0-beta.4*.
+        
+        ## Requirements
+        
+        This library is tested for Python 3.8+ and Django 3.0+.
+        
+        ## Installation
+        
+        > pip install django-turbo-allauth
+        
+        To install from Git:
+        
+        > git clone https://github.com/hotwire-django/django-turbo-allauth
+        
+        > cd django-turbo-allauth
+        
+        > python setup.py install
+        
+        **Note**: This library does not include any client libraries (Turbo or Stimulus). You may wish to add these yourself using your preferred Javascript build tool, or use a CDN. Please refer to the Hotwire documentation on installing these libraries.
+        
+        Full documentation on ReadTheDocs:
+        
+        https://django-turbo-allauth.readthedocs.io/en/latest/
+        
+        
+        ## License
+        
+        This project is covered by the MIT license.
+        
+        
+        
+        
+        
+        # Changelog
+        
+        ## [0.0.7] - 2021-4-4
+        
+        Removing support for Python 3.7
+        
+        ## [0.0.6] - 2021-4-2
+        
+        Dependency updates
+        
+        ## [0.0.5] - 2021-2-4
+        
+        Leverage turbo-response adapter mixin
+        
+        ## [0.0.4] - 2021-2-2
+        
+        Support for Python 3.7 and Django 3.0
+        
+        ## [0.0.3] - 2021-7-1
+        
+        Ensure redirects return a 303 in line with Turbo docs
+        
+        ## [0.0.2] - 2021-5-1
+        
+        Update to latest *django-turbo-response*, remove template partials
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
