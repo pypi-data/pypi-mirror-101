@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: sphinxcontrib-ads
+Version: 1.0.0.dev2
+Summary: Add your favorite vendor-ads embed code to your documentation pages.
+Home-page: https://github.com/cizario/sphinxcontrib-ads/
+Author: Nizar DELLELI
+Author-email: nizar.delleli@gmail.com
+License: BSD-3-Clause
+Download-URL: https://github.com/cizario/sphinxcontrib-ads/
+Project-URL: Documentation, https://sphinxcontrib-ads.readthedocs.io/en/latest/
+Project-URL: Issue Tracker, https://github.com/cizario/sphinxcontrib-ads/issues
+Project-URL: Source Code, https://github.com/cizario/sphinxcontrib-ads/
+Keywords: sphinx contrib,sphinx extension,ads,carbonads,ethicalads
+Platform: any
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: Sphinx
+Provides-Extra: lint
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: mypy ; extra == 'lint'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+Requires-Dist: tox ; extra == 'tests'
+
+Sphinx Contrib Ads
+==================
+
+Add your favorite vendor-ads embed code to your documentation pages.
+
+**Under active development ..**
+
+
+
+
