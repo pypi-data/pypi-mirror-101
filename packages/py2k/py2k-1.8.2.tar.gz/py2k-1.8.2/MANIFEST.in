@@ -1,0 +1,9 @@
+include *.md
+recursive-include docs *
+recursive-include py2k * 
+include README.md
+include Makefile
+include MANIFEST.in
+
+# exclude from sdist
+exclude AUTHORS.md
