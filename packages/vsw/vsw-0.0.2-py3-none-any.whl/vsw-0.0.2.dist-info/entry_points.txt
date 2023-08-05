@@ -1,0 +1,13 @@
+[console_scripts]
+vsw = vsw.__main__:main
+
+[vsw.registered_commands]
+exit = vsw.commands.exit:main
+help = vsw.commands.help:main
+init = vsw.commands.init:main
+list = vsw.commands.list:main
+publish = vsw.commands.publish:main
+revoke = vsw.commands.revoke:main
+setup = vsw.commands.setup:main
+verify = vsw.commands.verify:main
+
