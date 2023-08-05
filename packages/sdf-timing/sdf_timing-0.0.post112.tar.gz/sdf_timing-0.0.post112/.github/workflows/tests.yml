@@ -1,0 +1,17 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+
+  Checks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: License check
+      run: |
+        bash .github/check_license.sh
+
+    - name: Check python scripts
+      run: |
+        bash .github/check_python_scripts.sh
