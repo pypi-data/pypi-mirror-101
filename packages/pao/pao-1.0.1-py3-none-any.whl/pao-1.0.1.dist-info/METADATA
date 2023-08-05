@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: pao
+Version: 1.0.1
+Summary: PAO: Python Adversarial Optimization
+Home-page: https://github.com/or-fusion/pao
+Maintainer: William E. Hart
+Maintainer-email: wehart@sandia.gov
+License: BSD
+Keywords: optimization
+Platform: any
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Requires-Dist: Pyomo
+Requires-Dist: parameterized
+Requires-Dist: scipy
+Requires-Dist: munch
+
+# PAO Overview
+
+PAO is a Python-based package for Adversarial Optimization.  PAO extends
+the modeling concepts in [Pyomo](https://github.com/Pyomo/pyomo) to enable
+the expression and solution of multi-level optimization problems. The goal
+of this package is to provide a general modeling and analysis capability,
+and application exemplars serve to illustrate PAO's general capabilities.
+
+This package was derived from the capabilities in **pyomo.bilevel** and
+**pyomo.dualize**, which are now deprecated.
+
+PAO is available under the BSD License, see the LICENSE.txt file.
+
+
+
