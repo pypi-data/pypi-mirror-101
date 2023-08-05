@@ -1,0 +1,81 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="contribute">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+
+    <desc>todo list, dev/ scripts, fossil, cookiecutter authors</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>How to contribute / ToDo</title>
+
+
+<section>
+ <title>Contributions</title>
+ <p>This project hinges on an updated cookiecutters database. Unfortunately
+ that's quite time-consuming. So new templates might not find their way
+ in here - without feedback/submissions from authors.</p>
+
+ <p>Not sure if there's enough interest, but this would require either
+ automating the database build, or providing a submission API. Or both.</p>
+</section>
+
+<section>
+ <subtitle>Automation</subtitle>
+ <list>
+ <item><p>There's the <link type="seealso" href="https://fossil.include-once.org/cookiedough/wiki/dev">dev/ scripts</link>
+ as basis.</p></item>
+ <item><p>Ideally it would be rewritten to also support BitBucket/GitLab/etc.
+
+
+ The lack of common API is a real showstopper though.</p></item>
+ <item><p>(I don't blame GitHub alone.)</p></item>
+ <item><p>And obviously there's no library that interfaces with all alike.</p></item>
+ </list>
+ <item><p>Wouldn't be too difficult to bring this into the GUI even. (Though it
+ takes around half an hour to collect project repositories on GH.)</p></item>
+</section>
+
+<section>
+ <subtitle>Submit API</subtitle>
+ <list>
+ <item><p>It might be easiest to query individual projects, and just provide a
+ submission endpoint.</p></item>
+ <item><p>The fossil repository is SQLite-based, so would allow nearby storage.</p></item>
+ <item><p>Albeit you would still need a moderation step, rather than automatic
+ updates for the main uidata.json.</p></item>
+ <item><p>Or possibly just use the fossil ticket or forum feature.
+
+
+ In which case, you could help out by reviewing/approving tickets.</p></item>
+ </list>
+</section>
+
+<section>
+ <subtitle>Join</subtitle>
+ <list>
+ <item><p>If interested, register a repository account here (no email necessary).</p></item>
+ <item><p>Drop a mail for developer elevation;</p></item>
+ <item><p>Read up on <link type="seealso" href="https://fossil-scm.org/home/doc/trunk/www/quickstart.wiki">fossil usage</link>.</p></item>
+ <item><p>It's significantly easier than git, and you can't easily break things.</p></item>
+ </list>
+</section>
+
+<section>
+ <subtitle>Manual submissions</subtitle>
+ <p>For now: you can send in a full JSON blob per email (see
+ LICENSE), if you want your template be updated or added.</p>
+</section>
+
+  
+
+
+
+
+  
+
+
+
+</page>
+

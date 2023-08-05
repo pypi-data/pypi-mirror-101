@@ -1,0 +1,37 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="usage">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+
+    <desc>start, browsing, search, roll out</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>usage</title>
+
+<section>
+
+ <p>Start cookiedough from the terminal, for example in your <code>~/projects</code> directory:</p>
+
+ <code>$  cookiedough
+ </code>
+
+ <p>You can browse the template list in the left pane. They're grouped
+ by languages or application names. It's also possible to filter the
+ list with the search box.</p>
+
+ <p>The right hand white section is the content area, where details of
+ the cookiecutter template are shown. Among them is the file list /
+ directory structure, and a preview of the readme.</p>
+
+ <p>Though you might often want to just hit the link to view the online
+ version of the repository. Alternatively use →Template→Copy
+ repo URL to utilize the URL with commandline cookiecutter.</p>
+
+ <p>Hitting the Roll out button will start the creation
+ process. (A variables input window will appear beforehand.)</p>
+</section>
+
+
+</page>

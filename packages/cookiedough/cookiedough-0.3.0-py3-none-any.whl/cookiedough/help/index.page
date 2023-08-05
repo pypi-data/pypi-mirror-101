@@ -1,0 +1,38 @@
+<page
+    xmlns="http://projectmallard.org/1.0/"
+    type="guide"
+    id="index">
+
+    <info>
+        <desc>project overview</desc>
+    </info>
+
+<title>cookiecutter browser GUI</title>
+<p>A browser and installation tool for cookiecutter templates.</p>
+
+<section id="nav" style="2column">
+ <subtitle>Topics</subtitle>
+</section>
+
+<section>
+ <title>cookiedough</title>
+ <media type="image" src="screenshot.jpeg" mime="image/jpeg" />
+</section>
+
+<section>
+ <subtitle>Usage</subtitle>
+ <list>
+ <item><p>Available templates can be selected in the left pane.</p></item>
+ <item><p>Meta information, file list, and readme preview in the main section.</p></item>
+ <item><p>The installation button "Roll out" is located in the upper right.</p></item>
+ </list>
+</section>
+
+
+<section id="else"> <subtitle>Other</subtitle> <p>More info possibly on
+<link
+href="https://fossil.include-once.org/cookiedough/">https://fossil.include-once.org/cookiedough/</link>.</p>
+</section>
+
+</page>
+

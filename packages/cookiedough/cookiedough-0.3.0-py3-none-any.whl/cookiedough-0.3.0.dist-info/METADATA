@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: cookiedough
+Version: 0.3.0
+Summary: browser and install GUI for cookiecutter templates
+Home-page: https://fossil.include-once.org/cookiedough/
+License: proprietary
+Project-URL: Freshcode, https://freshcode.club/projects/cookiedough
+Keywords: cookiecutter,browser,templates
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Internet :: WWW/HTTP :: Browsers
+Classifier: Topic :: Multimedia :: Graphics :: Viewers
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >= 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: PySimpleGUI (>=4.37)
+Requires-Dist: appdirs
+Requires-Dist: cookiecutter (>=1.7)
+Requires-Dist: pluginconf
+Requires-Dist: requests
+Provides-Extra: build
+Requires-Dist: pluginconf ; extra == 'build'
+Requires-Dist: setuptools ; extra == 'build'
+Provides-Extra: unused
+Requires-Dist: ttkthemes ; extra == 'unused'
+
+[**cookiedough**(1)](https://fossil.include-once.org/cookiedough/file/manpage/cookiedough.md)
+is a GUI browser for cookiecutter templates. And can of course extract them.
+It comes with a database of around 4150 cookietemplates, grouped by category, and allows some
+rudimentary filtering. Still **beta**, but usable. 
+
+![screenshot main window](https://imgur.com/wn9mEny.png)
+
+
+# Installation / Use
+
+Just install it as normal pip package:
+
+    ~$   pip3 install -U cookiedough
+
+And start it from a terminal window:
+
+    ~/projects$   cookiedough
+
+Keep an eye on the terminal when rolling out a template. Not all prompts
+might be captured by monkeypatching.
+
+
+# Notes
+
+There's some usage information in the man page, and in the →Help→Help.
+
+
+## Bugs / Caveats
+
+ * No support for template dictionary variables. (They're not widely used though.)
+ * Database does not contain any directoried templates yet. (A few exist however.)
+ * The README colorization is fairly basic. (But more processsing would
+   slow it down too much.)
+ * It can crash when speed-scrolling through the templates. (Perhaps PSG
+   vs Tk threads issue.)
+ * Tkinter might also crash when encountering emojis. (Either install
+   Symbola font and get rid of Noto Color Emoji. Or upgrade to tcl/tk
+   8.6.10, or go back to Ubuntu 18.04 where it miraculously worked.)
+
+
+## See also
+
+ * [Improving your cookiecutter.json](https://fossil.include-once.org/cookiedough/wiki/improve)
+ * [How/what to contribute](https://fossil.include-once.org/cookiedough/wiki/contribute)
+ * [uidata struct](https://fossil.include-once.org/cookiedough/wiki/uidata)
+ * [usage](https://fossil.include-once.org/cookiedough/wiki/usage)
+
+
+## API
+
+Unlike cookiecutter, there aren't many public APIs in a GUI tool. The
+internal database is easily accessible though:
+
+    import cookiedough
+    ls = cookiedough.repos.search(["pyproject.toml", "\w+test"])
+
+There's not much in the update module yet, besides the scoring method:
+
+    cookiedough.update.score(ls.values()[0])
+
+Whereas the rollout module provides the cc config interface:
+
+    ccc = cookiecutter.rollout.CookieCutterConfig()
+    print(ccc.fn, ccc.dir, ccc.replay)
+    d = ccc.read_config()
+
+As well as the `.cutting()` wrapper, or even `.hijack_prompt()` and `.task()`.
+
+
+## from `project` import `meta`
+
+| meta           | info                                                            |
+|:---------------|:----------------------------------------------------------------|
+| depends        | [pysimplegui](https://pypi.org/project/PySimpleGUI/), sys:[tkinter](https://docs.python.org/3/library/tkinter.html), [cookiecutter](https://pypi.org/project/cookiecutter/), [pluginconf](https://pypi.org/project/pluginconf/), [appdirs](https://pypi.org/project/appdirs/), [requests](https://pypi.org/project/requests/), ... |
+| compat         | Python ≥3.8, BSD/Linux                                          |
+| compliancy     | xdg, pluginspec, !pep8, !desktop, !xdnd, mallard, man, !netrc, dotenv, !http_proxy, nobackup, !releases.json, !doap, !packfile |
+| system usage   | rare (xdg-open only)                                            |
+| paths          | ~/.config/cookiedough/                                          |
+| testing        | `None`                                                          |
+| docs           | minimal wiki, mallard/yelp, news                                |
+| activity       | backburner                                                      |
+| state          | beta                                                            |
+| support        | email                                                           |
+| contrib        | mail, fossil                                                    |
+| announce       | [freshcode.club](https://freshcode.club/projects/cookiedough)   |
+
+
+
+

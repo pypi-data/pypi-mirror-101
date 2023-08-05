@@ -1,0 +1,85 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="uidata">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+    <link type="guide" xref="improve"/>
+
+    <desc>internal tempalte database, config[] format</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>technical: uidata.json format</title>
+
+          
+<section>
+ <title>internal "database" structure</title>
+ <p>The included cookiecutter database is based upon an extraction from GitHub,
+ filtered, and restructured for easier UI application. Entries typically
+ contain:</p>
+
+ <code>"vnd/pkg": {
+     "name": "vnd/pkg",
+     "short": "pkg",
+     "description": "...",
+     "url": "https://github.com/vnd/pkg",
+     "repo": "https://github.com/vnd/pkg.git",
+     "homepage": null,
+     "created_at": "2011-11-11T11:11:11Z",
+     "updated_at": "2021-02-22T22:22:22Z",
+     "size": 222,
+     "stars": 2,
+     "api": "lang",
+     "has_wiki": true,
+     "forks": 1,
+     "license": "MIT",
+     "tickets": 0,
+     "default_branch": "trunk",
+     "_disabled": false,
+     "keywords": " from `_keywords` in cookiecutter.json ",
+     "dir": "└── lib\n",
+     "readme": "README.md contents",
+     "cookiecutterjson_url": "https://raw.ghusrcnt/vnd/pkg/trunk/cookiecutter.json",
+     "config": [
+         {
+             "type": "str",
+             "name": "project_name",
+             "value": "mypkg",
+             "class": "cookiecutter",
+             "description": " taken from README table, if any "
+         }
+     ]
+ }
+ </code>
+
+ <p>Most fields are literal copies. Whereas <code>dir</code> is a textual transformation
+ of the /tree list. And <code>config</code> a converted cookiecutter.json list. The
+ <code>api</code> field is either just GitHubs detected repository language (often
+ fairly off), or an extract from the repository name, or whatever was
+ specified as <code>_api</code> in cc.json.</p>
+
+ <p>The <code>"score":{}</code> dict will be freshly recreated on startup, so is not
+ in the template database.</p>
+</section>
+
+<section>
+ <subtitle>config</subtitle>
+ <p>The config field list is an upmarket version of the cookiecutter.json dict.
+ Roughly compatible with the <link type="seealso" href="https://fossil.include-once.org/pluginspec/wiki/config">pluginconf</link>
+ structure. Albeit CD is using a custom input window anyway.</p>
+
+ <p>Notably the <code>description</code> field cannot be set other than from the README.
+ It should contain a table listing each template variable:</p>
+
+ <code> | `cc_varname` | Explanation ... |
+ </code>
+
+ <p>(Seen some discussion on a <link type="seealso" href="https://github.com/cookiecutter/cookiecutter/issues/794">cc.json 2.0 format</link>.
+ So this might be a temporary thing. Still useful to users, btw!)</p>
+
+ <p>See also how to Improve your cookiecutters.json</p>
+</section>
+
+
+</page>
+

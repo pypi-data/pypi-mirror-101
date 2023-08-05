@@ -1,0 +1,48 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="search">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+
+    <desc>filter options</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>Search bar</title>
+
+          
+<section>
+ <p>Click the search field top left. Enter something to search for,
+ and press ENTER. The category list will collapse and show filtered
+ results.</p>
+
+
+ <p>The old behaviour (search/filtering starts on any keypress) can be
+ enabled in the settings still.</p>
+
+
+ <p>You might want to search for common keywords in the description, or
+ even filenames.</p>
+
+ <list>
+ <item><p>Allows to search multiple items at once: <code>pyproject.toml setup.cfg</code></p></item>
+ <item><p>You can also enter regexen here, <code>py\w+\.py</code> for example.</p></item>
+ <item><p>The search will scan the readme, file list, _keywords,
+ template variables, and template names.</p></item>
+ </list>
+
+ <p>To reset the search filter you currently have to clear all input
+ in the field and hit ENTER as well.</p>
+</section>
+
+  
+
+
+
+
+  
+
+
+
+</page>
+

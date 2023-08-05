@@ -1,0 +1,40 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="patch">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+
+    <desc>XDG patch and paths</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+ <title>Cookiecutter patch</title>
+
+
+<section>
+ <p>cookiedough provides a mneu option →File→Cookiecutter→Patch for XDG-compliance,
+ which permanently fixes cookiecutters´ config module to use a <code>~/.config</code> path.</p>
+ <list>
+ <item><p>The new config filename will be <code>~/.config/cookiecutter/config</code>.</p></item>
+ <item><p>It'll also move an existing cache and replay/ directories.</p></item>
+ <item><p>Incurs a dependency on the <code>appdirs</code> package.</p></item>
+ <item><p>Patch will create a <code>config.py.orig</code>, so it's easily reversible.</p></item>
+ </list>
+ <p>When used from within cookiedough, the old cookiecutter paths would be ignored
+ in any case. (Fixated options). This patch is meant to bring CLI usage in line
+ with GUI invocations.</p>
+</section>
+
+<section>
+ <subtitle>The prophecy of a clutter-free homedir</subtitle>
+ <p>System tools having a config file ~/.bashrc, ~/.ssh or even ~/.firefox directly
+ in the homedir is perfectly fine. Special-purpose and rarely used development 
+ tools are not entitled to such. And it went a little out of hand lately. (I blame
+ git, as is custom.)</p>
+ <p>User land applications should honor the XDG spec, APPDATA or whatever MacOS uses.
+ And this includes CLI tools. Which is why cookiedough enforces it for cookiecutter.</p>
+</section>
+
+
+</page>
+

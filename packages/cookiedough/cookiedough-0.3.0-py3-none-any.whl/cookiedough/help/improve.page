@@ -1,0 +1,103 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="improve">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+
+    <desc>template vars, extra parameters for cookiedough</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>Improve your cookiecutter.json</title>
+
+
+<section>
+ <subtitle>Supported additions for cookiecutter.json</subtitle>
+ <p>cookiedough accepts some additional fields from <code>cookiecutters.json</code>. This
+ helps both the parameter input, as well as grouping, search and scoring/sorting
+ of entries.</p>
+
+ <p>Currently following options are recognized:</p>
+
+ <table shade="rows cols" rules="rows cols"><tbody>
+
+   <tr>
+         <td><p>Where</p></td>
+         <td><p>Name</p></td>
+         <td><p>Usage</p></td>
+   </tr>
+
+
+   <tr>
+         <td><p><code>cookiecutter.json</code></p></td>
+         <td><p><code>_api</code></p></td>
+         <td><p>Override the category/language (could be an app name, e.g. <code>flask</code>)</p></td>
+   </tr>
+   <tr>
+         <td><p><code>cookiecutter.json</code></p></td>
+         <td><p><code>_keywords</code></p></td>
+         <td><p>Add extra search keywords/tags (comma/space-separated string)</p></td>
+   </tr>
+   <tr>
+         <td><p><code>cookiecutter.json</code></p></td>
+         <td><p><code>_requirements</code></p></td>
+         <td><p>Build dependencies (a JSON list), for example <code>["poetry", "pipenv", "pluginconf"]</code></p></td>
+   </tr>
+   <tr>
+         <td><p><code>cookiecutter.json</code></p></td>
+         <td><p><code>_license</code></p></td>
+         <td><p>License of the cookiecutter template files. Ideally ought to be "PD" or "CC0". If attribution/academic licsense ("MITL" or "BDSL"), the template should note itself in the generated README or CREDITS, etc. -- <em style="strong">Note</em>: license of the cookiecutter repository (that's what the GH API yields) can/should divert from the license of the actual template files.</p></td>
+   </tr>
+   <tr>
+         <td><p><code>README.*</code></p></td>
+         <td><p>markdown</p></td>
+         <td><p>Describe all template variables, using a "❙<code>varname</code>❙Explanation...❙" table</p></td>
+   </tr>
+
+ </tbody></table>
+
+ <p>For example:</p>
+
+ <code> {
+      "project_slug": "base-name",
+      "_api": "django",
+      "_keywords": "make-whl, xdg, pytest, mkdocs",
+      "_license": "CC0",
+      "_requirements": ["poetry", "pep517"]
+  }
+ </code>
+
+ <p>Whereas your README should contain explanations for template vars:</p>
+
+ <code> | Variable       | Explanation ...                        |
+  |----------------|----------------------------------------|
+  | `project_slug` | basename for created project directory |
+  | `proj_license` | ...                                    |
+ </code>
+</section>
+
+<section>
+ <subtitle>Why "scoring"?</subtitle>
+ <p>Ordering just alphabetically or by github stars isn't all that useful. Stars
+ are simply accrued for older projects. It's often just bandwagon voting even.</p>
+
+ <p>Instead cookiedough takes multiple properties into account, and somewhat
+ weighs them against each other. Average projects are favoured, and some
+ contents rewarded. It's not a huge influence, but hopefully brings more
+ contemporary templates to the top.</p>
+
+ <p>See settings or cookiedough/update.py
+ on how the default scoring works. (This is going to be come more configurable.)</p>
+</section>
+
+  
+
+
+
+
+  
+
+
+
+</page>
+

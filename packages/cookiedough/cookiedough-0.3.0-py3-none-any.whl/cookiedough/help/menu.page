@@ -1,0 +1,136 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="menu">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+    <link type="topic" xref="usage"/>
+    <desc>available features</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>Menu structure</title>
+
+
+          
+<section>
+ <title>Menu structure</title>
+          
+
+
+
+
+
+ 
+
+
+ <p>The current menu structure is as follows:</p>
+
+ <table shade="rows cols" rules="rows cols"><tbody>
+
+   <tr>
+         <td><p>Menu</p></td>
+         <td><p>Submenu</p></td>
+         <td><p>Action</p></td>
+   </tr>
+
+
+   <tr>
+         <td><p>File</p></td>
+         <td><p>WorkingDir</p></td>
+         <td><p>change the current working directory</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Settings</p></td>
+         <td><p>bring up the config window</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Cookiecutr</p></td>
+         <td><p>...</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>→ config</p></td>
+         <td><p>show editor for ~/.config/cookiecutter/rc</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>→ patch</p></td>
+         <td><p>patch cookiercutter to use XDG-paths (NYI)</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>→ defaults</p></td>
+         <td><p>edit cookiecutter defaults (not yet implemented)</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>About</p></td>
+         <td><p>application info</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Exit</p></td>
+         <td><p>exit cookiedough</p></td>
+   </tr>
+   <tr>
+         <td><p>Template</p></td>
+         <td><p>Install</p></td>
+         <td><p>same as Roll out button</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>URL</p></td>
+         <td><p>open current templates´ homepage in browser</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Copy Repo U</p></td>
+         <td><p>add current templates´ git url to clipboard</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Report</p></td>
+         <td><p>(NYI)</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Update</p></td>
+         <td><p>(NYI)</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Details</p></td>
+         <td><p>JSON blob from uidata for current template</p></td>
+   </tr>
+   <tr>
+         <td><p>Help</p></td>
+         <td><p>Help</p></td>
+         <td><p>show Yelp manual</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>Wiki</p></td>
+         <td><p>open online wiki</p></td>
+   </tr>
+   <tr>
+         <td><p>→</p></td>
+         <td><p>About</p></td>
+         <td><p>application info</p></td>
+   </tr>
+
+ </tbody></table>
+</section>
+
+  
+
+
+
+
+  
+
+
+
+</page>
+

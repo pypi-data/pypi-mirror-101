@@ -1,0 +1,33 @@
+# api: patch
+# description: apply onto .../site-packages/cookiecutter/ for xdg support
+
+--- config.py	2021-03-22 14:55:25.449840370 +0100
++++ config.py	2021-03-22 15:00:20.738897569 +0100
+@@ -10,6 +10,7 @@
+ import collections
+ 
+ import poyo
++import appdirs
+ 
+ from cookiecutter.exceptions import ConfigDoesNotExistException
+ from cookiecutter.exceptions import InvalidConfiguration
+@@ -17,7 +18,7 @@
+ 
+ logger = logging.getLogger(__name__)
+ 
+-USER_CONFIG_PATH = os.path.expanduser('~/.cookiecutterrc')
++USER_CONFIG_PATH = appdirs.user_config_dir('cookiecutter', 'cookiecutter') + "/config"
+ 
+ BUILTIN_ABBREVIATIONS = {
+     'gh': 'https://github.com/{0}.git',
+@@ -26,8 +27,8 @@
+ }
+ 
+ DEFAULT_CONFIG = {
+-    'cookiecutters_dir': os.path.expanduser('~/.cookiecutters/'),
+-    'replay_dir': os.path.expanduser('~/.cookiecutter_replay/'),
++    'cookiecutters_dir': appdirs.user_cache_dir("cookiecutters", "cookiecutters"),
++    'replay_dir': appdirs.user_config_dir('cookiecutter', 'cookiecutter') + "/replay/",
+     'default_context': collections.OrderedDict([]),
+     'abbreviations': BUILTIN_ABBREVIATIONS,
+ }

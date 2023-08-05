@@ -1,0 +1,202 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="settings">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+
+    <desc>config options per module</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>Settings</title>
+
+
+          
+<section>
+ <p>Use →File→Settings to access the cookiedough options menu.</p>
+
+ <list>
+ <item><p>Options are grouped by modules there.</p></item>
+ <item><p>Some may only take effect after a restart (e.g. hook_prompt).</p></item>
+ <item><p>Stored in ~/.config/cookiedough/settings.json.</p></item>
+ <item><p>There is no plugin handling in CD, so ticking the modules has no effect.</p></item>
+ </list>
+</section>
+
+<section>
+ <title>Options</title>
+ <table shade="rows cols" rules="rows cols"><tbody>
+
+   <tr>
+         <td><p>name</p></td>
+         <td><p>description</p></td>
+   </tr>
+
+
+   <tr>
+         <td><p>colorize</p></td>
+         <td><p>Colorize the readme preview a bit</p></td>
+   </tr>
+   <tr>
+         <td><p>sort</p></td>
+         <td><p>Primary scoring/sorting property</p></td>
+   </tr>
+   <tr>
+         <td><p>show_counts</p></td>
+         <td><p>Show number of entries per language/api category</p></td>
+   </tr>
+   <tr>
+         <td><p>editor</p></td>
+         <td><p>Text editor (only used for cookiecutters config editing)</p></td>
+   </tr>
+   <tr>
+         <td><p>replay</p></td>
+         <td><p>Apply previously entered input variables</p></td>
+   </tr>
+   <tr>
+         <td><p>no_params</p></td>
+         <td><p>Don't prompt for template vars. Use terminal prompts instead.</p></td>
+   </tr>
+   <tr>
+         <td><p>update_ccjson</p></td>
+         <td><p>Update parameters from cookiecutter.json files</p></td>
+   </tr>
+   <tr>
+         <td><p>hook_prompt</p></td>
+         <td><p>Display any additional prompts as GUI inputs</p></td>
+   </tr>
+   <tr>
+         <td><p>verbose</p></td>
+         <td><p>Enable cookiecutter CLI debug logging</p></td>
+   </tr>
+
+ </tbody></table>
+</section>
+
+<section>
+ <subtitle>Sort (Scoring)</subtitle>
+ <p> Influences how templates are listed in the left pane. Normally they're
+  ordered by "all" (a virtual score). But there's more fields internally:</p>
+
+ <table shade="rows cols" rules="rows cols"><tbody>
+
+   <tr>
+         <td><p>name</p></td>
+         <td><p>avg/weight</p></td>
+         <td><p>description</p></td>
+   </tr>
+
+
+   <tr>
+         <td><p>short</p></td>
+         <td><p>-</p></td>
+         <td><p>display by short package name</p></td>
+   </tr>
+   <tr>
+         <td><p>name</p></td>
+         <td><p>-</p></td>
+         <td><p>display sorted by vendor/pkg name</p></td>
+   </tr>
+   <tr>
+         <td><p><em style="strong">all</em></p></td>
+         <td><p>= 5.0</p></td>
+         <td><p>cumulative weighted score</p></td>
+   </tr>
+   <tr>
+         <td><p>size</p></td>
+         <td><p>64</p></td>
+         <td><p>overall size of repository (in kb)</p></td>
+   </tr>
+   <tr>
+         <td><p>stars</p></td>
+         <td><p>20</p></td>
+         <td><p>project watchers/stars</p></td>
+   </tr>
+   <tr>
+         <td><p>forks</p></td>
+         <td><p>5</p></td>
+         <td><p>number of github forks</p></td>
+   </tr>
+   <tr>
+         <td><p>tickets</p></td>
+         <td><p>10</p></td>
+         <td><p>number of open tickets in repo</p></td>
+   </tr>
+   <tr>
+         <td><p>vars</p></td>
+         <td><p>7</p></td>
+         <td><p>number of templating variables</p></td>
+   </tr>
+   <tr>
+         <td><p>files</p></td>
+         <td><p>32</p></td>
+         <td><p>number of files in template</p></td>
+   </tr>
+   <tr>
+         <td><p>readme</p></td>
+         <td><p>2048</p></td>
+         <td><p>length of README</p></td>
+   </tr>
+   <tr>
+         <td><p>lang</p></td>
+         <td><p>-0.9</p></td>
+         <td><p>non-english text</p></td>
+   </tr>
+   <tr>
+         <td><p>age</p></td>
+         <td><p>9 months</p></td>
+         <td><p>age of last release</p></td>
+   </tr>
+   <tr>
+         <td><p><em style="strong">bonus</em></p></td>
+         <td><p>+2.5</p></td>
+         <td><p>tree listing, keywords, curated, descriptions</p></td>
+   </tr>
+   <tr>
+         <td><p>curated</p></td>
+         <td><p>+0.8</p></td>
+         <td><p>previously listed in CC README</p></td>
+   </tr>
+   <tr>
+         <td><p>keywords</p></td>
+         <td><p>+0.5</p></td>
+         <td><p>has a _keywords field</p></td>
+   </tr>
+   <tr>
+         <td><p>descriptions</p></td>
+         <td><p>+1.25</p></td>
+         <td><p>contains field descriptions in README</p></td>
+   </tr>
+   <tr>
+         <td><p>score.find</p></td>
+         <td><p>+0.5*len</p></td>
+         <td><p>additional content/filenames to reward</p></td>
+   </tr>
+
+ </tbody></table>
+
+ <p>Note that alphabetically sorting works best with the "short" project name, while the "name" represents the vnd/pkg title, so won't look very sorted in the tree list. Take note of →Template→Details to see how the scoring works on each entry (usually shown at the very end).</p>
+
+ <p>Not all fields are selectable in the config window. (Though you could edit the <code>~/.config/cookiedough/settings.json</code>)</p>
+</section>
+
+<section>
+ <subtitle>no_params / hook_prompt</subtitle>
+ <p>Enabling <em style="strong">no_params</em> will avoid the input window when rolling out a
+ teplate.</p>
+
+ <p>If disabled, <em style="strong">hook_prompt</em> will keep input fields pop up as GUI windows.
+ Else you would get CLI prompts from cookiecutter directly.</p>
+</section>
+
+  
+
+
+
+
+  
+
+
+
+</page>
+

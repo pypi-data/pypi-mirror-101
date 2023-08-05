@@ -1,0 +1,49 @@
+<page xmlns="http://projectmallard.org/1.0/"
+ type="guide" id="rollout">
+
+<info>
+    <link type="guide" xref="index#nav"/>
+
+    <desc>installation of tempaltes, input prompts</desc>
+    <?http header="X-Generator: html2mallard" ?>
+</info>
+
+<title>Roll out</title>
+
+<section>
+ <p>When you hit the <em style="strong">Roll out</em> button, an input window for the cookiecutter
+ template will first pop up. Before you the project template gets created,
+ first edit its properties here.</p>
+
+ <list>
+ <item><p>Most input fields are strings. For dropdown boxes it's best to stick
+ to the default options.</p></item>
+ <item><p>You usually want to leave any <code>{{expression...}}</code> as is, because those
+ will be expanded by cookiecutter/jinja2.</p></item>
+ <item><p>The <em style="strong">Burnin' time!</em> button will start the project directory creation.</p></item>
+ </list>
+
+ <p>Created project directories will usually reside below the current working
+ directory. To verify or change your current location, use the <em style="strong">chdir</em>
+ button.</p>
+</section>
+
+<section>
+ <subtitle>Watch out</subtitle>
+ <p>See if any prompts come up in the terminal window you started
+ cookiedough from. Not all click prompts might get captured. And
+ obviously any error messages would show up there.</p>
+
+
+ <p>If a OutputDirExistsException or ImportError occurs,
+ cookiedough will crash alongside cookiecutter. Makes no sense to capture
+ or shorten error messages for what's essentially a programming tool.</p>
+
+
+ <p>When the --verbose setting is enabled, additional output will appear
+ in any case.</p>
+</section>
+
+
+</page>
+
