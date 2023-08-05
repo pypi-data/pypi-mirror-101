@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: textcl
+Version: 0.1.2
+Summary: Text preprocessing package for use in NLP tasks
+Home-page: https://github.com/alinapetukhova/textcl
+Author: Alina Petukhova
+Author-email: petukhova.alina@gmail.com
+License: MIT
+Download-URL: https://github.com/alinapetukhova/textcl/archive/refs/tags/v.0.1.0.tar.gz
+Keywords: NLP,Text preprocessing,Outlier detection
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Requires-Dist: torch (>=1.8.1)
+Requires-Dist: pytorch-pretrained-bert (>=0.6.2)
+Requires-Dist: langdetect (>=1.0.8)
+Requires-Dist: numpy (<1.20.0,>=1.16.5)
+Requires-Dist: pandas (>=1.0.3)
+Requires-Dist: lxml (>=4.6.2)
+Requires-Dist: protobuf (>=3.14.0)
+Requires-Dist: nltk (>=3.4.5)
+Requires-Dist: scikit-learn (>=0.24.1)
+
+UNKNOWN
+
+
