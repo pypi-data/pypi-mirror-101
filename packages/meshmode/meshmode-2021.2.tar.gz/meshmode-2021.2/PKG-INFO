@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: meshmode
+Version: 2021.2
+Summary: High-order polynomial discretizations of and on meshes
+Home-page: https://documen.tician.de/meshmode
+Author: Andreas Kloeckner
+Author-email: inform@tiker.net
+License: MIT
+Description: meshmode: High-Order Meshes and Discontinuous Function Spaces
+        =============================================================
+        
+        .. image:: https://gitlab.tiker.net/inducer/meshmode/badges/main/pipeline.svg
+            :alt: Gitlab Build Status
+            :target: https://gitlab.tiker.net/inducer/meshmode/commits/main
+        .. image:: https://github.com/inducer/meshmode/workflows/CI/badge.svg
+            :alt: Github Build Status
+            :target: https://github.com/inducer/meshmode/actions?query=branch%3Amain+workflow%3ACI
+        .. image:: https://badge.fury.io/py/meshmode.png
+            :alt: Python Package Index Release Page
+            :target: https://pypi.org/project/meshmode/
+        
+        * `Source code on Github <https://github.com/inducer/meshmode>`_
+        * `Documentation <https://documen.tician.de/meshmode>`_
+        
+        .. TODO
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Utilities
+Requires-Python: ~=3.6
+Provides-Extra: visualization

@@ -1,0 +1,13 @@
+gmsh_interop
+loopy>=2019.1
+modepy>=2020.2
+numpy
+pytest>=2.3
+pytools>=2020.4.1
+recursivenodes
+
+[:python_version <= "3.6"]
+dataclasses
+
+[visualization]
+h5py
