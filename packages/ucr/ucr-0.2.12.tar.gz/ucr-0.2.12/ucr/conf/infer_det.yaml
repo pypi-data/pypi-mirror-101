@@ -1,0 +1,19 @@
+defaults:
+    - preprocess: 
+        det_craft
+    - architecture: 
+        det_vgg_craft
+    - postprocess: 
+        det_craft
+    - hydra/job_logging: custom
+    - hydra/output: custom 
+
+job_name: det_infer
+level: INFO
+batch_size: 1
+device: cuda
+
+input: test/
+output: test_output/
+model_location: 
+# models/det/det_vgg_craft.pt
