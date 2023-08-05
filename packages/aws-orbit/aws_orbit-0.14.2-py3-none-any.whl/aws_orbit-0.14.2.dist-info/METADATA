@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: aws-orbit
+Version: 0.14.2
+Summary: Data & ML Unified Development and Production Environment.
+Home-page: https://github.com/awslabs/aws-orbit-workbench
+Author: AWS Professional Services
+Author-email: aws-proserve-opensource@amazon.com
+License: Apache License 2.0
+Project-URL: Org Site, https://aws.amazon.com/professional-services/
+Keywords: aws,cdk
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Jupyter
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Typing :: Typed
+Requires-Python: >=3.7, <3.9
+Requires-Dist: boto3 (~=1.12)
+Requires-Dist: botocore (~=1.15)
+Requires-Dist: PyYAML (~=5.4)
+Requires-Dist: click (~=7.1.0)
+Requires-Dist: tqdm (~=4.56.0)
+Requires-Dist: pyyaml-include (~=1.2)
+Requires-Dist: jsonpath-ng (~=1.5.0)
+Requires-Dist: marshmallow-dataclass[enum,union] (~=8.3.0)
+Requires-Dist: cfn-flip (~=1.2.3)
+Requires-Dist: python-slugify (~=4.0.1)
+Requires-Dist: kubernetes (~=12.0.1)
+Provides-Extra: kubespawner
+Requires-Dist: jupyterhub-kubespawner (~=0.15.0) ; extra == 'kubespawner'
+Provides-Extra: utils
+Requires-Dist: aws-orbit-sdk (~=0.14.2) ; extra == 'utils'
+
+UNKNOWN
+
+

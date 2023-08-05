@@ -1,0 +1,34 @@
+name: ${name}
+region: ${region}
+demo: ${demo}
+dev: ${dev}
+images:
+    jupyter-hub:
+        repository: ${jupyter_hub_repository}
+        source: ${images_source}
+        version: latest
+    jupyter-user:
+        repository: ${jupyter_user_repository}
+        source: ${images_source}
+        version: latest
+    landing-page:
+        repository: ${landing_page_repository}
+        source: ${images_source}
+        version: latest
+networking:
+  data:
+    internet-accessible: true
+    nodes-subnets: []
+  frontend:
+    load-balancers-subnets: []
+teams:
+-   name: my-team
+    instance-type: m5.4xlarge
+    local-storage-size: 128
+    nodes-num-desired: 2
+    nodes-num-max: 3
+    nodes-num-min: 1
+    grant-sudo: false
+    policy: AdministratorAccess
+    plugins: !include common_plugins.yaml
+    profiles: !include profiles.yaml
