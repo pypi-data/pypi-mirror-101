@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: ampel-interface
+Version: 0.7.1
+Summary: Base classes for the Ampel analysis platform
+Home-page: https://ampelproject.github.io
+License: BSD-3-Clause
+Author: Valery Brinnel
+Maintainer: Jakob van Santen
+Maintainer-email: jakob.van.santen@desy.de
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Typing :: Typed
+Provides-Extra: docs
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: Sphinx (>=3.5.1,<4.0.0); extra == "docs"
+Requires-Dist: pydantic (>=1.4,<1.5)
+Requires-Dist: pymongo (>=3.10,<4.0)
+Requires-Dist: sphinx-autodoc-typehints (>=1.11.1,<2.0.0); extra == "docs"
+Requires-Dist: tomlkit (>=0.7.0,<0.8.0); extra == "docs"
+Project-URL: Repository, https://github.com/AmpelProject/Ampel-interface
+Description-Content-Type: text/markdown
+
+# Ampel-interface
+
+`ampel-interface` provides type-hinted abstract base classes for [Ampel](https://ampelproject.github.io).
