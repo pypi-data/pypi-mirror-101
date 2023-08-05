@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: fondat-redis
+Version: 3.0b2
+Summary: Fondat module for Redis.
+Home-page: https://github.com/fondat/fondat-redis/
+License: MIT
+Keywords: asgi,framework,resource,openapi
+Author: fondat-redis authors
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Requires-Dist: aioredis (>=1.3,<2.0)
+Requires-Dist: fondat-core (>=3.0b44,<4.0)
+Project-URL: Documentation, https://github.com/fondat/fondat-redis/wiki
+Description-Content-Type: text/markdown
+
+# fondat-redis
+
+[![PyPI](https://badge.fury.io/py/fondat-redis.svg)](https://badge.fury.io/py/fondat-redis)
+[![License](https://img.shields.io/github/license/fondat/fondat-redis.svg)](https://github.com/fondat/fondat-redis/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/badge/github-main-blue.svg)](https://github.com/fondat/fondat-redis/)
+[![Test](https://github.com/fondat/fondat-redis/workflows/test/badge.svg)](https://github.com/fondat/fondat-redis/actions?query=workflow/test)
+[![Black](https://img.shields.io/badge/code%20style-black-black.svg)](https://github.com/psf/black)
+
+Fondat module for Redis.
+
+## Develop
+
+```
+poetry install
+poetry run pre-commit install
+```
+
+## Test
+
+```
+poetry run pytest
+```
+
