@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: quantimpy
+Version: 0.2.1
+Summary: This package performs morphological operations and can compute the Minkowski functionals and functions
+Home-page: https://github.com/boeleman/quantimpy
+Author: Arnout Boelens
+Author-email: boelens@stanford.edu
+License: UNKNOWN
+Description: # quantimpy
+        
+        Welcome to QuantImPy, a Python library for scientific image processing.
+        
+        This code performs morphological operations on Numpy arrays and can compute the
+        Minkowski functionals and functions.
+        
+        This code is inspired by and partly based on the [QuantIm
+        library](https://www.ufz.de/index.php?en=39198) C/C++ library for scientific
+        image processing.
+        
+        Documentation can be found on [Github.io](https://boeleman.github.io/quantimpy/)
+        
+        This library can be installed using pip:
+        
+        `pip install quantimpy`
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Cython
+Description-Content-Type: text/markdown
