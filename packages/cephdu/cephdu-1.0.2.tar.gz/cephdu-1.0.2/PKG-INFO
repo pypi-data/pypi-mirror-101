@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: cephdu
+Version: 1.0.2
+Summary: A "du" like utility to estimate file space usage on CephFS
+Home-page: https://github.com/huww98/cephdu
+Maintainer: Weiwen Hu
+Maintainer-email: huww98@outlook.com
+License: MIT
+Description: # CephFS disk usage
+        
+        A `du` like utility to estimate file space usage that utilizes CephFS extended file attribute `ceph.dir.rbytes`.
+        
+Keywords: ceph,cephfs,du
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: Terminals
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
