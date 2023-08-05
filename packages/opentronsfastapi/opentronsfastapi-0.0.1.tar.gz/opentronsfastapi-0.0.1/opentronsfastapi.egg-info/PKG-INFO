@@ -1,0 +1,34 @@
+Metadata-Version: 1.0
+Name: opentronsfastapi
+Version: 0.0.1
+Summary: opentronsfastapi is package for building FastAPIs that run protocols on an Opentrons
+Home-page: https://github.com/Koeng101/opentronsfastapi
+Author: Keoni Gandall
+Author-email: keoni@sporenetlabs.com
+License: UNKNOWN
+Description: # opentronsfastapi
+        
+        opentronsfastapi is a library that allows for FastAPIs to be easily deployed onto Opentrons liquid handling robots (OT2) with robotic protocols. The protocols can be parameterized, allowing complex robotic functions to take place. Communication is done over HTTP via a REST API, and execution of the protocols begins immediately, allowing the OT2 to work as part of a larger lab management system, or simply allowing the user to build a user interface that suits their needs better than the stock options Opentrons provides.
+        
+        For example, a biofoundry might have the following components for successfully executing a protocol:
+        1. A job queue that lists the tasks to be done
+        2. A system-level execution manager that decides what job to do next and passes the job to an appropriate robot
+        3. A client on the robot that receives job requests and, if accepted, initiates execution on the robot
+        4. A low-level layer that converts job instructions to the acutation of motors
+        
+        opentronsfastapi specifically helps with #3.
+        
+        ## Features
+        opentronsfastapi
+        - Allows API endpoints to be wrapped with a decorator for execution on an Opentrons robot
+        - Manages robot state - if the robot is busy, then job requests are refused until the robot work is complete, and an error code is returned to the requestor
+        - Can report the state of the robot to a requestor, via API endpoint
+        - Can report the protocol version the robot will use, in the form of a unique hash, via an API endpoint
+        - Allows the API to be accessed by any arbitrary tool, as long as POST requests are sent in the right format
+        - Can be deployed on stock OT2's without special tools
+        - Works at the level of a single robot, and is naive of other robots. However, it can be deployed on multiple robots, which can then be managed by a supervisor.
+        
+        # Contributors
+        - Thank you Tim Dobbs for writing most of the README, adding essential wrappers, and generally bringing this project into reality.
+        
+Platform: UNKNOWN
