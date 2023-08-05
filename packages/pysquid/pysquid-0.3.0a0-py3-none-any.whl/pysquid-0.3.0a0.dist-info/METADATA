@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: pysquid
+Version: 0.3.0a0
+Summary: templating system
+Home-page: https://gitlab.bjarnessen.no/bjarne/pysquid/
+Author: Bjarne Rørnes
+Author-email: bjarne@bjarnessen.no
+License: UNKNOWN
+Project-URL: Bug Reports, https://gitlab.bjarnessen.no/bjarne/pysquid/
+Project-URL: Tracker, https://gitlab.bjarnessen.no/bjarne/pysquid/
+Project-URL: Source, https://gitlab.bjarnessen.no/bjarne/pysquid/
+Keywords: python development library
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pyyaml
+
+# Pysquid
+
+Playbook templating system
+
+See documentation: https://bjarne.gitlab.bjarnessen.no/pysquid
+
+See changelog: https://bjarne.gitlab.bjarnessen.no/pysquid/changelog
+
+To upload to PYPI, run manual stage with CI variables: PYPI_PASSWORD and PYPI_USERNAME
+
