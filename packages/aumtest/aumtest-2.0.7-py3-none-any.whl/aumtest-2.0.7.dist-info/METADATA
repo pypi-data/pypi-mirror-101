@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: aumtest
+Version: 2.0.7
+Summary: UNKNOWN
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6.3
+Description-Content-Type: text/markdown
+Requires-Dist: PyYAML (>=5.1.2)
+Requires-Dist: wd (>=1.0.1)
+Requires-Dist: selenium
+Requires-Dist: colorama
+Requires-Dist: opencv-contrib-python (==3.4.2.16)
+
+### 最新安装
+```
+# 更新
+pip install aumtest
+
+# 源码安装
+python setup.py install
+
+# 查看版本号
+aumtest -V
+
+# 帮助命名行参数
+aumtest -h
+```
+
