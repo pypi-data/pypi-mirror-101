@@ -1,0 +1,35 @@
+"""messages.py patches for server versions 1.9"""
+
+from .references import *
+
+
+class ServerObject:
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
+
+    def dump(self) -> dict:
+        d = {k: (v.dump() if hasattr(v, 'dump') else v) for k, v in vars(self).items()}
+        return d
+
+
+# 1.9.0 - 1.9.0.6
+class ModelParameters(ServerObject):
+    """
+
+    """
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+
+    @staticmethod
+    def load(d: dict) -> 'ModelParameters':
+        if 'dataset' in d:
+            d['dataset'] = DatasetReference.load(d['dataset'])
+        if 'resumed_model' in d:
+            d['resumed_model'] = ModelReference.load(d['resumed_model'])
+        if 'validset' in d:
+            d['validset'] = DatasetReference.load(d['validset'])
+        if 'testset' in d:
+            d['testset'] = DatasetReference.load(d['testset'])
+        if 'cols_imputation' in d:
+            d['cols_imputation'] = [ColumnImputation.load(a) for a in d['cols_imputation']]
+        return ModelParameters(**d)
