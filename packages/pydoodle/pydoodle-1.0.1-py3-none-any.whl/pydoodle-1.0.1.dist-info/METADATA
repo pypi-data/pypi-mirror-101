@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: pydoodle
+Version: 1.0.1
+Summary: An API wrapper of Jdoodle.com
+Home-page: https://github.com/Prince2347X/pydoodle
+Author: Prince2347X
+Author-email: prince.raj29042004@gmail.com
+License: MIT
+Project-URL: Source Code, https://github.com/Prince2347X/pydoodle
+Project-URL: Issue Tracker, https://github.com/Prince2347X/pydoodle/issues
+Project-URL: Documentation, https://pydoodle.readthedocs.io/
+Keywords: compiler,compiler api,jdoodle,jdoodle api,pydoodle,jdoodle python
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Compilers
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Natural Language :: English
+Requires-Python: >=3.5.1
+Description-Content-Type: text/markdown
+Requires-Dist: requests (==2.25.1)
+
+# pydoodle
+An API wrapper of online compiler jdoodle.com written in python.
+
+
+## Features
+ - Easy to use.
+ - Over 50+ languages to compile.
+ - Get the credits spent information.
+
+
+## How to install?
+Use the following command on you device to install it.
+```
+pip install pydoodle
+```
+
+### Documentation
+ - Documentaion is hosted on [pydoodle.readthedocs.io](https://pydoodle.readthedocs.io) (Under development, contributions are appreciated)
+
+### Example
+ - A basic [example](examples/example.py) on how to use this package.
+
+
+### Misc 
+ - Star this repo if you're using this wrapper 😄
+ - Head over to [jdoodle](https://jdoodle.com/compiler-api) to get clientId and clientSecret.
+ - Read the FAQs of the API [here.](https://docs.jdoodle.com/compiler-api/compiler-api)
+
+#### Facing any Issue?
+ - Feel free to [create an issue.](https://github.com/Prince2347X/pydoodle/issues/new)
+
+
