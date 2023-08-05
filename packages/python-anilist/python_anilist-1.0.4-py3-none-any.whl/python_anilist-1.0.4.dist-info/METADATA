@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: python-anilist
+Version: 1.0.4
+Summary: A simple wrapper for Anilist
+Home-page: https://github.com/AmanoTeam/python-anilist
+Author: AmanoTeam
+Author-email: contact@amanoteam.com
+License: MIT
+Keywords: wrapper python anilist sync async asyncio httpx graphl api
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: AsyncIO
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: httpx[http2] (>=0.14)
+
+# python-anilist
+
+[![License](https://img.shields.io/github/license/AmanoTeam/aiodown)](https://github.com/AmanoTeam/python-anilist/raw/main/LICENSE)
+![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)
+[![Contributors](https://img.shields.io/github/contributors/AmanoTeam/python-anilist.svg)](https://github.com/AmanoTeam/python-anilist/graphs/contributors)
+[![PyPi](https://badge.fury.io/py/python-anilist.svg)](https://pypi.org/project/python-anilist/)
+
+> A simple wrapper with full support for `asyncio` made in `Python 3` for [Anilist](//anilist.co) using [httpx](//github.com/encode/httpx).
+
+## Requirements
+
+- Python 3.6 or higher.
+- httpx 0.14 or higher.
+
+## Installation
+
+**NOTE:** If `python3` is "not a recognized command" try using `python` instead.
+
+For the latest stable version:<br>
+```
+python3 -m pip install python-anilist
+```
+
+For the latest development version:<br>
+```
+python3 -m pip install git+https://github.com/AmanoTeam/python-anilist
+```
+
+## What's left to do?
+
+- Write the API Documentation.
+- Add support for more types of content.
+- Show some examples.
+
+## Credits
+
+* [AnilistPy](//github.com/anilistpy/anilistpy): for inspiration.
+
+## License
+
+MIT © 2021 [AmanoTeam](//github.com/AmanoTeam)
+
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## 1.0.4 (April 5th, 2021)
+
+### Changed
+* Hotfix, fix a typo on get manga.
+
+## 1.0.3 (April 4th, 2021)
+
+### Added
+* Support for characters.
+
+### Changed
+* HTTP2 enabled (async mode only).
+
+## 1.0.2 (March 8th, 2021)
+
+### Added
+* Support for mangas.
+
+### Changed
+* Some bug fixes.
+
+## 1.0.1 (March 8th, 2021)
+
+### Changed
+* Bug fixes.
+
+## 1.0.0 (March 8th, 2021)
+
+* First release
+
