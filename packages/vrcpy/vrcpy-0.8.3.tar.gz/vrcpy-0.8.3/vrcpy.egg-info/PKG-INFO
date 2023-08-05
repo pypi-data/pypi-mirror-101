@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: vrcpy
+Version: 0.8.3
+Summary: A Python wrapper for the VRChat WebAPI supporting both sync and async
+Home-page: https://github.com/VRChatAPI/VRChatPython
+Author: Katistic
+License: UNKNOWN
+Project-URL: Issue Tracker, https://github.com/VRChatAPI/VRChatPython/issues
+Project-URL: Examples, https://github.com/VRChatAPI/VRChatPython/tree/master/examples
+Description: # VRCpy
+        
+        Re-written API wrapper for the [VRChat API](https://vrchatapi.github.io)
+        Please note this wrapper does NOT follow the [guidelines set by the vrchat team,](https://vrchatapi.github.io/#/?id=disclaimer)  
+        Specifically, this wrapper makes queries more than once per minute.  
+        The amount of queries per minute is a small amount above the VRChat website.  
+        
+        Docs are in-progress on this repositories wiki page.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5.3
+Description-Content-Type: text/markdown
+Provides-Extra: aquick
