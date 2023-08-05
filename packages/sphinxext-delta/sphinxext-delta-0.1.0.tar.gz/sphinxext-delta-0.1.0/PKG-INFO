@@ -1,0 +1,65 @@
+Metadata-Version: 2.1
+Name: sphinxext-delta
+Version: 0.1.0
+Summary: Sphinx extension for listing changed Sphinx articles
+Home-page: https://github.com/wpilibsuite/sphinxext-delta
+Author: Vasista Vovveti, Dalton Smith
+Author-email: daltzsmith@gmail.com
+License: UNKNOWN
+Description: # sphinxext-delta
+        
+        Sphinx extension to generate a page of changed articles on ReadTheDocs.
+        
+        ## Installation
+        
+        ```
+        python -m pip install sphinxext-delta
+        ```
+        
+        ## Requirements
+        
+        - Sphinx >= 2
+        - ReadTheDocs
+        - GitHub
+        
+        No other environments are supported.
+        
+        ## Usage
+        
+        Add `sphinxext.delta` to your extensions list in your `conf.py`
+        
+        ```
+        extensions = [
+            sphinxext.delta,
+        ]
+        ```
+        
+        ## Options
+        
+        There are 2 required and 1 optional configurations:
+        
+        - `delta_doc_path`
+          - REQUIRED: Relative path to your articles. IE: `source/docs`
+        - `delta_inject_location`
+          - OPTIONAL: Relative location for the toctree to be injected. Defaults to `master_doc`.
+        
+Platform: UNKNOWN
+Classifier: Environment :: Plugins
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python
+Classifier: Topic :: Documentation :: Sphinx
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
