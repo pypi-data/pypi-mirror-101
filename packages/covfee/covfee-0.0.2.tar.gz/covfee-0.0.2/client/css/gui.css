@@ -1,0 +1,210 @@
+/*  */
+table.simple-table {
+  font-size: 1em;
+  border-collapse: collapse;
+}
+table.simple-table > tr > td,
+table.simple-table > tr > th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+/* Site header */
+a.header-covfee {
+  font-size: 1.5em;
+  color: #f5f5f5 !important;
+}
+.header-covfee-logo {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+/* antd fix */
+.ant-row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.ant-col:first-child {
+  padding-left: 0 !important;
+}
+
+.ant-col:last-child {
+  padding-right: 0 !important;
+}
+
+/* Annotation feedback */
+.gui-vertical {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border: 5px solid #202020;
+}
+
+.gui-indicator {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: green;
+}
+
+/* Task Overlay */
+.task-container {
+  width: 100%;
+}
+
+.task-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 2;
+}
+
+.task-overlay-off {
+  display: none;
+}
+
+.task-overlay-nav {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top: -20px;
+  text-align: center;
+}
+
+.video-overlay-nav>button {
+  margin: 0 5px;
+}
+
+/*Video container*/
+.mouse-tracker {
+  width: 100%;
+  padding: 5px;
+  background-color: gray;
+}
+.mouse-tracker > .video-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    cursor: crosshair;
+}
+.mouse-tracker.mouse-tracker-active {
+  background-color: red;
+}
+.mouse-tracker.mouse-tracker-occluded {
+  background-color: blue;
+}
+
+/* .mouse-tracker.mouse-tracker-occluded > .video-container {
+  cursor: progress;
+} */
+
+/* Mouse visualization component */
+.mouse-visualizer {
+  position: relative;
+  width: 100%;
+}
+.mouse-visualizer > .mouse-visualizer-pointer {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  margin-left: -4px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.task-group {
+  max-height: calc(100vh - 54px);
+  overflow-y: scroll;
+  list-style-type: none;
+  margin: 0;
+  padding: 2%;
+}
+.task-li {
+  display: block;
+  width: 100%;
+  margin: 2% 0;
+  padding: 5px;
+  border: 1px solid gray;
+  
+  border-radius: 3px;
+}
+.task-li-active {
+  background-color: green;
+}
+.task-li input {
+  width: 50%;
+}
+.task-li .btn {
+  display: inline-block;
+  margin: 0;
+  padding: 4px 11px;
+}
+.task-li .btn:hover {
+  cursor: pointer;
+}
+.task-add-btn{
+  width: 96%;
+  margin: 2%;
+}
+
+/* Gallery img */
+.gallery-img {
+  width: 90%;
+  height: auto;
+  margin: 5%;
+}
+
+/* annotation bar (above the player) */
+.annot-bar {
+  background-color: black;
+  color: #f5f5f5;
+}
+.annot-bar-section, .annot-bar-header{
+  display: inline-block;
+  padding: 5px 15px;
+  font-size:0.8em;
+  border-right: 1px solid #363636;
+}
+.annot-bar-right {
+  float: right;
+  padding: 5px 15px;
+  font-size:0.8em;
+  border-right: 1px solid #363636;
+}
+.annot-bar-header {
+  font-size: 1em;
+}
+
+.tool-container {
+  overflow: auto;
+}
+
+/* full-width banner for login and other pages */
+.covfee-banner {
+  width: 100%;
+  margin: 1em auto 2em;
+  text-align: center;
+  font-size: 2em;
+}
+.covfee-banner > img {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+/*GUI elements */
+.spinner {
+  text-align: center;
+  padding: 2em;
+  margin: 2em 0;
+}
