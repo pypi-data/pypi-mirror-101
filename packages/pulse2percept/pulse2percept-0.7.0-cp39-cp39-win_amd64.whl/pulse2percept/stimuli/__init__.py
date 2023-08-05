@@ -1,0 +1,51 @@
+"""Common electrical stimuli, such as charge-balanced square-wave pulse trains.
+
+.. autosummary::
+    :toctree: _api
+
+    base
+    pulses
+    pulse_trains
+    images
+    videos
+
+.. seealso::
+
+    *  :ref:`Basic Concepts > Electrical Stimuli <topics-stimuli>`
+
+"""
+
+# Pulses with net currents smaller than 10 picoamps are considered
+# charge-balanced (here expressed in microamps):
+MIN_AMP = 1e-5
+
+# Sampling time step (ms); defines the duration of the signal edge
+# transitions:
+DT = 1e-3
+
+from .base import Stimulus
+from .pulses import AsymmetricBiphasicPulse, BiphasicPulse, MonophasicPulse
+from .pulse_trains import (PulseTrain, BiphasicPulseTrain,
+                           BiphasicTripletTrain, AsymmetricBiphasicPulseTrain)
+from .images import ImageStimulus, LogoBVL, LogoUCSB, SnellenChart
+from .videos import VideoStimulus, BostonTrain
+from .psychophysics import BarStimulus, GratingStimulus
+
+__all__ = [
+    'AsymmetricBiphasicPulse',
+    'AsymmetricBiphasicPulseTrain',
+    'BarStimulus',
+    'BiphasicPulse',
+    'BiphasicPulseTrain',
+    'BiphasicTripletTrain',
+    'BostonTrain',
+    'GratingStimulus',
+    'ImageStimulus',
+    'LogoBVL',
+    'LogoUCSB',
+    'MonophasicPulse',
+    'PulseTrain',
+    'SnellenChart',
+    'Stimulus',
+    'VideoStimulus'
+]
