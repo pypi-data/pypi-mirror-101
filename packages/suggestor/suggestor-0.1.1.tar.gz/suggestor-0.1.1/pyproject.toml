@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "suggestor"
+version = "0.1.1"
+description = ""
+license = "AGPL-3.0-or-later"
+authors = ["Alexandre Janvrin <alexandre.janvrin@reseau.eseo.fr>"]
+readme = "README.md"
+homepage = "https://github.com/LivinParadoX/suggestor"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+icecream = "^2.1.0"
+neovim = "^0.3.1"
+click = "^7.1.2"
+jedi = "^0.18.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
