@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records prefix="plone.resources/expand-collapse-tile"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+      <value key="js">++plone++collective.expandcollapse.tile/expand_collapse.js</value>
+      <value key="css">
+        <element>++plone++collective.expandcollapse.tile/dist/styles.css</element>
+      </value>
+  </records>
+
+  <records prefix="plone.bundles/expand-collapse-tile-bundle"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="enabled">True</value>
+    <value key="resources" purge="false">
+      <element>expand-collapse-tile</element>
+    </value>
+    <value key="jscompilation">++plone++collective.expandcollapse.tile/dist/expand_collapse_compiled.min.js</value>
+    <value key="csscompilation">++plone++collective.expandcollapse.tile/dist/styles.css</value>
+    <value key="last_compilation">2018-04-14 00:00:00</value>
+    <value key="compile">True</value>
+    <value key="depends">plone</value>
+    <value key="stub_js_modules">
+      <element>jquery</element>
+    </value>
+  </records>
+
+</registry>

@@ -1,0 +1,85 @@
+$animation-speed: 0.3s;
+
+.tile-collapse-button {
+  border: 0;
+  background: none;
+  padding-left: 0;
+  position: relative;
+  padding-right: 30px;
+  cursor: pointer;
+
+  .title-content {
+    border-bottom: 1px solid #000;
+  }
+
+  .title-icon {
+    [class*='fa-'] {
+      display: none;
+      margin-left: 10px;
+
+      &.fa-angle-down {
+        display: inline-block;
+      }
+    }
+  }
+
+  .sfondo-scuro & {
+    color: #fff;
+
+    .title-content {
+      border-bottom-color: #fff;
+    }
+  }
+
+  &:active,
+  &:hover,
+  &:focus {
+    background: inherit;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+@mixin make-collapsible() {
+  .tileBody,
+  .tileContent,
+  .showMore {
+    display: none;
+  }
+
+  &.open {
+    .showMore {
+      display: block;
+    }
+    .tile-collapse-button {
+      .title-icon {
+        [class*='fa-'] {
+          &.fa-angle-down {
+            display: none;
+          }
+          &.fa-angle-up {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tileWrapper {
+  > .collapsible-desktop {
+    @include make-collapsible;
+  }
+
+  > .collapsible {
+    @media (max-width: 991px) {
+      @include make-collapsible;
+    }
+    @media (min-width: 992px) {
+      .tileBody,
+      .tileContent {
+        display: block !important;
+      }
+    }
+  }
+}

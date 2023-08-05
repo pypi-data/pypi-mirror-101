@@ -1,0 +1,9 @@
+graft src/collective
+graft docs
+include *.rst
+include *.GPL
+include *.js
+include *.json
+include *.txt
+include *.yml
+global-exclude *.pyc
