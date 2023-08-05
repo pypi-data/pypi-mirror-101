@@ -1,0 +1,396 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <title>Público em Geral / Nota Fiscal Eletrônica / Consulta Completa da NFC-e</title>
+    <link type="text/css" rel="stylesheet" href="../../include/sefazNFE.css" />
+    <link type="text/css" rel="stylesheet" href="../../include/estilo_aaeNFE.css" />
+    <link type="text/css" rel="stylesheet" href="../../include/AAENovo.css" />
+    <link type="text/css" rel="stylesheet" href="tableNFe.css" />
+    
+    <script type="text/javascript" src="../../include/SEF_funcoes.js"></script>
+
+    <script type="text/javascript">
+
+        var naoimprimirTitulo = true;
+        var botaovoltar = true;
+
+        function trocaAba(aba) {
+            form1.aba.value = aba;
+            form1.submit();
+        }
+
+        //retorna imagem adequada, ou logo NF-e ou brasao RS
+        function imagemLogo() {
+            if(getUf()['uf'] == 'RS') return 'brasao_rs_small.png';
+            return 'logo_nfe_p.gif';
+        }
+        
+        //retorna UF para layout de impressão
+        function getUf() {
+            var uf = ''.substring(0,2);
+            switch (uf) {
+                case '12': return {'uf':'AC', 'ext':'do Acre' };
+                case '27': return {'uf':'AL', 'ext':'de Alagoas' };
+                case '13': return {'uf':'AM', 'ext':'do Amapá' };
+                case '16': return {'uf':'AP', 'ext':'do Amazonas' };
+                case '29': return {'uf':'BA', 'ext':'da Bahia' };
+                case '23': return {'uf':'CE', 'ext':'do Ceará' };
+                case '53': return {'uf':'DF', 'ext':'do Distrito Federal' };
+                case '32': return {'uf':'ES', 'ext':'do Espírito Santo' };
+                case '52': return {'uf':'GO', 'ext':'de Goiás' };
+                case '21': return {'uf':'MA', 'ext':'do Maranhão' };
+                case '31': return {'uf':'MG', 'ext':'do Mato Grosso' };
+                case '50': return {'uf':'MS', 'ext':'do Mato Grosso do Sul' };
+                case '51': return {'uf':'MT', 'ext':'de Minas Gerais' };
+                case '15': return {'uf':'PA', 'ext':'da Paraíba' };
+                case '25': return {'uf':'PB', 'ext':'do Paraná' };
+                case '26': return {'uf':'PE', 'ext':'de Pernambuco' };
+                case '22': return {'uf':'PI', 'ext':'do Piauí' };
+                case '41': return {'uf':'PR', 'ext':'do Paraná' };
+                case '33': return {'uf':'RJ', 'ext':'do Rio de Janeiro' };
+                case '24': return {'uf':'RN', 'ext':'do Rio Grande do Norte' };
+                case '11': return {'uf':'RO', 'ext':'de Rondônia' };
+                case '14': return {'uf':'RR', 'ext':'de Roraima' };
+                case '43': return {'uf':'RS', 'ext':'do Rio Grande do Sul' };
+                case '42': return {'uf':'SC', 'ext':'de Santa Catarina' };
+                case '28': return {'uf':'SE', 'ext':'de Sergipe' };
+                case '35': return {'uf':'SP', 'ext':'de São Paulo' };
+                case '17': return {'uf':'TO', 'ext':'do Tocantins' };
+            }
+        }
+        
+        
+        function abrirAutorizacaoUso() {
+            var par = '?chaveNFe=';
+            par += '&HML=';
+            par += '&acao=AUT';
+            par += '&MsgUsuario=';
+            
+            window.open('SAT-WEB-NFE_IMPRESSAO.asp' + par, 'autorizacaoUso', 'top=50,left=50,width=760,height=600,scrollbars=yes');
+        }
+        
+        function novaConsulta(){
+           
+            self.location='SAT-WEB-NFE-NFC_1.asp'
+        }
+        
+        function visualizarAbas(){
+            
+            var chave = '?chaveNFe=';
+            chave += '&HML=false';
+            chave += '&NF=F082C5B49'
+            self.location='SAT-WEB-NFE-COM_2.asp' + chave + ''
+        }
+        
+    </script>
+
+</head>
+<body style="margin: 0px;">
+
+    <script type="text/javascript" src="../../include/AAE_Cabecalho.js"></script>
+
+    <script type="text/javascript">
+        function consultaDigitacao() {
+
+            self.location = 'SAT-WEB-NFE-NFC_1.asp'
+        }
+
+       
+        function imprimirNFe() {
+            var dataAtual = new Date();
+            var janela = window.open('', 'winNFeCompleta', 'top=50,left=50,width=550,height=650,scrollbars=yes');
+            var HTML = '<html>';
+
+            HTML += '<LINK rel=\"STYLESHEET\" href=\"Estilos/nfe-vis.css\" type=\"text/css\">';
+            HTML += '<style type"text/css" media="print">';
+            HTML += '.notprint {display: none;}'
+            HTML += '.body{  margin: 25mm 60mm 25mm 25mm;}'
+            HTML += '</style>';
+            HTML += '<style type="text/css">';
+            HTML += '.toggle { background-image:none !important; }';
+            HTML += '.toggable { display: block !important; }';
+            HTML += '</style>';
+            HTML += '<title>Impressão NFC-e</title><body><div class="notprint"><input type="button" value="Imprimir" onClick="window.print();">&nbsp;&nbsp;&nbsp;<input type="button" value="Fechar" onClick="window.close();"><hr noshade></div>';
+            HTML += '<table width="450" align="center" border="0" cellpadding="0" cellspacing="0" class="textoVerdana9bold">';
+            HTML += '<tr><td width="70" align="center"><img src="Imagens/' + imagemLogo() + '" height="67"></td>';
+            HTML += '<td align="center" valign="middle"><strong>GOVERNO DO ESTADO ' + getUf()['ext'].toUpperCase() + '<br>SECRETARIA DA FAZENDA<br><br>DANFE NFC-e - Nota Fiscal do Consumidor Eletrônica<br>Impresso ' + dataAtual.toLocaleDateString() + ' às ' + dataAtual.toLocaleTimeString() + '</strong></td></tr></table><br>';
+            HTML += document.getElementById('nfce').innerHTML;
+            HTML += '<br />';
+            HTML += '<tr> <td align="left" style="padding-left:23px"><br /><table><tr><td width="200"><b>Administração Tributária:</b>';
+            HTML += '</td><td>&nbsp;Receita Estadual RS</td></tr><tr><td><b>Data/Hora da Consulta:</b></td>';
+            HTML += '<td>&nbsp;11/08/2020&nbsp;12:32:41</td></tr></table></td></tr>';
+            HTML += '</body></html>';
+
+            janela.document.write(HTML);
+            janela.document.close();
+        }
+        
+    </script>
+    
+    <script type="text/javascript" src="../include/AAE_Cabecalho.js"></script>
+    <div id="nfce">
+   <table width="500px" id="respostaWS" cellspacing="0" cellpadding="5" border="0">
+        <tr>
+            <td>
+            <?xml version="1.0" encoding="utf-8"?><link rel="stylesheet" type="text/css" href="https://nfe-extranet.sefazrs.rs.gov.br/ws/consNFCeXslt/css/sefaz_nfce.css" xmlns:n="http://www.portalfiscal.inf.br/nfe" xmlns:chave="http://exslt.org/chaveacesso" xmlns:r="http://www.serpro.gov.br/nfe/remessanfe.xsd">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" xmlns:n="http://www.portalfiscal.inf.br/nfe" xmlns:chave="http://exslt.org/chaveacesso" xmlns:r="http://www.serpro.gov.br/nfe/remessanfe.xsd">
+  <tr class="linhacabec">
+    <td><b>CONSULTA DA NFC-e</b></td>
+  </tr>
+  <tr>
+    <td><br></td>
+  </tr>
+  <tr>
+    <td style="padding-left:15px">
+      <table width="500" border="1" cellspacing="0" cellpadding="0" bordercolor="#0D000A" bgcolor="#FFFFEA">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td rowspan="4" align="left"><img src="https://nfe-extranet.sefazrs.rs.gov.br/ws/consNFCeXslt/img/logoMarcaNFC.PNG" alt="NFC-e" width="80" height="50"></td>
+                      <td class="NFCCabecalho_SubTitulo" align="left">PGL DISTRIBUICAO DE ALIMENTOS LTDA</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo1" align="left">
+                        CNPJ:
+                        87.397.865/0021-65      
+                        Inscrição Estadual: 1090357122</td>
+                    </tr>
+                  </table>
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo1" align="left">Evandro Behr - RS 509 KM 08,
+                        6645,
+                        CAMOBI,
+                        Santa Maria,
+                        RS</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="NFCCabecalho_Titulo NFCBold" align="center">DANFE NFC-e - Documento Auxiliar da Nota Fiscal Eletrônica para Consumidor Final - Via Consumidor</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">NFC-e não permite aproveitamento de crédito de ICMS</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_Titulo NFCBold" align="center">Emissão normal</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table border="0" style="width: 100%;">
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">
+                        NFC-e nº: 91069
+                        Série: 205
+                        Data de Emissão: 01/10/2019 11:09:34</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">Consulte pela Chave de Acesso em https://www.sefaz.rs.gov.br/NFCE</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo NFCBold" align="center">CHAVE DE ACESSO</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">4319 1087 3978 6500 2165 6520 5000 0910 6910 0217 8969</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">
+                        Protocolo de Autorização: 143191343042667</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-top">
+                  <table border="0" style="width: 100%;">
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo NFCBold" align="center" width="290">CONSUMIDOR</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center" width="300">
+                          Consumidor não identificado
+                        </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="left" style="width: 60px;">Código</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="left" style="width: 230px;">Descrição</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="center" style="width: 50px;">Qtde</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="left" style="width: 10px;">Un</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="right" style="width: 60px;">Vl Unit</td>
+                      <td class="borda-pontilhada-top-botton" align="right" style="width: 60px;">Vl Total</td>
+                    </tr>
+                    <tr id="Item + 1">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">434590</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">PADARIA - PAO FRANCES PERUZZO KG</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">0,428</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">KG</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">7,69</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">3,29</td>
+                    </tr>
+                    <tr id="Item + 2">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">686600</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">AGUA COCO DEL VALLE 1L</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">11,49</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">11,49</td>
+                    </tr>
+                    <tr id="Item + 3">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">291500</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">AGUA COCO KERO COCO 1L</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">9,35</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">9,35</td>
+                    </tr>
+                    <tr id="Item + 4">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">123620030</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">GELATINA DR OETKER DIET 12G. LIMAO</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,89</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,89</td>
+                    </tr>
+                    <tr id="Item + 5">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">123620010</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">GELATINA DR OETKER DIET ABACAXI 12G</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,89</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,89</td>
+                    </tr>
+                    <tr id="Item + 6">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">659070</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">GELATINA DR OETKER GRANBMIRTBER 12G</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,89</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,89</td>
+                    </tr>
+                    <tr id="Item + 7">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">158900010</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">MASSA SEMOLA ISABELA BOM G 500G. PARAF</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">1,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">1,99</td>
+                    </tr>
+                    <tr id="Item + 8">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">413680</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">SABONETEIRA MARCO BONI UN</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,99</td>
+                    </tr>
+                    <tr id="Item + 9">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">690480</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">RODO PLAST P PIA ESFREBOM</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">9,29</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">9,29</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;">Valor total R$</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">50,07</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;">Valor descontos R$</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">0,00</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;">FORMA PAGAMENTO</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 120px;">VALOR PAGO R$</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;"></td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">NaN</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton NFCDetalhe_Item " align="right" style="FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 10px;"><strong>Versão XSLT: 1.10</strong></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+            </td>
+            
+        </tr>
+    </table>
+    </div>
+    
+    <table>
+        <tr>
+            <td style="padding-bottom:10px" align="left">
+             
+            <input type="button" class="button" value="Imprimir DANFE NFC-e" onclick="imprimirNFe();" />
+            <input type="button" class="button" value="Visualizar em Abas" onclick="visualizarAbas();" />
+                
+            <input type="button" class="button" value="Nova Consulta" onclick="novaConsulta();" /><br />
+            </td>
+        </tr>
+        
+        <tr>
+            <td align="left" style="padding-left:23px">
+                <table>
+                    <tr>
+                        <td width="200">
+                            <b>Administração Tributária:</b>
+                        </td>
+                        <td>
+                            &nbsp;Receita Estadual RS
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Data/Hora da Consulta:</b>
+                        </td>
+                        <td>
+                            &nbsp;11/08/2020&nbsp;12:32:41
+                        </td>
+                    </tr>
+                </table>
+                </td>
+        </tr>       
+    </table>
+
+    <script type="text/javascript" src="../include/AAE_fim.js"></script>
+
+</body>
+</html>
