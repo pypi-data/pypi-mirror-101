@@ -1,0 +1,10 @@
+Sphinx
+
+[lint]
+flake8
+mypy
+
+[tests]
+pytest
+pytest-cov
+tox
