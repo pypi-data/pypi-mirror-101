@@ -1,0 +1,11 @@
+[oasys.addons]
+wavepy2 = orangecontrib.wavepy2
+
+[oasys.menus]
+wavepy2menu = orangecontrib.wavepy2.menu
+
+[oasys.widgets]
+WavepPy2 Diagnostic = orangecontrib.wavepy2.widgets.diagnostic
+WavepPy2 Imaging = orangecontrib.wavepy2.widgets.imaging
+WavepPy2 Metrology = orangecontrib.wavepy2.widgets.metrology
+
