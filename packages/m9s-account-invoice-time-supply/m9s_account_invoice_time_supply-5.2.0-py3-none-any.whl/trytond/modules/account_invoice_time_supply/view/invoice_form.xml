@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains
+the full copyright notices and license terms. -->
+<data>
+    <xpath expr="/form/notebook/page[@id='invoice']/field[@name='lines']"
+        position="before">
+        <newline/>
+        <group col="4" colspan="2" id="time_of_supply">
+            <label name="time_of_supply_start"/>
+            <field name="time_of_supply_start" widget="date"/>
+            <label name="time_of_supply_end"/>
+            <field name="time_of_supply_end" widget="date"/>
+        </group>
+    </xpath>
+</data>
