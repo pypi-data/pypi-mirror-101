@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "asyncio_queue_rotation"
+version = "0.1.0"
+description = ""
+authors = ["und3v3l0p3d <prohibitme@phygitalism.com>"]
+readme = "README.md"
+license = "MIT"
+include = [
+    'LICENSE',
+]
+keywords = ["asyncio","queue","rotation"]
+classifiers = [
+    "Framework :: AsyncIO",
+    "Operating System :: OS Independent",
+]
+homepage = "https://github.com/und3v3l0p3d/asyncio-rotation"
+repository = "https://github.com/und3v3l0p3d/asyncio-rotation"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest-asyncio = "^0.14.0"
+pytest = "^6.2.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
