@@ -1,0 +1,39 @@
+pytest>=6.1.1
+attrs>=19.2.0
+pytest-tempdir>=2019.9.16
+pytest-helpers-namespace>=2020.3.24
+psutil
+msgpack!=0.5.5,>=0.5
+virtualenv
+
+[:python_version < "3.8"]
+pyzmq
+
+[:python_version >= "3.8"]
+pyzmq<21.0.0
+
+[docker]
+docker
+
+[docs]
+furo
+sphinx
+sphinx-copybutton
+sphinx-prompt
+sphinxcontrib-spelling
+sphinxcontrib-towncrier
+
+[lint]
+pylint==2.7.2
+saltpylint==2020.9.28
+pyenchant
+
+[lint:python_version >= "3.7"]
+black
+reorder-python-imports
+
+[salt]
+salt>=3001
+
+[tests]
+docker
