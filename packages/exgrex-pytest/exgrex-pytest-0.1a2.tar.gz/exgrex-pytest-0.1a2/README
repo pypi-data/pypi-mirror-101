@@ -1,0 +1,52 @@
+exgrex-pytest
+=============
+
+Package exgrex-pytest adds to package exgrex-py the ability to use the
+pytest framework.
+
+|image1| |image2| |image3| |GitHub tag (latest by date)|
+
+Installation
+------------
+
+::
+
+   $ python3 -m pip install exgrex-pytest
+
+Requirements
+------------
+
+-  `pytest`_ - The pytest framework makes it easy to write small tests,
+   yet scales to support complex functional testing for applications and
+   libraries.
+
+-  `exgrex-py`_ - The exgrex-py package provides a unified tool that
+   makes it easy to create and maintain graders (automatic student
+   decision checking systems) in Python programming courses.
+
+Documentation
+-------------
+
+`The link to the documentation will appear soon`_
+
+Authors
+-------
+
+-  **Valeriy Shagur** - `vshagur`_, email: vshagur@gmail.com
+
+License
+-------
+
+This project is licensed under the MIT License - see the `LICENSE`_ file
+for details
+
+.. _pytest: https://docs.pytest.org/en/stable/
+.. _exgrex-py: https://github.com/vshagur/exgrex-py
+.. _The link to the documentation will appear soon:
+.. _vshagur: https://github.com/vshagur
+.. _LICENSE: https://github.com/vshagur/exgrex-py/blob/docs/LICENSE
+
+.. |image1| image:: https://img.shields.io/static/v1?label=Python&message=3.6&color=blue
+.. |image2| image:: https://img.shields.io/static/v1?label=OS&message=linux&color=blue
+.. |image3| image:: https://img.shields.io/github/license/vshagur/exgrex
+.. |GitHub tag (latest by date)| image:: https://img.shields.io/github/v/tag/vshagur/exgrex-pytest
