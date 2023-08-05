@@ -1,0 +1,18 @@
+click>=7.1
+colorama>=0.3
+configparser
+oyaml
+Jinja2
+diff-cover>=2.5.0
+bench-it
+pathspec
+appdirs
+cached-property
+typing_extensions
+pytest
+
+[:python_version < "3.7"]
+dataclasses
+
+[dbt]
+dbt>=0.17
