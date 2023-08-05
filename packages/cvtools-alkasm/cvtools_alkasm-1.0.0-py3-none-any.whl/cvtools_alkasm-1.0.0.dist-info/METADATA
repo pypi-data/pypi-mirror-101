@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: cvtools-alkasm
+Version: 1.0.0
+Summary: Utilities for computer vision in Python
+Home-page: https://github.com/alkasm/cvtools
+License: MIT
+Keywords: cvtools,computer vision,cv,opencv
+Author: Alexander Reynolds
+Author-email: alex@theory.shop
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: IPython (>=7.16,<8.0)
+Requires-Dist: numpy (>=1.19.5,<2.0.0)
+Requires-Dist: opencv-python (!=4.2.0.32)
+Project-URL: Repository, https://github.com/alkasm/cvtools
+Description-Content-Type: text/markdown
+
+# cvtools
+
+Utilities for computer vision.
+
+## Install
+    
+```sh
+pip install cvtools-alkasm
+```
+
