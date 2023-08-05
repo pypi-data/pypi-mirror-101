@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to {{ program_name }}{% endblock %}
+
+{% block content %}
+
+    <main role="main" class="content">
+	<div class="container">
+
+
+    <div class="form-group">
+    <div class="card impact-card">
+        <div class="card-header impact-card-header">
+            <h4>Sign Up Method</h4>
+        </div>
+        <div class="card-body">
+
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 text-center ">
+                        <a href="{% url 'core_nav:school-code' %}" class="btn btn-primary" role="button">
+                            <i class="material-icons" style="font-size: 36px!important;">pin</i><br>
+                            Join existing school
+                        </a>
+
+                    </div>
+
+                    <div class="col-sm-6 text-center">
+                        <a href="{% url 'core_nav:school-details' %}" class="btn btn-primary" role="button">
+                            <i class="material-icons" style="font-size: 36px!important;">add_circle</i><br>
+                            Create new school
+                        </a>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+    </div>
+
+
+    </div>
+
+    </main>
+{% endblock %}
