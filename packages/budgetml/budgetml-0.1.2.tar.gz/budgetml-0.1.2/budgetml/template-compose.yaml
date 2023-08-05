@@ -1,0 +1,50 @@
+---
+version: "2"
+services:
+    swag:
+        image: ghcr.io/linuxserver/swag
+        container_name: swag
+        cap_add:
+            - NET_ADMIN
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/Washington
+            - URL=${BUDGET_DOMAIN}
+            - SUBDOMAINS=${BUDGET_SUBDOMAIN},
+            - VALIDATION=http
+            - STAGING=false #optional
+            - ONLY_SUBDOMAINS=true
+        volumes:
+            - ${BUDGET_NGINX_PATH}:/config/nginx/proxy-confs/app.subdomain.conf
+            - ${BUDGET_CERTS_PATH}:/config/etc/letsencrypt/
+        ports:
+            - 443:443
+            - 80:80 #optional
+        restart: unless-stopped
+        networks:
+            - production
+
+    budgetml:
+        image: budgetml
+        container_name: budgetml
+        environment:
+            - BUDGET_PREDICTOR_PATH=${BUDGET_PREDICTOR_PATH}
+            - BUDGET_PREDICTOR_ENTRYPOINT=${BUDGET_PREDICTOR_ENTRYPOINT}
+            - BUDGET_USERNAME=${BUDGET_USERNAME}
+            - BUDGET_PWD=${BUDGET_PWD}
+            - BUDGET_DOMAIN=${BUDGET_DOMAIN}
+            - BUDGET_SUBDOMAIN=${BUDGET_SUBDOMAIN}
+            - BASE_IMAGE=${BASE_IMAGE}
+            - BUDGET_TOKEN=${BUDGET_TOKEN}
+        build:
+            context: .
+            dockerfile: template.Dockerfile
+        ports:
+            - 8080:80 # maps port 8080 in our container to 80
+        restart: unless-stopped
+        networks:
+            - production
+
+networks:
+    production:
