@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: losspy
+Version: 0.1.0
+Summary: Some loss functions for deep learning.
+Home-page: https://github.com/lartpang/PyLoss
+Author: lartpang
+Author-email: lartpang@gmail.com
+License: MIT
+Description: # PyLoss
+        
+        ```shell
+        .
+        ├── LICENSE
+        ├── pyloss
+        │  ├── __init__.py
+        │  ├── pixel_based
+        │  │  ├── __init__.py
+        │  │  ├── cross_entropy.py
+        │  │  ├── mae_mse.py
+        │  │  └── total_variation.py
+        │  ├── region_based
+        │  │  ├── __init__.py
+        │  │  ├── dice_iou.py
+        │  │  ├── hel.py
+        │  │  └── ssim.py
+        │  └── utils
+        │     ├── __init__.py
+        │     ├── convert_onehot.py
+        │     └── misc.py
+        ├── pyproject.toml
+        └── README.md
+        ```
+        
+        Some loss functions for deeplearning.
+        
+Keywords: image segmentation,loss,deep learning
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
