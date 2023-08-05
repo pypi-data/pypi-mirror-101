@@ -1,0 +1,147 @@
+Metadata-Version: 2.1
+Name: py-sdk-nocodeapi
+Version: 0.0.1
+Summary: An SDK for nocodeapi.net
+Home-page: https://bitbucket.org/zeusakm/py_sdk
+Author: Arthur Kushman
+Author-email: arthurkushman@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+## Python nocodeapi.net SDK
+
+### Installation
+```bash
+pip install py-sdk-nocodeapi
+```
+Place `.env` file into root directory and `DEV_JWT_TOKEN` variable into this file.
+
+### Key phrases
+```python
+import py-sdk-nocodeapi
+
+nc = NoCodeAPI()
+res = nc.key_phrases("Now, as a nation, we don't promise equal outcomes, "
+                          "but we were founded on the idea everybody "
+                          "should have an equal opportunity "
+                          "to succeed. No matter who you are, what you look like, "
+                          "where you come from, "
+                          "you can make it. That's an essential promise.", 'en_US')
+
+    # [
+    #     {
+    #         "Text": "promise equal outcomes",
+    #         "Score": 8,
+    #         "BeginOffset": 27,
+    #         "EndOffset": 49
+    #     },
+    #     {
+    #         "Text": "equal opportunity",
+    #         "Score": 4.5,
+    #         "BeginOffset": 108,
+    #         "EndOffset": 125
+    #     },
+    #     {
+    #         "Text": "essential promise",
+    #         "Score": 4.5,
+    #         "BeginOffset": 229,
+    #         "EndOffset": 246
+    #     },
+    #     {
+    #         "Text": "nation",
+    #         "Score": 1,
+    #         "BeginOffset": 10,
+    #         "EndOffset": 16
+    #     },
+    #     {
+    #         "Text": "founded",
+    #         "Score": 1,
+    #         "BeginOffset": 63,
+    #         "EndOffset": 70
+    #     }
+    #     ...
+    # ]
+```
+
+### Language Detection
+```python
+nc = NoCodeAPI()
+res = nc.language_detect("Policjanci otrzymali zgłoszenie w tej sprawie po godz 9. "
+                                      "Do wypadku doszło na ul. Kolonia Krakowskie Przedmieście.")
+
+# res['LanguageCode'] // pl  
+# res['Language'] // Polish
+# res['Score'] // 1
+```
+
+### Sentiment Analysis
+```python
+res = self.nc.emotions('Genuine leather is the best production for bags imho, but '
+                       'I would not recommend this particular product.')
+
+# res['Positive'] // 0.12
+# res['Negative'] // 0.14
+# res['Neutral'] // 9.74
+# res['Mixed'] // 9.97
+```
+
+### Named Entity Recognition
+```python
+res = self.nc.ner('Linus Torvalds is one of the best programmers in USA, Finland Helsinki and in the world')
+
+# res['EntitiesCount'] # 3
+
+# res['Entities'] 
+
+# [
+#   {
+# 		Text: "Linus Torvalds",
+# 		Label: "PERSON",
+# 	},
+# 	{
+# 		Text: "USA",
+# 		Label: "GPE",
+# 	},
+# 	{
+# 		Text: "Finland Helsinki",
+# 		Label: "GPE",
+# 	}
+# ]
+```
+
+# Personally Identifiable Information
+
+```python
+res = self.nc.pii('I had a card number 4234-4284-2422-2344 and '
+                  'I wanted 4235 4284 2433 2347 to pay by slip, my phone number was +7 (916) 286-19-39 ')
+
+# res['EntitiesCount'] # 3
+# res['Entities'] 
+# [
+# {
+#   'Type': 'CREDIT_DEBIT_NUMBER', 
+#   'Text': '4234428424222344', 
+#   'SubType': 'Visa',
+#   'BeginOffset': 20, 'EndOffset': 39
+# },
+# {
+#   'Type': 'CREDIT_DEBIT_NUMBER', 
+#   'Text': '4235428424332347', 
+#   'SubType': 'Visa',
+#   'BeginOffset': 53, 
+#   'EndOffset': 72
+# },
+# {
+#   'Type': 'PHONE_NUMBER', 
+#   'Text': '(916) 286-19-39',
+#   'BeginOffset': 112, 
+#   'EndOffset': 127
+# }
+# ]
+```
+
