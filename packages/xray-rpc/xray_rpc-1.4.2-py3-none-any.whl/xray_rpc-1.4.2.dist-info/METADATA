@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: xray-rpc
+Version: 1.4.2
+Summary: gRPC files generated from Xray source code.
+License: MIT
+Author: laoshan-taoist
+Author-email: 65347330+laoshan-taoist@users.noreply.github.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: grpcio (>=1.36.1,<2.0.0)
+Requires-Dist: grpcio-tools (>=1.36.1,<2.0.0)
+Requires-Dist: httpx (>=0.17.1,<0.18.0)
