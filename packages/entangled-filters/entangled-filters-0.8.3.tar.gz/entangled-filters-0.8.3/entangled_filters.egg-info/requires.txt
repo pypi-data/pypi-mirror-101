@@ -1,0 +1,11 @@
+jupyter_client<7,>=5.3.4
+pampy<0.4,>=0.3.0
+panflute==1.11.2
+ansi2html
+
+[test]
+pytest<6,>=5
+pytest-cov<3,>=2.8.1
+pytest-mypy<1,>=0.4.2
+flake8<4,>=3
+ipykernel<7,>=5.1.3
