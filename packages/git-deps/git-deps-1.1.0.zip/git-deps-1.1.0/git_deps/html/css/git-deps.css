@@ -1,0 +1,93 @@
+body {
+    font-family: Helvetica, arial, freesans, clean, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+}
+
+#page {
+    margin: 8px;
+    display: flex;  /* use the flex model */
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+h1 {
+    margin: 0;
+    background: rgb(128, 150, 174);
+    color: white;
+    padding: 0.3em;
+}
+
+#top p {
+    margin-right: 320px; /* Avoid overlap with noty boxes */
+}
+
+#svg-container {
+    flex: 1;
+    border: 1px solid #ccc;     /* width has to be half of SVG_MARGIN */
+}
+
+rect.background {
+    fill: white;
+    cursor: all-scroll;
+}
+
+g.node rect {
+    stroke: #e5e5e5;
+    stroke-width: 2px;
+    cursor: pointer;  /* move is semantically better but looks the same as all-scroll */
+}
+
+g.node rect.explored {
+    fill: rgba(206, 236, 221, 0.54);
+}
+
+g.node rect.unexplored {
+    fill: rgba(242, 242, 255, 0.54);
+}
+
+g.node text {
+    /* fill: black; */
+    fill: #295b8c;
+    font-size: 15px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-weight: bold;
+    text-anchor: middle;
+    alignment-baseline: middle;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.plus-icon use {
+    display: none;
+}
+
+.plus-icon:hover use {
+    display: visible;
+}
+
+.link {
+    fill: none;
+    stroke-width: 2px;
+    opacity: 0.4;
+    marker-end: url(#end-arrow);
+}
+
+.commitish input {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.commit-ref {
+    font-weight: bold;
+    color: #26894d;
+}
+
+.noty_text p {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
