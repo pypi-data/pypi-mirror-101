@@ -1,0 +1,141 @@
+#!/usr/bin/python3
+
+import itertools
+import site
+import os
+from pathlib import Path
+import numpy as np
+from rich import print
+from rich.progress import track
+import rglob
+import subprocess as sb
+import sys
+from time import sleep
+import re
+from pnpm.helpers import abs_path
+
+# regex = r"Location: ([^ ]+)"
+# _path = sb.check_output("pip3 show pnpm", shell=True).decode('utf-8').replace("\n", " ")
+# _path = re.search(regex, _path).group(1) + "/pnpm"
+
+# def abs_path(sub=''):
+    # return _path  + sub
+
+def rel_path(sub=''):
+    return os.getcwd() + sub
+
+    # return site.getsitepackages()[0] + '/pnpm' + sub
+
+def inp(msg, style="[bold green]"):
+    print(style + msg)
+    return input("⇝ ")
+    
+def lsdir(folder):
+    return [ f.path for f in os.scandir(folder) if f.is_dir() and "__pycache__" not in f.path ]
+
+def ls(path):
+    path = Path(path)
+    # return [x for x in itertools.chain(path.glob("**/*"), path.glob("**/.*")) if not "__pycache__" in x.name]
+    return list(rglob.rglob(path, "*") + rglob.rglob(path, ".*"))
+
+def ignore(path):
+    return "__pycache__" in path
+    
+def flatten(S):
+    if S == []:
+        return S
+    if isinstance(S[0], list):
+        return flatten(S[0]) + flatten(S[1:])
+    return S[:1] + flatten(S[1:])
+
+def walk(walk_path):
+
+    dirs = lsdir(walk_path)
+    files = []
+    if (dirs is not None):
+        files = files + [ walk(_dir) for _dir in dirs]
+        files = flatten(files)
+        
+    for file in ls(walk_path):
+        files.append(file)
+        
+    def only_files(path):
+        return os.path.isdir(path)
+
+    return [path for path in files if (not os.path.isdir(path) and not ignore(path))]
+
+    
+def pkgify(string):
+    return string.replace("__pkg__art", pkg).replace("__pkg__", pkg)
+
+def read(file):
+    content = None
+    with open(file, "r") as f:
+        content = f.read()
+        f.close()
+        
+    return content
+        
+def generate(file, content):
+    # print(Path('/'+file).parent.absolute())
+
+    folder_name = (Path('/'+file).parent.absolute())
+    Path(folder_name).mkdir(parents=True, exist_ok=True)  
+    with open(file, "w") as f:
+        f.write(content)
+        print(f"Generated {file}")
+        f.close()
+        
+def prog(msg):
+    print(f"[{pkg}]: [bold] {msg}")
+
+
+pkg = "untitled"
+
+if len(sys.argv) < 2:
+    pkg = inp("Specify package name:")
+else:
+    pkg = sys.argv[1]
+    
+# pkg = os.getcwd() + '/' + pkg 
+pkg = pkg
+
+
+os.mkdir(pkg)
+os.chdir(pkg)
+
+prog(f"Created directory /{pkg}")
+
+files = walk(abs_path('/generator/__pkg__/'))
+total = len(files)
+prog(f"Generating {total} files...")
+# sb.call(f"cd {pkg}", shell=True)
+
+for file in track(files, description='Generating files'):
+    file_name = os.getcwd()+ pkgify(file.split(f"pnpm/generator/", 1)[1]).split(pkg, 1)[1]
+    content = pkgify(read(file))
+    generate(file_name, content)
+    prog(f"{file_name}")
+    sleep(.02)
+
+
+def r(command):
+    sb.call(command.strip().replace("\n", " && "), shell=True)
+
+
+pkgmngr = 'yarn'
+lock_file = "yarn.lock" if pkgmngr == 'yarn' else 'package-lock.json'
+prog(f"Using {pkgmngr} as package manager, created lockfile [bold green] {lock_file}")
+
+if (pkgmngr == 'yarn'): r("yarn set version berry")
+
+prog(f"Creating virtual environment")
+prog(f"Initializing new git repository")
+r(f"""
+    git init
+    virtualenv .{pkg}_env
+    touch {lock_file}
+    {pkgmngr} install
+""")
+
+prog(f"\n\n Done generating {pkg}!")
