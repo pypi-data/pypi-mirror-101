@@ -1,0 +1,15 @@
+scrapli>=2021.07.30a1
+
+[asyncssh]
+asyncssh<3.0.0,>=2.2.1
+
+[full]
+paramiko<3.0.0,>=2.6.0
+ssh2-python<1.0.0,>=0.23.0
+asyncssh<3.0.0,>=2.2.1
+
+[paramiko]
+paramiko<3.0.0,>=2.6.0
+
+[ssh2]
+ssh2-python<1.0.0,>=0.23.0
