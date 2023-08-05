@@ -1,0 +1,5 @@
+# Make sure source distributions have the license
+include LICENSE
+
+# hdev will use it's own requirements to inject them in other projects
+include src/hdev/requirements/*.txt
