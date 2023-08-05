@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "glassfrog"
+version = "0.4.2"
+description = "Python client for Glassfrog API"
+authors = ["Joao Daher <joao@daher.dev>"]
+packages = [
+    { include = "glassfrog" },
+]
+
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.10"
+requests = "*"
+retrying = "*"
+
+
+[tool.poetry.dev-dependencies]
+pylint = "*"
+nose = "^1"
+coverage = "*"
+httpretty = "*"
+
+
+[build-system]
+requires = ["poetry"]
+build-backend = "poetry.masonry.api"
