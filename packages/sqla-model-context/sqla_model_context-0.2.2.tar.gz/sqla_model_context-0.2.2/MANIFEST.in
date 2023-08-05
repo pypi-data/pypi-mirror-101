@@ -1,0 +1,24 @@
+include AUTHORS.rst
+include CONTRIBUTING.rst
+include HISTORY.rst
+include LICENSE
+include README.rst
+
+graft src/sqla_model_context/templates
+graft src/sqla_model_context/static
+graft src/sqla_model_context/data
+graft src/sqla_model_context/assets
+
+recursive-include src/sqla_model_context/ templates/*.html
+recursive-include src/sqla_model_context/ templates/**/*.html
+recursive-include src/sqla_model_context/ data/*
+recursive-include src/sqla_model_context/ *.py
+recursive-include src/sqla_model_context/ *.cfg
+recursive-include src/sqla_model_context py.typed
+
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
+recursive-exclude docs/_build *
