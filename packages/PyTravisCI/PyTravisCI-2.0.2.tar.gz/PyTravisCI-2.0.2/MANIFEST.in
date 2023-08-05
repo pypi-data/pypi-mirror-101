@@ -1,0 +1,7 @@
+graft PyTravisCI
+
+include LICENSE
+include README.rst
+include requirements.txt
+
+global-exclude *.py[co]
