@@ -1,0 +1,1 @@
+from MailMaker.mailCreator import eMail
