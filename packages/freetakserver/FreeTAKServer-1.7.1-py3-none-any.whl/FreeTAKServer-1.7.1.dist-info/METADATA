@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: FreeTAKServer
+Version: 1.7.1
+Summary: An open source server for the TAK family of applications.
+Home-page: https://github.com/FreeTAKTeam/FreeTakServer
+Author: FreeTAKTeam
+Author-email: your.email@domain.com
+License: Eclipse License
+Download-URL: https://github.com/Tapawingo/FreeTakServer/archive/v0.8.4-Beta.tar.gz
+Keywords: TAK,OPENSOURCE
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: flask (==1.1.2)
+Requires-Dist: lxml (==4.6.1)
+Requires-Dist: pathlib (==1.0.1)
+Requires-Dist: tabulate (==0.8.7)
+Requires-Dist: sqlalchemy (==1.3.20)
+Requires-Dist: setuptools
+Requires-Dist: Flask-SQLAlchemy (==2.4.4)
+Requires-Dist: flask-cors (==3.0.9)
+Requires-Dist: flask-socketio (==4.3.1)
+Requires-Dist: eventlet (==0.29.0)
+Requires-Dist: flask-httpauth (==4.2.0)
+Requires-Dist: protobuf (==3.14.0)
+Requires-Dist: python-socketio (==4.6.0)
+Requires-Dist: python-engineio (==3.13.2)
+Requires-Dist: Jinja2 (==2.11.2)
+Requires-Dist: psutil
+Requires-Dist: geopy
+Provides-Extra: ui
+Requires-Dist: FreeTAKServer-UI ; extra == 'ui'
+
+An open source server for the TAK family of applications.
+
+
