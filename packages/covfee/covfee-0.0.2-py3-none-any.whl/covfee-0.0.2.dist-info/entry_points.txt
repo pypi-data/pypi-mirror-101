@@ -1,0 +1,12 @@
+[console_scripts]
+covfee = covfee.commands:cmd_start_prod
+covfee-build = covfee.commands:cmd_build
+covfee-dev = covfee.commands:cmd_start_dev
+covfee-filter = covfee.cli.filter:validate
+covfee-installjs = covfee.commands:cmd_install_js
+covfee-maker = covfee.cli.maker:make_db
+covfee-mkuser = covfee.commands:make_user
+covfee-open = covfee.commands:cmd_open
+covfee-schemata = covfee.cli.filter:cmd_make_schemata
+covfee-webpack = covfee.commands:cmd_start_webpack
+
