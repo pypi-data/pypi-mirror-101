@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "odoo-find-runbot-instance"
+version = "0.1.2"
+description = "Find and return url, database and user credentials of a live Odoo instance running on the runbot"
+authors = ["mbello <mbello@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/mbello/odoo-find-runbot-instance"
+homepage = "https://github.com/mbello/odoo-find-runbot-instance"
+keywords = ['odoorpc', 'odoo', 'testing', 'odoo mock']
+
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+beautifulsoup4 = "^4.9.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+httpx = "*"
+
+[tool.poetry.plugins.pytest11]
+odoo-find-runbot-instance = "odoo_find_runbot_instance.pytest_fixtures"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
