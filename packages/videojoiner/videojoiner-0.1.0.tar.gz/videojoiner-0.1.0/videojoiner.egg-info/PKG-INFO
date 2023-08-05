@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: videojoiner
+Version: 0.1.0
+Summary: make video joining easy on windows
+Home-page: https://gitlab.com/rveach/videojoiner
+Author: Ryan Veach
+Author-email: rveach@gmail.com
+License: MIT
+Description: # VideoJoiner
+        
+        Videojoiner is a simple python script to help joining video parts together.  It's designed to run in windows only, will download ffmpeg builds from https://www.gyan.dev/ffmpeg/builds/, then use it to concatenate video files.
+        
+        The ffmpeg binaries are stored in `%APPDATA%/videojoiner/ffmpeg` and will only be downloaded if missing or the '-d/--force-download' flag is passed.
+        
+        The output filename can be specified, or it will autogenerate a video file formatted `merged_video_YYMMDD_HHMMSS.EXT` where the extension is copied from the first file in the input list.
+        
+        ## Example:
+        
+        ```
+        videojoiner.py source1.mp4 source2.mp4 source3.mp4
+        ```
+        
+        ## Usage
+        
+        ```
+        videojoiner.py -h
+        usage: videojoiner.py [-h] [-v] [-q] [-d] [-o OUTPUT_FILE] inputvideos [inputvideos ...]
+        
+        positional arguments:
+          inputvideos           space separated input files
+        
+        optional arguments:
+          -h, --help            show this help message and exit
+          -v, --verbose         verbose output for troubleshooting
+          -q, --quiet           be more quiet, only fatal messages
+          -d, --force-download  force ffmpeg download
+          -o OUTPUT_FILE, --output OUTPUT_FILE
+                                specify output filename
+        ```
+        
+Keywords: Raspberry,Pi,Raspbian
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Multimedia :: Video :: Conversion
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
