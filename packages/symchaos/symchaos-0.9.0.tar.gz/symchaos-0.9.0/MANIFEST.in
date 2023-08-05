@@ -1,0 +1,5 @@
+graft symchaos
+prune symchaos/output
+global-exclude *.pyc
+global-exclude *.log
+global-exclude *.so
