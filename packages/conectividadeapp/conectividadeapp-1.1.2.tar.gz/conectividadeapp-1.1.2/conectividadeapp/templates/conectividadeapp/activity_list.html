@@ -1,0 +1,607 @@
+{% extends 'base.html' %}
+
+<br><br><br>
+
+{% block content %}
+<div class="row">
+
+  <a href="{% url 'plugins:conectividadeapp:activities_history_list' %}" class="btn btn-default">
+      <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+      Change Log
+  </a>
+
+  <!-- Activity list table -->
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <strong>Activities ({{ quantity }})</strong>
+      </div>
+
+      <div class="panel-bod        <!-- start dev johnny-->
+
+
+        <div class=" text-center">
+
+
+      
+        
+          <h3>
+
+
+        {% if type_activity == "INSTALL" %}
+
+
+
+        
+        
+          
+          INSTALL 
+          <a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+          </a>
+       
+        {% endif %}
+
+        {% if type_activity == "REMOVE" %}
+       
+         REMOVE
+         <a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+        </a>
+
+        {% endif %}
+ 
+
+          <!-- verifica qual filtro aplicado -->
+          {% if search %}
+  
+          String
+  
+  
+          {% elif year_month_day_researched%}
+  
+          specificied date
+  
+  
+          {% elif year_month_researched %}
+         
+          month
+  
+  
+          {% elif year_researched %}
+  
+          year
+  
+  
+          {% endif %}
+  
+        </h3> 
+       
+        </div>
+
+
+
+<!-- Se ainda não faz a escolha não mostra FORM DE PAPEL -->
+        {% if search or year_researched or year_month_researched or year_month_day_researched %}
+      
+        <!-- repors for times: conectivity, datacenter, services-->
+       
+        
+
+ 
+
+        <hr>
+
+        <div class="row" >
+
+
+    
+          <div class="col-sm-3">
+            <div class="card">
+              <div class="card-body">
+              
+                <h4 class="card-title "><strong>  Select Device Role  </strong></h4>
+              
+                <p class="card-text">
+                  
+                  Search by device role.    
+                
+                </p>
+
+
+              <form method="POST" action="{% url 'plugins:conectividadeapp:activity_post' %}">
+                {% csrf_token %}
+                <strong> Device Role </strong>
+
+
+                <!-- ESCOLHA DO SLUG PARA FILTRAGEM-->
+                <select class="form-control"  name="role" id="role">
+          
+                  {% for y in dr %}
+
+                  <option value="{{y.slug}}">
+                    {{y.name}}
+                  </option>
+
+                  {% endfor %}
+                        
+                </select>
+
+                <input type="submit">
+              
+                {% for activity in activity_list %}
+
+                <!-- LISTA DE IDS DAS ATIVIDADES -->
+                <input id="activitys_list" type="hidden" name="activitys_list" value="{{activity.id}}"  >
+
+                {% endfor %}
+
+                <!-- INSTALL OR REMOVE-->
+                <input id="type_activity" type="hidden" name="type_activity" value="{{type_activity}}"  >
+                <input id="op" type="hidden" name="op" value="1"  >
+
+                <!-- PEGA FILTRO APLICADO: SE É ANO MES OU DIA -->
+                <!-- verifica qual filtro aplicado -->
+                <input id="filter1" type="hidden" name="filter1" 
+                {% if search %} value="String" {% endif %} {%  if year_month_day_researched %} value="Data"{%  endif  %} 
+                {%  if year_month_researched  %} value="Mês" {%  endif  %} {%  if year_researched  %} value="Ano" {%  endif  %}>
+
+
+
+              </form>
+
+           
+              </div>
+            </div>
+          </div>
+
+      
+
+            <div class="col-sm-3">
+              <div class="card">
+                <div class="card-body">
+                
+                  <h4 class="card-title ">
+                    <strong>  
+                      Connectivity report  
+                    </strong>
+                  </h4>
+                
+                  <p class="card-text">
+                    
+                    View Connectivity report 
+  
+                  </p>
+
+
+            <form method="POST" action="{% url 'plugins:conectividadeapp:activity_post' %}">
+              {% csrf_token %}
+              <input id="op" type="hidden" name="op" value="2"  >
+             
+                <button type="submit" class="btn btn-primary btn-xs" >
+                  <h5>
+                  <span class="glyphicon glyphicon-list-alt " aria-hidden="true"> 
+                   
+                  </span>   Connectivity report </h5>
+    
+                </button>
+
+                   
+                {% for activity in activity_list %}
+
+                <!-- LISTA DE IDS DAS ATIVIDADES -->
+                <input id="activitys_list" type="hidden" name="activitys_list" value="{{activity.id}}"  >
+
+                {% endfor %}
+
+                <!-- INSTALL OR REMOVE-->
+                <input id="role" type="hidden" name="role" value="0"  >
+
+                <input id="type_activity" type="hidden" name="type_activity" value="{{type_activity}}"  >
+                <input id="filter1" type="hidden" name="filter1" 
+                {% if search %} value="String" {% endif %} {%  if year_month_day_researched %} value="Data"{%  endif  %} 
+                {%  if year_month_researched  %} value="Mês" {%  endif  %} {%  if year_researched  %} value="Ano" {%  endif  %}>
+      
+            </form>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+              
+                <h4 class="card-title ">
+                  <strong>  
+                    Multiple Roles 
+                  </strong>
+                </h4>
+              
+                <p class="card-text">
+                  
+                  Search by Multiple Device Roles 
+
+                </p>
+               
+            <form method="POST" action="{% url 'plugins:conectividadeapp:activity_multrole' %}">
+              {% csrf_token %}
+                
+                  <button type="submit" class="btn btn-primary btn-xs" >
+
+                    <h5>
+                    <span class="glyphicon glyphicon-filter "> 
+                    
+                    </span>   Multiple Roles 
+                    </h5>
+                  </button>
+
+                {% for activity in activity_list %}
+
+                    <!-- LISTA DE IDS DAS ATIVIDADES -->
+                    <input id="activitys_list" type="hidden" name="activitys_list" value="{{activity.id}}"  >
+
+                {% endfor %}
+
+                <!-- INSTALL OR REMOVE-->
+                <input id="role" type="hidden" name="role" value="0"  >
+
+                <input id="type_activity" type="hidden" name="type_activity" value="{{type_activity}}"  >
+                <input id="filter1" type="hidden" name="filter1" 
+                {% if search %} value="String" {% endif %} {%  if year_month_day_researched %} value="Data"{%  endif  %} 
+                {%  if year_month_researched  %} value="Mês" {%  endif  %} {%  if year_researched  %} value="Ano" {%  endif  %}>
+      
+            </form> 
+          
+              </div>
+            </div>
+          </div>
+
+
+        
+
+        </div>
+
+<!-- primeiramente preenche ano,mes ou dia -->
+        {% else %}
+
+              <a> 
+                <h1> 
+               <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>  
+               Filter selection
+                </h1>
+              </a> 
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title "><strong> Exact date</strong></h4>
+                      <p class="card-text">
+                        Search by exact date
+                      </p>
+
+
+                      <!-- Filter by Day-->
+                      <form action="." method="get" class="form-inline">
+                        {% csrf_token %}
+                        <div class="input-group">
+                          <input type="date" min="{{ first_activity.when.year }}-{% if first_activity.when.month < 10 %}0{% endif %}{{ first_activity.when.month }}-{% if first_activity.when.day < 10 %}0{% endif %}{{ first_activity.when.day }}" max="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}" name="year_month_day" class="form-control" placeholder="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}" {% if year_month_day_researched is not None %}value="{{ year_month_day_researched.year }}-{% if year_month_day_researched.month < 10 %}0{% endif %}{{ year_month_day_researched.month }}-{% if year_month_day_researched.day < 10 %}0{% endif %}{{ year_month_day_researched.day }}"{% else %}value="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}"{% endif %}>
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" name="btn-year-month-day-research">
+                              <span class="mdi mdi-magnify" aria-hidden="true"></span>
+                            </button>
+                          </span>
+                        </div>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title "><strong> Month</strong></h4>
+                      <p class="card-text">
+                        Search by Month
+                      </p>
+
+
+                          <!-- Filter by Month-->
+                          <form action="." method="get" class="form-inline">
+                            {% csrf_token %}
+                            <div class="input-group">
+                              <input type="month" min="{{ first_activity.when.year }}-{% if first_activity.when.month < 10 %}0{% endif %}{{ first_activity.when.month }}" max="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}" name="year_month" class="form-control" placeholder="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}" {% if year_month_researched is not None %}value="{{ year_month_researched.year }}-{% if year_month_researched.month < 10 %}0{% endif %}{{ year_month_researched.month}}"{% else %}value="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}"{% endif %}>
+                              <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary" name="btn-year-month-research">
+                                  <span class="mdi mdi-magnify" aria-hidden="true"></span>
+                                </button>
+                              </span>
+                            </div>
+                          </form>
+           
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                    
+                      <h4 class="card-title "><strong>  Year </strong></h4>
+                    
+                      <p class="card-text">
+                        
+                        Search by year.
+                      
+                      
+                      </p>
+                     
+                      <!-- Filter by year-->
+                      <form action="." method="get" class="form-inline">
+                        {% csrf_token %}
+                        <div class="input-group">
+                          <input type="number" min="{{ first_activity.when.year }}" max="{{ current_year }}" name="year" class="form-control" placeholder="{{ current_year }}" {% if year_researched is not None %}value="{{ year_researched.year }}"{% else %}value="{{ current_year }}"{% endif %}>
+                          <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" name="btn-year-research">
+                              <span class="mdi mdi-magnify" aria-hidden="true"></span>
+                            </button>
+                          </span>
+                        </div>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+       
+      
+      
+
+
+        {% endif %}
+
+
+<!-- Fim de visualização de form de papel-->
+
+        <hr>
+
+<a> 
+  <h4> 
+  <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>  
+
+
+        
+      
+
+        <!-- verifica qual filtro aplicado -->
+        {% if search %}
+
+        String
+
+
+        {% elif year_month_day_researched%}
+
+        Activities by date list
+
+        {% elif year_month_researched %}
+      
+        Activities by Month list
+
+        {% elif year_researched %}
+
+        Activities by Year list
+
+        {% else %}
+
+        Recent Activities
+
+        {% endif %}
+
+
+
+
+
+  </h4>
+</a> 
+        {% if year_month_day_researched %}
+
+         {{ year_month_day_researched}}
+
+         {% endif %}
+
+<!-- fim dev johnny-->
+
+
+        <table border="1" class="table">
+
+          <br>
+
+          <tr style="background-color: #eee">
+            <th>ID</th>
+            <th>Device</th>
+            <th>Type/When</th>
+            <th>Actor</th>
+            <th>Site/Rack</th>
+            <th>Ip</th>
+
+          </tr>
+
+          {% for activity in activity_list %}
+            <tr>
+              <td>
+                <a href="{% url 'plugins:conectividadeapp:activity_details' activity.id %}">
+                  {{activity.id}}</a>
+              </td>
+              <td>
+                <a href="{% url 'plugins:conectividadeapp:device_history' activity.device.id %}">
+                {{activity.device.id}}-{{ activity.olddevice.name }}</a>
+              </td>
+
+              <td>{{ activity.type }} - {{ activity.when|date }}</td>
+              <td>
+                {% for actor in activity.actor.all %}
+                  {{ actor.name }}<br/>
+                {% endfor %}
+              </td>
+
+              <td>
+                {{ activity.olddevice.site }}
+                 /
+                {{ activity.olddevice.rack }}
+              </td>
+              <td>
+                  {{ activity.olddevice.ipv4}}
+                  {{ activity.olddevice.masc_ipv6}}
+              </td>
+
+            </tr>
+
+          {% endfor %}
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Search -->
+  <div class="col-md-3 text-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span class="mdi mdi-magnify" aria-hidden="true"></span>
+        <strong>Search Activity by Actors</strong>
+      </div>
+
+      <div class="panel-body">
+
+        <form action="." method="get" class="form-inline">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search"/>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary" name="btn-search-research">
+                <span class="mdi mdi-magnify" aria-hidden="true"></span>
+              </button>
+              <a href="." class="btn btn-default">
+                <span class="mdi mdi-close-thick" aria-hidden="true"></span>
+              </a>
+            </span>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Activity by Date -->
+  <div class="col-md-3 text-right">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <span class="fa fa-calendar" aria-hidden="true"></span>
+        <strong>Filter Activity by Date</strong>
+      </div>
+
+      <div class="panel-body">
+
+        <!-- Filter by year-->
+        <form action="." method="get" class="form-inline">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="number" min="{{ first_activity.when.year }}" max="{{ current_year }}" name="year" class="form-control" placeholder="{{ current_year }}" {% if year_researched is not None %}value="{{ year_researched.year }}"{% else %}value="{{ current_year }}"{% endif %}>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary" name="btn-year-research">
+                <span class="mdi mdi-magnify" aria-hidden="true"></span>
+              </button>
+            </span>
+          </div>
+        </form>
+
+        </br>
+
+        <!-- Filter by Day-->
+        <form action="." method="get" class="form-inline">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="date" min="{{ first_activity.when.year }}-{% if first_activity.when.month < 10 %}0{% endif %}{{ first_activity.when.month }}-{% if first_activity.when.day < 10 %}0{% endif %}{{ first_activity.when.day }}" max="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}" name="year_month_day" class="form-control" placeholder="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}" {% if year_month_day_researched is not None %}value="{{ year_month_day_researched.year }}-{% if year_month_day_researched.month < 10 %}0{% endif %}{{ year_month_day_researched.month }}-{% if year_month_day_researched.day < 10 %}0{% endif %}{{ year_month_day_researched.day }}"{% else %}value="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}"{% endif %}>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary" name="btn-year-month-day-research">
+                <span class="mdi mdi-magnify" aria-hidden="true"></span>
+              </button>
+            </span>
+          </div>
+        </form>
+
+        </br>
+
+        <!-- Filter by Month-->
+        <form action="." method="get" class="form-inline">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="month" min="{{ first_activity.when.year }}-{% if first_activity.when.month < 10 %}0{% endif %}{{ first_activity.when.month }}" max="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}" name="year_month" class="form-control" placeholder="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}" {% if year_month_researched is not None %}value="{{ year_month_researched.year }}-{% if year_month_researched.month < 10 %}0{% endif %}{{ year_month_researched.month}}"{% else %}value="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}"{% endif %}>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary" name="btn-year-month-research">
+                <span class="mdi mdi-magnify" aria-hidden="true"></span>
+              </button>
+            </span>
+          </div>
+        </form>
+
+        </br>
+
+        <div class="text-center">
+          <a href="." class="btn btn-default">
+            <span class="mdi mdi-close-thick" aria-hidden="true"></span> Clear
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+<!-- Activity Search -->
+  <div class="col-md-3 text-center">
+    <div class="panel panel-default">
+
+
+    <div class="panel-heading">
+      <span class="mdi mdi-magnify" aria-hidden="true"></span>
+      <strong>List Activities</strong>
+    </div>
+
+
+
+    <div class="panel-body">
+
+      <div class="list-group">
+        <div class="list-group-item">
+            
+                <span class="badge pull-right"><!--47 add contabilidade dinamicamente--></span>
+                <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">Installed Devices</a></h4>
+            
+            <p class="list-group-item-text text-muted">List Device Install Activities</p>
+        </div>
+        <div class="list-group-item">
+            
+                <span class="badge pull-right"><!--34 add contabilidade dinamicamente--></span><!--add contabilidade-->
+                <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">Removed Devices</a></h4>
+            
+                <p class="list-group-item-text text-muted">List Device Remove Activities </p>
+            </div>
+      </div>
+
+    </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+
+{% if  device_obj %}
+
+    
+    <form  method="POST" action="{% url 'plugins:conectividadeapp:addactivity' %}">
+      {% csrf_token %}
+
+
+      <input type="hidden"  name="op"  value="{{ op }}"  >
+      {% for act in obj %}
+      
+      <input type="hidden"  name="devices_mult"  value="{{ act.id }}"  >
+      
+      {% endfor %}
+
+      <br>
+           <div class="pull-right">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#docs_modal"><i class="fa fa-question"></i></button>
+      </div>
+
+      <table border="1" class="table">   
+       
+        <tr style="background-color: #87CEFA">
+          <td colspan="3">
+            <h4>  
+              {% if op == "3" %}
+                  Install Devices: 
+              {% endif %}
+              {% if op == "4" %}
+                  Remove Devices
+              {% endif %}
+    
+            </h4>
+          
+          </td> 
+         
+        </tr>
+
+
+        <tr  style="background-color: #eee">
+          <td colspan="3"> Activity </td>
+        </tr>
+
+        <tr>
+          <td>Type</td>
+          <td>
+      
+
+          <select name="reason" id="reason" class="form-control" >
+            {% for k in activity_reason %}
+            <option value="{{k.id}}" selcted="">-{{k.name}}</option>
+            {% endfor %}
+          </select>
+           
+      
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Actors
+          </td>
+          <td colspan="3"> 
+            <div class="input-group">
+
+              <select name="actorss"  id="actorss" required="" multiple class="form-control selectpicker" >
+
+              {% for actor in actors %}
+
+                <option value="{{actor.id}}">{{actor.name}} - {{actor.category}}</option> 
+
+              {% endfor %}
+              
+              </select>
+            </div>
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>When</td>
+          <td>
+              <div class="input-group">
+                <input type="date"  required=""  name="year_month_day" class="form-control" placeholder="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}" {% if year_month_day_researched is not None %}value="{{ year_month_day_researched.year }}-{% if year_month_day_researched.month < 10 %}0{% endif %}{{ year_month_day_researched.month }}-{% if year_month_day_researched.day < 10 %}0{% endif %}{{ year_month_day_researched.day }}"{% else %}value="{{ current_year }}-{% if current_month < 10 %}0{% endif %}{{ current_month }}-{% if current_day < 10 %}0{% endif %}{{ current_day }}"{% endif %}>
+                <span class="input-group-btn">
+    
+                </span>
+              </div>
+            </br>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Description
+          </td>
+          <td>
+            <textarea name="description" cols="80" rows="5" maxlength="160" id="id_description"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3"> 
+
+           <button type="submit" style='float:right'  class="btn btn-primary" value="salvar">Save Activity</button>
+          
+          </td>
+        </tr>
+      </table>
+
+    </form>
+    
+    {%  endif %}
+
+<br>

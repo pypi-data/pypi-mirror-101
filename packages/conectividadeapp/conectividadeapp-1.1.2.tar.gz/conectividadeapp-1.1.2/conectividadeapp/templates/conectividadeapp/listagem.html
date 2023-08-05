@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+<br><br><br>
+
+{% block content %}
+
+
+<!-- "index" for the plug (insert activity for device:
+      (I)last device to choice
+      (II)search device to choice
+      (III) view recents activitys
+      (IV) Input install or remove activitys
+
+  -->    
+  
+
+<div class="row">
+  <div class="col-md-4">
+      <div class="panel panel-default">
+        
+        <div class="panel-heading">
+          <strong>Add Activities to recent Devices</strong>
+        </div> 
+{% if  quant   %} <!--quantidade de device igual a zero não lista o ultmo device-->
+      <form method="post" action=""> 
+        {% csrf_token %}
+
+        
+
+        <h5>Device selection</h5>
+        <select class="form-control"  name="deviceid" id="deviceid">
+
+     
+            
+              {% for m in ls %} 
+                    
+                <option value="{{m.id}}" >
+          
+                {{m.id}} --
+                {{m.name}}-{{m.device_type}}-{{m.site}}-{{m.asset_tag}}
+                
+                </option>
+
+              {% endfor %}
+
+                <hr>
+             
+          </select>
+          <br>
+          <p>Will you Install or Remove the Device?</p>
+          <input type="radio" id="inst" name="op" value="1" {% if op != "0" %} checked {% endif %}>
+          <label for="inst">Install</label>
+          <input type="radio" id="remov" name="op" value="0" {% if op == "0" %} checked {% endif %}>
+          <label for="remov">Remove</label>
+  
+
+          <button type="submit" class="btn btn-main">
+            Add Activity
+          </button>
+
+        </form>
+{% endif %}
+
+{% if  quant  != True %}
+
+<h5>Input Device </h5>
+
+<a href="{% url 'dcim:device_add' %}">add</a>
+
+{% endif %}
+        <hr>
+
+        Search Device by Asset Tag
+      <!-- busca direciona para outro fluxo de busca do device -->
+      <!-- search directs to another device search stream --> 
+      
+      <form action="{% url 'plugins:conectividadeapp:searchdeviceresult' %}" method="get" class="form-inline">
+          {% csrf_token %}
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary" name="btn-search-research">
+                <span class="mdi mdi-magnify" aria-hidden="true">
+
+                </span>
+              </button>
+                  
+            </span>
+          </div>
+    
+
+        </form>
+
+        <br>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        
+        <div class="panel-heading">
+          <strong>Recent Activities</strong>
+        </div>
+        {% include 'conectividadeapp/list_activity_device2.html' %}
+
+        
+        <br>
+      </div>
+    </div>
+
+
+
+</div>
+<!-- end row -->
+
+
+
+
+
+
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <strong>Input activity for device</strong>
+  </div>
+
+  <div class="panel-body">
+     
+    {% include 'conectividadeapp/activity_form.html' %}
+
+  </div>
+</div>
+
+
+{% endblock %}

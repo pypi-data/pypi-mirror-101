@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}  
+<br>
+
+
+ 
+
+<div class="panel panel-default">
+
+
+   
+  <div class="panel-heading">
+    <strong>            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
+      Search Devices</strong>
+  </div>
+  <br>
+  <div class="col-md-3">
+    <form action="{% url 'plugins:conectividadeapp:searchdeviceresult' %}" method="get">
+      <div class="input-group">
+
+      <input name="q" type="text" maxlength="20" placeholder="Search..."  class="form-control" >
+      <span class="input-group-btn">
+
+        <button type="submit" class="btn btn-primary" name="btn-search-research">
+        <span class="mdi mdi-magnify" aria-hidden="true">
+
+          </span>
+        </button> 
+      </span>
+      </div>
+    </form>
+  </div>
+  <br>
+
+
+  <div class="panel-body">
+
+    
+
+    <br>
+        <h2>            
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
+          Search Results
+        </h2>
+    <br>
+
+    
+
+    <form method="post" action="{% url 'plugins:conectividadeapp:device_select_multiple_devices' %}">
+      {% csrf_token %}
+
+      <button type="submit" class="btn btn-primary btn-xs" >
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  
+              <span class="glyphicon glyphicon-random" aria-hidden="true"></span> Add Activities to selected Devices
+
+      </button>
+      <input type="hidden"  name="devices_mult"  value="{{0}}"  >
+      <input id="op" type="hidden" name="op" value="0"  >
+
+      <table class="table table-striped">
+
+        <thead>
+          <tr>
+       
+            <th scope="col">Name</th>
+            <th scope="col">Asset Tag</th>
+            <th scope="col">Site</th>
+            <th scope="col">Rack</th>
+            <th scope="col">IP</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+      
+          {% for device in object_list %}
+            <tr>
+
+              <th scope="row">
+                <input type="checkbox" name="devices_mult" value="{{ device.id }}" >
+                {{device.name}}</th>
+              <td>{{device.asset_tag}}</td>
+              <td>{{device.site}}</td>
+              <td>{{device.rack}}</td>
+              <td>{{device.primary_ip4}}</td>
+              <td><a href="{% url 'plugins:conectividadeapp:device_history' device.id %}">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>   
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
+
+              </a></td>
+            </tr>
+          {% endfor %}
+
+        </tbody>
+
+
+      </table>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

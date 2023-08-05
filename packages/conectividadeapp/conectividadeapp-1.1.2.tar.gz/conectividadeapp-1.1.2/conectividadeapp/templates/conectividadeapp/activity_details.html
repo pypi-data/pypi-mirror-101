@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="pull-right noprint">
+   <h1>
+
+       {{activity.when}}
+
+   </h1>
+   <a href="{% url 'plugins:conectividadeapp:activity_history_list' pk=activity.id %}" class="btn btn-default">
+       <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+       Change Log
+   </a>
+</div>
+{% endblock %}
+
+{% block content %}
+{% with config=settings.PLUGINS_CONFIG.conectividadeapp %}
+    <h3>Activity (
+
+
+             {{activity.type}} - {{activity.reason}}
+
+    )
+    </h3>
+    <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <table class="table table-hover panel-body attr-table">
+                <tr style="background-color:#f8f8f8;">
+
+                <th>Details</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+
+
+                </tr>
+                <tr style="background-color:#f8f8f8;">
+                    <th>Description</th>
+
+                    <th>When</th>
+                    <th>Type</th>
+                    <th>Reason</th>
+                    <th>Actors</th>
+                    <th>IPv4</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>
+                        {{activity.description}} -
+
+
+                    </td>
+                    <td>{{ activity.when }}</td>
+                    <td>{{ activity.type }}</td>
+                    <td>{{ activity.reason}}</td>
+                    <td>
+                        {% for k in activity.actor.all %}
+                        ({{k.name}})
+                        {% endfor %}
+                    </td>
+                    <td>{{ activity.olddevice.ipv4  }}</td>
+                    <td>
+                        {% if activity.is_active %}
+                        <form method="post" action="{% url 'plugins:conectividadeapp:activity_update' activity.id %}">
+
+                        <b>active</b>
+                            {% csrf_token %}
+                            <input type="hidden" name="status" value="{{ activity.is_active }}" >
+                            <button type="submit" class="btn btn-main">
+                                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+
+                            </button>
+                        </form>
+
+                        {% endif %}
+
+                        {% if not activity.is_active %}
+                        <form method="post" action="{% url 'plugins:conectividadeapp:activity_update' activity.id %}">
+
+                        <b>unlisted</b>
+                            {% csrf_token %}
+                            <input type="hidden" name="status" value="{{ activity.is_active }}" >
+
+                            <button type="submit" class="btn btn-main">
+                                 <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+
+                             </button>
+                        </form>
+
+                        {% endif %}
+
+
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <table class="table table-hover panel-body attr-table">
+                    <tr style="background-color:#f8f8f8;">
+                        <th>Device </th>
+                        <th>( current )</th>
+
+
+
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>{{activity.device.name}}</th>
+                    </tr>
+
+                    <tr>
+                        <td>Site</td>
+                        <td>{{ activity.device.site }}</td>
+                    </tr>
+                    <tr>
+                        <td>Rack</td>
+                        <td>{{ activity.device.rack }}</td>
+                    </tr>
+                    <tr>
+                        <td>Position</td>
+                        <td>{{ activity.device.position }}</td>
+                    </tr>
+                    <tr>
+                        <td>Serial Number</td>
+                        <td>{{ activity.device.serial }}</td>
+                    </tr>
+                    <tr>
+                        <td>IPv4</td>
+                        <td>{{ activity.device.primary_ip4 }}</td>
+                    </tr>
+                    <tr>
+                        <td>IPv6</td>
+                        <td>{{ activity.device.primary_ip6 }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="{% url 'dcim:device' activity.device.id %}" target="_blank">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                more info
+                            </a>
+                        </td>
+                        <td></td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <table class="table table-hover panel-body attr-table">
+                    <tr style="background-color:#f8f8f8;">
+
+                        <th>Old Device ({{activity.when}})</th>
+                        <th></th>
+
+
+                    </tr>
+
+                    <tr>
+                        <td>Name</td>
+                        <td>{{activity.olddevice.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Site</td>
+                        <td>{{activity.olddevice.site}}</td>
+                    </tr>
+                    <tr>
+                        <td>Rack</td>
+                        <td>{{activity.olddevice.rack}}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>IPv4</td>
+                        <td>{{activity.olddevice.ipv4}}</td>
+                    </tr>
+                    <tr>
+                        <td>IPv6</td>
+                        <td>{{activity.olddevice.ipv6}}</td>
+                    </tr>
+
+
+
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <table class="table table-hover panel-body attr-table">
+                    <tr style="background-color:#f8f8f8;">
+                        <th>Actors</th>
+                        <th>Alias</th>
+                        <th>Category</th>
+                        <th>Phone</th>
+                    </tr>
+
+                        {% for j in activity.actor.all %}
+                    <tr>
+                        <td>{{j.name}}-</td>
+                        <td>{{j.first_name}}-</td>
+                        <td>{{j.category}}</td>
+                        <td>{{j.cellphone}}</td>
+                    </tr>
+                        {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endwith %}
+{% endblock %}

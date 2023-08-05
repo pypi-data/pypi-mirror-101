@@ -1,0 +1,81 @@
+
+
+{% extends 'base.html' %}
+
+{% block header %}
+
+<div class="pull-right noprint">
+   <h1>Device History</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+{% with config=settings.PLUGINS_CONFIG.conectividadeapp %}
+<br>   
+<h1>{{ device_obj.name }}</h1>
+    <div class="pull-right noprint">
+      {% if op == "1" %}
+      <a href="#" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>   
+        Add Activity (Install Device) 
+      </a>
+      {% endif %}
+      {% if op == "0" %}
+      <a href="#" class="btn btn-danger btn-xs">
+        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>   
+        Add Activity (Remove Device) 
+      </a>
+      {% endif %}
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <table class="table table-hover panel-body attr-table">
+                    <tr style="background-color:#f8f8f8;">
+                        <th>Device</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ device_obj.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Site</td>
+                        <td>{{ device_obj.site }}</td>
+                    </tr>
+                    <tr>
+                        <td>Rack</td>
+                        <td>{{ device_obj.rack }}</td>
+                    </tr>
+                    <tr>
+                        <td>Position</td>
+                        <td>{{ device_obj.position }}</td>
+                    </tr>
+                    <tr>
+                        <td>Serial Number</td>
+                        <td>{{ device_obj.serial }}</td>
+                    </tr>
+                    <tr>
+                        <td>IPv4</td>
+                        <td>{{ device_obj.primary_ip4 }}</td>
+                    </tr>
+                    <tr>
+                        <td>IPv6</td>
+                        <td>{{ device_obj.primary_ip6 }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+              {% include 'conectividadeapp/activity_form.html' %}
+
+            </div>
+
+        </div>
+    </div>
+
+
+{% endwith %}
+{% endblock %}

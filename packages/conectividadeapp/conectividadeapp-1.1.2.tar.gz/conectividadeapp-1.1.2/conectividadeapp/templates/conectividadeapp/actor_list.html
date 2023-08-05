@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load buttons %}
+
+{% block content %}
+<div class="pull-right noprint">
+    {% add_button 'plugins:conectividadeapp:addactor' %}
+    <a href="{% url 'plugins:conectividadeapp:actors_history_list' %}" class="btn btn-default">
+        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+        Change Log
+    </a>
+</div>
+<h1>{% block title %}Actors{% endblock %}</h1>
+<div class="row">
+    <div class="col-md-9">
+        {% include 'utilities/obj_table.html' with bulk_delete_url='plugins:conectividadeapp:actor_bulk_delete' %}
+    </div>
+	<div class="col-md-3 noprint">
+	    {% include 'inc/search_panel.html' %}
+	</div>
+</div>
+{% endblock %}
