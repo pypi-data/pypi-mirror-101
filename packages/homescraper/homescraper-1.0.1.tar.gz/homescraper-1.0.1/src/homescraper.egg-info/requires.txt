@@ -1,0 +1,15 @@
+beautifulsoup4
+pyyaml
+dataclasses_sql
+twilio
+furl
+loguru
+selenium
+
+[:python_version < "3.8"]
+importlib-metadata
+
+[testing]
+setuptools
+pytest
+pytest-cov
