@@ -1,0 +1,97 @@
+Metadata-Version: 2.1
+Name: geotiff
+Version: 0.1.3
+Summary: A noGDAL tool for reading and writing geotiff files
+Home-page: https://github.com/Open-Source-Agriculture/geotiff
+Author: Kipling Crossing
+Author-email: kip.crossing@gmail.com
+License: UNKNOWN
+Description: # geotiff
+        
+        A noGDAL tool for reading and writing geotiff files
+        
+        WARNING this package is under development and some features are unstable. Use with caution. 
+        
+        ### What is noGDAL?
+        
+        **[noGDAL](https://kipcrossing.github.io/2021-01-03-noGDAL/)** is a philosophy for developing geospatial programs in python without using GDAL.
+        
+        ### Instillation
+        
+        Installing this package is as easy as:
+        
+        ```
+        pip install geotiff
+        ```
+        
+        ### Usage
+        
+        Read the GeoTiff to an array
+        
+        ```python
+        from geotiff import GeoTiff
+        
+        geoTiff = GeoTiff(tiff_file)
+        array = geoTiff.read()
+        ```
+        
+        Read a sections of a large tiff using a WGS 84 area
+        
+        ```python
+        from geotiff import GeoTiff
+        
+        area_box = [(138.632071411, -32.447310785), (138.644218874, -32.456979174)]
+        geotiff = GeoTiff(tiff_file)
+        array = geotiff.read_box(area_box)
+        ```
+        
+        This will detect and convert coordinates into WGS 84
+        
+        You can also get the coordinated of the actual bounding box
+        
+        ```python
+        geotiff.tif_bBox
+        ```
+        
+        And the original crs code
+        
+        ```python
+        geotiff.crs_code
+        ```
+        
+        ### Contributing
+        
+        If you would like to contribute to this project, please fork it and make a PR with you patches.
+        
+        You can join the conversation by saying hi in the [project discussion board](https://github.com/Open-Source-Agriculture/geotiff/discussions).
+        
+        To help users and and other contributes, be sure to:
+        - make doc blocs if appropriate
+        - use typing wherever possible. 
+        
+        *Note:* The continuous integration has lint checking with **mypy**, so be sure to check it yourself before making a PR.
+        
+        ### Project Road Map
+        
+        #### Core Features
+        
+        - [x] read tiff files (including BigTiff)
+        - [ ] write tiff files (including BigTiff)
+        - [x] **(UNSTABLE/LIMITED)** convert between coordinate systems
+        - [ ] read a user defined CRS
+        - [x] cut a section (bounding box) of the tiff file
+        - [x] convert the data to numpy arrays
+        
+        #### Additional features
+        
+        - [ ] **(50%)** Full test coverage
+        - [x] Typing with lint checking using mypy
+        - [x] Documentation: doc blocs
+        - [ ] Documentation: readthedocs
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
