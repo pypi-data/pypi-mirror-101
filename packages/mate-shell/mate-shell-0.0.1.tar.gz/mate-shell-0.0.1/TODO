@@ -1,0 +1,50 @@
+Fixes:
+    ☐ Fix ambiguty between module's default handler's argument and module's inline submodule handler's name
+    ☐ Allow multiple add_plugins in same python file
+
+Code:
+    Help Module:
+        ☐ Add support for printing detailed usage
+    ☐ Enforce type hints at runtime using pydantic.
+    ☐ Don't catch all TypeError exceptions from execute(). Change it to something more robust.
+    ☐ Forbid print statement in module's execution, instead make a powerful central print that executes whatever module returns.
+    Debugging:
+        ☐ Add log.debug statement in every non-recursive function with function name and arguments.
+    Documentation:
+        ☐ Core functions
+        ☐ Inbuilt modules
+        ☐ How to write plugins
+
+Ideas:
+    Mate Prompt:
+        ☐ When command is in progress: mate [*] >
+    ☐ Explore lru_cache decorator for performance gains.
+    ☐ Make it so, whole mate's functionality can be hosted as a web/grpc api with a single command line option.
+
+
+Archive:
+  ✔ Fix help module. For example "help show all" doesn't show only that. @done(21-04-03 12:15) @project(Fixes)
+  ✔ Fix ctrl-d handling in mate shell @done(21-04-03 21:21) @project(Fixes)
+  ✔ Write initial basic test cases. @done(20-11-25 22:26) @project(Tests)
+  ✔ Add a basic plugin support @done(20-11-22 18:58) @project(Code)
+  ✔ Implement mate_exception_handler and MateUndefined exception in utils to better propogate exceptions @done(20-11-22 19:01) @project(Code)
+  ✔ Implement mate.modules.core classes to better maintain pluggability @done(20-11-22 19:04) @project(Code)
+  ✔ Move plugin libraries to mate.libs @done(20-11-22 19:06) @project(Code)
+  ✔ Add help module's support @done(20-11-23 00:35) @project(Code.Help Module)
+  ✔ Parse help's description and usage details from docstring instead of current bs @done(20-11-24 03:32) @project(Code.Help Module)
+  ✔ Add docstring to each and everything @done(20-11-24 15:23) @project(Code)
+  ✔ Add inline submodule support @done(20-11-24 01:51) @project(Code)
+  ✔ Create a decorator for easy addition of inline submodules @done(20-11-27 19:26) @project(Code)
+  ✔ Remove "mate" root node in module's path, it's side effects make code hard to read. @done(20-11-23 19:02) @project(Code)
+  ✔ Remove MateRecord Class and make all base commands subcommand of "mate" command. It will make things easy to implement. @done(20-11-23 03:36) @project(Code)
+  ✔ Add ls, pwd, sh as default inline subcommands. @done(20-11-24 04:14) @project(Code)
+  ✔ Add a debug mode, using logging and rich. @done(20-11-25 00:44) @project(Code.Debugging)
+  ✔ Log detailed traceback for any unhandled exception inside shell. @done(20-11-25 03:16) @project(Code.Debugging)
+  ✔ Create a skeleton @done(20-11-24 18:58) @project(Code.Documentation)
+  ✔ Add a prompt to mate interpreter @done(20-11-22 22:58) @project(Ideas.Mate Prompt)
+  ✔ When previous command was successful: mate [+] > @done(20-11-21 18:47) @project(Ideas.Mate Prompt)
+  ✔ When previous command failed: mate [-] > @done(20-11-22 22:57) @project(Ideas.Mate Prompt)
+  ✔ Add calculator similar to IDA Pro. @done(21-04-03 21:22) @project(Ideas)
+  ✔ Add nested command completion. @done(21-04-03 21:22) @project(Ideas)
+  ✔ Prepare project skeleton for first commit @done(20-11-21 02:00) @project(Misc)
+  ✔ Changed structure of the project for robustness @done(20-11-22 19:00)
