@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: FreeTVG-karjakak
+Version: 1.1.15
+Summary: Tree View Gui for outline treeview note.
+Home-page: https://github.com/kakkarja/FreeTVG
+Author: karjakak
+Author-email: kakkarja.github@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Topic :: Text Editors :: Text Processing
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: markdown (>=3.3.4)
+
+# FreeTVG [Tree View Gui]
+## **Tree View Gui is an outline note for viewing in tree structure.**
+### **Visit [TVG](https://treeviewgui.work)**
+## Installation
+```pip install FreeTVG-karjakak```
+## Usage
+```Python
+from TVG import main
+
+# Start TVG outline note
+main()
+```
+
