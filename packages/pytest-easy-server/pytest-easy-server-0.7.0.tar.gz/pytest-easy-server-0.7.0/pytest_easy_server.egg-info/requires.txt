@@ -1,0 +1,31 @@
+easy-server>=0.7.0
+easy-vault>=0.7.0
+yamlloader>=0.5.5
+jsonschema>=2.6.0
+
+[:python_version < "3.5"]
+pytest<5.0.0,>=4.3.1
+
+[:python_version == "2.7"]
+PyYAML>=5.3.1
+pyrsistent<0.16.0,>=0.14.0
+
+[:python_version == "3.4"]
+PyYAML<5.3,>=5.2
+pyrsistent<0.15.0,>=0.14.0
+
+[:python_version > "3.4"]
+PyYAML>=5.3.1
+
+[:python_version >= "2.7" and python_version <= "3.6"]
+pluggy>=0.7.1
+
+[:python_version >= "3.5"]
+pyrsistent>=0.14.0
+
+[:python_version >= "3.5" and python_version <= "3.6"]
+pytest>=4.3.1
+
+[:python_version >= "3.7"]
+pytest>=4.4.0
+pluggy>=0.13.0
