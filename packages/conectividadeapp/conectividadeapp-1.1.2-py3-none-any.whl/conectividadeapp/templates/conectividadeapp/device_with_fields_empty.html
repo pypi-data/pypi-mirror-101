@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load buttons %}
+{% load helpers %}
+
+{% block content %}   
+
+<br>
+<form method="post" action="{% url 'plugins:conectividadeapp:device_select_multiple_devices' %}">
+  {% csrf_token %}
+
+    {% for serial, devices in object_list.items %}
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Serial: {%if serial %} {{serial}} {% else %} None {% endif %}</div>
+    
+      <table class="table table-striped">
+                <thead> 
+                  <tr>
+                    <th scope="col">          
+                    
+                      Name</th>
+                    <th scope="col">Serial</th>
+                    <th scope="col">Asset Tag</th>
+                    <th scope="col">Site</th>
+                    <th scope="col">Rack</th>
+                    <th></th>
+                  </tr>
+                </thead>
+            
+                <tbody>
+                  {% for device in devices%}  
+                  <tr>
+                    <th scope="row" width="250px">
+                      {{device.name}}
+                    </th>
+                    <td>{%if device.serial %} {{device.serial}} {% else %} None {% endif %}</td>
+                    <td>{{device.asset_tag}}</td>
+                    <td>{{device.site}}</td>
+                    <td>{{device.rack}}</td>
+
+                    <td><a href="/dcim/devices/{{device.pk}}/edit/?return_url=/plugins/conectividadeapp/device_with_fields_empty/" class="btn btn-warning">
+                      <span class="fa fa-pencil" aria-hidden="true"></span> Edit
+                        </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+    </div>    
+    {% endfor %}
+    
+</form>
+
+{% endblock %}

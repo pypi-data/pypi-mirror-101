@@ -1,0 +1,82 @@
+
+    
+{% extends 'base.html' %}
+
+{% block header %}
+
+<div class="pull-right noprint">
+   <h1>Multiple Devices</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+{% with config=settings.PLUGINS_CONFIG.conectividadeapp %}
+<br>   
+<h1>{{ device_obj.name }}</h1>
+    <div class="pull-right noprint">
+      {% if op == "3" %}
+      <a href="#" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>   
+        Add Activity (Install Devices) 
+      </a>
+      {% endif %}
+      {% if op == "4" %}
+      <a href="#" class="btn btn-danger btn-xs">
+        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>   
+        Add Activity (Remove Devices) 
+      </a>
+      {% endif %}
+ 
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <table class="table table-hover panel-body attr-table">
+                    <tr style="background-color:#f8f8f8;">
+                        <th>Device</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>
+                            {{ device_obj.name }} - 
+                            {{ device_obj.site }} / 
+                            {{ device_obj.rack }} - 
+                            {{ device_obj.primary_ip4 }} - {{ device_obj.primary_ip6 }} 
+                            {{ device_obj.serial }} - {{device_obj.asset_tag}}
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8">
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <p>Will you Install or Remove the Devices?</p>
+            <input type="radio" id="inst" name="op" value="3" checked>
+            <label for="inst">Install Devices</label>
+            <input type="radio" id="remov" name="op" value="4">
+            <label for="remov">Remove Devices</label>
+
+
+            <button type="submit" class="btn btn-main">
+                Add Activity
+            </button>
+
+        </form>
+
+        <div class="panel panel-default">
+            {% include 'conectividadeapp/activity_form.html' %}
+
+        </div>
+
+        </div>
+    </div>
+
+    
+{% endwith %}
+{% endblock %}

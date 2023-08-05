@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+<br><br><br>
+
+{% block content %}
+<div class="row">
+
+  <!-- Activity list table -->
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <strong>Actors Change Log</strong>
+      </div>
+
+      <div class="panel-body">
+
+        <table border="1" class="table">
+
+          <br>
+
+          <tr style="background-color: #eee">
+            <th>ID</th>
+            <th>Actor</th>
+            <th>Type</th>
+            <th>User</th>
+            <th>Date</th>
+
+          </tr>
+
+          {% for history in history_list %}
+            <tr>
+              <td>{{ history.history_id }}</td>
+
+              <td>
+                <a href="{% url 'plugins:conectividadeapp:actor' history.id %}">{{ history.name }}</a>
+              </td>
+
+
+              <td>
+                {% if history.history_type == "+" %}
+                  Create
+                {% elif history.history_type == "-" %}
+                  Delete
+                {% elif history.history_type == "~" %}
+                  Update
+                {% endif %}
+              </td>
+
+              <td>{{ history.history_user.username }}</td>
+
+              <td>{{ history.history_date }}</td>
+
+            </tr>
+
+          {% endfor %}
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

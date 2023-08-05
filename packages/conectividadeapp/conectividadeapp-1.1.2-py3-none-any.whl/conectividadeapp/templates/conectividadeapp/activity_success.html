@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+<br><br><br>
+
+{% block content %}
+
+<div class="panel panel-default">
+
+
+
+
+  <div class="panel-heading">
+    <strong></strong>
+  </div>
+
+<br>
+<a href="{% url 'plugins:conectividadeapp:activity_details' id_activit %}">
+
+<h3>The Activity was registered successfully!
+</h3>
+</a>
+<br>
+
+  <div class="col-md-8">
+    <div class="panel panel-default">
+    
+      <div class="panel-heading">
+        <strong>Recent Activitys</strong>
+      </div>
+      {% include 'conectividadeapp/list_activity_device2.html' %}
+
+      
+      <br>
+    </div>
+  </div>
+
+  <div class="panel-body" class="col-md-2">
+    <h5 ><b>Options:</b></h5>
+     <p>
+      <a href="{% url 'plugins:conectividadeapp:activity_details' id_activit %}">
+        Activity details
+        <br>
+       <a href="{% url 'plugins:conectividadeapp:list' %}">Add new Activities
+         <br>
+      <a href="{% url 'plugins:conectividadeapp:searchdevice' %}">Search Devices<br>
+ 
+      </a>
+      <a href="{% url 'plugins:conectividadeapp:activity_op_list' %}">Search Activities
+ 
+      </a>
+
+     </p>
+
+  </div>
+</div>
+
+{% endblock %}

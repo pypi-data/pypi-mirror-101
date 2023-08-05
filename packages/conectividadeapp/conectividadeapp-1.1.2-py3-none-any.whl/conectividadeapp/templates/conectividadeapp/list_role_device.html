@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block content %}  
+<br>
+
+<div class="row">
+
+  <!-- Activity list table -->
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <strong>Select device roles</strong>
+      </div>
+
+  <br>
+
+  <div class="panel-body">
+
+
+    <div class=" text-center">
+   
+      <h3>
+
+
+    {% if type_activity == "INSTALL" %}
+      
+      INSTALL 
+      <a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+      </a>
+   
+    {% endif %}
+
+    {% if type_activity == "REMOVE" %}
+   
+     REMOVE
+     <a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+    </a>
+
+    {% endif %}
+
+
+       <!-- verifica qual filtro aplicado -->
+       {% if filter1 %}
+ 
+   
+       {{filter1}}
+ 
+       {% endif %}
+
+    </h3> 
+   
+    </div>
+   
+    <hr>
+
+  <h2>   
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
+   Choose Device Roles to make a custom filter
+  </h2>
+  <br>
+  
+<br>
+<table class="table table-striped">
+
+  <form method="post" action="{% url 'plugins:conectividadeapp:activity_post' %}">
+    {% csrf_token %}
+
+  <thead>
+    <tr>
+
+      <th scope="col">          
+      
+        Name</th>
+      <th scope="col">slug</th>
+      <th></th>
+    
+  </thead>
+  
+  <tbody>
+
+
+        <button type="submit" class="btn btn-primary btn-xs" >
+
+          <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>  Set custom filter
+
+        
+        </button>
+     
+        <input id="op" type="hidden" name="op" value="10"  >
+  
+
+ 
+        {% for role in object_list %}
+
+        <tr>
+          <th scope="row">
+            <input type="checkbox" name="roles_mult" value="{{ role.id }}" >
+            {{role.name}}
+          </th>
+          <td>{{role.slug}}</td>
+
+        </tr>
+        {% endfor %}
+
+    
+  </tbody>
+  
+  {% for activity in activity_list %}
+
+  <!-- LISTA DE IDS DAS ATIVIDADES -->
+  <input id="rolelist" type="hidden" name="rolelist" value="{{activity.device.id}}"  >
+  <input id="activitys_list" type="hidden" name="activitys_list" value="{{activity.id}}"  >
+
+  {% endfor %}
+
+
+  <!-- INSTALL OR REMOVE-->
+  <input id="role" type="hidden" name="role" value="0"  >
+
+  <input id="type_activity" type="hidden" name="type_activity" value="{{type_activity}}"  >
+  <input id="filter1" type="hidden" name="filter1" value="{{filter1}}" >
+  
+  </form>
+
+</table>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Activity Search -->
+<div class="col-md-3 text-center">
+  <div class="panel panel-default">
+
+
+  <div class="panel-heading">
+    <span class="mdi mdi-magnify" aria-hidden="true"></span>
+    <strong>Search Activity</strong>
+  </div>
+
+
+
+  <div class="panel-body">
+
+    <div class="list-group">
+      <div class="list-group-item">
+          
+              <span class="badge pull-right"><!--47 add contabilidade dinamicamente--></span>
+              <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">Installed Devices</a></h4>
+          
+          <p class="list-group-item-text text-muted">List Device Install Activities</p>
+      </div>
+      <div class="list-group-item">
+          
+              <span class="badge pull-right"><!--34 add contabilidade dinamicamente--></span><!--add contabilidade-->
+              <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">Removed Devices</a></h4>
+          
+              <p class="list-group-item-text text-muted">List Device Remove Activities</p>
+          </div>
+    </div>
+
+  </div>
+
+
+
+  </div>
+
+
+
+</div>
+
+</div>
+{% endblock %}

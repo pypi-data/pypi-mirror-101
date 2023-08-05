@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+<div class="pull-right noprint">
+   <h1>Device History</h1>
+</div>
+
+<div class="col-md-3">
+    <form action="{% url 'plugins:conectividadeapp:searchdeviceresult' %}" method="get">
+      <div class="input-group">
+
+      <input name="q" type="text" maxlength="20" placeholder="Search..."  class="form-control" >
+      <span class="input-group-btn">
+
+        <button type="submit" class="btn btn-primary" name="btn-search-research">
+        <span class="mdi mdi-magnify" aria-hidden="true">
+
+          </span>
+        </button> 
+      </span>
+      </div>
+    </form>
+  </div>
+  <br>
+{% endblock %}
+
+{% block content %}
+{% with config=settings.PLUGINS_CONFIG.conectividadeapp %}
+<br>  
+<!-- details and history to device--> 
+<h1>{{ device.name }}</h1>
+    <div class="pull-right noprint">
+    
+    
+    <table borde="0">
+        <tr>
+        <td>
+            <form action="{% url 'plugins:conectividadeapp:device_addactivity' %} " method="post">
+            {% csrf_token %}
+            <input id="device_obj_id" type="hidden" name="device_obj_id" value="{{device.id}}"  >
+            <input id="op" type="hidden" name="op" value="1"  >
+
+
+            <button type="submit" class="btn btn-primary btn-xs" >
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Add Activity (Install Device)
+            </button>
+        
+        </form>
+        </td>
+
+        <td>
+        
+        <form method="post" action="{% url 'plugins:conectividadeapp:device_addactivity' %}">
+        {% csrf_token %}
+
+        <input id="device_obj_id" type="hidden" name="device_obj_id" value="{{device.id}}"  >
+        <input id="op" type="hidden" name="op" value="0"  >
+
+            <button  type="submit" class="btn btn-danger btn-xs" >
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Add Activity (Remove Device)
+            </button>
+        </form>
+        </td>  
+        </tr>
+    </table>                   
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <table class="table table-hover panel-body attr-table">
+                    <tr style="background-color:#f8f8f8;">
+                        <th>Device</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{ device.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Site</td>
+                        <td>{{ device.site }}</td>
+                    </tr>
+                    <tr>
+                        <td>Rack</td>
+                        <td>{{ device.rack }}</td>
+                    </tr>
+                    <tr>
+                        <td>Position</td>
+                        <td>{{ device.position }}</td>
+                    </tr>
+                    <tr>
+                        <td>Serial Number</td>
+                        <td>{{ device.serial }}</td>
+                    </tr>
+                    <tr>
+                        <td>IPv4</td>
+                        <td>{{ device.primary_ip4 }}</td>
+                    </tr>
+                    <tr>
+                        <td>IPv6</td>
+                        <td>{{ device.primary_ip6 }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="{% url 'dcim:device' device.id %}" target="_blank">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
+                                veja mais
+                            </a> 
+                        </td>
+                        <td></td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <table class="table table-hover panel-body attr-table">
+                    <tr style="background-color:#f8f8f8;">
+                        <th>When - Type</th>
+                        <th>Device Name</th>
+                        <th>Actors</th>
+                        <th>IPv4</th>
+                        <th>Asset Tag</th>
+                        <th></th>
+                    </tr>
+                    {% for act in activitys %}
+                    <tr>
+                        <td>{{ act.when }} - {{ act.type }}</td>
+                        <td>{{ act.olddevice.name }}</td>
+                        <td>{% for k in act.actor.all %}
+                            ({{k.name}})
+                          {% endfor %}</td>
+                        <td>{{ act.olddevice.ipv4 }}</td>
+                        <td>{{ act.device.asset_tag }}</td>
+                        <td><a href="{% url 'plugins:conectividadeapp:activity_details' act.id %}">
+                            <button type="submit" class="btn btn-main">
+                              Details
+                            </button>
+                          </a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td class="text-muted">No Activities were assigned to this Device</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    
+{% endwith %}
+{% endblock %}

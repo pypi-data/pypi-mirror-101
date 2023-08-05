@@ -1,0 +1,46 @@
+<table border="0" class="table" style="font-size: 8;">
+      
+  <!--Recent activities -->
+         <!--diminuir a letra, limitar numero de instaladoress na visualização-->
+  
+          <tr style="background-color: #eee">
+  
+            <th>Atividade/Device</th>
+            <th>Data</th>
+            <th>Instaladores</th>
+            <th>Site/Rack</th>
+            <th>IP</th>
+  
+          </tr>
+  
+  
+          {% for i in registro %}
+            <tr>
+  
+              <td>
+                <a href="{% url 'plugins:conectividadeapp:activity_details' i.id %}">
+       
+                {{ i.type }} / {{ i.olddevice.name }}
+                </a>
+              
+              </td>
+              <td>{{ i.when }}</td>
+              <td> 
+                  {% for k in i.actor.all %}
+                        {{k.name}},
+                  {% endfor %}
+              </td>  
+              <td>          
+                {{ i.olddevice.site }} 
+                 / 
+                {{ i.olddevice.rack }} 
+              </td>
+              <td> 
+                  {{ i.olddevice.ipv4}} -
+                  {{ i.olddevice.masc_ipv6}}
+              </td>
+  
+             </tr>
+            {% endfor %}
+     
+      </table>

@@ -1,0 +1,597 @@
+{% extends 'base.html' %}
+
+<br><br><br>
+
+{% block content %}
+<div class="row">
+
+  <!-- Activity list table -->
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <strong>Activities ({{ quantity }})</strong>
+      </div>
+
+      <div class="panel-body">
+
+      {% if op == "2" %}
+
+        <h1>
+          <span class="glyphicon glyphicon-list-alt " aria-hidden="true"> 
+           
+          </span>   Connectivity report   
+
+      </h1>
+
+      {% endif %}
+
+        <hr>
+        <h3>
+          {% if type_activity == "INSTALL" %}
+          INSTALL
+          <a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+          </a>
+          {{filter1}}
+          <a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+          </a>
+
+          {% endif %}
+
+          {% if type_activity == "REMOVE" %}
+          REMOVE
+          <a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+          </a>
+          {%  if filter1  %}
+
+          {{filter1}}
+
+          {% else %}
+
+          No filter
+          
+          {% endif %}
+
+          <a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>   
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  
+
+          </a>
+
+          {% endif %}
+          
+          {% if op == "1" %}
+
+          Filter : <bolt>{{role}}</bolt> 
+          {% endif %}
+          
+          {% if op == "2" %}
+          Filter : <bolt>Conectivity (  AP, Switch, Transceiver, Modules  )</bolt> 
+          {% endif %}
+
+
+          {% if op == "10" %}
+          Filter : <bolt>Multiple-Filter</bolt> 
+          {% endif %}
+        </h3>
+
+        <hr>
+
+
+
+          <!--  para filtros de uma determinada role -->
+
+
+        {% if role != "0" %}
+
+          <table border="1" class="table">
+
+            <br>
+  
+            <tr style="background-color: #eee">
+              <th>Device</th>
+              <th>Type/When</th>
+              <th>Actor</th>
+              <th>Site/Rack</th>
+              <th>Ip</th>
+              
+            </tr>
+         
+
+              <!-- mostra objetos para slug filtrado -->
+              {% for activity in activitys_list1_obj %} <!-- todos os devices daquele papel-->
+
+              <!-- filtra/compara apenas  a lista de devices de acordo
+                   com o papel com as do filtro enviadas via post          -->
+
+                
+                    <tr>
+                      <td>
+                        {{activity.id}} /
+                        <a href="{% url 'plugins:conectividadeapp:activity_details' activity.id %}">
+                        {{ activity.olddevice.name }}</a>
+                        {{activity.id}} -
+                        -{{kactivity.device_type}}-{{activity.site}}-{{activity.asset_tag}}
+                      </td>
+                      
+                      <td>{{ activity.type }} - {{ activity.when|date }}</td>
+                      <td>
+                        {% for actor in activity.actor.all %}
+                          {{ actor.name }}<br/>
+                        {% endfor %}
+                      </td>
+                    
+                      <td>          
+                        {{ activity.olddevice.site }} 
+                        / 
+                        {{ activity.olddevice.rack }} 
+                      </td>
+                      <td> 
+                          {{ activity.olddevice.ipv4}} 
+                          {{ activity.olddevice.masc_ipv6}}
+                      </td>
+                 
+                  </tr>
+
+
+              {% endfor %}
+
+          </table>
+        {% endif %}
+
+       
+
+
+        <!-- para filtros de conectividade-->
+
+        {% if op == "2" %}
+
+        <span class="label label-default">{{list_conectivity_ap}}</span> 
+
+        <table border="1" class="table">
+
+            <br>
+
+            
+            <tr style="background-color: #87CEFA">
+
+              <th>  <h4> APs  <span class="badge">{{lista_ap}}</span>
+                </h4>   
+
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+                
+            </tr>
+
+
+            <tr style="background-color: #eee">
+              <th>Device</th>
+              <th>Type/When</th>
+              <th>Actor</th>
+              <th>Site/Rack</th>
+              <th>Ip</th>
+              
+            </tr>
+
+            {% for activity in activitys_list1_obj %} <!-- todos os devices daquele papel-->
+        
+              <tr>
+                <td>
+                  {{k.id}} /
+                  <a href="{% url 'plugins:conectividadeapp:activity_details' activity.id %}">
+                  {{ activity.olddevice.name }}</a>
+                  {{activity.id}} -
+                  -{{kactivity.device_type}}-{{activity.site}}-{{activity.asset_tag}}
+                </td>
+                
+                <td>{{ activity.type }} - {{ activity.when|date }}</td>
+                <td>
+                  {% for actor in activity.actor.all %}
+                    {{ actor.name }}<br/>
+                  {% endfor %}
+                </td>
+              
+                <td>          
+                  {{ activity.olddevice.site }} 
+                  / 
+                  {{ activity.olddevice.rack }} 
+                </td>
+                <td> 
+                    {{ activity.olddevice.ipv4}} 
+                    {{ activity.olddevice.masc_ipv6}}
+                </td>
+          
+              </tr>
+              {% empty %}
+
+              <tr> 
+                <th>
+                  <p><span class="label label-danger">No aps : {{ lista_ap}}</span> </p> 
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            {% endfor %}
+
+
+
+        </table>
+
+        <br>
+        <span class="label label-default">{{list_conectivity_sw}}</span> 
+
+        <table border="1" class="table">
+
+
+            <tr style="background-color: #87CEFA">
+
+              <th> 
+                <h4>Switches <span class="badge">{{lista_sw}}</span> </h4>
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+            </tr>
+
+            <tr style="background-color: #eee">
+              <th>Device</th>
+              <th>Type/When</th>
+              <th>Actor</th>
+              <th>Site/Rack</th>
+              <th>Ip</th>
+              
+            </tr>
+
+            {% for activity in activitys_list2_obj %} <!-- todos os devices daquele papel-->
+        
+            <tr >
+              <td>
+                {{k.id}} /
+                <a href="{% url 'plugins:conectividadeapp:activity_details' activity.id %}">
+                {{ activity.olddevice.name }}</a>
+                {{activity.id}} -
+                -{{kactivity.device_type}}-{{activity.site}}-{{activity.asset_tag}}
+              </td>
+              
+              <td>{{ activity.type }} - {{ activity.when|date }}</td>
+              <td>
+                {% for actor in activity.actor.all %}
+                  {{ actor.name }}<br/>
+                {% endfor %}
+              </td>
+            
+              <td>          
+                {{ activity.olddevice.site }} 
+                / 
+                {{ activity.olddevice.rack }} 
+              </td>
+              <td> 
+                  {{ activity.olddevice.ipv4}} 
+                  {{ activity.olddevice.masc_ipv6}}
+              </td>
+        
+            </tr>
+
+            {% empty %}
+            <tr>
+              <th> <p> <span class="label label-danger">no switches: {{lista_sw}}</span> 
+              </p> 
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+            </tr>
+
+
+            {% endfor %}
+        
+       
+        </table>
+
+        <br>
+        <span class="label label-default">{{list_transceiver}}</span>
+        <table border="1" class="table">
+
+         
+
+          <tr style="background-color: #87CEFA">
+
+            <th> 
+              <h4>
+              Transceiver  <span class="badge">{{ lista_tr}}</span></h4>  
+            
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+
+          </tr>
+
+
+          <tr style="background-color: #eee">
+            
+            <th>Device</th>
+            <th>Type/When</th>
+            <th>Actor</th>
+            <th>Site/Rack</th>
+            <th>Ip</th>
+            
+          </tr>
+
+          {% for activity in activitys_list3_obj %} <!-- todos os devices daquele papel-->
+        
+            <tr>
+              <td>
+                {{k.id}} /
+                <a href="{% url 'plugins:conectividadeapp:activity_details' activity.id %}">
+                {{ activity.olddevice.name }}</a>
+                {{activity.id}} -
+                -{{kactivity.device_type}}-{{activity.site}}-{{activity.asset_tag}}
+              </td>
+              
+              <td>{{ activity.type }} - {{ activity.when|date }}</td>
+              <td>
+                {% for actor in activity.actor.all %}
+                  {{ actor.name }}<br/>
+                {% endfor %}
+              </td>
+            
+              <td>          
+                {{ activity.olddevice.site }} 
+                / 
+                {{ activity.olddevice.rack }} 
+              </td>
+              <td> 
+                  {{ activity.olddevice.ipv4}} 
+                  {{ activity.olddevice.masc_ipv6}}
+              </td>
+        
+          </tr>
+
+          {% empty %}
+
+          <tr> 
+            <th>
+              <p> <span class="label label-danger">no Transceiver: {{ lista_tr}}</span> </p> 
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          {% endfor %}
+
+
+        </table>
+
+        <br>
+        <span class="label label-default">{{list_modulos}}</span>   
+
+        <table border="1" class="table">
+
+
+
+          <tr style="background-color: #87CEFA">
+
+            <th >  <h4>Modules <span class="badge">{{lista_mo}}</span></h4>
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+          </tr>
+    
+
+
+          <tr style="background-color: #eee">
+            <th>Device</th>
+            <th>Type/When</th>
+            <th>Actor</th>
+            <th>Site/Rack</th>
+            <th>Ip</th>
+            
+          </tr>
+          
+
+            
+          {% for activity in activitys_list4_obj %} <!-- todos os devices daquele papel-->
+        
+            <tr>
+              <td>
+                {{k.id}} /
+                <a href="{% url 'plugins:conectividadeapp:activity_details' activity.id %}">
+                {{ activity.olddevice.name }}</a>
+                {{activity.id}} -
+                -{{kactivity.device_type}}-{{activity.site}}-{{activity.asset_tag}}
+              </td>
+              
+              <td>{{ activity.type }} - {{ activity.when|date }}</td>
+              <td>
+                {% for actor in activity.actor.all %}
+                  {{ actor.name }}<br/>
+                {% endfor %}
+              </td>
+            
+              <td>          
+                {{ activity.olddevice.site }} 
+                / 
+                {{ activity.olddevice.rack }} 
+              </td>
+              <td> 
+                  {{ activity.olddevice.ipv4}} 
+                  {{ activity.olddevice.masc_ipv6}}
+              </td>
+        
+            </tr>
+          {% empty %}
+            <tr> 
+              <th>
+                <p> <span class="label label-danger">no Modules: {{ lista_mo}}</span> </p> 
+              </th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+
+          {% endfor %}
+
+
+         </table>
+        {% endif %}
+
+        {% if op == "10" %}
+
+
+          <div class="width: 100px;">
+               <span class="label label-default">{{lista_all_role}}</span>
+          </div>
+        
+
+          <table border="1" class="table">
+
+
+
+            <tr style="background-color: #87CEFA">
+
+              <th colspan="5" >  <h4>Filter multiple roles <span class="badge">{{lista}}</span></h4>
+              </th>
+              
+              
+
+            </tr>
+      
+
+
+            <tr style="background-color: #eee">
+              <th>Device</th>
+              <th>Type/When</th>
+              <th>Actor</th>
+              <th>Site/Rack</th>
+              <th>Ip</th>
+              
+            </tr>
+            
+
+              
+            {% for activity in activitys_list1_obj %} <!-- todos os devices daquele papel-->
+          
+              <tr>
+                <td>
+                  {{k.id}} /
+                  <a href="{% url 'plugins:conectividadeapp:activity_details' activity.id %}">
+                  {{ activity.olddevice.name }}</a>
+                  {{activity.id}} -
+                  -{{kactivity.device_type}}-{{activity.site}}-{{activity.asset_tag}}
+                </td>
+                
+                <td>{{ activity.type }} - {{ activity.when|date }}</td>
+                <td>
+                  {% for actor in activity.actor.all %}
+                    {{ actor.name }}<br/>
+                  {% endfor %}
+                </td>
+              
+                <td>          
+                  {{ activity.olddevice.site }} 
+                  / 
+                  {{ activity.olddevice.rack }} 
+                </td>
+                <td> 
+                    {{ activity.olddevice.ipv4}} 
+                    {{ activity.olddevice.masc_ipv6}}
+                </td>
+          
+              </tr>
+            {% empty %}
+              <tr> 
+                <th>
+                  <p> <span class="label label-danger">no Modules: {{ lista_mo}}</span> </p> 
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+
+            {% endfor %}
+
+
+         </table>
+         <hr>
+        
+          <span class="label label-default">{{lista_all_role}}</span>
+          
+
+
+        {% endif %}
+
+        <hr>
+
+        {% include 'conectividadeapp/list_activity_quant_role.html' %}
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Search -->
+  <div class="col-md-3 text-center">
+    <div class="panel panel-default">
+
+
+      <div class="panel-heading">
+        <span class="mdi mdi-magnify" aria-hidden="true"></span>
+        <strong>Search Activity</strong>
+      </div>
+
+
+
+      <div class="panel-body">
+
+        <div class="list-group">
+          <div class="list-group-item">
+              
+                  <span class="badge pull-right"><!--47 add contabilidade dinamicamente--></span>
+                  <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">Installed Devices</a></h4>
+              
+              <p class="list-group-item-text text-muted">List Device Install Activities</p>
+          </div>
+          <div class="list-group-item">
+              
+                  <span class="badge pull-right"><!--34 add contabilidade dinamicamente--></span><!--add contabilidade-->
+                  <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">Removed Devices</a></h4>
+              
+                  <p class="list-group-item-text text-muted">List Device Remove Activities</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

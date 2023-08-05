@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Activities</strong>
+    </div>
+    <div class="list-group">
+        <div class="list-group-item">
+            
+                <span class="badge pull-right"><!--47 add contabilidade dinamicamente--></span>
+                <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_install_list' %}">Installed Devices</a></h4>
+            
+            <p class="list-group-item-text text-muted">List Device Install Activities</p>
+        </div>
+        <div class="list-group-item">
+            
+                <span class="badge pull-right"><!--34 add contabilidade dinamicamente--></span><!--add contabilidade-->
+                <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:activity_remove_list' %}">Removed Devices</a></h4>
+            
+                <p class="list-group-item-text text-muted">List Device Remove Activities </p>
+        </div>
+        <div class="list-group-item">
+            
+            <span class="badge pull-right"><!--34 add contabilidade dinamicamente--></span><!--add contabilidade-->
+            <h4 class="list-group-item-heading"><a href="{% url 'plugins:conectividadeapp:device_with_fields_empty' %}">Devices with empty/repeated fields</a></h4>
+        
+            <p class="list-group-item-text text-muted">List all Devices with empty or repeated key fields</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
