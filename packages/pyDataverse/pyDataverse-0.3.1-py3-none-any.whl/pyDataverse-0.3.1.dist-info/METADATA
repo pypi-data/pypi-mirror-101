@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: pyDataverse
+Version: 0.3.1
+Summary: A Python module for the Dataverse API's and its data-types
+Home-page: https://github.com/gdcc/pyDataverse
+Author: Stefan Kasberger
+Author-email: stefan.kasberger@univie.ac.at
+License: MIT
+Project-URL: Documentation, https://pydataverse.readthedocs.io/
+Project-URL: Issue Tracker, https://github.com/gdcc/pyDataverse/issues
+Project-URL: Changelog, https://pydataverse.readthedocs.io/en/latest/community/releases.html
+Keywords: pyDataverse,dataverse,api
+Platform: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Natural Language :: English
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2.12.0)
+Requires-Dist: jsonschema (>=3.2.0)
+
+[![PyPI](https://img.shields.io/pypi/v/pyDataverse.svg)](https://pypi.org/project/pyDataverse/) [![Build Status](https://travis-ci.com/gdcc/pyDataverse.svg?branch=master)](https://travis-ci.com/gdcc/pyDataverse) [![Coverage Status](https://coveralls.io/repos/github/gdcc/pyDataverse/badge.svg)](https://coveralls.io/github/gdcc/pyDataverse) [![Documentation Status](https://readthedocs.org/projects/pydataverse/badge/?version=latest)](https://pydataverse.readthedocs.io/en/latest) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pydataverse.svg) [![GitHub](https://img.shields.io/github/license/gdcc/pydataverse.svg)](https://opensource.org/licenses/MIT) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4664557.svg)](https://doi.org/10.5281/zenodo.4664557)
+
+# pyDataverse
+
+pyDataverse is a Python module for [Dataverse](http://dataverse.org).
+It helps to access the Dataverse [API's](http://guides.dataverse.org/en/latest/api/index.html) and manipulate, validate, import and export all Dataverse data-types (Dataverse, Dataset, Datafile).
+
+**Find out more: [Read the Docs](https://pydataverse.readthedocs.io/en/latest/)**
+
+
