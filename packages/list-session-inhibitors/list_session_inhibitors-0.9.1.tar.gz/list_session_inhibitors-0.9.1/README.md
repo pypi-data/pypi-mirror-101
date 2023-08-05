@@ -1,0 +1,1 @@
+Using dbus, list session inhibitors
