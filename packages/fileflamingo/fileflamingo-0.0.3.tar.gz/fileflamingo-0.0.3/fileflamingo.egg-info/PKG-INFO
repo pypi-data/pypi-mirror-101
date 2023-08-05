@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: fileflamingo
+Version: 0.0.3
+Summary: A suite of Python base classes that simplify interactions with files.
+Home-page: https://github.com/jgrugru/file-flamingo
+Author: Jeff Gruenbaum
+Author-email: jeff.gruenbaum@gmail.com
+License: MIT
+Description: # file-flamingo
+        A suite of base classes that simplifies interactions with files.
+        
+        ```
+        pip3 install fileflamingo
+        ```
+        
+        # BaseFile
+            - get_contents_of_file (only works with text)
+            - create_filepath (either a file or a dir)
+            - delete_file (only works on files, not dirs)
+            - append_data_to_file
+            - write_data_to_file
+            - clear_file
+            - is_binary
+            - is_empty
+            - is_dir
+            - is_file
+            - filepath_exists
+        
+        # EncryptionFile
+            - encrypt
+            - decrypt
+            - write_bytes_to_file
+            - get_bytes_from_file
+            
+        
+Keywords: file,file abstraction,file functions,fileclass,class file
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
