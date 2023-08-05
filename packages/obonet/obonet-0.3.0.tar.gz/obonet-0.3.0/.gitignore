@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.egg-info/
+dist/
+.cache
+.pytest_cache/
+.ipynb_checkpoints/
+env/
+pip-wheel-metadata/
+
+# System specific files
+
+## Linux
+*~
+.Trash-*
+
+## macOS
+.DS_Store
+._*
+.Trashes
+
+## Windows
+Thumbs.db
+[Dd]esktop.ini
+
+## Text Editors
+.vscode
