@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: dofast
+Version: 0.0.6.post1
+Summary: A package for dirty faster Python programming
+Home-page: https://github.com/GaoangLiu/slipper
+Author: SLP
+Author-email: byteleap@gmail.com
+License: UNKNOWN
+Description: A package for faster Python programming. 
+        
+        ## Usage
+        ```python
+        import dofast.utils as df
+        
+        text = df.jsonread('json_file.json')
+        df.pp(js) # == pprint.pprint(js)
+        ```
+        
+        ## Install
+        `python3 -m pip install dofast`
+        
+        Or, update to latest version with:
+        
+        `python3 -m pip install dofast --upgrade`
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
