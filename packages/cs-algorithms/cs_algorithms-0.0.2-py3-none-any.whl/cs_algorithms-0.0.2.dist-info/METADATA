@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: cs-algorithms
+Version: 0.0.2
+Summary: Sorting Algorithms & Data Structures
+Home-page: https://github.com/michael-gvdw/cs-algorithms.git
+Author: Michael Groenewegen van der Weijden
+Author-email: 
+License: UNKNOWN
+Project-URL: GitHub, https://github.com/michael-gvdw/cs-algorithms.git
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# cs-algorithms
+Python package with common sorting algorithms and data structures 
+
+
+## Current functionality
+* Sroting:
+    * is_sorted
+
+        Check if a given array is sorted (works for ascending and descending order).
+
+    * bubble_sort_original
+
+        Repeatedly swapping the adjacent elements if they are in wrong order.
+
+    * bubble_sort_optimized
+
+        Repeatedly swapping the adjacent elements if they are in wrong order (stops when array is sorted).
+
+    * selection_sort
+
+        Repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. 
+
+    * insertion_sort
+
+        The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at the correct position in the sorted part.
+    * merge_sort
+
+        It divides the input array into two halves, calls itself for the two halves, and then merges the two sorted halves. 
+
+    * quick_sort
+
+        It picks an element as pivot and partitions the given array around the picked pivot. 
+
+* Data Structures:
+    * None
+
+
+
