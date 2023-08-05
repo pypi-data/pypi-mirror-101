@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: voidbots
+Version: 0.0.0
+Summary: VoidBots api but in python -_-
+Home-page: UNKNOWN
+Author: sldless
+License: MIT
+Description: 
+        
+        ## Example
+        ```
+        import voidbots as vd
+        
+        ## functions
+        vd.void(apikey='Your api key') #do dir(vd.void) to see what in it, but theres vd.void(apikey='Your api key').voteinfo('A bot id','A user id')
+        vd.void(apikey='Your api key').botinfo('A bot id')
+        vd.void(apikey='Your api key').postStats(bot.user.id, len(bot.guilds), bot.shard_count or 0)
+        vd.void(apikey='Your api key').botanalytics(bot.user.id)
+        vd.void(apikey='Your api key').botreviews(bot.user.id)
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
