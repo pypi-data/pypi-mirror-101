@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: PythonToolkit
+Version: 21.4
+Summary: PythonToolkit (PTK) an interactive python environment
+Home-page: http://pythontoolkit.sourceforge.net
+Author: Tom Charrett
+Author-email: tcharrett@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Topic :: Scientific/Engineering
+Classifier: Intended Audience :: Developers
+Requires-Dist: wxpython
+Provides-Extra: opt
+Requires-Dist: numpy ; extra == 'opt'
+
+PythonToolkit (PTK) is an interactive environment for python. 
+It was designed to provide a python based environment similiar to Matlab
+for scientists and engineers however it can also be used as a general
+purpose interactive python environment.
+

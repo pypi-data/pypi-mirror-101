@@ -1,0 +1,55 @@
+#Tips displayed on startup
+#
+PTK uses engines to allow multiple independent python interpreters to run simutaneously
+#
+You can start an engine using the icon on the console toolbar (next to the current engine list)
+#
+Use an pyEngine to start a new python interpeter without any GUI support
+#
+Use a wxEngine to interactively program with the wxpython GUI toolkits (the wx.App instance is already active)
+#
+Use a TkEngine to interactively program with the Tk GUI toolkit (a Tkinter.Tk root object is already active)
+#
+Use a GTKEngine to interactively program with the GTK GUI toolkit (the GTK main is already running)
+#
+Use a Qt4Engine to interactively program with Qt4 GUI toolkit using the pyQt4 package (the QApplication is already active)
+#
+Use a pysideEngine to interactively program with Qt4 GUI toolkit using the pyside package (the QApplication is already active)
+#
+You can setup engines to automatically start (option found under edit-menu>preferences: EngineManager)
+#
+You can use the command: >>> clear() from any engine to clear the console.
+#
+You can use the command: >>> edit('filename') from any engine to open the file in the ptk editor
+#
+You can use the command: >>> inspect('object_name') from any engine to inspect the object in the Inspector tool
+#
+You can use the command: >>> view('object_name') from any engine to open a GUI view of the object - if one is registed
+#
+Use ctrl+up / ctrl+down to cycle through the command history
+#
+Use ctrl+up / ctrl+down to cycle with a partially typed command to cycle through matchs in the command history
+#
+Use the filters (found next to the up icon) in the namespace browser to limit the object types that are visible
+#
+Right click an object in the namespace browser to see possible actions for the object type, such as BrowseTo (view in namespace browser) and Inspect object (open the inspector tool for that object)
+#
+If source file information is shown in the Inspector pane you can open the file in the editor by clicking the icon.
+#
+If an instance is displayed in the Inspector you can Inspect the objects type by clicking the type icon.
+#
+Pressing ctrl+space in the console (or typing a '.') will open the autocompletion list.
+#
+You can keep the calltip window open by clicking the padlock icon (bottom left) so you can see the arguments while you type. To close just toogle the padlock or click the close icon. You can also resize the window using the icon in the bottom right.
+#
+You can save your command history to file using the save icon in the command history window and add the commands back in at a later date using the load icon.
+#
+You can select commands from the history and run them in the console (right click > run)
+#
+Enable/disable the debugger with the footstep icon next to the stop button.
+#
+Set debugger breakpoints in the editor by clicking in the margin (Remember! breakpoints are only active when the debugger is enabled)
+#
+Closing the console or editor windows does not close the application  - use the taskbar icon to restore them. (So you can work in the editor without the clutter of having the console window open.)
+#
+You can run code selected in the Editor by pressing F9 or using the menu item: Tools>Run Code
