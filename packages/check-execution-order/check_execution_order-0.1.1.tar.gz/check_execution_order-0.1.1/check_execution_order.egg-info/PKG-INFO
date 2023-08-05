@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: check-execution-order
+Version: 0.1.1
+Summary: Automatically check execution order in Jupyter Notebooks
+Home-page: https://github.com/MarcoGorelli/check-execution-order
+Author: Marco Gorelli
+License: MIT
+Description: [![Build Status](https://github.com/MarcoGorelli/check-execution-order/workflows/tox/badge.svg)](https://github.com/MarcoGorelli/check-execution-order/actions?workflow=tox)
+        [![Coverage](https://codecov.io/gh/MarcoGorelli/check-execution-order/branch/main/graph/badge.svg)](https://codecov.io/gh/MarcoGorelli/check-execution-order)
+        [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/MarcoGorelli/check-execution-order/main.svg)](https://results.pre-commit.ci/latest/github/MarcoGorelli/check-execution-order/main)
+        
+        check-execution-order
+        ===========
+        
+        A tool and pre-commit hook to automatically check execution order in Jupyter Notebooks.
+        
+        <p align="center">
+            <a href="#readme">
+                <img alt="demo" src="https://raw.githubusercontent.com/nbQA-dev/nbQA-demo/master/check-execution-order.gif">
+            </a>
+        </p>
+        
+        ## Installation
+        
+        ```console
+        $ pip install check-execution-order
+        ```
+        
+        ## Usage as a pre-commit hook (recommended)
+        
+        See [pre-commit](https://github.com/pre-commit/pre-commit) for instructions
+        
+        Sample `.pre-commit-config.yaml`:
+        
+        ```yaml
+        -   repo: https://github.com/MarcoGorelli/check-execution-order
+            rev: v0.1.1
+            hooks:
+            -   id: check-execution-order
+        ```
+        
+        ## Command-line example
+        
+        ```console
+        $ check-execution-order bad.ipynb
+        Cell 1 comes after 2 in file 'bad.ipynb'
+        ```
+        
+        ## Configuration
+        
+        None yet. Got any requests? Please let me know!
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.1
+Description-Content-Type: text/markdown
