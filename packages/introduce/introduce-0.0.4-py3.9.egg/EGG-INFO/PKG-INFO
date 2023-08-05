@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: introduce
+Version: 0.0.4
+Summary: 자기소개 라이브러리
+Home-page: https://github.com/cord0318/python_introduce
+Author: Jung Ji-Hyo
+Author-email: cord0318@gmail.com
+License: GPL-V3
+Description: # Introduce 📱
+        파이썬용 자기소개서 라이브러리입니다.
+        
+        * https://pypi.org/project/introduce/
+        - https://github.com/cord0318/python_introduce
+        
+        # 다운로드 📥
+        **이 모듈은 파이썬 모든 버젼에서 사용 가능합니다.**
+        윈도우나 리눅스에서 다음과 같이 입력합니다.
+        ```
+        pip install introduce
+        ```
+        오류가 나는 경우, python -m pip install --upgrade pip 로 pip를 업데이트 해주세요.
+        
+        # 사용법 🤖
+        ```python
+        import introduce
+        
+        myself = introduce.MySelf("홍길동","16살", "남성", "코딩") # 양식 (이름, 나이, 성별, 취미)
+        
+        myself.introduction("Hello World!") # 자기소개 작성
+        data = myself.check()
+        myself.create_image(width=200, height=300, font="이순신돋움체M.ttf", font_size=15, font_color=(255, 0, 0), background_color=(241, 241, 241)) # 사진 생성
+        
+        
+        email = introduce.Email("example0318@gmail.com", "example1234!", "example0104@gmail.com") # 양식 (당신의 이메일, 당신의 이메일의 비밀번호, 메시지를 보낼 이메일)
+        email.send(title="자기소개서", send_text=data, image="자기소개서.png") # 양식 (이메일의 제목, 보낼 메시지, 이미지)
+        ```
+        
+Keywords: korea,auto,pillow,introduce,introduction
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3
+Description-Content-Type: text/markdown
