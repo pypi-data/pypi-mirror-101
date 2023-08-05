@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: deribitsimplebot
+Version: 0.2.1
+Summary: Class set for the implementation of a simple bot working with the Deribit crypto exchange
+Home-page: https://github.com/n-eliseev/deribitsimplebot
+Author: Eliseev Nikolay
+Author-email: n.a.eliseev@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: anyio (>=2.1.0,<3.0.0)
+Requires-Dist: json5 (>=0.9.5,<0.10.0)
+Requires-Dist: mysql-connector-python (>=8.0.23,<9.0.0)
+Requires-Dist: websockets (>=8.1,<9.0)
+Project-URL: Repository, https://github.com/n-eliseev/deribitsimplebot
