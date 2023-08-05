@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: timeweather
+Version: 0.1.0
+Summary: Weather API Lib
+Home-page: UNKNOWN
+Author: TimeStudio
+Author-email: sjgzszg@163.com
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# TimeWeather 0.1.0
+
+## 安装方法
+
+```python
+(python -m) pip install pyweather
+```
+
+## 使用方法
+
+```python
+from pyweather import *
+#QWFreeAPI 1-3三个和风天气开发版免费API
+#LocateMe_China myip.ipip.net中国IP查询
+#LocateMe和LocateMe_en myip.la国际IP查询
+addr=LocateMe_China()
+loc=QWFreeAPI1.locate(addr)
+print(QWFreeAPI1.weather(loc))
+```
+
+## 函数
+
+```python
+#将字符串转为整数
+#获取字符串中第一个合法的整数
+#123d -> 123
+#asdf1234ghjk -> 1234
+parse_int(s) -> int
+#如果使用热点，定位可能失败，返回空字符串
+#国内快速定位（https://www.ipip.net/myip.html）
+LocateMe_China() -> str
+#国际中文定位，稍慢（https://www.myip.la/）
+LocateMe() -> str
+#国际英文定位（https://www.myip.la/）
+LocateMe_en() -> str
+```
+
+## 类
+
+```python
+#天气
+PointWeather(time=None,temp=None,feelslike=None,wea=None,weaicon=None,winddir=None,winddeg=None,windscale=None,windspeed=None,humidity=None,vis=None,aqi=None)
+	get_icon() -> bytes #获取天气图标
+    add(pw) -> None #添加天气数据，pw为另一个PointWeather对象
+    #可以使用str和repr
+#和风天气API（不支持签名）
+QWeatherAPI(key)
+	locate(loc) -> str #定位城市代码
+    weather(cid) -> PointWeather #根据城市代码查询天气
+#免费开发版API：QWFreeAPI 1-3
+#tianqiapi.com API
+TianqiAPI(appid,appsecret)
+	weather(cid=None,city=None,ip=None) -> PointWeather #查询天气，默认查询本地天气
+#免费API：TianqiFreeAPI
+#心知天气API（只支持温度和天气种类，不支持签名）
+SeniverseAPI(key)
+	weather(loc) -> PointWeather #根据城市查询天气
+#免费API：SeniverseFreeAPI 1-3
+```
+
+
+
