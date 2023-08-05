@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: sparkfun-qwiic-button
+Version: 2.0.1
+Summary: SparkFun Electronics qwiic button package
+Home-page: http://www.sparkfun.com/qwiic
+Author: SparkFun Electronics
+Author-email: info@sparkfun.com
+License: MIT
+Keywords: electronics,maker
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: sparkfun-qwiic-i2c
+
+This package allows the user to: determine whether or not the button/switch is pressed or has been clicked,         set the brightness of the onboard LED, configure the onboard LED's 'heart-beat' effect, store button events and their         times in a FIFO queue, use button-based interrupts, and adjust the device's I2C address
+
+
