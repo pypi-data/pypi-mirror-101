@@ -1,0 +1,1 @@
+This automatic-xueanquan-course-complete tool helps you do the courses of xueanquan automatically.
