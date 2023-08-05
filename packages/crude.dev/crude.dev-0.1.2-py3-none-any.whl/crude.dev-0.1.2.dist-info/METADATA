@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: crude.dev
+Version: 0.1.2
+Summary: crude.dev api client
+Home-page: https://crude.dev/
+License: Proprietary
+Author: Janto Dreijer
+Author-email: jantod@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: httpx (>=0.17.1,<0.18.0)
+Requires-Dist: msgpack (>=1.0.2,<2.0.0)
+Requires-Dist: tabulate (>=0.8.9,<0.9.0)
+Requires-Dist: typer (>=0.3.2,<0.4.0)
+Project-URL: Repository, https://github.com/crude-dev
