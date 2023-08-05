@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: haws
+Version: 0.2.2
+Summary: A CLI to sanity check the AWS setup for LeanIX Cloud Intelligence Scans
+Home-page: https://github.com/vg-leanix/aws_sancheck
+Author: Vincent Groves
+Author-email: vincent.groves@leanix.net
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Customer Service
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.5
+Requires-Dist: bleach (==3.3.0)
+Requires-Dist: boto3 (==1.17.33)
+Requires-Dist: botocore (==1.20.33)
+Requires-Dist: build (==0.3.1.post1)
+Requires-Dist: certifi (==2020.12.5)
+Requires-Dist: chardet (==4.0.0)
+Requires-Dist: check-manifest (==0.46)
+Requires-Dist: click (==7.1.2)
+Requires-Dist: colorama (==0.4.4)
+Requires-Dist: commonmark (==0.9.1)
+Requires-Dist: docutils (==0.16)
+Requires-Dist: idna (==2.10)
+Requires-Dist: importlib-metadata (==3.9.0)
+Requires-Dist: jmespath (==0.10.0)
+Requires-Dist: keyring (==23.0.1)
+Requires-Dist: numpy (==1.20.1)
+Requires-Dist: packaging (==20.9)
+Requires-Dist: pandas (==1.2.3)
+Requires-Dist: pep517 (==0.10.0)
+Requires-Dist: pkginfo (==1.7.0)
+Requires-Dist: pycodestyle (==2.7.0)
+Requires-Dist: Pygments (==2.8.1)
+Requires-Dist: pyparsing (==2.4.7)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pytz (==2021.1)
+Requires-Dist: readme-renderer (==29.0)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: rfc3986 (==1.4.0)
+Requires-Dist: rich (==10.0.0)
+Requires-Dist: s3transfer (==0.3.6)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: toml (==0.10.2)
+Requires-Dist: tqdm (==4.59.0)
+Requires-Dist: typing-extensions (==3.7.4.3)
+Requires-Dist: urllib3 (==1.26.4)
+Requires-Dist: webencodings (==0.5.1)
+Requires-Dist: zipp (==3.4.1)
+
+UNKNOWN
+
+
