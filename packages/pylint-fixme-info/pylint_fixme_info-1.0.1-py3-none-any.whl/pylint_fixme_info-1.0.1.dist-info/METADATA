@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pylint-fixme-info
+Version: 1.0.1
+Summary: A pylint checker for reporting fixmes with Info level
+Home-page: https://github.com/mxmeinhold/pylint-fixme-info
+Author: Max Meinhold
+Author-email: mxmeinhold@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/mxmeinhold/pylint-fixme-info/issues
+Keywords: pylint linting
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
+Requires-Dist: pylint (>=1.7.6)
+
+# Pylint fixme info
+A pylint plugin that emits info rather than warning for FIXME, TODO, and the like.
+
+
