@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<form>
+    <separator id="billing" colspan="4" string="Billing"/>
+    <label name="billing_product"/>
+    <field name="billing_product"/>
+    <label name="default_invoice_method"/>
+    <field name="default_invoice_method"/>
+    <label name="default_project_prefix"/>
+    <field name="default_project_prefix"/>
+</form>
