@@ -1,0 +1,78 @@
+[tool.poetry]
+name = "pelican-webring"
+version = "1.3.0"
+description = "Adds a webring to your site from a list of web feeds"
+authors = ["David Alfonso <developer@davidalfonso.es>"]
+license = "AGPL-3.0"
+readme = "README.md"
+keywords = ["pelican", "plugin"]
+repository = "https://github.com/pelican-plugins/webring"
+packages = [
+    { include = "pelican" },
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Framework :: Pelican",
+    "Framework :: Pelican :: Plugins",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.urls]
+"Documentation" = "https://docs.getpelican.com/"
+"Funding" = "https://donate.getpelican.com/"
+"Source" = "https://github.com/pelican-plugins/webring"
+"Tracker" = "https://github.com/pelican-plugins/webring/issues"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pelican = "^4.5"
+markdown = {version = "^3.2.2",optional = true}
+feedparser = ">=6.0"
+
+[tool.poetry.dev-dependencies]
+pelican = { git = "https://github.com/getpelican/pelican.git" }
+black = {version = "^19.10b0",allow-prereleases = true}
+flake8 = "^3.8"
+flake8-black = "^0.1.0"
+invoke = "^1.3"
+isort = "^5.2"
+livereload = "^2.6"
+markdown = "^3.2.2"
+pytest = "^6.0"
+pytest-cov = "^2.7"
+pytest-pythonpath = "^0.7.3"
+pytest-sugar = "^0.9.4"
+Werkzeug = "^1.0"
+
+[tool.poetry.extras]
+markdown = ["markdown"]
+
+[tool.autopub]
+project-name = "Webring"
+git-username = "botpub"
+git-email = "botpub@autopub.rocks"
+append-github-contributor = true
+
+[tool.isort]
+# Maintain compatibility with Black
+profile = "black"
+multi_line_output = 3
+
+# Sort imports within their section independent of the import type
+force_sort_within_sections = true
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
