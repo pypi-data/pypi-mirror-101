@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: sphinxcontrib-analytics
+Version: 1.0.0.dev6
+Summary: Add your favorite vendor-analytics embed code to your documentation pages.
+Home-page: https://github.com/cizario/sphinxcontrib-analytics/
+Author: Nizar DELLELI
+Author-email: nizar.delleli@gmail.com
+License: BSD-3-Clause
+Download-URL: https://github.com/cizario/sphinxcontrib-analytics/
+Project-URL: Documentation, https://sphinxcontrib-analytics.readthedocs.io/en/latest/
+Project-URL: Source Code, https://github.com/cizario/sphinxcontrib-analytics/
+Project-URL: Issue Tracker, https://github.com/cizario/sphinxcontrib-analytics/issues
+Keywords: sphinx extension,sphinx contrib,analytics,google-analytics,matomo-analytics
+Platform: any
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: Sphinx
+Provides-Extra: lint
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: mypy ; extra == 'lint'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+Requires-Dist: tox ; extra == 'tests'
+
+Sphinx Contrib Analytics
+========================
+
+Add your favorite vendor-analytics embed code to your documentation pages.
+
+**Under active development ..**
+
+
+
+
