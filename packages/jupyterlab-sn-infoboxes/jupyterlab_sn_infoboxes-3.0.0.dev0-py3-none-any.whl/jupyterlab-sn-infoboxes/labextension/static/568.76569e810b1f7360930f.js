@@ -1,0 +1,1 @@
+(self.webpackChunkjupyterlab_sn_infoboxes=self.webpackChunkjupyterlab_sn_infoboxes||[]).push([[568],{568:(e,s,t)=>{"use strict";t.r(s),t.d(s,{default:()=>n});const n={id:"jupyterlab-sn-infoboxes:plugin",autoStart:!0,activate:e=>{console.log("JupyterLab extension jupyterlab-sn-infoboxes is activated!")}}}}]);
