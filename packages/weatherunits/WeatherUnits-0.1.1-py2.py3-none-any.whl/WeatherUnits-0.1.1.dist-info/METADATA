@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: WeatherUnits
+Version: 0.1.1
+Summary: Easy conversion for common weather units
+Home-page: https://github.com/noblecloud/WeatherUnits
+Author: noblecloud
+Author-email: git@noblecloud.io
+License: MIT license
+Project-URL: Bug Tracker, https://github.com/noblecloud/WeatherUnits/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Utilities
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pytz
+
+# WeatherUnits
+Easily convert typical weather units from one type to another
+
+Will automatically localize based on config file
+
+Very much a work in progress
+
+## Requirments
+- Python3.5
+ - [pytz](https://pypi.org/project/pytz/)
+
+
