@@ -1,0 +1,85 @@
+Metadata-Version: 2.1
+Name: bln-converter
+Version: 1.0.2
+Summary: Easy BLN file conversion to ESRI shape or GeoJSON
+Home-page: https://github.com/ericmiguel/bln-converter
+Author: Eric Miguel Ribeiro
+Author-email: ericmiguel@id.uff.br
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: certifi (==2020.12.5)
+Requires-Dist: click (==7.1.2)
+Requires-Dist: click-plugins (==1.1.1)
+Requires-Dist: cligj (==0.7.1)
+Requires-Dist: fiona (==1.8.18)
+Requires-Dist: geopandas (==0.8.1)
+Requires-Dist: munch (==2.5.0)
+Requires-Dist: numpy (==1.19.5)
+Requires-Dist: pandas (==1.2.0)
+Requires-Dist: pycodestyle (==2.6.0)
+Requires-Dist: pyproj (==3.0.0.post1)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pytz (==2020.5)
+Requires-Dist: Shapely (==1.7.1)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: toml (==0.10.2)
+
+# BLN-Converter
+
+## What is it?
+
+A simple CLI utiliy tool for converting BLN files (a extension used on GIS software like Surfer) to [ESRI shape](https://pt.wikipedia.org/wiki/Shapefile) or [GeoJSON files](https://geojson.org).
+
+## Where to get it
+
+The source code is currently hosted on GitHub at: https://github.com/ericmiguel/bln-converter
+
+Binary installers for the latest released version are available at the [Python Package Index (PyPI)](https://pypi.org/project/bln-converter).
+
+```bash
+pip install bln-converter
+```
+
+## How to use it
+
+BLN converter offers a very simple CLI. Although under development, it is already functional.
+
+Convert BLN to ESRI shape:
+
+```bash
+bln-converter bln2shp -p {bln_folder} -crs {CRS}
+```
+
+or use bln2geojson command to get a GeoJSON output.
+
+```bash
+bln-converter bln2geojson -p {bln_folder} -crs {CRS}
+```
+
+BLN converter will find and process all BLN files in a given folder. The resultant files will be output to the origin folder.
+
+Other commands or instructions can be found using the help command
+
+```bash
+bln-converter --help
+```
+
+## Dependencies
+
+- [Geopandas](https://geopandas.org)
+- [Click](https://click.palletsprojects.com/en/7.x/)
+
+## License
+
+[MIT License](https://github.com/ericmiguel/bln-converter/blob/main/LICENSE)
+
+## Contributing
+
+Although BLN Converter is a simple and dirty utility script, all contributions are welcome.
+
+
