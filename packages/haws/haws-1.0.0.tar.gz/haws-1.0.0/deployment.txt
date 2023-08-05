@@ -1,0 +1,5 @@
+1. check-manifest --create
+2. python setup.py bdist_wheel sdist
+3. twine upload --repository testpypi dist/* [TEST]
+3.1 twine upload --repository testpypi --skip-existing dist/*
+4. twine upload --skip-existing dist/*  [PRODUCTION]
