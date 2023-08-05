@@ -1,0 +1,73 @@
+.TH VSW-VERIFY "1" "September 2020" "C. T. Al-Hakim" "Verifiable Software"
+.SH NAME  
+vsw verify \- Verify a software package in the VS repo
+.SH SYNOPSIS  
+\fBvsw verify\fR
+[\fI\,OPTION\/\fR]... \fI\,packageName\/\fR
+.SH DESCRIPTION  
+.PP
+\fBvsw verify\fR - vsw verify is used to verify a software package in the VSW
+repo. The tool will request to verify the package identified by
+.I packageName
+. If no policy is specified, then it will simply verify that a package with the
+given name is published and can be validated. If 
+.B --policy
+is passed, then more complex verification policies will be applied.
+.PP
+The options are as follows:
+.TP
+.BI "\-o " file
+Send output to the specified file.
+.TP
+.BI "\-p, \-\-policy " policy
+Apply the policy defined in 
+.I policy
+to the specified package.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+print help menu
+.SS "Exit status:"
+.TP
+0
+if the software package verifies successfully.
+.TP
+1
+if the software package does not verify.
+.TP
+2
+if unable to communicate with the repo.
+
+.SH EXAMPLES  
+.TP  
+\fBvsw verify\~--policy\fR\~ mypolicy.json\f\~ foo
+(Run vsw verify with mypolicy.json against the package foo)
+.SH "REPORTING BUGS"
+Open issues at: <https://github.com/verifiablesoftware/vsw/issues>
+.SH AUTHOR
+Written by C. T. Al-Hakim and B. Dobry
+.SH COPYRIGHT
+Copyright \(co 2020 Futurewei Technologies, Inc.
+.br
+License Apache-2.0 License <https://github.com/verifiablesoftware/vsw/blob/master/LICENSE>.
+.SH CREDITS  
+.PP	
+This man page was created only for demonstration purpose by Chaker Al-Hakim on 09/10/2020
+
+.SH SEE ALSO
+.br
+vsw setup(1)
+.br
+vsw init(1)
+.br
+vsw install(1)
+.br
+vsw register(1)
+.br
+vsw publish(1)
+.br
+vsw list(1)
+.br
+vsw attest(1)
+.br
+vsw audit(1)
+.br

@@ -1,0 +1,92 @@
+.TH VSW-INIT "1" "December 2020" "C. T. Al-Hakim" "Verifiable Software"
+.SH NAME  
+vsw init \- initialize a vsw package
+.SH SYNOPSIS  
+\fBvsw init\fR  -y|--yes
+.SH DESCRIPTION  
+.PP
+\fBvsw init\fR - vsw init is used to initialize a vsw package by interactively
+creating or updating a \fBvsw_package.json\fR file. It will leave untouched any
+fields or values that were already set. The option \fB-y\fR or \fB--yes\fR may
+be used to skip the interactive prompts altogether and fill the file with
+default values.
+.TP
+\fB\-y\fR, \fB\-\-yes\fR 
+do not prompt, create a default vsw_package.json
+.SS "Exit status:"
+.TP
+0
+on successful file creation,
+.TP
+1
+on failure to create the file.
+.SH FILES  
+.TP  
+.I  vsw_package.json  
+.TP
+.RS 2
+.nf
+{
+    "name": "testpkg",
+    "version": "1.0.0",
+    "description": "test package",
+    "keywords": [
+      "testpckg",
+      "testpackage"
+    ],
+    "author": {
+      "DID": "did:example:123456",
+      "name": "your name"
+    }
+    "license": "Apache-2.0"
+  }
+.fi
+.RE
+
+.SH EXAMPLES
+.P
+Create vsw_package.json with the default values:
+.P
+.RS 2
+.nf
+$ vsw init \-y
+.fi
+.RE
+.P
+Create vsw_package.json interactively with prompts:
+.P
+.RS 2
+.nf
+$ vsw init
+.fi
+.RE
+.SH "REPORTING BUGS"
+Create an issue on GitHub at <https://github.com/verifiablesoftware/vsw/issues>
+.SH AUTHOR
+Written by C. T. Al-Hakim and B. Dobry
+.SH COPYRIGHT
+Copyright \(co 2020 Futurewei Technologies, Inc.
+.br
+License Apache-2.0 License <https://github.com/verifiablesoftware/vsw/blob/master/LICENSE>.
+.SH CREDITS  
+.PP	
+This man page was created only for demonstration purpose by Chaker Al-Hakim on 09/10/2020
+
+.SH SEE ALSO  
+.br
+vsw setup(1)
+.br
+vsw install(1)
+.br
+vsw register(1)
+.br
+vsw publish(1)
+.br
+vsw list(1)
+.br
+vsw attest(1)
+.br
+vsw verify(1)
+.br
+vsw audit(1)
+.br
