@@ -1,0 +1,49 @@
+{
+  "allOf": [
+    {
+      "$ref": "../nr_common/nr-common-v1.0.0.json"
+    },
+    {
+      "id": "https://nusl.cz/schemas/nr_events/nr-events-v1.0.0.json",
+      "properties": {
+        "events": {
+          "description": "událost, konference",
+          "$comment": "nevím, zda to takhle zanořit nebo před všechno přidat event. záleží na tom, jak funguje princip dědičnosti, jestli se to samo oddělí; dokument se může vázet k vícero akcím, proto by bylo fajn, aby údaje zůstaly pohromadě",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "nameOriginal": {
+                "description": "volný zápis celého názvu akce",
+                "$comment": "podmíněně povinné - pokud vyplním cokoliv z této oblasti, tak musím vyplnit originální název",
+                "type": "string"
+              },
+              "nameAlternate": {
+                "description": "zkrácená forma názvu akce nebo překladu. měla by fungovat jako alias pro vyhledávání",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "nameUnified": {
+                "description": "název pokrácený o ročník nebo rok. pokus o sjednocení zápisu, aby bylo možné tento údaj použít pro fasety",
+                "$ref": "../taxonomy-v2.0.0.json#/definitions/TermArray"
+              },
+              "date": {
+                "description": "rozsah konání akce/konference -  může být YYYY-MM-DD nebo YYYY-MM-DD / YYYY-MM-DD.",
+                "$comment": "podmíněně povinné - pokud vyplním název nebo jiný údaj z event",
+                "type": "string"
+              },
+              "location": {
+                "$ref": "../nr_common/nr-common-v1.0.0.json#/definitions/location"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+      ]
+    }
+  ]
+}
