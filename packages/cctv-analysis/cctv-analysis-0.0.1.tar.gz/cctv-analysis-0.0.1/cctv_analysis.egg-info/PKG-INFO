@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: cctv-analysis
+Version: 0.0.1
+Summary: A ready-to-use server to analyse cctv feeds. Pip install, boot up server, and make requests to analyse videos.
+Home-page: https://github.com/midusi/cctv_analysis
+Author: Juan Tomás Barrón - Gustavo Risso - Facundo Quiroga
+Author-email: fquiroga@lidi.info.unlp.edu.ar
+License: GNU Affero General Public License v3 or later (AGPLv3+)
+Project-URL: Bug Tracker, https://github.com/midusi/cctv_analysis/issues
+Project-URL: Documentation, https://github.com/midusi/cctv_analysis
+Project-URL: Source Code, https://github.com/midusi/cctv_analysis
+Description: 
+        # CCTV analysis.
+        
+        A cctv analysis server to asynchronously analyse videos for objects such as persons or cars in cctv camera feeds.
+        [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
+        
+        ## Introduction.
+        
+        KERAS implementation of YOLOv3 (Tensorflow backend) inspired by [allanzelener/YAD2K](https://github.com/allanzelener/YAD2K).
+        
+        ---
+        
+        ## Initial setup for model.
+        
+        1. Clone the repository on your computer.
+        2. Download YOLOV3 weights and the yolo.h5 file from this drive link https://drive.google.com/drive/folders/1PHLAmDVdO3DWp0Igf2_T_uBnDsvJZghy?usp=sharing , or use de wget instruction above
+        3. Put the weights files in the weights folder "/cctv_analysis/model/weights", and the file yolo.h5 inside the cfg folder "/cctv_analysis/model/cfg".
+        4. Run the app.
+        
+        
+        To run the server localy:
+        
+        At the server folder "cctv_analysis/server/"
+        python app.py  
+        server runs at http://127.0.0.1:5000/ localy,
+        use the "seleccionar archivo" button, then select video, once the video is selected click at the "enviar" button, after procesing the output can be found at the files folder (cctv_analysis/server/files" as a json file called data.
+        
+        PD: the files folder can be modified from the user_cfg.json file at the server folder
+        
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: License :: OSI Approved :: Python Software Foundation License
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
