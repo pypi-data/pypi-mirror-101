@@ -1,0 +1,1 @@
+This is a lightweight MySQL adapter that helps to setup databases and dummy data. SQL statements can also be used executed with a single line of code.
