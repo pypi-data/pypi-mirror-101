@@ -1,0 +1,9 @@
+on:
+  ControlRequest:
+    - !ControlReqDriver {}
+  SearchRequest:
+    - !VectorSearchDriver {}
+  [IndexRequest, UpdateRequest]:
+    - !VectorIndexDriver {}
+  DeleteRequest:
+    - !DeleteDriver {}
