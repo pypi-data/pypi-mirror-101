@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block contenido %}
+<section>
+  <h4>Listado de Centros de Costos.</h4>
+  
+</section>
+<section>
+  {% import "macros.html" as macros %}
+  {{ macros.rendizar_paginacion(consulta_paginada=resultado, pagina_actual=pagina) }}
+</section>
+{% endblock %}

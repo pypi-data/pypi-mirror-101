@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% set titulo = titulo %}
+{% block contenido %}
+<section>
+  <h4>Listado de Monedas.</h4>
+  <a class="btn btn-primary btn-sm" href="{{ url_for("contabilidad.nueva_unidad") }}" role="button">Nueva Moneda</a>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Código</th>
+      </tr>
+    </thead>
+  {% for moneda in pagina.object_list -%}
+  <tr>
+    <th>
+      {{ moneda.id }}
+    </th>
+    <th scope="row">
+      {{ moneda.nombre }}
+    </th>
+    <td>
+      {{ moneda.codigo }}
+    </td>
+  </tr>
+  {%- endfor %}
+</table>
+</section>
+<section>
+  {% import "macros.html" as macros %}
+  {{ macros.rendizar_paginacion(consulta_paginada=resultado, pagina_actual=pagina) }}
+</section>
+{% endblock %}
