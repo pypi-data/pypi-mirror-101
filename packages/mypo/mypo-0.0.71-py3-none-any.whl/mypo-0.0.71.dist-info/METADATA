@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: mypo
+Version: 0.0.71
+Summary: 
+Home-page: https://github.com/sonesuke/mypo
+License: MIT
+Author: sonesuke
+Author-email: iamsonesuke@gmail.com
+Requires-Python: >=3.7.10,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: joblib (>=1.0.1,<2.0.0)
+Requires-Dist: numpy (>=1.20.1,<2.0.0)
+Requires-Dist: pandas (>=1.2.2,<2.0.0)
+Requires-Dist: pymc3 (>=3.11.1,<4.0.0)
+Requires-Dist: scipy (>=1.6.0,<2.0.0)
+Requires-Dist: tqdm (>=4.59.0,<5.0.0)
+Requires-Dist: yfinance (>=0.1.55,<0.2.0)
+Project-URL: Repository, https://github.com/sonesuke/mypo
+Description-Content-Type: text/markdown
+
+mypo is a Python module for making strategy your portfolio and is distributed under the MIT license.
+
+Installation
+============
+
+You can install the latest this module with the command:
+
+
+    pip install mypo
+
+Quick start
+============
+
+You can start quickly  by using docker image with the command.
+
+
+    git clone https://github.com/sonesuke/mypo.git
+    docker-compose up
+
+After starting Jupyter server, you can login it with the token. The default of token is '1111'.
+
+
+Important links
+===============
+
+- Documentation: https://sonesuke.github.io/mypo
+- Official source code repo: https://github.com/sonesuke/mypo
+- Download releases: https://pypi.org/project/mypo/
+- Issue tracker: https://github.com/sonesuke/mypo/issues
+
+Citation
+========
+If you use mypo in a publication, we would appreciate citations: https://sonesuke.github.io/mypo/
