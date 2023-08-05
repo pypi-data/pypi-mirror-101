@@ -1,0 +1,49 @@
+HISTORY.rst
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+src/zip_files/__init__.py
+src/zip_files/backend.py
+src/zip_files/click_extensions.py
+src/zip_files/zip_files.py
+src/zip_files/zip_folder.py
+src/zip_files.egg-info/PKG-INFO
+src/zip_files.egg-info/SOURCES.txt
+src/zip_files.egg-info/dependency_links.txt
+src/zip_files.egg-info/entry_points.txt
+src/zip_files.egg-info/not-zip-safe
+src/zip_files.egg-info/requires.txt
+src/zip_files.egg-info/top_level.txt
+tests/test_gitignore.py
+tests/test_zip_files.py
+tests/test_zip_folder.py
+tests/root/folder_with_dotfiles/a/.hidden
+tests/root/folder_with_dotfiles/a/1.txt
+tests/root/folder_with_dotfiles/a/2.txt
+tests/root/folder_with_dotfiles/b/.hidden
+tests/root/folder_with_dotfiles/b/3.txt
+tests/root/folder_with_dotfiles/b/4.txt
+tests/root/folder_with_dotfiles/b/5.md
+tests/root/folder_with_git_excludes/.gitignore
+tests/root/folder_with_git_excludes/CONTRIBUTING.md
+tests/root/folder_with_git_excludes/HISTORY.md
+tests/root/folder_with_git_excludes/Makefile.in
+tests/root/folder_with_git_excludes/README.md
+tests/root/folder_with_git_excludes/setup.py
+tests/root/folder_with_git_excludes/docs/.gitignore
+tests/root/folder_with_git_excludes/docs/sources/index.rst
+tests/root/folder_with_git_excludes/docs/sources/API/.gitignore
+tests/root/folder_with_git_excludes/src/module/__init__.py
+tests/root/folder_with_git_excludes/src/module/file1.py
+tests/root/folder_with_git_excludes/src/module/file2.py
+tests/root/folder_with_git_excludes/src/module/sub/__init__.py
+tests/root/user/folder/Hello World.docx
+tests/root/user/folder/hello.txt
+tests/root/user/folder/My Documents/64px-Fishs & Schrödinger's cat.gif
+tests/root/user/folder/My Documents/example-1.3.jar
+tests/root/user/folder/My Documents/你好，世界.md
+tests/root/user/folder2/.bashrc
+tests/root/user/folder2/.gitignore
+tests/root/user/folder2/FILE.txt
