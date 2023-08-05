@@ -1,0 +1,8 @@
+include generalobj/management/__init__.py
+include generalobj/management/commands/*.py
+include generalobj/migrations/*.py
+include generalobj/templates/*.html
+include generalobj/templates/blocks/*.html
+include generalobj/templatetags/*.py
+include generalobj/templates/templates
+include generalobj/templates/ajax/*.html

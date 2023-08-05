@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="container-fluid col-sm-4">
+		<div class="well well-sm">
+			<div class="btn-group" role="group" aria-label="">
+				<button type="button" class="btn btn-default" onClick="window.location = '{{ url_edit }}';">Edit</button>{{ additional_buttons|safe }}
+			</div>
+		</div>
+		{% if status_buttons %}
+			<form method='post' name='form_set_gostatus' id='form_set_gostatus' action='{% url "set_gostatus" %}'>
+				{% csrf_token %}
+				<input type="hidden" name="current_status" id="current_status" value="{{ current_status.id }}_{{ current_status.parent_obj_description }}">
+				<input type="hidden" name="parent_obj_id" id="parent_obj_id" value="{{ parent_obj_id }}">
+				<input type="hidden" name="gos_return_url" id="gos_return_url" value="{{ request.path }}">
+				<input type="hidden" name="new_status" id="new_status">
+				<div class="well well-sm">
+					<div class="btn-group" role="group" aria-label="">
+						{% for button in status_buttons %}
+							<button type="button" class="btn btn-default" style="background-color:lightgrey; color: black;" onClick="set_gostatus('{{ button.code }}');">{% if button.is_backward %}<span class="glyphicon glyphicon-fast-backward" aria-hidden=true></span> {% endif %}{{ button.name }}{% if button.is_forward %} <span class="glyphicon glyphicon-fast-forward" aria-hidden=true></span>{% endif %}</button>
+						{% endfor %}
+					</div>
+				</div>
+			</form>
+		{% endif %}
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="form-horizontal">
+				{% for field in fields %}
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ field.0|capfirst }}</label>
+						<div class="col-sm-8">
+							<p class="form-control-static">{{ field.1|safe }}</p>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-8">
+		<ul class="nav nav-tabs" role="tablist">
+			{% if additional_tabs %}
+				{% for tab in additional_tabs %}
+					<li role="presentation"{% if forloop.counter0 %}{% else %} class="active"{% endif %}><A href="#{{ tab.0 }}" data-toggle="tab">{{ tab.0 }}</A></li>
+				{% endfor %}
+			{% else %}
+				<li role="presentation" class="active"><a href="#first_tab" data-toggle="tab">-</a></li>
+			{% endif %}
+		</ul>
+		<div class="tab-content">
+			{% if additional_tabs %}
+				{% for tab in additional_tabs %}
+					<div role="tabpanel" class="tab-pane{% if forloop.counter0 %}{% else %} active{% endif %}" id="{{ tab.0 }}">
+						{% include tab.1 %}
+					</div>
+				{% endfor %}
+			{% else %}
+				<div role="tabpanel" class="tab-pane active" id="first_tab">
+					<div role="panel" class="panel panel-default" id="first_panel">
+						-
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+	
+	
+{% endblock %}
+
+{% block scriptsready %}
+        $( "form label" ).addClass(function( index ) {
+        return "col-sm-2 control-label";
+        });
+
+        $( "form input" ).addClass(function( index ) {
+        return "form-control";
+        });
+
+        $( "form select" ).addClass(function( index ) {
+        return "form-control selectpicker";
+        });
+
+        $('.has-popover').popover({'trigger':'hover'});
+{% endblock %}
+
+
+{% block scripts %}
+	<script type="text/javascript">
+		{% if html_scripts %}
+			{% for html_script in html_scripts %}
+				{% include html_script %}
+			{% endfor %}
+		{% endif %}
+
+		function set_gostatus(status) {
+			$('#new_status').val(status);
+			$('#form_set_gostatus').submit();
+		}
+	</script>
+{% endblock %}
