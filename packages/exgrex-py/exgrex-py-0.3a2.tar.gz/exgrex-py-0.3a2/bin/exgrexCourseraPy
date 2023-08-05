@@ -1,0 +1,144 @@
+#!/usr/bin/env bash
+# todo add script description
+# need install bash, bc jq
+
+########################################################################
+# Send report
+# Arguments:
+#   score - grade, number of points for solving the task
+#   feedback - comment to the solution: description of the test case, traceback
+#              errors, hint, etc.
+# Returns:
+#   None
+########################################################################
+function send_report {
+  local report
+  report=$(jq -n '{"fractionalScore":$fractionalScore|tonumber, "feedback":$feedback}' \
+  --arg fractionalScore "$1" \
+  --arg feedback "$2")
+
+  if [[ "$EXGREX_COURSERA_AUTOGRADER_VERSION" -eq 2 ]]; then
+    echo "$report" > $EXGREX_PATH_TO_REPORT_FILE
+  else
+    echo "$report"
+  fi
+
+  exit 0
+}
+
+########################################################################
+# get partId value from command line parameters(required to support autograder 1)
+########################################################################
+# Taken from example code for version 1
+# https://github.com/coursera/programming-assignments-demo/blob/master/custom-graders/DemoJavaGrader/GraderFiles/executeGrader.sh
+while [[ $# > 1 ]]
+  do
+    key="$1"
+    case $key in
+      partId)
+        partId="$2"
+        shift
+        ;;
+      filename)
+        ORIGINAL_FILENAME="$2"
+        shift
+        ;;
+    esac
+  shift
+done
+
+########################################################################
+# get settings
+########################################################################
+config='grader.config'
+
+if [[ ! -f $PWD/$config ]]; then
+  echo "Grader error. Grader configuration file not found. Please report the course staff."
+  exit 1
+else
+  source $PWD/$config
+fi
+
+########################################################################
+# set environment variables
+########################################################################
+if [[ "$DEBUG" -eq 0 ]]; then
+  export EXGREX_DIR_SUBMISSION=$DIR_SUBMISSION
+else
+  export EXGREX_DIR_SUBMISSION=$DEBUG_DIR_SUBMISSION
+fi
+
+if [[ "$DEBUG" -eq 0 ]]; then
+  export EXGREX_PATH_TO_REPORT_FILE=$PATH_TO_REPORT_FILE
+else
+  export EXGREX_PATH_TO_REPORT_FILE=$DEBUG_PATH_TO_REPORT_FILE
+fi
+
+export EXGREX_SCORE_LOGFILE=$SCORE_LOGFILE
+export EXGREX_FEEDBACK_LOGFILE=$FEEDBACK_LOGFILE
+export EXGREX_TEST_RUN_COMMAND=$TEST_RUN_COMMAND
+export EXGREX_TESTS_DIR=$TESTS_DIR
+export EXGREX_COURSERA_AUTOGRADER_VERSION=$COURSERA_AUTOGRADER_VERSION
+
+#########################################################################
+# checking solution directory
+#########################################################################
+count_files=$(ls -1 $EXGREX_DIR_SUBMISSION | wc -l)
+
+if [[ "$count_files" -eq 0 ]]; then
+  send_report 0 "Solution file not found. Please attach the required file."
+elif [[ "$count_files" -ne 1 ]]; then
+  send_report 0 "Grader error. Multiple solution files found. Please report the course staff."
+fi
+
+########################################################################
+# check partId
+########################################################################
+if [[ -z "${partId}" ]]; then
+  send_report 0 "Grader error. Environment variable partId is not set. Please report the course staff."
+fi
+
+########################################################################
+# check that the sub grader directory exists
+########################################################################
+if [[ -d $partId ]]; then
+  export EXGREX_DIR_GRADER=$PWD/$partId
+else
+  send_report 0 "Grader error. No partId matched. Please report the course staff."
+fi
+
+########################################################################
+# start testing student solution
+########################################################################
+cd $EXGREX_DIR_GRADER
+$EXGREX_TEST_RUN_COMMAND > /dev/null 2>&1
+
+########################################################################
+# create report
+########################################################################
+if [[ $? -eq 0 ]]; then
+
+  if [[ -s $EXGREX_SCORE_LOGFILE ]]; then
+    fractionalScore=$(<$EXGREX_SCORE_LOGFILE)
+  else
+    send_report 0 "Grader error. The log file with scores is empty. Please report the course staff."
+  fi
+
+  if [[ -s $EXGREX_FEEDBACK_LOGFILE ]]; then
+    feedback=$(<$EXGREX_FEEDBACK_LOGFILE)
+  else
+    send_report 0 "Grader error. The log file with feedback is empty. Please report the course staff."
+  fi
+
+  if [[ $(echo "$fractionalScore >= $MIN_SCORE" | bc) -eq 1 ]] && \
+     [[ $(echo "$fractionalScore <= $MAX_SCORE" | bc) -eq 1 ]]; then
+    send_report "$fractionalScore" "$feedback"
+  else
+    send_report 0 "Grader error. Invalid score received. Please report the course staff."
+  fi
+
+else
+  send_report 0 "Grader error. Runtime error occured. Please report the course staff."
+fi
+
+exit 0
