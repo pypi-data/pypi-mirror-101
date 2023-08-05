@@ -1,0 +1,48 @@
+Metadata-Version: 1.1
+Name: starsymbolfinder
+Version: 0.0.6
+Summary: A package that finds a star symbol for a specified date.
+Home-page: https://picstreme.com/
+Author: DefaultGamingChannel
+Author-email: info@picstreme.com
+License: MIT
+Description: This package is a simple Star Symbol Finder.
+        To use it in your script just import it and then (if you imported it as starsymbolfinder), type starsymbolfinder.get_symbol(date, month)
+        Replace date and month with the date and month you want to find.
+        You can also use starsymbolfinder.output_enter() to make yourself able to type the date and month in the output.
+        
+        
+        Change Log
+        ==========
+        
+        0.0.6 (05/04/2021)
+        -------------------
+        - idk what i did
+        
+        0.0.5 (29/01/2021)
+        -------------------
+        - Made Even More Characters Uppercase To Make Everything Look Nicer
+        
+        0.0.4 (29/01/2021)
+        -------------------
+        - Put The Change Log In The Right Order (Highest Up The Latest Version)
+        
+        0.0.3 (29/01/2021)
+        -------------------
+        - Made A Command Called 'get_help()' Which Shows The Description Of The Package In Your Output
+        
+        0.0.2 (29/01/2021)
+        -------------------
+        - Made Every First Character Of The Characteristics Uppercase
+        
+        0.0.1 (25/01/2021)
+        -------------------
+        - First Release
+        
+Keywords: starsymbol
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
