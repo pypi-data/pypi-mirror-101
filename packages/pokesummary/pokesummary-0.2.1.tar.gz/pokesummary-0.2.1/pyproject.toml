@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "pokesummary"
+version = "0.2.1"
+description = "An easy-to-use, informative command line interface (CLI) for accessing Pokémon summaries."
+authors = ["Fisher Sun <fisher521.fs@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/tactlessfish/pokesummary"
+exclude = [
+    "pokesummary/data/modify_pokemon.py",
+    "pokesummary/data/pokemon_original.csv",
+    "pokesummary/data/modify_type_defenses.py",
+    "pokesummary/data/type_defenses_original.csv"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+pandas = {version = "^1.2.2", python = "^3.7.1"}
+render50 = "^4.2.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pokesummary = "pokesummary.__main__:main"
