@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: asyncio-queue-rotation
+Version: 0.1.0
+Summary: 
+Home-page: https://github.com/und3v3l0p3d/asyncio-rotation
+License: MIT
+Keywords: asyncio,queue,rotation
+Author: und3v3l0p3d
+Author-email: prohibitme@phygitalism.com
+Requires-Python: >=3.9,<4.0
+Classifier: Framework :: AsyncIO
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Project-URL: Repository, https://github.com/und3v3l0p3d/asyncio-rotation
+Description-Content-Type: text/markdown
+
+# asyncio rotation queue
+
+based on [asyncio.Queue](https://docs.python.org/3/library/asyncio-queue.html)
+
+On put( element )
+if qsize() >= maxsize  
+first element popped out and put elements added to back of queue
+
+```python
+from asyncio_queue_rotation import RotationQueue
+
+rotation_queue = RotationQueue(10)
+await rotation_queue.put(1)
+
+```
+
