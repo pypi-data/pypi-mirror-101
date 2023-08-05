@@ -1,0 +1,6 @@
+include LICENSE
+include requirements.txt
+include *.md
+
+global-exclude *__pycache__ *.py[cod]
+global-exclude .git* .idea t.*
