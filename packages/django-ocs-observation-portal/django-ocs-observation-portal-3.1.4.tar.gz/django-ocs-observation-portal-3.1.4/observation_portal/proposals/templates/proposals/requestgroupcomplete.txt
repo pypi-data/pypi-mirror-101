@@ -1,0 +1,10 @@
+Hello,
+
+This email is to inform you that the observation request: {{ requestgroup.name }} has completed.
+{% if download_url %}
+Data may be downloaded here:
+{{ download_url }}
+{% endif %}
+Thank you,
+
+{{ organization_name }}
