@@ -1,0 +1,11 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "appdirs",
+    "pyjwt",
+    "cryptography",
+    "requests",
+    "windows-path-adder"
+]
+build-backend = "setuptools.build_meta"
