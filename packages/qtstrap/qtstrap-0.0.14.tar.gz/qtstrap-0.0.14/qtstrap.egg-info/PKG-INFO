@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: qtstrap
+Version: 0.0.14
+Summary: Like Bootstrap, but qt-er.
+Home-page: https://github.com/DaelonSuzuka/qtstrap
+Author: David Kincaid
+Author-email: dlkincaid0@gmail.com
+License: UNKNOWN
+Description: # QtStrap: Qt application bootstrapping framework
+        
+        
+        [![license](https://img.shields.io/pypi/l/qtstrap.svg)](./LICENSE)
+        [![pypi version](https://img.shields.io/pypi/v/qtstrap.svg)](https://pypi.org/project/QtPy/)
+        [![PyPI status](https://img.shields.io/pypi/status/qtstrap.svg)](https://github.com/qtstrap/qtstrap)
+        
+        
+        Qt is excellent, but it's also enormous. There's a lot of topics, and many of them have hidden gotchas. PySide2 and PyQt are also excellent, letting us leverage the powerful Qt libraries from up in the clouds in PythonLand, but this arrangement has its own gotchas. 
+        
+        The goal of qtstrap is get your applications up and running quickly, so you can focus on your problem instead of on Qt's idiosyncracies.
+        
+        # Features
+        
+        More complete docs are available [here](https://qtstrap.github.io/qtstrap/).
+        
+        * `qtstrap` command line tool to bootstrap new projects
+        * crossplatform makefile with useful development commands
+        * preconfigured pyinstaller spec file
+        * preconfigured InnoSetup setup compiler script
+        * custom Qt widgets with useful behaviors
+        * Pythonic layout system using ContextLayouts
+        * Some other stuff I haven't remembered yet
+        
+        # License
+        This project is released under the MIT license.
+        
+        # Dependencies
+        
+        * Python 3
+        * PySide2 or PyQt5
+        * Make(optional, but recommended)
+        
+        # Installation
+        
+        ```sh 
+        pip install qtstrap
+        ```
+        
+        # Contributing
+        
+        Contributions are always welcome. Feel free to [open an issue](https://github.com/qtstrap/qtstrap/issues/new)
+        or [start a new discussion](https://github.com/qtstrap/qtstrap/discussions/new) on our GitHub.
+Keywords: qtstrap,qt,pyqt
+Platform: any
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Widget Sets
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
