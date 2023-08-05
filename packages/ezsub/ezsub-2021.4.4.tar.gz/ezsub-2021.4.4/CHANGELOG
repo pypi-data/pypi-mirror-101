@@ -1,0 +1,62 @@
+-------------------
+v2021.04.04
+
++ mirrors: change hastisub url
+
+-------------------
+v2021.02.24
+
++ mirrors: change hastisub url
+
+-------------------
+v2020.09.17
+
++ clean: add --all to clean all
++ mirrors: remove 'xyz' and add deltaleech
+
++ now you can use '*' by language ('-l') switch to select all languages
++ fix: missing title is raising a warning now
+
+-------------------
+v2020.02.28
+
++ fix: open destination is fixed
++ fix: bad compressed files are deleted from cache folder
+
+-------------------
+v2020.02.17
+
++ fix: hastisub and xyz are fixed
+
+-------------------
+v2019.11.08
+
++ fix: add switch '-T' to 'clean' and 'unzip' commands
+
+-------------------
+v2019.11.06
+
++ update: set remind_every to 0 in user.conf to disable update reminder
++ update: show what's new if an update is available
++ download: new switch '-T' for exact title
+
+-------------------
+v2019.11.01
+
++ user can set log level from arguments (--loglevel LOGLEVEL)
++ fix update issue
+
+-------------------
+v2019.10.28
+
++ add color to screen outputs
+
+-------------------
+v2019.10.26
+
++ commands: download, unzip, clean, backup, update, login, info, history
+
+-------------------
+v2019.10.17
+
++ initial empty release
