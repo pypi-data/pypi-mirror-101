@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: fw-gear-splitter
+Version: 0.2.2
+Summary: DICOM splitter based on unique tags, or localizers
+License: MIT
+Author: Flywheel
+Author-email: support@flywheel.io
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: flywheel-gear-toolkit (>=0.1,<0.2)
+Requires-Dist: fw-file (>=0.3,<0.4)
+Requires-Dist: importlib-metadata (>=3.7.0,<4.0.0)
+Requires-Dist: pandas (>=1.2.1,<2.0.0)
+Requires-Dist: pylibjpeg (>=1.1.1,<2.0.0)
+Requires-Dist: pylibjpeg-libjpeg (>=1.1.0,<2.0.0)
+Requires-Dist: pylibjpeg-openjpeg (>=1.0.1,<2.0.0)
+Requires-Dist: scipy (>=1.6.0,<2.0.0)
