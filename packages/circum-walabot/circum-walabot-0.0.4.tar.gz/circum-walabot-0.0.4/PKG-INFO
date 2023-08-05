@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: circum-walabot
+Version: 0.0.4
+Summary: Walabot sensor plugin for circum.
+Home-page: https://github.com/LumineerLabs/circum-walabot
+Author: Lane Haury
+Author-email: lane@lumineerlabs.com
+License: UNKNOWN
+Description: # circum-walabot
+        
+        ![build](https://travis-ci.com/LumineerLabs/circum-walabot.svg?branch=master) ![PyPI](https://img.shields.io/pypi/v/circum-walabot)
+        
+        Walabot sensor plugin for [circum](https://github.com/LumineerLabs/circum).
+        
+        ## Install
+        
+        ```bash
+        pip3 install circum-walabot
+        ```
+        
+        ## Usage
+        
+        ```bash
+        Usage: circum-endpoint walabot [OPTIONS]
+        
+        Options:
+          --api_location TEXT  Location Walabot API was installed in
+          --help               Show this message and exit.
+        ```
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Provides-Extra: lint
