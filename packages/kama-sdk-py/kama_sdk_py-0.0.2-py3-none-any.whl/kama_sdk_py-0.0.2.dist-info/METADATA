@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: kama-sdk-py
+Version: 0.0.2
+Summary: Kubernetes Application Management API (KAMA) SDK
+Home-page: https://github.com/nectar-cs/kama-sdk-py
+Author: Nectar Cloud Software
+Author-email: xavier@codenectar.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: cachetools (>=3.1)
+Requires-Dist: flask-cors
+Requires-Dist: flask (>=1.1)
+Requires-Dist: humanize (>=3.2.0)
+Requires-Dist: jq (>=1.1.2)
+Requires-Dist: k8kat (>=0.0.228)
+Requires-Dist: pymongo
+Requires-Dist: redis (>=3)
+Requires-Dist: requests
+Requires-Dist: rq
+Requires-Dist: termcolor (>=1.1.0)
+Requires-Dist: validators
+
+UNKNOWN
+
+
