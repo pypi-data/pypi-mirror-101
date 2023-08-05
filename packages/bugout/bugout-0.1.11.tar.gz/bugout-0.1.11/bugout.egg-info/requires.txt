@@ -1,0 +1,12 @@
+pydantic>=1.6
+requests
+
+[dev]
+black
+mypy
+
+[distribute]
+setuptools
+twine
+wheel
+anaconda-client
