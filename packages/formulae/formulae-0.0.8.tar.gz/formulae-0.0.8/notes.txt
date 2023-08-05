@@ -1,0 +1,68 @@
+
+* The parser must allow transformations on both sides:
+    + `y ~ log(x)`
+    + `log(y) ~ x`.
+* The parser must have a base language for formulas, but enables user to add custom formulas
+that are actually defined as functions. For example, the parser won't have built-in support
+for logarithms, however, you can write a logarithm function, register it within the parser, and
+use it. Something like
+
+def log(x, base=np.pi):
+    return np.log(x) / np.log(base)
+
+and then you do `y ~ log(x)`.
+
+* The parser will work in the following order:
+    1. Evaluate built-in functions.
+    2. Evaluate registered functions.
+    3. Evaluate other functions as regular Python code.
+    Functions must be available in the environment where the call is being done.
+    Errors here are raised by the Python interpreter.
+
+* Patsy works (at least) with the following:
+    + Python dictionary
+    + numpy record array
+    + pandas DataFrame.
+    
+For now, I think this library should aim at working with pandas DataFrames.
+
+---
+
+* All of these are equivalent
+    + y ~ x - 1
+    + y ~ x + -1
+    + y ~ -1 + x
+    + y ~ 0 + x
+    + y ~ x - (-0)
+
+
+Predictions
+Another nice feature is making predictions on new data.
+But this requires that we can take in new data, and transform it to create a new X matrix.
+Or if we want to compute the likelihood of our model on new data, we need both new X and y matrices.
+WE NEED A WAY TO CREATE DESIGN MATRICES FOR NEW DATA.
+
+* Patsy has `build_design_matrices()` which takes new data and a matrix design info object that
+is useful to replicate the original design matrix, but with new data.
+
+---
+
+Useful resources
+
+https://cran.r-project.org/doc/manuals/R-intro.html#Formulae-for-statistical-models
+
+https://github.com/andportnoy/mixed
+
+https://github.com/pyro-ppl/brmp
+
+https://github.com/pydata/patsy/issues/130
+
+https://nbviewer.jupyter.org/github/pyro-ppl/brmp/blob/master/brmp/examples/Baseball.ipynb para el print de modelos.
+
+
+---
+
+El objeto en Bambi tiene que recordar el ModelTerms para cuando le pasemos un nuevo 
+dataframe y querramos hacer predicciones.
+
+https://github.com/matthewwardrop/formulaic
