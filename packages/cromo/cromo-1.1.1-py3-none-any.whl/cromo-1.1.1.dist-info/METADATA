@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: cromo
+Version: 1.1.1
+Summary: Constraint Reasoning Over MOdels
+Home-page: https://github.com/mintproject/cromo
+Author: Varun Ratnakar
+Author-email: varunr@isi.edu
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/mintproject/cromo/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Cython (>=0.29)
+Requires-Dist: owlready2 (>=0.29)
+Requires-Dist: semver (>=2.8.1)
+Requires-Dist: requests
+Requires-Dist: geojson
+Requires-Dist: modelcatalog-api (==6.0.0)
+Requires-Dist: dame-cli (>=5.4.5)
+
+# cromo
+Contraint Reasoning Over MOdels
+
+Installation
+------------
+`pip install cromo`
+
+Example Usage
+-------------
+* Clone the repository
+* Go to the cromo directory
+* Example run of cromo on rough terrain
+`cromo search start Fire src/cromo/test/georgetown.geojson "2020-10-20" "2020-10-30"
+* Example run of cromo on flat terrain
+`cromo search start Fire src/cromo/test/whiterock.geojson "2021-03-01" "2021-03-31"`
+
+
