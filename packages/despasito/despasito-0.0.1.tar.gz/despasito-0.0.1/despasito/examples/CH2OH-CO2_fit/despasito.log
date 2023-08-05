@@ -1,0 +1,410 @@
+2019-12-05 22:12:55,931 [INFO](root:<module>:44): Input args: Namespace(input='input.json', jit=0, logFile='despasito.log', path='.', threads=1, verbose=10)
+2019-12-05 22:12:55,931 [INFO](root:<module>:45): JIT compilation: 0
+2019-12-05 22:12:55,931 [INFO](despasito.main:run:36): Begin processing input file: input.json
+2019-12-05 22:12:55,932 [INFO](despasito.input_output.readwrite_input:extract_calc_data:97): Cross interaction parameters have been accepted
+2019-12-05 22:12:55,932 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): Association sites have been accepted
+2019-12-05 22:12:55,934 [INFO](despasito.input_output.readwrite_input:extract_calc_data:125): The bead, CH2OH, will have the parameters ['epsilon_CO2'], fit using the following data:
+  CO2-ethanol (TLVE),
+2019-12-05 22:12:55,934 [DEBUG](despasito.main:run:45): EOS dict:
+2019-12-05 22:12:55,934 [DEBUG](despasito.main:run:46): Thermo dict:
+2019-12-05 22:12:55,934 [INFO](despasito.main:run:47): Finish processing input file: input.json
+2019-12-05 22:12:55,934 [INFO](despasito.equations_of_state:eos:37): Trying default EOS, saft.gamma_mie
+2019-12-05 22:12:55,946 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 1 of the association site NkH
+2019-12-05 22:12:55,947 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 2 of the association site Nke1
+2019-12-05 22:12:55,947 [INFO](despasito.equations_of_state:eos:61): Created saft.gamma_mie eos object
+2019-12-05 22:12:55,947 [INFO](despasito.main:run:53): Initializing parametrization procedure
+2019-12-05 22:12:55,949 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 1 of the association site NkH
+2019-12-05 22:12:55,949 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 2 of the association site Nke1
+2019-12-05 22:12:55,949 [INFO](despasito.thermodynamics.calc_types:phase_xiT:51): Using Tlist
+2019-12-05 22:12:55,949 [INFO](despasito.thermodynamics.calc_types:phase_xiT:55): Using xilist
+2019-12-05 22:12:55,949 [INFO](despasito.thermodynamics.calc_types:phase_xiT:83): Using user defined initial guess has been provided
+2019-12-05 22:12:55,950 [INFO](despasito.thermodynamics.calc_types:phase_xiT:104): Accepted options for P vs. density curve
+2019-12-05 22:12:55,950 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.0497 0.9503], Let's Begin!
+2019-12-05 22:13:06,416 [INFO](despasito.thermodynamics.calc:calc_xT_phase:1968): Guess yi in calc_xT_phase with Psat: [0.97380642 0.02619358]
+2019-12-05 22:13:21,879 [DEBUG](despasito.thermodynamics.calc:calc_rhol:554):     Find rhol: P 1000 Pa, roots [6.169137233860915e-05, 0.0010171275166324333, 2.4350136020126465] m^3/mol
+2019-12-05 22:13:21,936 [INFO](despasito.thermodynamics.calc:calc_rhol:621):     Liquid Density: 16209.727836198173 mol/m^3, flag 1
+2019-12-05 22:13:21,988 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1120):     Solve yi: P 1000, T 293.15, xi [0.0497 0.9503], phil [8.20228806e+04 7.85622627e+00]
+2019-12-05 22:13:26,050 [DEBUG](despasito.thermodynamics.calc:calc_rhov:445):     Find rhov: P 1000 Pa, roots [2.4372676429463844] m^3/mol
+2019-12-05 22:13:26,051 [DEBUG](despasito.thermodynamics.calc:calc_rhov:486):     Flag 0: This T and yi, 293.15 [0.97380642 0.02619358], combination produces a vapor at this pressure. Warning! approaching critical fluid
+2019-12-05 22:13:26,092 [INFO](despasito.thermodynamics.calc:calc_rhov:511):     Vapor Density: 0.4102955241852676 mol/m^3, flag 0
+2019-12-05 22:13:26,140 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1155):     yi guess [0.97380642 0.02619358], yi calc [4076.72419943    7.46663628], phiv [0.99995412 0.99988422]
+2019-12-05 22:13:26,140 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1156):     Old yi_total: 1.0, New yi_total: 4084.1908357101274, Change: 4083.1908357101274
+2019-12-05 22:13:30,456 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.0497 0.9503], calculation did not produce a valid result.
+2019-12-05 22:13:30,457 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1975, in calc_xT_phase
+    Prange, Pguess = calc_Prange_xi(T, xi, yi, eos, rhodict, zi_opts=zi_opts)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 889, in calc_Prange_xi
+    yi_range, phiv, flagv = solve_yi_xiT(yi_range, xi, phil, p, T, eos, rhodict=rhodict, **zi_opts)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1126, in solve_yi_xiT
+    phiv, rhov, flagv = calc_phiv(P, T, yi_tmp, eos, rhodict=rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 694, in calc_phiv
+    rhov, flagv = calc_rhov(P, T, yi, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 441, in calc_rhov
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1610, in calc_A
+    Aassoc = calc_A_assoc(rho, xi, T, nui, xskl, sigmakl, sigmaii_avg, epsilonii_avg, epsilonHB, Kklab, nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1315, in calc_A_assoc
+    Xika = solv_assoc.min_xika(rho, Xika0, xi, nui, nk, delta, 500, 1.0E-12) # {BottleNeck}
+KeyboardInterrupt
+2019-12-05 22:13:30,490 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1315 0.8685], Let's Begin!
+2019-12-05 22:13:30,620 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1315 0.8685], calculation did not produce a valid result.
+2019-12-05 22:13:30,620 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 725, in calc_a1ii
+    Bii_a = calc_Bkl(rho, l_aii_avg, Cmol2seg, dii_eff, epsilonii_avg, x0ii, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 451, in calc_Bkl
+    (dkl**3) * epsilonkl) * (np.einsum("i,jk", (1.0 - (zetax / 2.0)) / ((1.0 - zetax)**3), Ikl) - np.einsum("i,jk", ((9.0 * zetax * (1.0 + zetax)) / (2.0 * ((1 - zetax)**3))), Jkl))
+  File "<__array_function__ internals>", line 6, in einsum
+  File "/anaconda3/envs/despasito/lib/python3.7/site-packages/numpy/core/einsumfunc.py", line 1356, in einsum
+    return c_einsum(*operands, **kwargs)
+KeyboardInterrupt
+2019-12-05 22:13:30,678 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1692 0.8308], Let's Begin!
+2019-12-05 22:13:31,863 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1692 0.8308], calculation did not produce a valid result.
+2019-12-05 22:13:31,863 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1598, in calc_A
+    Achain, sigmaii_avg, epsilonii_avg = calc_Achain(rho, Cmol2seg, xi, T, nui, sigmakl, epsilonkl, dkl, xskl, l_rkl, l_akl, beads, beadlibrary, zetax, zetaxstar, KHS)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1014, in calc_Achain
+    Bii_l_aii_avg = calc_Bkl(rho, l_aii_avg, Cmol2seg, dii_eff, epsilonii_avg, x0ii, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 454, in calc_Bkl
+    (dkl**3) * epsilonkl) * (np.einsum("i,j", (1.0 - (zetax / 2.0)) / ((1.0 - zetax)**3), Ikl) - np.einsum("i,j", ((9.0 * zetax * (1.0 + zetax)) / (2.0 * ((1 - zetax)**3))), Jkl))
+KeyboardInterrupt
+2019-12-05 22:13:31,872 [INFO](despasito.thermodynamics.calc_types:phase_xiT:141): --- Calculation phase_xiT Complete ---
+2019-12-05 22:13:31,875 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 1 of the association site NkH
+2019-12-05 22:13:31,875 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 2 of the association site Nke1
+2019-12-05 22:13:31,876 [INFO](despasito.thermodynamics.calc_types:phase_xiT:51): Using Tlist
+2019-12-05 22:13:31,876 [INFO](despasito.thermodynamics.calc_types:phase_xiT:55): Using xilist
+2019-12-05 22:13:31,876 [INFO](despasito.thermodynamics.calc_types:phase_xiT:83): Using user defined initial guess has been provided
+2019-12-05 22:13:31,876 [INFO](despasito.thermodynamics.calc_types:phase_xiT:104): Accepted options for P vs. density curve
+2019-12-05 22:13:31,877 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.0497 0.9503], Let's Begin!
+2019-12-05 22:13:32,050 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.0497 0.9503], calculation did not produce a valid result.
+2019-12-05 22:13:32,050 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 56, in calc_a1s
+    etakl[:, k, l] = np.einsum("ij,j", zetax_pow, cikl)
+KeyboardInterrupt
+2019-12-05 22:13:32,057 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1315 0.8685], Let's Begin!
+2019-12-05 22:13:32,257 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1315 0.8685], calculation did not produce a valid result.
+2019-12-05 22:13:32,258 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:32,268 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1692 0.8308], Let's Begin!
+2019-12-05 22:13:32,420 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1692 0.8308], calculation did not produce a valid result.
+2019-12-05 22:13:32,421 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:32,428 [INFO](despasito.thermodynamics.calc_types:phase_xiT:141): --- Calculation phase_xiT Complete ---
+2019-12-05 22:13:32,429 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 1 of the association site NkH
+2019-12-05 22:13:32,429 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 2 of the association site Nke1
+2019-12-05 22:13:32,430 [INFO](despasito.thermodynamics.calc_types:phase_xiT:51): Using Tlist
+2019-12-05 22:13:32,430 [INFO](despasito.thermodynamics.calc_types:phase_xiT:55): Using xilist
+2019-12-05 22:13:32,430 [INFO](despasito.thermodynamics.calc_types:phase_xiT:83): Using user defined initial guess has been provided
+2019-12-05 22:13:32,430 [INFO](despasito.thermodynamics.calc_types:phase_xiT:104): Accepted options for P vs. density curve
+2019-12-05 22:13:32,431 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.0497 0.9503], Let's Begin!
+2019-12-05 22:13:32,598 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.0497 0.9503], calculation did not produce a valid result.
+2019-12-05 22:13:32,599 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:32,604 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1315 0.8685], Let's Begin!
+2019-12-05 22:13:33,294 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1315 0.8685], calculation did not produce a valid result.
+2019-12-05 22:13:33,294 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1598, in calc_A
+    Achain, sigmaii_avg, epsilonii_avg = calc_Achain(rho, Cmol2seg, xi, T, nui, sigmakl, epsilonkl, dkl, xskl, l_rkl, l_akl, beads, beadlibrary, zetax, zetaxstar, KHS)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1004, in calc_Achain
+    km[:, 3] = (-zetax**4 + 3.0 * zetax**2 + 3.0 * zetax) / (6.0 * (1.0 - zetax)**3)
+KeyboardInterrupt
+2019-12-05 22:13:33,304 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1692 0.8308], Let's Begin!
+2019-12-05 22:13:33,490 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1692 0.8308], calculation did not produce a valid result.
+2019-12-05 22:13:33,491 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:33,500 [INFO](despasito.thermodynamics.calc_types:phase_xiT:141): --- Calculation phase_xiT Complete ---
+2019-12-05 22:13:33,501 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 1 of the association site NkH
+2019-12-05 22:13:33,501 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 2 of the association site Nke1
+2019-12-05 22:13:33,502 [INFO](despasito.thermodynamics.calc_types:phase_xiT:51): Using Tlist
+2019-12-05 22:13:33,502 [INFO](despasito.thermodynamics.calc_types:phase_xiT:55): Using xilist
+2019-12-05 22:13:33,502 [INFO](despasito.thermodynamics.calc_types:phase_xiT:83): Using user defined initial guess has been provided
+2019-12-05 22:13:33,502 [INFO](despasito.thermodynamics.calc_types:phase_xiT:104): Accepted options for P vs. density curve
+2019-12-05 22:13:33,502 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.0497 0.9503], Let's Begin!
+2019-12-05 22:13:33,644 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.0497 0.9503], calculation did not produce a valid result.
+2019-12-05 22:13:33,644 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:33,649 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1315 0.8685], Let's Begin!
+2019-12-05 22:13:33,813 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1315 0.8685], calculation did not produce a valid result.
+2019-12-05 22:13:33,813 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:33,819 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1692 0.8308], Let's Begin!
+2019-12-05 22:13:34,033 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1692 0.8308], calculation did not produce a valid result.
+2019-12-05 22:13:34,033 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:34,042 [INFO](despasito.thermodynamics.calc_types:phase_xiT:141): --- Calculation phase_xiT Complete ---
+2019-12-05 22:13:34,045 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 1 of the association site NkH
+2019-12-05 22:13:34,045 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 2 of the association site Nke1
+2019-12-05 22:13:34,047 [INFO](despasito.thermodynamics.calc_types:phase_xiT:51): Using Tlist
+2019-12-05 22:13:34,047 [INFO](despasito.thermodynamics.calc_types:phase_xiT:55): Using xilist
+2019-12-05 22:13:34,047 [INFO](despasito.thermodynamics.calc_types:phase_xiT:83): Using user defined initial guess has been provided
+2019-12-05 22:13:34,048 [INFO](despasito.thermodynamics.calc_types:phase_xiT:104): Accepted options for P vs. density curve
+2019-12-05 22:13:34,048 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.0497 0.9503], Let's Begin!
+2019-12-05 22:13:34,192 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.0497 0.9503], calculation did not produce a valid result.
+2019-12-05 22:13:34,193 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 56, in calc_a1s
+    etakl[:, k, l] = np.einsum("ij,j", zetax_pow, cikl)
+KeyboardInterrupt
+2019-12-05 22:13:34,198 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1315 0.8685], Let's Begin!
+2019-12-05 22:13:34,412 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1315 0.8685], calculation did not produce a valid result.
+2019-12-05 22:13:34,412 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:34,421 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.1692 0.8308], Let's Begin!
+2019-12-05 22:13:34,604 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:134): T (K), xi: 293.15 [0.1692 0.8308], calculation did not produce a valid result.
+2019-12-05 22:13:34,604 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:135): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 132, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1952, in calc_xT_phase
+    Psat[i], _, _ = calc_Psat(T, xi_tmp, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 327, in calc_Psat
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 199, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 197, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1597, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 627, in calc_Amono
+    a1kl = calc_a1ii(rho, Cmol2seg, dkl, l_akl, l_rkl, x0kl, epsilonkl, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 726, in calc_a1ii
+    a1s_r = calc_a1s(rho, Cmol2seg, l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 57, in calc_a1s
+    a1s = np.einsum("ijk,jk->ijk", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-12-05 22:13:34,613 [INFO](despasito.thermodynamics.calc_types:phase_xiT:141): --- Calculation phase_xiT Complete ---
+2019-12-05 22:13:34,614 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 1 of the association site NkH
+2019-12-05 22:13:34,614 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1132): Bead CH2OH has 2 of the association site Nke1
+2019-12-05 22:13:34,615 [INFO](despasito.thermodynamics.calc_types:phase_xiT:51): Using Tlist
+2019-12-05 22:13:34,615 [INFO](despasito.thermodynamics.calc_types:phase_xiT:55): Using xilist
+2019-12-05 22:13:34,615 [INFO](despasito.thermodynamics.calc_types:phase_xiT:83): Using user defined initial guess has been provided
+2019-12-05 22:13:34,615 [INFO](despasito.thermodynamics.calc_types:phase_xiT:104): Accepted options for P vs. density curve
+2019-12-05 22:13:34,615 [INFO](despasito.thermodynamics.calc_types:phase_xiT:130): T (K), xi: 293.15 [0.0497 0.9503], Let's Begin!

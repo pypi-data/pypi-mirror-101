@@ -1,0 +1,18 @@
+2019-12-05 22:32:21,114 [INFO](root:<module>:44): Input args: Namespace(input='input_xi_vr.json', jit=0, logFile='despasito.log', path='.', threads=1, verbose=20)
+2019-12-05 22:32:21,114 [INFO](root:<module>:45): JIT compilation: 0
+2019-12-05 22:32:21,114 [INFO](despasito.main:run:36): Begin processing input file: input_xi_vr.json
+2019-12-05 22:32:21,157 [INFO](despasito.input_output.readwrite_input:extract_calc_data:97): Cross interaction parameters have been accepted
+2019-12-05 22:32:21,157 [INFO](despasito.input_output.readwrite_input:extract_calc_data:105): No association sites specified
+2019-12-05 22:32:21,158 [INFO](despasito.input_output.readwrite_input:extract_calc_data:119): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, Plist, xilist
+
+2019-12-05 22:32:21,158 [INFO](despasito.main:run:47): Finish processing input file: input_xi_vr.json
+2019-12-05 22:32:21,158 [INFO](despasito.equations_of_state:eos:37): Trying default EOS, saft.gamma_mie
+2019-12-05 22:32:21,180 [INFO](despasito.equations_of_state:eos:61): Created saft.gamma_mie eos object
+2019-12-05 22:32:21,181 [INFO](despasito.main:run:59): Initializing thermodynamic calculation
+2019-12-05 22:32:21,182 [INFO](despasito.thermodynamics.calc_types:liquid_properties:389): Using Tlist
+2019-12-05 22:32:21,182 [INFO](despasito.thermodynamics.calc_types:liquid_properties:393): Using xilist
+2019-12-05 22:32:21,182 [INFO](despasito.thermodynamics.calc_types:liquid_properties:408): Using Plist
+2019-12-05 22:32:28,677 [INFO](despasito.thermodynamics.calc:calc_rhol:621):     Liquid Density: 6941.808456305803 mol/m^3, flag 1
+2019-12-05 22:32:28,706 [INFO](despasito.thermodynamics.calc_types:liquid_properties:442): P 100000.0 Pa, T 320.0 K, xi [0.4 0.6], rhol 6941.808456305803, phil [0.58244751 0.19263956]
+2019-12-05 22:32:28,706 [INFO](despasito.thermodynamics.calc_types:liquid_properties:444): --- Calculation liquid_density Complete ---
+2019-12-05 22:32:28,706 [INFO](despasito.main:run:61): Finished thermodynamic calculation

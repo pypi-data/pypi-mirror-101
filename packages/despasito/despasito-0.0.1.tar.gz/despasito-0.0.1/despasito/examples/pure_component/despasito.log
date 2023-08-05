@@ -1,0 +1,44 @@
+2019-11-04 11:18:45,714 [INFO](root:<module>:50): Input args: Namespace(input='input_propane_sat.json', jit=True, logFile='despasito.log', path='.', threads=1, verbose=10)
+2019-11-04 11:18:45,714 [INFO](root:<module>:51): JIT compilation: True
+2019-11-04 11:18:45,714 [INFO](despasito.main:run:26): Begin processing input file: input_propane_sat.json
+2019-11-04 11:19:42,631 [INFO](root:<module>:50): Input args: Namespace(input='input_propane_sat.json', jit=True, logFile='despasito.log', path='.', threads=1, verbose=10)
+2019-11-04 11:19:42,631 [INFO](root:<module>:51): JIT compilation: True
+2019-11-04 11:19:42,632 [INFO](despasito.main:run:26): Begin processing input file: input_propane_sat.json
+2019-11-04 11:20:22,086 [INFO](root:<module>:50): Input args: Namespace(input='input_propane_sat.json', jit=True, logFile='despasito.log', path='.', threads=1, verbose=10)
+2019-11-04 11:20:22,086 [INFO](root:<module>:51): JIT compilation: True
+2019-11-04 11:20:22,087 [INFO](despasito.main:run:26): Begin processing input file: input_propane_sat.json
+2019-11-04 11:20:22,088 [INFO](despasito.input_output.readwrite_input:extract_calc_data:97): No SAFTcross file specified
+2019-11-04 11:20:22,088 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-04 11:20:22,088 [INFO](despasito.input_output.readwrite_input:extract_calc_data:114): The following thermo calculation parameters have been provided: calculation_type, method, Tlist
+
+2019-11-04 11:20:22,088 [DEBUG](despasito.main:run:33): EOS dict:
+2019-11-04 11:20:22,088 [DEBUG](despasito.main:run:34): Thermo dict:
+2019-11-04 11:20:22,088 [INFO](despasito.main:run:35): Finish processing input file: input_propane_sat.json
+2019-11-04 11:20:22,088 [INFO](despasito.main:run:37): Creating eos object: saft.gamma_mie
+2019-11-04 11:20:28,130 [INFO](despasito.main:run:42): Created saft.gamma_mie eos object
+2019-11-04 11:20:28,130 [INFO](despasito.main:run:51): Initializing thermodynamic calculation
+2019-11-04 11:20:28,131 [INFO](despasito.thermodynamics.calc_types:sat_props:305): Using Tlist
+2019-11-04 11:20:28,131 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 100.0 [1.], Let's Begin!
+2019-11-04 11:20:36,716 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 10.001006907571393 Pa, rhol 15968.697677125436, rhov 0.01627313005909886
+2019-11-04 11:20:36,716 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 125.0 [1.], Let's Begin!
+2019-11-04 11:20:45,191 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 10.001005309907992 Pa, rhol 15473.796644632213, rhov 0.012939260002535138
+2019-11-04 11:20:45,192 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 150.0 [1.], Let's Begin!
+2019-11-04 11:20:50,710 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 170.92878643034908 Pa, rhol 14965.190031154423, rhov 0.13705477527499096
+2019-11-04 11:20:50,711 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 175.0 [1.], Let's Begin!
+2019-11-04 11:20:55,886 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 2241.972581453284 Pa, rhol 14438.049623467134, rhov 1.5415800379647253
+2019-11-04 11:20:55,887 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 200.0 [1.], Let's Begin!
+2019-11-04 11:21:00,479 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 14166.857054464044 Pa, rhol 13887.247408390129, rhov 8.546024919420327
+2019-11-04 11:21:00,479 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 225.0 [1.], Let's Begin!
+2019-11-04 11:21:04,883 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 56052.83196017045 Pa, rhol 13306.547788414238, rhov 30.29454719520833
+2019-11-04 11:21:04,883 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 250.0 [1.], Let's Begin!
+2019-11-04 11:21:09,192 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 162022.69686414325 Pa, rhol 12687.996347855045, rhov 80.12770927743215
+2019-11-04 11:21:09,192 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 275.0 [1.], Let's Begin!
+2019-11-04 11:21:13,251 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 376587.13402070734 Pa, rhol 12020.789669629232, rhov 174.16672157373083
+2019-11-04 11:21:13,251 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 300.0 [1.], Let's Begin!
+2019-11-04 11:21:17,517 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 748825.5483305391 Pa, rhol 11288.86996472604, rhov 331.4450748907891
+2019-11-04 11:21:17,517 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 325.0 [1.], Let's Begin!
+2019-11-04 11:21:21,529 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 1327423.144741037 Pa, rhol 10465.352299548094, rhov 576.8587132689593
+2019-11-04 11:21:21,529 [INFO](despasito.thermodynamics.calc_types:sat_props:353): T (K), xi: 350.0 [1.], Let's Begin!
+2019-11-04 11:21:25,282 [INFO](despasito.thermodynamics.calc_types:sat_props:361): Psat 2157339.2510580486 Pa, rhol 9497.52444402384, rhov 950.4763655035845
+2019-11-04 11:21:25,285 [INFO](despasito.thermodynamics.calc_types:sat_props:363): --- Calculation sat_props Complete ---
+2019-11-04 11:21:25,285 [INFO](despasito.main:run:53): Finished thermodynamic calculation

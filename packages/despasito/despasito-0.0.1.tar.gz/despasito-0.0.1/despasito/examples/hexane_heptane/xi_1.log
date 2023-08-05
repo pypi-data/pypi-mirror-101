@@ -1,0 +1,851 @@
+2019-11-11 16:02:24,277 [INFO](root:<module>:50): Input args: Namespace(input='input_xi', jit=0, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:02:24,277 [INFO](root:<module>:51): JIT compilation: 0
+2019-11-11 16:02:24,277 [INFO](despasito.main:run:24): Begin processing input file: input_xi
+2019-11-11 16:02:36,875 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=0, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:02:36,875 [INFO](root:<module>:51): JIT compilation: 0
+2019-11-11 16:02:36,875 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:02:36,876 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:02:36,876 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:02:36,876 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, xilist
+
+2019-11-11 16:02:36,876 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:02:36,876 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:02:36,876 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:02:36,877 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:02:36,920 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:02:36,920 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:02:36,921 [INFO](despasito.thermodynamics.calc_types:phase_xiT:54): Using Tlist
+2019-11-11 16:02:36,921 [INFO](despasito.thermodynamics.calc_types:phase_xiT:58): Using xilist
+2019-11-11 16:02:36,921 [INFO](despasito.thermodynamics.calc_types:phase_xiT:112): Accepted options for P optimization
+2019-11-11 16:02:36,921 [INFO](despasito.thermodynamics.calc_types:phase_xiT:133): T (K), xi: 320.0 [0.4 0.6], Let's Begin!
+2019-11-11 16:03:42,458 [INFO](despasito.thermodynamics.calc:calc_xT_phase:1815): Guess yi in calc_xT_phase with Psat: [0.9977142 0.0022858]
+2019-11-11 16:04:13,105 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 1000 Pa, roots [0.00021318282492331352, 0.0029114020269871556, 2.667759885834323] m^3/mol
+2019-11-11 16:04:13,182 [DEBUG](despasito.thermodynamics.calc:calc_phil:754):     Liquid Fugacity Coefficients [60.06430382 11.86558778]
+2019-11-11 16:04:13,183 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1041):     Solve yi: P 1000, T 320.0, xi [0.4 0.6], phil [60.06430382 11.86558778]
+2019-11-11 16:04:20,694 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013165780609925546, 0.0011100127981880101, 2.6606731937071793] m^3/mol
+2019-11-11 16:04:20,757 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [0.9977142 0.0022858], is smaller than increment, 0.001. Use new increment, 1e-05.
+2019-11-11 16:04:20,788 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31401718e+00 4.75214330e+06]
+2019-11-11 16:04:20,789 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [0.9977142 0.0022858], yi calc [2.88978493e+00 1.49813510e-06], phiv [8.31401718e+00 4.75214330e+06]
+2019-11-11 16:04:20,789 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 1.0, New yi_total: 2.8897864242157096, Change: 1.8897864242157096
+2019-11-11 16:04:28,527 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597304007703, 0.001103335998442695, 2.660665699342149] m^3/mol
+2019-11-11 16:04:28,608 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999482e-01 5.18424159e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:04:28,633 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.02015984e+00 3.91278311e+06]
+2019-11-11 16:04:28,634 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999482e-01 5.18424159e-07], yi calc [3.42238953e+00 1.81951119e-06], phiv [7.02015984e+00 3.91278311e+06]
+2019-11-11 16:04:28,634 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.8897864242157096, New yi_total: 3.4223913502929677, Change: 0.5326049260772581
+2019-11-11 16:04:36,008 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597505482643, 0.0011033367889702768, 2.6606662278057773] m^3/mol
+2019-11-11 16:04:36,062 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999468e-01 5.31649075e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:04:36,097 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31479057e+00 6.37464799e+06]
+2019-11-11 16:04:36,098 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999468e-01 5.31649075e-07], yi calc [2.88951614e+00 1.11682287e-06], phiv [8.31479057e+00 6.37464799e+06]
+2019-11-11 16:04:36,099 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.4223913502929677, New yi_total: 2.8895172529887847, Change: -0.532874097304183
+2019-11-11 16:04:43,531 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134595370795343, 0.0011033368262336391, 2.6606664668134408] m^3/mol
+2019-11-11 16:04:43,588 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999613e-01 3.86508462e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:04:43,622 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.46819760e+00 4.66636009e+06]
+2019-11-11 16:04:43,623 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999613e-01 3.86508462e-07], yi calc [2.53751797e+00 1.52567580e-06], phiv [9.46819760e+00 4.66636009e+06]
+2019-11-11 16:04:43,623 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.8895172529887847, New yi_total: 2.5375194933394862, Change: -0.35199775964929847
+2019-11-11 16:04:51,024 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598260351933, 0.001103336710036854, 2.660662863251913] m^3/mol
+2019-11-11 16:04:51,087 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999399e-01 6.01246928e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:04:51,119 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.42193134e+00 4.72636840e+06]
+2019-11-11 16:04:51,119 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999399e-01 6.01246928e-07], yi calc [2.85275676e+00 1.50630507e-06], phiv [8.42193134e+00 4.72636840e+06]
+2019-11-11 16:04:51,119 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.5375194933394862, New yi_total: 2.852758261439806, Change: 0.3152387681003197
+2019-11-11 16:04:58,765 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597335860552, 0.00110333566201264, 2.6606617915288147] m^3/mol
+2019-11-11 16:04:58,827 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999472e-01 5.28017073e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:04:58,858 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [5.96794903e+00 4.20418128e+06]
+2019-11-11 16:04:58,859 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999472e-01 5.28017073e-07], yi calc [4.02579201e+00 1.69339812e-06], phiv [5.96794903e+00 4.20418128e+06]
+2019-11-11 16:04:58,859 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.852758261439806, New yi_total: 4.025793707952844, Change: 1.1730354465130381
+2019-11-11 16:05:06,237 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459601581595, 0.0011033349927724193, 2.660667507049939] m^3/mol
+2019-11-11 16:05:06,325 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999579e-01 4.20637082e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:05:06,351 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.54290532e+00 4.48628922e+06]
+2019-11-11 16:05:06,352 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999579e-01 4.20637082e-07], yi calc [3.18520789e+00 1.58691344e-06], phiv [7.54290532e+00 4.48628922e+06]
+2019-11-11 16:05:06,352 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 4.025793707952844, New yi_total: 3.1852094762839975, Change: -0.8405842316688465
+2019-11-11 16:05:13,787 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459707498182, 0.0011033369210617801, 2.660668249069185] m^3/mol
+2019-11-11 16:05:13,827 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999502e-01 4.98213211e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:05:13,862 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.57869745e+00 4.78729116e+06]
+2019-11-11 16:05:13,863 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999502e-01 4.98213211e-07], yi calc [3.65204841e+00 1.48713592e-06], phiv [6.57869745e+00 4.78729116e+06]
+2019-11-11 16:05:13,863 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.1852094762839975, New yi_total: 3.652049892629588, Change: 0.46684041634559037
+2019-11-11 16:05:21,341 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134595696600784, 0.0011033367334137123, 2.660664065219321] m^3/mol
+2019-11-11 16:05:21,418 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999593e-01 4.07205807e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:05:21,443 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.28374304e+00 6.45669516e+06]
+2019-11-11 16:05:21,444 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999593e-01 4.07205807e-07], yi calc [2.58793478e+00 1.10263107e-06], phiv [9.28374304e+00 6.45669516e+06]
+2019-11-11 16:05:21,444 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.652049892629588, New yi_total: 2.587935886272109, Change: -1.064114006357479
+2019-11-11 16:05:29,119 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134595921505469, 0.0011033371013596707, 2.660662197456903] m^3/mol
+2019-11-11 16:05:29,186 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999574e-01 4.26065835e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:05:29,215 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.99397695e+00 3.17904521e+06]
+2019-11-11 16:05:29,215 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999574e-01 4.26065835e-07], yi calc [3.00547796e+00 2.23946254e-06], phiv [7.99397695e+00 3.17904521e+06]
+2019-11-11 16:05:29,216 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.587935886272109, New yi_total: 3.005480197812605, Change: 0.417544311540496
+2019-11-11 16:05:36,597 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313460021434321, 0.0011033365756689722, 2.660665123173544] m^3/mol
+2019-11-11 16:05:36,677 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999255e-01 7.45126366e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:05:36,703 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31481169e+00 3.69198195e+06]
+2019-11-11 16:05:36,704 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999255e-01 7.45126366e-07], yi calc [2.88950880e+00 1.92832813e-06], phiv [8.31481169e+00 3.69198195e+06]
+2019-11-11 16:05:36,704 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.005480197812605, New yi_total: 2.889510727493365, Change: -0.11596947031923976
+2019-11-11 16:05:44,157 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459940312271, 0.0011033370723234409, 2.660670366916328] m^3/mol
+2019-11-11 16:05:44,202 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999333e-01 6.67354550e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:05:44,237 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.53356395e+00 4.72648288e+06]
+2019-11-11 16:05:44,238 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999333e-01 6.67354550e-07], yi calc [2.52011962e+00 1.50626858e-06], phiv [9.53356395e+00 4.72648288e+06]
+2019-11-11 16:05:44,238 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.889510727493365, New yi_total: 2.5201211237235577, Change: -0.36938960376980745
+2019-11-11 16:05:51,903 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598423576775, 0.0011033362203211549, 2.660664115379034] m^3/mol
+2019-11-11 16:05:51,972 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999402e-01 5.97696900e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:05:52,002 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.39599453e+00 5.48901093e+06]
+2019-11-11 16:05:52,003 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999402e-01 5.97696900e-07], yi calc [3.24847746e+00 1.29701922e-06], phiv [7.39599453e+00 5.48901093e+06]
+2019-11-11 16:05:52,003 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.5201211237235577, New yi_total: 3.2484787571902185, Change: 0.7283576334666608
+2019-11-11 16:06:07,454 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134595521987837, 0.0011033366620073497, 2.6606672778829865] m^3/mol
+2019-11-11 16:06:07,544 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999601e-01 3.99269724e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:06:07,572 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.88984813e+00 3.73958052e+06]
+2019-11-11 16:06:07,572 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999601e-01 3.99269724e-07], yi calc [3.48711918e+00 1.90378376e-06], phiv [6.88984813e+00 3.73958052e+06]
+2019-11-11 16:06:07,573 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.2484787571902185, New yi_total: 3.4871210794293845, Change: 0.23864232223916604
+2019-11-11 16:06:16,005 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597756079712, 0.0011033374215418112, 2.660664298885108] m^3/mol
+2019-11-11 16:06:16,056 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999454e-01 5.45947134e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:06:16,083 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.04907871e+00 5.38215100e+06]
+2019-11-11 16:06:16,084 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999454e-01 5.45947134e-07], yi calc [2.65504614e+00 1.32277089e-06], phiv [9.04907871e+00 5.38215100e+06]
+2019-11-11 16:06:16,084 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.4871210794293845, New yi_total: 2.6550474653363025, Change: -0.832073614093082
+2019-11-11 16:06:26,485 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596896488646, 0.0011033363453899043, 2.6606684610639655] m^3/mol
+2019-11-11 16:06:26,548 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999502e-01 4.98209884e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:06:26,575 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.49499757e+00 3.57407680e+06]
+2019-11-11 16:06:26,576 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999502e-01 4.98209884e-07], yi calc [3.69911170e+00 1.99194171e-06], phiv [6.49499757e+00 3.57407680e+06]
+2019-11-11 16:06:26,576 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.6550474653363025, New yi_total: 3.6991136968452185, Change: 1.044066231508916
+2019-11-11 16:06:35,097 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459757269138, 0.001103337148598647, 2.660670972583647] m^3/mol
+2019-11-11 16:06:35,163 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999462e-01 5.38491616e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:06:35,190 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.70938593e+00 4.01803239e+06]
+2019-11-11 16:06:35,190 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999462e-01 5.38491616e-07], yi calc [3.58091214e+00 1.77185049e-06], phiv [6.70938593e+00 4.01803239e+06]
+2019-11-11 16:06:35,190 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.6991136968452185, New yi_total: 3.5809139094831255, Change: -0.11819978736209302
+2019-11-11 16:06:43,033 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596750773132, 0.0011033359073851908, 2.6606606069581913] m^3/mol
+2019-11-11 16:06:43,104 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999505e-01 4.94803991e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:06:43,132 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.49496670e+00 6.25047306e+06]
+2019-11-11 16:06:43,133 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999505e-01 4.94803991e-07], yi calc [3.69912929e+00 1.13901021e-06], phiv [6.49496670e+00 6.25047306e+06]
+2019-11-11 16:06:43,133 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.5809139094831255, New yi_total: 3.699130424374507, Change: 0.11821651489138141
+2019-11-11 16:06:50,972 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134594219998226, 0.0011033360409364516, 2.6606671455932154] m^3/mol
+2019-11-11 16:06:51,020 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999692e-01 3.07912964e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:06:51,050 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.34773689e+00 5.38204685e+06]
+2019-11-11 16:06:51,050 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999692e-01 3.07912964e-07], yi calc [2.57021799e+00 1.32279649e-06], phiv [9.34773689e+00 5.38204685e+06]
+2019-11-11 16:06:51,050 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.699130424374507, New yi_total: 2.5702193138305853, Change: -1.1289111105439216
+2019-11-11 16:06:59,148 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597174470976, 0.0011033358041505012, 2.660665461215412] m^3/mol
+2019-11-11 16:06:59,206 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999485e-01 5.14662885e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:06:59,233 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.45050115e+00 4.54402169e+06]
+2019-11-11 16:06:59,233 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999485e-01 5.14662885e-07], yi calc [3.72462867e+00 1.56675147e-06], phiv [6.45050115e+00 4.54402169e+06]
+2019-11-11 16:06:59,233 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.5702193138305853, New yi_total: 3.724630239432071, Change: 1.1544109256014856
+2019-11-11 16:07:07,014 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596027982885, 0.0011033366722870547, 2.6606649954504844] m^3/mol
+2019-11-11 16:07:07,061 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999579e-01 4.20646177e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:07:07,090 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [5.89204591e+00 4.78728735e+06]
+2019-11-11 16:07:07,091 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999579e-01 4.20646177e-07], yi calc [4.07765349e+00 1.48713711e-06], phiv [5.89204591e+00 4.78728735e+06]
+2019-11-11 16:07:07,092 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.724630239432071, New yi_total: 4.077654973990223, Change: 0.35302473455815164
+2019-11-11 16:07:14,906 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134595139797564, 0.001103336438909074, 2.660666899654525] m^3/mol
+2019-11-11 16:07:14,968 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999635e-01 3.64704007e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:07:14,995 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.46821870e+00 4.72642894e+06]
+2019-11-11 16:07:14,996 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999635e-01 3.64704007e-07], yi calc [2.53751231e+00 1.50628577e-06], phiv [9.46821870e+00 4.72642894e+06]
+2019-11-11 16:07:14,996 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 4.077654973990223, New yi_total: 2.5375138194457394, Change: -1.5401411545444832
+2019-11-11 16:07:22,862 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598370330707, 0.0011033371774739243, 2.660669060402422] m^3/mol
+2019-11-11 16:07:22,924 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999406e-01 5.93606924e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:07:22,951 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.88342779e+00 4.51722723e+06]
+2019-11-11 16:07:22,952 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999406e-01 5.93606924e-07], yi calc [3.49037170e+00 1.57604484e-06], phiv [6.88342779e+00 4.51722723e+06]
+2019-11-11 16:07:22,952 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.5375138194457394, New yi_total: 3.4903732726112175, Change: 0.9528594531654782
+2019-11-11 16:07:30,969 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596152904367, 0.0011033358151044186, 2.660666652909547] m^3/mol
+2019-11-11 16:07:31,034 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999548e-01 4.51540485e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:07:31,063 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.49126348e+00 3.57399835e+06]
+2019-11-11 16:07:31,063 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999548e-01 4.51540485e-07], yi calc [3.20716547e+00 1.99198544e-06], phiv [7.49126348e+00 3.57399835e+06]
+2019-11-11 16:07:31,063 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.4903732726112175, New yi_total: 3.2071674594062465, Change: -0.28320581320497107
+2019-11-11 16:07:38,877 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598675932282, 0.0011033357046420981, 2.660665147774857] m^3/mol
+2019-11-11 16:07:38,946 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999379e-01 6.21104280e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:07:38,971 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.02017211e+00 3.52855934e+06]
+2019-11-11 16:07:38,971 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999379e-01 6.21104280e-07], yi calc [3.42238355e+00 2.01763723e-06], phiv [7.02017211e+00 3.52855934e+06]
+2019-11-11 16:07:38,972 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.2071674594062465, New yi_total: 3.4223855672464856, Change: 0.2152181078402391
+2019-11-11 16:07:47,181 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598097057994, 0.0011033374397874936, 2.660667278441931] m^3/mol
+2019-11-11 16:07:47,249 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.9999941e-01 5.8954118e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:07:47,278 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31479882e+00 5.21013042e+06]
+2019-11-11 16:07:47,278 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.9999941e-01 5.8954118e-07], yi calc [2.88951327e+00 1.36644423e-06], phiv [8.31479882e+00 5.21013042e+06]
+2019-11-11 16:07:47,278 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.4223855672464856, New yi_total: 2.8895146357288115, Change: -0.5328709315176741
+2019-11-11 16:07:55,345 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596614831936, 0.0011033369892309193, 2.6606689089871023] m^3/mol
+2019-11-11 16:07:55,397 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999527e-01 4.72897495e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:07:55,426 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.04906020e+00 3.81388725e+06]
+2019-11-11 16:07:55,427 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999527e-01 4.72897495e-07], yi calc [2.65505157e+00 1.86669196e-06], phiv [9.04906020e+00 3.81388725e+06]
+2019-11-11 16:07:55,427 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.8895146357288115, New yi_total: 2.6550534404620665, Change: -0.23446119526674503
+2019-11-11 16:07:59,858 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:137): T (K), xi: 320.0 [0.4 0.6], calculation did not produce a valid result.
+2019-11-11 16:07:59,858 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:138): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 135, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1822, in calc_xT_phase
+    Prange, Pguess = calc_Prange_xi(T, xi, yi, eos, rhodict, zi_opts=zi_opts)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 820, in calc_Prange_xi
+    yi_range, phiv, flagv = solve_yi_xiT(yi_range, xi, phil, p, T, eos, rhodict=rhodict, **zi_opts)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1047, in solve_yi_xiT
+    phiv, rhov, flagv = calc_phiv(P, T, yi_tmp, eos, rhodict=rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 692, in calc_phiv
+    rhov, flagv = calc_rhov(P, T, yi, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 446, in calc_rhov
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 200, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 196, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1475, in calc_A
+    Achain, sigmaii_avg, epsilonii_avg = calc_Achain(rho, Cmol2seg, xi, T, nui, sigmakl, epsilonkl, dkl, xskl, l_rkl, l_akl, beads, beadlibrary, zetax, zetaxstar, KHS)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 920, in calc_Achain
+    a2iidchi = calc_a2ii_1pchi(rho, Cmol2seg, epsilonii_avg, dii_eff, x0ii, l_rii_avg, l_aii_avg, zetax)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 731, in calc_a2ii_1pchi
+    a1sii_l_rii_avgl_aii_avg = calc_a1s(rho, Cmol2seg, l_aii_avg + l_rii_avg, zetax, epsilonii_avg, dii_eff)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/nojit_exts.py", line 65, in calc_a1s
+    a1s = np.einsum("ij,j->ij", (1.0 - (etakl / 2.0)) / ((1.0 - etakl)**3),
+KeyboardInterrupt
+2019-11-11 16:07:59,905 [INFO](despasito.thermodynamics.calc_types:phase_xiT:144): --- Calculation phase_xiT Complete ---
+2019-11-11 16:07:59,905 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:08:03,821 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:08:03,821 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:08:03,822 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:08:03,822 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:08:03,822 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:08:03,822 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, xilist
+
+2019-11-11 16:08:03,823 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:08:03,823 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:08:03,823 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:08:03,823 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:08:07,716 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:08:07,717 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:08:07,717 [INFO](despasito.thermodynamics.calc_types:phase_xiT:54): Using Tlist
+2019-11-11 16:08:07,717 [INFO](despasito.thermodynamics.calc_types:phase_xiT:58): Using xilist
+2019-11-11 16:08:07,717 [INFO](despasito.thermodynamics.calc_types:phase_xiT:112): Accepted options for P optimization
+2019-11-11 16:08:07,718 [INFO](despasito.thermodynamics.calc_types:phase_xiT:133): T (K), xi: 320.0 [0.4 0.6], Let's Begin!
+2019-11-11 16:09:05,984 [INFO](despasito.thermodynamics.calc:calc_xT_phase:1815): Guess yi in calc_xT_phase with Psat: [0.9977142 0.0022858]
+2019-11-11 16:09:30,702 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 1000 Pa, roots [0.00021318282449449884, 0.002911402064069873, 2.6677602509740614] m^3/mol
+2019-11-11 16:09:30,791 [DEBUG](despasito.thermodynamics.calc:calc_phil:754):     Liquid Fugacity Coefficients [60.06431894 11.86558709]
+2019-11-11 16:09:30,792 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1041):     Solve yi: P 1000, T 320.0, xi [0.4 0.6], phil [60.06431894 11.86558709]
+2019-11-11 16:09:36,632 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001316578038628457, 0.0011100140208319977, 2.660676527317134] m^3/mol
+2019-11-11 16:09:36,698 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [0.9977142 0.0022858], is smaller than increment, 0.001. Use new increment, 1e-05.
+2019-11-11 16:09:36,729 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31397849e+00 4.75203074e+06]
+2019-11-11 16:09:36,730 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [0.9977142 0.0022858], yi calc [2.8897991e+00 1.4981705e-06], phiv [8.31397849e+00 4.75203074e+06]
+2019-11-11 16:09:36,730 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 1.0, New yi_total: 2.8898005994967635, Change: 1.8898005994967635
+2019-11-11 16:09:42,516 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597414817713, 0.0011033359381742425, 2.6606656326160287] m^3/mol
+2019-11-11 16:09:42,575 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999482e-01 5.18433866e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:09:42,608 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31475286e+00 4.97940142e+06]
+2019-11-11 16:09:42,610 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999482e-01 5.18433866e-07], yi calc [2.88952997e+00 1.42976066e-06], phiv [8.31475286e+00 4.97940142e+06]
+2019-11-11 16:09:42,611 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.8898005994967635, New yi_total: 2.8895313983179154, Change: -0.0002692011788480997
+2019-11-11 16:09:49,889 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597008843338, 0.001103334984390815, 2.6606674849516874] m^3/mol
+2019-11-11 16:09:50,012 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999505e-01 4.94807102e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:09:50,094 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [5.77726690e+00 3.91279154e+06]
+2019-11-11 16:09:50,100 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999505e-01 4.94807102e-07], yi calc [4.15866672e+00 1.81950717e-06], phiv [5.77726690e+00 3.91279154e+06]
+2019-11-11 16:09:50,101 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.8895313983179154, New yi_total: 4.15866853584214, Change: 1.2691371375242246
+2019-11-11 16:09:56,962 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596132148994, 0.0011033358298970612, 2.660669187567318] m^3/mol
+2019-11-11 16:09:57,038 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999562e-01 4.37521565e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:09:57,064 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.03043207e+01 5.27718381e+06]
+2019-11-11 16:09:57,064 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999562e-01 4.37521565e-07], yi calc [2.33161682e+00 1.34908173e-06], phiv [1.03043207e+01 5.27718381e+06]
+2019-11-11 16:09:57,064 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 4.15866853584214, New yi_total: 2.3316181731322403, Change: -1.8270503627098997
+2019-11-11 16:10:04,224 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598040960045, 0.0011033365993640405, 2.6606633718492407] m^3/mol
+2019-11-11 16:10:04,429 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999421e-01 5.78603197e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:04,498 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.28380497e+00 5.41919002e+06]
+2019-11-11 16:10:04,501 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999421e-01 5.78603197e-07], yi calc [2.58791817e+00 1.31372995e-06], phiv [9.28380497e+00 5.41919002e+06]
+2019-11-11 16:10:04,502 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.3316181731322403, New yi_total: 2.587919483441254, Change: 0.2563013103090137
+2019-11-11 16:10:12,540 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597053417792, 0.0011033350423941095, 2.6606684138730783] m^3/mol
+2019-11-11 16:10:12,613 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999492e-01 5.07639423e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:12,643 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.36844642e+00 6.45684508e+06]
+2019-11-11 16:10:12,644 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999492e-01 5.07639423e-07], yi calc [3.77261988e+00 1.10260540e-06], phiv [6.36844642e+00 6.45684508e+06]
+2019-11-11 16:10:12,644 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.587919483441254, New yi_total: 3.7726209858537434, Change: 1.1847015024124894
+2019-11-11 16:10:18,873 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459421799924, 0.001103334892225469, 2.6606630491235763] m^3/mol
+2019-11-11 16:10:19,043 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999708e-01 2.92265087e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:19,118 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.97501431e+00 4.12219841e+06]
+2019-11-11 16:10:19,121 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999708e-01 2.92265087e-07], yi calc [2.40859079e+00 1.72707656e-06], phiv [9.97501431e+00 4.12219841e+06]
+2019-11-11 16:10:19,122 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.7726209858537434, New yi_total: 2.4085925151948793, Change: -1.3640284706588641
+2019-11-11 16:10:27,339 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134599965923129, 0.0011033372404504924, 2.6606587625506886] m^3/mol
+2019-11-11 16:10:27,377 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999283e-01 7.17048049e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:27,409 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.25191720e+00 3.86301101e+06]
+2019-11-11 16:10:27,410 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999283e-01 7.17048049e-07], yi calc [3.31301736e+00 1.84295417e-06], phiv [7.25191720e+00 3.86301101e+06]
+2019-11-11 16:10:27,410 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.4085925151948793, New yi_total: 3.3130192008218846, Change: 0.9044266856270053
+2019-11-11 16:10:37,183 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459784650587, 0.001103335879750959, 2.6606650568747208] m^3/mol
+2019-11-11 16:10:37,271 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999444e-01 5.56276332e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:37,298 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.04908271e+00 5.41927671e+06]
+2019-11-11 16:10:37,298 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999444e-01 5.56276332e-07], yi calc [2.65504564e+00 1.31370894e-06], phiv [9.04908271e+00 5.41927671e+06]
+2019-11-11 16:10:37,298 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.3130192008218846, New yi_total: 2.6550469514853834, Change: -0.6579722493365012
+2019-11-11 16:10:46,856 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459672197017, 0.0011033352117363541, 2.6606701914115787] m^3/mol
+2019-11-11 16:10:46,931 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999505e-01 4.94796876e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:46,963 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.04905761e+00 5.55977594e+06]
+2019-11-11 16:10:46,965 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999505e-01 4.94796876e-07], yi calc [2.65505300e+00 1.28051064e-06], phiv [9.04905761e+00 5.55977594e+06]
+2019-11-11 16:10:46,965 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.6550469514853834, New yi_total: 2.655054283300043, Change: 7.331814659394809e-06
+2019-11-11 16:10:53,543 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596742600717, 0.0011033362606509651, 2.6606619300560395] m^3/mol
+2019-11-11 16:10:53,616 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999518e-01 4.82291699e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:53,641 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.65635156e+00 3.81383924e+06]
+2019-11-11 16:10:53,642 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999518e-01 4.82291699e-07], yi calc [2.48807507e+00 1.86671535e-06], phiv [9.65635156e+00 3.81383924e+06]
+2019-11-11 16:10:53,642 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.655054283300043, New yi_total: 2.4880769355163137, Change: -0.16697734778372908
+2019-11-11 16:10:59,635 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134600416289045, 0.001103338882377673, 2.6606620522892177] m^3/mol
+2019-11-11 16:10:59,684 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.9999925e-01 7.5026432e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:10:59,717 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.01036272e+01 5.27731130e+06]
+2019-11-11 16:10:59,718 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.9999925e-01 7.5026432e-07], yi calc [2.37793092e+00 1.34904914e-06], phiv [1.01036272e+01 5.27731130e+06]
+2019-11-11 16:10:59,718 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.4880769355163137, New yi_total: 2.3779322703419523, Change: -0.11014466517436139
+2019-11-11 16:11:05,494 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597963848865, 0.0011033365415622286, 2.660662586287617] m^3/mol
+2019-11-11 16:11:05,548 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999433e-01 5.67320253e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:05,594 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.28747960e+00 4.42911878e+06]
+2019-11-11 16:11:05,596 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999433e-01 5.67320253e-07], yi calc [3.82120168e+00 1.60739700e-06], phiv [6.28747960e+00 4.42911878e+06]
+2019-11-11 16:11:05,596 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.3779322703419523, New yi_total: 3.8212032832026943, Change: 1.443271012860742
+2019-11-11 16:11:11,432 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459590781507, 0.0011033347000248155, 2.660663391449698] m^3/mol
+2019-11-11 16:11:11,479 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999579e-01 4.20652053e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:11,512 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.03043298e+01 5.41910572e+06]
+2019-11-11 16:11:11,512 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999579e-01 4.20652053e-07], yi calc [2.33161476e+00 1.31375039e-06], phiv [1.03043298e+01 5.41910572e+06]
+2019-11-11 16:11:11,513 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.8212032832026943, New yi_total: 2.331616076220623, Change: -1.4895872069820713
+2019-11-11 16:11:17,249 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.000131345978548276, 0.001103336575117015, 2.6606629909503736] m^3/mol
+2019-11-11 16:11:17,294 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999437e-01 5.63450563e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:17,327 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.79187929e+00 3.88962119e+06]
+2019-11-11 16:11:17,328 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999437e-01 5.63450563e-07], yi calc [3.08343170e+00 1.83034591e-06], phiv [7.79187929e+00 3.88962119e+06]
+2019-11-11 16:11:17,328 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.331616076220623, New yi_total: 3.08343352681372, Change: 0.751817450593097
+2019-11-11 16:11:23,076 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459806694128, 0.0011033375213658184, 2.6606654286261944] m^3/mol
+2019-11-11 16:11:23,155 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999406e-01 5.93606413e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:23,201 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.78075785e+00 4.04199809e+06]
+2019-11-11 16:11:23,202 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999406e-01 5.93606413e-07], yi calc [2.45642801e+00 1.76134478e-06], phiv [9.78075785e+00 4.04199809e+06]
+2019-11-11 16:11:23,202 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.08343352681372, New yi_total: 2.4564297752918542, Change: -0.6270037515218658
+2019-11-11 16:11:29,113 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134600018810833, 0.0011033367976817704, 2.6606631828875824] m^3/mol
+2019-11-11 16:11:29,163 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999283e-01 7.17034455e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:29,192 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.16567057e+00 4.72648040e+06]
+2019-11-11 16:11:29,193 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999283e-01 7.17034455e-07], yi calc [2.62127330e+00 1.50626929e-06], phiv [9.16567057e+00 4.72648040e+06]
+2019-11-11 16:11:29,193 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.4564297752918542, New yi_total: 2.6212748111246764, Change: 0.16484503583282217
+2019-11-11 16:11:34,854 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459799136444, 0.0011033345933630899, 2.6606700901461693] m^3/mol
+2019-11-11 16:11:34,894 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999425e-01 5.74632343e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:34,935 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31476098e+00 4.51720764e+06]
+2019-11-11 16:11:34,936 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999425e-01 5.74632343e-07], yi calc [2.88952715e+00 1.57605158e-06], phiv [8.31476098e+00 4.51720764e+06]
+2019-11-11 16:11:34,937 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.6212748111246764, New yi_total: 2.8895287227396547, Change: 0.26825391161497825
+2019-11-11 16:11:40,598 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597586482224, 0.0011033371388993569, 2.6606689789910947] m^3/mol
+2019-11-11 16:11:40,667 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999455e-01 5.45435514e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:40,694 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.93087475e+00 3.32625308e+06]
+2019-11-11 16:11:40,695 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999455e-01 5.45435514e-07], yi calc [3.46647839e+00 2.14035195e-06], phiv [6.93087475e+00 3.32625308e+06]
+2019-11-11 16:11:40,695 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.8895287227396547, New yi_total: 3.4664805349216947, Change: 0.5769518121820401
+2019-11-11 16:11:46,427 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598604028796, 0.001103336767227415, 2.660659992829399] m^3/mol
+2019-11-11 16:11:46,499 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999383e-01 6.17442367e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:46,529 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.75989623e+00 4.39888632e+06]
+2019-11-11 16:11:46,530 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999383e-01 6.17442367e-07], yi calc [2.74269545e+00 1.61844425e-06], phiv [8.75989623e+00 4.39888632e+06]
+2019-11-11 16:11:46,530 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.4664805349216947, New yi_total: 2.742697072508362, Change: -0.7237834624133326
+2019-11-11 16:11:52,198 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598296205794, 0.001103337115886987, 2.6606653189158944] m^3/mol
+2019-11-11 16:11:52,277 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999410e-01 5.90092235e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:52,302 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.07816614e+01 5.21015760e+06]
+2019-11-11 16:11:52,303 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999410e-01 5.90092235e-07], yi calc [2.22838824e+00 1.36643703e-06], phiv [1.07816614e+01 5.21015760e+06]
+2019-11-11 16:11:52,303 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.742697072508362, New yi_total: 2.2283896062196704, Change: -0.5143074662886917
+2019-11-11 16:11:58,213 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598553991343, 0.0011033357354131408, 2.660667623945584] m^3/mol
+2019-11-11 16:11:58,256 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999387e-01 6.13194848e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:11:58,288 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.28376085e+00 6.05068415e+06]
+2019-11-11 16:11:58,289 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999387e-01 6.13194848e-07], yi calc [2.58793047e+00 1.17661938e-06], phiv [9.28376085e+00 6.05068415e+06]
+2019-11-11 16:11:58,289 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.2283896062196704, New yi_total: 2.58793164494748, Change: 0.35954203872780965
+2019-11-11 16:12:04,009 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596373802268, 0.0011033357154791622, 2.66066627943552] m^3/mol
+2019-11-11 16:12:04,080 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999545e-01 4.54656284e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:04,105 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.04907682e+00 4.48630252e+06]
+2019-11-11 16:12:04,105 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999545e-01 4.54656284e-07], yi calc [2.65504737e+00 1.58690864e-06], phiv [9.04907682e+00 4.48630252e+06]
+2019-11-11 16:12:04,105 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.58793164494748, New yi_total: 2.6550489539481057, Change: 0.06711730900062562
+2019-11-11 16:12:09,788 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134598433384007, 0.0011033374352974897, 2.6606702955380284] m^3/mol
+2019-11-11 16:12:09,846 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999402e-01 5.97694684e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:09,877 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.89233866e+00 3.30666740e+06]
+2019-11-11 16:12:09,878 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999402e-01 5.97694684e-07], yi calc [3.04418356e+00 2.15302944e-06], phiv [7.89233866e+00 3.30666740e+06]
+2019-11-11 16:12:09,878 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.6550489539481057, New yi_total: 3.044185711871376, Change: 0.3891367579232705
+2019-11-11 16:12:15,525 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134599917847265, 0.0011033383111710942, 2.6606648071631187] m^3/mol
+2019-11-11 16:12:15,599 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999293e-01 7.07259556e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:15,624 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [5.96795580e+00 4.37290281e+06]
+2019-11-11 16:12:15,624 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999293e-01 7.07259556e-07], yi calc [4.02578846e+00 1.62806094e-06], phiv [5.96795580e+00 4.37290281e+06]
+2019-11-11 16:12:15,624 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.044185711871376, New yi_total: 4.02579008558952, Change: 0.9816043737181439
+2019-11-11 16:12:21,408 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134595463913299, 0.0011033361262549129, 2.6606667260642483] m^3/mol
+2019-11-11 16:12:21,490 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999596e-01 4.04407806e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:21,523 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.84818819e+00 3.93974152e+06]
+2019-11-11 16:12:21,523 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999596e-01 4.04407806e-07], yi calc [2.43960890e+00 1.80706075e-06], phiv [9.84818819e+00 3.93974152e+06]
+2019-11-11 16:12:21,524 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 4.02579008558952, New yi_total: 2.4396107095541866, Change: -1.5861793760353335
+2019-11-11 16:12:27,325 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134600241111798, 0.0011033364053668745, 2.6606657178178725] m^3/mol
+2019-11-11 16:12:27,559 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999259e-01 7.40716844e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:27,606 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.97505534e+00 4.51721251e+06]
+2019-11-11 16:12:27,607 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999259e-01 7.40716844e-07], yi calc [2.40858088e+00 1.57604988e-06], phiv [9.97505534e+00 4.51721251e+06]
+2019-11-11 16:12:27,607 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.4396107095541866, New yi_total: 2.408582457509486, Change: -0.03102825204470072
+2019-11-11 16:12:33,319 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134599055397594, 0.0011033365169054526, 2.660661672212793] m^3/mol
+2019-11-11 16:12:33,381 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999346e-01 6.54347490e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:33,411 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.89228911e+00 4.17924079e+06]
+2019-11-11 16:12:33,411 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999346e-01 6.54347490e-07], yi calc [3.04420267e+00 1.70350373e-06], phiv [7.89228911e+00 4.17924079e+06]
+2019-11-11 16:12:33,411 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 2.408582457509486, New yi_total: 3.044204371167015, Change: 0.6356219136575292
+2019-11-11 16:12:39,104 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134597868883367, 0.0011033365835950396, 2.660663106849408] m^3/mol
+2019-11-11 16:12:39,178 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999440e-01 5.59589147e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:39,203 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.54293046e+00 4.78728538e+06]
+2019-11-11 16:12:39,203 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999440e-01 5.59589147e-07], yi calc [3.18519807e+00 1.48713763e-06], phiv [7.54293046e+00 4.78728538e+06]
+2019-11-11 16:12:39,204 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.044204371167015, New yi_total: 3.1851995617473885, Change: 0.14099519058037346
+2019-11-11 16:12:45,830 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134596566922874, 0.0011033359253538814, 2.660662487875154] m^3/mol
+2019-11-11 16:12:45,928 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [9.99999533e-01 4.66889941e-07], is smaller than increment, 0.001. Use new increment, 1e-09.
+2019-11-11 16:12:46,005 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.16565108e+00 3.81389581e+06]
+2019-11-11 16:12:46,006 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1076):     yi guess [9.99999533e-01 4.66889941e-07], yi calc [2.62127888e+00 1.86668766e-06], phiv [9.16565108e+00 3.81389581e+06]
+2019-11-11 16:12:46,007 [INFO](despasito.thermodynamics.calc:solve_yi_xiT:1077):     Old yi_total: 3.1851995617473885, New yi_total: 2.6212807444949964, Change: -0.5639188172523921
+2019-11-11 16:12:46,007 [WARNING](despasito.thermodynamics.calc:solve_yi_xiT:1100):     More than 30 iterations needed. Error in Smallest Fraction: [52.52590222] %%
+2019-11-11 16:13:02,621 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0002657493439515022, 0.004015290698408627, 2.6803296535810053] m^3/mol
+2019-11-11 16:13:02,659 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [0.01 0.99], is smaller than increment, 0.001. Use new increment, 0.0001.
+2019-11-11 16:13:02,695 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [9.81508144e-06 4.89094429e+12]
+2019-11-11 16:13:08,381 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590092287403, 0.0011033357212719308, 2.660663509670441] m^3/mol
+2019-11-11 16:13:08,435 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 5.94655068e-19], is smaller than increment, 0.001. Use new increment, 1e-21.
+2019-11-11 16:13:08,464 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31473811e+00 4.95870093e+19]
+2019-11-11 16:13:08,465 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 2447837.823343103 2.8895350956616506
+2019-11-11 16:13:08,465 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.01 0.99] total1 - total2 = 2447834.9338080073
+2019-11-11 16:13:22,813 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0002612204099468769, 0.0039225133823386805, 2.6789360678520553] m^3/mol
+2019-11-11 16:13:22,945 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [0.0437931 0.9562069], is smaller than increment, 0.001. Use new increment, 0.0001.
+2019-11-11 16:13:22,977 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [2.45344909e-05 4.77127693e+12]
+2019-11-11 16:13:29,284 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590092287403, 0.0011033357212719308, 2.660663509670441] m^3/mol
+2019-11-11 16:13:29,352 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 1.52372418e-18], is smaller than increment, 0.001. Use new increment, 1e-20.
+2019-11-11 16:13:29,380 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31473811e+00 1.93520368e+19]
+2019-11-11 16:13:29,380 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 979263.3440128184 2.8895350956616506
+2019-11-11 16:13:29,381 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.0437931 0.9562069] total1 - total2 = 979260.4544777228
+2019-11-11 16:13:42,748 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0002566865025329866, 0.003829238816943354, 2.6775859698779305] m^3/mol
+2019-11-11 16:13:42,833 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [0.07758621 0.92241379], is smaller than increment, 0.001. Use new increment, 0.0001.
+2019-11-11 16:13:42,859 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [5.94047584e-05 4.50882480e+12]
+2019-11-11 16:13:48,759 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590092287403, 0.0011033357212719308, 2.660663509670441] m^3/mol
+2019-11-11 16:13:48,825 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 3.90410785e-18], is smaller than increment, 0.001. Use new increment, 1e-20.
+2019-11-11 16:13:48,852 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31473811e+00 7.55285650e+18]
+2019-11-11 16:13:48,852 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 404441.12948075484 2.8895350956616506
+2019-11-11 16:13:48,853 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.07758621 0.92241379] total1 - total2 = 404438.2399456592
+2019-11-11 16:14:02,070 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00025214762164299997, 0.0037354521737689994, 2.676325823666675] m^3/mol
+2019-11-11 16:14:02,177 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.39318194e-04 4.12726119e+12]
+2019-11-11 16:14:07,868 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590092287403, 0.0011033357212719308, 2.660663509670441] m^3/mol
+2019-11-11 16:14:07,917 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 1.00025289e-17], is smaller than increment, 0.001. Use new increment, 1e-19.
+2019-11-11 16:14:07,963 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31473811e+00 2.94797112e+18]
+2019-11-11 16:14:07,963 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 172452.18928563903 2.8895350956616506
+2019-11-11 16:14:07,964 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.11137931 0.88862069] total1 - total2 = 172449.29975054337
+2019-11-11 16:14:20,825 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0002476037813093008, 0.003641121863642258, 2.6750935666756357] m^3/mol
+2019-11-11 16:14:20,915 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [3.16522221e-04 3.65970814e+12]
+2019-11-11 16:14:26,740 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313458999630858, 0.0011033357398806255, 2.6606635096704534] m^3/mol
+2019-11-11 16:14:26,814 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 2.56284113e-17], is smaller than increment, 0.001. Use new increment, 1e-19.
+2019-11-11 16:14:26,849 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474695e+00 1.15056674e+18]
+2019-11-11 16:14:26,849 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 75905.34254805214 2.889532022172026
+2019-11-11 16:14:26,850 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.14517241 0.85482759] total1 - total2 = 75902.45301602996
+2019-11-11 16:14:39,428 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0002430549939852166, 0.0035462491196857804, 2.6739330430307997] m^3/mol
+2019-11-11 16:14:39,518 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.96585810e-04 3.14350503e+12]
+2019-11-11 16:14:45,211 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459015404388, 0.0011033338360716752, 2.660666613579746] m^3/mol
+2019-11-11 16:14:45,256 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 6.56635559e-17], is smaller than increment, 0.001. Use new increment, 1e-19.
+2019-11-11 16:14:45,289 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474595e+00 4.49064840e+17]
+2019-11-11 16:14:45,289 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 34490.69338135322 2.8895323719024306
+2019-11-11 16:14:45,289 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.17896552 0.82103448] total1 - total2 = 34487.80384898132
+2019-11-11 16:14:57,425 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00023850128356737592, 0.003450818634714833, 2.6728312814037034] m^3/mol
+2019-11-11 16:14:57,512 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.48498209e-03 2.61556029e+12]
+2019-11-11 16:15:03,329 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590159930715, 0.0011033334390813292, 2.6606666136024537] m^3/mol
+2019-11-11 16:15:03,399 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 1.68236574e-16], is smaller than increment, 0.001. Use new increment, 1e-18.
+2019-11-11 16:15:03,424 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474140e+00 1.75272103e+17]
+2019-11-11 16:15:03,424 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 16179.13623838784 2.8895339529286246
+2019-11-11 16:15:03,425 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.21275862 0.78724138] total1 - total2 = 16176.246704434912
+2019-11-11 16:15:15,604 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00023394268669696815, 0.003354798412816773, 2.6717903443997977] m^3/mol
+2019-11-11 16:15:15,740 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [3.06653693e-03 2.10815965e+12]
+2019-11-11 16:15:21,542 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459016985871, 0.001103335065109424, 2.660667255576651] m^3/mol
+2019-11-11 16:15:21,602 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 4.31031128e-16], is smaller than increment, 0.001. Use new increment, 1e-18.
+2019-11-11 16:15:21,634 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31475591e+00 6.84109049e+16]
+2019-11-11 16:15:21,634 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 7834.807844842523 2.8895289093268395
+2019-11-11 16:15:21,634 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.24655172 0.75344828] total1 - total2 = 7831.918315933196
+2019-11-11 16:15:33,409 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00022937923735814086, 0.003258204614181975, 2.670805272774085] m^3/mol
+2019-11-11 16:15:33,490 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.13405442e-03 1.64597678e+12]
+2019-11-11 16:15:39,278 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459013577149, 0.0011033349840583668, 2.660666186273982] m^3/mol
+2019-11-11 16:15:39,336 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 1.10430199e-15], is smaller than increment, 0.001. Use new increment, 1e-17.
+2019-11-11 16:15:39,371 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31475283e+00 2.67021331e+16]
+2019-11-11 16:15:39,372 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 3916.777700608878 2.889529979663043
+2019-11-11 16:15:39,372 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.28034483 0.71965517] total1 - total2 = 3913.888170629215
+2019-11-11 16:15:50,847 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00022481099176264633, 0.003161022712479035, 2.669876513502301] m^3/mol
+2019-11-11 16:15:50,949 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.18857317e-02 1.24488481e+12]
+2019-11-11 16:15:56,639 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590094344162, 0.001103335921608876, 2.66066450418008] m^3/mol
+2019-11-11 16:15:56,701 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 2.82918071e-15], is smaller than increment, 0.001. Use new increment, 1e-17.
+2019-11-11 16:15:56,726 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474519e+00 1.04225196e+16]
+2019-11-11 16:15:56,728 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 2021.392384954162 2.8895326351566704
+2019-11-11 16:15:56,729 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.31413793 0.68586207] total1 - total2 = 2018.5028523190053
+2019-11-11 16:16:08,156 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00022023801465423712, 0.0030632360993723723, 2.6690040098298033] m^3/mol
+2019-11-11 16:16:08,229 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [2.23093481e-02 9.12066232e+11]
+2019-11-11 16:16:14,132 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590239361634, 0.001103335697205696, 2.66066287340313] m^3/mol
+2019-11-11 16:16:14,190 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 7.24810434e-15], is smaller than increment, 0.001. Use new increment, 1e-17.
+2019-11-11 16:16:14,219 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474490e+00 5.69647615e+92]
+2019-11-11 16:16:14,219 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 1076.9354389658722 2.8895327345922754
+2019-11-11 16:16:14,220 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.34793103 0.65206897] total1 - total2 = 1074.04590623128
+2019-11-11 16:16:24,922 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0002156603869361372, 0.0029648596659363094, 2.6681808154544435] m^3/mol
+2019-11-11 16:16:25,048 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [4.05625397e-02 6.47302842e+11]
+2019-11-11 16:16:30,889 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459011767661, 0.0011033340428065386, 2.6606638854122107] m^3/mol
+2019-11-11 16:16:30,952 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 1.85687025e-14], is smaller than increment, 0.001. Use new increment, 1e-16.
+2019-11-11 16:16:30,983 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.3147471 0.       ]
+2019-11-11 16:16:30,984 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 592.3131974957124 inf
+2019-11-11 16:16:30,984 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.38172414 0.61827586] total1 - total2 = -inf
+2019-11-11 16:16:41,816 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00021107819851463706, 0.002865881358799199, 2.6674174639382] m^3/mol
+2019-11-11 16:16:41,918 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.14402050e-02 4.45017135e+11]
+2019-11-11 16:16:47,624 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590127297587, 0.001103336408313181, 2.660664427752103] m^3/mol
+2019-11-11 16:16:47,672 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.0000000e+00 4.7569643e-14], is smaller than increment, 0.001. Use new increment, 1e-16.
+2019-11-11 16:16:47,705 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [4.30991171e+08 2.30708582e-01]
+2019-11-11 16:16:47,706 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 336.3054118610101 30.858636487774508
+2019-11-11 16:16:47,706 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.41551724 0.58448276] total1 - total2 = 305.4467753732356
+2019-11-11 16:16:58,524 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0002064915619133299, 0.0027663079490220046, 2.666694847465596] m^3/mol
+2019-11-11 16:16:58,669 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.21883137e-01 2.96370899e+11]
+2019-11-11 16:17:04,793 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590007734135, 0.0011033345428198844, 2.6606637544454497] m^3/mol
+2019-11-11 16:17:04,861 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 1.21863038e-13], is smaller than increment, 0.001. Use new increment, 1e-15.
+2019-11-11 16:17:04,889 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31473961        inf]
+2019-11-11 16:17:04,890 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 197.12101410034242 2.8895345757029567
+2019-11-11 16:17:04,890 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.44931034 0.55068966] total1 - total2 = 194.23147952463947
+2019-11-11 16:17:15,124 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00020190061110400407, 0.0026661543085819504, 2.666031252626837] m^3/mol
+2019-11-11 16:17:15,238 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [2.01430256e-01 1.91198014e+11]
+2019-11-11 16:17:20,966 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459010359337, 0.0011033350481988624, 2.6606634489451526] m^3/mol
+2019-11-11 16:17:21,018 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 3.12180133e-13], is smaller than increment, 0.001. Use new increment, 1e-15.
+2019-11-11 16:17:21,051 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474209        inf]
+2019-11-11 16:17:21,052 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 119.27566423694272 2.8895337125392437
+2019-11-11 16:17:21,052 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.48310345 0.51689655] total1 - total2 = 116.38613052440347
+2019-11-11 16:17:31,032 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00019730549653851676, 0.002565438968208547, 2.665404865957674] m^3/mol
+2019-11-11 16:17:31,121 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [3.22470480e-01 1.19487585e+11]
+2019-11-11 16:17:36,925 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590036250154, 0.001103335317158582, 2.660666613080841] m^3/mol
+2019-11-11 16:17:37,006 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 7.99707398e-13], is smaller than increment, 0.001. Use new increment, 1e-15.
+2019-11-11 16:17:37,032 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474288        inf]
+2019-11-11 16:17:37,033 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 74.50519982732273 2.889533436394276
+2019-11-11 16:17:37,033 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.51689655 0.48310345] total1 - total2 = 71.61566639092845
+2019-11-11 16:17:46,584 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00019270639491499473, 0.0024641846444458963, 2.6648144868827823] m^3/mol
+2019-11-11 16:17:46,665 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [5.00080017e-01 7.23358978e+10]
+2019-11-11 16:17:52,298 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.0001313459011632264, 0.0011033350197533016, 2.6606618716665857] m^3/mol
+2019-11-11 16:17:52,373 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.0000000e+00 2.0485641e-12], is smaller than increment, 0.001. Use new increment, 1e-14.
+2019-11-11 16:17:52,399 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [6.9614921       inf]
+2019-11-11 16:17:52,399 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 48.0437664724952 3.4512324707118482
+2019-11-11 16:17:52,400 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.55068966 0.44931034] total1 - total2 = 44.59253400178335
+2019-11-11 16:18:01,600 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00018810351955829386, 0.0023624280577611463, 2.6642915908293605] m^3/mol
+2019-11-11 16:18:01,679 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [7.51229402e-01 4.24205834e+10]
+2019-11-11 16:18:07,394 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590058830014, 0.0011033338865525386, 2.6606637846572343] m^3/mol
+2019-11-11 16:18:07,469 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 5.24758974e-12], is smaller than increment, 0.001. Use new increment, 1e-14.
+2019-11-11 16:18:07,495 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474194        inf]
+2019-11-11 16:18:07,495 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 31.98187864825859 2.8895337633156677
+2019-11-11 16:18:07,496 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.58448276 0.41551724] total1 - total2 = 29.09234488494292
+2019-11-11 16:18:18,866 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00018349710527026253, 0.0022602048838571333, 2.6637924625507656] m^3/mol
+2019-11-11 16:18:18,960 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.09317656e+00 2.40985941e+10]
+2019-11-11 16:18:25,335 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590020414893, 0.0011033347937136535, 2.6606633321368918] m^3/mol
+2019-11-11 16:18:25,407 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 1.34419581e-11], is smaller than increment, 0.001. Use new increment, 1e-13.
+2019-11-11 16:18:25,433 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.46375978 0.        ]
+2019-11-11 16:18:25,433 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 21.977902229699403 inf
+2019-11-11 16:18:25,433 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.61827586 0.38172414] total1 - total2 = -inf
+2019-11-11 16:18:34,500 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00017888742921982114, 0.0021575773873233565, 2.6633478269832755] m^3/mol
+2019-11-11 16:18:34,598 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [1.54097307e+00 1.32617686e+10]
+2019-11-11 16:18:41,212 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590113330957, 0.0011033342553541632, 2.6606625951195717] m^3/mol
+2019-11-11 16:18:41,304 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 3.44316263e-11], is smaller than increment, 0.001. Use new increment, 1e-13.
+2019-11-11 16:18:41,334 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31473779e+000 5.32137522e-281]
+2019-11-11 16:18:41,334 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 15.591270257715609 1.3378782671641902e+281
+2019-11-11 16:18:41,335 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.65206897 0.34793103] total1 - total2 = -1.3378782671641902e+281
+2019-11-11 16:18:49,803 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00017427480706238378, 0.002054607683896555, 2.6629320089368687] m^3/mol
+2019-11-11 16:18:49,894 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [2.10419317e+00 7.06976710e+09]
+2019-11-11 16:18:55,586 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00013134590103544105, 0.001103335103984296, 2.6606669048951535] m^3/mol
+2019-11-11 16:18:55,624 [DEBUG](despasito.equations_of_state.saft.gamma_mie:chemicalpotential:239):     number of moles, [1.00000000e+00 8.81950952e-11], is smaller than increment, 0.001. Use new increment, 1e-13.
+2019-11-11 16:18:55,653 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [8.31474909e+000 2.07951575e-225]
+2019-11-11 16:18:55,654 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1254):     yi_totals 11.418023735696798 3.423562561330854e+225
+2019-11-11 16:18:55,654 [DEBUG](despasito.thermodynamics.calc:find_new_yi:1263):     Obj yi [0.68586207 0.31413793] total1 - total2 = -3.423562561330854e+225
+2019-11-11 16:19:04,081 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 1000 Pa, roots [0.00016965960372186353, 0.0019513779743379276, 2.6625566472236666] m^3/mol
+2019-11-11 16:19:04,161 [DEBUG](despasito.thermodynamics.calc:calc_phiv:704):     Vapor Fugacity Coefficients [2.78333711e+00 3.65095162e+09]
+2019-11-11 16:19:05,199 [WARNING](despasito.thermodynamics.calc_types:phase_xiT:137): T (K), xi: 320.0 [0.4 0.6], calculation did not produce a valid result.
+2019-11-11 16:19:05,199 [DEBUG](despasito.thermodynamics.calc_types:phase_xiT:138): Calculation Failed:
+Traceback (most recent call last):
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc_types.py", line 135, in phase_xiT
+    P_list[i], yi_list[i], flagv_list[i], flagl_list[i], obj_list[i] = calc.calc_xT_phase(xi_list[i], T_list[i], eos, **optsi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1822, in calc_xT_phase
+    Prange, Pguess = calc_Prange_xi(T, xi, yi, eos, rhodict, zi_opts=zi_opts)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 820, in calc_Prange_xi
+    yi_range, phiv, flagv = solve_yi_xiT(yi_range, xi, phil, p, T, eos, rhodict=rhodict, **zi_opts)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1102, in solve_yi_xiT
+    yinew = find_new_yi(P, T, phil, xi, eos, rhodict=rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 1250, in find_new_yi
+    phiv2, rhov2, flagv2 = calc_phiv(P, T, yi2, eos, rhodict=rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 692, in calc_phiv
+    rhov, flagv = calc_rhov(P, T, yi, eos, rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 446, in calc_rhov
+    vlist, Plist = PvsRho(T, xi, eos, **rhodict)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/thermodynamics/calc.py", line 200, in PvsRho
+    Plist = eos.P(rholist, T, xi)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie.py", line 196, in P
+    A = funcs.calc_A(np.append(rho + step, rho - step), xi, T, self._beads, self._beadlibrary, self._massi, self._nui, self._Cmol2seg, self._xsk, self._xskl, self._dkk, self._epsilonkl, self._sigmakl, self._dkl, self._l_akl, self._l_rkl, self._Ckl,self._x0kl, self._epsilonHB, self._Kklab, self._nk)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 1474, in calc_A
+    AHS, A1, A2, A3, zetax, zetaxstar, KHS = calc_Amono(rho, xi, nui, Cmol2seg, xsk, xskl, dkk, T,epsilonkl, sigmakl, dkl, l_akl, l_rkl, Ckl, x0kl)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/gamma_mie_funcs.py", line 571, in calc_Amono
+    a1s_2la = calc_a1s(rho, Cmol2seg, 2.0 * l_akl, zetax, epsilonkl, dkl)
+  File "/anaconda3/envs/despasito/lib/python3.7/site-packages/profilehooks.py", line 239, in new_fn
+    return fp(*args, **kw)
+  File "/anaconda3/envs/despasito/lib/python3.7/site-packages/profilehooks.py", line 347, in __call__
+    return profiler.runcall(self.fn, *args, **kw)
+  File "/anaconda3/envs/despasito/lib/python3.7/cProfile.py", line 109, in runcall
+    return func(*args, **kw)
+  File "/Users/Jennifer/bin/DESPASITO/despasito/despasito/equations_of_state/saft/jit_exts.py", line 27, in calc_a1s
+    output = calc_a1s_2d(rho, Cmol2seg, l_kl, zetax, epsilonkl, dkl)
+KeyboardInterrupt
+2019-11-11 16:19:05,232 [INFO](despasito.thermodynamics.calc_types:phase_xiT:144): --- Calculation phase_xiT Complete ---
+2019-11-11 16:19:05,232 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:21:45,988 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:21:45,989 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:21:45,989 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:21:45,990 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:21:45,990 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:21:45,990 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, xilist
+
+2019-11-11 16:21:45,991 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:21:45,991 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:21:45,991 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:21:45,991 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:21:50,507 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:21:50,507 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:21:50,507 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:21:50,507 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:21:50,508 [INFO](despasito.thermodynamics.calc_types:liquid_properties:410): Using Plist
+2019-11-11 16:24:00,334 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:24:00,335 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:24:00,335 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:24:00,336 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:24:00,336 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:24:00,336 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, xilist
+
+2019-11-11 16:24:00,336 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:24:00,336 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:24:00,336 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:24:00,336 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:24:04,152 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:24:04,152 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:24:04,152 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:24:04,152 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:24:04,152 [INFO](despasito.thermodynamics.calc_types:liquid_properties:413): Assuming atmospheric pressure.
+2019-11-11 16:24:14,924 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 101325.0 Pa, roots [0.0002131683689566748, 0.003020587492106626, 0.03118470987886803] m^3/mol
+2019-11-11 16:24:14,974 [INFO](despasito.thermodynamics.calc_types:liquid_properties:442): P (Pa), T (K), xi, rhol: 101325.0 320.0 [0.4 0.6] 4691.132787547073
+2019-11-11 16:24:14,999 [INFO](despasito.thermodynamics.calc_types:liquid_properties:445): --- Calculation liquid_density Complete ---
+2019-11-11 16:24:15,000 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:25:27,736 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:25:27,737 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:25:27,737 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:25:27,738 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:25:27,738 [INFO](despasito.input_output.readwrite_input:extract_calc_data:101): Association sites have been accepted
+2019-11-11 16:25:27,738 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, xilist
+
+2019-11-11 16:25:27,738 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:25:27,738 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:25:27,738 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:25:27,738 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:25:31,877 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:25:31,878 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:25:31,878 [INFO](despasito.thermodynamics.calc_types:vapor_properties:479): Using Tlist
+2019-11-11 16:26:21,067 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:26:21,068 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:26:21,068 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:26:21,069 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:26:21,069 [INFO](despasito.input_output.readwrite_input:extract_calc_data:101): Association sites have been accepted
+2019-11-11 16:26:21,069 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, yilist
+
+2019-11-11 16:26:21,069 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:26:21,070 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:26:21,070 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:26:21,070 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:26:25,504 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:26:25,504 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:26:25,505 [INFO](despasito.thermodynamics.calc_types:vapor_properties:479): Using Tlist
+2019-11-11 16:26:25,505 [INFO](despasito.thermodynamics.calc_types:vapor_properties:483): Using yilist
+2019-11-11 16:26:25,505 [INFO](despasito.thermodynamics.calc_types:vapor_properties:500): Assuming atmospheric pressure.
+2019-11-11 16:26:36,972 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 101325.0 Pa, roots [0.0002131683689566748, 0.003020587492106626, 0.03118470987886803] m^3/mol
+2019-11-11 16:26:37,045 [INFO](despasito.thermodynamics.calc_types:vapor_properties:528): P (Pa), T (K), yi, rhov: 101325.0 320.0 [0.4 0.6] 32.067076376118216
+2019-11-11 16:26:37,071 [INFO](despasito.thermodynamics.calc_types:vapor_properties:531): --- Calculation vapor_density Complete ---
+2019-11-11 16:26:37,071 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:27:33,350 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:27:33,351 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:27:33,351 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:27:33,352 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:27:33,352 [INFO](despasito.input_output.readwrite_input:extract_calc_data:101): Association sites have been accepted
+2019-11-11 16:27:33,352 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, yilist
+
+2019-11-11 16:27:33,353 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:27:33,353 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:27:33,353 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:27:33,353 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:27:37,273 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:27:37,273 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:27:37,273 [INFO](despasito.thermodynamics.calc_types:vapor_properties:479): Using Tlist
+2019-11-11 16:27:37,273 [INFO](despasito.thermodynamics.calc_types:vapor_properties:483): Using yilist
+2019-11-11 16:27:37,274 [INFO](despasito.thermodynamics.calc_types:vapor_properties:500): Assuming atmospheric pressure.
+2019-11-11 16:27:48,378 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 101325.0 Pa, roots [0.0002131683689566748, 0.003020587492106626, 0.03118470987886803] m^3/mol
+2019-11-11 16:27:48,449 [INFO](despasito.thermodynamics.calc_types:vapor_properties:528): P (Pa), T (K), yi, rhov: 101325.0 320.0 [0.4 0.6] 32.067076376118216
+2019-11-11 16:27:48,474 [INFO](despasito.thermodynamics.calc_types:vapor_properties:531): --- Calculation vapor_density Complete ---
+2019-11-11 16:27:48,474 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:27:55,885 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:27:55,886 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:27:55,886 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:27:55,887 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:27:55,887 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:27:55,887 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, xilist
+
+2019-11-11 16:27:55,887 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:27:55,887 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:27:55,887 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:27:55,887 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:27:59,957 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:27:59,957 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:27:59,957 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:27:59,958 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:27:59,958 [INFO](despasito.thermodynamics.calc_types:liquid_properties:413): Assuming atmospheric pressure.
+2019-11-11 16:28:11,035 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 101325.0 Pa, roots [0.0002131683689566748, 0.003020587492106626, 0.03118470987886803] m^3/mol
+2019-11-11 16:28:11,087 [INFO](despasito.thermodynamics.calc_types:liquid_properties:442): P (Pa), T (K), xi, rhol: 101325.0 320.0 [0.4 0.6] 4691.132787547073
+2019-11-11 16:28:11,117 [INFO](despasito.thermodynamics.calc_types:liquid_properties:445): --- Calculation liquid_density Complete ---
+2019-11-11 16:28:11,117 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:32:51,417 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:32:51,418 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:32:51,418 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:32:51,418 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:32:51,419 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:32:51,419 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, Plist, xilist
+
+2019-11-11 16:32:51,419 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:32:51,419 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:32:51,419 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:32:51,419 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:32:55,577 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:32:55,577 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:32:55,577 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:32:55,577 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:32:55,577 [INFO](despasito.thermodynamics.calc_types:liquid_properties:410): Using Plist
+2019-11-11 16:33:02,553 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:33:02,553 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:33:02,553 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:33:02,554 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:33:02,554 [INFO](despasito.input_output.readwrite_input:extract_calc_data:101): Association sites have been accepted
+2019-11-11 16:33:02,554 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, Plist, yilist
+
+2019-11-11 16:33:02,554 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:33:02,554 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:33:02,554 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:33:02,555 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:33:06,646 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:33:06,647 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:33:06,647 [INFO](despasito.thermodynamics.calc_types:vapor_properties:479): Using Tlist
+2019-11-11 16:33:06,647 [INFO](despasito.thermodynamics.calc_types:vapor_properties:483): Using yilist
+2019-11-11 16:33:06,647 [INFO](despasito.thermodynamics.calc_types:vapor_properties:497): Using Plist
+2019-11-11 16:34:27,845 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:34:27,845 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:34:27,846 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:34:27,847 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:34:27,847 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:34:27,847 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, Plist, xilist
+
+2019-11-11 16:34:27,847 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:34:27,847 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:34:27,847 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:34:27,847 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:34:34,566 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:34:34,566 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:34:34,567 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:34:34,567 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:34:34,567 [INFO](despasito.thermodynamics.calc_types:liquid_properties:411): Using Plist
+2019-11-11 16:34:47,524 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 100000.0 Pa, roots [0.00021316855980021672, 0.0030190117052406765, 0.031552259368368134] m^3/mol
+2019-11-11 16:34:47,570 [INFO](despasito.thermodynamics.calc_types:liquid_properties:443): P (Pa), T (K), xi, rhol: 100000.0 320.0 [0.4 0.6] 4691.1285860063535
+2019-11-11 16:34:47,611 [INFO](despasito.thermodynamics.calc_types:liquid_properties:446): --- Calculation liquid_density Complete ---
+2019-11-11 16:34:47,612 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:34:54,943 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:34:54,943 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:34:54,944 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:34:54,944 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:34:54,945 [INFO](despasito.input_output.readwrite_input:extract_calc_data:101): Association sites have been accepted
+2019-11-11 16:34:54,945 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, Plist, yilist
+
+2019-11-11 16:34:54,945 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:34:54,945 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:34:54,945 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:34:54,945 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:34:59,217 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:34:59,218 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:34:59,219 [INFO](despasito.thermodynamics.calc_types:vapor_properties:480): Using Tlist
+2019-11-11 16:34:59,220 [INFO](despasito.thermodynamics.calc_types:vapor_properties:484): Using yilist
+2019-11-11 16:34:59,220 [INFO](despasito.thermodynamics.calc_types:vapor_properties:499): Using Plist
+2019-11-11 16:35:11,004 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 100000.0 Pa, roots [0.00021316855980021672, 0.0030190117052406765, 0.031552259368368134] m^3/mol
+2019-11-11 16:35:11,088 [INFO](despasito.thermodynamics.calc_types:vapor_properties:530): P (Pa), T (K), yi, rhov: 100000.0 320.0 [0.4 0.6] 31.69355057603672
+2019-11-11 16:35:11,115 [INFO](despasito.thermodynamics.calc_types:vapor_properties:533): --- Calculation vapor_density Complete ---
+2019-11-11 16:35:11,115 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:36:04,118 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:36:04,119 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:36:04,119 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:36:04,120 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:36:04,120 [INFO](despasito.input_output.readwrite_input:extract_calc_data:101): Association sites have been accepted
+2019-11-11 16:36:04,120 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, Plist, yilist
+
+2019-11-11 16:36:04,120 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:36:04,120 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:36:04,120 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:36:04,120 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:36:08,483 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:36:08,483 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:36:08,484 [INFO](despasito.thermodynamics.calc_types:vapor_properties:480): Using Tlist
+2019-11-11 16:36:08,484 [INFO](despasito.thermodynamics.calc_types:vapor_properties:484): Using yilist
+2019-11-11 16:36:08,484 [INFO](despasito.thermodynamics.calc_types:vapor_properties:499): Using Plist
+2019-11-11 16:36:29,442 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 100000.0 Pa, roots [0.00021316855980021672, 0.0030190117052406765, 0.031552259368368134] m^3/mol
+2019-11-11 16:36:29,524 [INFO](despasito.thermodynamics.calc_types:vapor_properties:530): P (Pa), T (K), yi, rhov: 100000.0 320.0 [0.4 0.6] 31.69355057603672
+2019-11-11 16:36:29,556 [INFO](despasito.thermodynamics.calc_types:vapor_properties:533): --- Calculation vapor_density Complete ---
+2019-11-11 16:36:29,556 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:36:38,249 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:36:38,249 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:36:38,249 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:36:38,250 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:36:38,250 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:36:38,250 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, Plist, xilist
+
+2019-11-11 16:36:38,250 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:36:38,251 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:36:38,251 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:36:38,251 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:36:42,398 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:36:42,398 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:36:42,398 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:36:42,398 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:36:42,399 [INFO](despasito.thermodynamics.calc_types:liquid_properties:411): Using Plist
+2019-11-11 16:36:54,149 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 100000.0 Pa, roots [0.00021316855980021672, 0.0030190117052406765, 0.031552259368368134] m^3/mol
+2019-11-11 16:36:54,223 [INFO](despasito.thermodynamics.calc_types:liquid_properties:443): P (Pa), T (K), xi, rhol: 100000.0 320.0 [0.4 0.6] 4691.1285860063535
+2019-11-11 16:36:54,251 [INFO](despasito.thermodynamics.calc_types:liquid_properties:446): --- Calculation liquid_density Complete ---
+2019-11-11 16:36:54,251 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:44:11,662 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:44:11,663 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:44:11,663 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:44:11,666 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:44:11,666 [INFO](despasito.input_output.readwrite_input:extract_calc_data:101): Association sites have been accepted
+2019-11-11 16:44:11,666 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, Plist, yilist
+
+2019-11-11 16:44:11,667 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:44:11,667 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:44:11,667 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:44:11,667 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:44:15,752 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:44:15,753 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:44:15,753 [INFO](despasito.thermodynamics.calc_types:vapor_properties:480): Using Tlist
+2019-11-11 16:44:15,753 [INFO](despasito.thermodynamics.calc_types:vapor_properties:484): Using yilist
+2019-11-11 16:44:15,753 [INFO](despasito.thermodynamics.calc_types:vapor_properties:499): Using Plist
+2019-11-11 16:44:22,970 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 100000.0 Pa, roots [0.00014111321420066619, 0.0013198625734047746, 0.02661701535558589] m^3/mol
+2019-11-11 16:44:23,049 [INFO](despasito.thermodynamics.calc_types:vapor_properties:530): P (Pa), T (K), yi, rhov: 100000.0 320.0 [0.4 0.6] 37.570084856990825
+2019-11-11 16:44:23,078 [INFO](despasito.thermodynamics.calc_types:vapor_properties:533): --- Calculation vapor_density Complete ---
+2019-11-11 16:44:23,078 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:44:31,784 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:44:31,785 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:44:31,785 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:44:31,786 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:44:31,787 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:44:31,787 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, Plist, xilist
+
+2019-11-11 16:44:31,787 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:44:31,787 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:44:31,787 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:44:31,787 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:44:36,047 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:44:36,047 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:44:36,048 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:44:36,048 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:44:36,048 [INFO](despasito.thermodynamics.calc_types:liquid_properties:411): Using Plist
+2019-11-11 16:44:43,221 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 100000.0 Pa, roots [0.00014111321420066619, 0.0013198625734047746, 0.02661701535558589] m^3/mol
+2019-11-11 16:44:43,295 [INFO](despasito.thermodynamics.calc_types:liquid_properties:443): P (Pa), T (K), xi, rhol: 100000.0 320.0 [0.4 0.6] 7086.512054111874
+2019-11-11 16:44:43,325 [INFO](despasito.thermodynamics.calc_types:liquid_properties:446): --- Calculation liquid_density Complete ---
+2019-11-11 16:44:43,325 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:54:17,910 [INFO](root:<module>:50): Input args: Namespace(input='input_yi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:54:17,910 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:54:17,910 [INFO](despasito.main:run:24): Begin processing input file: input_yi.json
+2019-11-11 16:54:17,912 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:54:17,912 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:54:17,912 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, Tlist, Plist, yilist
+
+2019-11-11 16:54:17,912 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:54:17,912 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:54:17,912 [INFO](despasito.main:run:33): Finish processing input file: input_yi.json
+2019-11-11 16:54:17,912 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:54:21,753 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:54:21,753 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:54:21,753 [INFO](despasito.thermodynamics.calc_types:vapor_properties:480): Using Tlist
+2019-11-11 16:54:21,753 [INFO](despasito.thermodynamics.calc_types:vapor_properties:484): Using yilist
+2019-11-11 16:54:21,753 [INFO](despasito.thermodynamics.calc_types:vapor_properties:499): Using Plist
+2019-11-11 16:54:28,149 [DEBUG](despasito.thermodynamics.calc:calc_rhov:450):     Find rhov: P 100000.0 Pa, roots [0.0001395611158241773, 0.001396505256457536, 0.02670873252489677] m^3/mol
+2019-11-11 16:54:28,211 [INFO](despasito.thermodynamics.calc_types:vapor_properties:530): P (Pa), T (K), yi, rhov: 100000.0 320.0 [0.4 0.6] 37.4409875499822
+2019-11-11 16:54:28,243 [INFO](despasito.thermodynamics.calc_types:vapor_properties:533): --- Calculation vapor_density Complete ---
+2019-11-11 16:54:28,243 [INFO](despasito.main:run:46): Finished thermodynamic calculation
+2019-11-11 16:54:36,108 [INFO](root:<module>:50): Input args: Namespace(input='input_xi.json', jit=True, logFile='xi_1.log', path='.', threads=1, verbose=10)
+2019-11-11 16:54:36,108 [INFO](root:<module>:51): JIT compilation: True
+2019-11-11 16:54:36,109 [INFO](despasito.main:run:24): Begin processing input file: input_xi.json
+2019-11-11 16:54:36,112 [INFO](despasito.input_output.readwrite_input:extract_calc_data:95): Cross interaction parameters have been accepted
+2019-11-11 16:54:36,112 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): No association sites specified
+2019-11-11 16:54:36,112 [INFO](despasito.input_output.readwrite_input:extract_calc_data:117): The following thermo calculation parameters have been provided: calculation_type, pressure options, Tlist, Plist, xilist
+
+2019-11-11 16:54:36,113 [DEBUG](despasito.main:run:31): EOS dict:
+2019-11-11 16:54:36,113 [DEBUG](despasito.main:run:32): Thermo dict:
+2019-11-11 16:54:36,114 [INFO](despasito.main:run:33): Finish processing input file: input_xi.json
+2019-11-11 16:54:36,114 [INFO](despasito.equations_of_state:eos:35): Trying default EOS, saft.gamma_mie
+2019-11-11 16:54:40,551 [INFO](despasito.equations_of_state:eos:59): Created saft.gamma_mie eos object
+2019-11-11 16:54:40,552 [INFO](despasito.main:run:44): Initializing thermodynamic calculation
+2019-11-11 16:54:40,552 [INFO](despasito.thermodynamics.calc_types:liquid_properties:392): Using Tlist
+2019-11-11 16:54:40,552 [INFO](despasito.thermodynamics.calc_types:liquid_properties:396): Using xilist
+2019-11-11 16:54:40,552 [INFO](despasito.thermodynamics.calc_types:liquid_properties:411): Using Plist
+2019-11-11 16:54:47,383 [DEBUG](despasito.thermodynamics.calc:calc_rhol:555):     Find rhol: P 100000.0 Pa, roots [0.0001395611158241773, 0.001396505256457536, 0.02670873252489677] m^3/mol
+2019-11-11 16:54:47,429 [INFO](despasito.thermodynamics.calc_types:liquid_properties:443): P (Pa), T (K), xi, rhol: 100000.0 320.0 [0.4 0.6] 7165.322734236026
+2019-11-11 16:54:47,479 [INFO](despasito.thermodynamics.calc_types:liquid_properties:446): --- Calculation liquid_density Complete ---
+2019-11-11 16:54:47,481 [INFO](despasito.main:run:46): Finished thermodynamic calculation

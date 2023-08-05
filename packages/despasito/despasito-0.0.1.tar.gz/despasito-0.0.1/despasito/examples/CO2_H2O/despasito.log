@@ -1,0 +1,26 @@
+2019-12-06 15:14:12,195 [INFO](root:<module>:44): Input args: Namespace(input='input_vapor.json', jit=True, logFile='despasito.log', path='.', threads=1, verbose=10)
+2019-12-06 15:14:12,195 [INFO](root:<module>:45): JIT compilation: True
+2019-12-06 15:14:12,195 [INFO](despasito.main:run:36): Begin processing input file: input_vapor.json
+2019-12-06 15:14:12,196 [INFO](despasito.input_output.readwrite_input:extract_calc_data:97): Cross interaction parameters have been accepted
+2019-12-06 15:14:12,196 [INFO](despasito.input_output.readwrite_input:extract_calc_data:103): Association sites have been accepted
+2019-12-06 15:14:12,197 [INFO](despasito.input_output.readwrite_input:extract_calc_data:119): The following thermo calculation parameters have been provided: calculation_type, Tlist, yilist, Plist
+
+2019-12-06 15:14:12,197 [DEBUG](despasito.main:run:45): EOS dict:
+2019-12-06 15:14:12,197 [DEBUG](despasito.main:run:46): Thermo dict:
+2019-12-06 15:14:12,197 [INFO](despasito.main:run:47): Finish processing input file: input_vapor.json
+2019-12-06 15:14:12,197 [INFO](despasito.equations_of_state:eos:37): Trying default EOS, saft.gamma_mie
+2019-12-06 15:14:17,806 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1131): Bead CO2 has 1 of the association site NkH
+2019-12-06 15:14:17,806 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1131): Bead CO2 has 1 of the association site Nka1
+2019-12-06 15:14:17,806 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1131): Bead H2O has 2 of the association site NkH
+2019-12-06 15:14:17,806 [DEBUG](despasito.equations_of_state.saft.gamma_mie_funcs:calc_assoc_matrices:1131): Bead H2O has 2 of the association site Nke1
+2019-12-06 15:14:17,807 [INFO](despasito.equations_of_state:eos:61): Created saft.gamma_mie eos object
+2019-12-06 15:14:17,807 [INFO](despasito.main:run:59): Initializing thermodynamic calculation
+2019-12-06 15:14:17,807 [INFO](despasito.thermodynamics.calc_types:vapor_properties:478): Using Tlist
+2019-12-06 15:14:17,807 [INFO](despasito.thermodynamics.calc_types:vapor_properties:482): Using yilist
+2019-12-06 15:14:17,807 [INFO](despasito.thermodynamics.calc_types:vapor_properties:497): Using Plist
+2019-12-06 15:14:20,563 [DEBUG](despasito.thermodynamics.calc:calc_rhov:445):     Find rhov: P 4492927.45 Pa, roots [0.0004813350264001019] m^3/mol
+2019-12-06 15:14:20,564 [DEBUG](despasito.thermodynamics.calc:calc_rhov:476):     Flag 2: The T and yi, 323.2 [0.9954 0.0046], combination produces a critical fluid at this pressure
+2019-12-06 15:14:20,602 [INFO](despasito.thermodynamics.calc:calc_rhov:511):     Vapor Density: 2077.554338520867 mol/m^3, flag 2
+2019-12-06 15:14:20,642 [INFO](despasito.thermodynamics.calc_types:vapor_properties:530): P 4492927.45 Pa, T 323.2 K, yi [0.9954 0.0046], rhov 2077.554338520867, phiv [0.84281603 0.09759425]
+2019-12-06 15:14:20,643 [INFO](despasito.thermodynamics.calc_types:vapor_properties:532): --- Calculation vapor_density Complete ---
+2019-12-06 15:14:20,643 [INFO](despasito.main:run:61): Finished thermodynamic calculation
