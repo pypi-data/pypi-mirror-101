@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: spiel
+Version: 0.1.1
+Summary: A framework for building and presenting richly-styled presentations in your terminal using Python.
+Home-page: https://github.com/JoshKarpel/spiel
+License: MIT
+Author: JoshKarpel
+Author-email: josh.karpel@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Multimedia :: Graphics :: Presentation
+Classifier: Typing :: Typed
+Requires-Dist: Pillow (>=8.2.0,<9.0.0)
+Requires-Dist: pendulum (>=2.1.2,<3.0.0)
+Requires-Dist: rich (>=10.0.0,<11.0.0)
+Requires-Dist: typer (>=0.3.2,<0.4.0)
+Requires-Dist: watchdog (>=2.0.2,<3.0.0)
+Project-URL: Documentation, https://spiel.readthedocs.io/en/latest/
+Description-Content-Type: text/markdown
+
+# Spiel
+
+![PyPI](https://img.shields.io/pypi/v/spiel)
+[![Documentation Status](https://readthedocs.org/projects/spiel/badge/?version=latest)](https://spiel.readthedocs.io/en/latest/?badge=latest)
+![PyPI - License](https://img.shields.io/pypi/l/spiel)
+
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/JoshKarpel/spiel/main.svg)](https://results.pre-commit.ci/latest/github/JoshKarpel/spiel/main)
+[![codecov](https://codecov.io/gh/JoshKarpel/spiel/branch/main/graph/badge.svg?token=2sjP4V0AfY)](https://codecov.io/gh/JoshKarpel/spiel)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+![GitHub issues](https://img.shields.io/github/issues/JoshKarpel/spiel)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/JoshKarpel/spiel)
+
+Spiel is a framework for building and presenting richly-styled presentations in your terminal using Python.
+
+To see what Spiel can do, install it (`pip install spiel`), then run this command to view the demonstration deck:
+```bash
+$ spiel demo present
+```
+
