@@ -1,0 +1,815 @@
+MANIFEST.in
+README.md
+setup.py
+aocref/__init__.py
+aocref.egg-info/PKG-INFO
+aocref.egg-info/SOURCES.txt
+aocref.egg-info/dependency_links.txt
+aocref.egg-info/top_level.txt
+aocref/__pycache__/__init__.cpython-36.pyc
+aocref/data/community_pages.yaml
+aocref/data/constants.json
+aocref/data/maps.yaml
+aocref/data/platforms.json
+aocref/data/players.yaml
+aocref/data/teams.json
+aocref/data/__pycache__/__init__.cpython-36.pyc
+aocref/data/datasets/0.json
+aocref/data/datasets/1.json
+aocref/data/datasets/100.json
+aocref/data/datasets/2.json
+aocref/data/datasets/200.json
+aocref/data/datasets/7.json
+aocref/data/events/events.json
+aocref/data/events/series.csv
+aocref/data/photos/players/2scared.jpg
+aocref/data/photos/players/accm.jpg
+aocref/data/photos/players/aluba.jpg
+aocref/data/photos/players/angelinajolie.jpg
+aocref/data/photos/players/bact.jpg
+aocref/data/photos/players/belgium.jpg
+aocref/data/photos/players/bt4.jpg
+aocref/data/photos/players/capoch.jpg
+aocref/data/photos/players/chacal.jpg
+aocref/data/photos/players/champion.jpg
+aocref/data/photos/players/chobo.jpg
+aocref/data/photos/players/chris.jpg
+aocref/data/photos/players/coconut.jpg
+aocref/data/photos/players/cool.jpg
+aocref/data/photos/players/crouvex.jpg
+aocref/data/photos/players/dante.jpg
+aocref/data/photos/players/daut.jpg
+aocref/data/photos/players/dl.jpg
+aocref/data/photos/players/dogao.jpg
+aocref/data/photos/players/dreaivis.jpg
+aocref/data/photos/players/dreamer.jpg
+aocref/data/photos/players/edie.jpg
+aocref/data/photos/players/elfanor.jpg
+aocref/data/photos/players/f1re.jpg
+aocref/data/photos/players/fear.jpg
+aocref/data/photos/players/gd28.jpg
+aocref/data/photos/players/geek.jpg
+aocref/data/photos/players/goodboy.jpg
+aocref/data/photos/players/grunt.jpg
+aocref/data/photos/players/gx_iron.jpg
+aocref/data/photos/players/halen.jpg
+aocref/data/photos/players/hearttt.jpg
+aocref/data/photos/players/hera.jpg
+aocref/data/photos/players/iamken.jpg
+aocref/data/photos/players/iamkmkm.jpg
+aocref/data/photos/players/ideg.jpg
+aocref/data/photos/players/inglis.jpg
+aocref/data/photos/players/iori.jpg
+aocref/data/photos/players/jonslow.jpg
+aocref/data/photos/players/jor.jpg
+aocref/data/photos/players/jordan_23.jpg
+aocref/data/photos/players/kaohen.jpg
+aocref/data/photos/players/kendx.jpg
+aocref/data/photos/players/kmkm.jpg
+aocref/data/photos/players/koven.jpg
+aocref/data/photos/players/kraken.jpg
+aocref/data/photos/players/leash.jpg
+aocref/data/photos/players/liereyy.jpg
+aocref/data/photos/players/lyx.jpg
+aocref/data/photos/players/mbl.jpg
+aocref/data/photos/players/melkor.jpg
+aocref/data/photos/players/miguel.jpg
+aocref/data/photos/players/mimmox.jpg
+aocref/data/photos/players/mozory.jpg
+aocref/data/photos/players/muse.jpg
+aocref/data/photos/players/nick.jpg
+aocref/data/photos/players/nicov.jpg
+aocref/data/photos/players/nili.jpg
+aocref/data/photos/players/orky_soul.jpg
+aocref/data/photos/players/paladin.jpg
+aocref/data/photos/players/peel.jpg
+aocref/data/photos/players/pg_fire.jpg
+aocref/data/photos/players/phi009.jpg
+aocref/data/photos/players/pike.jpg
+aocref/data/photos/players/plexiq.jpg
+aocref/data/photos/players/pmogis.jpg
+aocref/data/photos/players/ralber.jpg
+aocref/data/photos/players/rami.jpg
+aocref/data/photos/players/rayan.jpg
+aocref/data/photos/players/rd_champion.jpg
+aocref/data/photos/players/rip_dreams.jpg
+aocref/data/photos/players/riut.jpg
+aocref/data/photos/players/rubenstock.jpg
+aocref/data/photos/players/rukie.jpg
+aocref/data/photos/players/rusher.jpg
+aocref/data/photos/players/ruso.jpg
+aocref/data/photos/players/seven_deceit.jpg
+aocref/data/photos/players/slam.jpg
+aocref/data/photos/players/st4rk.jpg
+aocref/data/photos/players/tamock.jpg
+aocref/data/photos/players/tatoh.jpg
+aocref/data/photos/players/the_sheriff.jpg
+aocref/data/photos/players/themax.jpg
+aocref/data/photos/players/theviper.jpg
+aocref/data/photos/players/tim.jpg
+aocref/data/photos/players/vile.jpg
+aocref/data/photos/players/villese.jpg
+aocref/data/photos/players/vinch.jpg
+aocref/data/photos/players/vivi.jpg
+aocref/data/photos/players/wrath.jpg
+aocref/data/photos/players/wright.jpg
+aocref/data/photos/players/yanzi.jpg
+aocref/data/photos/players/yellow.jpg
+aocref/data/photos/players/yinghua.jpg
+aocref/data/photos/players/yo.jpg
+aocref/data/photos/players/zuppi.jpg
+aocref/data/previews/aoe2_club.jpg
+aocref/data/previews/aoe2_de_tools_herokuapp_com.jpg
+aocref/data/previews/aoe2_net.jpg
+aocref/data/previews/aoe2cm_net.jpg
+aocref/data/previews/aoe2companion_com.jpg
+aocref/data/previews/aoe2insights_com.jpg
+aocref/data/previews/aoe2map_net.jpg
+aocref/data/previews/aoe2recs_com.jpg
+aocref/data/previews/aoe2techtree_net.jpg
+aocref/data/previews/aoe_elo.jpg
+aocref/data/previews/aoecompanion_com.jpg
+aocref/data/previews/aoenexus_com.jpg
+aocref/data/previews/aoestats_io.jpg
+aocref/data/previews/aoezone_net.jpg
+aocref/data/previews/aok_heavengames_com.jpg
+aocref/data/previews/buildorderguide_com.jpg
+aocref/data/previews/esportsearnings_com.jpg
+aocref/data/previews/halfon_aoe2_se.jpg
+aocref/data/previews/liquipedia_net.jpg
+aocref/data/previews/ratings_aoe2_se.jpg
+aocref/data/previews/siegeengineers_org.jpg
+aocref/data/rms/ae/AE_Bedouins.rms
+aocref/data/rms/ae/AE_Continental.rms
+aocref/data/rms/ae/AE_Criss_Cross.rms
+aocref/data/rms/ae/AE_Double_Arabia.rms
+aocref/data/rms/ae/AE_Houseboat_v1.1.rms
+aocref/data/rms/ae/AE_Salt_Marsh.rms
+aocref/data/rms/ae/AE_Scandinavia.rms
+aocref/data/rms/ae/AE_Two_Rivers_v1.1.rms
+aocref/data/rms/ae/AE_Valley_Fort.rms
+aocref/data/rms/ae/Aspiring_Experts_Mappack.rms
+aocref/data/rms/aoelympics/AL_Aquapolis.rms
+aocref/data/rms/aoelympics/AL_Aquifer_v2.2.rms
+aocref/data/rms/aoelympics/AL_Atacama_v2.rms
+aocref/data/rms/aoelympics/AL_Atoll.rms
+aocref/data/rms/aoelympics/AL_Baltic.rms
+aocref/data/rms/aoelympics/AL_Bedouins.rms
+aocref/data/rms/aoelympics/AL_Big Freeze.rms
+aocref/data/rms/aoelympics/AL_Black_Forest.rms
+aocref/data/rms/aoelympics/AL_Black_Lake.rms
+aocref/data/rms/aoelympics/AL_Bog_Islands.rms
+aocref/data/rms/aoelympics/AL_Border_Dispute.rms
+aocref/data/rms/aoelympics/AL_Chaos_Pit.rms
+aocref/data/rms/aoelympics/AL_Coast_to_Mountains_v2.rms
+aocref/data/rms/aoelympics/AL_Cross.rms
+aocref/data/rms/aoelympics/AL_Death_Valley.rms
+aocref/data/rms/aoelympics/AL_Desertfox.rms
+aocref/data/rms/aoelympics/AL_Double Arabia.rms
+aocref/data/rms/aoelympics/AL_Dry_Arabia.rms
+aocref/data/rms/aoelympics/AL_ForestNothing.rms
+aocref/data/rms/aoelympics/AL_Fortress.rms
+aocref/data/rms/aoelympics/AL_Golden_Island.rms
+aocref/data/rms/aoelympics/AL_Golden_Pit.rms2
+aocref/data/rms/aoelympics/AL_Hamburger.rms
+aocref/data/rms/aoelympics/AL_Hideout.rms2
+aocref/data/rms/aoelympics/AL_Hippos_Belly.rms
+aocref/data/rms/aoelympics/AL_Islands.rms
+aocref/data/rms/aoelympics/AL_JDGrossrox.rms
+aocref/data/rms/aoelympics/AL_Land_Nomad.rms
+aocref/data/rms/aoelympics/AL_Loch Ness.rms
+aocref/data/rms/aoelympics/AL_Lombardia.rms2
+aocref/data/rms/aoelympics/AL_Mangrove_Seize_the_Hump_v2.rms
+aocref/data/rms/aoelympics/AL_Meatballs.rms
+aocref/data/rms/aoelympics/AL_Mediterranean.rms
+aocref/data/rms/aoelympics/AL_MegaRandom.rms2
+aocref/data/rms/aoelympics/AL_Michi.rms
+aocref/data/rms/aoelympics/AL_Migration.rms
+aocref/data/rms/aoelympics/AL_Mirage.rms
+aocref/data/rms/aoelympics/AL_Nomad.rms
+aocref/data/rms/aoelympics/AL_Plains_v2.rms
+aocref/data/rms/aoelympics/AL_Pond_Arena.rms
+aocref/data/rms/aoelympics/AL_Riparian_Forest.rms
+aocref/data/rms/aoelympics/AL_Rooster.rms
+aocref/data/rms/aoelympics/AL_Slippery_Springs.rms
+aocref/data/rms/aoelympics/AL_Team_Acropolis_v2.rms
+aocref/data/rms/aoelympics/AL_UltraRandom_v4.rms
+aocref/data/rms/aoelympics/AL_Water_Nomad.rms
+aocref/data/rms/aoelympics/AL_Xerotes v1.0.rms
+aocref/data/rms/awakening/TA_DM_GA.rms
+aocref/data/rms/awakening/TA_DM_Team Islands.rms
+aocref/data/rms/bcc3/BCC3@Fortress.rms
+aocref/data/rms/bcc3/DesertArabia_v4.rms
+aocref/data/rms/bcc3/Disc_v4.rms
+aocref/data/rms/bcc3/Greenarabia_v4.rms
+aocref/data/rms/bcc3/Highland_v4.rms
+aocref/data/rms/bcc3/Islands_v4.rms
+aocref/data/rms/bcc3/Marsh_v4.rms
+aocref/data/rms/bcc3/Pizza_v4.rms
+aocref/data/rms/bcc3/Plains_v4.rms
+aocref/data/rms/bcc3/Teamislands_v4.rms
+aocref/data/rms/bcc3/Zero_v4.rms
+aocref/data/rms/boa/BoA_Arabia.rms
+aocref/data/rms/boa/BoA_Beachfight.rms
+aocref/data/rms/boa/BoA_Colloseum.rms
+aocref/data/rms/boa/BoA_Donut.rms
+aocref/data/rms/boa/BoA_Dust.rms
+aocref/data/rms/boa/BoA_MapPack v3.rms
+aocref/data/rms/boa/BoA_NotSocotra.rms
+aocref/data/rms/boa/BoA_Steppe.rms
+aocref/data/rms/boa2/BoA2 - African Waters.rms
+aocref/data/rms/boa2/BoA2 - Arabia.rms
+aocref/data/rms/boa2/BoA2 - Beachfight.rms
+aocref/data/rms/boa2/BoA2 - Canyon Lake.rms
+aocref/data/rms/boa2/BoA2 - Colosseum.rms
+aocref/data/rms/boa2/BoA2 - Desert Slope.rms
+aocref/data/rms/boa2/BoA2 - Donut.rms
+aocref/data/rms/boa2/BoA2 - Grand Bara.rms
+aocref/data/rms/boa2/BoA2 - Not Socotra.rms
+aocref/data/rms/bop/BOP_Clearing.rms
+aocref/data/rms/bop/BOP_Cross.rms
+aocref/data/rms/bop/BOP_Desert.rms
+aocref/data/rms/bop/BOP_Drought.rms
+aocref/data/rms/bop/BOP_Dry_Arabia.rms
+aocref/data/rms/bop/BOP_Duopoly.rms
+aocref/data/rms/bop/BOP_Loch_Ness.rms
+aocref/data/rms/bop/BOP_Sand_Maze.rms
+aocref/data/rms/bop/BOP_Shorelands.rms
+aocref/data/rms/bop/BOP_Steppe.rms
+aocref/data/rms/cm/CM_Acropolis.rms
+aocref/data/rms/cm/CM_Arabia.rms
+aocref/data/rms/cm/CM_Archipelago.rms
+aocref/data/rms/cm/CM_Atoll.rms
+aocref/data/rms/cm/CM_Baltic.rms
+aocref/data/rms/cm/CM_Bedouins.rms
+aocref/data/rms/cm/CM_Boards_of_Canada.rms
+aocref/data/rms/cm/CM_Caribbean.rms
+aocref/data/rms/cm/CM_Chaos_Pit.rms
+aocref/data/rms/cm/CM_Cliffy_Arena.rms
+aocref/data/rms/cm/CM_Coastal.rms
+aocref/data/rms/cm/CM_Continental.rms
+aocref/data/rms/cm/CM_Cross.rms
+aocref/data/rms/cm/CM_Desertfox.rms
+aocref/data/rms/cm/CM_Dry_Arabia.rms
+aocref/data/rms/cm/CM_Ghost_Lake.rms
+aocref/data/rms/cm/CM_Hideout.rms
+aocref/data/rms/cm/CM_Highland.rms
+aocref/data/rms/cm/CM_Hippos_Belly.rms
+aocref/data/rms/cm/CM_Houseboat_v2.rms
+aocref/data/rms/cm/CM_Hunger Games.rms
+aocref/data/rms/cm/CM_Islands.rms
+aocref/data/rms/cm/CM_JDGrossrox.rms
+aocref/data/rms/cm/CM_Land_Nomad.rms
+aocref/data/rms/cm/CM_MFO_Plateau.rms
+aocref/data/rms/cm/CM_MFO_Woogy.rms
+aocref/data/rms/cm/CM_Mediterranean.rms
+aocref/data/rms/cm/CM_Melting Ice.rms
+aocref/data/rms/cm/CM_Migration.rms
+aocref/data/rms/cm/CM_Mongolia.rms
+aocref/data/rms/cm/CM_Nomad.rms
+aocref/data/rms/cm/CM_Oasis.rms
+aocref/data/rms/cm/CM_Pond_Arena.rms
+aocref/data/rms/cm/CM_Raft.rms
+aocref/data/rms/cm/CM_Ripples.rms
+aocref/data/rms/cm/CM_Rivers.rms
+aocref/data/rms/cm/CM_Sahara.rms
+aocref/data/rms/cm/CM_Scandinavia.rms
+aocref/data/rms/cm/CM_Seize_The_Hump.rms
+aocref/data/rms/cm/CM_Team_Acropolis.rms
+aocref/data/rms/cm/CM_Team_Islands.rms
+aocref/data/rms/cm/CM_Tombolo.rms
+aocref/data/rms/cm/CM_Wetweb.rms
+aocref/data/rms/cm/CM_Yucatan.rms
+aocref/data/rms/cm/CM_Zero.rms
+aocref/data/rms/cot/Anatolia_v4.rms
+aocref/data/rms/cot/Artificial_v4.rms
+aocref/data/rms/cot/Atacama (LR).rms
+aocref/data/rms/cot/Atlantean Relics (LR).rms
+aocref/data/rms/cot/Atlantic_v4.rms
+aocref/data/rms/cot/Bigfoot (LR).rms
+aocref/data/rms/cot/Blackforest_v4.rms
+aocref/data/rms/cot/Border Dispute (LR).rms
+aocref/data/rms/cot/COT_LandNomad.rms
+aocref/data/rms/cot/Clearing_v4.rms
+aocref/data/rms/cot/CoT_Desert.rms
+aocref/data/rms/cot/CoT_DoubleArabia.rms
+aocref/data/rms/cot/CoT_FluffyNomad.rms
+aocref/data/rms/cot/CoT_Fortress.rms
+aocref/data/rms/cot/CoT_Plains.rms
+aocref/data/rms/cot/Continent_v4.rms
+aocref/data/rms/cot/DesertArabia_v4.rms
+aocref/data/rms/cot/Disc_v4.rms
+aocref/data/rms/cot/Double Migration (LR).rms
+aocref/data/rms/cot/Fairrivers_v4.rms
+aocref/data/rms/cot/Ghostswamp_v4.rms
+aocref/data/rms/cot/Golden Hill (LR).rms
+aocref/data/rms/cot/Greatlake_v4.rms
+aocref/data/rms/cot/Hamburger (LR).rms
+aocref/data/rms/cot/Hills (LR).rms
+aocref/data/rms/cot/Homeland_v4.rms
+aocref/data/rms/cot/Land of Lakes (LR).rms
+aocref/data/rms/cot/Landmass_v4.rms
+aocref/data/rms/cot/Meatballs (LR) v2.rms
+aocref/data/rms/cot/Microphone (LR).rms
+aocref/data/rms/cot/Mongolia_v4.rms
+aocref/data/rms/cot/Oasis_v4.rms
+aocref/data/rms/cot/Ontario_v4.rms
+aocref/data/rms/cot/Paved Highland (LR).rms
+aocref/data/rms/cot/Pizza_v4.rms
+aocref/data/rms/cot/Rooster (LR).rms
+aocref/data/rms/cot/Sand Maze (LR).rms
+aocref/data/rms/cot/Sea_v4.rms
+aocref/data/rms/cot/Sealed Islands (LR).rms
+aocref/data/rms/cot/Slippery Springs (LR).rms
+aocref/data/rms/cot/Soul (LR).rms
+aocref/data/rms/cot/Stardom (LR).rms
+aocref/data/rms/cot/Tentacle Isle (LR).rms
+aocref/data/rms/cot/TreasureIslands_v4.rms
+aocref/data/rms/cot/Tsunami (LR).rms
+aocref/data/rms/cot/Vanishedlake_v4.rms
+aocref/data/rms/cot/Waterhole_v4.rms
+aocref/data/rms/cot/Woodland_v4.rms
+aocref/data/rms/cot/Zero_v4.rms
+aocref/data/rms/derac/DERAC - Arena.rms
+aocref/data/rms/dmb/DMB - Arabia.rms
+aocref/data/rms/dmb/DMB - Arena.rms
+aocref/data/rms/dmb/DMB - Atacama.rms
+aocref/data/rms/dmb/DMB - Cross.rms
+aocref/data/rms/dmb/DMB - Hideout.rms
+aocref/data/rms/dmb/DMB - Mediterranean.rms
+aocref/data/rms/dmb/DMB - Serengeti.rms
+aocref/data/rms/dmwc2/DMWC2_Atacama.rms
+aocref/data/rms/dmwc2/DMWC2_Dunes.rms
+aocref/data/rms/dmwc2/DMWC2_GA.rms
+aocref/data/rms/dmwc2/DMWC2_GhostLake.rms
+aocref/data/rms/dmwc2/DMWC2_GoldenPit.rms
+aocref/data/rms/dmwc2/DMWC2_Goldrush.rms
+aocref/data/rms/dmwc2/DMWC2_Graveyards.rms
+aocref/data/rms/dmwc2/DMWC2_MapPack.rms
+aocref/data/rms/dmwc2/DMWC2_Prairie.rms
+aocref/data/rms/dmwc2/DMWC2_SandMaze.rms
+aocref/data/rms/dmwc3/DMWC3_Dunes.rms
+aocref/data/rms/dmwc3/DMWC3_Prairie.rms
+aocref/data/rms/ecl/DA_Map_Pack.rms
+aocref/data/rms/ecl/ECL_Acropolis.rms
+aocref/data/rms/ecl/ECL_Africa_Map_Pack.rms
+aocref/data/rms/ecl/ECL_Americas_Map_Pack.rms
+aocref/data/rms/ecl/ECL_Arabia.rms
+aocref/data/rms/ecl/ECL_Arina.rms
+aocref/data/rms/ecl/ECL_Atacama.rms
+aocref/data/rms/ecl/ECL_Baltic.rms
+aocref/data/rms/ecl/ECL_Bedouins.rms
+aocref/data/rms/ecl/ECL_Budapest.rms
+aocref/data/rms/ecl/ECL_Caribbean.rms
+aocref/data/rms/ecl/ECL_Cenotes.rms
+aocref/data/rms/ecl/ECL_Chaos_Pit.rms
+aocref/data/rms/ecl/ECL_Clearing.rms
+aocref/data/rms/ecl/ECL_Cross.rms
+aocref/data/rms/ecl/ECL_Desert.rms
+aocref/data/rms/ecl/ECL_Dry_River.rms
+aocref/data/rms/ecl/ECL_EU_East_Map_Pack.rms
+aocref/data/rms/ecl/ECL_EU_West_Map_Pack.rms
+aocref/data/rms/ecl/ECL_East_Asia_Map_Pack.rms
+aocref/data/rms/ecl/ECL_El_Dorado.rms
+aocref/data/rms/ecl/ECL_Fortress.rms
+aocref/data/rms/ecl/ECL_Frisia.rms
+aocref/data/rms/ecl/ECL_Gold_Rush.rms
+aocref/data/rms/ecl/ECL_Golden_Pit.rms
+aocref/data/rms/ecl/ECL_Gorge.rms
+aocref/data/rms/ecl/ECL_Hamburger.rms
+aocref/data/rms/ecl/ECL_Hideout.rms
+aocref/data/rms/ecl/ECL_Highland.rms
+aocref/data/rms/ecl/ECL_Houseboat.rms
+aocref/data/rms/ecl/ECL_Lombardia.rms
+aocref/data/rms/ecl/ECL_Map_Pack.rms
+aocref/data/rms/ecl/ECL_Mediterranean.rms
+aocref/data/rms/ecl/ECL_Mesas.rms
+aocref/data/rms/ecl/ECL_Middle_East_Map_Pack.rms
+aocref/data/rms/ecl/ECL_Mongolia.rms
+aocref/data/rms/ecl/ECL_Mt_Fuji.rms
+aocref/data/rms/ecl/ECL_Nomad.rms
+aocref/data/rms/ecl/ECL_Oasis.rms
+aocref/data/rms/ecl/ECL_Qualifier_Map_Pack.rms
+aocref/data/rms/ecl/ECL_Rift_Island.rms
+aocref/data/rms/ecl/ECL_Sahara.rms
+aocref/data/rms/ecl/ECL_Salt_Marsh.rms
+aocref/data/rms/ecl/ECL_Scandinavia.rms
+aocref/data/rms/ecl/ECL_Steppe.rms
+aocref/data/rms/ecl/ECL_Sunburn.rms
+aocref/data/rms/ecl/ECL_Team_Acropolis.rms
+aocref/data/rms/ecl/ECL_Team_Causeways.rms
+aocref/data/rms/ecl/ECL_Team_Islands.rms
+aocref/data/rms/ecl/ECL_Twin_Puddles.rms
+aocref/data/rms/ecl/ECL_Valley.rms
+aocref/data/rms/ecl/ECL_Yucatan.rms
+aocref/data/rms/ecl/ZR@ECL_Atoll.rms
+aocref/data/rms/ecl/ZR@ECL_Bog.rms
+aocref/data/rms/ecl/ZR@ECL_Bog_Islands.rms
+aocref/data/rms/ecl/ZR@ECL_Decentring.rms
+aocref/data/rms/ecl/ZR@ECL_Eastern_Coastline.rms
+aocref/data/rms/ecl/ZR@ECL_Enemy_Archipelago.rms
+aocref/data/rms/ecl/ZR@ECL_Hillfort.rms
+aocref/data/rms/ecl/ZR@ECL_Kilimanjaro.rms
+aocref/data/rms/ecl/ZR@ECL_Riverbed.rms
+aocref/data/rms/ecl/ZR@ECL_Serengeti.rms
+aocref/data/rms/ecl/ZR@ECL_Southeast_Asia_Map_Pack.rms
+aocref/data/rms/egc/EGC_Arena.rms
+aocref/data/rms/egc/EGC_Black_Forest.rms
+aocref/data/rms/egc/EGC_Chaos.rms
+aocref/data/rms/egc/EGC_Cross.rms
+aocref/data/rms/egc/EGC_Desert.rms
+aocref/data/rms/egc/EGC_Dry_Arabia.rms
+aocref/data/rms/egc/EGC_Duopoly.rms
+aocref/data/rms/egc/EGC_Hideout.rms
+aocref/data/rms/egc/EGC_Loch_Ness.rms
+aocref/data/rms/egc/EGC_Migration_Plus.rms
+aocref/data/rms/egc/EGC_Sand_Maze.rms
+aocref/data/rms/egc/EGC_Slippery_Springs.rms
+aocref/data/rms/egc/EGC_Steppe.rms
+aocref/data/rms/es/ES@Canals_v2.rms
+aocref/data/rms/es/ES@Capricious_v2.rms
+aocref/data/rms/es/ES@Dingos_v2.rms
+aocref/data/rms/es/ES@Graveyards_v2.rms
+aocref/data/rms/es/ES@Metropolis_v2.rms
+aocref/data/rms/es/ES@Moats_v2.rms
+aocref/data/rms/es/ES@ParadiseIsland_v2.rms
+aocref/data/rms/es/ES@Pilgrims_v2.rms
+aocref/data/rms/es/ES@Prairie_v2.rms
+aocref/data/rms/es/ES@Seasons_v2.rms
+aocref/data/rms/es/ES@Sherwood_Forest_v2.rms
+aocref/data/rms/es/ES@Sherwood_Heroes_v2.rms
+aocref/data/rms/es/ES@Shipwreck_v2.rms
+aocref/data/rms/es/ES@Team_Glaciers_v2.rms
+aocref/data/rms/es/ES@The_Unknown_v2.rms
+aocref/data/rms/eurorumble/ER2_Acropolis.rms
+aocref/data/rms/eurorumble/ER2_Arabia.rms
+aocref/data/rms/eurorumble/ER2_Cross.rms
+aocref/data/rms/eurorumble/ER2_El_Dorado.rms
+aocref/data/rms/eurorumble/ER2_Fortress.rms
+aocref/data/rms/eurorumble/ER2_Ghost_Lake.rms
+aocref/data/rms/eurorumble/ER2_Hideout.rms
+aocref/data/rms/fcc/FCC_Cross.rms
+aocref/data/rms/fcc/FCC_Graveyards.rms
+aocref/data/rms/fcc/FCC_Land_Madness.rms
+aocref/data/rms/fcc/FCC_Mappack.rms
+aocref/data/rms/fcc/FCC_RegiFortress.rms
+aocref/data/rms/hc/HC_Arabia.rms
+aocref/data/rms/hc/HC_Baltic.rms
+aocref/data/rms/hc/HC_Bedouins.rms
+aocref/data/rms/hc/HC_Chaos_Pit.rms
+aocref/data/rms/hc/HC_Cross.rms
+aocref/data/rms/hc/HC_El_Dorado.rms
+aocref/data/rms/hc/HC_Gold_Rush.rms
+aocref/data/rms/hc/HC_Golden_Island.rms
+aocref/data/rms/hc/HC_Land_of_Lakes.rms
+aocref/data/rms/hc/HC_MapPack.rms
+aocref/data/rms/hc/HC_Scandinavia.rms
+aocref/data/rms/hc2/HC2_Acropolis.rms
+aocref/data/rms/hc2/HC2_Arabia.rms
+aocref/data/rms/hc2/HC2_Bay.rms
+aocref/data/rms/hc2/HC2_Cross.rms
+aocref/data/rms/hc2/HC2_Cup.rms
+aocref/data/rms/hc2/HC2_El_Dorado.rms
+aocref/data/rms/hc2/HC2_Gold_Rush.rms
+aocref/data/rms/hc2/HC2_Hideout.rms
+aocref/data/rms/hc2/HC2_Mappack.rms
+aocref/data/rms/hc2/HC2_Mongolia.rms
+aocref/data/rms/hc2/HC2_Rooster.rms
+aocref/data/rms/hc2/HC2_Scandinavia.rms
+aocref/data/rms/hc3/HC3_Arabia_v1.2.rms
+aocref/data/rms/hc3/HC3_Arabia_v2.rms
+aocref/data/rms/hc3/HC3_Arabia_v4.rms
+aocref/data/rms/hc3/HC3_Bay_v1.2.rms
+aocref/data/rms/hc3/HC3_Bay_v2.rms
+aocref/data/rms/hc3/HC3_Bay_v4.rms
+aocref/data/rms/hc3/HC3_Cross_v1.2.rms
+aocref/data/rms/hc3/HC3_Cross_v2.rms
+aocref/data/rms/hc3/HC3_Cross_v4.rms
+aocref/data/rms/hc3/HC3_Cup_v1.2.rms
+aocref/data/rms/hc3/HC3_Cup_v2.rms
+aocref/data/rms/hc3/HC3_Cup_v4.rms
+aocref/data/rms/hc3/HC3_ElDorado_v1.2.rms
+aocref/data/rms/hc3/HC3_ElDorado_v2.rms
+aocref/data/rms/hc3/HC3_ElDorado_v4.rms
+aocref/data/rms/hc3/HC3_GoldRush_v1.2.rms
+aocref/data/rms/hc3/HC3_GoldRush_v2.rms
+aocref/data/rms/hc3/HC3_GoldRush_v4.rms
+aocref/data/rms/hc3/HC3_Hideout_v1.2.rms
+aocref/data/rms/hc3/HC3_Hideout_v2.rms
+aocref/data/rms/hc3/HC3_Hideout_v4.rms
+aocref/data/rms/hc3/HC3_HighTide_v1.2.rms
+aocref/data/rms/hc3/HC3_HighTide_v2.rms
+aocref/data/rms/hc3/HC3_HighTide_v4.rms
+aocref/data/rms/hc3/HC3_Islands_v1.2.rms
+aocref/data/rms/hc3/HC3_Islands_v2.rms
+aocref/data/rms/hc3/HC3_Islands_v4.rms
+aocref/data/rms/hc3/HC3_Ravines_v1.2.rms
+aocref/data/rms/hc3/HC3_Ravines_v2.rms
+aocref/data/rms/hc3/HC3_Ravines_v4.rms
+aocref/data/rms/hc3/HC3_Slopes_v1.2.rms
+aocref/data/rms/hc3/HC3_Slopes_v2.rms
+aocref/data/rms/hc3/HC3_Slopes_v4.rms
+aocref/data/rms/kotd2/KotD2 - Arabia.rms
+aocref/data/rms/mrc/MRC_Bog v1.2.rms
+aocref/data/rms/mrc/MRC_Cluster v1.1.rms
+aocref/data/rms/mrc/MRC_Cornucopia v1.0.rms
+aocref/data/rms/mrc/MRC_Flooded Cross v1.0.rms
+aocref/data/rms/mrc/MRC_Island Cities v1.1.rms
+aocref/data/rms/mrc/MRC_Jungle Swamp v3.2.rms
+aocref/data/rms/mrc/MRC_Kingless Hill v1.3.rms
+aocref/data/rms/mrc/MRC_Mountainside v1.4.rms
+aocref/data/rms/mrc/MRC_Nomad Oasis v1.1.rms
+aocref/data/rms/mrc/MRC_Ring Nomad v2.1.rms
+aocref/data/rms/mrc/Mad_Random_Cup_Mappack.rms
+aocref/data/rms/ms/ZR@MS_Arabia.rms
+aocref/data/rms/ms/ZR@MS_Desert_Slope.rms
+aocref/data/rms/ms/ZR@MS_Donut.rms
+aocref/data/rms/ms/ZR@MS_Grand_Bara.rms
+aocref/data/rms/ms/ZR@MS_Mirage.rms
+aocref/data/rms/ms/ZR@MS_Shelter.rms
+aocref/data/rms/ms/ZR@MS_Waterhole.rms
+aocref/data/rms/msc/ZR@MSC_Bog_Arabia.rms
+aocref/data/rms/msc/ZR@MSC_Bog_Forest.rms
+aocref/data/rms/msc/ZR@MSC_Bog_Islands.rms
+aocref/data/rms/msc/ZR@MSC_Brackish_Waters.rms
+aocref/data/rms/msc/ZR@MSC_Mangrove_Arena.rms
+aocref/data/rms/msc/ZR@MSC_Mangrove_Flood.rms
+aocref/data/rms/msc/ZR@MSC_Marshland.rms
+aocref/data/rms/msc/ZR@MSC_Riverbed.rms
+aocref/data/rms/msc/ZR@MSC_Seize_the_Hump.rms
+aocref/data/rms/msc/ZR@MSC_Sonder.rms
+aocref/data/rms/msc/ZR@MSC_Sunderbans.rms
+aocref/data/rms/msc/ZR@MSC_Swamp_Fever.rms
+aocref/data/rms/msc/ZR@MSC_Water_Nomad.rms
+aocref/data/rms/msc/ZR@MSC_Watershed.rms
+aocref/data/rms/nac1/NAC_Acropolis.rms
+aocref/data/rms/nac1/NAC_Arabia.rms
+aocref/data/rms/nac1/NAC_Cross.rms
+aocref/data/rms/nac1/NAC_El Dorado.rms
+aocref/data/rms/nac1/NAC_Gold_Rush.rms
+aocref/data/rms/nac1/NAC_Golden_Hill.rms
+aocref/data/rms/nac1/NAC_Land_Madness_v1.rms
+aocref/data/rms/nac1/NAC_Mappack.rms
+aocref/data/rms/nac1/NAC_Mediterranean.rms
+aocref/data/rms/nac1/NAC_Pond_Arena.rms
+aocref/data/rms/nac1/NAC_Prairie_v1.rms
+aocref/data/rms/nac1/NAC_RegiFortress.rms
+aocref/data/rms/nac2/NAC_Acropolis.rms
+aocref/data/rms/nac2/NAC_Arabia.rms
+aocref/data/rms/nac2/NAC_Coast_to_Mountains_v2.rms
+aocref/data/rms/nac2/NAC_Cross.rms
+aocref/data/rms/nac2/NAC_El Dorado.rms
+aocref/data/rms/nac2/NAC_Flooded Cross.rms
+aocref/data/rms/nac2/NAC_Gold_Rush.rms
+aocref/data/rms/nac2/NAC_Golden_Hill.rms
+aocref/data/rms/nac2/NAC_Land_Madness.rms
+aocref/data/rms/nac2/NAC_Mappack.rms
+aocref/data/rms/nac2/NAC_MappackQ2_v2.rms
+aocref/data/rms/nac2/NAC_Mediterranean.rms
+aocref/data/rms/nac2/NAC_Prairie.rms
+aocref/data/rms/nac2/NAC_RegiFortress.rms
+aocref/data/rms/nac2/NAC_Rehydration.rms
+aocref/data/rms/nac2/NAC_Rift_Island.rms
+aocref/data/rms/nac2/NAC_Seize_the_Hump.rms
+aocref/data/rms/nac2/NAC_Tidepool_v4.1.rms
+aocref/data/rms/nac3/NAC_Cross.rms
+aocref/data/rms/nac3/NAC_Fortress.rms
+aocref/data/rms/nac3/NAC_Graveyards.rms
+aocref/data/rms/nac3/NAC_Land_Madness.rms
+aocref/data/rms/nss/NSS_Bedouins.rms
+aocref/data/rms/nss/NSS_Boundary Brawl.rms
+aocref/data/rms/nss/NSS_Cross.rms
+aocref/data/rms/nss/NSS_Land Nomad.rms
+aocref/data/rms/nss/NSS_Marsh.rms
+aocref/data/rms/nss/NSS_Mired.rms
+aocref/data/rms/nss/NSS_Nomad.rms
+aocref/data/rms/nss/NSS_Settlers.rms
+aocref/data/rms/nss/NSS_Takeshima.rms
+aocref/data/rms/ptt12/Kawasan 2v2.rms
+aocref/data/rms/ptt12/PTT_Nomad.rms
+aocref/data/rms/rbw/RBW_Acropolis.rms
+aocref/data/rms/rbw/RBW_Arabia.rms
+aocref/data/rms/rbw/RBW_Atacama.rms
+aocref/data/rms/rbw/RBW_Aztlan.rms
+aocref/data/rms/rbw/RBW_Cross.rms
+aocref/data/rms/rbw/RBW_El Dorado.rms
+aocref/data/rms/rbw/RBW_Golden Pit.rms
+aocref/data/rms/rbw/RBW_Golden Swamp.rms
+aocref/data/rms/rbw/RBW_Haywire.rms
+aocref/data/rms/rbw/RBW_Kawasan.rms
+aocref/data/rms/rbw/RBW_Land Madness.rms
+aocref/data/rms/rbw/RBW_Sinkhole.rms
+aocref/data/rms/rbw/RBW_Wings.rms
+aocref/data/rms/sync2014/SY_Accessible_Oasis.rms
+aocref/data/rms/sync2014/SY_Acropolis.rms
+aocref/data/rms/sync2014/SY_Atoll_v2.rms
+aocref/data/rms/sync2014/SY_Bedouins_v2.rms
+aocref/data/rms/sync2014/SY_Boards_of_Canada.rms
+aocref/data/rms/sync2014/SY_Caribbean_v2.rms
+aocref/data/rms/sync2014/SY_Chaos_Pit_v4.rms
+aocref/data/rms/sync2014/SY_Cliffy_Arena.rms
+aocref/data/rms/sync2014/SY_Continental_v2.rms
+aocref/data/rms/sync2014/SY_Cross.rms
+aocref/data/rms/sync2014/SY_Desertfox.rms
+aocref/data/rms/sync2014/SY_Dry_Arabia.rms
+aocref/data/rms/sync2014/SY_Hideout.rms
+aocref/data/rms/sync2014/SY_Hippo's_Belly.rms
+aocref/data/rms/sync2014/SY_JDGrossrox.rms
+aocref/data/rms/sync2014/SY_Land_Nomad.rms
+aocref/data/rms/sync2014/SY_MFOPlateau_v2.rms
+aocref/data/rms/sync2014/SY_MFOWoogy.rms
+aocref/data/rms/sync2014/SY_Nomad_v2.rms
+aocref/data/rms/sync2014/SY_Pond_Arena_v2.rms
+aocref/data/rms/sync2014/SY_Raft.rms
+aocref/data/rms/sync2014/SY_Sahara.rms
+aocref/data/rms/sync2014/SY_Seize_The_Hump.rms
+aocref/data/rms/sync2014/SY_Zero.rms
+aocref/data/rms/sync2015/SY_Acropolis.rms
+aocref/data/rms/sync2015/SY_Atoll_v2.rms
+aocref/data/rms/sync2015/SY_Bedouins_v2.rms
+aocref/data/rms/sync2015/SY_Boards_of_Canada.rms
+aocref/data/rms/sync2015/SY_Caribbean_v2.rms
+aocref/data/rms/sync2015/SY_Chaos_Pit_v4.rms
+aocref/data/rms/sync2015/SY_Cliffy_Arena.rms
+aocref/data/rms/sync2015/SY_Continental_v2.rms
+aocref/data/rms/sync2015/SY_Cross.rms
+aocref/data/rms/sync2015/SY_Desertfox.rms
+aocref/data/rms/sync2015/SY_Dry_Arabia.rms
+aocref/data/rms/sync2015/SY_Hideout.rms
+aocref/data/rms/sync2015/SY_Hippo's_Belly.rms
+aocref/data/rms/sync2015/SY_Houseboat.rms
+aocref/data/rms/sync2015/SY_JDGrossrox.rms
+aocref/data/rms/sync2015/SY_Land_Nomad.rms
+aocref/data/rms/sync2015/SY_MFOPlateau_v2.rms
+aocref/data/rms/sync2015/SY_MFOWoogy.rms
+aocref/data/rms/sync2015/SY_Map_Pack_v5.rms
+aocref/data/rms/sync2015/SY_Nomad_v2.rms
+aocref/data/rms/sync2015/SY_Pond_Arena_v2.rms
+aocref/data/rms/sync2015/SY_Raft.rms
+aocref/data/rms/sync2015/SY_Ripples.rms
+aocref/data/rms/sync2015/SY_Sahara.rms
+aocref/data/rms/sync2015/SY_Seize_The_Hump.rms
+aocref/data/rms/sync2015/SY_Wet Web.rms
+aocref/data/rms/sync2015/SY_Zero.rms
+aocref/data/rms/sync2017/SYNC_Arabia.rms
+aocref/data/rms/sync2017/SYNC_Arena.rms
+aocref/data/rms/sync2017/SYNC_Baltic.rms
+aocref/data/rms/sync2017/SYNC_Bedouins.rms
+aocref/data/rms/sync2017/SYNC_Black_Forest.rms
+aocref/data/rms/sync2017/SYNC_Chaos_Pit.rms
+aocref/data/rms/sync2017/SYNC_Continental.rms
+aocref/data/rms/sync2017/SYNC_Cross.rms
+aocref/data/rms/sync2017/SYNC_Decentring.rms
+aocref/data/rms/sync2017/SYNC_Fortress.rms
+aocref/data/rms/sync2017/SYNC_Ghost_Lake.rms
+aocref/data/rms/sync2017/SYNC_Golden_Crater.rms
+aocref/data/rms/sync2017/SYNC_Golden_Hill.rms
+aocref/data/rms/sync2017/SYNC_Hideout.rms
+aocref/data/rms/sync2017/SYNC_Islands.rms
+aocref/data/rms/sync2017/SYNC_JDGrossrox.rms
+aocref/data/rms/sync2017/SYNC_Land_Nomad.rms
+aocref/data/rms/sync2017/SYNC_Microphone.rms
+aocref/data/rms/sync2017/SYNC_Migration.rms
+aocref/data/rms/sync2017/SYNC_Mongolia.rms
+aocref/data/rms/sync2017/SYNC_Nomad.rms
+aocref/data/rms/sync2017/SYNC_Nomad_v2.rms
+aocref/data/rms/sync2017/SYNC_Oasis.rms
+aocref/data/rms/sync2017/SYNC_Rooster.rms
+aocref/data/rms/sync2017/SYNC_Scandinavia.rms
+aocref/data/rms/sync2017/SYNC_Seize_the_Hump.rms
+aocref/data/rms/sync2017/SYNC_Shallow_Web.rms
+aocref/data/rms/sync2017/SYNC_Team_Acropolis.rms
+aocref/data/rms/sync2017/SYNC_Team_Islands.rms
+aocref/data/rms/sync2017/SYNC_Twin_Puddles.rms
+aocref/data/rms/sync2017/SYNC_Two_Rivers.rms
+aocref/data/rms/sync2017/SYNC_Valley.rms
+aocref/data/rms/sync2017/SYNC_Windmill.rms
+aocref/data/rms/sync2017/SYNC_Yucatan.rms
+aocref/data/rms/tete/TeTe - Adventure.rms
+aocref/data/rms/tete/TeTe - African Waters.rms
+aocref/data/rms/tete/TeTe - Aztlan.rms
+aocref/data/rms/tete/TeTe - Desert Slope.rms
+aocref/data/rms/tete/TeTe - Forest Pond.rms
+aocref/data/rms/tete/TeTe - Kawasan.rms
+aocref/data/rms/tete/TeTe - Khamsin.rms
+aocref/data/rms/tete/TeTe - Lost Island.rms
+aocref/data/rms/tete/TeTe - Monocle.rms
+aocref/data/rms/tete/TeTe - Shelter.rms
+aocref/data/rms/tete/TeTe - Sinkhole.rms
+aocref/data/rms/tp/TP_Arabia.rms
+aocref/data/rms/tp/TP_Cape of Storms.rms
+aocref/data/rms/tp/TP_Dry Lake.rms
+aocref/data/rms/tp/TP_Forest Pond.rms
+aocref/data/rms/tp/TP_Fortress.rms
+aocref/data/rms/tp/TP_Glade.rms
+aocref/data/rms/tp/TP_Gold Rush.rms
+aocref/data/rms/tp/TP_Hideout.rms
+aocref/data/rms/tp/TP_Team Islands.rms
+aocref/data/rms/vas/VAS - Arena.rms
+aocref/data/rms/wc/WC_Arabia.rms
+aocref/data/rms/wc/WC_Arena.rms
+aocref/data/rms/wc/WC_Bedouins.rms
+aocref/data/rms/wc/WC_Black_Forest.rms
+aocref/data/rms/wc/WC_Chaos_Pit.rms
+aocref/data/rms/wc/WC_Continental.rms
+aocref/data/rms/wc/WC_Ghost_Lake.rms
+aocref/data/rms/wc/WC_Land_Nomad.rms
+aocref/data/rms/wc/WC_Mongolia.rms
+aocref/data/rms/wc/WC_Nomad_v2.rms
+aocref/data/rms/wc/WC_Oasis.rms
+aocref/data/rms/wc/WC_Rift_Island.rms
+aocref/data/rms/wc/WC_Sahara.rms
+aocref/data/rms/wc/WC_Scandinavia.rms
+aocref/data/rms/wc/WC_Team_Acropolis.rms
+aocref/data/rms/wc/WC_Team_Islands.rms
+aocref/data/rms/wc/WC_Valley.rms
+aocref/data/rms/wc/WC_Yucatan.rms
+aocref/data/rms/wcl7/MegaRandom (WCL 7).rms
+aocref/data/rms/wic/WiC Changelog v3.0 OLD.txt
+aocref/data/rms/wic/WiC Changelog v4.0.txt
+aocref/data/rms/wic/WiC_AP_Two_Rivers_v2.rms
+aocref/data/rms/wic/WiC_Ancient Lake_v4.rms
+aocref/data/rms/wic/WiC_Arabia.rms
+aocref/data/rms/wic/WiC_Archipelago.rms
+aocref/data/rms/wic/WiC_Arena.rms
+aocref/data/rms/wic/WiC_Atacama.rms
+aocref/data/rms/wic/WiC_Atacama_v2(MR).rms
+aocref/data/rms/wic/WiC_Bedouins.rms
+aocref/data/rms/wic/WiC_Caribbean_v4.rms
+aocref/data/rms/wic/WiC_Coastal.rms
+aocref/data/rms/wic/WiC_DM_GA.rms
+aocref/data/rms/wic/WiC_Desertfox.rms
+aocref/data/rms/wic/WiC_Dry_Arabia.rms
+aocref/data/rms/wic/WiC_Duopoly_v2.rms
+aocref/data/rms/wic/WiC_El_Dorado_v4.rms
+aocref/data/rms/wic/WiC_El_Dorado_v5(MR).rms
+aocref/data/rms/wic/WiC_Flood_v2(MR).rms
+aocref/data/rms/wic/WiC_Gold Rush(MR).rms
+aocref/data/rms/wic/WiC_Golden_Hill.rms
+aocref/data/rms/wic/WiC_High_Seas_v2.rms
+aocref/data/rms/wic/WiC_Highland_v2.rms
+aocref/data/rms/wic/WiC_Hills.rms
+aocref/data/rms/wic/WiC_Homeland.rms
+aocref/data/rms/wic/WiC_Homeland_v2(MR).rms
+aocref/data/rms/wic/WiC_Islands.rms
+aocref/data/rms/wic/WiC_Islands_v3(MR).rms
+aocref/data/rms/wic/WiC_Land_Nomad.rms
+aocref/data/rms/wic/WiC_Land_of_Lakes.rms
+aocref/data/rms/wic/WiC_MFOFourseas.rms
+aocref/data/rms/wic/WiC_Map_Pack_v4.rms
+aocref/data/rms/wic/WiC_Merry_Go_Round.rms
+aocref/data/rms/wic/WiC_Nomad.rms
+aocref/data/rms/wic/WiC_Oasis_v2(MR).rms
+aocref/data/rms/wic/WiC_Ontario.rms
+aocref/data/rms/wic/WiC_Pond_Inspection.rms
+aocref/data/rms/wic/WiC_Raft.rms
+aocref/data/rms/wic/WiC_Regicide_Fortress_v2.rms
+aocref/data/rms/wic/WiC_Reservoir_v4.rms
+aocref/data/rms/wic/WiC_Rooster.rms
+aocref/data/rms/wic/WiC_Sand_Maze_v2.rms
+aocref/data/rms/wic/WiC_Scandinavia.rms
+aocref/data/rms/wic/WiC_Sealed_Islands.rms
+aocref/data/rms/wic/WiC_Shorelands_v2.rms
+aocref/data/rms/wic/WiC_Shorelands_v3(MR).rms
+aocref/data/rms/wic/WiC_Team Islands_v3(MR).rms
+aocref/data/rms/wic/WiC_Team Migration_v2.rms
+aocref/data/rms/wic/WiC_Team_Acropolis_v3.rms
+aocref/data/rms/wic/WiC_Team_Continental_v3.rms
+aocref/data/rms/wic/WiC_The Tribal Wars 2012.rms
+aocref/data/rms/wic/WiC_TreasureIslands_v5.rms
+aocref/data/rms/wic/WiC_Twinpuddles_v3_GO.rms
+aocref/data/rms/wic/WiC_Yucatan_v2(MR).rms
+aocref/data/rms/wic/WiC_nC@Decentring_v1.rms
+aocref/data/rms/wsvg/WSVG_Acropolis.rms
+aocref/data/rms/wsvg/WSVG_Arena.rms
+aocref/data/rms/wsvg/WSVG_Atacama.rms
+aocref/data/rms/wsvg/WSVG_Baltic.rms
+aocref/data/rms/wsvg/WSVG_Black Forest.rms
+aocref/data/rms/wsvg/WSVG_Chaos Pit.rms
+aocref/data/rms/wsvg/WSVG_Continental.rms
+aocref/data/rms/wsvg/WSVG_Crater Lake_v2.rms
+aocref/data/rms/wsvg/WSVG_Desert.rms
+aocref/data/rms/wsvg/WSVG_Dry Arabia.rms
+aocref/data/rms/wsvg/WSVG_Duopoly.rms
+aocref/data/rms/wsvg/WSVG_El Dorado.rms
+aocref/data/rms/wsvg/WSVG_Ghost Lake.rms
+aocref/data/rms/wsvg/WSVG_Gold Rush.rms
+aocref/data/rms/wsvg/WSVG_Hamburger.rms
+aocref/data/rms/wsvg/WSVG_Hills.rms
+aocref/data/rms/wsvg/WSVG_Hippo's Belly.rms
+aocref/data/rms/wsvg/WSVG_Homeland.rms
+aocref/data/rms/wsvg/WSVG_Islands.rms
+aocref/data/rms/wsvg/WSVG_MFO@Double Arabia.rms
+aocref/data/rms/wsvg/WSVG_Meatballs_v2.rms
+aocref/data/rms/wsvg/WSVG_Mediterranean.rms
+aocref/data/rms/wsvg/WSVG_Migration.rms
+aocref/data/rms/wsvg/WSVG_Nomad.rms
+aocref/data/rms/wsvg/WSVG_Oasis.rms
+aocref/data/rms/wsvg/WSVG_Plains.rms
+aocref/data/rms/wsvg/WSVG_Pond_Arena.rms
+aocref/data/rms/wsvg/WSVG_Raft.rms
+aocref/data/rms/wsvg/WSVG_Regicide_Fortress.rms
+aocref/data/rms/wsvg/WSVG_Rooster.rms
+aocref/data/rms/wsvg/WSVG_Sand_Maze.rms
+aocref/data/rms/wsvg/WSVG_Team Islands.rms
+aocref/data/rms/wsvg/WSVG_nC@Decentring.rms
