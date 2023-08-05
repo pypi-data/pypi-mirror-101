@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+import sys
+
+from buildtools.buildtools import main
+
+# Simply run 'main'
+main(sys.argv[1:])
