@@ -1,0 +1,10 @@
+requests==2.20.0
+python-dateutil==2.7.0
+click==7.0
+
+[dev]
+pytest~=4.3.0
+
+[streaming]
+timeout-decorator==0.4.1
+google-cloud-pubsub==0.39.1
