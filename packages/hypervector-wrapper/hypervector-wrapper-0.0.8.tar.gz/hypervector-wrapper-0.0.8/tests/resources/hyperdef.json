@@ -1,0 +1,34 @@
+{
+  "definition_name": "Test definition",
+  "features": [
+    {
+      "feature_name": "feature_1",
+      "type": "float",
+      "distribution": {
+        "type": "gaussian",
+        "mu": 1E-2,
+        "sigma": 1.5
+      }
+    },
+    {
+      "feature_name": "feature_2",
+      "type": "integer",
+      "distribution": {
+        "type": "uniform",
+        "min": 30,
+        "max": 99
+      }
+    },
+    {
+      "feature_name": "feature_3",
+      "type": "string",
+      "distribution": {
+        "type": "categorical",
+        "categories": [
+          {"value":  "True", "probability": 0.3},
+          {"value":  "False", "probability": 0.7}
+        ]
+      }
+    }
+  ]
+}
