@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: crypto-history
+Version: 1.2b10
+Summary: crypto_history is a python package for extracting history of crypto-currencies from various exchanges and presenting them in a tabular data-format
+License: GNU GPL
+Author: Vikramaditya Gaonkar
+Author-email: vikramaditya91@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: SQLAlchemy (>=1.4.5,<2.0.0)
+Requires-Dist: python-binance-async (>=0.7.4-beta.0,<0.8.0)
+Requires-Dist: xarray (>=0.17.0,<0.18.0)
