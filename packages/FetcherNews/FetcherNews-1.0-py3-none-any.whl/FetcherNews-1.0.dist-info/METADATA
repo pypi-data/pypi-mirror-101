@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: FetcherNews
+Version: 1.0
+Summary: News Fetching Module
+Home-page: UNKNOWN
+Author: Rahul Shah
+Author-email: rahul.shah102006@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: bs4
+
+# FetcherNews
+This help to fetch News from google news and tell title,Date and source of the news
+
+## Installation
+<code>pip install FetcherNews</code>
+
+## How to use it?
+<code>
+    from FetcherNews import News
+    news = News()
+    print(news)
+
+</code>
+
+## License
+
+Â© 2021 Rahul Shah
+This repository is licensed under the MIT license. See LICENSE for details.
+
+## For More Information
+For more information or send your query at rahul.shah102006@gmail.com
+
