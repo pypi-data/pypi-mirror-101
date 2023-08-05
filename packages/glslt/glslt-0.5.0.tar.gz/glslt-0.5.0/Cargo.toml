@@ -1,0 +1,54 @@
+[package]
+name = "glslt"
+version = "0.5.0"
+authors = ["Vincent Tavernier <vince.tavernier@gmail.com>"]
+edition = "2018"
+license = "MIT"
+homepage = "https://github.com/vtavernier/glslt"
+documentation = "https://vtavernier.github.io/glslt/glslt/"
+repository = "https://github.com/vtavernier/glslt.git"
+readme = "README.md"
+keywords = ["glslt", "glsl", "language", "parser", "template"]
+categories = ["parser-implementations", "rendering"]
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["rlib", "cdylib"]
+
+[dependencies]
+glsl-lang = "0.1"
+
+thiserror = "1.0"
+sha-1 = "0.9"
+petgraph = "0.5"
+bimap = "0.4"
+log = "0.4"
+indexmap = "1.6"
+
+[dependencies.pyo3]
+version = "0.11"
+features = [ "extension-module" ]
+optional = true
+
+[dependencies.anyhow]
+version = "1.0"
+optional = true
+
+[dependencies.structopt]
+version = "0.3"
+optional = true
+
+[dependencies.env_logger]
+version = "0.7"
+optional = true
+
+[features]
+python = ["pyo3", "cli"]
+cli = ["anyhow", "structopt", "env_logger"]
+
+[dev-dependencies]
+env_logger = "0.7"
+pretty_assertions = "0.6"
+
+[package.metadata.maturin.scripts]
+glsltcc = "glslt:main"
