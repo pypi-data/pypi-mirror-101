@@ -1,0 +1,99 @@
+[build-system]
+requires = [ "whey",]
+build-backend = "whey"
+
+[project]
+name = "sphinx-toolbox"
+version = "2.3.0"
+description = "Box of handy tools for Sphinx 🧰 📔"
+readme = "README.rst"
+keywords = [ "sphinx", "documentation", "sphinx-extension",]
+dynamic = []
+dependencies = [
+    "apeye>=0.0.4",
+    "autodocsumm>=0.2.0",
+    "beautifulsoup4>=4.9.1",
+    "consolekit>=0.3.1",
+    "dict2css>=0.1.0",
+    "docutils==0.16",
+    "domdf-python-tools>=0.8.0",
+    "html5lib>=1.1",
+    "ruamel-yaml>=0.16.12",
+    "sphinx<3.4.0,>=3.2.0",
+    "sphinx-autodoc-typehints==1.11.1",
+    "sphinx-prompt>=1.1.0",
+    "sphinx-tabs<2.1.0,>=1.2.1",
+    "tabulate>=0.8.7",
+    "typing-extensions>=3.7.4.3",
+    'typing-inspect>=0.6.0; python_version < "3.8"',
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Sphinx :: Extension",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+requires-python = ">=3.6"
+
+[[project.authors]]
+email = "dominic@davis-foster.co.uk"
+name = "Dominic Davis-Foster"
+
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/sphinx-toolbox/sphinx-toolbox"
+"Issue Tracker" = "https://github.com/sphinx-toolbox/sphinx-toolbox/issues"
+"Source Code" = "https://github.com/sphinx-toolbox/sphinx-toolbox"
+Documentation = "https://sphinx-toolbox.readthedocs.io/en/latest"
+
+[project.optional-dependencies]
+testing = [ "coincidence>=0.3.1", "pygments>=2.7.4", "pytest>=6.0.0", "pytest-regressions>=2.2.0",]
+all = [ "coincidence>=0.3.1", "pygments>=2.7.4", "pytest>=6.0.0", "pytest-regressions>=2.2.0",]
+
+[tool.whey]
+base-classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Sphinx :: Extension",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+python-versions = [ "3.6", "3.7", "3.8", "3.9",]
+python-implementations = [ "CPython", "PyPy",]
+platforms = [ "Windows", "macOS", "Linux",]
+license-key = "MIT"
+package = "sphinx_toolbox"
+
+[tool.dep_checker]
+allowed_unused = [ "html5lib", "sphinx_prompt", "sphinx_tabs",]
+namespace_packages = [ "ruamel.yaml",]
+
+[tool.mkrecipe]
+conda-channels = [ "conda-forge", "domdfcoding",]
+extras = "all"
+
+[tool.dep_checker.name_mapping]
+beautifulsoup4 = "bs4"
