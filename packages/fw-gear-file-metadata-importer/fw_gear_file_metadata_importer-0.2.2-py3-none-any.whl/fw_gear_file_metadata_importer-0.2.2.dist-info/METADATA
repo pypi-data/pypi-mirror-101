@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: fw-gear-file-metadata-importer
+Version: 0.2.2
+Summary: Extract metadata of input file to Flywheel.
+License: MIT
+Author: Flywheel
+Author-email: support@flywheel.io
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: flywheel-gear-toolkit (>=0.1.3,<0.2.0)
+Requires-Dist: fw-file (>=0.3,<0.4)
+Requires-Dist: nibabel (>=3.2.1,<4.0.0)
+Requires-Dist: ruamel.yaml (>=0.16.13,<0.17.0)
+Description-Content-Type: text/markdown
+
+# File metadata import
+
+Flywheel gear for importing metadata header of file to Flywheel. 
+Metadata is stored under `file.info.header`. Currently, supporting
+the following file types:
+
+* DICOM and DICOM Zip Archive
+* PTD (Siemens PT format)
+
+## Usage
+
+### Inputs
+
+* __input-file__: The input file.
+
+### Configuration
+* __debug__ (boolean, default False): Include debug statements in log.
+* __Siemens CSA__ (boolean, default False): If True extract Siemens CSA header for Dicom.
+
+## file.info.header structure
+
+### DICOM
+
+Dicom header will be stored under `file.info.header.dicom`. Additionally, if:
+
+* `input-file` is an archive (e.g dicom.zip), then `file.info.header.dicom_array` will be populated. 
+* `Siemens CSA` is enabled, then `file.info.header.csa` will be populated if found.
+
+### PTD
+
+The raw PTD preamble will be stored under `file.info.header.ptd`
+
+## Details
+
+### DICOM
+
+By default, the following tags are not extracted:
+
+* All private tags
+* `PixelData`
+* `Pixel Data`
+* `ContourData`
+* `EncryptedAttributesSequence`
+* `OriginalAttributesSequence`
+* `SpectroscopyData`
+
+By default, for zip archive the following tags are extracted 
+and stored in `file.info.header.dicom_array`:
+
+* `AcquisitionNumber`
+* `AcquisitionTime`
+* `EchoTime`
+* `ImageOrientationPatient`
+* `ImagePositionPatient`
+* `ImageType`
+* `InstanceNumber`
+* `SliceLocation`
+
+These deny/allow lists can be amended by defining a specific
+key/value in the project level custom information under `context.header.dicom`.
+`Key: value` should take the form of `Tag: bool` where `Tag` can either be
+a Dicom keyword (e.g. `PatientID`), a Dicom hex index (e.g `00100020`) or 
+a Dicom private tag `GEMS_PARM_01, 0043xx01`. If `bool` is `True`,  the tag
+will be added to the parsed tags , if `False` is will be removed. 
+
