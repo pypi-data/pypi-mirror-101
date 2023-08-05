@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: rundeckpy
+Version: 0.2.0
+Summary: Base class for python based Rundeck plugin
+Home-page: https://gitlab.com/labitup/rundeck/rundeckpy
+License: Proprietary
+Keywords: rundeck,python,plugin
+Author: Thiago Takayama
+Author-email: thiago@takayama.co.uk
+Requires-Python: >=3.6,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: paramiko (>=2.7.2,<3.0.0)
+Project-URL: Documentation, https://labitup.atlassian.net/wiki/spaces/RUNPY/overview
+Project-URL: Repository, https://gitlab.com/labitup/rundeck/rundeckpy
+Description-Content-Type: text/x-rst
+
+#rundeckpy
+Base class for python based Rundeck plugin.
+
