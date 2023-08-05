@@ -1,0 +1,23 @@
+[metadata]
+description-file = "README.rst"
+license_file = "LICENSE"
+
+[tool.black]
+line-length = 79
+target-version = ['py36', 'py37', 'py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | .pytest_cache
+)/
+'''
