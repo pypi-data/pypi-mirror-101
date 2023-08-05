@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: fabienpendu
+Version: 0.2.6
+Summary: Jeu du pendu avec tkinter
+Home-page: http://github.com/pseudofab/fabien_lib
+Author: fabien
+Author-email: fabien.fab@e-nautia.com
+License: WTFPL
+Description: Sauvons Fabien_le_pendu de la potence!
+        Jeu du pendu réalisé avec Tkinter.
+        
+        
+        Exemple d'usage:
+        
+            >>> from fabienpendu_lib import pendu
+            >>> pendu()
+        
+        ou dans un terminal utiliser la commande:
+        ```
+        $ pendu
+        ```
+        Note: Si non reconnu renseigner le PATH (export PATH=$PATH:~/.local/bin/)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved
+Classifier: Natural Language :: French
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Unix
+Classifier: Topic :: Games/Entertainment
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
