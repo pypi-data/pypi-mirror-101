@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: MAZE-sim
+Version: 0.1.0
+Summary: Multiscale Zeolite Atomic simulation Environment (MAZE)
+Home-page: https://github.com/kul-group/MAZE
+Author: Dexter Antonio
+Author-email: dexter.d.antonio@gmail.com
+License: MIT
+Project-URL: Documentation, https://kul-group.github.io/MAZE-sim/build/html/index.html
+Project-URL: Source, https://github.com/kul-group/MAZE-sim/
+Project-URL: Tracker, https://github.com/kul-group/MAZE-sim/issues
+Keywords: ase zeolites simulations
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3
+Description-Content-Type: text/x-rst
+Requires-Dist: ase
+Requires-Dist: numpy
+Requires-Dist: typing
+Requires-Dist: packaging
+Requires-Dist: scikit-learn
+
+This project aims to extend the Atomic Simulation Environment (ASE) to more naturally represent the properties of zeolites and facilitate the calculations required to determine their properties. 
+
+
