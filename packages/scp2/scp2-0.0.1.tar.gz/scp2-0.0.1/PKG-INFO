@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: scp2
+Version: 0.0.1
+Summary: scp real over ssh
+License: MIT
+Author: alingse
+Author-email: alingse@foxmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: more-itertools (>=8.7.0,<9.0.0)
+Requires-Dist: paramiko (>=2.7.2,<3.0.0)
