@@ -1,0 +1,5 @@
+language: python
+sudo: required
+before_install: pip install scbean
+script: 
+  python -c "import scbean"
