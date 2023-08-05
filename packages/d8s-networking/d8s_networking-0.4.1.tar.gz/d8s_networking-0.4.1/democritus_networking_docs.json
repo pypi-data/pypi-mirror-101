@@ -1,0 +1,131 @@
+{
+    "functions": [
+        {
+            "name": "requests_basic_auth",
+            "docstring": "Return an instance of request's basic auth.",
+            "signature": "(user, password)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "get",
+            "docstring": "Make a GET request to the given URL.",
+            "signature": "(\n    url,\n    *,\n    use_common_user_agent: bool = True,\n    process_response: bool = False,\n    process_response_as_bytes: bool = False,\n    **request_kwargs,\n)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "head",
+            "docstring": "Make a head request.",
+            "signature": "(url, *, process_response: bool = False, **kwargs)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "post",
+            "docstring": "Make a POST request to the given URL with the given data.",
+            "signature": "(\n    url,\n    *,\n    update_headers_for_datatype: bool = True,\n    process_response: bool = False,\n    process_response_as_bytes: bool = False,\n    **request_kwargs,\n)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "headers_update",
+            "docstring": ".",
+            "signature": "(headers: Dict[str, str], new_header_key: str, new_header_value: Any, *, overwrite: bool = True)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "put",
+            "docstring": "Make a PUT request to the given URL with the given data.",
+            "signature": "(\n    url,\n    *,\n    update_headers_for_datatype: bool = True,\n    process_response: bool = False,\n    process_response_as_bytes: bool = False,\n    **request_kwargs,\n)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "delete",
+            "docstring": "Make a DELETE request to the given URL with the given data.",
+            "signature": "(\n    url,\n    *,\n    process_response: bool = False,\n    process_response_as_bytes: bool = False,\n    **request_kwargs,\n)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "url_hash",
+            "docstring": "Return the hash of the url.",
+            "signature": "(url, hash_type='sha256')",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "urllib3_backoff_factor_executions",
+            "docstring": "Return the times (in seconds) of the first n requests with the given backoff_factor. See https://urllib3.readthedocs.io/en/latest/reference/index.html#urllib3.Retry under the \"backoff_factor\" argument.",
+            "signature": "(backoff_factor: float, number_of_requests: int)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "Function added to democritus_networking module."
+                }
+            ],
+            "exceptions": []
+        }
+    ],
+    "module": "democritus_networking"
+}
