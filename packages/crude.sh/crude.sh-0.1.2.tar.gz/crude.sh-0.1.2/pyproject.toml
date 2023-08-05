@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "crude.sh"
+version = "0.1.2"
+description = "crude.sh api client"
+authors = ["Janto Dreijer <jantod@gmail.com>"]
+license = "Proprietary"
+homepage = "https://crude.sh/"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+typer = "^0.3.2"
+tabulate = "^0.8.9"
+msgpack = "^1.0.2"
+httpx = "^0.17.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^20.8b1"
+mypy = "^0.812"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+run = "crude_sh.cli:main"
+crude = "crude_sh.cli:main"
