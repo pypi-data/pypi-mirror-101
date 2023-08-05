@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: rgws
+Version: 0.1.5
+Summary: Websockets extended with RPC.
+Home-page: https://github.com/Redict/rg_websocket
+Author: canvas123
+Author-email: nurik040404@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Environment :: Web Environment
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp
+
+
+# RG Websocket exended with RPC
+
+Simple interface for writing Websocket application with RPC.
+
+## Installation
+
+### PIP official
+
+`pip install rgws`
+
+### Dev 
+`pip install git+https://github.com/Redict/rg_websocket.git`
+
+## Usage:
+
+### Server
+
+Check `echo_server.py` example
+
+### Client
+
+Check `echo_client.py` example
+
