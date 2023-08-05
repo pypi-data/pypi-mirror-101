@@ -1,0 +1,163 @@
+Metadata-Version: 2.1
+Name: zipline-reloaded
+Version: 2.0.0rc4
+Summary: A backtester for trading algorithms
+Home-page: https://zipline.ml4trading.io
+Author: Quantopian Inc
+Author-email: pm@ml4trading.io
+License: Apache 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Office/Business :: Financial :: Investment
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: System :: Distributed Computing
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: alembic (>=0.7.7)
+Requires-Dist: bcolz-zipline (>=1.2.3)
+Requires-Dist: bottleneck (>=1.0.0)
+Requires-Dist: click (>=4.0.0)
+Requires-Dist: empyrical (>=0.5.0)
+Requires-Dist: h5py (>=2.7.1)
+Requires-Dist: intervaltree (>=2.1.0)
+Requires-Dist: iso3166 (>=0.9)
+Requires-Dist: iso4217 (>=1.6.20180829)
+Requires-Dist: Logbook (>=0.12.5)
+Requires-Dist: lru-dict (>=1.1.4)
+Requires-Dist: multipledispatch (>=0.6.0)
+Requires-Dist: networkx (>=2.0)
+Requires-Dist: numexpr (>=2.6.1)
+Requires-Dist: numpy (>=1.11.3)
+Requires-Dist: pandas (>=1.0)
+Requires-Dist: patsy (>=0.4.0)
+Requires-Dist: python-dateutil (>=2.4.2)
+Requires-Dist: python-interface (>=1.5.3)
+Requires-Dist: pytz (>=2018.5)
+Requires-Dist: requests (>=2.9.1)
+Requires-Dist: scipy (>=0.17.1)
+Requires-Dist: six (>=1.10.0)
+Requires-Dist: sqlalchemy (>=1.0.8)
+Requires-Dist: statsmodels (>=0.6.1)
+Requires-Dist: TA-Lib (>=0.4.19)
+Requires-Dist: tables (>=3.4.3)
+Requires-Dist: toolz (>=0.8.2)
+Requires-Dist: trading-calendars (>=1.6.1)
+Provides-Extra: docs
+Requires-Dist: Cython ; extra == 'docs'
+Requires-Dist: Sphinx (>=1.3.2) ; extra == 'docs'
+Requires-Dist: numpydoc (>=0.5.0) ; extra == 'docs'
+Requires-Dist: sphinx-autobuild (>=0.6.0) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: sphinx-markdown-tables ; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: tox ; extra == 'test'
+Requires-Dist: coverage (>=4.0.3) ; extra == 'test'
+Requires-Dist: nose (>=1.3.7) ; extra == 'test'
+Requires-Dist: parameterized (>=0.6.1) ; extra == 'test'
+Requires-Dist: nose-ignore-docstring (>=0.2) ; extra == 'test'
+Requires-Dist: nose-timer (>=0.5.0) ; extra == 'test'
+Requires-Dist: mock (>=2.0.0p) ; extra == 'test'
+Requires-Dist: testfixtures (>=4.1.2) ; extra == 'test'
+Requires-Dist: flake8 (>=3.3.0) ; extra == 'test'
+Requires-Dist: matplotlib (>=1.5.3) ; extra == 'test'
+Requires-Dist: responses (>=0.9.0) ; extra == 'test'
+Requires-Dist: pandas-datareader (>=0.2.1) ; extra == 'test'
+Requires-Dist: pre-commit ; extra == 'test'
+
+# Zipline - Backtest your trading strategies
+
+<p align="center">
+<a href="https://zipline.ml4trading.io">
+<img src="https://i.imgur.com/DDetr8I.png" width="25%">
+</a>
+</p>
+
+|Community|[![Discourse](https://img.shields.io/discourse/topics?server=https%3A%2F%2Fexchange.ml4trading.io%2F)](https://exchange.ml4trading.io) [![ML4T](https://img.shields.io/badge/Powered%20by-ML4Trading-blue)](https://ml4trading.io) [![Twitter](https://img.shields.io/twitter/follow/ml4trading.svg?style=social)](https://twitter.com/ml4trading)|
+|----|----|
+|**Test** **Status**|![GitHub Workflow Status](https://github.com/stefan-jansen/zipline-reloaded/actions/workflows/build_and_distribute.yml/badge.svg) [![Coverage Status](https://coveralls.io/repos/stefan-jansen/zipline-reloaded/badge.svg)](https://coveralls.io/r/stefan-jansen/zipline-reloaded)|
+|**Version** **Info**|[![Release](https://img.shields.io/pypi/v/zipline-reloaded.svg?cacheSeconds=2592000)](https://pypi.org/project/zipline-reloaded/) [![Python](https://img.shields.io/pypi/pyversions/zipline-reloaded.svg?cacheSeconds=2592000")](https://pypi.python.org/pypi/zipline-reloaded) [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)|
+
+Zipline is a Pythonic event-driven system for backtesting, used as the backtesting and live-trading engine by the [former crowd-sourced investment fund Quantopian](https://www.bizjournals.com/boston/news/2020/11/10/quantopian-shuts-down-cofounders-head-elsewhere.html). Since it closed late 2020, the domain that originally hosted these docs has expired. The library is used extensively in the book [Machine Larning for Algorithmic Trading](https://ml4trading.io)
+by [Stefan Jansen](https://www.linkedin.com/in/applied-ai/) who is trying to keep the library up to date and available to his readers and the wider Python algotrading community.
+
+- [Join our Community!](https://exchange.ml4trading.io)
+- [Documentation](https://zipline.ml4ctrading.io)
+
+## Features
+
+- **Ease of Use:** Zipline tries to get out of your way so that you can focus on algorithm development. See below for a code example.
+- **"Batteries Included":** many common statistics like moving average and linear regression can be readily accessed from within a user-written algorithm.
+- **PyData Integration:** Input of historical data and output of performance statistics are based on Pandas DataFrames to integrate nicely into the existing PyData ecosystem.
+- **Statistics and Machine Learning Libraries:** You can use libraries like matplotlib, scipy, statsmodels, and sklearn to support development, analysis, and visualization of state-of-the-art trading systems.
+
+## Installation
+
+Zipline supports Python 3.7, 3.8, and 3.9, and may be installed via either `pip` or `conda`.
+
+**Note:** Installing Zipline is slightly more involved than the average Python package. See the full [Zipline Install Documentation](https://zipline.ml4trading.io/install.html) for detailed instructions.
+
+## Quickstart
+
+See our [getting started tutorial](https://zipline.ml4trading.io/beginner-tutorial).
+
+The following code implements a simple dual moving average algorithm.
+
+```python
+from zipline.api import order_target, record, symbol
+
+def initialize(context):
+    context.i = 0
+    context.asset = symbol('AAPL')
+
+
+def handle_data(context, data):
+    # Skip first 300 days to get full windows
+    context.i += 1
+    if context.i < 300:
+        return
+
+    # Compute averages
+    # data.history() has to be called with the same params
+    # from above and returns a pandas dataframe.
+    short_mavg = data.history(context.asset, 'price', bar_count=100, frequency="1d").mean()
+    long_mavg = data.history(context.asset, 'price', bar_count=300, frequency="1d").mean()
+
+    # Trading logic
+    if short_mavg > long_mavg:
+        # order_target orders as many shares as needed to
+        # achieve the desired number of shares.
+        order_target(context.asset, 100)
+    elif short_mavg < long_mavg:
+        order_target(context.asset, 0)
+
+    # Save values for later inspection
+    record(AAPL=data.current(context.asset, 'price'),
+           short_mavg=short_mavg,
+           long_mavg=long_mavg)
+```
+
+You can then run this algorithm using the Zipline CLI. But first, you need to download some market data with historical prices and trading volumes:
+
+```bash
+$ zipline ingest -b quandl
+$ zipline run -f dual_moving_average.py --start 2014-1-1 --end 2018-1-1 -o dma.pickle --no-benchmark
+```
+
+This will download asset pricing data sourced from [Quandl](https://www.quandl.com/databases/WIKIP/documentation?anchor=companies), and stream it through the algorithm over the specified time range. Then, the resulting performance DataFrame is saved as `dma.pickle`, which you can load and analyze from Python.
+
+You can find other examples in the [`zipline/examples`](https://github.com/stefan-jansen/zipline-reloaded/tree/main/zipline/examples) directory.
+
+## Questions, suggestions, bugs?
+
+If you find a bug, feel free to [open an issue](https://github.com/stefan-jansen/zipline/issues/new) and fill out the issue template.
+
+
