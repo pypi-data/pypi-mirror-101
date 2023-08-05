@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: local-lambda
+Version: 0.0.1
+Summary: Simple mechanism for running lambdas locally for testing
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6, <4
+Description-Content-Type: text/markdown
+Requires-Dist: jsonschema (==3.2.0)
+
+# local_lambda
+
+Simple mechanism to run lambdas as if they were behind an API gateway
+
