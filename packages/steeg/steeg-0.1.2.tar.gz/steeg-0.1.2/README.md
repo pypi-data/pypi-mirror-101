@@ -1,0 +1,18 @@
+# steeg
+**Funciones:**
+- steeg.txt_lyapunv(txt)
+- steeg.txt_hurst(txt)
+- steeg.txt_corr_dim(txt,dim)
+- steeg.txt_entropy(txt, dim)
+- steeg.vhdr_lyapunv(vhdr,tmax,inter,electrodes)
+- steeg.vhdr_hurst(vhdr,tmax,inter,electrodes)
+- steeg.vhdr_corr_dim(vhdr,dim,tmax,inter,electrodes)
+- steeg.vhdr_entropy(vhdr,dim,tmax,inter,electrodes)
+- steeg.edf_lyapunv(edf,tmax,inter,electrodes)
+- steeg.edf_hurst(edf,tmax,inter,electrodes)
+- steeg.edf_corr_dim(edf,dim,tmax,inter,electrodes)
+- steeg.edf_entropy(edf,dim,tmax,inter,electrodes)
+- steeg.bdf_lyapunv(bdf,tmax,inter,electrodes)
+- steeg.bdf_hurst(bdf,tmax,inter,electrodes)
+- steeg.bdf_corr_dim(bdf,dim,tmax,inter,electrodes)
+- steeg.bdf_entropy(bdf,dim,tmax,inter,electrodes)
