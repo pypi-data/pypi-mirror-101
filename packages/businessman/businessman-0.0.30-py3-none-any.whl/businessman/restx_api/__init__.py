@@ -1,0 +1,1 @@
+from .factory_func import crud_controller_factory
