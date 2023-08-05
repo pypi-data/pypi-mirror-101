@@ -1,0 +1,17 @@
+---
+group1: #group of machines
+  environments:
+  - ip: 54.204.68.90
+    connection_type: ssh
+    tags:
+      - region: us-east-1
+      - account_id: 123
+  - ip: 3.80.33.149
+    connection_type: ssh
+    tags:
+      - region: us-east-1
+      - account_id: 123
+group2: #grop of docker containers for unit testing
+  environments:
+  - id: e6d3a73ff6c2 #id of the docker container
+    connection_type: docker

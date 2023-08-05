@@ -1,0 +1,31 @@
+---
+- hosts: group1
+  actions:
+  - name: install_apache2
+    executor: package
+    action: install
+    args:
+      name: apache2
+  - name: install_libapache2-mod-php
+    executor: package
+    action: install
+    args:
+      name: libapache2-mod-php
+  - name: copy_index_php
+    executor: artifact
+    action: copy
+    args:
+      source: /Users/patelma/code/index.php
+      destination: /var/www/html/
+  - name: delete_index_html
+    executor: artifact
+    action: delete
+    args:
+      destination: /var/www/html/index.html
+  - name: Start the apache2 server
+    executor: process
+    action: start
+    args:
+      name: apache2
+      subscribe:
+        - install_apache2
