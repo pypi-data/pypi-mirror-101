@@ -1,0 +1,14 @@
+numpy<2.0.0,~=1.20
+scikit-learn<1.0.0,~=0.24.1
+scipy
+
+[dev]
+pytest
+pylint
+black
+rope
+
+[extras]
+streamlit
+matplotlib
+plotly
