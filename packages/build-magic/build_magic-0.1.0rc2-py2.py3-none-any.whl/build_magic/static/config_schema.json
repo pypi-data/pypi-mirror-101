@@ -1,0 +1,407 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The build-magic config file schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "build-magic": [
+                {
+                    "stage": {
+                        "name": "build",
+                        "runner": "docker",
+                        "environment": "alpine:latest",
+                        "verbose": true,
+                        "commands": [
+                            {
+                                "build": "make all"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "stage": {
+                        "name": "install",
+                        "runner": "vagrant",
+                        "environment": "/home/user/project",
+                        "wd": "$HOME/build/RPMS/x64",
+                        "persist": true,
+                        "commands": [
+                            {
+                                "install": "dnf install *.rpm"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "required": [
+        "build-magic"
+    ],
+    "properties": {
+        "build-magic": {
+            "$id": "#/properties/build-magic",
+            "type": "array",
+            "title": "The build-magic schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "stage": {
+                            "name": "build",
+                            "runner": "docker",
+                            "environment": "alpine:latest",
+                            "commands": [
+                                {
+                                    "build": "make all"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "stage": {
+                            "name": "install",
+                            "runner": "vagrant",
+                            "environment": "/home/user/project",
+                            "wd": "$HOME/build/RPMS/x64",
+                            "persist": true,
+                            "commands": [
+                                {
+                                    "install": "dnf install *.rpm"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/build-magic/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/build-magic/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "stage": {
+                                    "name": "build",
+                                    "runner": "docker",
+                                    "environment": "alpine:latest",
+                                    "verbose": true,
+                                    "commands": [
+                                        {
+                                            "build": "make all"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "required": [
+                            "stage"
+                        ],
+                        "properties": {
+                            "stage": {
+                                "$id": "#/properties/build-magic/items/anyOf/0/properties/stage",
+                                "type": "object",
+                                "title": "The stage schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": {},
+                                "examples": [
+                                    {
+                                        "name": "build",
+                                        "runner": "docker",
+                                        "environment": "alpine:latest",
+                                        "commands": [
+                                            {
+                                                "build": "make all"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "required": [
+                                    "commands"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/name",
+                                        "type": "string",
+                                        "title": "The name schema",
+                                        "description": "The stage name.",
+                                        "default": "",
+                                        "examples": [
+                                            "build",
+                                            1,
+                                            "test-job"
+                                        ]
+                                    },
+                                    "runner": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/runner",
+                                        "type": "string",
+                                        "title": "The runner schema",
+                                        "description": "The command runner the stage should use.",
+                                        "default": "local",
+                                        "enum": ["local", "remote", "docker", "vagrant"],
+                                        "examples": [
+                                            "local",
+                                            "remote",
+                                            "docker",
+                                            "vagrant"
+                                        ]
+                                    },
+                                    "environment": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/environment",
+                                        "type": "string",
+                                        "title": "The environment schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "Vagrantfile",
+                                            "alpine:latest",
+                                            ".",
+                                            "/home/user/src",
+                                          "user@hostname"
+                                        ]
+                                    },
+                                    "cleanup": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/cleanup",
+                                        "type": "boolean",
+                                        "title": "The cleanup schema",
+                                        "description": "",
+                                        "default": false
+                                    },
+                                    "persist": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/persist",
+                                        "type": "boolean",
+                                        "title": "The persist schema",
+                                        "description": "",
+                                        "default": false
+                                    },
+                                    "continue on fail": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/continue%20on%20fail",
+                                        "type": "boolean",
+                                        "title": "The continue on fail schema",
+                                        "description": "",
+                                        "default": false
+                                    },
+                                    "copy from directory": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/copy%20from%20directory",
+                                        "type": "string",
+                                        "title": "The copy from directory schema",
+                                        "description": "",
+                                        "default": ".",
+                                        "examples": [
+                                            ".",
+                                            "/home/user/project/build/artifacts"
+                                        ]
+                                    },
+                                    "working directory": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/working%20directory",
+                                        "type": "string",
+                                        "title": "The working directory schema",
+                                        "description": "",
+                                        "default": ".",
+                                        "examples": [
+                                            ".",
+                                            "/opt/project/src",
+                                            "C:\\project\\src"
+                                        ]
+                                    },
+                                    "artifacts": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/artifacts",
+                                        "type": "array",
+                                        "title": "The artifacts schema",
+                                        "description": "",
+                                        "default": [],
+                                        "additionalItems": true,
+                                        "items": {
+                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/artifacts/items",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "commands": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands",
+                                        "type": "array",
+                                        "title": "The commands schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": [],
+                                        "examples": [
+                                            [
+                                                {
+                                                    "build": "make all"
+                                                }
+                                            ]
+                                        ],
+                                        "additionalItems": true,
+                                        "items": {
+                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items",
+                                            "anyOf": [
+                                                {
+                                                    "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items/anyOf/0",
+                                                    "type": "object",
+                                                    "title": "The first anyOf schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "build": "make all"
+                                                        }
+                                                    ],
+                                                    "properties": {
+                                                        "test": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items/anyOf/0/properties/test",
+                                                            "type": "string",
+                                                            "title": "The test schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "examples": [
+                                                                "myapp --help",
+                                                                "systemctl status myapp"
+                                                            ]
+                                                        },
+                                                        "build": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items/anyOf/0/properties/build",
+                                                            "type": "string",
+                                                            "title": "The build schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "examples": [
+                                                                "make all",
+                                                                "tar -czf myfiles.tar.gz file1.txt file2.txt",
+                                                                "python setup.py sdist bdist_wheel",
+                                                                "go build /home/user/project/src",
+                                                                "npm run build",
+                                                                "mvn clean compile",
+                                                                "docker build -t myproject ."
+                                                            ]
+                                                        },
+                                                        "execute": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items/anyOf/0/properties/execute",
+                                                            "type": "string",
+                                                            "title": "The execute schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "examples": [
+                                                                "ls",
+                                                                "mv dist/* /opt"
+                                                            ]
+                                                        },
+                                                        "install": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items/anyOf/0/properties/install",
+                                                            "type": "string",
+                                                            "title": "The install schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "dnf install myproject.rpm",
+                                                                "docker install myproject",
+                                                                "apt install myproject.deb"
+                                                            ]
+                                                        },
+                                                        "deploy": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items/anyOf/0/properties/deploy",
+                                                            "type": "string",
+                                                            "title": "The deploy schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                            ]
+                                                        },
+                                                        "release": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/commands/items/anyOf/0/properties/release",
+                                                            "type": "string",
+                                                            "title": "The release schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": false
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "parameters": {
+                                        "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/parameters",
+                                        "type": "array",
+                                        "title": "The commands schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": [],
+                                        "additionalItems": true,
+                                        "items": {
+                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/parameters/items",
+                                            "anyOf": [
+                                                {
+                                                    "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/parameters/items/anyOf/0",
+                                                    "type": "object",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "keytype": "rsa"
+                                                        }
+                                                    ],
+                                                    "properties": {
+                                                        "keytype": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/parameters/items/anyOf/0/properties/keytype",
+                                                            "type": "string",
+                                                            "default": "",
+                                                            "enum": [
+                                                                "dsa",
+                                                                "dss",
+                                                                "rsa",
+                                                                "ecdsa",
+                                                                "ed25519",
+                                                                "DSSKey",
+                                                                "RSAKey",
+                                                                "ECDSAKey",
+                                                                "Ed25519Key"
+                                                            ],
+                                                            "examples": [
+                                                                "rsa",
+                                                                "ecdsa",
+                                                                "RSAKey",
+                                                                "ECDSAKey"
+                                                            ]
+                                                        },
+                                                        "keypath": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/parameters/items/anyOf/0/properties/keypath",
+                                                            "type": "string",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "~/.ssh/id_rsa"
+                                                            ]
+                                                        },
+                                                        "keypass": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/parameters/items/anyOf/0/properties/keypass",
+                                                            "type": "string",
+                                                            "description": "The password for the SSH private key if required.",
+                                                            "default": ""
+                                                        },
+                                                        "key_password": {
+                                                            "$id": "#/properties/build-magic/items/anyOf/0/properties/stage/properties/parameters/items/anyOf/0/properties/key_password",
+                                                            "type": "string",
+                                                            "description": "The password for the SSH private key if required.",
+                                                            "default": ""
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": false
+}
