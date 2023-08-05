@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: birdman
+Version: 0.0.1
+Summary: Framework for differential abundance using Bayesian inference
+Home-page: https://github.com/gibsramen/BIRDMAn
+Author: Gibraan Rahman
+Author-email: grahman@eng.ucsd.edu
+License: BSD-3-Clause
+Platform: UNKNOWN
+Classifier: 
+Requires-Dist: numpy
+Requires-Dist: cmdstanpy
+Requires-Dist: dask[complete]
+Requires-Dist: biom-format
+Requires-Dist: patsy
+Requires-Dist: xarray
+Requires-Dist: pandas
+Requires-Dist: arviz
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: scikit-bio ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+
+UNKNOWN
+
+
