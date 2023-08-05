@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: cpf_tools
+Version: 1.0.0
+Summary: UNKNOWN
+Home-page: https://github.com/BrunoASNascimento/cpf_tools
+Author: Bruno Nascimento
+Author-email: bruno_freddy@hotmail.com
+License: MIT
+Project-URL: Código fonte, https://github.com/BrunoASNascimento/cpf_tools
+Project-URL: Download, https://github.com/BrunoASNascimento/cpf_tools/archive/master.zip
+Description: # cpf_tools
+        
+        [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg?style=flat-square)](https://www.python.org/)
+        [![Total alerts](https://img.shields.io/lgtm/alerts/g/BrunoASNascimento/cpf_tools.svg?logo=lgtm&logoWidth=18&style=flat-square)](https://lgtm.com/projects/g/BrunoASNascimento/cpf_tools/alerts/)
+        [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/BrunoASNascimento/cpf_tools.svg?logo=lgtm&logoWidth=18&style=flat-square)](https://lgtm.com/projects/g/BrunoASNascimento/cpf_tools/context:python)
+        
+        Biblioteca com ferramentas para auxiliar na checagem, formataÃ§Ã£o etc. de CPFs.
+        
+        ## InstalaÃ§Ã£o:
+        
+        ` $ pip install cpf-tools`
+        
+        ## FunÃ§Ãµes:
+        
+        - _cpf-tools.**cpf_int_validation**(cpf: int) -> bool_:
+        
+        Essas funÃ§Ã£o recebe um valor inteiro e verifica se o digito verificador do CPF Ã© verdadeiro (True) ou falso (False).
+        
+        - _cpf-tools.**cpf_str_validation**(cpf: str) -> bool_:
+        
+        Essas funÃ§Ã£o recebe um valor string e verifica se o digito verificador do CPF Ã© verdadeiro (True) ou falso (False).
+        
+        - _cpf-tools.**cpf_format**(cpf: Union[int, str, float]) -> str_:
+        
+        Essa funÃ§Ã£o recebe um valor integer, string ou float de um CPF e retorna uma string formatada.
+        (Exemplo: "00000000000" -> "000.000.000-00")
+        
+        ## Usando com Pandas:
+        
+        Para utilizar com a biblioteca Pandas, utilize o seguinte comando:
+        
+        `df['your-cpf-field'].apply(cpf-tools.cpf_int_validation)` ou
+        
+        `df['your-cpf-field'].apply(cpf-tools.cpf_str_validation)` ou
+        
+        `df['your-cpf-field'].apply(cpf-tools.cpf_format)`
+        
+Keywords: format,cpf,validation
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Internationalization
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
