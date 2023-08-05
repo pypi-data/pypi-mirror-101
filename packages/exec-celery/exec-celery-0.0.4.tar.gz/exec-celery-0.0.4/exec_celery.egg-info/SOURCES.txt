@@ -1,0 +1,13 @@
+.gitignore
+LICENSE
+README.md
+setup.py
+.github/workflows/python-publish.yml
+exec_celery.egg-info/PKG-INFO
+exec_celery.egg-info/SOURCES.txt
+exec_celery.egg-info/dependency_links.txt
+exec_celery.egg-info/requires.txt
+exec_celery.egg-info/top_level.txt
+execcelery/__init__.py
+execcelery/connection.py
+execcelery/queuecontrol.py
