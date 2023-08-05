@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: Mathics3
+Version: 2.1.0
+Summary: A general-purpose computer algebra system.
+Home-page: https://mathics.org/
+Maintainer: Mathics Group
+Maintainer-email: mathic-devel@googlegroups.com
+License: GPL
+Download-URL: https://github.com/mathics/Mathics/releases
+Description: Welcome to Mathics!
+        ===================
+        
+        |Pypi Installs| |Latest Version| |Supported Python Versions| |Travis|_ |SlackStatus|_
+        
+        |Packaging status|
+        
+        
+        Mathics is a general-purpose computer algebra system (CAS). It is an open-source alternative to Mathematica. It is free both as in "free beer" and as in "freedom".
+        
+        The home page of Mathics is https://mathics.org.
+        
+        
+        ScreenShots
+        -----------
+        
+        mathicsscript: a text interface
+        +++++++++++++++++++++++++++++++
+        
+        |mathicsscript|
+        
+        mathicsserver: a Django-based Web interface
+        +++++++++++++++++++++++++++++++++++++++++++
+        
+        |mathicssserver|
+        
+        
+        Installing and Running
+        ----------------------
+        
+        See the `read the docs guide <https://mathics-development-guide.readthedocs.io/en/latest/>`_ for instructions on `installing <https://mathics-development-guide.readthedocs.io/en/latest/installing.html>`_ and `running <https://mathics-development-guide.readthedocs.io/en/latest/running.html>`_.
+        
+        Contributing
+        ------------
+        
+        Please feel encouraged to contribute to Mathics! Create your own fork, make the desired changes, commit, and make a pull request.
+        
+        
+        License
+        -------
+        
+        Mathics is released under the GNU General Public License Version 3 (GPL3).
+        
+        .. |SlackStatus| image:: https://mathics-slackin.herokuapp.com/badge.svg
+        .. _SlackStatus: https://mathics-slackin.herokuapp.com/
+        .. |Travis| image:: https://secure.travis-ci.org/mathics/Mathics.svg?branch=master
+        .. _Travis: https://travis-ci.org/mathics/Mathics
+        .. _PyPI: https://pypi.org/project/Mathics/
+        .. |mathicsscript| image:: https://github.com/Mathics3/mathicsscript/blob/master/screenshots/mathicsscript1.gif
+        .. |mathicssserver| image:: https://mathics.org/images/mathicsserver.png
+        .. |Latest Version| image:: https://badge.fury.io/py/Mathics3.svg
+        		 :target: https://badge.fury.io/py/Mathics3
+        .. |Pypi Installs| image:: https://pepy.tech/badge/Mathics3
+        .. |Supported Python Versions| image:: https://img.shields.io/pypi/pyversions/Mathics3.svg
+        .. |Packaging status| image:: https://repology.org/badge/vertical-allrepos/mathics.svg
+        			    :target: https://repology.org/project/mathics/versions
+        
+        
+Keywords: Mathematica,Wolfram,Interpreter,Shell,Math,CAS
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Software Development :: Interpreters
+Description-Content-Type: text/x-rst
