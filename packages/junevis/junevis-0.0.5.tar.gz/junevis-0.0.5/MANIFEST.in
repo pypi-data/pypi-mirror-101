@@ -1,0 +1,8 @@
+include settings.ini
+include LICENSE
+include CONTRIBUTING.md
+include README.md
+graft junevis/client/dist
+prune junevis/client/dist/demo/projects
+graft junevis/client/dist/demo/projects/mask_wearing
+recursive-exclude * __pycache__
