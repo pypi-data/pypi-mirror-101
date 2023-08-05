@@ -1,0 +1,30 @@
+* taskuma2org
+
+taskuma2org is a Python package for parsing Taskuma log into org-mode format.
+It utilizes [[https://pypi.org/project/memacs/][memacs]] package.
+
+Taskuma is an iPhone App for task management and lifelogging. See AppStore.
+
+** Install
+
+   Install and update using [[https://pip.pypa.io/en/stable/quickstart/][pip]].
+
+   #+begin_src shell
+   $ pip install taskuma2org
+   #+end_src
+
+** Example
+   #+begin_src
+   $ taskuma2org example.csv
+   #+end_src
+
+*** How to get log file from Taskuma
+    1. Go to "Log" tab
+    2. Choose the time period by tapping the clendar button and View button
+    3. Tap share button and choose "Send Report"
+    4. On the screen showing map, tap email button
+    5. Send mail to yourself
+    6. Retrieve csv file attached the aforementioned mail.
+
+** License
+   GPLv3

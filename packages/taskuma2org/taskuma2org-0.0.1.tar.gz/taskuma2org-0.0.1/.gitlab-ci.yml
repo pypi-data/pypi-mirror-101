@@ -1,0 +1,12 @@
+image: quay.io/python-devs/ci-image
+
+stages:
+  - test
+
+#qa:
+#  script:
+#    - tox -e qa
+
+tests:
+  script:
+    - tox -e py37,py39
