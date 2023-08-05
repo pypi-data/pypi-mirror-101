@@ -1,0 +1,54 @@
+2021-03-11 11:44:13,128 [INFO](root:<module>:49): Input args: Namespace(cython=False, input='input_verify.json', logFile='despasito.log', ncores=1, numba=False, path='.', python=False, verbose=20)
+2021-03-11 11:44:13,128 [INFO](root:<module>:58): Use Numba JIT: False
+2021-03-11 11:44:13,128 [INFO](root:<module>:60): Use Cython: False
+2021-03-11 11:44:13,129 [INFO](root:<module>:62): Pure Python (no Fortran): False
+2021-03-11 11:44:13,129 [INFO](despasito.utils.parallelization:__init__:44): Number of cores set to 1, bypassing mp and using serial methods
+2021-03-11 11:44:13,129 [INFO](despasito.main:run:99): Begin processing input file: input_verify.json
+2021-03-11 11:44:13,130 [INFO](despasito.input_output.read_input:extract_calc_data:111): Cross interaction parameters have been accepted
+2021-03-11 11:44:13,130 [INFO](despasito.input_output.read_input:extract_calc_data:137): The following thermo calculation parameters have been provided: MultiprocessingObject, calculation_type
+
+2021-03-11 11:44:13,130 [INFO](despasito.main:run:117): Finish processing input file: input_verify.json
+2021-03-11 11:44:13,130 [INFO](despasito.equations_of_state:initiate_eos:66): Using EOS: saft.gamma_sw
+2021-03-11 11:44:13,740 [INFO](despasito.equations_of_state.saft.gamma_sw:__init__:120): This EOS doesn't use compiled modules for Amonomer and Achain
+2021-03-11 11:44:13,742 [INFO](despasito.equations_of_state.saft.Aassoc:initiate_assoc_matrices:221): No association sites are used in this system.
+2021-03-11 11:44:13,743 [INFO](despasito.equations_of_state:initiate_eos:96): Created saft.gamma_sw Eos object
+2021-03-11 11:44:13,743 [INFO](despasito.main:run:145): Initializing thermodynamic calculation
+2021-03-11 11:44:13,744 [INFO](despasito.thermodynamics.calculation_types:verify_eos:1177): Use array of mole fractions
+2021-03-11 11:44:13,744 [INFO](despasito.utils.general_toolbox:set_defaults:446): Entry, Tlist, set to default: 298.15
+2021-03-11 11:44:13,745 [INFO](despasito.utils.general_toolbox:set_defaults:446): Entry, Plist, set to default: 101325.0
+2021-03-11 11:44:13,745 [INFO](despasito.utils.parallelization:pool_job:130): Performing task serially
+2021-03-11 11:44:13,746 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.01 0.99], Let's Begin!
+2021-03-11 11:44:15,997 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 41.134413667224045, flagv 0, log_phiv -0.21950892870670954, log_phiv [-1.0578911  -0.21104042], residual1 [-9.80676793e-06], residual2 -4.95664598119136e-05
+2021-03-11 11:44:18,334 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 41.13441373633813, flagl 0, log_phil -0.21950892704963343, log_phil [-1.0578911  -0.21104042], residual1 [-9.80676931e-06], residual2 -4.9566459524660876e-05
+2021-03-11 11:44:18,335 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.108 0.892], Let's Begin!
+2021-03-11 11:44:20,978 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 41.2438683004518, flagv 0, log_phiv -0.3026646002985684, log_phiv [-1.06105017 -0.21084213], residual1 [-9.78074652e-06], residual2 -5.061924013133057e-05
+2021-03-11 11:44:27,745 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 11657.084752978883, flagl 1, log_phil 2.5208780475843886, log_phil [-2.85609378  3.17190154], residual1 [-3.46334717e-08], residual2 -0.0007644649470208478
+2021-03-11 11:44:27,746 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.206 0.794], Let's Begin!
+2021-03-11 11:44:32,783 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 41.368120446939024, flagv 0, log_phiv -0.3861505725861345, log_phiv [-1.06390267 -0.21031061], residual1 [-9.75136659e-06], residual2 -5.0401281261578725e-05
+2021-03-11 11:44:36,168 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 11442.880026535924, flagl 1, log_phil 1.927045770517029, log_phil [-2.88718941  3.17607908], residual1 [-3.52923647e-08], residual2 0.003551714256613396
+2021-03-11 11:44:36,169 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.304 0.696], Let's Begin!
+2021-03-11 11:44:38,835 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 41.50767736012918, flagv 0, log_phiv -0.4699696426527904, log_phiv [-1.06644628 -0.20943962], residual1 [-9.71858061e-06], residual2 -4.890358892154523e-05
+2021-03-11 11:44:41,381 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 10934.312100981306, flagl 1, log_phil 1.3350768178584098, log_phil [-2.84915323  3.16267155], residual1 [-3.69320222e-08], residual2 0.006156595547582956
+2021-03-11 11:44:41,382 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.402 0.598], Let's Begin!
+2021-03-11 11:44:44,118 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 41.66312536786025, flagv 0, log_phiv -0.5541250095832175, log_phiv [-1.06867768 -0.20822171], residual1 [-9.68231993e-06], residual2 -4.611443097644441e-05
+2021-03-11 11:44:46,930 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 10371.706227154003, flagl 1, log_phil 0.7492840137581964, log_phil [-2.80412535  3.13803078], residual1 [-3.88888276e-08], residual2 0.007456980582028064
+2021-03-11 11:44:46,931 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.5 0.5], Let's Begin!
+2021-03-11 11:44:49,974 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 41.83513866048295, flagv 0, log_phiv -0.638620290032237, log_phiv [-1.07059249 -0.20664809], residual1 [-9.64250367e-06], residual2 -4.201910523110586e-05
+2021-03-11 11:44:52,998 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 9820.992911868221, flagl 1, log_phil 0.1704273576580997, log_phil [-2.76544738  3.10630209], residual1 [-4.11031107e-08], residual2 0.007755147128204243
+2021-03-11 11:44:52,998 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.598 0.402], Let's Begin!
+2021-03-11 11:44:56,132 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 42.02448945052434, flagv 0, log_phiv -0.7234595463120636, log_phiv [-1.07218516 -0.20470851], residual1 [-9.59906831e-06], residual2 -3.659981201049561e-05
+2021-03-11 11:44:59,280 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 9303.448757634924, flagl 1, log_phil -0.4017320469457766, log_phil [-2.73571121  3.07020711], residual1 [-4.33325619e-08], residual2 0.007272957314697539
+2021-03-11 11:44:59,280 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.696 0.304], Let's Begin!
+2021-03-11 11:45:02,649 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 42.23206035345492, flagv 0, log_phiv -0.8086473151558446, log_phiv [-1.07344888 -0.20239109], residual1 [-9.55188332e-06], residual2 -2.9835334966125785e-05
+2021-03-11 11:45:06,017 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 8824.953588653694, flagl 1, log_phil -0.9677297236688878, log_phil [-2.71453793  3.0315417 ], residual1 [-4.57002126e-08], residual2 0.006173823881153468
+2021-03-11 11:45:06,018 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.794 0.206], Let's Begin!
+2021-03-11 11:45:09,599 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 42.45885910938745, flagv 0, log_phiv -0.8941886458197269, log_phiv [-1.07437547 -0.19968215], residual1 [-9.50085534e-06], residual2 -2.1700860700710535e-05
+2021-03-11 11:45:13,165 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 8385.468347584037, flagl 1, log_phil -1.528161004120208, log_phil [-2.70076819  2.99149972], residual1 [-4.81458898e-08], residual2 0.0045796338922780054
+2021-03-11 11:45:13,166 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.892 0.108], Let's Begin!
+2021-03-11 11:45:16,984 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 42.70603500193197, flagv 0, log_phiv -0.980089174116705, log_phiv [-1.07495521 -0.19656601], residual1 [-9.44587697e-06], residual2 -1.216724579730577e-05
+2021-03-11 11:45:20,807 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 7982.66028632451, flagl 1, log_phil -2.0835965011107542, log_phil [-2.69315194  2.95087988], residual1 [-5.05622594e-08], residual2 0.00258269320342821
+2021-03-11 11:45:20,808 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 298.15 101325.0 [0.99 0.01], Let's Begin!
+2021-03-11 11:45:24,809 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 42.9749029821082, flagv 0, log_phiv -1.0663551181750957, log_phiv [-1.07517664 -0.19302464], residual1 [-9.38678546e-06], residual2 -1.200972666067779e-06
+2021-03-11 11:45:28,753 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 7613.415222768438, flagl 1, log_phil -2.634554056316884, log_phil [-2.69056186  2.91021806], residual1 [-5.30131195e-08], residual2 0.0002539829690749329
+2021-03-11 11:45:28,758 [INFO](despasito.thermodynamics.calculation_types:verify_eos:1225): --- Calculation verify_eos Complete ---
+2021-03-11 11:45:28,758 [INFO](despasito.main:run:147): Finished thermodynamic calculation

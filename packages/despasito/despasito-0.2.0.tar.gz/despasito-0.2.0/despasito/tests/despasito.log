@@ -1,0 +1,6 @@
+2021-03-02 09:45:13,373 [INFO](root:<module>:49): Input args: Namespace(cython=False, input='test_fit_mix.py', logFile='despasito.log', ncores=1, numba=False, path='.', python=False, verbose=10)
+2021-03-02 09:45:13,374 [INFO](root:<module>:58): Use Numba JIT: False
+2021-03-02 09:45:13,374 [INFO](root:<module>:60): Use Cython: False
+2021-03-02 09:45:13,374 [INFO](root:<module>:62): Pure Python (no Fortran): False
+2021-03-02 09:45:13,374 [INFO](despasito.utils.parallelization:__init__:45): Number of cores set to 1, bypassing mp and using serial methods
+2021-03-02 09:45:13,375 [INFO](despasito.main:run:99): Begin processing input file: test_fit_mix.py

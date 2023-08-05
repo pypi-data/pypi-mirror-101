@@ -1,0 +1,25 @@
+2021-03-29 12:53:39,788 [INFO](root:<module>:46): Input args: Namespace(console=True, cython=False, input='input.json', logFile='despasito.log', ncores=1, numba=False, path='.', python=False, verbose=20)
+2021-03-29 12:53:39,789 [INFO](root:<module>:55): Use Numba JIT: False
+2021-03-29 12:53:39,789 [INFO](root:<module>:57): Use Cython: False
+2021-03-29 12:53:39,789 [INFO](root:<module>:59): Pure Python (no Fortran): False
+2021-03-29 12:53:39,789 [INFO](despasito.utils.parallelization:__init__:43): Number of cores set to 1, bypassing mp and using serial methods
+2021-03-29 12:53:39,789 [INFO](despasito.main:run:105): Begin processing input file: input.json
+2021-03-29 12:53:39,790 [INFO](despasito.input_output.read_input:extract_calc_data:111): Cross interaction parameters have been accepted
+2021-03-29 12:53:39,790 [INFO](despasito.input_output.read_input:extract_calc_data:137): The following thermo calculation parameters have been provided: MultiprocessingObject, calculation_type, Tlist
+
+2021-03-29 12:53:39,790 [INFO](despasito.main:run:123): Finish processing input file: input.json
+2021-03-29 12:53:39,791 [INFO](despasito.equations_of_state:initiate_eos:66): Using EOS: saft.gamma_sw
+2021-03-29 12:53:40,174 [INFO](despasito.equations_of_state.saft.gamma_sw:__init__:118): This EOS doesn't use compiled modules for Amonomer and Achain
+2021-03-29 12:53:40,174 [INFO](despasito.equations_of_state.saft.Aassoc:initiate_assoc_matrices:207): The following association sites have been identified: ['e', 'H']
+2021-03-29 12:53:40,175 [INFO](despasito.equations_of_state:initiate_eos:96): Created saft.gamma_sw Eos object
+2021-03-29 12:53:40,175 [INFO](despasito.main:run:151): Initializing thermodynamic calculation
+2021-03-29 12:53:40,176 [INFO](despasito.utils.general_toolbox:set_defaults:448): Entry, xilist, set to default: [[1.]
+ [1.]]
+2021-03-29 12:53:40,177 [INFO](despasito.utils.general_toolbox:set_defaults:448): Entry, Plist, set to default: 101325.0
+2021-03-29 12:53:40,177 [INFO](despasito.utils.parallelization:pool_job:129): Performing task serially
+2021-03-29 12:53:40,178 [INFO](despasito.thermodynamics.calculation_types:_liquid_properties_wrapper:864): T (K), P (Pa), xi: 580.0 101325.0 [1.], Let's Begin!
+2021-03-29 12:53:41,050 [INFO](despasito.thermodynamics.calculation_types:_liquid_properties_wrapper:868): P 101325.0 Pa, T 580.0 K, xi [1.], rhol 39516.98183165509, phil [73.64928187], flagl 1
+2021-03-29 12:53:41,050 [INFO](despasito.thermodynamics.calculation_types:_liquid_properties_wrapper:864): T (K), P (Pa), xi: 580.0 101325.0 [1.], Let's Begin!
+2021-03-29 12:53:41,921 [INFO](despasito.thermodynamics.calculation_types:_liquid_properties_wrapper:868): P 101325.0 Pa, T 580.0 K, xi [1.], rhol 39516.98183165509, phil [73.64928187], flagl 1
+2021-03-29 12:53:41,921 [INFO](despasito.thermodynamics.calculation_types:liquid_properties:846): --- Calculation liquid_properties Complete ---
+2021-03-29 12:53:41,921 [INFO](despasito.main:run:153): Finished thermodynamic calculation

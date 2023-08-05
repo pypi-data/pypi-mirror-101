@@ -1,0 +1,18 @@
+{
+    "CH3": {
+        "CH2": {"epsilon" : 350.77},      
+        "COO": {"epsilon" : 402.75},
+        "CO2": {"epsilon":205.70},
+        "H2O": {"epsilon":274.80}
+    },
+    "CH2": {
+        "CO2": {"epsilon":276.45},
+        "COO": {"epsilon" : 498.86},
+        "H2O": {"epsilon":284.53}
+    },
+    "CO2": {
+        "H2O": {"epsilon": 226.38, "epsilonHB-H-e1":2200.0, "K-H-e1":91.419e-3}
+    },
+    "H2O353":{
+        "CO2m":{"epsilon": 432.69}}
+}

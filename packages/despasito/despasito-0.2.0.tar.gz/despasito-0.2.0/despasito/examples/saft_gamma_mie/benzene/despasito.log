@@ -1,0 +1,38 @@
+2021-02-11 15:05:22,924 [INFO](root:<module>:44): Input args: Namespace(cython=False, input='input.json', logFile='despasito.log', ncores=1, numba=False, path='.', python=False, verbose=10)
+2021-02-11 15:05:22,925 [INFO](root:<module>:53): Use Numba JIT: False
+2021-02-11 15:05:22,925 [INFO](root:<module>:55): Use Cython: False
+2021-02-11 15:05:22,925 [INFO](root:<module>:57): Pure Python (no fortran): False
+2021-02-11 15:05:22,926 [INFO](despasito.utils.parallelization:__init__:38): Number of cores set to 1, bypassing mp and using serial methods
+2021-02-11 15:05:22,926 [INFO](despasito.main:run:41): Begin processing input file: input.json
+2021-02-11 15:05:22,926 [INFO](despasito.input_output.read_input:extract_calc_data:100): No EOScross file specified
+2021-02-11 15:05:22,926 [INFO](despasito.input_output.read_input:extract_calc_data:114): The following thermo calculation parameters have been provided: MultiprocessingObject, Tlist, calculation_type
+
+2021-02-11 15:05:22,927 [DEBUG](despasito.main:run:54): EOS dict:
+2021-02-11 15:05:22,927 [DEBUG](despasito.main:run:56):     beads: ['a(CH)2']
+2021-02-11 15:05:22,927 [DEBUG](despasito.main:run:56):     nui: [[3.]]
+2021-02-11 15:05:22,927 [DEBUG](despasito.main:run:56):     beadlibrary: {'a(CH)2': {'Sk': 1.0, 'Vks': 1.0, 'epsilon': 243.88, 'lambdaa': 6.0, 'lambdar': 11.58, 'mass': 0.02604, 'sigma': 0.34820000000000007}}
+2021-02-11 15:05:22,928 [DEBUG](despasito.main:run:56):     num_rings: [1]
+2021-02-11 15:05:22,928 [DEBUG](despasito.main:run:56):     numba: False
+2021-02-11 15:05:22,928 [DEBUG](despasito.main:run:56):     cython: False
+2021-02-11 15:05:22,928 [DEBUG](despasito.main:run:56):     python: False
+2021-02-11 15:05:22,928 [DEBUG](despasito.main:run:57): Thermo dict:
+2021-02-11 15:05:22,929 [DEBUG](despasito.main:run:59):     MultiprocessingObject: <despasito.utils.parallelization.MultiprocessingJob object at 0x111014fd0>
+2021-02-11 15:05:22,929 [DEBUG](despasito.main:run:59):     Tlist: [313]
+2021-02-11 15:05:22,929 [DEBUG](despasito.main:run:59):     calculation_type: liquid_properties
+2021-02-11 15:05:22,929 [INFO](despasito.main:run:60): Finish processing input file: input.json
+2021-02-11 15:05:22,930 [INFO](despasito.equations_of_state:initiate_eos:43): Using EOS: saft.gamma_mie
+2021-02-11 15:05:22,945 [INFO](despasito.equations_of_state.saft.gamma_mie:__init__:128): Accepted component ring structure: [1]
+2021-02-11 15:05:22,946 [INFO](despasito.equations_of_state.saft.Aassoc:initiate_assoc_matrices:165): No association sites are used in this system.
+2021-02-11 15:05:22,946 [INFO](despasito.equations_of_state:initiate_eos:63): Created saft.gamma_mie Eos object
+2021-02-11 15:05:22,947 [INFO](despasito.main:run:80): Initializing thermodynamic calculation
+2021-02-11 15:05:22,947 [INFO](despasito.thermodynamics.calculation_types:liquid_properties:589): Using Tlist
+2021-02-11 15:05:22,947 [INFO](despasito.thermodynamics.calculation_types:liquid_properties:600): Array xilist wasn't specified, assume one component system
+2021-02-11 15:05:22,947 [INFO](despasito.thermodynamics.calculation_types:liquid_properties:629): Assuming atmospheric pressure.
+2021-02-11 15:05:22,948 [INFO](despasito.utils.parallelization:pool_job:113): Performing task serially
+2021-02-11 15:05:22,948 [INFO](despasito.thermodynamics.calculation_types:_liquid_properties_wrapper:656): T (K), P (Pa), xi: 313.0 101325.0 [1.0], Let's Begin!
+2021-02-11 15:05:29,192 [DEBUG](despasito.thermodynamics.calc:calc_liquid_density:488):     Find rhol: P 101325.0 Pa, roots [9.281324371252117e-05, 0.0008746014861247758, 0.024812270536129298] m^3/mol
+2021-02-11 15:05:29,192 [DEBUG](despasito.thermodynamics.calc:calc_liquid_density:562):     Flag 1: The T and xi, 313.0 [1.0], combination produces a liquid at this pressure
+2021-02-11 15:05:29,412 [INFO](despasito.thermodynamics.calc:calc_liquid_density:575):     Liquid Density: 10774.324407718115 mol/m^3, flag 1
+2021-02-11 15:05:29,538 [INFO](despasito.thermodynamics.calculation_types:_liquid_properties_wrapper:660): P 101325.0 Pa, T 313.0 K, xi [1.0], rhol 10774.324407718115, phil [0.22426927], flagl 1
+2021-02-11 15:05:29,539 [INFO](despasito.thermodynamics.calculation_types:liquid_properties:646): --- Calculation liquid_properties Complete ---
+2021-02-11 15:05:29,543 [INFO](despasito.main:run:82): Finished thermodynamic calculation

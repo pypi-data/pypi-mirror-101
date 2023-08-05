@@ -1,0 +1,48 @@
+2021-03-11 11:53:01,678 [INFO](root:<module>:49): Input args: Namespace(cython=False, input='input_verify.json', logFile='despasito.log', ncores=1, numba=False, path='.', python=False, verbose=10)
+2021-03-11 11:53:01,679 [INFO](root:<module>:58): Use Numba JIT: False
+2021-03-11 11:53:01,679 [INFO](root:<module>:60): Use Cython: False
+2021-03-11 11:53:01,679 [INFO](root:<module>:62): Pure Python (no Fortran): False
+2021-03-11 11:53:01,679 [INFO](despasito.utils.parallelization:__init__:44): Number of cores set to 1, bypassing mp and using serial methods
+2021-03-11 11:53:01,679 [INFO](despasito.main:run:99): Begin processing input file: input_verify.json
+2021-03-11 11:53:01,680 [INFO](despasito.input_output.read_input:extract_calc_data:111): Cross interaction parameters have been accepted
+2021-03-11 11:53:01,680 [INFO](despasito.input_output.read_input:extract_calc_data:137): The following thermo calculation parameters have been provided: MultiprocessingObject, calculation_type, pressure_options, Tlist, Plist, xilist
+
+2021-03-11 11:53:01,680 [DEBUG](despasito.main:run:111): EOS dict:
+2021-03-11 11:53:01,680 [DEBUG](despasito.main:run:113):     beads: ['CH2', 'CH3']
+2021-03-11 11:53:01,681 [DEBUG](despasito.main:run:113):     molecular_composition: [[4. 2.]
+ [5. 2.]]
+2021-03-11 11:53:01,681 [DEBUG](despasito.main:run:113):     bead_library: {'CO2m': {'epsilon': 353.55, 'lambdaa': 6.66, 'lambdar': 23.0, 'sigma': 0.3741, 'Sk': 1.0, 'Vks': 1, 'mass': 0.04401}, 'H2O353': {'epsilon': 479.56, 'lambdaa': 6.0, 'lambdar': 8.0, 'sigma': 0.30029, 'Sk': 1.0, 'Vks': 1, 'mass': 0.018015}, 'CO2': {'epsilon': 207.891, 'lambdaa': 5.055, 'lambdar': 26.408, 'sigma': 0.305, 'Sk': 0.8468, 'Vks': 2, 'mass': 0.04401, 'Nk-H': 1, 'Nk-a1': 1}, 'H2O': {'epsilon': 266.68, 'lambdaa': 6.0, 'lambdar': 17.02, 'sigma': 0.30063, 'Sk': 1.0, 'Vks': 1, 'mass': 0.018015, 'Nk-H': 2, 'Nk-e1': 2, 'epsilonHB-H-e1': 1985.4, 'K-H-e1': 0.10169}, 'CH3': {'epsilon': 256.7662, 'lambdaa': 6.0, 'lambdar': 15.04982, 'sigma': 0.4077257, 'Sk': 0.5725512, 'Vks': 1, 'mass': 0.01503502}, 'CH4': {'epsilon': 170.75, 'lambdaa': 6.0, 'lambdar': 16.39, 'sigma': 0.3752, 'Sk': 1.0, 'Vks': 1, 'mass': 0.01604}, 'CH2': {'epsilon': 473.3893, 'lambdaa': 6.0, 'lambdar': 19.87107, 'sigma': 0.4880081, 'Sk': 0.2293202, 'Vks': 1, 'mass': 0.01402708}, 'COO': {'epsilon': 868.92, 'lambdaa': 6.0, 'lambdar': 31.189, 'sigma': 0.39939, 'Sk': 0.65264, 'Vks': 1, 'mass': 0.04401}}
+2021-03-11 11:53:01,681 [DEBUG](despasito.main:run:113):     cross_library: {'CH3': {'CH2': {'epsilon': 350.77}, 'COO': {'epsilon': 402.75}, 'CO2': {'epsilon': 205.7}, 'H2O': {'epsilon': 274.8}}, 'CH2': {'CO2': {'epsilon': 276.45}, 'COO': {'epsilon': 498.86}, 'H2O': {'epsilon': 284.53}}, 'CO2': {'H2O': {'epsilon': 226.38, 'epsilonHB-H-e1': 2200.0, 'K-H-e1': 0.091419}}, 'H2O353': {'CO2m': {'epsilon': 432.69}}}
+2021-03-11 11:53:01,681 [DEBUG](despasito.main:run:113):     numba: False
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:113):     cython: False
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:113):     python: False
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:114): Thermo dict:
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:116):     MultiprocessingObject: <despasito.utils.parallelization.MultiprocessingJob object at 0x141a992e0>
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:116):     calculation_type: verify_eos
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:116):     pressure_options: {'maxiter': 15}
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:116):     Tlist: [320.0]
+2021-03-11 11:53:01,682 [DEBUG](despasito.main:run:116):     Plist: [100000.0]
+2021-03-11 11:53:01,683 [DEBUG](despasito.main:run:116):     xilist: [[0.4, 0.6]]
+2021-03-11 11:53:01,683 [INFO](despasito.main:run:117): Finish processing input file: input_verify.json
+2021-03-11 11:53:01,683 [INFO](despasito.equations_of_state:initiate_eos:66): Using EOS: saft.gamma_mie
+2021-03-11 11:53:02,359 [INFO](despasito.equations_of_state.saft.Aassoc:initiate_assoc_matrices:221): No association sites are used in this system.
+2021-03-11 11:53:02,361 [INFO](despasito.equations_of_state:initiate_eos:96): Created saft.gamma_mie Eos object
+2021-03-11 11:53:02,362 [INFO](despasito.main:run:145): Initializing thermodynamic calculation
+2021-03-11 11:53:02,362 [INFO](despasito.utils.parallelization:pool_job:130): Performing task serially
+2021-03-11 11:53:02,363 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1248): T (K), P (Pa), xi: 320.0 100000.0 [0.4 0.6], Let's Begin!
+2021-03-11 11:53:02,363 [DEBUG](despasito.thermodynamics.calc:calc_vapor_density:424):     'calc_vapor_density' does not use the following keyword arguments: pressure_options
+2021-03-11 11:53:17,023 [DEBUG](despasito.thermodynamics.calc:calc_vapor_density:434):     Find rhov: P 100000.0 Pa, roots [0.00014478402796489823, 0.0013492700576043374, 0.025270808158830302] m^3/mol
+2021-03-11 11:53:17,025 [DEBUG](despasito.thermodynamics.calc:calc_vapor_density:581):     Flag 0: This T and yi, 320.0 [0.4 0.6], combination produces a vapor at this pressure.
+2021-03-11 11:53:17,123 [DEBUG](despasito.thermodynamics.calc:calc_vapor_density:624):     Vapor Density: 39.57135036395468 mol/m^3, flag 0
+2021-03-11 11:53:17,178 [DEBUG](despasito.thermodynamics.calc:fugacity_test_1:4120): 'fugacity_test_1' does not use the following keyword arguments: pressure_options
+2021-03-11 11:53:17,300 [DEBUG](despasito.thermodynamics.calc:fugacity_test_2:4169): 'fugacity_test_2' does not use the following keyword arguments: pressure_options
+2021-03-11 11:53:17,452 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1260): rhov 39.57135036395468, flagv 0, log_phiv -0.048426575277986536, log_phiv [-0.03978478 -0.05418778], residual1 [-9.49806555e-06], residual2 1.7613279490086286e-05
+2021-03-11 11:53:17,453 [DEBUG](despasito.thermodynamics.calc:calc_liquid_density:658):     'calc_liquid_density' does not use the following keyword arguments: pressure_options
+2021-03-11 11:53:31,341 [DEBUG](despasito.thermodynamics.calc:calc_liquid_density:669):     Find rhol: P 100000.0 Pa, roots [0.00014478402796489823, 0.0013492700576043374, 0.025270808158830302] m^3/mol
+2021-03-11 11:53:31,342 [DEBUG](despasito.thermodynamics.calc:calc_liquid_density:801):     Flag 1: The T and xi, 320.0 [0.4 0.6], combination produces a liquid at this pressure
+2021-03-11 11:53:31,380 [DEBUG](despasito.thermodynamics.calc:calc_liquid_density:835):     Liquid Density: 6906.8391798888 mol/m^3, flag 1
+2021-03-11 11:53:31,424 [DEBUG](despasito.thermodynamics.calc:fugacity_test_1:4120): 'fugacity_test_1' does not use the following keyword arguments: pressure_options
+2021-03-11 11:53:31,472 [DEBUG](despasito.thermodynamics.calc:fugacity_test_2:4169): 'fugacity_test_2' does not use the following keyword arguments: pressure_options
+2021-03-11 11:53:31,527 [INFO](despasito.thermodynamics.calculation_types:_verify_eos_wrapper:1276): rhol 6906.8391798888, flagl 1, log_phil -1.3601063988941262, log_phil [-0.72327919 -1.78465787], residual1 [-5.44180651e-08], residual2 -0.003681017977523915
+2021-03-11 11:53:31,529 [INFO](despasito.thermodynamics.calculation_types:verify_eos:1225): --- Calculation verify_eos Complete ---
+2021-03-11 11:53:31,530 [INFO](despasito.main:run:147): Finished thermodynamic calculation
