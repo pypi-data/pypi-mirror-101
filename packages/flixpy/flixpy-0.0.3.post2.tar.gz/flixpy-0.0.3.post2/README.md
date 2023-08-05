@@ -1,0 +1,111 @@
+<h1 align="center">
+  <img src="assets/logo.svg" width=95>
+  <br>
+  Flixpy
+</h1>
+
+<p align="center">
+Information on movies, shows, streaming platforms, people, and more
+</p>
+
+<!-- Badges -->
+<p align="center">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/ninest/flixpy/PyTest?style=flat-square">
+  <a href="https://pypi.org/project/flixpy/">
+    <img src="https://img.shields.io/pypi/v/flixpy?color=blue&style=flat-square" alt="Version" />
+  </a>
+  <a href="https://pypi.org/project/flixpy/">
+    <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/flixpy?color=red&style=flat-square" />
+  </a>
+
+  <img src="https://img.shields.io/github/license/ninest/flixpy?style=flat-square" alt="MIT" />
+  <a href="https://www.buymeacoffee.com/ninest">
+    <img src="https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square" alt="Buy Me A Coffee">
+  </a>
+</p>
+
+## Links
+
+- [Documentation](http://flixpy.now.sh/)
+- [Examples](https://github.com/ninest/flixpy/tree/master/examples)
+- [Discussions](https://github.com/ninest/flixpy/discussions)
+
+## Features
+
+- [x] Movies and TV shows
+  - [x] Get streaming providers and a direct link to watch
+  - [x] Get the direct link to watch each episode
+  - [x] View metadata such as title, overview, ratings, actors
+- [ ] Searching and browsing
+  - [ ] Search filters (sort by rating, tag, genre)
+- [ ] Actors
+
+### Experimental
+
+- [ ] Integration with Popcorn API
+- [ ] Functions to download subtitles for movies and episodes
+
+## Usage
+
+### Installation
+
+```bash
+pip3 install flixpy
+```
+
+### Basic examples
+
+**Get the a movie's Netflix link:**
+
+```py
+from flixpy import Movie, StreamingProvider
+
+movie = Movie("extraction-2020")
+
+if movie.is_on(StreamingProvider.NETFLIX):
+  netflix_link = movie.link_for(StreamingProvider.NETFLIX)
+  # => https://www.netflix.com/watch/80230399
+```
+
+**List all episodes in a show:**
+
+```py
+from flixpy import Show
+
+show = Show("breaking-bad-2008")
+
+for season in show:
+  for episode in season:
+    print(episode.title)
+```
+
+**List genres of a show:**
+
+```py
+from flixpy import Show
+
+show = Show('breaking-bad-2008')
+show.genres
+# => [<Genre.CRIME>, <Genre.THRILLER>]
+```
+
+**Browse animated shows in Amazon Prime Video:**
+
+```
+Coming soon
+```
+
+See more examples in the [documentation](http://flixpy.now.sh/).
+
+### Contributing
+
+Flixpy uses [`poetry`](https://python-poetry.org/). To set up your environment, clone or download this repository then run the following commands:
+
+```bash
+poetry install
+poetry shell
+```
+
+## License
+
+MIT
