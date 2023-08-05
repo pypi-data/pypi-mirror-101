@@ -1,0 +1,240 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:project.work:"
+msgid "Could not find party with code: %s"
+msgstr "Konnte Partei mit Code %s nicht finden"
+
+msgctxt "error:project.work:"
+msgid ""
+"Several open roundup projects found:\n"
+"\n"
+"%s\n"
+"\n"
+"It is only one open Roundup project allowed."
+msgstr ""
+"Verschiedene offene Roundupprojekte gefunden:\n"
+"\n"
+"%s\n"
+"\n"
+"Es ist nur ein geöffnetes Roundupprojekt pro Organisation möglich."
+
+msgctxt "error:project.work:"
+msgid ""
+"Several roundup tasks relating to the same issue found:\n"
+"\n"
+"%s\n"
+"\n"
+"It is only one task per issue allowed."
+msgstr ""
+"Mehrere Aufgaben zu derselben Roundupaufgabe gefunden:\n"
+"\n"
+"%s\n"
+"\n"
+"Es ist nur eine Aufgabe pro Roundupaufgabe möglich."
+
+msgctxt "field:company.employee,roundup_user:"
+msgid "Roundup User"
+msgstr "Roundup Benutzername"
+
+msgctxt "field:issue_tracker,create_date:"
+msgid "Create Date"
+msgstr "Erstellungsdatum"
+
+msgctxt "field:issue_tracker,create_uid:"
+msgid "Create User"
+msgstr "Erstellt durch"
+
+msgctxt "field:issue_tracker,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:issue_tracker,rec_name:"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "field:issue_tracker,write_date:"
+msgid "Write Date"
+msgstr "Zuletzt geändert"
+
+msgctxt "field:issue_tracker,write_uid:"
+msgid "Write User"
+msgstr "Letzte Änderung durch"
+
+msgctxt "field:project.roundup.configuration,billing_product:"
+msgid "Default Billing Product"
+msgstr "Standardabrechnungsvariante"
+
+msgctxt "field:project.roundup.configuration,create_date:"
+msgid "Create Date"
+msgstr "Erstellungsdatum"
+
+msgctxt "field:project.roundup.configuration,create_uid:"
+msgid "Create User"
+msgstr "Erstellt durch"
+
+msgctxt "field:project.roundup.configuration,default_invoice_method:"
+msgid "Default Invoice Method"
+msgstr "Standardabrechnungsmethode"
+
+msgctxt "field:project.roundup.configuration,default_project_prefix:"
+msgid "Default Project Prefix"
+msgstr "Standardprojektpräfix"
+
+msgctxt "field:project.roundup.configuration,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:project.roundup.configuration,rec_name:"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "field:project.roundup.configuration,write_date:"
+msgid "Write Date"
+msgstr "Zuletzt geändert"
+
+msgctxt "field:project.roundup.configuration,write_uid:"
+msgid "Write User"
+msgstr "Letzte Änderung durch"
+
+msgctxt "field:project.work,employee:"
+msgid "Employee"
+msgstr "Mitarbeiter"
+
+msgctxt "field:project.work,last_sync:"
+msgid "Last Tracker Sync"
+msgstr "Letzte Synchronisierung mit dem Ticketsystem"
+
+msgctxt "field:project.work,roundup_id:"
+msgid "Roundup ID"
+msgstr "Roundup ID"
+
+msgctxt "field:project.work.synchronize_tickets.ask_children,id:"
+msgid "ID"
+msgstr "ID"
+
+msgctxt "field:project.work.synchronize_tickets.ask_children,with_children:"
+msgid "Synchronize Children"
+msgstr "Untergeordnete Roundupaufgaben synchronisieren"
+
+msgctxt "help:company.employee,roundup_user:"
+msgid "The roundup username of this employee."
+msgstr "Der Benutzername des Mitarbeiters im Roundupsystem."
+
+msgctxt "help:project.roundup.configuration,billing_product:"
+msgid ""
+"The product that shall be used as default billing product on new "
+"projects/tasks."
+msgstr ""
+"Die Variante, die bei der Anlage neuer Projekte oder Aufgaben aus Roundup "
+"eingetragen wird."
+
+msgctxt "help:project.roundup.configuration,default_invoice_method:"
+msgid ""
+"The Invoice Method used when creating new projects or tasks from Roundup."
+msgstr ""
+"Die Abrechnungsmethode, die bei der Anlage neuer Projekte oder Aufgaben aus "
+"Roundup eingetragen wird."
+
+msgctxt "help:project.roundup.configuration,default_project_prefix:"
+msgid ""
+"The prefix to use for automatically created projects or tasks by Roundup."
+msgstr "Präfix für automatisch erstellte Roundup-Projekte"
+
+msgctxt "help:project.work,employee:"
+msgid "Employee who is assigned the issue."
+msgstr "Mitarbeiter dem die Aufgabe zugeordnet ist"
+
+msgctxt "help:project.work,roundup_id:"
+msgid "Identfier of the related issue on roundup"
+msgstr "Identifikator der entsprechenden Aufgabe im Roundupsystem"
+
+msgctxt "help:project.work.synchronize_tickets.ask_children,with_children:"
+msgid "Also synchronize all children of the selected projects/tasks."
+msgstr "Auch alle untergeordneten Projekte/Aufgaben synchronisieren."
+
+msgctxt "model:ir.action,name:act_roundup_configuration_form"
+msgid "Roundup Configuration"
+msgstr "Roundupkonfiguration"
+
+msgctxt "model:ir.action,name:wizard_refresh_project_tickets"
+msgid "Refresh project from Roundup"
+msgstr "Gesamtes Projekt von Roundup aktualisieren"
+
+msgctxt "model:ir.action,name:wizard_synchronize_all_tickets"
+msgid "Synchronize all tickets"
+msgstr "Sämtliche Roundupaufgaben synchronisieren"
+
+msgctxt "model:ir.action,name:wizard_update_tickets"
+msgid "Update tickets from Roundup"
+msgstr "Ausgewählte Aufgaben mit Roundup abgleichen"
+
+msgctxt "model:ir.action.act_window.domain,name:act_project_form_closed"
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgctxt "model:ir.action.act_window.domain,name:act_project_tree_closed"
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgctxt "model:ir.action.act_window.domain,name:act_task_form_closed"
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgctxt "model:ir.cron,name:cron_trigger_time"
+msgid "Synchronize all tickets"
+msgstr "Alle Roundupaufgaben synchronisieren"
+
+msgctxt "model:ir.ui.menu,name:menu_roundup_configuration"
+msgid "Roundup Configuration"
+msgstr "Roundupkonfiguration"
+
+msgctxt "model:ir.ui.menu,name:menu_synchronize_tickets"
+msgid "Synchronize all tickets"
+msgstr "Alle Roundupaufgaben synchronisieren"
+
+msgctxt "model:issue_tracker,name:"
+msgid "Issue Tracker"
+msgstr "Ticketsystem"
+
+msgctxt "model:project.roundup.configuration,name:"
+msgid "Roundup Configuration"
+msgstr "Roundupkonfiguration"
+
+msgctxt "model:project.work.synchronize_tickets.ask_children,name:"
+msgid "Synchronize TicketsAsk Children"
+msgstr "Nachfrage Untergeordnete Roundupaufgaben synchronisieren"
+
+msgctxt "model:res.group,name:group_roundup_synchronization"
+msgid "Roundup Synchronization"
+msgstr "Roundupsynchronisierung"
+
+msgctxt "model:res.user,name:user_tracker"
+msgid "Cron Tracker"
+msgstr "Zeitplaner Tracker"
+
+msgctxt "selection:project.work,state:"
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgctxt "view:project.roundup.configuration:"
+msgid "Billing"
+msgstr "Abrechnung"
+
+msgctxt "view:project.roundup.configuration:"
+msgid "Roundup Configuration"
+msgstr "Roundupkonfiguration"
+
+msgctxt "view:project.work.synchronize_tickets.ask_children:"
+msgid "Roundup Synchronization"
+msgstr "Roundupsynchronisierung"
+
+msgctxt "wizard_button:project.work.synchronize_tickets,ask_children,end:"
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgctxt ""
+"wizard_button:project.work.synchronize_tickets,ask_children,synchronize_with_children:"
+msgid "Synchronize"
+msgstr "Synchronisieren"
