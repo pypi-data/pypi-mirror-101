@@ -1,0 +1,7 @@
+include LICENSE
+include README.rst
+include *.txt *.ini *.cfg *.rst
+recursive-include doclib *.ico *.png *.css *.gif *.jpg *.jpeg *.txt *.js *.html *.xml,*.json,*py
+recursive-include doclib/static *
+recursive-include doclib/templates *
+recursive-include doclib/scripts *
