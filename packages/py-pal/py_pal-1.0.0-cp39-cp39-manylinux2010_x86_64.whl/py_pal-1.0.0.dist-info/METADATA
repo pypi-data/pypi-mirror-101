@@ -1,0 +1,198 @@
+Metadata-Version: 2.1
+Name: py-pal
+Version: 1.0.0
+Summary: Estimate Asymptotic Runtime Complexity from Bytecode executions
+Home-page: https://gitlab.lukasjung.de/root/py-pal
+Author: Lukas Jung
+Author-email: mail@lukasjung.de
+License: MIT
+Project-URL: Documentation, https://py-pal.readthedocs.io/en/latest/
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Utilities
+Classifier: Topic :: Software Development :: Debuggers
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+Requires-Dist: pandas (<1.3,>=1.0)
+Requires-Dist: numpy (<1.21,>=1.16)
+Requires-Dist: matplotlib (<3.5,>=3.1)
+
+========
+Overview
+========
+
+
+
+Python Performance Analysis Library or py-pal is a bytecode profiling toolkit.
+See the `Documentation <https://py-pal.readthedocs.io>`_.
+
+
+Installation
+============
+
+This project requires CPython and a C compiler to run.
+Install Python >= 3.7, then install py-pal by running:
+
+    pip install py-pal
+
+Development
+===========
+
+To set up a development environment:
+
+1. Install Python >= 3.7 and a C compiler.
+2. Create a virtualenv
+
+    python3 -m venv venv
+
+3. Install the development dependencies
+
+    pip install -r dev-requirements.txt
+
+Build the py-pal package
+---------------------------
+
+    python3 setup.py develop
+
+This compiles the C extensions using Cython, packages everything together and
+places it into the virtualenv. Note that changes on the cython files (.pyx extension)
+require recompilation i.e. rerunning the above command.
+
+Run all the tests
+-----------------
+
+    pytest tests tests_cython
+
+Usage
+=====
+
+Calling py-pal as module with
+
+    python -m py_pal file.py
+
+or
+
+    pypal file.py
+
+Measure specific functions using the decorator:
+
+.. sourcecode:: python
+
+    from py_pal.core import profile
+
+    @profile
+    def test():
+        pass
+
+
+Using the context manager:
+
+.. sourcecode:: python
+
+    from py_pal.estimator import AllArgumentEstimator
+    from py_pal.tracer import Tracer
+
+    with Tracer() as t:
+        pass
+
+    estimator = AllArgumentEstimator(t)
+    res = estimator.export()
+
+    # Do something with the resulting DataFrame
+    print(res)
+
+Using the API:
+
+.. sourcecode:: python
+
+    from py_pal.estimator import AllArgumentEstimator
+    from py_pal.tracer import Tracer
+
+
+    t = Tracer()
+    t.trace()
+
+    # Your function
+    pass
+
+    t.stop()
+    estimator = AllArgumentEstimator(t)
+    res = estimator.export()
+
+    # Do something with the resulting DataFrame
+    print(res)
+
+
+Modes
+-----
+Profiling and Performance Testing
+
+Restrictions
+------------
+The Tracing process does not work for multi-threaded code.
+
+Tracing processes
+-----------------
+
+
+FAQ
+===
+
+Why not use a standard profiler?
+--------------------------------
+
+Using absolute timing data vs synthetic timing data using opcodes.
+
+Licensing Notes
+===============
+This work integrates some code from the `big_O <https://github.com/pberkes/big_O>`_ project.
+More specifically, most code in `py_pal.complexity`, `py_pal.datagen` and `py_pal.estimator.Estimator.infer_complexity` is adapted from bigO.
+What's New in Py-PAL 1.0.0
+==========================
+
+- More thorough testing from different combinations of requirements and Python versions.
+- Bug fixes
+
+What's New in Py-PAL 0.2.1
+==========================
+Refactoring
+-----------
+
+The `estimator` module was refactored which introduces a slight change to the API.
+Classes inheriting from `Estimator` now only specify how to transform the collected data with respect to the arguments
+of the function.
+
+Instead of `ComplexityEstimator` you should use the `AllArgumentEstimator` class. Additionally there is the `SeparateArgumentEstimator` which is experimental.
+
+
+
+What's New in Py-PAL 0.1.6
+==========================
+
+More accurate Data Collection
+-----------------------------
+
+The `Tracer` is enhanced by measuring builtin function calls with `AdvancedOpcodeMetric`.
+
+Opcodes resembling a function call .e.g `FUNCTION_CALL` are filtered for built in function calls.
+If the called function is found in the complexity mapping a synthetic Opcode weight gets assigned.
+A builtin function call is evaluated using its argument and a pre-defined runtime complexity e.g. O(n log n) for
+`sort()`.
+
+- The feature is enabled by default
+- The calculation produces a performance overhead and can be disabled by providing a `OpcodeMetric` instance to the `Tracer`
+- The `AdvancedOpcodeMetric` instance assigned to the `Tracer` provides statistics about how many builtin function calls were observed and how many were found in the complexity map
+
+Bugfixes
+--------
+
+- Cleaning data after normalization introduced wrong data points
+
