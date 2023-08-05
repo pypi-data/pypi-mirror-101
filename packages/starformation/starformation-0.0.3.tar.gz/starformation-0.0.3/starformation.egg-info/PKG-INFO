@@ -1,0 +1,109 @@
+Metadata-Version: 2.1
+Name: starformation
+Version: 0.0.3
+Summary: Star Formation is a Python library to quickly develop clean modular models/pipelines.
+Home-page: https://github.com/TommyDong1998/StarFormation
+Author: Tommy Dong
+Author-email: tommydong1998@gmail.com
+License: UNKNOWN
+Description: # Star Formation
+        
+        Star Formation is a Python library to quickly develop clean modular models/pipelines. Geared towards usage with sklearn and keras.
+        
+        ## Installation
+        
+        Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+        
+        ```bash
+        pip install starformation
+        ```
+        
+        ## Usage
+        
+        ```python
+        import starformation as sf
+        #Create pipeline
+        bf = sf.Formation()
+        #star() return the input
+        s = sf.star()
+        #Add star
+        bf.add(s)
+        #returns [4]
+        bf.run(4)
+        ```
+        ## add(s:star)
+        Add first star in formation or chain stars to the last added star.
+        
+        Example: (x+1) * 3
+        ```python
+        import starformation as sf
+        from starformation.classic import CStar
+        
+        bf = sf.Formation()
+        s = sf.star()
+        bf.add(CStar(lambda x: x+1))
+        bf.add(CStar(lambda x: x*3))
+        #returns [15]
+        bf.run(4)
+        ```
+        
+        ## link(s:star)
+        Add first star in formation or chain stars to the last added star.
+        
+        Example: (x+1) * 3
+        ```python
+        import starformation as sf
+        from starformation.classic import CStar
+        
+        bf = sf.Formation()
+        s = sf.star()
+        bf.add(CStar(lambda x: x+1))
+        bf.add(CStar(lambda x: x*3))
+        #returns [15]
+        bf.run(4)
+        ```
+        
+        ## Run(input, cores = none)
+        Input is fed into the first star.Cores specify how many processes. 
+        
+        Chain stars. Execution star.action() -> star2.action()
+        ```python
+        import starformation as sf
+        
+        bf = sf.Formation()
+        s = sf.star()
+        bf.add(s)
+        bf.link(sf.star())
+        bf.link(sf.star())
+        bf.link(sf.star())
+        bf.link(sf.star())
+        #return [4,4,4,4]
+        bf.run("example",2)
+        #also return [4,4,4,4] but not multicore
+        bf.run("example")
+        ```
+        
+        ##CStar
+        Makes a custom function.
+        ```python
+        import starformation as sf
+        from starformation.classic import CStar
+        
+        def add(x):
+            return x+1
+        
+        bf = sf.Formation()
+        bf.add(CStar(add))
+        
+        #returns [5]
+        bf.run(4)
+        ```
+        ## Contributing
+        Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+        
+        Please make sure to update tests as appropriate.
+        
+        ## License
+        [GPL](https://choosealicense.com/licenses/gpl-3.0)
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
