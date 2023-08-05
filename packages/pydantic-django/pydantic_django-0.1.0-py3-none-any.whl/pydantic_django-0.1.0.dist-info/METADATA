@@ -1,0 +1,132 @@
+Metadata-Version: 2.1
+Name: pydantic-django
+Version: 0.1.0
+Summary: Pydantic model support for Django ORM
+Home-page: https://github.com/jordaneremieff/pydantic-django/
+Author: Jordan Eremieff
+Author-email: jordan@eremieff.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# Pydantic-Django
+
+[Pydantic](https://pydantic-docs.helpmanual.io/) model support for [Django](https://www.djangoproject.com/) ORM.
+
+**Documentation**: https://jordaneremieff.github.io/pydantic-django/
+
+**Requirements**: Python 3.7+, Django 2+
+
+### Status
+
+This project should be considered a work-in-progress. It should be okay to use, but no specific version support is guaranteed yet and expected outputs and behaviour may change as it continues to be developed.
+
+There is a lot of Pydantic behaviour to cover, so please use the issues [tracker](https://github.com/jordaneremieff/pydantic-django/issues) for any bug report or if something seems wrong.
+
+## Quickstart
+
+Install using pip:
+
+```shell
+pip install pydantic-django
+```
+
+An example of basic [schema](https://pydantic-docs.helpmanual.io/usage/schema/) usage:
+
+```python
+class UserSchema(ModelSchema):
+    class Config:
+        model = User
+
+UserSchema.schema()
+```
+
+The schema call above would return something like this:
+
+```python
+{
+        "title": "UserSchema",
+        "description": "A user of the application.",
+        "type": "object",
+        "properties": {
+            "profile": {"title": "Profile", "description": "None", "type": "integer"},
+            "id": {"title": "Id", "description": "id", "type": "integer"},
+            "first_name": {
+                "title": "First Name",
+                "description": "first_name",
+                "maxLength": 50,
+                "type": "string",
+            },
+            "last_name": {
+                "title": "Last Name",
+                "description": "last_name",
+                "maxLength": 50,
+                "type": "string",
+            },
+            "email": {
+                "title": "Email",
+                "description": "email",
+                "maxLength": 254,
+                "type": "string",
+            },
+            "created_at": {
+                "title": "Created At",
+                "description": "created_at",
+                "type": "string",
+                "format": "date-time",
+            },
+            "updated_at": {
+                "title": "Updated At",
+                "description": "updated_at",
+                "type": "string",
+                "format": "date-time",
+            },
+        },
+        "required": ["first_name", "email", "created_at", "updated_at"],
+    }
+```
+
+Use the `from_django` method to populate the models with values:
+
+```python
+user = User.objects.create(
+    first_name="Jordan", 
+    last_name="Eremieff", 
+    email="jordan@eremieff.com"
+)
+
+user_schema = UserSchema.from_django(user)
+```
+
+The object values can be validated and serialized using the Pydantic [export](https://pydantic-docs.helpmanual.io/usage/exporting_models/) methods.
+
+```python
+user_json = user_schema.json()
+```
+
+To produce a result such as:
+
+```json
+{
+    "profile": null,
+    "id": 1,
+    "first_name": "Jordan",
+    "last_name": "Eremieff",
+    "email": "jordan@eremieff.com",
+    "created_at": "2020-08-15T16:50:30.606345+00:00",
+    "updated_at": "2020-08-15T16:50:30.606452+00:00"
+}
+```
+
+
