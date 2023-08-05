@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: pycolate
+Version: 0.0.31
+Summary: Generates site percolation data and illustrations.
+Home-page: UNKNOWN
+Author: Jack Harrington
+Author-email: jackjharrington@icloud.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Scientific/Engineering :: Physics
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pillow
+
+# pycolate :coffee:
+
+![Banner](https://raw.githubusercontent.com/Jackbytes/pycolate/main/images/cover_image.png)
+
+A python implementation of site percolation, generates datasets and illustrations.
+
+## Aims.
+
+This project primarily generates datasets and illustrations from square lattice site percolation. There is an auxillary program which carries out critical probability estimation using coarse graining with possible interactions.
+
+## How to.
+
+
