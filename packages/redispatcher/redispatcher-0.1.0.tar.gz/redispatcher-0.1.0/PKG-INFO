@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: redispatcher
+Version: 0.1.0
+Summary: Toolset for asynchronous message processing backed by Redis as the message broker
+Author: Rafal Stapinski
+Author-email: stapinskirafal@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: aioredis (>=1.3.1,<2.0.0)
+Requires-Dist: isort (>=5.8.0,<6.0.0)
+Requires-Dist: pydantic (>=1.8.1,<2.0.0)
