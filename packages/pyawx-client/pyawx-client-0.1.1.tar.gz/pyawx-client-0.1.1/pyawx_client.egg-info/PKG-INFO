@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: pyawx-client
+Version: 0.1.1
+Summary: Python API to access Ansible AWX/Tower v2 API
+Home-page: https://github.com/irunasroot/pyawx-client
+Author: Dennis Whitney
+Author-email: dennis@irunasroot.com
+License: Apache 2.0
+Download-URL: https://github.com/irunasroot/pyawx-client/archive/v0.1.1.tar.gz
+Description: # pyawx-client
+        A python library for interacting with Ansible AWX instances
+        
+        # Installation
+        You can install from pypi using pip
+        ``bash
+        pip install pyawx-client
+        ``
+        
+        # Usage
+        AWX provides an API v2 for interacting with it. Most of the API is supported but keep in mind this is in alpha
+        and not everything will be built yet
+        
+        The Client object sort of works in the idea of SQLAlchemy... at least for now.
+        
+        Also, please be aware that models, or the python API could change since this project is still in Apha.
+        
+        Get a list of Jobs
+        ```python
+        from pyawx import Client
+        from pyawx.models.jobs import Job
+        
+        client = Client("https://awx.mycompany.com", username="me", password="password")
+        
+        jobs = client.get_data(Job)
+        ```
+        
+        Create a job template
+        ```python
+        from pyawx import Client
+        from pyawx.models.jobs import JobTemplate
+        
+        client = Client("https://awx.mycompany.com", username="me", password="password")
+        
+        new_job = JobTemplate(name="My Job", description="Do some stuff", project=1)
+        
+        client.add(new_job)
+        client.commit()
+        ```
+        
+        Delete a job template
+        ```python
+        from pyawx import Client
+        from pyawx.actions import delete
+        from pyawx.models.jobs import JobTemplate
+        
+        client = Client("https://awx.mycompany.com", username="me", password="password")
+        
+        job_template = client.get_data(JobTemplate)[0]
+        
+        delete(job_template)
+        client.add(job_template)
+        client.commit()
+        ```
+        
+Keywords: ansible,tower,awx,redhat,ansible tower,ansible awx,playbook,automation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
