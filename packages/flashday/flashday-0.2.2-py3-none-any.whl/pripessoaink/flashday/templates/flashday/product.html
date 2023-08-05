@@ -1,0 +1,74 @@
+{% extends 'default.html' %}
+
+{% block content %}
+    <div class="text-center pb-5">
+        <h3 class="display-3">{{ flashday.title }}</h3>
+        <h5>{{ flashday.subtitle }}</h5>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <img class="img-raised rounded img-fluid" src="{{ product.picture.url }}">
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6" style="font-size: 16px;">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">{{ product.title }}</h3>
+                    <p>{{ product.description }}</p>
+
+                    <a href="http://instagram.com/{{ seller.instagram }}" class="text-right">
+                        <h6 class="mb-2 pt-2 text-muted ">
+                            <b>por {{ seller.instagram }}</b>
+                            <i class="icon fab fa-instagram"></i>
+                        </h6>
+                    </a>
+                </div>
+            </div>
+
+            {% if product.availability %}
+                {% choice product seller as greeting %}
+                <h6 class="text-center">Selecione o tamanho desejado</h6>
+
+                {% for option in product.productoption_set.all %}
+
+                    <a href="{% whatsapp seller.telephone greeting %}">
+                        <div class="row justify-content-center align-items-center text-center">
+                            <div class="col-6">
+                                <p class="btn btn-block btn-primary">{{ option.key }}</p>
+                            </div>
+
+                            <div class="col-3 text-left">
+                                <b class="text-primary">R${{ option.value }},00</b>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+
+            {% else %}
+                <a href="{% url 'home' %}">
+                    <div class="text-center">
+                        <div class="badge badge-danger">
+                            <h6>Ops! Este amuleto já tem dona</h6>
+                        </div>
+                        <h6 class="text-dark">confira opções disponiveis aqui</h6>
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="col-12">
+            <div class="row justify-content-center">
+                {% for extra_picture in product.extrapicture_set.all %}
+                    <div class="col-lg-3 col-md-6 mt-3">
+                        <img class="img-raised rounded img-fluid" src="{{ extra_picture.image.url }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% include 'flashday/informativo-antiplagio.html' %}
+    </div>
+{% endblock %}
