@@ -1,0 +1,40 @@
+from ctypes import POINTER
+from comtypes import (
+    CoCreateInstance,
+    CLSCTX_LOCAL_SERVER,
+)
+from .win10desktops import (
+    CLSID_VirtualDesktopPinnedApps,
+    IVirtualDesktopManager,
+    IVirtualDesktopManagerInternal,
+    IVirtualDesktopPinnedApps,
+    IApplicationViewCollection,
+    IServiceProvider,
+    CLSID_ImmersiveShell,
+    CLSID_VirtualDesktopManagerInternal,
+)
+
+
+def _get_object(cls, clsid = None):
+    pServiceProvider = CoCreateInstance(
+        CLSID_ImmersiveShell, IServiceProvider, CLSCTX_LOCAL_SERVER
+    )
+    pObject = POINTER(cls)()
+    pServiceProvider.QueryService(
+        clsid or cls._iid_,
+        cls._iid_,
+        pObject,
+    )
+    return pObject
+
+def get_vd_manager():
+    return _get_object(IVirtualDesktopManager)
+
+def get_vd_manager_internal():
+    return _get_object(IVirtualDesktopManagerInternal, CLSID_VirtualDesktopManagerInternal)
+
+def get_view_collection():
+    return _get_object(IApplicationViewCollection)
+
+def get_pinned_apps():
+    return _get_object(IVirtualDesktopPinnedApps, CLSID_VirtualDesktopPinnedApps)
