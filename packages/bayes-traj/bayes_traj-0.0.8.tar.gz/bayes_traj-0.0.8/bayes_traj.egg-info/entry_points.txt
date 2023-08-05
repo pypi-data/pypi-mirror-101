@@ -1,0 +1,8 @@
+[console_scripts]
+bayes_traj_main = bayes_traj.bayes_traj_main:main
+generate_generic_data = bayes_traj.generate_generic_data:main
+generate_prior = bayes_traj.generate_prior:main
+summarize_traj_model = bayes_traj.summarize_traj_model:main
+viz_data_prior_draws = bayes_traj.viz_data_prior_draws:main
+viz_model_trajs = bayes_traj.viz_model_trajs:main
+
