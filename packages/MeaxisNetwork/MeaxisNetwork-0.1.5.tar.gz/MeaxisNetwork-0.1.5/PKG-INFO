@@ -1,0 +1,168 @@
+Metadata-Version: 2.1
+Name: MeaxisNetwork
+Version: 0.1.5
+Summary: A python wrapper for the MeaxisNetwork API.
+Home-page: https://meaxisnetwork.net/create/docs/api/index
+Author: MeaxisNetwork
+Author-email: meaxis@meaxisnetwork.net
+License: MIT
+Description: # MeaxisNetwork API Python Wrapper
+        
+        ## Introduction
+        
+        This is a python wrapper to include MeaxisNetwork API Endpoints and requests into your code. The following endpoints are supported:
+        
+        > Users  
+        > Accounts  
+        > Creations  
+        > Funfact  
+        > Shop  
+        > Vote
+        
+        ## Code Samples
+        
+        ### Get public user data from a MeaxisNetwork User
+        
+        ```python
+        from meaxisnetwork import users
+        
+        Meaxis = users.User(platform = "username", query = "Meaxis")
+        
+        # JSON of the User Object
+        
+        print(Meaxis.UserJSON)
+        
+        
+        # Any attribute of the user object will be a variable to use.
+        
+        print(Meaxis.username + Meaxis.id + Meaxis.description)
+        
+        ```
+        
+        ### Get all Shop Items in the MeaxisNetwork Shop
+        ```python
+        from meaxisnetwork import shop
+        
+        Shop = shop.Shop()
+        print(Shop.items)    
+        ```    
+                                                                                                                
+        
+        ## Installation
+        
+        Go to the following link:  
+        ```
+        https://pypi.org/project/meaxisnetwork
+        ```
+        
+        And then copy the installation link. 
+        
+        ### Windows
+        
+        In the search bar, type in 'Command Prompt' and then press 'Yes' to the User Account Control Prompt.   
+        
+        Then paste the command you copied and press enter.
+        
+        ### Linux
+        
+        Run the following command in your terminal:
+        ```
+        python3 -m pip install meaxisnetwork
+        ```
+        
+        If it says anything about python3 not being found, you need to install python with your Package Manger.
+        
+        Debian:  
+        
+        ```
+        sudo apt-get install python
+        ```
+        Arch:  
+        ```
+        sudo pacman -S python
+        ```
+          
+          
+        For other distributions, use your package manager to install python. 
+        
+        --------------------------
+        
+        Changelog
+        
+        --------------------------
+        
+        Version 0.0.2
+        
+        - Beta Version released
+        - Users, Account, Funfact, LeafyStatus, Shop and Creations class.
+        - Custom errors for missing keyword arguments.
+        
+        --------------------------
+        
+        Version 0.0.3
+        
+        - Account, User, Creations, Funfact, LeafyStatus, Shop, Vote classes are split into files.
+        - Credentials class is added for storing logcooks and sesscooks (not fully implemented).
+        - New function for checking the response codes to format errors in a readable JSON format.
+        
+        --------------------------
+        
+        Version 0.0.4
+        
+        - (CRITICAL) Fixed a bug where the module did not install properly.
+        
+        --------------------------
+        
+        Version 0.0.5
+        
+        - (CRITICAL) Fixed a bug where incorrect dependencies were trying to be installed by setuptools configuration.
+        
+        --------------------------
+        
+        Version 0.0.6
+        
+        - Even more critical bug fixes.
+        
+        --------------------------
+        
+        Version 0.0.7
+        
+        - BUG FIXES 
+        
+        --------------------------
+        
+        Version 0.0.8 & 0.0.9
+        
+        - Critical Bug Fix Attempts
+        
+        --------------------------
+        
+        Version 0.1.0
+        
+        - The critical bug has been fixed.
+        - Importing the module no longer gives you the "filename has been loaded" screen.
+        
+        --------------------------
+        
+        Version 0.1.1 & 0.1.2 & 0.1.3 & 0.1.4
+        
+        - Categorisation (v2 APIs go in meaxisnetwork.v2)
+        - meaxisnetwork.utils now includes a HTTPRequest class for ease of use for using the module with outdated or deprecated APIs not included in the module.
+        - All modules have been switched to the HTTPRequest class instead of the previous request workflow.
+        - POST requests have been fixed.
+        - Credentials class fully implemented.
+        
+        --------------------------
+        
+        Version 0.1.5
+        
+        - Bug fixes
+        - Public Release of Module
+Keywords: meaxisnetwork
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
