@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: clarinpl-embeddings
+Version: 0.0.1rc2
+Summary: 
+Home-page: https://github.com/CLARIN-PL/embeddings
+License: MIT
+Author: Roman Bartusiak
+Author-email: riomus@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Provides-Extra: developer
+Requires-Dist: flair (>=0.8.0,<0.9.0)
+Requires-Dist: jupyter (>=1.0.0,<2.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: scikit-learn (>=0.24.1,<0.25.0)
+Requires-Dist: srsly (>=2.4.0,<3.0.0)
+Requires-Dist: tensorflow (>=2.4.1,<3.0.0)
+Requires-Dist: torch (>=1.8.0,<2.0.0)
+Requires-Dist: transformers (>=4.4.2,<5.0.0)
