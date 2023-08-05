@@ -1,0 +1,47 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python Tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ['3.9', '3.8', '3.7', '3.6', pypy3]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest cffi
+
+    - name: Build
+      run: |
+        pip install -e .
+
+    - name: Cache Mono
+      if: runner.os == 'Windows'
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.TEMP }}\chocolatey
+        key: ${{ runner.os }}-chocolatey-${{ matrix.python == 'pypy3' && '32' || '64' }}
+
+    - name: Install Mono
+      if: runner.os == 'Windows'
+      run: |
+        choco install -y mono ${{ matrix.python == 'pypy3' && '--x86' || '' }}
+
+    - name: Test with pytest
+      run: |
+        pytest
