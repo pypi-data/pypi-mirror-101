@@ -1,0 +1,60 @@
+# fraud-package
+
+```
+A simple feature engineering pipeline
+```
+
+Built with ❤︎ and :coffee: by  [Srikanth Maganti]
+
+---
+
+Project Specific: https://github.com/srikanthmaganti/Fraud-Detection-Machine-Learning/blob/master/Fraud_Detection_FeatureEngineering_pipeline.ipynb
+
+# Dataset used:
+```
+Take a look at GitHub link
+```
+
+# Features Before:
+
+- user_id
+- signup_time
+- purchase_time
+- purchase_value
+- device_id
+- source
+- browser
+- sex
+- age
+- ip_address
+- class
+- country
+
+# Installation
+
+- You can install this package using
+
+```bash
+pip install fraud-package
+```
+
+# After Feature Engineering:
+
+- Some useful features derived from existing features
+- ratio_fraud_device_id
+- num_trans_device_id	
+- ratio_fraud_country
+- num_trans_country
+- ratio_fraud_sex
+- num_trans_sex
+- ratio_fraud_age
+- num_trans_age	
+- ratio_fraud_browser
+- num_trans_browser
+- ratio_fraud_source
+- num_trans_source
+
+
+# Main intention of this Package
+
+Want to implement a feature engineering pipeline because in industry we see few features need to be derived from the existing format of data for better better model building 
