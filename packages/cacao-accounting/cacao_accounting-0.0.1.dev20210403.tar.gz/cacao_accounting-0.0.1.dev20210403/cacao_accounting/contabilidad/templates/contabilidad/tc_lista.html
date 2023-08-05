@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block contenido %}
+<section>
+  <h4>Listado de Tasas de Cambio.</h4>
+  <a class="btn btn-primary btn-sm" href="{{ url_for("contabilidad.nueva_unidad") }}" role="button">Nueva Tasa de Cambio</a>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Base</th>
+        <th scope="col">Destino</th>
+        <th scope="col">Tasa</th>
+        <th scope="col">Fecha</th>
+      </tr>
+    </thead>
+  {% for item in pagina.object_list -%}
+  <tr>
+    <th>
+      {{ item.base }}
+    </th>
+    <td>
+      {{ item.destino }}
+    </td>
+    <td>
+      {{ item.fecha }}
+    </td>
+    <td>
+      {{ item.tasa }}
+    </td>
+    <td>
+      {{ item.entidad }}
+    </td>
+  </tr>
+  {%- endfor %}
+</table>
+</section>
+<section>
+  {% import "macros.html" as macros %}
+  {{ macros.rendizar_paginacion(consulta_paginada=resultado, pagina_actual=pagina) }}
+</section>
+{% endblock %}
