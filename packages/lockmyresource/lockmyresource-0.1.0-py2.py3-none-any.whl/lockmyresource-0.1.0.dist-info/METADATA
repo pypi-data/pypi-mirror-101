@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: lockmyresource
+Version: 0.1.0
+Summary: Coordinate locking resources for humans and machines using a simple sqlite file.
+Home-page: https://github.com/szabopeter/lockmyresource
+Author: Szabó Péter
+Author-email: 1254135+szabopeter@users.noreply.github.com
+License: GNU General Public License v3
+Keywords: lockmyresource
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
+
+# lockmyresource
+Coordinate locking resources for humans and machines, using a simple sqlite DB
+
+There is a CLI for machines and admins and a minimal tk GUI for lock&release.
+
+## Quick demo
+![Demo of UI and CLI](docs/demo.gif)
+
+## Usage
+```
+usage: cli.py [-h] [--dbfile DBFILE] [--debug] {list,lock,release} ...
+
+Lock some resources
+
+positional arguments:
+  {list,lock,release}  Commands
+    list               List resources
+    lock               Lock a resource
+    release            Release a resource
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --dbfile DBFILE      Database to use
+  --debug
+```
+
+> **NOTE** that the current user's username will be used for all operations.
+
+> **NOTE** the db will be created if it does not yet exist
+
+### List resources
+```
+usage: cli.py list [-h] [--format {text,csv,json}]
+```
+
+#### Sample output
+```
+$ ./cli.py list
+Resource User  Locked_at                  Comment
+fork1    Hegel 2021-01-17 11:42:36.459921 Ideally, I can use fork1
+fork2    Kant  2021-01-17 11:52:13.768924 Can't take fork1, I guess
+spoon    None  None                       None
+```
+
+### Lock existing / Create new resource and lock it
+```
+usage: cli.py lock [-h] resource comment
+```
+
+>**NOTE** that the comment is mandatory.
+
+>**NOTE** that deletion of resources is not yet implemented, you need to manipulate the sqlite DB manually for now
+
+#### Example
+```
+$ ./cli.py lock fork1 'To eat or not to eat...'
+Obtained lock for Resource(name='fork1')
+```
+
+### Release a lock
+```
+usage: cli.py release [-h] resource
+```
+
+> **NOTE** That only the locking user can release a lock.
+
+#### Example
+```
+$ ./cli.py release fork1
+Released lock for Resource(name='fork1')
+```
+
+
+=======
+History
+=======
+
+0.1.0 (2021-04-03)
+------------------
+
+* First release on PyPI.
+
+
