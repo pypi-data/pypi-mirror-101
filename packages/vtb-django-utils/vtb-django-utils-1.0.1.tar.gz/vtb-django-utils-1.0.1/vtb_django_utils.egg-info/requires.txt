@@ -1,0 +1,9 @@
+vtb-http-interaction>=0.0.4
+django>=3.0.0
+djangorestframework>=3.12.2
+
+[test]
+pytest
+pytest-env
+pylint
+pytest-asyncio
