@@ -1,0 +1,5 @@
+recursive-exclude docs *
+exclude .coveragerc
+exclude .gitignore
+exclude .gitlab-ci.yml
+recursive-include src/ *.py 
