@@ -1,0 +1,19 @@
+v0.7.2:
+    - fix "(cx_Oracle.DatabaseError) ORA-12505: TNS:listener does not currently know of SID given in connect descriptor"
+    - add parameter 'errors' to oracle.insert method
+    - remove parameter 'encoding' from extractor.xls method
+v0.7.1: upgrade pyaxis to version 0.3.1
+v0.7.0:
+    - upgrade pyaxis to version 0.3.0
+    - documentation updates
+v0.6.2:
+    - change subprocess calls, locking the execution until subprocess ends.
+    - fix error raised deleting SQL Loader output files.
+    - refactor integration tests for oracle class.
+v0.6.1: updated SQLAlchemy in requirements.txt to fix moderate security issues.
+v0.6.0: added support for xlsx extraction.
+v0.5.0: added limited support for Postgresql database.
+v0.4.5: fixed dependencies in setup.py.
+v0.4.4: added support for massively reading Px files from a given directory.
+v0.4.3: added different encodings for csv and px in extractor px.
+v0.4.2: added support for parametrized columns load in bulk insert and upsert.
