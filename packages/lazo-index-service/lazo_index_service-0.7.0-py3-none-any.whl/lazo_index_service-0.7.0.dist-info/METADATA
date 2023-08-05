@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: lazo-index-service
+Version: 0.7.0
+Summary: API for accessing the Lazo index.
+Home-page: https://gitlab.com/ViDA-NYU/auctus/lazo-index-service
+Author: Fernando Chirigati
+Author-email: fchirigati@nyu.edu
+Maintainer: Remi Rampin
+Maintainer-email: remi.rampin@nyu.edu
+License: Apache-2.0
+Project-URL: Homepage, https://gitlab.com/ViDA-NYU/auctus/lazo-index-service
+Project-URL: Source, https://gitlab.com/ViDA-NYU/auctus/lazo-index-service
+Project-URL: Tracker, https://gitlab.com/ViDA-NYU/auctus/auctus/-/issues
+Keywords: lazo
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Dist: grpcio (<2,>=1.21)
+Requires-Dist: protobuf (>=3.8)
+
+API for accessing the Lazo index.
+
+
