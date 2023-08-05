@@ -1,0 +1,7 @@
+[run]
+omit =
+    .tox/*
+    tests/*
+    setup.py
+    conftest.py
+    d8s_hypothesis/__init__.py
