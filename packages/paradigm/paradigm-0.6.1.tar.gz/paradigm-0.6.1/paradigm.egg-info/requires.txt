@@ -1,0 +1,5 @@
+memoir<1.0,>=0.0.3
+reprit<1.0,>=0.3.1
+
+[:platform_python_implementation != "PyPy"]
+mypy<1.0,>=0.812
