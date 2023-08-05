@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: studosi
+Version: 0.0.0.dev2
+Summary: The official Studoši Python toolkit
+Home-page: https://github.com/studosi/studosi-py
+Author: Miljenko Šuflaj [micho]
+Author-email: headsouldev@gmail.com
+License: Apache License 2.0
+Project-URL: Source, https://github.com/studosi/studosi-py
+Project-URL: Issues, https://github.com/studosi/studosi-py/issues
+Description: # Studoši Python
+        
+        [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+        
+        # Installation
+        
+        ## PyPi
+        
+        - run `pip install studosi`.
+        
+        ## Build from source
+        
+        - clone this repository: `git clone https://github.com/studosi/studosi-py`
+        - position yourself in the `studosi-py` folder: `cd studosi-py`
+        - run `pip install .`
+        
+Keywords: studosi studoši toolkit development
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Environment :: Console
+Classifier: Framework :: Flake8
+Classifier: Framework :: Jupyter
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: Croatian
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Database
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Classifier: Topic :: System :: Archiving :: Backup
+Classifier: Topic :: System :: Installation/Setup
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
