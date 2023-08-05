@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quickstart &#8212; Track Analyzer 0.1a documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data-requirements">
+<h2>Data requirements<a class="headerlink" href="#data-requirements" title="Permalink to this headline">¶</a></h2>
+<p><strong>Track Analyzer</strong> needs as input a text file of tracked data containing the positions coordinates (in 2D or 3D) along time and the tracks identifiers.
+Optional: data can be plotted on the original image. <strong>Track Analyzer</strong> needs a grayscaled image file which can be a 3D or 4D tiff stack (2D timelapse or 3D timelapse). Other metadata such as time and length scales will be provided by the user through the graphical interface.</p>
+</div>
+<div class="section" id="analysis-modules">
+<h2>Analysis modules<a class="headerlink" href="#analysis-modules" title="Permalink to this headline">¶</a></h2>
+<p><strong>Track Analyzer</strong> contains a data selection module and three main analysis modules.
+- Data selection module</p>
+<blockquote>
+<div><p>Subsets of the datasets can be selected by spatial or time criteria, or track duration. A drawing tool offers the possibility to precisely select trajectories at a given frame and inspect either their past (back-tracking) or their future (fate-mapping).</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Trajectory-based analysis module</dt><dd><p>It offers trajectory visualization and computes trajectory parameters, such as: instantaneous velocities and accelaration, MSD analysis, trajectory averaging.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Map-based analysis module</dt><dd><p>It computes averaging of velocities and acceleration data on a regular grid. These averaged maps can be used to compute 2D divergence and curl maps.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Comparator module</dt><dd><p>A series of previously run analyses can be compared by plotting parameters together on the same plot.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="launching-the-graphical-interface">
+<h2>Launching the graphical interface<a class="headerlink" href="#launching-the-graphical-interface" title="Permalink to this headline">¶</a></h2>
+<p>Start a Jupyter notebook:
+- go to the project folder run <cite>cd &lt;path_to_the_project_folder&gt;</cite>
+- if not done yet, activate the environment: run <cite>conda activate pyTA</cite>
+- launch a Jupyter notebook, run <cite>jupyter notebook</cite>
+- a web browser opens, click on <cite>analyze_traj_gui.ipynb</cite></p>
+</div>
+<div class="section" id="running-the-pipeline">
+<h2>Running the pipeline<a class="headerlink" href="#running-the-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference external" href="https://jupyter.org/">Jupyter notebook</a> comprises a series of ‘cells’ which are blocks of Python code to be run. Each cell can be run by pressing Shift+Enter. Each cell will execute a piece of code generating the pipeline graphical interface. They all depend on each other, therefore, they MUST be run in order. By default, the code of each cell is hidden but it can be shown by pressing the button at the top of the notebook: ‘Click here to toggle on/off the raw code’. Once the code is hidden, you might miss a cell. This is a common explanation if you get an error. If this happens, start the pipeline again a couple of cells above.</p>
+</div>
+<div class="section" id="troubleshouting">
+<h2>Troubleshouting<a class="headerlink" href="#troubleshouting" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>(OUTDATED) The drawing tool depends on the [napari](<a class="reference external" href="https://github.com/napari/napari">https://github.com/napari/napari</a>) project. The installation of this project can be tricky depending on your system. If you are not able to solve this installation, you can still use <strong>Track Analyzer</strong> without the drawing tool. You will then have to comment the <cite>import napari</cite> line in <cite>codes/analyze_traj.py</cite> and will not be able to use the ROI option in the data selection module.</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Track Analyzer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#running-track-analyzer">Running Track Analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">User Guide</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Arthur Michaut.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/user_guide/quickstart.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

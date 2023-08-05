@@ -1,0 +1,75 @@
+.. Track Analyzer - Quantification and visualization of tracking data
+    Authors: Arthur Michaut                                                
+    Copyright 2016-2019 Harvard Medical School and Brigham and             
+                             Women's Hospital                              
+    Copyright 2019-2021 Institut Pasteur and CNRS–UMR3738                  
+    See the COPYRIGHT file for details                                     
+                                                                           
+    This file is part of Track Analyzer package.                           
+                                                                           
+    Track Analyzer is free software: you can redistribute it and/or modify 
+    it under the terms of the GNU General Public License as published by   
+    the Free Software Foundation, either version 3 of the License, or      
+    (at your option) any later version.                                    
+                                                                           
+    Track Analyzer is distributed in the hope that it will be useful,      
+    but WITHOUT ANY WARRANTY; without even the implied warranty of         
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the           
+    GNU General Public License for more details .                          
+                                                                           
+    You should have received a copy of the GNU General Public License      
+    along with Track Analyzer (COPYING).                                   
+    If not, see <https://www.gnu.org/licenses/>.     
+
+************
+Installation
+************
+
+
+===========================
+Track Analyzer installation
+===========================
+
+- Install Python 3.7: download miniconda 3.7: https://docs.conda.io/en/latest/miniconda.html
+- Open a Terminal (Mac & Linux) or open an Anaconda powershell (Windows)
+- Create environment: run `conda create -n pyTA python=3.7`
+- Activate environment (to be run every time you open a new terminal): run `conda activate pyTA`
+
+Run 
+
+::
+	pip install...
+
+
+Archive overview
+================
+
+* **doc** => the documentation in html and pdf
+* **example** => synthetic data examples are stored in the `example` folder. Each example contains a `params.csv` file containing for each track the "true" values.
+* **track_analyzer** => the track analyzer python library
+* **setup.py** => the installation script
+* **requirements.txt** => the python dependencies
+* **COPYING** => the licensing
+* **README.md** => brief overview
+* **analyze_traj_gui.ipynb** => the jupyter notebook used for the graphical interface
+
+
+===========================
+Track Analyzer dependencies
+===========================
+
+Track Analyzer depends on several python packages that will be installed with the pip install:
+
+- numpy 
+- matplotlib
+- pandas
+- scipy
+- scikit-image
+- seaborn
+- jupyter
+- joblib 
+- lmfit
+- tifffile
+- napari
+- ipyfilechooser
+- ipywidgets

@@ -1,0 +1,69 @@
+.. Track Analyzer - Quantification and visualization of tracking data
+    Authors: Arthur Michaut                                                
+    Copyright 2016-2019 Harvard Medical School and Brigham and             
+                             Women's Hospital                              
+    Copyright 2019-2021 Institut Pasteur and CNRS–UMR3738                  
+    See the COPYRIGHT file for details                                     
+                                                                           
+    This file is part of Track Analyzer package.                           
+                                                                           
+    Track Analyzer is free software: you can redistribute it and/or modify 
+    it under the terms of the GNU General Public License as published by   
+    the Free Software Foundation, either version 3 of the License, or      
+    (at your option) any later version.                                    
+                                                                           
+    Track Analyzer is distributed in the hope that it will be useful,      
+    but WITHOUT ANY WARRANTY; without even the implied warranty of         
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the           
+    GNU General Public License for more details .                          
+                                                                           
+    You should have received a copy of the GNU General Public License      
+    along with Track Analyzer (COPYING).                                   
+    If not, see <https://www.gnu.org/licenses/>.   
+
+
+**********
+Quickstart
+**********
+
+
+=================
+Data requirements
+=================
+
+**Track Analyzer** needs as input a text file of tracked data containing the positions coordinates (in 2D or 3D) along time and the tracks identifiers. 
+Optional: data can be plotted on the original image. **Track Analyzer** needs a grayscaled image file which can be a 3D or 4D tiff stack (2D timelapse or 3D timelapse). Other metadata such as time and length scales will be provided by the user through the graphical interface.
+
+================
+Analysis modules
+================
+ 
+**Track Analyzer** contains a data selection module and three main analysis modules. 
+- Data selection module
+    Subsets of the datasets can be selected by spatial or time criteria, or track duration. A drawing tool offers the possibility to precisely select trajectories at a given frame and inspect either their past (back-tracking) or their future (fate-mapping). 
+- Trajectory-based analysis module
+    It offers trajectory visualization and computes trajectory parameters, such as: instantaneous velocities and accelaration, MSD analysis, trajectory averaging. 
+- Map-based analysis module
+    It computes averaging of velocities and acceleration data on a regular grid. These averaged maps can be used to compute 2D divergence and curl maps.
+- Comparator module
+    A series of previously run analyses can be compared by plotting parameters together on the same plot. 
+
+=================================
+Launching the graphical interface
+=================================
+
+Start a Jupyter notebook: 
+- go to the project folder run `cd <path_to_the_project_folder>`
+- if not done yet, activate the environment: run `conda activate pyTA`
+- launch a Jupyter notebook, run `jupyter notebook`
+- a web browser opens, click on `analyze_traj_gui.ipynb`
+
+====================
+Running the pipeline
+====================
+A `Jupyter notebook <https://jupyter.org/>`_ comprises a series of 'cells' which are blocks of Python code to be run. Each cell can be run by pressing Shift+Enter. Each cell will execute a piece of code generating the pipeline graphical interface. They all depend on each other, therefore, they MUST be run in order. By default, the code of each cell is hidden but it can be shown by pressing the button at the top of the notebook: 'Click here to toggle on/off the raw code'. Once the code is hidden, you might miss a cell. This is a common explanation if you get an error. If this happens, start the pipeline again a couple of cells above. 
+
+===============
+Troubleshouting
+===============
+- (OUTDATED) The drawing tool depends on the [napari](https://github.com/napari/napari) project. The installation of this project can be tricky depending on your system. If you are not able to solve this installation, you can still use **Track Analyzer** without the drawing tool. You will then have to comment the `import napari` line in `codes/analyze_traj.py` and will not be able to use the ROI option in the data selection module. 

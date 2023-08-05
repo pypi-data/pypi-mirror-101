@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: track_analyzer
+Version: 0.1rc1
+Summary: Track Analyzer: quantification and visualization of tracking data
+Home-page: https://gitlab.pasteur.fr/track-analyzer/track-analyzer
+Author: Arthur Michaut
+Author-email: arthur.michaut@gmail.com
+License: GPL
+Download-URL: https://pypi.org/project/track-analyzer/
+Description: # Track Analyzer
+        
+        **Track Analyzer** is Python-based data visualization pipeline for tracking data. It *does not* perform any tracking, but takes as input any kind of tracked data. It analyzes trajectories by computing standard parameters such as velocity, acceleration, diffusion coefficient, divergence and curl maps, etc. This pipeline also offers a trajectory visualization in 2D (and soon in 3D rendering), using a selection tool allowing to perform some fate mapping and back-tracking. 
+        **Track Analyzer** can be run by means of a Jupyter notebook based graphical interface, so no programming knowledge is required. 
+        
+        ## Data requirements
+        **Track Analyzer** needs as input a text file of tracked data containing the positions coordinates (in 2D or 3D) along time and the tracks identifiers. 
+        Optional: data can be plotted on the original image. **Track Analyzer** needs a grayscaled image file which can be a 3D or 4D tiff stack (2D timelapse or 3D timelapse). Other metadata such as time and length scales will be provided by the user through the graphical interface.
+        
+        ## Analysis modules
+        **Track Analyzer** contains a data selection module and three main analysis modules. 
+        - Data selection module  
+            Subsets of the datasets can be selected by spatial or time criteria, or track duration. A drawing tool offers the possibility to precisely select trajectories at a given frame and inspect either their past (back-tracking) or their future (fate-mapping). 
+        - Trajectory-based analysis module  
+            It offers trajectory visualization and computes trajectory parameters, such as: instantaneous velocities and accelaration, MSD analysis, trajectory averaging. 
+        - Map-based analysis module  
+            It computes averaging of velocities and acceleration data on a regular grid. These averaged maps can be used to compute 2D divergence and curl maps.
+        - Comparator module  
+            A series of previously run analyses can be compared by plotting parameters together on the same plot. 
+        
+        ## Installation
+        - Install Python 3.7: download miniconda 3.7: https://docs.conda.io/en/latest/miniconda.html
+        - Open a Terminal (Mac & Linux) or open an Anaconda powershell (Windows)
+        - Create environment: run `conda create -n pyTA python=3.7`
+        - Activate environment (to be run every time you open a new terminal): run `conda activate pyTA`
+        - Run `pip install track-analyzer`
+        
+        ## Project organization
+        - **doc** => the documentation in html and pdf
+        - **example** => synthetic data examples are stored in the `example` folder. Each example contains a `params.csv` file containing for each track the "true" values.
+        - **track_analyzer** => the track analyzer python library
+        - **setup.py** => the installation script
+        - **requirements.txt** => the python dependencies
+        - **COPYING** => the licensing
+        - **README.md** => brief overview
+        - **analyze_traj_gui.ipynb** => the jupyter notebook used for the graphical interface
+        
+        ## Launching the graphical interface
+        Start a Jupyter notebook: 
+        - go to the project folder run `cd <path_to_the_project_folder>`
+        - if not done yet, activate the environment: run `conda activate py37`
+        - launch a Jupyter notebook, run `jupyter notebook`
+        - a web browser opens, click on `analyze_traj_gui.ipynb`
+        
+        ## Running the pipeline
+        A [Jupyter notebook](https://jupyter.org/) comprises a series of 'cells' which are blocks of Python code to be run. Each cell can be run by pressing Shift+Enter. Each cell will execute a piece of code generating the pipeline graphical interface. They all depend on each other, therefore, they MUST be run in order. By default, the code of each cell is hidden but it can be shown by pressing the button at the top of the notebook: 'Click here to toggle on/off the raw code'. Once the code is hidden, you might miss a cell. This is a common explanation if you get an error. If this happens, start the pipeline again a couple of cells above. 
+        
+        ## Common issues
+        - (OUTDATED) The drawing tool depends on the [napari](https://github.com/napari/napari) project. The installation of this project can be tricky depending on your system. If you are not able to solve this installation, you can still use **Track Analyzer** without the drawing tool. You will then have to comment the `import napari` line in `codes/analyze_traj.py` and will not be able to use the ROI option in the data selection module. 
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
