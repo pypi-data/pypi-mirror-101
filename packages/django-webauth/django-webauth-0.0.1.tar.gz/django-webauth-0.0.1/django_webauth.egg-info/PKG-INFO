@@ -1,0 +1,74 @@
+Metadata-Version: 1.1
+Name: django-webauth
+Version: 0.0.1
+Summary: Two Factor Authentication in Django using Web Authentication API (WebAuthn).
+Home-page: https://github.com/asnelling/django-webauth/
+Author: Addison Snelling
+Author-email: addison@asnell.io
+License: GPL-3.0-only
+Description: =======
+        WebAuth
+        =======
+        
+        Two Factor Authentication in Django using Web Authentication API (WebAuthn).
+        
+        Quick start
+        -----------
+        
+        1. Add "webauth" to your INSTALLED_APPS setting like this::
+        
+            INSTALLED_APPS = [
+                ...
+                'webauth',
+            ]
+        
+        2. Include the webauth URLconf in your project urls.py like this::
+        
+            path('webauth/', include('webauth.urls')),
+        
+        3. Add ``webauth.backends.WebAuthnBackend`` to ``AUTHENTICATION_BACKENDS`` setting::
+           
+            AUTHENTICATION_BACKENDS = [
+                'django.contrib.auth.backends.ModelBackend',
+                'webauth.backends.WebAuthnBackend',
+            ]
+        
+        4. Add ``webauth.mixins.WebAuthnRequiredMixin`` to any views you want to
+           protect with WebAuthn::
+        
+            from webauth.mixins import WebAuthnRequiredMixin
+        
+            class AuthorList(WebAuthnRequiredMixin, ListView):
+                ...
+            
+           Only class-based views are currently supported.
+        
+        5. Run ``python manage.py migrate`` to create the webauth models.
+        
+        6. Start the development server and visit http://127.0.0.1:8000/webauth/keys/
+           to register a WebAuthn credential.
+        
+        7. Visit http://127.0.0.1:8000/webauth/auth/ to test your new authenticator.
+        
+        When visiting views marked with ``WebAuthnRequiredMixin``, you will have to
+        authenticate using a credential you created in step 6 if not already done so
+        for the current session. Traditional authentication (username and password)
+        is also required. The ``WebAuthnRequiredMixin`` will use redirects to complete
+        any required authentication.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
