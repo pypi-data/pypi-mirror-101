@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: ligature
+Version: 1.2.0
+Summary: A ~toy~ useful Python library for merging data, from low to high level abstractions.
+Home-page: https://github.com/CorsoSource/ligature
+Author: Andrew Geiger
+Author-email: andrew.geiger@corsosystems.com
+License: UNKNOWN
+Description: Ligature is a Python library that builds up ways of stitching data together.
+        
+        It builds from low to high level abstractions, demonstrating how they work together.
+        
+        The goal is to make data composable, but also to make sure it's clear exactly what is being done at any given stage.
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.5
+Description-Content-Type: text/markdown
