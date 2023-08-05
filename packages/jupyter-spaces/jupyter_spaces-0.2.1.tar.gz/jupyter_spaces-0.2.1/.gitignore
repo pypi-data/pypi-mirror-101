@@ -1,0 +1,13 @@
+# distribution
+dist
+build
+
+# python
+__pycache__
+*.egg-info
+
+# testing
+coverage.xml
+.coverage
+.pytest_cache
+.tox
