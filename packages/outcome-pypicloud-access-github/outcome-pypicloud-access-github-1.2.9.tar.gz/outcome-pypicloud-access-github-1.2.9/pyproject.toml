@@ -1,0 +1,101 @@
+[tool.poetry]
+name = "outcome-pypicloud-access-github"
+version = "1.2.9"
+description = "A Github-based access backend for pypicloud."
+authors = ["Douglas Willcocks <douglas@outcome.co>"]
+readme = "README.md"
+license = "ISC"
+packages = [
+  { include = "outcome", from = "src" }
+]
+homepage = "https://github.com/outcome-co/pypicloud-access-github-py"
+repository = "https://github.com/outcome-co/pypicloud-access-github-py"
+documentation = "https://github.com/outcome-co/pypicloud-access-github-py#README"
+
+[tool.poetry.dependencies]
+python = "^3.8.6"
+toml = "^0.10.1"
+python-memcached = {version = "^1.59", optional = true }
+outcome-utils = "^5.0.3"
+gql = {version = "3.0.0.0a5", extras = ["all"]}
+pydantic = "^1.8.1"
+PyGithub = "^1.54"
+
+[tool.poetry.extras]
+memcache = ["python-memcached"]
+
+[tool.poetry.dev-dependencies]
+outcome-devkit = "^6.6.2"
+pytest-dotenv = "^0.5.1"
+pydantic = "^1.7"
+click = "^7.1.2"
+python-dotenv = "^0.15.0"
+requests = "^2.25.1"
+pynacl = "^1.4.0"
+pypicloud = {extras = ["gcs"], version = "^1.1.7"}
+uwsgi = "^2.0.19"
+pastescript = "^3.2.0"
+waitress = "^1.4.4"
+python-memcached = "^1.59"
+redis = "^3.5.3"
+flaky = "^3.7.0"
+tenacity = "^6.3.1"
+pystache = "^0.5.4"
+outcome-pypicloud-storage-gcs = "^0.3.0"
+
+
+[tool.isort]
+skip_glob = "*/.cache/**/*"
+line_length = 130
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.coverage.run]
+branch = true
+data_file = 'coverage/data'
+source = ['src']
+omit = ['test/*']
+plugins = ['outcome.devkit.env_coverage']
+
+[tool.coverage.report]
+fail_under = 100
+skip_empty = true
+
+[tool.coverage.html]
+show_contexts = true
+directory = 'coverage/html'
+
+[tool.black]
+line-length = 130
+include = '\.pyi?$'
+# This stops black from rewriting quotes
+skip-string-normalization = true
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | \.cache
+)/
+'''
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "1.2.9"
+tag_format = "v$version"
+bump_message = "chore(version): $current_version → $new_version"
+version_files = ["pyproject.toml:^version", "README.md:version-badge"]
+
+[build-system]
+requires = ["poetry==1.1.4"]
+build-backend = "poetry.masonry.api"
+
