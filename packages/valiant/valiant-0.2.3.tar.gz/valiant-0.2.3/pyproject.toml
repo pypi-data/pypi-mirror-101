@@ -1,0 +1,143 @@
+[tool.poetry]
+name = "valiant"
+version = "0.2.3"
+description = "Audit tool to help investigate Python dependencies"
+authors = ["Duncan Dickinson <dedickinson@users.noreply.github.com>"]
+maintainers = ["Duncan Dickinson <dedickinson@users.noreply.github.com>"]
+license = "MIT"
+
+readme = "README.md"
+
+homepage = "https://github.com/pomes/valiant"
+repository = "https://github.com/pomes/valiant"
+documentation = "https://pomes.github.io/valiant/"
+
+keywords = ["audit", "dependency", "bom"]
+
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "License :: OSI Approved :: MIT License",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Security",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: System :: Software Distribution"
+]
+
+[tool.poetry.urls]
+"Issue tracker" = "https://github.com/pomes/valiant/issues"
+
+[tool.poetry.plugins]
+
+[tool.poetry.plugins."valiant.report"]
+"demo" = "valiant.plugins.reports.demo:DemoReportPlugin"
+"basic" = "valiant.plugins.reports.basic:BasicReportPlugin"
+"spdx" = "valiant.plugins.reports.spdx:SpdxLicenseReportPlugin"
+"safety" = "valiant.plugins.reports.safety:SafetyReportPlugin"
+
+[tool.valiant.local-plugins]
+paths = ["./tests/plugins"]
+
+[tool.valiant.local-plugins."valiant.report"]
+localdemo = "reports.localdemo:LocalDemoReportPlugin"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.10"
+cleo = "^0.7.6"
+appdirs = "^1.4.3"
+desert = "^2020.1.6"
+marshmallow = "^3.5.1"
+requests = "^2.23.0"
+setuptools = "^46.0.0"
+texttable = "^1.6.2"
+wcwidth = "^0.1.8"
+requests-cache = "^0.5.2"
+structlog = "^20.1.0"
+safety = "^1.8.7"
+marshmallow-dataclass = "^7.5.2"
+[tool.poetry.dev-dependencies]
+pytest = "^4.6"
+black = "^19"
+isort = "^4.3.21"
+coverage = {extras = ["toml"], version = "^5.0.3"}
+flake8 = "^3"
+flake8-black = "^0.1"
+flake8-bugbear = ">=20"
+flake8-bandit = "^2"
+flake8-docstrings = "^1"
+flake8-annotations = "^2"
+pytest-cov = "^2.8.1"
+mypy = "^0.812"
+pytype = ">=2021.4.1"
+typeguard = "^2.7.1"
+darglint = "^1.2.0"
+xdoctest = "^0.11.0"
+autoflake = "^1.3.1"
+pytest-datafiles = "^2.0"
+pytest-mock = "^2.0.0"
+requests-mock = "^1.7.0"
+spdx-tools = "^0.6.1"
+pygments = "^2.6.1"
+flake8-copyright = "^0.2.2"
+cyclonedx-bom = "^0.4.3"
+
+[tool.poetry.scripts]
+valiant = "valiant.console:main"
+
+[tool.coverage.paths]
+source = [
+    "src/",
+    "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["valiant"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+# Be explicit in your omissions:
+omit = [
+    "src/valiant/__init__.py",
+    "src/valiant/__version__.py",
+    "src/valiant/__main__.py",
+    "src/valiant/console/__init__.py",
+    "src/valiant/console/commands/__init__.py",
+    "src/valiant/console/config/__init__.py",
+    "src/valiant/config/__init__.py",
+    "src/valiant/repositories/__init__.py",
+    "src/valiant/repositories/pypi/__init__.py",
+    "src/valiant/util/__init__.py",
+    "src/valiant/log/__init__.py",
+    "src/valiant/plugins/reports/spdx/__main__.py"
+]
+
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:"
+]
+
+[tool.coverage.html]
+directory = "build/reports/coverage/html"
+
+[tool.coverage.xml]
+output = "build/reports/coverage/coverage.xml"
+
+[tool.coverage.json]
+output = "build/reports/coverage/coverage.json"
+
+[tool.black]
+line-length = 88
+
+[build-system]
+requires = ["poetry>=1.1.5"]
+build-backend = "poetry.masonry.api"
