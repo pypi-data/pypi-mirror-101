@@ -1,0 +1,9 @@
+numpy
+scipy
+pyyaml
+pandas
+pydantic
+typing_extensions
+
+[:python_version < "3.7"]
+dataclasses>=0.6
