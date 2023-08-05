@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "linkace-cli"
+version = "1.1.0"
+description = "A CLI for the LinkAce API"
+authors = ["Evan Smith <me@iamevan.me>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.scripts]
+linkace = 'linkace_cli:main'
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.25.0"
+typer = "^0.3.2"
+pylint = "^2.6.0"
+rich = "^9.5.1"
+marshmallow = "^3.10.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.4"
+pylint = "^2.6.0"
+pytest = "=5.0.1"
+pytest-cov = "*"
+mock = "*"
+responses = "*"
+
+[tool.pylint]
+disable = "import-error"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
