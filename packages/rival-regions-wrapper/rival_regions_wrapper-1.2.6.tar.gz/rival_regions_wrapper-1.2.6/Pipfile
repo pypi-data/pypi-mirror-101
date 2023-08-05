@@ -1,0 +1,24 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+python-dotenv = "*"
+pytest = "*"
+pytest-vcr = "*"
+tox = "*"
+tox-venv = "*"
+
+[packages]
+appdirs = "*"
+beautifulsoup4 = "*"
+cfscrape = "*"
+python-dateutil = "*"
+pathlib2 = "*"
+requests = "*"
+selenium-stealth = "*"
+webbot = "*"
+
+[requires]
+python_version = "3"
