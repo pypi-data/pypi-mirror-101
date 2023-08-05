@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: hiphp
+Version: 0.0.1
+Summary: A package for controlling a php-based website
+Home-page: UNKNOWN
+Author: Yasser BDJ (Ro0t96)
+Author-email: by.root96@gmail.com
+License: UNKNOWN
+Project-URL: Author Github, https://github.com/byRo0t96
+Project-URL: Source Code, https://github.com/byRo0t96/hiphp
+Keywords: python,hiphp
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: ashar
+
+hiphp for control php websites
+==========================
+A package for controlling a php-based website.
+
+Installation
+============
+
+.. code::
+
+    pip install hiphp
+
+Usage
+=====
+.. code:: python
+
+    from hiphp import hiphp
+
+    hiphp("<PASSWORD>","http://LINK/TO/YOUR/PHP/FILE").run()
+
+.. begin changelog
+
+Changelog
+=========
+
+0.0.1
+-----
+- First public release.
+
+.. end changelog
+
+
