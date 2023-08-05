@@ -1,0 +1,111 @@
+/*
+ * The internal definitions
+ *
+ * Copyright (C) 2012-2021, Joachim Metz <joachim.metz@gmail.com>
+ *
+ * Refer to AUTHORS for acknowledgements.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#if !defined( _LIBMODI_INTERNAL_DEFINITIONS_H )
+#define _LIBMODI_INTERNAL_DEFINITIONS_H
+
+#include <common.h>
+#include <byte_stream.h>
+
+#define LIBMODI_ENDIAN_BIG					_BYTE_STREAM_ENDIAN_BIG
+#define LIBMODI_ENDIAN_LITTLE					_BYTE_STREAM_ENDIAN_LITTLE
+
+/* Define HAVE_LOCAL_LIBMODI for local use of libmodi
+ */
+#if !defined( HAVE_LOCAL_LIBMODI )
+#include <libmodi/definitions.h>
+
+/* The definitions in <libmodi/definitions.h> are copied here
+ * for local use of libmodi
+ */
+#else
+#define LIBMODI_VERSION						@VERSION@
+
+/* The version string
+ */
+#define LIBMODI_VERSION_STRING					"@VERSION@"
+
+/* The access flags definitions
+ * bit 1        set to 1 for read access
+ * bit 2        set to 1 for write access
+ * bit 3-8      not used
+ */
+enum LIBMODI_ACCESS_FLAGS
+{
+	LIBMODI_ACCESS_FLAG_READ				= 0x01,
+/* Reserved: not supported yet */
+	LIBMODI_ACCESS_FLAG_WRITE				= 0x02
+};
+
+/* The file access macros
+ */
+#define LIBMODI_OPEN_READ					( LIBMODI_ACCESS_FLAG_READ )
+/* Reserved: not supported yet */
+#define LIBMODI_OPEN_WRITE					( LIBMODI_ACCESS_FLAG_WRITE )
+/* Reserved: not supported yet */
+#define LIBMODI_OPEN_READ_WRITE					( LIBMODI_ACCESS_FLAG_READ | LIBMODI_ACCESS_FLAG_WRITE )
+
+/* The image type definitions
+ */
+enum LIBMODI_IMAGE_TYPES
+{
+	LIBMODI_IMAGE_TYPE_UNKNOWN				= 0,
+	LIBMODI_IMAGE_TYPE_RAW,
+	LIBMODI_IMAGE_TYPE_SPARSE_BUNDLE,
+	LIBMODI_IMAGE_TYPE_SPARSE_IMAGE,
+	LIBMODI_IMAGE_TYPE_UDIF_COMPRESSED,
+	LIBMODI_IMAGE_TYPE_UDIF_UNCOMPRESSED
+};
+
+#endif /* !defined( HAVE_LOCAL_LIBMODI ) */
+
+/* The compression methods
+ */
+enum LIBMODI_COMPRESSION_METHODS
+{
+	LIBMODI_COMPRESSION_METHOD_NONE				= 0,
+	LIBMODI_COMPRESSION_METHOD_ADC,
+	LIBMODI_COMPRESSION_METHOD_BZIP2,
+	LIBMODI_COMPRESSION_METHOD_DEFLATE,
+	LIBMODI_COMPRESSION_METHOD_LZFSE,
+	LIBMODI_COMPRESSION_METHOD_LZMA,
+};
+
+/* The UDIF block table entry type definitions
+ */
+enum LIBMODI_UDIF_BLOCK_TABLE_ENTRY_TYPES
+{
+	LIBMODI_UDIF_BLOCK_TABLE_ENTRY_TYPE_ADC_COMPRESSED	= 0x80000004UL,
+	LIBMODI_UDIF_BLOCK_TABLE_ENTRY_TYPE_ZLIB_COMPRESSED	= 0x80000005UL,
+	LIBMODI_UDIF_BLOCK_TABLE_ENTRY_TYPE_BZIP2_COMPRESSED	= 0x80000006UL,
+	LIBMODI_UDIF_BLOCK_TABLE_ENTRY_TYPE_LZFSE_COMPRESSED	= 0x80000007UL,
+	LIBMODI_UDIF_BLOCK_TABLE_ENTRY_TYPE_LZMA_COMPRESSED	= 0x80000008UL,
+
+	LIBMODI_UDIF_BLOCK_TABLE_ENTRY_TYPE_TERMINATOR		= 0xffffffffUL
+};
+
+/* The maximum number of cache entries definitions
+ */
+#define LIBMODI_MAXIMUM_CACHE_ENTRIES_DATA_BANDS		8
+#define LIBMODI_MAXIMUM_CACHE_ENTRIES_DATA_BLOCK_CHUNKS		8
+
+#endif /* !defined( _LIBMODI_INTERNAL_DEFINITIONS_H ) */
+
