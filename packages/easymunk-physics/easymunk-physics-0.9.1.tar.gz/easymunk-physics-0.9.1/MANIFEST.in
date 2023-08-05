@@ -1,0 +1,31 @@
+# text files
+include LICENSE.txt
+include README.rst
+include THANKS.txt
+include CHANGELOG.rst
+
+# docs
+# recursive-include docs/src *
+# recursive-include docs/html *
+prune docs/
+
+# examples
+recursive-include examples *.py
+recursive-include examples *.png
+recursive-include examples *.spec
+recursive-include examples *.wav
+recursive-include examples *.ipynb
+prune examples/.ipynb_checkpoints
+
+# Chipmunk src
+# recursive-include Chipmunk2D/src *
+# recursive-include Chipmunk2D/include/chipmunk *
+# include Chipmunk2D/*.txt
+prune Chipmunk2D/
+
+# tools
+# recursive-include tools *.py
+prune tools/
+
+# typing
+include easymunk/py.typed
