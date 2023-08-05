@@ -1,0 +1,9 @@
+
+[dev]
+pre-commit
+
+[test]
+coverage[toml]<6,>=5
+Django
+black
+isort
