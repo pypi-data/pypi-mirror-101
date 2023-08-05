@@ -1,0 +1,31 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-runner = "*"
+mccabe = "*"
+isort = "*"
+coverage = "*"
+coveralls = "*"
+codecov = "*"
+check-manifest = "*"
+httmock = "*"
+wheel = "*"
+twine = "*"
+build = "*"
+flake8 = "*"
+black = "*"
+
+[packages]
+requests = "*"
+bearlib = {editable = true, path = "."}
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true

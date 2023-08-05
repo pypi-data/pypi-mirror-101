@@ -1,0 +1,15 @@
+include README.rst
+include CHANGES
+include LICENSE
+include Pipfile
+include Pipfile.lock
+include Makefile
+include *.py
+include pyproject.toml
+include setup.cfg
+include .coveragerc
+recursive-include tests *.py
+graft src
+prune .DS_Store
+prune .git
+prune .circleci
