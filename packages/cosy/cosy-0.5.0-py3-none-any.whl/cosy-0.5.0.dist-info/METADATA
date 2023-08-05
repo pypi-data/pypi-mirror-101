@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: cosy
+Version: 0.5.0
+Summary: 
+Home-page: https://github.com/FlorianLudwig/cosy
+License: Apache-2.0
+Author: Florian Ludwig
+Author-email: f.ludwig@greyrook.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: distro (>=1.5.0,<2.0.0)
+Requires-Dist: tomlkit (>=0.7.0,<0.8.0)
+Requires-Dist: typer (>=0.3.2,<0.4.0)
