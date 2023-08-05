@@ -1,0 +1,23 @@
+- project:
+    templates:
+      - tripleo-undercloud-jobs-pipeline
+      - tripleo-multinode-container-minimal-pipeline
+      - check-requirements
+      - release-notes-jobs-python3
+      - openstack-python-jobs
+      - tripleo-standalone-scenarios-pipeline
+      - openstack-python3-train-jobs
+      - tripleo-standalone-multinode-ipa-pipeline
+      - tripleo-upgrades-train-pipeline
+    check:
+      jobs:
+        - openstack-tox-pep8
+        - tripleo-ci-centos-7-content-provider:
+            dependencies: &deps_unit_lint
+              - openstack-tox-pep8
+        - tripleo-ci-centos-8-content-provider:
+            dependencies: *deps_unit_lint
+    gate:
+      queue: tripleo
+      jobs:
+        - openstack-tox-pep8
