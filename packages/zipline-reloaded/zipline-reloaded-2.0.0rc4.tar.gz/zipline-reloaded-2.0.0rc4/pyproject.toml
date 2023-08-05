@@ -1,0 +1,26 @@
+[project]
+requires-python = '>=3.7'
+
+[build-system]
+requires = [
+    'setuptools>=38.6.0',
+    'wheel>=0.31.0',
+    'Cython>=0.29.21,<3',
+    'oldest-supported-numpy; python_version>="3.7"',
+]
+build-backend = 'setuptools.build_meta'
+
+[tool.black]
+target-version = ['py37', 'py38', 'py39']
+exclude = '''
+(
+    asv_bench/env
+  | \.egg
+  | \.git
+  | \.hg
+  | _build
+  | build
+  | dist
+  | setup.py
+)
+'''
