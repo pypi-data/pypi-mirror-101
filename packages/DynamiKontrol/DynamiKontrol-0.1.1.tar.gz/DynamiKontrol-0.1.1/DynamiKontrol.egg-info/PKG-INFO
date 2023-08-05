@@ -1,0 +1,102 @@
+Metadata-Version: 2.1
+Name: DynamiKontrol
+Version: 0.1.1
+Summary: DynamiKontrol Python API
+Home-page: https://github.com/TheMatrixGroup/DynamiKontrol
+Author: Taehee Lee
+Author-email: kairess87@gmail.com
+License: MIT
+Description: # DynamiKontrol
+        
+        **You can be the alpha tester! Please email us matrix.ai.solution@gmail.com**
+        
+        DynamiKontol is Python API for controlling motors and hardware modules. You can integrate into your Python code such as TensorFlow, PyTorch or OpenCV with hardwares easily.
+        
+        Also you can control multiple DK modules on your PC, Raspberry Pi or NVIDIA Jetson.
+        
+        <p align="center">
+            <img src="docs/source/_static/dk_module.png" width="270px">
+        </p>
+        
+        ## Getting Started
+        
+        ```
+        pip install -U DynamiKontrol
+        ```
+        
+        ```python
+        from dynamikontrol import Module
+        
+        module = Module()
+        
+        module.motor.angle(angle=0)
+        time.sleep(2)
+        
+        while True:
+            # move 45 degree in clockwise
+            module.motor.angle(angle=45)
+            module.led.on(color='r')
+            time.sleep(2)
+        
+            # move 45 degree in counter clockwise during 5000 milliseconds
+            module.motor.angle(angle=-45, period=5000)
+            module.led.on(color='g')
+            time.sleep(5)
+        ```
+        
+        ## Examples
+        
+        | Example | Demo | Source Code |
+        | --- | --- | --- |
+        | Face Tracking Camera | [YouTube](https://youtu.be/AhYo2zR0xCU) | [Link](https://dynamikontrol.readthedocs.io/en/latest/face_tracking_camera.html) |
+        | A.I. Parking Barrier Gate | <img src="docs/source/_static/ai_parking_barrier_gate.gif" width="270px"> | [Link](https://github.com/kairess/ANPR-with-Yolov4) |
+        | Lunch Roulette | ![](docs/source/_static/lunch_roulette.gif) | [Link](https://dynamikontrol.readthedocs.io/en/latest/lunch_roulette.html) |
+        | Dial GUI | ![](docs/source/_static/dial_gui.gif) | [Link](https://dynamikontrol.readthedocs.io/en/latest/dial_gui.html) |
+        | IoT Thermometer | <img src="docs/source/_static/thermometer.jpg" width="270px"> | [Link](https://dynamikontrol.readthedocs.io/en/latest/thermometer.html) |
+        | IoT Door Lock | <img src="docs/source/_static/iot_door_lock.gif" width="270px"> | [Link](https://dynamikontrol.readthedocs.io/en/latest/iot_door_lock.html) |
+        
+        ## Documentation
+        
+        | Language | URL |
+        | --- | --- |
+        | English | https://dynamikontrol.readthedocs.io/en/latest/ |
+        | Korean | https://dynamikontrol.readthedocs.io/ko/latest/ |
+        
+        ## Supported Devices
+        
+        - PC/Laptop
+        - Raspberry Pi
+        - NVIDIA Jetson
+        - and all devices which support serial communication
+        
+        ### Operating System
+        
+        - Windows
+        - MacOS
+        - Linux
+        - Ubuntu
+        
+        ## Block-Based Coding
+        
+        Google's Blockly library makes it easier. Have fun with DynamiKontrol using interlocking blocks.
+        
+        <img src="docs/source/_static/coding_block.png" width="270px">
+        
+        https://thematrixgroup.github.io/?lang=en
+        
+        ---
+        
+        DynamiKontrol website https://dk.m47rix.com
+        
+        Developed and designed by [The Matrix](https://www.m47rix.com) (c) 2021
+        
+        matrix.ai.solution@gmail.com
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: System :: Hardware
+Classifier: Topic :: System :: Hardware :: Hardware Drivers
+Requires-Python: >=3.4.2
+Description-Content-Type: text/markdown
