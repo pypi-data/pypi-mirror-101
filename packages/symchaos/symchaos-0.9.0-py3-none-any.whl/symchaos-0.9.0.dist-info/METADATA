@@ -1,0 +1,131 @@
+Metadata-Version: 2.1
+Name: symchaos
+Version: 0.9.0
+Summary: Symmetric Chaos
+Home-page: https://gitlab.com/RolfSander/symchaos
+Author: Rolf Sander
+Author-email: mail@rolf-sander.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Topic :: Multimedia :: Graphics
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: configparser
+Requires-Dist: datetime
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+
+# Symmetric Chaos
+
+The script symchaos.py generates chaotic images with translational
+(wallpaper) or rotational symmetry, as pioneered by Field and Golubitsky
+[1].
+
+![](http://www.rolf-sander.net/software/symchaos/quilt.png)
+![](http://www.rolf-sander.net/software/symchaos/rot9.png)
+
+## Installation:
+
+First, install the package with pip:
+
+`pip3 install symchaos`
+
+Next, find the location where the installed files are:
+
+`pip3 show -f symchaos`
+
+Copy the whole `symchaos` directory to a place where you have read and
+write access. Now you can change into this directory and start the
+script `symchaos.py`.
+
+## Dependencies:
+
+Symchaos needs the python modules `argparse`, `ast`, `configparser`,
+`datetime`, `math`, `matplotlib.pyplot`, `numpy`, `os`, `pylab`,
+`random`, `re`, `shutil`, and `sys`.
+
+The pure python version is fine for testing but very slow. To speed up
+the calculations, it is strongly recommended to use the Fortran90 code
+`symchaos.f90` and use the fortran to python interface generator f2py
+from numpy (https://numpy.org/doc/stable/f2py).
+
+## Usage:
+
+Execute `symchaos.py` and provide a config file from the `ini/`
+directory, for example:
+
+  `symchaos.py ini/example.ini`
+
+For a quick test without installing a Fortran90 compiler, type:
+
+  `symchaos.py ini/nof90.ini`
+
+If `f2py` is available, the Fortran90 code can be compiled with:
+
+`f2py -c symchaos.f90 -m symchaos_f90`
+
+Now, all config files from the `ini/` directory can be used, e.g.,
+`clifford.ini`, `fern.ini`, `mondrian.ini`, `quilt.ini`, `rot9.ini` etc.
+
+The images are saved inside the `output` directory.
+
+## Configuration:
+
+Generation of the images is controlled via a config (`*.ini`) file. The
+keys are:
+
+- `method`: The method determines which formula is used by
+  `symchaos.f90`. Available methods are:
+  - `clifford`: Clifford attractor
+  - `fern`: Barnsley fern
+  - `hopalong`: Hopalong attractor by Barry Martin
+  - `mondrian`: images reminding me of Piet Mondrian
+  - `quilt*`: several quilts (wallpapers)
+  - `rot_sym`: images with rotational C_n symmetry
+  - `triangle`: images looking a bit like triangles
+- `a`, `b`, `c`, `d`, `e`, `n`: These parameters are part of the
+   formulas of the methods.
+- `vary_steps`: If `vary_steps` > 1, then several images are created,
+   using different parameters `a`, `b`, `c`, `d`, `e`.
+- `vary_type`: If `vary_steps` > 1, then `vary_type` determines how the
+   parameters are varied:
+  - `cyclic`: starting and ending at the initial parameters
+  - `neighborhood`: random values in the neighborhood of the initial parameters
+  - `random`: random values
+  - `random_walk`: a random walk, starting at the initial parameters
+- `vary_value`: The magnitude of the parameter variation
+- `palette`: The matplotlib color palette [3] used to create an image.
+   The default is the rainbow palette, setting `palette = *` uses all palettes.
+- `resolution`: A tuple defining the x,y resolution of the image, e.g.,
+  `resolution = (100,100)`.
+- `MAKETILES`: If set to `True`, a tiled image is also created. This is
+   only useful for wallpapers with translational symmetry.
+- `USE_FORTRAN`: If set to `True`, use the fast Fortran90 code
+  `symchaos.f90`.
+
+Further explanations can be found in the comments of the `example.ini`
+config file.
+
+## References:
+
+[1] Symmetric Chaos,
+    Mike Field, and Martin Golubitsky,
+    Computers in Physics 4, 470 (1990),
+    https://doi.org/10.1063/1.4822939
+
+[2] Christmas in the House of Chaos,
+    Scientific American, Dec 1992,
+    JSTOR 24939340
+
+[3] List of matplotlib palettes:
+    https://matplotlib.org/stable/gallery/color/colormap_reference.html
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+# -*- Shell-script -*- Time-stamp: <2021-03-02 22:50:18 sander>
+
+foreach inifile (ini/*.ini)
+  echo "*******************************************************"
+  echo $inifile
+  ./symchaos.py $inifile
+end
+echo "*******************************************************"
+
+exit
