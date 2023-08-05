@@ -1,0 +1,91 @@
+FROM ubuntu:latest
+LABEL Pool Server
+# 0.2 M. Huang <mhuang@nao.cas.cn>
+# 0.1 yuxin<syx1026@qq.com>
+RUN apt-get update \
+&& apt-get install -y apt-utils inetutils-ping curl net-tools sudo \
+&& apt-get install -y nano \
+&& apt-get install -y git python python3-pip apache2 libapache2-mod-wsgi-py3
+
+# for root
+ARG SERVER_IP_ADDR=10.0.10.114
+ARG SERVER_PORT=9888
+ARG USR=apache
+ARG UHOME=/home/${USR}
+RUN groupadd ${USR} && useradd -g ${USR} ${USR} -m --home=${UHOME}
+
+ENV SERVER_IP_ADDR=${SERVER_IP_ADDR}
+ENV SERVER_PORT=${SERVER_PORT}
+COPY fdi/pns/resources/httppool_server.conf /etc/apache2/sites-available/httppool_server.conf
+RUN mkdir -p ${UHOME}/.config
+WORKDIR ${UHOME}
+RUN echo "export PATH=~/.local/bin:$PATH" >> .bashrc
+COPY fdi/pns/pnsconfig.py .config/pnslocal.py
+ARG PROJ_DIR=/var/www/httppool_server
+RUN mkdir -p ${PROJ_DIR}/data \
+&& mkdir -p /var/log/apache2 /var/run/apache2 \
+&& touch /var/log/apache2/error-ps.log \
+&& touch /var/log/apache2/access-ps.log \
+&& ln -s /var/log/apache2/error-ps.log . \
+&& ln -s /var/log/apache2/error.log . \
+&& ln -s /var/log/apache2/access-ps.log . \
+&& ln -s /var/log/apache2/access.log .
+COPY fdi/pns/resources/profile .
+COPY fdi/pns/resources/httppool_server.wsgi ${PROJ_DIR}/
+RUN cat profile >> .bashrc && rm profile \
+&& chmod 755 ${PROJ_DIR}/httppool_server.wsgi
+
+# httppool_server_entrypoint.sh is used for replacing apache listen ports and configurations of httppool_server
+COPY fdi/pns/resources/httppool_server_entrypoint.sh .
+RUN sed -i s/B_IP/${SERVER_IP_ADDR}/g ./httppool_server_entrypoint.sh \
+&& sed -i s/B_PO/${SERVER_PORT}/g ./httppool_server_entrypoint.sh \
+&& chmod +x ./httppool_server_entrypoint.sh \
+&& ./httppool_server_entrypoint.sh \
+&& echo ====== httppool_server_entrypoint.sh \
+&& head -4 httppool_server_entrypoint.sh
+
+#RUN echo WSGIRestrictEmbedded On >> /etc/apache2/apache2.conf
+
+# Configure permission
+RUN for i in  /var/log/apache2 /var/run/lock/ /var/run/apache2 ${PROJ_DIR} ${UHOME}/; \
+do chown -R ${USR}:${USR} $i; echo $i; done
+
+# If install fdi repo, instead of package
+# make dir for fdi.
+ARG FDI_DIR=${UHOME}
+RUN mkdir -p ${FDI_DIR} && chown -R ${USR}:${USR} ${FDI_DIR}
+
+RUN service apache2 start \
+&& a2ensite httppool_server.conf \
+&& a2dissite 000-default.conf \
+&& service apache2 reload \
+&& service apache2 stop
+# Log mapping
+#RUN ln -sf /dev/stdout /var/log/apache2/error.log
+#RUN tail  /var/log/apache2/error.log
+#RUN if [ -f /var/log/apache2/error-ps.log ]; then tail  /var/log/apache2/error-ps.log; fi
+
+# Run as user
+USER ${USR}
+
+# If install fdi repo, instead of package
+WORKDIR ${FDI_DIR}
+RUN git clone http://mercury.bao.ac.cn:9006/mh/fdi.git
+WORKDIR ${FDI_DIR}/fdi/
+RUN git checkout develop \
+&& python3 -m pip install pip -U \
+&& make install I="[DEV,SERV] --user" 
+#RUN cat /etc/apache2/sites-available/httppool_server.conf
+
+# If installing fdi package
+# no [DEV] needed
+#RUN python3 -m pip install http://mercury.bao.ac.cn:9006/mh/fdi/-/archive/develop/fdi-develop.tar.gz#egg=fdi[SERV]
+
+# Lanch server by ${USR} user
+RUN  service apache2 start
+
+#RUN cat /var/log/apache2/error.log
+#RUN if [ -f /var/log/apache2/error-ps.log ]; then tail  /var/log/apache2/error-ps.log; fi
+
+WORKDIR ${UHOME}
+RUN date > build
