@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "sym_api_client_python"
+version = "2.0b1"
+description = "Symphony Bot Development Kit for Python"
+readme = "README.md"
+authors = ["Symphony Platform Solutions <platformsolutions@symphony.com>"]
+packages = [
+    { include = "symphony" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+nulltype = "^2.3.1"
+python-dateutil = "^2.8.1"
+urllib3 = "^1.26.2"
+aiohttp = "^3.7.3"
+pyyaml = "^5.3.1"
+PyJWT= "^2.0.1"
+cryptography = "^3.4.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+pylint = "^2.6.0"
+pytest-cov = "^2.10.1"
+pytest-asyncio = "^0.14.0"
+Sphinx = "^3.5.1"
+recommonmark = "^0.7.1"
+furo = "^2021.2.21-beta.25"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "--junitxml=test-results/junit.xml --cov --cov-report=html"
+testpaths = ["tests"]
+norecursedirs = ["*.egg", ".*", "build", "dist", "venv", "legacy"]
+junit_logging = "all"
+
+[tool.coverage.run]
+branch = true
+source = ["symphony"]
+omit = ["symphony/bdk/gen/*"]
+
+[tool.coverage.report]
+fail_under = 90.0
