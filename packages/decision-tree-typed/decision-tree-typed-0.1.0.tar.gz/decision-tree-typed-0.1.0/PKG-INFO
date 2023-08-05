@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: decision-tree-typed
+Version: 0.1.0
+Summary: A statically typed python decision tree module
+Home-page: https://github.com/mxmeinhold/decision-tree
+Author: Max Meinhold
+Author-email: mxmeinhold@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/mxmeinhold/decision-tree/issues
+Description: # Generic Decision Tree
+        
+        A python module for decision trees.
+        
+        **Note:** _This module is written for python 3.10 and is not guaranteed to be compatible with previous releases. Python 3.10 is currently in prerelease, and is available [here](https://www.python.org/download/pre-releases/)_
+        
+        ### Code style
+        This project uses pylint and mypy. Both will be run by github actions, but you can (and should) do checking locally with
+        ```
+        pylint decision_tree
+        mypy decision_tree
+        ```
+        
+Keywords: decision-tree machine-learning
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Typing :: Typed
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
