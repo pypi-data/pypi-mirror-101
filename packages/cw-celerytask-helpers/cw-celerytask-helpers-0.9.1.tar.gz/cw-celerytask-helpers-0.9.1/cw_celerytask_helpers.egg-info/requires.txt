@@ -1,0 +1,9 @@
+celery<5,>=4
+redis
+six
+
+[CloudWatch logging support]
+watchtower
+
+[S3 logging support]
+boto3
