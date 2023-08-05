@@ -1,0 +1,1 @@
+from studenttmixture import finite_mixture
