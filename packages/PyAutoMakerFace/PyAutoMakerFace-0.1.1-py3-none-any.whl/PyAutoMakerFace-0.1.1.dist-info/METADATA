@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: PyAutoMakerFace
+Version: 0.1.1
+Summary: 얼굴 인식을 위한 패키지
+Home-page: https://boa9448.tistory.com
+Author: WDW
+Author-email: boa3465@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://boa9448.tistory.com
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: opencv-contrib-python (==4.4.0.46)
+Requires-Dist: numpy
+Requires-Dist: imutils
+Requires-Dist: scikit-learn
+Requires-Dist: waitress
+Requires-Dist: flask
+Requires-Dist: requests
+
+#파이썬 얼굴 인식을 위한 패키지
+
+
