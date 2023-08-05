@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick start &#8212; pyroute2 0.5.17 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item"><a href="http://pyroute2.org">Project home</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyroute2 0.5.17 documentation</a> &#187;</li> 
+      </ul>
+        </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="module-pyroute2.ndb.main"></span><div class="section" id="quick-start">
+<h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p>The goal of NDB is to provide an easy access to RTNL info and entities via
+Python objects, like <cite>pyroute2.ndb.objects.interface</cite> (see also:
+<a class="reference internal" href="ndb_interfaces.html#ndbinterfaces"><span class="std std-ref">Network interfaces</span></a>), <cite>pyroute2.ndb.objects.route</cite> (see also:
+<a class="reference internal" href="ndb_routes.html#ndbroutes"><span class="std std-ref">Routes management</span></a>) etc. These objects do not
+only reflect the system state for the time of their instantiation, but
+continuously monitor the system for relevant updates. The monitoring is
+done via netlink notifications, thus no polling. Also the objects allow
+to apply changes back to the system and rollback the changes.</p>
+<p>On the other hand it’s too expensive to create Python objects for all the
+available RTNL entities, e.g. when there are hundreds of interfaces and
+thousands of routes. Thus NDB creates objects only upon request, when
+the user calls <cite>.create()</cite> to create new objects or runs
+<cite>ndb.&lt;view&gt;[selector]</cite> (e.g. <cite>ndb.interfaces[‘eth0’]</cite>) to access an
+existing object.</p>
+<p>To list existing RTNL entities NDB uses objects of the class <cite>RecordSet</cite>
+that <cite>yield</cite> individual <cite>Record</cite> objects for every entity (see also:
+<a class="reference internal" href="ndb_reports.html#ndbreports"><span class="std std-ref">Record list filters</span></a>). An object of the <cite>Record</cite> class is immutable, doesn’t
+monitor any updates, doesn’t contain any links to other objects and essentially
+behaves like a simple named tuple.</p>
+<a class="reference internal image-reference" href="_images/aafig-db02be09e1d33d12b493455bdfd27b7ad0692510.svg"><img alt="_images/aafig-db02be09e1d33d12b493455bdfd27b7ad0692510.svg" height="666.8000000000001" src="_images/aafig-db02be09e1d33d12b493455bdfd27b7ad0692510.svg" width="846.0000000000001" /></a>
+<p>Here are some simple NDB usage examples. More info see in the reference
+documentation below.</p>
+<p>Print all the interface names on the system, assume we have an NDB
+instance <cite>ndb</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="n">ndb</span><span class="o">.</span><span class="n">interfaces</span><span class="o">.</span><span class="n">dump</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">interface</span><span class="o">.</span><span class="n">ifname</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Print the routing information in the CSV format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">ndb</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;csv&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More on report filtering and formatting: <a class="reference internal" href="ndb_reports.html#ndbreports"><span class="std std-ref">Record list filters</span></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since 0.5.11; versions 0.5.10 and earlier used
+syntax <cite>summary(format=’csv’, match={…})</cite></p>
+</div>
+<p>Print IP addresses of interfaces in several network namespaces as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nslist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;netns01&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;netns02&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;netns03&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">nsname</span> <span class="ow">in</span> <span class="n">nslist</span><span class="p">:</span>
+    <span class="n">ndb</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">netns</span><span class="o">=</span><span class="n">nsname</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">ndb</span><span class="o">.</span><span class="n">addresses</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add an IP address on an interface:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">add_ip</span><span class="p">(</span><span class="s1">&#39;10.0.0.1/24&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+<span class="c1"># ---&gt; &lt;---  NDB waits until the address actually</span>
+</pre></div>
+</div>
+<p>Change an interface property:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">,</span> <span class="s1">&#39;00:11:22:33:44:55&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+<span class="c1"># ---&gt; &lt;---  NDB waits here for the changes to be applied</span>
+
+<span class="c1"># same as above, but using properties as argument names</span>
+<span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s1">&#39;up&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s1">&#39;00:11:22:33:44:55&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+
+<span class="c1"># ... or with another syntax</span>
+<span class="k">with</span> <span class="n">ndb</span><span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="n">i</span><span class="p">:</span>
+    <span class="n">i</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;up&#39;</span>
+    <span class="n">i</span><span class="p">[</span><span class="s1">&#39;address&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;00:11:22:33:44:55&#39;</span>
+<span class="c1"># ---&gt; &lt;---  the commit() is called authomatically by</span>
+<span class="c1">#            the context manager&#39;s __exit__()</span>
+</pre></div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ndb_intro.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item"><a href="http://pyroute2.org">Project home</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyroute2 0.5.17 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Quick start</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Peter V. Saveliev.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>
