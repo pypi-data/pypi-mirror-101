@@ -1,0 +1,857 @@
+{
+    "functions": [
+        {
+            "name": "fibonacci_sequence",
+            "docstring": "Return the first n digits of the fibonacci sequence.",
+            "signature": "(n: int) -> List[int]",
+            "examples": [
+                "def test_fibonacci_sequence_docs_1():\n    result = fibonacci_sequence(5)\n    assert result == [1, 1, 2, 3, 5]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "fibonacci",
+            "docstring": "Return the value of the Fibonacci sequence at index n.",
+            "signature": "(n: int) -> int",
+            "examples": [
+                "def test_fibonacci_docs_1():\n    result = fibonacci(5)\n    assert result == 8"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_closest",
+            "docstring": "Return a or b, whichever is closest to the target.",
+            "signature": "(a, b, target)",
+            "examples": [
+                "def test_number_closest_docs_1():\n    assert number_closest(0, 1, 2) == 1\n    assert number_closest(-1, 0, -5) == -1\n    assert number_closest(1.1, 1.5, 1.1) == 1.1"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_furthest",
+            "docstring": "Return a or b, whichever is furthest to the target.",
+            "signature": "(a, b, target)",
+            "examples": [
+                "def test_number_furthest_docs_1():\n    assert number_furthest(0, 1, 2) == 0\n    assert number_furthest(-1, 0, -5) == 0\n    assert number_furthest(1.1, 1.5, 1.1) == 1.5"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "cartesian_product",
+            "docstring": ".",
+            "signature": "(a: Any, *args: Any, repeat: int = 1)",
+            "examples": [
+                "def test_cartesian_product_docs_1():\n    assert cartesian_product('abc') == [('a',), ('b',), ('c',)]\n    assert cartesian_product('abc', 'abc') == [\n        ('a', 'a'),\n        ('a', 'b'),\n        ('a', 'c'),\n        ('b', 'a'),\n        ('b', 'b'),\n        ('b', 'c'),\n        ('c', 'a'),\n        ('c', 'b'),\n        ('c', 'c'),\n    ]\n    assert cartesian_product('abc', repeat=2) == [\n        ('a', 'a'),\n        ('a', 'b'),\n        ('a', 'c'),\n        ('b', 'a'),\n        ('b', 'b'),\n        ('b', 'c'),\n        ('c', 'a'),\n        ('c', 'b'),\n        ('c', 'c'),\n    ]\n    assert cartesian_product([0, 1], [2, 3], [4, 5]) == [\n        (0, 2, 4),\n        (0, 2, 5),\n        (0, 3, 4),\n        (0, 3, 5),\n        (1, 2, 4),\n        (1, 2, 5),\n        (1, 3, 4),\n        (1, 3, 5),"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "sympy_symbol",
+            "docstring": ".",
+            "signature": "(symbol_name: str)",
+            "examples": [
+                "def test_sympy_symbol_docs_1():\n    assert sympy_symbol('x') == x"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "equation_solve",
+            "docstring": ".",
+            "signature": "(equation: str, symbols: List[str])",
+            "examples": [
+                "def test_equation_solve_docs_1():\n    assert equation_solve('x-2', ['x']) == [2]\n    assert equation_solve('x + y - 1', ['x', 'y']) == [{x: 1 - y}]\n    assert number_is_approx(equation_solve('Eq(tan(x), 2.348)', ['x'])[0], 1.16816837693881)"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "expression_explore",
+            "docstring": ".",
+            "signature": "(expression: str, symbol: str, start: int, end: int, step: int)",
+            "examples": [
+                "def test_expression_explore_docs_1():\n    result = expression_explore('x + 1', ['x'], 0, 10, 1)\n    assert list(result) == [\n        (0, [-1]),\n        (1, [0]),\n        (2, [1]),\n        (3, [2]),\n        (4, [3]),\n        (5, [4]),\n        (6, [5]),\n        (7, [6]),\n        (8, [7]),\n        (9, [8]),"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "one_cold_encode",
+            "docstring": null,
+            "signature": "(items: list, *, reverse: bool = False) -> List[list]",
+            "examples": [
+                "def test_one_cold_encode_docs_1():\n    assert one_cold_encode([True, False, True]) == [[1, 0], [0, 1], [1, 0]]\n    assert one_cold_encode([2, 1, 1, 2, 5, 3]) == [\n        [1, 0, 1, 1],\n        [0, 1, 1, 1],\n        [0, 1, 1, 1],\n        [1, 0, 1, 1],\n        [1, 1, 1, 0],\n        [1, 1, 0, 1],\n    ]\n    assert one_cold_encode([True, False, True], reverse=True) == [[0, 1], [1, 0], [0, 1]]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "one_hot_encode",
+            "docstring": null,
+            "signature": "(items: list, *, reverse: bool = False) -> List[list]",
+            "examples": [
+                "def test_one_hot_encode_docs_1():\n    assert one_hot_encode([True, False, True]) == [[0, 1], [1, 0], [0, 1]]\n    assert one_hot_encode([2, 1, 1, 2, 5, 3]) == [\n        [0, 1, 0, 0],\n        [1, 0, 0, 0],\n        [1, 0, 0, 0],\n        [0, 1, 0, 0],\n        [0, 0, 0, 1],\n        [0, 0, 1, 0],\n    ]\n    assert one_hot_encode([True, False, True], reverse=True) == [[1, 0], [0, 1], [1, 0]]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "is_integer_tuple",
+            "docstring": ".",
+            "signature": "(possible_integer_tuple: Any) -> bool",
+            "examples": [
+                "def test_is_integer_tuple_docs_1():\n    assert is_integer_tuple(integer_tuple(base=2, digits=(1, 1))) == True\n    assert is_integer_tuple((1, 1)) == False\n    assert is_integer_tuple(1) == False"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "decimal_to_gray_code",
+            "docstring": "Convert the given number to a gray code. This function was inspired by the code here: https://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code.",
+            "signature": "(num: Union[str, int, float]) -> integer_tupleType",
+            "examples": [
+                "def test_decimal_to_gray_code_docs_1():\n    assert decimal_to_gray_code(0) == integer_tuple(base=2, digits=(0,))\n    assert decimal_to_gray_code(1) == integer_tuple(base=2, digits=(1,))\n    assert decimal_to_gray_code(2) == integer_tuple(base=2, digits=(1, 1))\n    assert decimal_to_gray_code(3) == integer_tuple(base=2, digits=(1, 0))\n    assert decimal_to_gray_code(4) == integer_tuple(base=2, digits=(1, 1, 0))\n    assert decimal_to_gray_code(5) == integer_tuple(base=2, digits=(1, 1, 1))\n    assert decimal_to_gray_code(6) == integer_tuple(base=2, digits=(1, 0, 1))\n    assert decimal_to_gray_code(7) == integer_tuple(base=2, digits=(1, 0, 0))\n    assert decimal_to_gray_code(8) == integer_tuple(base=2, digits=(1, 1, 0, 0))\n    assert decimal_to_gray_code(9) == integer_tuple(base=2, digits=(1, 1, 0, 1))\n    assert decimal_to_gray_code(10) == integer_tuple(base=2, digits=(1, 1, 1, 1))\n    assert decimal_to_gray_code(11) == integer_tuple(base=2, digits=(1, 1, 1, 0))\n    assert decimal_to_gray_code(12) == integer_tuple(base=2, digits=(1, 0, 1, 0))\n    assert decimal_to_gray_code(13) == integer_tuple(base=2, digits=(1, 0, 1, 1))\n    assert decimal_to_gray_code(14) == integer_tuple(base=2, digits=(1, 0, 0, 1))\n    assert decimal_to_gray_code(15) == integer_tuple(base=2, digits=(1, 0, 0, 0))\n    assert decimal_to_gray_code('0') == integer_tuple(base=2, digits=(0,))\n    assert decimal_to_gray_code('1') == integer_tuple(base=2, digits=(1,))\n    assert decimal_to_gray_code(integer_tuple(base=10, digits=(2,))) == integer_tuple(base=2, digits=(1, 1))"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "gray_code_to_decimal",
+            "docstring": "Convert the given number to a gray code. This function was inspired by the code here: https://en.wikipedia.org/wiki/Gray_code#Converting_to_and_from_Gray_code.",
+            "signature": "(num: integer_tupleType) -> int",
+            "examples": [
+                "def test_gray_code_to_decimal_docs_1():\n    assert gray_code_to_decimal(integer_tuple(base=2, digits=(1, 1))) == 2\n    assert gray_code_to_decimal(integer_tuple(base=2, digits=(1, 0, 0, 0))) == 15"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "decimal_to_hex",
+            "docstring": ".",
+            "signature": "(decimal_number)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "hex_to_decimal",
+            "docstring": ".",
+            "signature": "(hex)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "roman_numeral_to_decimal",
+            "docstring": ".",
+            "signature": "(roman_numeral: str) -> int",
+            "examples": [
+                "def test_roman_numeral_to_decimal_docs_1():\n    assert roman_numeral_to_decimal('vii') == 7\n    assert roman_numeral_to_decimal('ix') == 9\n    assert roman_numeral_to_decimal('iX') == 9\n    assert roman_numeral_to_decimal('Ix') == 9\n    assert roman_numeral_to_decimal('IX') == 9"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "decimal_to_roman_numeral",
+            "docstring": ".",
+            "signature": "(decimal_number) -> str",
+            "examples": [
+                "def test_decimal_to_roman_numeral_docs_1():\n    assert decimal_to_roman_numeral(7) == 'VII'\n    assert decimal_to_roman_numeral(9) == 'IX'"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "integer_tuple_to_decimal",
+            "docstring": "Return the decimal form of the given number (represented as an integer tuple).",
+            "signature": "(integer_tuple: integer_tupleType) -> int",
+            "examples": [
+                "def test_integer_tuple_to_decimal_docs_1():\n    assert integer_tuple_to_decimal(integer_tuple(base=2, digits=(1, 1))) == 3\n    assert integer_tuple_to_decimal(integer_tuple(base=3, digits=(1, 1, 0, 1))) == 37\n    assert integer_tuple_to_decimal(integer_tuple(base=10, digits=(9, 0))) == 90"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "integer_to_decimal",
+            "docstring": "Convert the number of the given base to a decimal number.",
+            "signature": "(num: Union[str, int, float], base: int) -> int",
+            "examples": [
+                "def test_integer_to_decimal_docs_1():\n    assert integer_to_decimal(10, 2) == 2\n    assert integer_to_decimal('10', 2) == 2\n    assert integer_to_decimal(10, 3) == 3\n    assert integer_to_decimal(10, 4) == 4"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "decimal_to_base",
+            "docstring": "Convert the decimal_number to the given base.",
+            "signature": "(decimal_number: Union[str, int, float], base: int)",
+            "examples": [
+                "def test_decimal_to_base_docs_1():\n    assert decimal_to_base(3, 1) == integer_tuple(base=1, digits=(1, 1, 1))\n    assert decimal_to_base(3, 2) == integer_tuple(base=2, digits=(1, 1))\n    assert decimal_to_base(3, 3) == integer_tuple(base=3, digits=(1, 0))\n    assert decimal_to_base(3, 4) == integer_tuple(base=4, digits=(3,))\n    assert decimal_to_base(254, 256) == integer_tuple(base=256, digits=(254,))\n    assert decimal_to_base(255, 256) == integer_tuple(base=256, digits=(255,))\n    assert decimal_to_base(256, 256) == integer_tuple(base=256, digits=(1, 0))\n    assert decimal_to_base(257, 256) == integer_tuple(base=256, digits=(1, 1))\n    assert decimal_to_base(260, 256) == integer_tuple(base=256, digits=(1, 4))\n    assert decimal_to_base(12322322, 256) == integer_tuple(base=256, digits=(188, 6, 18))\n    assert decimal_to_base(65793, 256) == integer_tuple(base=256, digits=(1, 1, 1))"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "outer_division",
+            "docstring": null,
+            "signature": "()",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "outer_product",
+            "docstring": "Return a two-dimensional array with the results of range(a_start, a+1) multiplied by range(b_start, b+1).",
+            "signature": "(a: int, b: int, a_start: int = 1, b_start: int = 1)",
+            "examples": [
+                "def test_outer_product_docs_1():\n    assert outer_product(2, 3) == [[1, 2, 3], [2, 4, 6]]\n    assert outer_product(3, 2) == [[1, 2], [2, 4], [3, 6]]\n    assert outer_product(3, 3) == [[1, 2, 3], [2, 4, 6], [3, 6, 9]]\n    assert outer_product(3, 3, a_start=2) == [[2, 4, 6], [3, 6, 9]]\n    assert outer_product(3, 3, b_start=3) == [[3], [6], [9]]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "multiplication_table",
+            "docstring": ".",
+            "signature": "(a: int, b: int, a_start: int = 1, b_start: int = 1)",
+            "examples": [
+                "def test_multiplication_table_docs_1():\n    assert multiplication_table(3, 3) == [[1, 2, 3], [2, 4, 6], [3, 6, 9]]\n    assert multiplication_table(3, 3, a_start=2, b_start=2) == [[4, 6], [6, 9]]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_evenly_divides",
+            "docstring": "Return True if a evenly divides b. Otherwise, return False.",
+            "signature": "(a, b)",
+            "examples": [
+                "def test_number_evenly_divides_docs_1():\n    assert number_evenly_divides(1, 10) == True\n    assert number_evenly_divides(2, 10) == True\n    assert number_evenly_divides(5, 10) == True\n    assert number_evenly_divides(7, 10) == False\n    assert number_evenly_divides(10, 10) == True"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_evenly_divided_by",
+            "docstring": "Return True if a is evenly divided by b. Otherwise, return False.",
+            "signature": "(a, b)",
+            "examples": [
+                "def test_number_evenly_divided_by_docs_1():\n    assert number_evenly_divided_by(10, 1) == True\n    assert number_evenly_divided_by(10, 2) == True\n    assert number_evenly_divided_by(10, 5) == True\n    assert number_evenly_divided_by(10, 7) == False\n    assert number_evenly_divided_by(10, 10) == True"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "fraction_examples",
+            "docstring": "Create n fractions.",
+            "signature": "(n=10, *, fractions_as_strings: bool = True)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "iterable_differences",
+            "docstring": "Find all of the possible differences of all possible orders of the given iterable.",
+            "signature": "(iterable)",
+            "examples": [
+                "def test_iterable_differences_docs_1():\n    assert iterable_differences([1, 2, 3]) == [-4, -4, -2, -2, 0, 0]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "combinations",
+            "docstring": "Return all possible combinations of the given length which can be created from the given iterable. If no length is given, we will find all combinations of all lengths for the given iterable.",
+            "signature": "(iterable, length=None)",
+            "examples": [
+                "def test_combinations_docs_1():\n    assert combinations('ab') == [('a',), ('b',), ('a', 'b')]\n    assert combinations('a') == [('a',)]\n    assert combinations('ab', length=1) == [('a',), ('b',)]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "combinations_with_replacement",
+            "docstring": "Return all possible combinations of the given length which can be created from the given iterable. If no length is given, we will find all combinations of all lengths for the given iterable.",
+            "signature": "(iterable, length=None)",
+            "examples": [
+                "def test_combinations_with_replacement_docs_1():\n    assert combinations_with_replacement('ab') == [\n        ('a',),\n        ('b',),\n        ('a', 'a'),\n        ('a', 'b'),\n        ('b', 'b'),\n    ]\n    assert combinations_with_replacement('abc', length=2) == [\n        ('a', 'a'),\n        ('a', 'b'),\n        ('a', 'c'),\n        ('b', 'b'),\n        ('b', 'c'),\n        ('c', 'c'),\n    ]\n    assert combinations_with_replacement([1, 2, 3]) == [\n        (1,),\n        (2,),\n        (3,),\n        (1, 1),\n        (1, 2),\n        (1, 3),\n        (2, 2),\n        (2, 3),\n        (3, 3),\n        (1, 1, 1),\n        (1, 1, 2),\n        (1, 1, 3),\n        (1, 2, 2),\n        (1, 2, 3),\n        (1, 3, 3),\n        (2, 2, 2),\n        (2, 2, 3),\n        (2, 3, 3),\n        (3, 3, 3),"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "prod",
+            "docstring": "Get the product of the iterable.",
+            "signature": "(iterable)",
+            "examples": [
+                "def test_prod_docs_1():\n    assert prod([1, 2, 3, 4]) == 24\n    assert prod([1, '2', 3, '4']) == 24"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "permutations",
+            "docstring": "Return all possible permutations of the given iterable. If no length is given, we will find all permutations of all lengths for the given iterable",
+            "signature": "(iterable, length=None)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "fraction_simplify",
+            "docstring": "Simplify the fraction represented as a string.",
+            "signature": "(fraction_string)",
+            "examples": [
+                "def test_fraction_simplify_docs_1():\n    assert fraction_simplify('6/8') == '3/4'\n    assert fraction_simplify('8/6') == '4/3'\n    assert fraction_simplify('18/6') == '3/1'\n    assert fraction_simplify('24/528') == '1/22'\n    assert fraction_simplify('2/7') == '2/7'\n    assert fraction_simplify('7/2') == '7/2'\n\n    # test with bad data\n    with pytest.raises(ValueError):\n        assert fraction_simplify('foo') == 'fill'"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "remainder",
+            "docstring": null,
+            "signature": "(dividend, divisor)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "floor",
+            "docstring": null,
+            "signature": "(number)",
+            "examples": [
+                "def test_floor_docs_1():\n    assert floor(1.2) == 1\n    assert floor(1.9) == 1\n    assert floor(2) == 2"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "ceiling",
+            "docstring": null,
+            "signature": "(number)",
+            "examples": [
+                "def test_ceiling_docs_1():\n    assert ceiling(1.2) == 2\n    assert ceiling(1.9) == 2\n    assert ceiling(2) == 2"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "factorial",
+            "docstring": null,
+            "signature": "(number)",
+            "examples": [
+                "def test_factorial_docs_1():\n    assert factorial(3) == 6\n    assert factorial(4) == 24"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "fraction_complex_to_mixed_fraction",
+            "docstring": "Simplify the fraction represented as a string.",
+            "signature": "(fraction_string)",
+            "examples": [
+                "def test_fraction_complex_to_mixed_fraction_docs_1():\n    assert fraction_complex_to_mixed_fraction('8/6') == '1 1/3'\n    assert fraction_complex_to_mixed_fraction('8/8') == '1'\n    assert fraction_complex_to_mixed_fraction('6/8') == '3/4'"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "fraction_mixed_to_complex_fraction",
+            "docstring": "Simplify the fraction represented as a string.",
+            "signature": "(fraction_string)",
+            "examples": [
+                "def test_fraction_mixed_to_complex_fraction_docs_1():\n    assert fraction_mixed_to_complex_fraction('1 1/3') == '4/3'\n    assert fraction_mixed_to_complex_fraction('3/4') == '3/4'"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "dot_product",
+            "docstring": "Find the dot product for the two items. See https://en.wikipedia.org/wiki/Dot_product for more details.",
+            "signature": "(item_a, item_b)",
+            "examples": [
+                "def test_dot_product_docs_1():\n    assert dot_product([1, 3, -5], [4, -2, -1]) == 3\n    assert dot_product([10, 10], [20, 20]) == 400"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "percent",
+            "docstring": "Return the ratio as a percentage.",
+            "signature": "(ratio)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": [
+                "RuntimeError"
+            ]
+        },
+        {
+            "name": "gcd",
+            "docstring": "Return the greatest common divisor.",
+            "signature": "(number1, number2)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "ratio",
+            "docstring": "Return the ratio of the two numbers in the form 1:2. For example, if given 5 and 10, this function would return \"1:2\". If given 2 and 20, this function would return \"1:10\".",
+            "signature": "(number1, number2)",
+            "examples": [
+                "def test_ratio_docs_1():\n    assert ratio(5, 10) == '1:2'\n    assert ratio(2, 20) == '1:10'\n    assert ratio(12, 13) == '12:13'"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "transpose",
+            "docstring": "Transpose the given matrix. See https://en.wikipedia.org/wiki/Transpose.",
+            "signature": "(matrix)",
+            "examples": [
+                "def test_transpose_docs_1():\n    assert transpose([[1, 3, 5], [2, 4, 6]]) == [[1, 2], [3, 4], [5, 6]]\n    assert transpose([]) == None\n    assert transpose([[]]) == None\n    assert transpose([[1, 2], [3, 4]]) == [[1, 3], [2, 4]]"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_line",
+            "docstring": null,
+            "signature": "(value, min_, max_, interval: int = 1)",
+            "examples": [
+                "def test_number_line_docs_1():\n    assert number_line(8.5, 0, 10, interval=0.5) == '0................|..10'\n    assert number_line(6, 5, 10, interval=1) == '5|...10'\n    assert number_line(6, 5, 10, interval=0.5) == '5.|.......10'\n    assert number_line(2, 1, 3, interval=1) == '1|3'\n    assert number_line(11, 10, 12, interval=1) == '10|12'\n    assert number_line(0, -1, 1, interval=0.5) == '-1.|.1'\n    assert number_line(0, -2, 1, interval=0.25) == '-2.......|...1'\n    assert number_line(-1, -2, 1, interval=0.25) == '-2...|.......1'\n    assert number_line(-2, -3, -1, interval=1) == '-3|-1'\n    assert number_line(-8, -10, -5, interval=0.5) == '-10...|.....-5'\n    assert number_line(1, -1, 1, interval=1) == '-1.|(1)'\n    assert number_line(1, 1, 2) == '(1)|2'\n    assert number_line(1, 1, 10) == '(1)|........10'\n    assert number_line(10, 1, 10) == '1........|(10)'\n    with pytest.raises(RuntimeError):\n        number_line(1, 10, 1, interval=1)\n    with pytest.raises(RuntimeError):\n        number_line(11, 1, 10, interval=1)"
+            ],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": [
+                "RuntimeError"
+            ]
+        },
+        {
+            "name": "number_zero_pad",
+            "docstring": ".",
+            "signature": "(num: StrOrNumberType, length: StrOrNumberType) -> str",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": [
+                "ValueError"
+            ]
+        },
+        {
+            "name": "is_number",
+            "docstring": "Return whether or not the item is a number.",
+            "signature": "(item)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_is_even",
+            "docstring": null,
+            "signature": "(number: StrOrNumberType)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_is_odd",
+            "docstring": null,
+            "signature": "(number: StrOrNumberType)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_is_approx",
+            "docstring": ".",
+            "signature": "(number, approximate_value, *, relative_tolerance=1e-6)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "enumerate_range",
+            "docstring": "Enumerate the range specified by the string. For example, `1-3` returns `[1, 2, 3]`.",
+            "signature": "(range_string, range_split_string: str = '-')",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": [
+                "ValueError"
+            ]
+        },
+        {
+            "name": "hex_endiness_swap",
+            "docstring": "Credit to: https://stackoverflow.com/questions/27506474/how-to-byte-swap-a-32-bit-integer-in-python.",
+            "signature": "(hex_string)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "hex_get_bytes",
+            "docstring": ".",
+            "signature": "(hex_number, bytes_)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": [
+                "NotImplementedError"
+            ]
+        },
+        {
+            "name": "number_to_words",
+            "docstring": "Convert a number to its English representation (e.g. 100 => \"One Hundred\").",
+            "signature": "(number)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_to_scientific_notation",
+            "docstring": "Convert the given number to scientific notation.",
+            "signature": "(number)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        },
+        {
+            "name": "number_to_engineering_notation",
+            "docstring": "Convert the given number to engineering notation.",
+            "signature": "(number)",
+            "examples": [],
+            "changes": [
+                {
+                    "date": "2021-01-27",
+                    "type": "addition",
+                    "note": "democritus_math module documentation created."
+                }
+            ],
+            "exceptions": []
+        }
+    ],
+    "module": "democritus_math"
+}
