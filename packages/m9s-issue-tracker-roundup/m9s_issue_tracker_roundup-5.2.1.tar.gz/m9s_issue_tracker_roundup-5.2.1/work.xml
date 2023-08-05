@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="work_view_form">
+            <field name="model">project.work</field>
+            <field name="inherit" ref="project.work_view_form"/>
+            <field name="name">work_form</field>
+        </record>
+        <record model="ir.ui.view" id="work_view_list_children">
+            <field name="model">project.work</field>
+            <field name="inherit" ref="project.work_view_list_children"/>
+            <field name="name">work_list_children</field>
+        </record>
+
+	<record model="ir.action.act_window.domain" id="act_project_tree_closed">
+            <field name="name">Closed</field>
+            <field name="sequence" eval="15"/>
+            <field name="domain" eval="[('state', '=', 'closed')]" pyson="1"/>
+            <field name="act_window" ref="project.act_project_tree"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_project_form_closed">
+            <field name="name">Closed</field>
+            <field name="sequence" eval="15"/>
+            <field name="domain" eval="[('state', '=', 'closed')]" pyson="1"/>
+            <field name="act_window" ref="project.act_project_form"/>
+        </record>
+        <record model="ir.action.act_window.domain" id="act_task_form_closed">
+            <field name="name">Closed</field>
+            <field name="sequence" eval="15"/>
+            <field name="domain" eval="[('state', '=', 'closed')]" pyson="1"/>
+            <field name="act_window" ref="project.act_task_form"/>
+        </record>
+
+        <record model="ir.action.wizard" id="wizard_synchronize_all_tickets">
+            <field name="name">Synchronize all tickets</field>
+            <field name="wiz_name">project.work.synchronize_tickets</field>
+        </record>
+        <record model="ir.action.keyword"
+            id="wizard_synchronize_all_tickets_keyword">
+            <field name="keyword">form_action</field>
+            <field name="model">project.work,-1</field>
+            <field name="action" ref="wizard_synchronize_all_tickets"/>
+        </record>
+        <record model="ir.action-res.group"
+            id="wizard_synchronize_all_tickets-group_roundup_synchronization">
+            <field name="action" ref="wizard_synchronize_all_tickets"/>
+            <field name="group" ref="group_roundup_synchronization"/>
+        </record>
+	<menuitem parent="project.menu_project" action="wizard_synchronize_all_tickets"
+            id="menu_synchronize_tickets" sequence="20"/>
+
+        <record model="ir.ui.view" id="roundup_synchronize_ask_view_form">
+            <field name="model">project.work.synchronize_tickets.ask_children</field>
+            <field name="type">form</field>
+            <field name="name">roundup_synchronize_ask_form</field>
+        </record>
+
+        <record model="ir.action.wizard" id="wizard_update_tickets">
+            <field name="name">Update ticket from Roundup</field>
+            <field name="wiz_name">project.work.synchronize_tickets</field>
+        </record>
+        <record model="ir.action.keyword"
+            id="wizard_update_tickets_keyword">
+            <field name="keyword">form_action</field>
+            <field name="model">project.work,-1</field>
+            <field name="action" ref="wizard_update_tickets"/>
+        </record>
+        <record model="ir.action-res.group"
+            id="wizard_synchronize_tickets-group_roundup_synchronization">
+            <field name="action" ref="wizard_update_tickets"/>
+            <field name="group" ref="group_roundup_synchronization"/>
+        </record>
+
+        <record model="ir.action.wizard" id="wizard_refresh_project_tickets">
+            <field name="name">Refresh project from Roundup</field>
+            <field name="wiz_name">project.work.refresh_project_tickets</field>
+        </record>
+        <record model="ir.action.keyword"
+            id="wizard_refresh_project_tickets_keyword">
+            <field name="keyword">form_action</field>
+            <field name="model">project.work,-1</field>
+            <field name="action" ref="wizard_refresh_project_tickets"/>
+        </record>
+        <record model="ir.action-res.group"
+            id="wizard_refresh_project_tickets_tickets-group_roundup_synchronization">
+            <field name="action" ref="wizard_refresh_project_tickets"/>
+            <field name="group" ref="group_roundup_synchronization"/>
+        </record>
+    </data>
+</tryton>
