@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[9],{RXBc:function(t,n,e){"use strict";e.r(n);var a=e("q1tI"),c=e.n(a),o=(e("LLXN"),e("Ty5D"));n["default"]=function(){return c.a.createElement(o["c"],{to:"/datasetList"})}}}]);

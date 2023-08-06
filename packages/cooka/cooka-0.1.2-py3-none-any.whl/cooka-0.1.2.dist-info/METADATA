@@ -1,0 +1,158 @@
+Metadata-Version: 2.1
+Name: cooka
+Version: 0.1.2
+Summary: A lightweight AutoML system.
+Home-page: UNKNOWN
+Author: DataCanvas Community
+Author-email: yangjian@zetyun.com
+License: Apache License 2.0
+Platform: Linux
+Platform: Mac OS X
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.6.*
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn (>=0.22.1)
+Requires-Dist: requests
+Requires-Dist: SQLAlchemy (>=1.3.18)
+Requires-Dist: tornado (==6.0.4)
+Requires-Dist: jinja2
+Requires-Dist: deeptables (==0.1.13)
+Requires-Dist: hypergbm (==0.2.2)
+Requires-Dist: traitlets
+
+# Cooka
+[![Python Versions](https://img.shields.io/pypi/pyversions/cooka.svg)](https://pypi.org/project/hypergbm)
+[![Downloads](https://pepy.tech/badge/cooka)](https://pepy.tech/project/hypergbm)
+[![PyPI Version](https://img.shields.io/pypi/v/cooka.svg)](https://pypi.org/project/hypergbm)
+
+[Doc](https://cooka.readthedocs.io) | [简体中文](README_zh_CN.md)
+
+Cooka is a lightweight and visualization toolkit to manage datasets and design model learning experiments through web UI.
+It using [DeepTables](https://github.com/DataCanvasIO/DeepTables) and [HyperGBM](https://github.com/DataCanvasIO/HyperGBM) as experiment engine to complete feature engineering, neural architecture search and hyperparameter tuning automatically.
+
+<img src="docs/static/datacanvas_automl_toolkit.png" alt="drawing" width="700" height="450"/>
+
+## Features overview 
+Through the web UI provided by cooka you can:
+
+- Add and analyze datasets
+- Design experiment
+- View experiment process and result
+- Using models
+- Export experiment to jupyter notebook 
+
+Screen shots：
+<table style="border: none">
+    <th><img src="docs/static/cooka_home_page.png" width="500"/></th>
+    <th><img src="docs/static/cooka_train.gif" width="500"/></th>
+</table>
+
+The machine learning algorithms supported are ：
+- XGBoost
+- LightGBM
+- Catboost
+
+The neural networks supported are：
+- WideDeep
+- DeepFM
+- xDeepFM
+- AutoInt
+- DCN
+- FGCNN 
+- FiBiNet
+- PNN
+- AFM
+- [...](https://deeptables.readthedocs.io/en/latest/models.html)
+
+
+The search algorithms supported are：
+- Evolution
+- MCTS(Monte Carlo Tree Search)
+- [...](https://github.com/DataCanvasIO/HyperGBM)
+
+The supported feature engineering provided by  [scikit-learn](https://scikit-learn.org) and [featuretools](https://github.com/alteryx/featuretools) are：
+
+- Scaler
+    - StandardScaler
+    - MinMaxScaler
+    - RobustScaler
+    - MaxAbsScaler
+    - Normalizer
+
+- Encoder
+    - LabelEncoder
+    - OneHotEncoder
+    - OrdinalEncoder
+
+- Discretizer
+    - KBinsDiscretizer
+    - Binarizer
+
+- Dimension Reduction
+    - PCA
+
+- Feature derivation
+    - featuretools
+
+- Missing value filling
+    - SimpleImputer 
+
+It can also extend the search space to support more feature engineering methods and modeling algorithms.
+
+## Installation 
+
+### Using pip
+
+The python version should be >= 3.6, for CentOS , install the system package:
+
+```shell script
+pip install --upgrade pip
+pip install cooka
+```
+
+Start the web server：
+```shell script
+cooka server
+```
+
+Then open `http://<your_ip:8000>` with your browser to use cooka.
+
+By default, the cooka configuration file is at `~/.config/cooka/cooka.py`,  to generate a template:
+```shell script
+mkdir -p ~/.config/cooka/
+cooka generate-config > ~/.config/cooka/cooka.py
+```
+
+### Using Docker
+
+Launch a Cooka docker container:
+
+```shell script
+docker run -ti -p 8888:8888 -p 8000:8000 -p 9001:9001 -e COOKA_NOTEBOOK_PORTAL=http://<your_ip>:8888 datacanvas/cooka:latest
+```
+
+Open `http://<your_ip:8000>` with your browser to visit cooka.
+
+## DataCanvas
+
+![](docs/static/dc_logo_1.png)
+
+Cooka is an open source project created by [DataCanvas](https://www.datacanvas.com/). 
+
+
+
+
