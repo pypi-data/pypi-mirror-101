@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: run-once
+Version: 0.3.0
+Summary: 
+License: MIT
+Author: Daeyun Shin
+Author-email: daeyuns@uci.edu
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: grpcio (>=1.15,<2.0)
+Requires-Dist: joblib (>=1.0.1,<2.0.0)
+Requires-Dist: protobuf (>=3.10,<4.0)
