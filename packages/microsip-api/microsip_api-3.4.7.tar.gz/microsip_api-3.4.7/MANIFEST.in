@@ -1,0 +1,8 @@
+include README.rst
+include requirements.txt
+recursive-include microsip_api templates *
+recursive-include microsip_api static *
+recursive-include microsip_api media *
+recursive-include microsip_api *.pyc
+recursive-include microsip_api __init__.py
+prune microsip_api/conf
