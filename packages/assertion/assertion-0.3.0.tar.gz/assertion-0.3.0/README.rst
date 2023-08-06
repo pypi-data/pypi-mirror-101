@@ -1,0 +1,249 @@
+.. image:: https://img.shields.io/pypi/v/assertion.svg
+    :target: https://pypi.org/project/assertion/
+    :alt: pypi version
+
+.. image:: https://gitlab.com/coherentminds/assertion/badges/main/pipeline.svg
+    :target: https://gitlab.com/coherentminds/assertion/-/commits/main
+    :alt: pipeline status
+
+.. image:: https://gitlab.com/coherentminds/assertion/badges/main/coverage.svg
+    :target: https://gitlab.com/coherentminds/assertion/-/commits/main
+    :alt: coverage report
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+    :alt: black code style
+
+.. image:: https://img.shields.io/badge/pdm-managed-blueviolet
+    :target: https://pdm.fming.dev
+    :alt: pdm-managed
+
+---------------------------------------------------------------------
+
+=========
+assertion
+=========
+
+This small package solves a few issues of the regular ``assert``
+statements in Python:
+
+* Regular asserts are ignored if the code is run with ``python -O``.
+* If an assertion fails, no additional information is given about the
+  parameters which caused the fail.
+* Test parameters are fixed (e.g., a variable which is ``True``).
+* A timing-critical test might fail *now*, but would have passed a few seconds later
+  (e.g., after some action has been completed).
+* In a set of tests, only tests until the first failed test are executed.
+
+The ``assertion`` tests behave differently:
+
+* The tests are always evaluated.
+* If a test fails, a string representation of the provided arguments is included in the
+  exception description.
+* Test parameters can be
+
+  * constants,
+  * functions (sync and async),
+  * other mutable variables.
+
+* Optionally, a test can be re-evaluated until a configurable timeout is reached. By
+  default, the timeout is zero and test fail instantly.
+* Optionally, raising exceptions of failed tests can be deferred to allow for the
+  completion of a set of tests (works also with ``pytest``).
+
+
+Quickstart
+----------
+
+Here is a simple example:
+
+.. code-block:: python
+
+    >>> from assertion import Assertion
+    >>> assertion = Assertion()
+    >>> val = 999
+    >>> assertion.false(val)
+    Traceback (most recent call last):
+        ...
+    AssertionError: 999 != False
+
+Here is a more complex example using coroutines:
+
+.. code-block:: python
+
+    import asyncio
+    from assertion import Assertion
+
+    assertion = Assertion(msg="D'oh!", timeout=10.0)
+
+    class Countdown:
+        def __init__(self, start: int):
+            self.counter = start
+
+        async def countdown(self) -> bool:
+            self.counter -= 1
+            return self.counter == 0
+
+    async def main():
+        print("Test A...")
+        await assertion.true(Countdown(10).countdown)  # should be successful
+        print("ok")
+
+        print("Test B...")
+        await assertion.true(Countdown(50).countdown)  # should fail
+        print("ok")
+
+    asyncio.run(main())
+
+
+.. note::
+
+    The test functions act as both regular functions and as awaitables depending
+    on the test arguments.
+
+    If the test arguments contain coroutines or awaitables, you **must** ``await``
+    the test.
+
+
+There are several pre-defined tests:
+
++------------------------+-------------------------------------------------------+
+| | ``true``             | Expects single parameter and determines its boolean   |
+| | ``false``            | value.                                                |
++------------------------+-------------------------------------------------------+
+| | ``equal``            | Expects two parameters and performs the               |
+| | ``not_equal``        | corresponding comparison operators.                   |
+| | ``less``             |                                                       |
+| | ``less_or_equal``    |                                                       |
+| | ``greater``          |                                                       |
+| | ``greater_or_equal`` |                                                       |
++------------------------+-------------------------------------------------------+
+| | ``in_``              | Expects two parameters and uses the built-in ``in``   |
+| | ``not_in``           | operator.                                             |
++------------------------+-------------------------------------------------------+
+| | ``is_``              | Expects two parameters and uses the built-in ``is``   |
+| | ``is_not``           | operator.                                             |
++------------------------+-------------------------------------------------------+
+
+In addition to the test parameters, each call accepts optional parameters:
+
+msg (``str``, default: "")
+    This message is prefixed to the exception text.
+
+timeout (``float``, unit: seconds, default: 0.0)
+    The number of seconds until the test is finally considered as failed.
+
+exception (``Exception``, default: ``AssertionError``)
+    Any ``Exception`` subclass which is raised if the test fails.
+
+
+.. note::
+
+    If you use a non-zero timeout, the test arguments might be evaluated/called
+    multiple time. Please make sure that any given function call can handle this
+    or set the timeout to zero.
+
+
+Detailed Description
+--------------------
+
+Configuration
+~~~~~~~~~~~~~
+
+You can choose different defaults for ``msg``, ``timeout``, and ``exception``
+while creating an instance of ``Assertion``.
+
+In addition, you can specify three more parameters:
+
+msg_length_max (``int``, default: 100)
+    This limits the string representation of the provided test parameters to the given
+    number of characters. The optional message is not considered and will always be
+    included in full length).
+
+delay_init (``float``, unit: seconds, default 0.125)
+    Non-zero timeout only: If the initial test fails, the arguments are re-evaluated
+    after this initial delay.
+
+delay_max (``float``, unit: seconds, default: 5.0)
+    Non-zero timeout only: This limits the delay between two test parameter
+    evaluations.
+
+timeout_fraction_warning (``float``, unit: fraction between 0 and 1, default: 0.75)
+    Non-zero timeout only: If more than this fraction of the timeout passed before
+    the test was successful, a warning is logged. If you see this warning, you might
+    want to increase the timeout. Set to ``None`` to disable warning.
+
+In the default implementation, the delay between each evaluation is doubled
+(until it reaches the given maximum). This behavior can be changed by
+overloading ``Assert._get_new_delay``.
+
+
+Deferring
+~~~~~~~~~
+
+If you want to execute all tests in a set of tests even if early tests fail, you can
+defer the raising of exceptions. You have three options:
+
+* Decorator:
+
+  .. code-block:: python
+
+      assertion = Assertion(exception=ZeroDivisionError)
+
+      @assertion.deferring_decorator
+      def multiple_fails():
+          assertion.true(False)
+          assertion.true("this will not fail")
+          assertion.equal(5, 99, exception=ValueError)
+          assertion.false(True, msg="D'oh!")
+
+  When calling ``multiple_fails()``, all four tests will be executed (with three
+  failing), but only one exception will be raised when leaving the functions scope. Here
+  is the abbreviated output of the exception::
+
+      ZeroDivisionError: 3 deferred exception(s):
+          ZeroDivisionError[File "<input>", line 5, in multiple_fails, "<code unavailable>"]: False != True
+          ValueError[File "<input>", line 7, in multiple_fails, "<code unavailable>"]: 5 != 99
+          ZeroDivisionError[File "<input>", line 8, in multiple_fails, "<code unavailable>"]: D'oh!: True != False
+
+  The decorator works for both synchronous and asynchronous functions.
+
+* Context manager:
+
+  If you want to define a defer scope on a sub-function level, you can use contexts:
+
+  .. code-block:: python
+
+      assertion = Assertion(exception=ZeroDivisionError)
+
+      with assertion.deferring_context():
+          for i in range(3):
+              assertion.equal(i, 1)
+
+* Explicit start/stop calls (only use as a last resort):
+
+  .. code-block:: python
+
+      assertion = Assertion(exception=ZeroDivisionError)
+
+      assertion.start_deferring()
+      for i in range(3):
+          assertion.equal(i, 1)
+      assertion.stop_deferring()
+
+  When an assertion instance is garbage-collected, it checks if there are open defer
+  scopes. If so, a warning and any remaining fail messages are logged, but no exception
+  is raised to avoid disturbing any ongoing shutdown procedures.
+
+Defer scopes can be nested. The raising of exceptions is deferred until *all* scopes
+have been exited.
+
+
+Similar Packages
+----------------
+
+This package was heavily inspired by the assert magic in
+`pytest <https://pytest.org>`_.
+
+`assert-info <https://pypi.org/project/assert-info/>`_ has a slightly different
+focus, but might suit you better.
