@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: azmlclient
+Version: 2.6.0
+Summary: A Python 3 client for AzureMl web services.
+Home-page: https://github.com/smarie/python-azureml-client
+Author: Sylvain MARIE <sylvain.marie@se.com>
+Maintainer: Sylvain MARIE <sylvain.marie@se.com>
+License: BSD 3-Clause
+Download-URL: https://github.com/smarie/python-azureml-client/tarball/2.6.0
+Keywords: Azure Machine Learning AzureML web services client network json
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: valid8 (>=2.1)
+Requires-Dist: requests
+Requires-Dist: jinja2
+Requires-Dist: decopatch
+Requires-Dist: makefun
+Requires-Dist: yamlable (>=0.7)
+Requires-Dist: autoclass (>=1.15)
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: functools32 ; python_version < "3.3"
+
+# azmlclient
+
+[![Python versions](https://img.shields.io/pypi/pyversions/azmlclient.svg)](https://pypi.python.org/pypi/azmlclient/) [![Build Status](https://github.com/smarie/python-azureml-client/actions/workflows/base.yml/badge.svg)](https://github.com/smarie/python-azureml-client/actions/workflows/base.yml) [![Tests Status](https://smarie.github.io/python-azureml-client/reports/junit/junit-badge.svg?dummy=8484744)](https://smarie.github.io/python-azureml-client/reports/junit/report.html) [![codecov](https://codecov.io/gh/smarie/python-azureml-client/branch/master/graph/badge.svg)](https://codecov.io/gh/smarie/python-azureml-client)
+
+[![Documentation](https://img.shields.io/badge/doc-latest-blue.svg)](https://smarie.github.io/python-azureml-client/) [![PyPI](https://img.shields.io/pypi/v/azmlclient.svg)](https://pypi.python.org/pypi/azmlclient/) [![Downloads](https://pepy.tech/badge/azmlclient)](https://pepy.tech/project/azmlclient) [![Downloads per week](https://pepy.tech/badge/azmlclient/week)](https://pepy.tech/project/azmlclient) [![GitHub stars](https://img.shields.io/github/stars/smarie/python-azureml-client.svg)](https://github.com/smarie/python-azureml-client/stargazers)
+
+*An ***unofficial*** generic client stack for azureML web services, working with both python 2 and 3.*
+
+The documentation for users is available here: [https://smarie.github.io/python-azureml-client/](https://smarie.github.io/python-azureml-client/)
+
+A readme for developers is available here: [https://github.com/smarie/python-azureml-client](https://github.com/smarie/python-azureml-client)
+
+
