@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: alastria-identity
+Version: 0.1.0
+Summary: 
+License: MIT
+Author: Javier Aguirre
+Author-email: javi@wealize.digital
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: pyjwt (>=1.7.1,<2.0.0)
+Requires-Dist: pytest (>=6.1.1,<7.0.0)
+Requires-Dist: requests (>=2.24.0,<3.0.0)
+Requires-Dist: web3 (>=5.12.2,<6.0.0)
