@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: pssepy
+Version: 0.1.0
+Summary: A high-level python interface for PSS/E
+Home-page: http://www.github.com/nrel/pypsse
+Author: Aadil Latif
+Author-email: Aadil.Latif@nrel.gov
+License: BSD 3 clause
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Requires-Python: ==3.7.*
+Requires-Dist: click
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: toml
+Requires-Dist: h5py (==2.10.0)
+Requires-Dist: helics
+Requires-Dist: terminaltables
+Requires-Dist: networkx
+Requires-Dist: requests
+Requires-Dist: pytest
+Requires-Dist: aiohttp
+Requires-Dist: aiohttp-swagger
+Requires-Dist: aiohttp-swagger3
+Requires-Dist: PyYAML
+Requires-Dist: aiohttp-cors
+
+UNKNOWN
+
+
