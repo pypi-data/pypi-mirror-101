@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: base-url
+Version: 0.0.1
+Summary: Useful tools to work with Base64 url Encode / Decode in Python
+Home-page: https://github.com/willyfaq/base_url
+Author: Willyfaq
+Author-email: willyfaqurokhim@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/willyfaq/base_url/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Base URL Python 
+
+Useful tools to work with Base64 url Encode / Decode in Python
+
+## Installation
+
+### Normal installation
+
+```bash
+pip install base_url
+```
+
+### Development installation
+
+```bash
+git clone https://github.com/willyfaq/base_url.git
+cd base_url
+pip install --editable .
+```
+
