@@ -1,0 +1,11 @@
+click
+swagger-to
+
+[dev]
+black
+bumpversion
+
+[test]
+godkjenn<5,>=4
+pytest
+flake8
