@@ -1,0 +1,73 @@
+# nertk - Name Entity Recognition toolkit
+
+Entator class - Annotate name entities in text  inline within your [Jupyter notebook](https://jupyter.org/) in Python. 
+
+
+## 1 - Overview
+
+In a data science or machine learning project, you may prepare and study text with name entities within a Jupyter notebook then need to annotate the data to augment the training or fix errors in your source data.
+
+Since you are already working within a Jupyter notebook, the Entator works inline allowing you to interact with your data and annotate it quickly and easily, syncing straight back to your input data arrays or matrices.
+
+Within Jupyter, you can easily home in on problem input data - perhaps only misclassified images - so you can step through and adjust bounding boxes just for those items. 
+
+The Entator widget is designed with a flexible API making it quick and easy to get started exploring your dataset, guessing how to work with your data without explicit configuration where possible.
+
+The project is currently in ALPHA development phase, and I appreciate all feedback on any problems including details on how the current code works or fails to work for the structure of your particular projects.
+
+
+## 2 - Examples
+
+You can easily combine Entator's interactive components to suit your project. Here are some examples.
+
+### Annotate new samples
+
+Load some images from filenames in an array, initialise empty bounding boxes.
+
+Then set up Entity-Annotator to display the images so you can draw updated bounding boxes directly.
+
+```python
+from jupyter_innotater import *
+import numpy as np, os
+
+images = os.listdir('./foods/')
+targets = np.zeros((len(images), 4)) # Initialise bounding boxes as x,y = 0,0, width,height = 0,0
+
+Innotater( ImageInnotation(images, path='./foods'), BoundingBoxInnotation(targets) )
+```
+
+![Screenshot of Innotater widget in Jupyter](docs/_static/screenshots/ImageAndBBoxesInnotater.png)
+
+The widget allows you to interactively draw bounding boxes for any of the images, and the `targets` variable is always kept in sync with your changes.
+
+Advance to the next image by clicking 'Next' or pressing 'n' on the keyboard (provided the Innotater has focus).
+
+```python
+import pandas as pd
+df = pd.DataFrame(targets, columns=['x','y','w','h'])
+df.to_csv('./bounding_boxes.csv', index=False)
+```
+
+The above saves your work - the bounding boxes you've drawn - as a CSV file. Without saving, your numbers will be lost if the kernel restarts.
+
+
+### Jupyter Notebook Examples
+
+The notebooks in the Example folder contain many examples you can run directly in Jupyter notebook.
+
+
+## 3 - Installation
+
+### Install from PyPi (recommended)
+
+```
+pip install entity_annotator_jupyter
+```
+
+## 4 - Contact for Feedback
+
+Please get in touch with any feedback or questions: [Linkedin](https://www.linkedin.com/in/ionmosnoi/). It will be especially useful to understand the structure of your project and what is needed to augment your data - e.g. extra entity types. There are many ideas on the roadmap, and your input is vital for prioritising these.
+
+## 5 - License
+
+This code is released under an MIT license.
