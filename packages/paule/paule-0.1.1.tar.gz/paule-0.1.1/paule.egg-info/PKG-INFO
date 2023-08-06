@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: paule
+Version: 0.1.1
+Summary: paule - Predictive Articulatory speech synthesis Utilizing Lexical Embeddings
+Home-page: https://github.com/quantling/paule
+Author: Konstantin Sering, Paul Schmidt-Barbo
+Author-email: konstantin.sering@uni-tuebingen.de
+License: GPLv3+
+Description: PAULE
+        =====
+        Predictive Articulatory speech synthesis Utilizing Lexical Embeddings (PAULE) a python frame work to plan control parameter trajectories for the VocalTractLab simulator for a target acoustics or semantic embedding.
+        
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Provides-Extra: tests
+Provides-Extra: docs
