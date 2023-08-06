@@ -1,0 +1,14 @@
+
+Installation
+------------
+
+Once you have satisfied the requirements listed in README.rst, issue
+
+  python setup.py build
+
+  python setup.py install
+
+You may then run the script `BGWpy_make_config_file.py`
+to generate a runtime configuration file `~/.BGWpyrc`
+which you can modify. Most options in this file
+represent default values, and can be overridden when using the module.
