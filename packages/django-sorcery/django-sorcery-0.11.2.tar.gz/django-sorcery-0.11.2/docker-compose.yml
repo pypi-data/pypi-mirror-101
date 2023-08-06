@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  pg:
+    # 12 breaks older versions of sqlalchemy so sticking with 11 for now
+    # https://github.com/sqlalchemy/sqlalchemy/issues/4463
+    image: postgres:11
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+  py36: &base
+    build:
+      context: .
+      args:
+        PYVER: python:3.6
+    depends_on:
+      - pg
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@pg
+    working_dir: /code
+    volumes:
+    - .:/code
+    - /tmp:/root/.cache
+
+  py37:
+    build:
+      context: .
+      args:
+        PYVER: python:3.7
+    <<: *base
+
+  py38:
+    build:
+      context: .
+      args:
+        PYVER: python:3.8
+    <<: *base
+
+  py39:
+    build:
+      context: .
+      args:
+        PYVER: python:3.9
+    <<: *base
+
+  pypy36:
+    build:
+      context: .
+      args:
+        PYVER: pypy:3.7
+    <<: *base
