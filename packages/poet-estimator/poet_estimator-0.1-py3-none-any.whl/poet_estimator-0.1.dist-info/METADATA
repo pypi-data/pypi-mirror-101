@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: poet-estimator
+Version: 0.1
+Summary: Python Implementation for Large Covariance Estimation by Thresholding Principal Orthogonal Complements
+Home-page: https://github.com/brucewuquant/POET
+Author: Dizhou Wu
+Author-email: dizhouwubruce@outlook.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: scipy (>=1.5.1)
+Requires-Dist: numpy (>=1.19.0)
+
+# POET
+Python Implementation for Large Covariance Estimation by Thresholding Principal Orthogonal Complements
+
+References:
+1. https://arxiv.org/abs/1201.0175
+2. https://cran.r-project.org/web/packages/POET/
+
+
