@@ -1,0 +1,14 @@
+numpy
+
+[dev]
+pytest
+sphinx
+sphinx-rtd-theme
+nox
+black==20.8b1
+
+[laszip]
+laszip<0.1.0,>=0.0.1
+
+[lazrs]
+lazrs<0.3.0,>=0.2.3
