@@ -1,0 +1,13 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "podsearch_ai"
+author = "Hang Li"
+author-email = "bitlihang@gmail.com"
+home-page = "https://github.com/hangligit/podsearch_ai-py"
+description-file = "README.md"
+requires-python = ">=3.7"
+classifiers = [ "License :: OSI Approved :: MIT License",]
+
