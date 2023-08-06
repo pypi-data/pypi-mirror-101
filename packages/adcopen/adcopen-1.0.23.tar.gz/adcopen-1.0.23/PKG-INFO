@@ -1,0 +1,70 @@
+Metadata-Version: 2.1
+Name: adcopen
+Version: 1.0.23
+Summary: Open-source python libraries for data integration with ADC equipment.
+Home-page: https://adc360.visualstudio.com/ADCOpen/_git/adcopen-python
+Author: Automated Design Corp.
+Author-email: support@automateddesign.com
+License: Proprietary License
+Description: ## ADCOpen
+        ### Open-source python libraries for data integration with ADC equipment.
+        
+        Licensed for use with ADC equipment. 
+        automateddesign.com
+        
+        
+        #1.0.23
+        - Adds CoreLink synchronous connect/disconnect methods to make life easier on
+        end users integrating streamlit.
+        
+        
+        #1.0.22
+        - Updates CoreLink client for additional API features and cleans out depreacted
+        features. Implements DataStore features.
+        
+        
+        #1.0.21
+        - events.py now attempts to create an event loop when subscribing if one does
+        not already exist. This is contrary to original intention, but makes it easier
+        for our end-user to integrate scripts.
+        
+        
+        #1.0.20
+        - Changes when CoreLink creates client instance. Originally, was creating upon
+        import, but that caused problems with Streamlit.
+        
+        #1.0.19
+        - Adds ONDATACHANGE support to events.py, which is now the default. Option to
+        always receive the event can be passed as argument to subscribe method.
+        
+        #1.0.18
+        - API change to Ton.start() to make it easier to use in state machines.
+        
+        
+        #1.0.17
+        - Add Ton and edge trigger classes.
+        
+        
+        #1.0.16
+        - Convert to socketio
+        
+        
+        #1.0.15
+        - Trying to fix bug where pressing ctrl-c causes hard crash instead of graceful shutdown.
+        
+        
+        
+        #1.0.13:
+        - Fix issue with traceback library swallowing ctrl-c events when program interrupted by keyboard
+        - Add minimal CoreLink client for integration with autocore-js webserver. 
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Manufacturing
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
