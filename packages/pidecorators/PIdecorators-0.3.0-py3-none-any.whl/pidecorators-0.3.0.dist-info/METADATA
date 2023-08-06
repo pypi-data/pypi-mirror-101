@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: pidecorators
+Version: 0.3.0
+Summary: A package containing some nice decorators for buzzword bonanza functions.
+License: Pandora Intelligence
+Author: David.Berenstein
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: guppy3 (>=3.1.0,<4.0.0)
+Requires-Dist: psutil (>=5.8.0,<6.0.0)
+Description-Content-Type: text/markdown
+
+# Pandora Intelligence Log decorators
+Enables users to add decorators to specific functions
+- logs
+  - log_duration
+  - log_exception
+  - log_memory
+  - log_memory_extensive
+  - log_on_end
+  - log_on_error
+  - log_on_start
+- utils
+  - copy_docstring_of
+  
+# based on 
+https://pypi.org/project/logdecorator/ \
+https://pypi.org/project/guppy3/ \
+https://chase-seibert.github.io/blog/2013/08/03/diagnosing-memory-leaks-python.html \
+https://github.com/pythonprofilers/memory_profiler/tree/e43d78bf6d58d5f32c1f4f4ace5b371805351eee \
+https://towardsdatascience.com/using-class-decorators-in-python-2807ef52d273
+
+# additions
+- null decorators
+- tags for querying besides log level
+- store in database 
+- wrap doctstrings  
