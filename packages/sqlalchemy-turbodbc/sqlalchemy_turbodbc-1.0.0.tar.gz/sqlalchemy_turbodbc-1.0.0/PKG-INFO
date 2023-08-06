@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: sqlalchemy_turbodbc
+Version: 1.0.0
+Summary: SQLAlchemy dialect for Turbodbc
+Home-page: https://github.com/dirkjonker/sqlalchemy-turbodbc
+Author: Dirk Jonker
+Author-email: dirkjonker@gmail.com
+License: MIT
+Description: 
+        # sqlalchemy-turbodbc
+        
+        SQLAlchemy connector/dialect for connecting to MS SQL Server using Turbodbc.
+        
+        This works exactly like the `mssql+pyodbc` dialect as described in the [SQLAlchemy documentation here](https://docs.sqlalchemy.org/en/13/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc).
+        To create a connection using this simply use the `mssql+turbodbc` protocol.
+        
+        For example:
+        
+        ```python
+        engine = create_engine('mssql+turbodbc://scott:tiger@mydsn')
+        ```
+        
+        For more information please see the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/13/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc).
+        
+Keywords: sql server sqlalchemy turbodbc mssql
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Database
+Description-Content-Type: text/markdown
