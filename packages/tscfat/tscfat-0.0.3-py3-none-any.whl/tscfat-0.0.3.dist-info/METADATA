@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: tscfat
+Version: 0.0.3
+Summary: A time series co-fluctuation analysis toolbox
+Home-page: https://github.com/ArgonSilicon/tscfat
+Author: Arsi Ikaheimonen
+Author-email: arsi.ikaheimonen@gmail.com
+License: MIT
+Download-URL: https://github.com/ArgonSilicon/tscfat/archive/refs/tags/0.0.3.tar.gz
+Keywords: Timeseries,Exploratory,Analysis
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: matplotlib
+Requires-Dist: nolds
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pytest
+Requires-Dist: seaborn
+Requires-Dist: sklearn
+Requires-Dist: statsmodels
+Requires-Dist: tslearn
+
+UNKNOWN
+
+
