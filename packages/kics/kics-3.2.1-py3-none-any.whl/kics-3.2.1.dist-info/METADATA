@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: kics
+Version: 3.2.1
+Summary: KICS
+Home-page: https://kelvininc.com/
+Author: Kelvin Inc
+Author-email: engineering@kelvininc.com
+License: UNKNOWN
+Platform: any
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: <3.10.0,>=3.7.0
+Description-Content-Type: text/markdown
+Requires-Dist: click (==7.1.2)
+Requires-Dist: kelvin-sdk-client (==5.1.1)
+Requires-Dist: kelvin-app (==5.1.0)
+Requires-Dist: kelvin-sdk (==5.1.1)
+
+# KICS
+
+The Kelvin Intelligent Control Software (KICS) package provides tools that enable users to interact with the KICS Platform through the command line interface.  KICS is the AI software platform for building and managing control applications.  Control applications combine insights, events and actions into powerful automation workflows.   KICS provides tools and interfaces to ease the effort of data science, app development, testing, validation, management, and finally orchestration and deployment.
+
+For additional information, visit https://docs.kelvininc.com or contact support@kelvininc.com.
+
+## License
+
+See [License](https://www.kelvininc.com/license-sdk) for more information.
+
