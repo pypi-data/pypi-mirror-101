@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: kSpider2
+Version: 2.0.0
+Summary: kSpider Python interface
+Home-page: UNKNOWN
+License: BSD 3-Clause
+Project-URL: Bug Reports, https://github.com/mr-eyes/kSpider2/issues
+Project-URL: Source, https://github.com/mr-eyes/kSpider2/issues
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Click
+
+# kSpider2 | C++ verison of the kSpider software tool.
+
+## Installation
+
+### Clone
+
+```bash
+git clone https://github.com/mr-eyes/kSpider2.git
+cd kSpider2
+git submodule update --init --recursive
+```
+
+### Install
+
+```bash
+# pwd = kSpider2
+PROJECT=$(pwd)
+cd lib/kProcessor
+mkdir build && cd build && cmake .. && make
+cd $PROJECT
+mkdir build && cd build/
+cmake .. && make
+cd ..
+```
+
+## Usage
+
+```bash
+
+INDEX_PREFIX=idx_seq
+
+./kSpider_pairwise ${INDEX_PREFIX}
+
+```
+
+
