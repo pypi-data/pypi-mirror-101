@@ -1,0 +1,11 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "searchpods"
+author = "Jake Johnson"
+author-email = "jakej587@gmail.com"
+home-page = "https://github.com/xyclos/podsearch"
+classifiers = [ "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",]
+
