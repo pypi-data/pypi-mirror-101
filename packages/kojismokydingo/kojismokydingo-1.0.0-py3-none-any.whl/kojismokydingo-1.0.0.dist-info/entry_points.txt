@@ -1,0 +1,34 @@
+[console_scripts]
+ksd-filter-builds = kojismokydingo.standalone.builds:ksd_filter_builds
+ksd-filter-tags = kojismokydingo.standalone.tags:ksd_filter_tags
+
+[koji_smoky_dingo]
+affected-targets = kojismokydingo.cli.tags:AffectedTargets
+block-env-var = kojismokydingo.cli.tags:BlockEnvVar
+block-rpm-macro = kojismokydingo.cli.tags:BlockRPMMacro
+bulk-move-builds = kojismokydingo.cli.builds:BulkMoveBuilds
+bulk-tag-builds = kojismokydingo.cli.builds:BulkTagBuilds
+bulk-untag-builds = kojismokydingo.cli.builds:BulkUntagBuilds
+cginfo = kojismokydingo.cli.users:CGInfo
+check-hosts = kojismokydingo.cli.hosts:CheckHosts
+client-config = kojismokydingo.cli.clients:ClientConfig
+filter-builds = kojismokydingo.cli.builds:FilterBuilds
+filter-tags = kojismokydingo.cli.tags:FilterTags
+latest-archives = kojismokydingo.cli.archives:LatestArchives
+list-btypes = kojismokydingo.cli.builds:ListBTypes
+list-build-archives = kojismokydingo.cli.archives:ListBuildArchives
+list-cgs = kojismokydingo.cli.builds:ListCGs
+list-component-builds = kojismokydingo.cli.builds:ListComponents
+list-env-vars = kojismokydingo.cli.tags:ListEnvVars
+list-rpm-macros = kojismokydingo.cli.tags:ListRPMMacros
+list-tag-extras = kojismokydingo.cli.tags:ListTagExtras
+open = kojismokydingo.cli.clients:ClientOpen
+perminfo = kojismokydingo.cli.users:PermissionInfo
+remove-env-var = kojismokydingo.cli.tags:RemoveEnvVar
+remove-rpm-macro = kojismokydingo.cli.tags:RemoveRPMMacro
+renum-tag-inheritance = kojismokydingo.cli.tags:RenumTagInheritance
+set-env-var = kojismokydingo.cli.tags:SetEnvVar
+set-rpm-macro = kojismokydingo.cli.tags:SetRPMMacro
+swap-tag-inheritance = kojismokydingo.cli.tags:SwapTagInheritance
+userinfo = kojismokydingo.cli.users:UserInfo
+
