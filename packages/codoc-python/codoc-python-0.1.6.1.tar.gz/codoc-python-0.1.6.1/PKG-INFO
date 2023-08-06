@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: codoc-python
+Version: 0.1.6.1
+Summary: Tool for generating architectural views for the codoc system
+Home-page: https://codoc.org/
+Author: Casper Weiss Bang
+Author-email: casper@svadilfare.dev
+License: UNKNOWN
+Description: # CODOC Python SDK
+        [![Automated Tests](https://github.com/svadilfare/codoc-python/actions/workflows/automated-tests.yml/badge.svg)](https://github.com/svadilfare/codoc-python/actions/workflows/automated-tests.yml)
+        [![Documentation Status](https://readthedocs.org/projects/pip/badge/?version=stable)](https://pip.pypa.io/en/stable/?badge=stable)
+        [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=svadilfare_codoc-python&metric=coverage&token=87db581f3fdbed3f091a90ed187a1a0cad581529)](https://sonarcloud.io/dashboard?id=svadilfare_codoc-python)
+        [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=svadilfare_codoc-python&metric=security_rating&token=87db581f3fdbed3f091a90ed187a1a0cad581529)](https://sonarcloud.io/dashboard?id=svadilfare_codoc-python)
+        [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=svadilfare_codoc-python&metric=reliability_rating&token=87db581f3fdbed3f091a90ed187a1a0cad581529)](https://sonarcloud.io/dashboard?id=svadilfare_codoc-python)
+        
+        This is the SDK for [Codoc](https://codoc.org/), that makes it possible to
+        upload architectural views of your python codebase directly to the
+        [Codoc](https://codoc.org/) interface.
+        
+        ## What is Codoc?
+        Codoc is the first Continuous Documentation tool.
+        It provides a revolutionary graph based interface,
+        that gives a powerful overview of any software system.
+        We are currently looking for [beta testers](https://codoc.org/signup/)
+        
+        ## Supported Version
+        We support python 3.6<
+        
+        ## Documentation
+        
+        Usage documentation can be found here:
+        
+        https://codoc-python.readthedocs.io/en/latest/
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Documentation
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Utilities
+Requires-Python: !=2.*, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+Description-Content-Type: text/markdown
