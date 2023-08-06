@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: trieres
+Version: 0.5.11
+Summary: A small example package
+Home-page: https://github.com/cloudFPGA/trieres
+Author: Dionysios Diamantopoulos
+Author-email: did@zurich.ibm.com
+License: UNKNOWN
+Description: # trieres
+        This is a python module enabling the remote execution of accelerated functions on the [cloudFPGA platform](https://www.zurich.ibm.com/cci/cloudFPGA/).
+        
+        ## Workflow
+        
+        * git clone --depth 1 --recursively git@github.com:cloudFPGA/trieres.git
+        * cd trieres  
+        * make env
+        * make genlib
+        * make dist 
+        * make upload
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
