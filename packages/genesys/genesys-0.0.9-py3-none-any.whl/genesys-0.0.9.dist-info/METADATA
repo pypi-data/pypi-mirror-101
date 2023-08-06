@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: genesys
+Version: 0.0.9
+Summary: generates files and dependences for cgi projects
+Home-page: https://eaxum.com
+Author: Aderemi Adesada
+Author-email: adesadaaderemi@gmail.com
+License: UNKNOWN
+Keywords: cg,asset,shot,api,cg production,asset management
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Multimedia :: Graphics
+Requires-Dist: flask (==1.1.1)
+Requires-Dist: flask-restful (==0.3.8)
+Requires-Dist: Werkzeug (==1.0.1)
+Requires-Dist: gevent (==21.1.2)
+Requires-Dist: gunicorn (==20.1.0)
+
+# genesys
+
+
