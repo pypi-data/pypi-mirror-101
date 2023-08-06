@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: datacube-ows
+Version: 1.8.6
+Summary: Open Data Cube Open Web Services
+Home-page: https://github.com/opendatacube/datacube-ows
+Author: Open Data Cube
+Author-email: earth.observation@ga.gov.au
+License: Apache Software License 2.0
+Keywords: datacube,wms,wcs
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.5
+Requires-Dist: Flask
+Requires-Dist: Pillow
+Requires-Dist: affine
+Requires-Dist: click
+Requires-Dist: colour
+Requires-Dist: datacube
+Requires-Dist: flask-log-request-id
+Requires-Dist: geoalchemy
+Requires-Dist: lxml
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: prometheus-flask-exporter
+Requires-Dist: prometheus-client
+Requires-Dist: psycopg2
+Requires-Dist: pyows
+Requires-Dist: python-slugify
+Requires-Dist: python-dateutil
+Requires-Dist: pytz
+Requires-Dist: rasterio
+Requires-Dist: regex
+Requires-Dist: requests
+Requires-Dist: scikit-image
+Requires-Dist: setuptools-scm
+Requires-Dist: timezonefinderL
+Requires-Dist: xarray
+
+
+============
+datacube-ows
+============
+
+Open Web Services for the Open Datacube.
+
+* Free software: Apache Software License 2.0
+* Documentation: https://datacube-ows.readthedocs.io.
+
+Features
+--------
+
+* Leverages the power of the Open Data Cube, including support for COGs on S3.
+* Supports WMS and WMTS.
+* Experimental support for WCS (1.0, 2.0, 2.1).
+
+
+
