@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: ersilia
+Version: 0.0.5
+Summary: Ersilia model hub for open source drug discovery and global health
+Home-page: https://github.com/ersilia-os/ersilia
+Author: Ersilia Open Source Initiative
+Author-email: miquel@ersilia.io
+License: MIT
+Project-URL: Landing page, https://ersilia.io
+Project-URL: Models, https://ersilia-hub.netlify.app
+Project-URL: Source Code, https://github.com/ersilia-os/ersilia/
+Description: # Welcome to Ersilia!
+        [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/uk/fundraiser/charity/4145012)
+        [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+        
+        This is work in progress.
+        
+        * Models can be checked at [Ersilia model hub](http://ersilia-hub.netlify.app) (also work in progress)
+        * High-level documentation is available at [Ersilia docs](http://ersilia-hub.netlify.app/docs/) (also work in progress)
+        * Low-level documentation is available at [Ersilia Read The Docs](https://ersilia-os.github.io/ersilia/) (also work in progress)
+        
+        ## Installation
+        
+        Ersilia can be installed as a PyPi package.
+        
+        ```
+        pip install ersilia
+        ```
+        
+        To get install the latest version of Ersilia, you can install directly from GitHub.
+        
+        ```
+        pip install git+git://github.com/ersilia-os/ersilia.git
+        ```
+        
+        ## Usage
+        
+        Work in progress
+        ```
+        ersilia --help
+        ```
+        
+Keywords: drug-discovery machine-learning ersilia open-science global-health model-hub
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: webapp
+Provides-Extra: doc_builder
+Provides-Extra: test
+Provides-Extra: dev
