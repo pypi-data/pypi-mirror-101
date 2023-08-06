@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: nafigator
+Version: 0.1.1
+Summary: Python package to convert spaCy and Stanza documents to NLP Annotation Format (NAF)
+Home-page: https://github.com/wjwillemse/nafigator
+Author: Willem Jan Willemse
+Author-email: w.j.willemse@xs4all.nl
+License: MIT license
+Keywords: nafigator
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
+Requires-Dist: Click (>=7.0)
+Requires-Dist: pdfminer.six
+Requires-Dist: lxml
+
+=========
+nafigator
+=========
+
+
+.. image:: https://img.shields.io/pypi/v/nafigator.svg
+        :target: https://pypi.python.org/pypi/nafigator
+
+.. image:: https://img.shields.io/travis/wjwillemse/nafigator.svg
+        :target: https://travis-ci.com/wjwillemse/nafigator
+
+.. image:: https://readthedocs.org/projects/nafigator/badge/?version=latest
+        :target: https://nafigator.readthedocs.io/en/latest/?version=latest
+        :alt: Documentation Status
+
+
+
+**DISCLAIMER - BETA PHASE**
+
+*This pdf parser to naf is currently in a beta phase.*
+
+Python package to convert pdf files via spaCy or Stanza to NLP Annotation Format (NAF)
+
+
+* Free software: MIT license
+* Documentation: https://nafigator.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Quick overview
+--------------
+
+To install the package
+
+::
+
+    pip install nafigator
+
+To install the package from Github
+
+::
+
+	pip install -e git+https://github.com/wjwillemse/nafigator.git#egg=nafigator
+
+
+How to run
+----------
+
+To parse an pdf or a txt file run in the root of the project
+
+::
+
+	python -m nafigator.nafigator
+
+
+
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
+=======
+History
+=======
+
+0.1.0 (2021-03-13)
+------------------
+
+* First release on PyPI.
+
+
