@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: BlacklistReport
+Version: 0.2.2
+Summary: Bad Reputation (Blacklisted IP) Incident Reporting.
+Home-page: https://git.vcjames.io/soc/dailyblacklistreporting
+Author: dzellmer
+License: GPLv3
+Description: # Daily Blacklisted IP Reporting
+        
+        Document `Bad Reputation` incidents in GuardiCore Centra (GC).
+        
+        ## Howto
+        
+        Primary use cases of the BlacklistReport package are displayed in `main.py`.
+        
+        `main.py` shows, through use of environment variables `SAVE_HTML` and `SAVE_PLAINTEXT`, 
+        the following use cases:
+        - Save an html report to an html file.
+        - Save a plaintext report to a text file.
+        
+        ### `BlacklistReport.generate_blacklist_report`
+        
+        - `generate_blacklist_report` generates a blacklisted IP report in both html and plaintext formats. 
+        - Omitting use cases in which intermediate data must be collected, `generate_blacklist_report` is the only function call required to generate a blacklist report.
+        
+        ## Classes
+        
+        - `BlacklistReport` is responsible for high-level data collection & formatting.
+        - `BlacklistEntry` defines the outline for entries in a blacklist report.
+        - `IpEntry` inner class of `BlacklistEntry`; defines the structure of IP entries.
+        - `ThreatData` singleton-esque class for fetching threat intel summaries.
+        
+        ### BlacklistReport
+        
+        - Initialization: Instantiating a `BlacklistReport` object requires an authenticated [Centra](https://git.vcjames.io/soc/GuardiPy) instance.
+        - `fetch_customer_label` retrieves the GC label corresponding to a given customer.
+        - `fetch_incidents` retrieves all **Bad Reputation** incidents from an authenticated [Centra](https://git.vcjames.io/soc/GuardiPy) instance.
+        - `build_report` instantiates a `BlacklistEntry` object for each incident retrieved in `fetch_incidents`.
+        - `build_report_str` creates a string (HTML or plaintext) representation of a `BlacklistReport' object.
+        
+        ### BlacklistEntry
+        
+        - Note: Besides the `src`, `destinations`, and `ports` properties, all properties of `BlacklistEntry` are **READ-ONLY**
+        - `add_destination` appends destination ip addresses to a `BlacklistEntry` object's (unique) destination list.
+        - `add_ports` appends destination ports to a `BlacklistEntry` object's (unique) port list.
+        
+        ### IpEntry
+        - Note: `IpEntry` is an inner class of `BlacklistEntry`. Furthermore, all properties of `IpEntry` are **READ-ONLY**
+        
+        ### ThreatData
+        - Note: This class has no constructor, and has a single class variable: `OPSWAT_KEY`
+        - `set_opswat_key` sets the class variable `OPSWAT_KEY` to the provided key
+        
+        ## Logging
+        
+        - A default logging configuration has been defined in `BlacklistReport.__init__.py`. 
+        - By default, log messages are recorded in a top-level file called `dailyblacklistreporting.log`. 
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
