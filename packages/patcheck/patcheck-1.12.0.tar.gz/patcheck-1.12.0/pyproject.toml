@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "patcheck"
+version = "1.12.0"
+description = "A CLI tool to validate user permission on the given BigQuery datasets, and return validation result as a csv file `check_result.csv`"
+authors = ["Worasit Daimongkol <worasit.daimongkol@refinitiv.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+APPLICATION-NAME = 'patcheck:main'
