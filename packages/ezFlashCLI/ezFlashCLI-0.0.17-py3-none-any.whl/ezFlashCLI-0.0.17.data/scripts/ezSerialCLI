@@ -1,0 +1,12 @@
+#!python
+
+import ezFlashCLI.serialCLI
+
+
+
+
+if __name__ == "__main__":
+    
+    ezFlashCLI.serialCLI.da1469xSerialLoader()
+    
+    pass
