@@ -1,0 +1,107 @@
+Metadata-Version: 2.1
+Name: psycopg2-pgevents
+Version: 0.2.2
+Summary: PostGreSQL LISTEN/NOTIFY functionality, via psycopg2
+Home-page: https://github.com/shawalli/psycopg2-pgevents
+License: MIT
+Author: Shawn Wallis
+Author-email: shawn.p.wallis@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Database
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Dist: coveralls (>=2.1.1,<3.0.0)
+Requires-Dist: psycopg2-binary (>=2.7.5)
+Requires-Dist: pytest (>=5.4.3,<6.0.0)
+Requires-Dist: pytest-cov (>=2.10.0,<3.0.0)
+Project-URL: Repository, https://github.com/shawalli/psycopg2-pgevents
+Description-Content-Type: text/x-rst
+
+#################
+psycopg2-pgevents
+#################
+
+.. image:: https://badge.fury.io/py/psycopg2-pgevents.svg
+    :target: https://badge.fury.io/py/psycopg2-pgevents
+.. image:: https://coveralls.io/repos/github/shawalli/psycopg2-pgevents/badge.svg?branch=master
+    :target: https://coveralls.io/github/shawalli/psycopg2-pgevents?branch=master
+.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
+    :target: https://opensource.org/licenses/MIT
+
+This package makes it simple to use PostGreSQL's NOTIFY/LISTEN eventing system
+from Python in a consistent, pleasing manner.
+
+Note that this project officially supports Python 3.6+. This is primarily due
+to static typing.
+
+*******
+Example
+*******
+
+The following shows an example of the package in action.
+
+Assumptions
+-----------
+
+ - PostGreSQL server is running locally.
+ - default database (``postgres``) is available.
+ - table exists in database in the public schema with the name ``orders``.
+
+.. code-block:: python
+
+    from psycopg2 import connect
+    from psycopg2_pgevents.trigger import install_trigger, \
+        install_trigger_function, uninstall_trigger, uninstall_trigger_function
+    from psycopg2_pgevents.event import poll, register_event_channel, \
+        unregister_event_channel
+
+    connection = connect(dsn='postgres:///postgres')
+    connection.autocommit = True
+
+    install_trigger_function(connection)
+    install_trigger(connection, 'orders')
+    register_event_channel(connection)
+
+    try:
+        print('Listening for events...')
+        while True:
+            for evt in poll(connection):
+                print('New Event: {}'.format(evt))
+    except KeyboardInterrupt:
+        print('User exit via Ctrl-C; Shutting down...')
+        unregister_event_channel(connection)
+        uninstall_trigger(connection, 'orders')
+        uninstall_trigger_function(connection)
+        print('Shutdown complete.')
+
+***************
+Troubleshooting
+***************
+
+* The connection's ``autocommit`` property must be enabled for this package to
+  operate correctly. This requirement is provided by PostGreSQL's NOTIFY/LISTEN
+  mechanism.
+
+* The same connection that is used with ``register_event_channel()`` must be
+  used with ``poll()`` in order to receive events. This is due to the nature of
+  how PostGreSQL manages "listening" connections.
+
+* If the table that you'd like to listen to is not in the public schema, the
+  schema name must be given as a keyword argument in the ``install_trigger()``
+  method.
+
+**********************
+Authorship and License
+**********************
+
+Written by Shawn Wallis and distributed under the MIT license.
+
