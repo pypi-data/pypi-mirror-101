@@ -1,0 +1,27 @@
+{
+	"MasterConfiguration":[
+		{
+			"Version":"1.0.0",
+		    "JAVA_Home": "C:/Program Files/Java/jdk1.8.0_201/bin",
+			"BlackDuckJarPath": "C:/Work/Philips_BLR/PDP_Libraries/BDuck-Jar/synopsys-detect-6.3.0.jar",
+            "ProjectName": "DI_DINxGen",
+			"nuget_inspector_path": "C:/Work/Philips_BLR/PDP_Libraries/BD_Airgap/synopsys-detect-6.3.0-air-gap/packaged-inspectors/nuget",
+			"BlackDuckURL": "https://blackduck.philips.com",
+			"build_id": "12345"
+		}
+	],
+    "BlackDuck":[
+        {
+			"SourcePath": "Sources/Interfaces",
+			"bom_aggregate_name": "DINxGen_Interfaces"
+        },
+		{
+			"SourcePath": "Sources/Services",
+			"bom_aggregate_name": "DINxGen_Services"
+        },
+		{
+			"SourcePath": "Sources/UserWorkFlow",
+			"bom_aggregate_name": "UserWorkflow"
+        }
+    ]
+}
