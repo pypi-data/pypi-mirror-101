@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChiantiPy.Gui package &#8212; ChiantiPy 0.11.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ChiantiPy.tests package" href="ChiantiPy.tests.html" />
+    <link rel="prev" title="ChiantiPy.fortranformat package" href="ChiantiPy.fortranformat.html" /> 
+  </head><body>
+<div style="padding: 20px 10px 10px 40px; background-color: #fff8d3; text-align: left;">
+<a href="">
+<img border="0" alt="chiantipy" src="_static/chiantipy_logo.png"/>
+</a>
+</div>
+    
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ChiantiPy.tests.html" title="ChiantiPy.tests package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ChiantiPy.fortranformat.html" title="ChiantiPy.fortranformat package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ChiantiPy 0.11.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >ChiantiPy’s API documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ChiantiPy.html" accesskey="U">ChiantiPy package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ChiantiPy.Gui package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="chiantipy-gui-package">
+<h1>ChiantiPy.Gui package<a class="headerlink" href="#chiantipy-gui-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-ChiantiPy.model.Maker">
+<span id="chiantipy-model-maker-module"></span><h2>ChiantiPy.model.Maker module<a class="headerlink" href="#module-ChiantiPy.model.Maker" title="Permalink to this headline">¶</a></h2>
+<p>classes and methods to analyze observations of astrophysical spectra</p>
+<dl class="py function">
+<dt id="ChiantiPy.model.Maker.diffPrintMcF">
+<code class="sig-prename descclassname"><span class="pre">ChiantiPy.model.Maker.</span></code><code class="sig-name descname"><span class="pre">diffPrintMcF</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matchDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'diffPrintMcF.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.diffPrintMcF" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the weighted and straight differences between observed and predicted
+prints the values saves to a file from a PyMC run</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="ChiantiPy.model.Maker.doDemGofntQ">
+<code class="sig-prename descclassname"><span class="pre">ChiantiPy.model.Maker.</span></code><code class="sig-name descname"><span class="pre">doDemGofntQ</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inQueue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outQueue</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.doDemGofntQ" title="Permalink to this definition">¶</a></dt>
+<dd><p>helper for multiprocessing with maker.mgofnt()</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="ChiantiPy.model.Maker.emPlot">
+<code class="sig-prename descclassname"><span class="pre">ChiantiPy.model.Maker.</span></code><code class="sig-name descname"><span class="pre">emPlot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matchDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'T'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.emPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>to plot line intensities divided by gofnt
+adjust is to provide an adjustment to the position of the labels
+position : one of ‘both’, ‘right’, ‘left’, or ‘none’</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="ChiantiPy.model.Maker.makeMatchPkl">
+<code class="sig-prename descclassname"><span class="pre">ChiantiPy.model.Maker.</span></code><code class="sig-name descname"><span class="pre">makeMatchPkl</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dens</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wghtFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abundanceName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minAbund</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">useMgofnt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.makeMatchPkl" title="Permalink to this definition">¶</a></dt>
+<dd><p>input a data dictionary and instantiate a maker class,
+and run mgofnt and then make a pickle file
+to use multiprocessing, this needs to be run in an ipython console</p>
+<p>Parameters</p>
+<dl class="simple">
+<dt>specData<span class="classifier">dict</span></dt><dd><p>the observed line intensities, wavelegths …</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="ChiantiPy.model.Maker.maker">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">ChiantiPy.model.Maker.</span></code><code class="sig-name descname"><span class="pre">maker</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elementList</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ionList</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allLines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abundanceName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minAbund</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wghtFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ChiantiPy.base.html#ChiantiPy.base._IonTrails.ionTrails" title="ChiantiPy.base._IonTrails.ionTrails"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChiantiPy.base._IonTrails.ionTrails</span></code></a>, <a class="reference internal" href="ChiantiPy.base.html#ChiantiPy.base._SpecTrails.specTrails" title="ChiantiPy.base._SpecTrails.specTrails"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChiantiPy.base._SpecTrails.specTrails</span></code></a></p>
+<p>a class matching observed lines to lines in the CHIANTI database</p>
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.argCheck">
+<code class="sig-name descname"><span class="pre">argCheck</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eDensity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pDensity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.argCheck" title="Permalink to this definition">¶</a></dt>
+<dd><p>to check the compatibility of the three arguments
+and put them into numpy arrays of atleast_1d</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.diffPrintChi">
+<code class="sig-name descname"><span class="pre">diffPrintChi</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'diffPrintChi.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wghtFactor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.diffPrintChi" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the weighted and straight differences between observed and predicted
+prints the values saves the as a dictionary self.Diff
+to be used together with a prior brute-force chi-squared minimization approach</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.diffPrintMc">
+<code class="sig-name descname"><span class="pre">diffPrintMc</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'diffPrintMc.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.diffPrintMc" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the weighted and straight differences between observed and predicted
+prints the values saves to a file from a PyMC3 run
+also created a attribute self.Dict, a dict with the following keys:
+‘wvl’ = observed wavelength (A)
+‘relDiff’ = (I_obs - I_pred)/(I_obs)
+‘ionS’ the CHIANTI type name for an ion</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.dumpMatch">
+<code class="sig-name descname"><span class="pre">dumpMatch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.dumpMatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>to save the attribute match to a pickle file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.dumpSearchData">
+<code class="sig-name descname"><span class="pre">dumpSearchData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.dumpSearchData" title="Permalink to this definition">¶</a></dt>
+<dd><p>to save the attribute match to a pickle file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.emFitPlot">
+<code class="sig-name descname"><span class="pre">emFitPlot</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.emFitPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>to plot the emission measures derived from search over temperature</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.emMake">
+<code class="sig-name descname"><span class="pre">emMake</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.emMake" title="Permalink to this definition">¶</a></dt>
+<dd><p>to make an emission measure file
+outName does not need the suffix .em
+reference should be a list of references</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.emPlot">
+<code class="sig-name descname"><span class="pre">emPlot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'T'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.emPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>to plot line intensities divided by gofnt
+adjust is to provide an adjustment to the position of the labels
+position : one of ‘both’, ‘right’, ‘left’, or ‘none’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.emSet">
+<code class="sig-name descname"><span class="pre">emSet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.emSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>sets the EM values for a N temperature EM distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.emSetIndices">
+<code class="sig-name descname"><span class="pre">emSetIndices</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.emSetIndices" title="Permalink to this definition">¶</a></dt>
+<dd><p>to set the indices of the N temperature/density EM distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.findMinMaxIndices">
+<code class="sig-name descname"><span class="pre">findMinMaxIndices</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.findMinMaxIndices" title="Permalink to this definition">¶</a></dt>
+<dd><p>to find the minimum and maximum indices where all match[‘intensitySum’] are
+greater than 0</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.fit1t">
+<code class="sig-name descname"><span class="pre">fit1t</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialValue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.fit1t" title="Permalink to this definition">¶</a></dt>
+<dd><p>calls leastsq to fit the 1t (single temperature) model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.fitFunc1t">
+<code class="sig-name descname"><span class="pre">fitFunc1t</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">em</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.fitFunc1t" title="Permalink to this definition">¶</a></dt>
+<dd><p>the fitting function for the isothermal model to be called by leastsq</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>em</strong> (<em>number</em>) – the log10 value of the emission measure</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>weighted chisquared</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.fitFuncNt">
+<code class="sig-name descname"><span class="pre">fitFuncNt</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.fitFuncNt" title="Permalink to this definition">¶</a></dt>
+<dd><p>the fitting function for the 1  (single temperature) temperature model to be called by leastsq</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.fitNt">
+<code class="sig-name descname"><span class="pre">fitNt</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialValue</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.fitNt" title="Permalink to this definition">¶</a></dt>
+<dd><p>calls leastsq to fit the 2d model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.getChisq">
+<code class="sig-name descname"><span class="pre">getChisq</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.getChisq" title="Permalink to this definition">¶</a></dt>
+<dd><p>return chisq</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.getNormalizedChisq">
+<code class="sig-name descname"><span class="pre">getNormalizedChisq</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.getNormalizedChisq" title="Permalink to this definition">¶</a></dt>
+<dd><p>return normalized chisq</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.getWeightedDiff">
+<code class="sig-name descname"><span class="pre">getWeightedDiff</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.getWeightedDiff" title="Permalink to this definition">¶</a></dt>
+<dd><p>to calculated the weighted difference of each of the intensities
+returns a 1D array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.gofnt">
+<code class="sig-name descname"><span class="pre">gofnt</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.gofnt" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the gofnt function for each of the matched lines
+do each ion only once</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.loadMatch">
+<code class="sig-name descname"><span class="pre">loadMatch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.loadMatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>to open a pickle file, return the match data and make it an attribute</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.loadSearchData">
+<code class="sig-name descname"><span class="pre">loadSearchData</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.loadSearchData" title="Permalink to this definition">¶</a></dt>
+<dd><p>to load the pickled search data as an attribute self.SearchData</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.makeMatch">
+<code class="sig-name descname"><span class="pre">makeMatch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.makeMatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>to match the CHIANTI lines with the input specdata
+uses ionTrails.ionGate to sort through ions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.mgofnt">
+<code class="sig-name descname"><span class="pre">mgofnt</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.mgofnt" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculate the gofnt function for each of the matched lines
+this is the multiprocessing version
+do each ion only once</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.predict">
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>to predict the intensities of the observed lines from an emission measure
+the emission measure is already specified as self.Em which is an np array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.predictPrint">
+<code class="sig-name descname"><span class="pre">predictPrint</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minContribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'predictPrint.txt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.predictPrint" title="Permalink to this definition">¶</a></dt>
+<dd><p>to predict the intensities of the observed lines from an emission measure
+the emission measure is already specified as self.Em which is an np array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.predictPrint1d">
+<code class="sig-name descname"><span class="pre">predictPrint1d</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minContribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.predictPrint1d" title="Permalink to this definition">¶</a></dt>
+<dd><p>to predict the intensities of the observed lines from an emission measure
+the emission measure is already specified as self.Em which is an np array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.search1dSpace">
+<code class="sig-name descname"><span class="pre">search1dSpace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialEm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indxlimits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.search1dSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>to conduct a brute force search over electron density for an isothermal-space and find the
+best fit to the em and density
+indxlimits give the range of indices to fit over
+can use self.MinIndex and self.MaxIndex+1
+initialEm = log value of the emission measure to begin the searching</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.search1tEmSpace">
+<code class="sig-name descname"><span class="pre">search1tEmSpace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.search1tEmSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>to find the value of chisq as a function of Em with T = best-fit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.search2tSpace">
+<code class="sig-name descname"><span class="pre">search2tSpace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indxlimits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.search2tSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>to conduct a brute force search of 2 temperature space and find the
+best fit
+indxlimits give the range of indices to fit over</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.search3tSpace">
+<code class="sig-name descname"><span class="pre">search3tSpace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indxlimits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.search3tSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>to conduct a brute force search of 3 temperature space and find the
+best fit
+indxlimits give the range of indices to fit over
+set log to create a log file of the iterations rather that outputting to
+the jupyter/ipython session</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="ChiantiPy.model.Maker.maker.search4tSpace">
+<code class="sig-name descname"><span class="pre">search4tSpace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indxlimits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChiantiPy.model.Maker.maker.search4tSpace" title="Permalink to this definition">¶</a></dt>
+<dd><p>to conduct a brute force search of 4 temperature space and find the
+best fit
+indxlimits give the range of indices to fit over
+set log to create a log file of the iterations rather that outputting to
+the jupyter/ipython session
+derived from Aug 2018 3t method</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ChiantiPy.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ChiantiPy.model" title="Permalink to this headline">¶</a></h2>
+<p>classes and methods for modeling observed spectra.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ChiantiPy.fortranformat.html"
+                        title="previous chapter">ChiantiPy.fortranformat package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ChiantiPy.tests.html"
+                        title="next chapter">ChiantiPy.tests package</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ChiantiPy.tests.html" title="ChiantiPy.tests package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ChiantiPy.fortranformat.html" title="ChiantiPy.fortranformat package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ChiantiPy 0.11.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >ChiantiPy’s API documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="ChiantiPy.html" >ChiantiPy package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ChiantiPy.Gui package</a></li> 
+      </ul>
+    </div>
+<div style="padding: 20px 10px 10px 40px; background-color: #fff8d3; text-align: left;">
+
+
+</div>
+    
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Ken Dere.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+
+  </body>
+</html>
