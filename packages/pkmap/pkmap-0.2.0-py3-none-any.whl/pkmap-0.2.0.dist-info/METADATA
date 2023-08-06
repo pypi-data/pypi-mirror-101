@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: pkmap
+Version: 0.2.0
+Summary: xxx
+Home-page: https://github.com/pkmap/pkmap
+Author: ZJ Lewous
+Author-email: zj.lewous@gmail.com
+License: Mozilla
+Download-URL: https://github.com/pkmap/pkmap/tarball/master
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: matplotlib (==3.1.3)
+Requires-Dist: seaborn
+Requires-Dist: scikit-learn (>=0.21.2)
+Requires-Dist: jupyter
+Requires-Dist: tqdm
+Provides-Extra: optional
+Requires-Dist: nilmtk ; extra == 'optional'
+
+see in https://github.com/pkmap/pkmap
+
+
