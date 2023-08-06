@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: pyserialsensors
+Version: 0.9.0
+Summary: German Aerospace Center
+Home-page: https://gitlab.com/Egenskaber/pyserialsensors
+Author: German Aerospace Center
+Author-email: konstantin+pypi@niehaus-web.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Hardware :: Hardware Drivers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pyserialsensors
+Requires-Dist: pyftdi (==0.50.1)
+Requires-Dist: timeout-decorator (==0.4.1)
+Requires-Dist: minimalmodbus (==1.0.2)
+
+Python interface for a FT232H measurement suite based on I2C, SPI and UART sensors.
+
+
