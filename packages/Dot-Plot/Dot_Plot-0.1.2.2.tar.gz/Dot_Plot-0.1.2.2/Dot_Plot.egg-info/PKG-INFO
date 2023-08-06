@@ -1,0 +1,79 @@
+Metadata-Version: 2.1
+Name: Dot-Plot
+Version: 0.1.2.2
+Summary: Dot plot is a tool for creating svg images of chord and scale diagrams for fretboard instruments like guitar, bass, ukulele, viola da gamba etc
+Home-page: UNKNOWN
+Author: Nicola A. Cappellini
+Author-email: nicola.cappellini@gmail.com
+License: Private, non-commercial, no distribution
+Description: =========
+        Dot Plot
+        =========
+        -------------------
+        The python script
+        -------------------
+        
+        :Author: Nicola Cappellini
+        :Version: $Revision: 0.1 $
+        :Copyright: This document has been placed in the public domain.
+        
+        
+        Tutorial
+        =========
+        
+        Chord and / or scale entry
+        ---------------------------
+        
+        Via click
+        ~~~~~~~~~~
+        
+        Left-click on the diagram
+            Places a dot
+        Left-click on an X
+            Changes it into an O
+        Right-click on a dot
+            Removes it
+        
+        
+        ctrl + scroll wheel up / down
+            Adds fretting-hand fingering information
+        alt + scroll wheel up/ down
+            Adjusts position indication marker
+        
+        Manual entry
+        ~~~~~~~~~~~~~
+        
+        Type in the text fields to enter chord information manually. 
+        **Note:** Multiple dots per string (scale entry) is not possible with manual entry.
+        
+        Keyboard corrections
+        ~~~~~~~~~~~~~~~~~~~~~
+        
+        return
+            Add the diagram in the sandbox to the render queue
+        alt + r
+            reset the diagram in the sandbox
+        shift + backspace
+            Remvoe the previously entered diagram from the render queue
+        alt + backspace
+            Load the previously entered diagram into the editor for correction.
+        ctrl + shift + backspace
+            Fiasco: Reset both the sandbox and render queue.
+        
+        shift + [right / left]
+            add / remove new strings to the diagram in the sandbox
+        shift + [up / down]
+            add / remove new frets to the diagram in the sandbox
+        
+        escape
+            Exit the script
+        
+        In addition:
+        
+        alt + t
+            generate a "Takemitsu-style chord / scale" (mainly used for testing)
+        
+        
+Platform: UNKNOWN
+Requires-Python: >=3
+Description-Content-Type: text/x-rst
