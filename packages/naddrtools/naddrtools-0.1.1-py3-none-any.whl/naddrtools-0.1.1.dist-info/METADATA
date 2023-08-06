@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: naddrtools
+Version: 0.1.1
+Summary: A module for manipulating IP addresses, ranges, and networks, supplementing the netaddr module.
+Home-page: https://github.com/khantext/naddrtools
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/khantext/naddrtools/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: netaddr
+
+# naddrtools
+**naddrtools** is a simple library for manipulating IP addresses, ranges, and networks and acts as an extension of the netaddr module.
+
+```
+>>> import naddrtools as nat
+>>> mylist = ["100.25.13.11", "172.20.31.0/24", "172.20.30.1 - 172.20.30.254"]
+>>> ipset = nat.build_ipset(mylist, buff_network_ranges=True)
+>>> print(ipset)
+IPSet(['100.25.13.11/32', '172.20.30.0/23'])
+>>> print(nat.convert_ipset_to_ranges_as_string(ipset))
+100.25.13.11, 172.20.30.0 - 172.20.31.255
+```
+
+## Installing naddrtools
+naddrtools is available on PyPI:
+
+```console
+$ python -m pip install naddrtools
+```
+
+
