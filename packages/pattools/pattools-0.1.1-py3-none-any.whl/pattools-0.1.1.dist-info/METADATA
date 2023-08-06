@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: pattools
+Version: 0.1.1
+Summary: Toolkit for neuro-imaging data manipulation and automation
+Home-page: https://github.com/plwp/pat_tools
+Author: plwp
+Author-email: pat@plwp.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pydicom
+Requires-Dist: pynetdicom
+Requires-Dist: dicom2nifti
+Requires-Dist: requests
+Requires-Dist: nibabel
+Requires-Dist: clint
+Requires-Dist: imageio
+Requires-Dist: joblib
+Requires-Dist: h5py
+Requires-Dist: numpy
+Requires-Dist: scikit-image
+Requires-Dist: scikit-learn
+
+# pattools
+Toolkit for neuro-imaging data manipulation and automation.
+
+A collection of handy-dandy tools that Pat uses for neuro-imaging in python.
+
+## pacs
+Used to find and get imaging and report data from the PACS system
+
+## timelines
+Used for building longitudinal data sets
+
+## resources
+Quick access to useful resources
+
+## ants, fsl
+Thin wrappers for quick access to underlying calls to ANTS and FSL. You'll need to have those tools installed if you want to use them (or make calls that use that code), otherwise we'll complain.
+
+
