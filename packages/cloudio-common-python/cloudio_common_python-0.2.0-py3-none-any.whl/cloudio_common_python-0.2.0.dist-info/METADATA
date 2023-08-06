@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: cloudio-common-python
+Version: 0.2.0
+Summary: cloud.iO common package
+Home-page: https://github.com/boozo-unlimited/cloudio-common-python
+Author: HES-SO Valais, School of Engineering, Sion
+Author-email: thomas.sterren@hevs.ch
+License: MIT
+Keywords: cloud.iO common library IoT cloud connector core utils mqtt
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Information Technology
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Requires-Dist: paho-mqtt
+
+Contains code used in both cloud.iO endpoints and clients
+
+
