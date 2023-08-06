@@ -1,0 +1,41 @@
+# retrieve just the segment-level information
+
+PREFIX onto: <http://www.ontotext.com/>
+PREFIX f: <https://flu-crew.org/term/>
+
+SELECT DISTINCT
+    ?dna_hash
+    ?strain
+    (GROUP_CONCAT(DISTINCT ?isolate;  separator="+") as ?epiflu_isolate_id)
+    (GROUP_CONCAT(DISTINCT ?gb;  separator="+") as ?genbank_id)
+    (GROUP_CONCAT(DISTINCT ?epi;  separator="+") as ?epiflu_id)
+    (GROUP_CONCAT(DISTINCT ?segment_name;  separator="+") as ?segment_name)
+    (GROUP_CONCAT(DISTINCT ?clade;  separator="+") as ?us_clade)
+FROM onto:disable-sameAs
+WHERE {
+    ?tag_id f:query_tag ?tag .
+
+    {
+        ?sid f:strain_name ?tag .
+    } UNION {
+        ?sid f:isolate_name ?tag .
+    } UNION {
+        ?sid f:barcode ?tag .
+    } UNION {
+        ?sid f:has_segment ?gid .
+        ?gid f:seqid ?tag .
+    }
+
+    ?sid f:strain_name ?strain .
+    ?sid f:has_segment ?gid .
+    ?gid f:seqid ?seqid .
+    ?gid f:segment_name ?segment_name .
+    ?gid f:chksum ?dna_hash .
+
+    OPTIONAL { ?gid f:genbank_id ?gb . }
+    OPTIONAL { ?gid f:epi_id ?epi . }
+    OPTIONAL { ?gid f:clade ?clade . }
+    OPTIONAL { ?sid f:barcode ?barcode . }
+    OPTIONAL { ?sid f:isolate_id ?isolate . }
+}
+GROUP BY ?dna_hash ?strain

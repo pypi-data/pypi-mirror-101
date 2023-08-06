@@ -1,0 +1,59 @@
+# retrieve just the strain-level information
+
+PREFIX onto: <http://www.ontotext.com/>
+PREFIX f: <https://flu-crew.org/term/>
+
+SELECT DISTINCT
+    ?strain
+    (GROUP_CONCAT(DISTINCT ?isolate;  separator="+") as ?isolates)
+    (GROUP_CONCAT(DISTINCT ?host;  separator="+") as ?hosts)
+    (GROUP_CONCAT(DISTINCT ?subtype;  separator="+") as ?subtypes)
+    (GROUP_CONCAT(DISTINCT ?naclade;  separator="+") as ?naclades)
+    (GROUP_CONCAT(DISTINCT ?haclade;  separator="+") as ?haclades)
+    (GROUP_CONCAT(DISTINCT ?gl_clade;  separator="+") as ?gl_clades)
+    (GROUP_CONCAT(DISTINCT ?constellation;  separator="+") as ?constellations)
+    (GROUP_CONCAT(DISTINCT ?country;  separator="+") as ?countries)
+    (MIN (?date) as ?earliest_date)
+FROM onto:disable-sameAs
+WHERE {
+    ?tag_id f:query_tag ?tag .
+
+    {
+        ?sid f:strain_name ?tag .
+    } UNION {
+        ?sid f:isolate_name ?tag .
+    } UNION {
+        ?sid f:barcode ?tag .
+    } UNION {
+        ?sid f:has_segment ?gid .
+        ?gid f:seqid ?tag .
+    }
+
+    ?sid f:strain_name ?strain .
+    ?sid f:date ?date .
+
+    OPTIONAL { ?sid f:barcode ?barcode . }
+    OPTIONAL { ?sid f:isolate_id ?isolate . }
+    OPTIONAL { ?sid f:host ?host . }
+    OPTIONAL { ?sid f:subtype ?subtype . }
+    OPTIONAL { ?sid f:constellation ?const . }
+
+    OPTIONAL {
+        ?sid f:has_segment ?gid .
+        ?gid f:seqid ?seqid .
+    }
+
+    OPTIONAL {
+        ?sid f:has_segment ?hagid .
+        ?hagid f:segment_name "HA" .
+        ?hagid f:gl_clade ?gl_clade .
+        OPTIONAL { ?hagid f:clade ?haclade }
+    }
+
+    OPTIONAL {
+        ?sid f:has_segment ?nagid .
+        ?nagid f:segment_name "NA" .
+        ?nagid f:clade ?naclade .
+    }
+}
+GROUP BY ?strain
