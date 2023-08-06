@@ -1,0 +1,76 @@
+Youtube-Channel-Videos-Scraper-Bot is a python library to scrap channel videos data using browser automation. 
+It currently runs only on windows.
+
+### Example1
+In this example we first import library, then we opened channel link and fetched channel videos data.
+```sh
+from youtube_channel_videos_scraper_bot import *
+youtube.open("https://www.youtube.com/c/Thequint/videos")
+response=youtube.channel_videos()
+data=response['body']
+#data=[{"Title": "How Citizens Transformed Gurugram", "Video_Link": "https://www.youtube.com/watch?v=C5duQyX7Gec"},....]
+```
+
+### Example2:- Load More Videos
+In this example we first import library, then we will open the channel link and fetch the videos data five times, as it scrolls whenever function called.
+```sh
+from youtube_channel_videos_scraper_bot import *
+youtube.open("https://www.youtube.com/c/Thequint/videos")
+all_data=[]
+for i in range(0,5):
+	response=youtube.channel_videos()
+	data=response['body']
+	all_data.extend(data)
+#all_data=[{"Title": "How Citizens Transformed Gurugram", "Video_Link": "https://www.youtube.com/watch?v=C5duQyX7Gec"},....]
+```
+
+This module depends on the following python modules
+* [requests](https://pypi.org/project/requests/)
+* [bot_studio](https://pypi.org/project/bot_studio/)
+
+#### BotStudio
+[bot_studio](https://pypi.org/project/bot_studio/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up. To get channel videos data, first need to open the channel videos link.
+
+Complete documentation for YouTube Automation available [here](https://youtube-api.datakund.com/en/latest/)
+
+### Installation
+
+```sh
+pip install youtube-channel-videos-scraper-bot
+```
+
+### Import
+```sh
+from youtube_channel_videos_scraper_bot import *
+```
+
+### Login with credentials
+```sh
+youtube.login(username="youtube username",password="youtube password")
+```
+
+### Login with cookies
+```sh
+youtube.login_cookie(cookies=list_of_cookies)
+```
+
+### Open channel url
+```sh
+youtube.open("channel videos url")
+```
+
+### Get Channel Videos Data
+```sh
+response=youtube.channel_videos()
+data=response['body']
+```
+
+### Send Feedback to Developers
+```sh
+bot_studio.send_feedback(feedback="Need help with this ......")
+```
+
+### Contact Us
+* [Telegram](https://t.me/datakund)
+* [Website](https://datakund.com)
+
