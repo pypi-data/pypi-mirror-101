@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: imo-vmdb
+Version: 1.0.3
+Summary: Imports VMDB CSV files from IMO into a SQL database.
+Home-page: https://github.com/jankorichter/imo-vmdb
+Author: Janko Richter
+Author-email: janko@richtej.de
+License: MIT
+Project-URL: Bug Tracker, https://github.com/jankorichter/imo-vmdb/issues
+Project-URL: Source, https://github.com/jankorichter/imo-vmdb
+Keywords: IMO,VMDB,SQL
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: astropy
+Requires-Dist: numpy
+
+# imo-vmdb
+
+This project provides a command line tool to maintain a SQL interface to the
+[Visual Meteor Database (VMDB)](https://www.imo.net/members/imo_vmdb/)
+of the
+[International Meteor Organization (IMO)](https://www.imo.net/).
+
+The IMO provides the data in the form of pure text files [(CSV files)](https://en.wikipedia.org/wiki/Comma-separated_values).
+This format is not suitable for the evaluation of this data.
+With *imo-vmdb* this data is imported into a relational SQL database.
+A large number of programming languages have interfaces to these databases.
+This makes it possible to load data from the VMDB according to different criteria in different applications.
+
+No evaluations can be performed with *imo-vmdb* itself.
+However, during the import of the data, various error and plausibility checks are performed.
+This ensures that the data are suitable for analysis.
+In addition, the observations are supplemented with properties in order to be able to filter according to these properties.
+Examples are the positions of the radiants, the sun and the moon.
+
+For more information see https://imo-vmdb.readthedocs.io/en/latest/
+.
+
+
