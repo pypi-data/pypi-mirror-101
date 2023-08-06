@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: Pfmsoft-Aiohttp-Queue
+Version: 0.1.6
+Summary: A library to support aiohttp requests in a Queue, with callbacks for success, failure, or retry.
+Home-page: https://github.com/DonalChilde/pfmsoft_aiohttp_queue
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: MIT license
+Keywords: Python pfmsoft_aiohttp_queue
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+
+=====================
+Pfmsoft-Aiohttp-Queue
+=====================
+
+
+.. |PyPi-badge| image:: https://img.shields.io/pypi/v/pfmsoft_aiohttp_queue.svg
+        :target: https://pypi.python.org/pypi/pfmsoft_aiohttp_queue
+
+.. |travis-master| image:: https://travis-ci.com/DonalChilde/Pfmsoft-Aiohttp-Queue.svg?branch=master
+        :target: https://travis-ci.com/DonalChilde/Pfmsoft-Aiohttp-Queue.svg?branch=master
+        :alt: Master / Stable
+
+.. |travis-dev| image:: https://travis-ci.com/DonalChilde/Pfmsoft-Aiohttp-Queue.svg?branch=dev
+        :target: https://travis-ci.com/DonalChilde/Pfmsoft-Aiohttp-Queue.svg?branch=dev
+        :alt: dev / Latest
+
+.. |rtd-master| image:: https://readthedocs.org/projects/pfmsoft-aiohttp-queue/badge/?version=latest
+        :target: https://pfmsoft-aiohttp-queue.readthedocs.io/en/latest/?version=latest
+        :alt: Documentation Status
+
+
+Stable / master branch:   |PyPi-badge| |travis-master| |rtd-master|
+
+Latest / dev branch:   |travis-dev|
+
+A library to support aiohttp requests in a Queue, with callbacks for success, failure, or retry.
+
+
+* Free software: MIT license
+* Documentation: https://pfmsoft-aiohttp-queue.readthedocs.io.
+
+
+Features
+--------
+
+* TODO
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `donalchilde/cookiecutter-pypackage-click`_ project template, derived from the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+.. _`donalchilde/cookiecutter-pypackage-click`: https://github.com/donalchilde/cookiecutter-pypackage-click
+
+=======
+History
+=======
+
+0.1.6 (2021-04-06)
+------------------
+
+* changed file callback template args name to path_values
+
+0.1.5 (2021-04-05)
+------------------
+
+* added pyyaml to requirements_dev.txt
+
+0.1.4 (2021-04-05)
+------------------
+
+* added CheckForPages callback - If an action detects paged data, makes more actions to retieve that data and appends it to the parent action.result
+
+0.1.3 (2021-04-01)
+------------------
+
+* fixed missing . in file_ending
+
+0.1.2 (2021-04-01)
+------------------
+
+* added option to process file path as a string.Template, with provided arguments, to file saving callbacks.
+* added SaveListOfDictResultToCSVFile callback.
+
+0.1.1 (2021-03-29)
+------------------
+
+* Dropped ResponseMetaToJson callback, and added response_meta_to_json() to AiohttpAction in its stead.
+
+0.1.0 (2021-03-29)
+------------------
+
+* First release on PyPI.
+
+
