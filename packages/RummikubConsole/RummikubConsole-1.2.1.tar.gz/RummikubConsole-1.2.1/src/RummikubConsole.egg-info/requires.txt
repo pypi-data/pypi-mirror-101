@@ -1,0 +1,13 @@
+appdirs
+click
+cvxpy
+cvxopt
+
+[:python_version <= "3.8"]
+importlib_metadata
+
+[:sys_platform != "darwin"]
+numpy>=1.7
+
+[:sys_platform == "darwin"]
+numpy<1.20,>=1.7
