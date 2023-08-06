@@ -1,0 +1,29 @@
+[package]
+name = "h3ron-h3-sys"
+version = "0.9.0"
+description = "bindgen-generated lowlevel bindings for statically linked libh3"
+authors = ["Nico Mandery <nico@nmandery.net>"]
+build = "build.rs"
+license = "MIT"
+edition = "2018"
+keywords = ["geo", "spatial", "h3"]
+readme = "../README.md"
+homepage = "https://github.com/nmandery/h3ron"
+repository = "https://github.com/nmandery/h3ron"
+exclude = [
+    "libh3/docs",
+    "libh3/dev-docs",
+    "libh3/website",
+    "libh3/src/apps",
+    "libh3/tests",
+    "libh3/examples",
+    "libh3/.git",
+    "libh3/.github",
+]
+
+[lib]
+
+[build-dependencies]
+bindgen = "^0.57"
+cmake = "^0.1"
+regex = "^1"
