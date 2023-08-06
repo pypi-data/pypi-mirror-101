@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: deepfeatx
+Version: 0.1.0b0
+Summary: "Automatic Feature Extraction in Images and Texts using Transfer Learning"
+Home-page: https://github.com/wittmannf/deepfeatx/tree/{branch}/
+Author: Fernando M Wittmann
+Author-email: fernando.wittmann@gmail.com
+License: Apache Software License 2.0
+Keywords: deep learning,transfer learning,feature extraction,bottleneck features
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: tensorflow (>=1.14.0)
+Requires-Dist: torchvision (>=0.2.2)
+Requires-Dist: requests
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: Pillow
+Requires-Dist: scipy
+Requires-Dist: scikit-learn
+Requires-Dist: seaborn
+
+# `deepfeatx`: Deep Learning Feature Extractor of Images using Transfer Learning Models
+> Helper for automatic extraction of features from images (and soon text as well) from transfer learning models like ResNet, VGG16 and EfficientNet.
+
+
+## Install
+
+`pip install deepfeatx`
+
+
