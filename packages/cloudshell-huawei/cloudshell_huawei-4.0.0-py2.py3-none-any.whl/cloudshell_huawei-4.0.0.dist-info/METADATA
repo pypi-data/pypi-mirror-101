@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: cloudshell-huawei
+Version: 4.0.0
+Summary: QualiSystems networking Huawei specific package
+Home-page: http://www.qualisystems.com/
+Author: QualiSystems
+Author-email: info@qualisystems.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: tftpy
+Requires-Dist: cloudshell-shell-flows (<2,>=1.0)
+Requires-Dist: cloudshell-shell-connectivity-flow (<3.0,>=2.0)
+Requires-Dist: cloudshell-cli (<5,>=4.0)
+Requires-Dist: cloudshell-snmp (<5,>=4.0)
+Requires-Dist: cloudshell-snmp-autoload (<2.0,>=1.0)
+Requires-Dist: cloudshell-shell-standards (~=1.2)
+Requires-Dist: functools32 ; python_version <= "2.7"
+
+UNKNOWN
+
+
