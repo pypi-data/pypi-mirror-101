@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: imgplotter
+Version: 0.0.1
+Summary: A small image package
+Home-page: https://github.com/ShrishShukla/imgplotter
+Author: Shrish Shukla
+Author-email: shrish.shukla23@gmail.com
+License: UNKNOWN
+Project-URL: Github, https://github.com/ShrishShukla/imgplotter
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Example Package
+
+This package helps to get coordinates of object from image as listed list of x,y.
+It depends on Numpy, opencv, matplotlib.
+
+INSTALLATION 
+
+
+pip install imgplotter
+
+
+
+usage
+
+python<br>
+from imgplotter.point import plotter
+<br>
+plotter(r'path')
+<br>
+
+Features which can be added : 
+1. Scale image to reduce coordinate size variable pass only to add
+2. Colour & styling
+
+
