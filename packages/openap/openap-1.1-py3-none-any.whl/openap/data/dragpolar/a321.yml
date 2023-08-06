@@ -1,0 +1,15 @@
+aircraft: Airbus A321
+
+clean:
+  cd0:         0.020
+  k:           0.041
+  e:           0.785
+
+mach_crit:     0.632
+
+gears:         0.019
+
+flaps:
+  lambda_f:    0.900
+  cf/c:        0.176
+  Sf/S:        0.165

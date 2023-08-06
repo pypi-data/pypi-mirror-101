@@ -1,0 +1,15 @@
+aircraft: Boeing 747-8
+
+clean:
+  cd0:         0.021
+  k:           0.047
+  e:           0.804
+
+mach_crit:     0.680
+
+gears:         0.015
+
+flaps:
+  lambda_f:    0.900
+  cf/c:        0.186
+  Sf/S:        0.142
