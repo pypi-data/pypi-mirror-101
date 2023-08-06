@@ -1,0 +1,163 @@
+CHANGES
+=======
+
+0.10.1
+------
+
+* support show current package info
+
+0.10.0
+------
+
+* add method create\_connection
+* update for function change
+
+0.9.3
+-----
+
+* format code, update api: install
+
+0.9.2
+-----
+
+* change to better name
+
+0.9.1
+-----
+
+* fix python3 -m adbutils -p  not working bug
+* add for github workflow
+
+0.9.0
+-----
+
+* add mac adb
+* add AdbClient.disconnect
+* fix conflict
+* uninstall first before install
+* Update \_\_init\_\_.py
+
+0.8.3
+-----
+
+* fix get rotation error
+* fix adbutils -i -launch not launch bug
+
+0.8.2
+-----
+
+* change localhost to 127.0.0.1
+* add support for reversing host port to device port
+* fix issue that fail to obtain rotation due to minicap output format
+* show version name when install
+
+0.8.1
+-----
+
+* remove useless data-files to prevent install permission denied
+
+0.8.0
+-----
+
+* func:shell support timeout argument
+* add cli:--track
+
+0.7.3
+-----
+
+* fix build\_wheel
+* fix travis
+* add more doc
+* add cli: --dump-info
+* update wheel code
+* add \_utils for get\_adb\_exe()
+
+0.7.2
+-----
+
+* fix download\_adb error on windows
+* support download adb.exe for windows
+
+0.7.1
+-----
+
+* ignore error in read\_util\_close
+
+0.7.0
+-----
+
+* add first\_install\_time add last\_update\_time into package\_info
+* add is\_screen\_on
+* add support uninstall app before install
+* add --launch support
+
+0.6.4
+-----
+
+* fix signature parse of package\_info, add flags to package\_info output
+
+0.6.3
+-----
+
+* add missing test file
+* fix app\_stop, close #15
+* fix bad code which raise unwanted ConnectionError
+* add track\_devices api
+* fix travis
+* support uninstall apk when install failed
+* use device\_list instread of devices
+
+0.6.2
+-----
+
+* fix datetime.datetime.fromtimestamp raise OSError bug
+* format and merge
+
+0.6.1
+-----
+
+* update screenrecord method
+* fix protocol error, when pull non-exists file
+* fix protocol error, when pull non-exists file
+
+0.6.0
+-----
+
+* add screenrecord method
+
+0.5.2
+-----
+
+* add pull in cli, fix d.sync.pull error
+
+0.5.1
+-----
+
+* fix list-packages error
+* add function to force-stop app
+
+0.5.0
+-----
+
+* change typing to send\_keys
+* add typing with escape special chars
+* add support to screenshot with minicap
+
+0.4.4
+-----
+
+* support env-var ANDROID\_SERIAL, pidcat change adb to adbutils
+* add home before install
+* update doc
+* add quick and dirty install-confirm
+* fix --qrcode
+
+0.4.3
+-----
+
+* add --qrcode xxxx.file
+
+0.4.2
+-----
+
+* fix unknown host service, close #11
