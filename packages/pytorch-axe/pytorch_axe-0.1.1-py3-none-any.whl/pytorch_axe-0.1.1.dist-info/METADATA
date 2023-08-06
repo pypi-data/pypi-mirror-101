@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: pytorch-axe
+Version: 0.1.1
+Summary: Minimalist interfaces to train pytorch models with less boilerplate code
+Author: nallivam
+Author-email: nallivam@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: numpy (>=1.15,<2.0)
+Requires-Dist: torch (>=1.6.0,<2.0.0)
+Requires-Dist: tqdm (>=4.40.0,<5.0.0)
