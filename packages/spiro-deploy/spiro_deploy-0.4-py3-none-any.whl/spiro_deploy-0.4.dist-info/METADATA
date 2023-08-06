@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: spiro-deploy
+Version: 0.4
+Summary: Deployment script for SpiroFS
+Home-page: https://spirostack.com/spirofs/deploy/
+Author: Jamie Bliss
+Author-email: jamie.bliss@astro73.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://gitlab.com/saltspiro/spiro-deploy/issues
+Project-URL: Tip Jar, https://ko-fi.com/astraluma
+Project-URL: Source, https://gitlab.com/saltspiro/spiro-deploy
+Keywords: salt saltstack spiro deploy salt-extension
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+Requires-Dist: hues
+Requires-Dist: requests
+
+spiro-deploy
+============
+
+A deployment tool for [SpiroFS](https://spirostack.com/spirofs/).
+
+[Full documentation](https://spirostack.com/spirofs/deploy/)
+
+Installation
+============
+
+* `pip install spiro-deploy`
+* [A container](https://gitlab.com/spirostack/spiro-deploy/container_registry)
+
+Usage Summary
+=============
+`spiro-deploy <project> <deployment>`, with the environment variables `SPIRO_URL`
+and `SPIRO_TOKEN`.
+
+
