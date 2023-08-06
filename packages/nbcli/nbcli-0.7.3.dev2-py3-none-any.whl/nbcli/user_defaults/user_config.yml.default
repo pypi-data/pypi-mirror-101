@@ -1,0 +1,33 @@
+pynetbox:
+  url: http://localhost:8080
+  token: 0123456789abcdef0123456789abcdef01234567
+#  private_key_file: null
+#  private_key: null
+#  threading: false
+
+requests:
+#  verify: false
+
+nbcli:
+#  search_models:
+#    - provider
+#    - circuit
+#    - site
+#    - rack
+#    - rack_group
+#    - device_type
+#    - device
+#    - virtual_chassis
+#    - cable
+#    - power_feed
+#    - vrf
+#    - aggregate
+#    - prefix
+#    - address
+#    - vlan
+#    - secret
+#    - tenant
+#    - cluster
+#    - virtual_machine
+
+user:
