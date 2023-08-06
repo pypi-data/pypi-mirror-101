@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "kak_plugins"
+version = "0.4.0"
+description = ""
+authors = ["abstractlyZach <zach3lee@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/abstractlyZach/kak_plugins"
+repository = "https://github.com/abstractlyZach/kak_plugins"
+keywords = ["kakoune", "plugin"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+GitPython = "^3.1.14"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+mypy = "^0.812"
+reorder-python-imports = "^2.4.0"
+coverage = {extras = ["toml"], version = "^5.5"}
+pytest-cov = "^2.11.1"
+black = "^20.8b1"
+flake8 = "^3.9.0"
+flake8-import-order = "^0.18.1"
+flake8-black = "^0.2.1"
+flake8-bugbear = "^21.4.3"
+flake8-bandit = "^2.1.2"
+flake8-annotations = "^2.6.2"
+codecov = "^2.1.11"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+github-permalink = "kak_plugins.github_permalink:main"
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["kak_plugins"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 82
+omit = ["src/kak_plugins/apis/clipboard.py", "src/kak_plugins/apis/kak.py"]
