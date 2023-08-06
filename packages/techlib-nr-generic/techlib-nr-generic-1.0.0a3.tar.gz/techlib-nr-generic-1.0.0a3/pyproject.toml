@@ -1,0 +1,54 @@
+[tool]
+[tool.poetry]
+name = "techlib-nr-generic"
+version = "1.0.0a3"
+description = "NR generic model REST API"
+license = "MIT"
+keywords = ["National", "Repository", "common", "model", "Invenio"]
+classifiers = ["Environment :: Web Environment", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Programming Language :: Python", "Topic :: Internet :: WWW/HTTP :: Dynamic Content", "Topic :: Software Development :: Libraries :: Python Modules", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.9", "Development Status :: 3 - Alpha"]
+authors = ["Mirek Simek <simeki@vscht.cz>"]
+readme = "README.md"
+packages = [{ include = "nr_generic" }]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+idutils = "^1.1.8"
+isbnlib = "^3.10.3"
+sphinx = { version = "^1.5.1", optional = true }
+python-stdnum = "^1.16"
+oarepo-invenio-model = "^2.0.0"
+techlib-nr-common = "^3.0.0a45"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.0.0"
+pytest-cov = "^2.10.1"
+oarepo = "^3.3"
+oarepo-ui = "^2.3.0"
+oarepo-micro-api = "^3.3.60"
+oarepo-mapping-includes = "<=1.2.0"
+oarepo-multilingual = "^2.5.0"
+oarepo-taxonomies = "^3.0.0a1"
+oarepo-references = "^1.9.0"
+oarepo-records-draft = "^5.0.0a7"
+pytest-runner = "^5.3.0"
+oarepo-fsm = "^1.5.0"
+oarepo-communities = "^2.0.1"
+techlib-nr-common = "^3.0.0a44"
+
+[tool.poetry.extras]
+docs = ["sphinx"]
+
+[tool.poetry.plugins."invenio_base.apps"]
+'nr_generic' = 'nr_generic:NRCommon'
+
+[tool.poetry.plugins."invenio_base.api_apps"]
+'nr_generic' = 'nr_generic:NRCommon'
+
+[tool.poetry.plugins."invenio_pidstore.minters"]
+"nr_generic" = "nr_generic.minters:nr_id_generic_minter"
+
+[tool.poetry.plugins."invenio_pidstore.fetchers"]
+"nr_generic" = "nr_generic.fetchers:nr_id_generic_fetcher"
+
+[tool.poetry.plugins."invenio_search.mappings"]
+"nr_common" = "nr_generic.mappings"
