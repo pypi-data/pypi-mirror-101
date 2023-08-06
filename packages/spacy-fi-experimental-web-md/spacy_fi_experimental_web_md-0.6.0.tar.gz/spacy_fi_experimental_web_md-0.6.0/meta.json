@@ -1,0 +1,32 @@
+{
+  "lang":"fi",
+  "name":"experimental_web_md",
+  "version":"0.6.0",
+  "description":"Finnish language model: POS tagger, dependency parser, lemmatizer, morphological features",
+  "author":"Antti Ajanki",
+  "email":"antti.ajanki@iki.fi",
+  "url":"https://github.com/aajanki/spacy-fi",
+  "license":"MIT",
+  "requirements":[
+    "voikko>=0.5"
+  ],
+  "sources":[
+    {
+      "name":"UD Finnish TDT",
+      "url":"https://github.com/UniversalDependencies/UD_Finnish-TDT",
+      "license":"CC BY-SA 4.0"
+    },
+    {
+      "name":"Finnish Internet Parsebank",
+      "url":"https://turkunlp.org/finnish_nlp.html#parsebank",
+      "license":"CC BY-SA"
+    }
+  ],
+  "spacy_version":">=3.0.5,<3.1.0",
+  "vectors":{
+    "width":200,
+    "vectors":20000,
+    "keys":499447,
+    "name":"fi_exp_web_md.vectors"
+  }
+}
