@@ -1,0 +1,9 @@
+#
+# Contributors in alphabetical order
+#
+# Notes
+# -----
+# hg log --template "{author}\n" | sort
+# git log --pretty="%an <%ae>" | sort
+# bzr log --long | grep "^committer" | cut -d " " -f 2- | sort
+#
