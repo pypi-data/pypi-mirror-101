@@ -1,0 +1,57 @@
+{% load i18n admin_urls static admin_list uikit_admin %}
+
+<div class="actions uk-child-width-expand uk-grid-medium uk-margin-bottom" uk-grid>
+  {# BLOCK ACTIONS #}
+  {% block actions %}
+    
+    {# Search field - Actions will be handled by admin_changelist.js #}
+    {% block search %}{% search_form cl %}{% endblock %}
+   
+  	{# Action form #} 
+    <div uk-grid class="uk-width-expand@s">
+
+		{% block actions-form %}
+		<div class="uk-width-expand uk-padding-remove-right">	
+			{% for field in action_form %}
+				<div class="uk-padding-remove">{% uk_element field 'uk-select' %}</div>
+			{% endfor %}
+		</div>	
+		{% endblock %}
+		
+		{% comment %}
+		{% block actions-submit %}
+		<div class="uk-padding-remove">
+			<button type="submit" class="uk-button button" title="{% translate "Run the selected action" %}" name="index" value="{{ action_index|default:0 }}"><span uk-icon="icon:  forward; ratio: 1"></span></button>
+		</div>
+		{% endblock %}
+		{% endcomment %}
+		
+    </div>
+    
+    <div class="uk-text-right uk-width-expand@m">
+    {% block actions-counter %}
+    {% if actions_selection_counter %}
+        <span class="uk-label uk-background-muted uk-text-secondary">
+        	<span uk-icon="icon: table; ratio: 0.75"></span> <span class="action-counter" data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
+        </span>
+        {% if cl.result_count != cl.result_list|length %}
+        
+        <span class="all hidden uk-label uk-label-warning uk-text-secondary" style="display: none"><span uk-icon="icon: warning; ratio: 0.75"></span> {{ selection_note_all }}</span>
+        
+        <span class="question hidden" style="display: none">
+            <a href="#" class="uk-button uk-button-small" title="{% translate "Click here to select the objects across all pages" %}">
+            	<span uk-icon="icon: expand; ratio: 0.75"></span>
+            		{% blocktranslate with cl.result_count as total_count %}Select all{% endblocktranslate %}
+            </a>
+        </span>
+        <span class="clear hidden" style="display: none"><a href="#" class="uk-button uk-button-small"><span uk-icon="icon: close; ratio: 0.75"></span> {% translate "Clear selection" %}</a></span>
+        {% endif %}
+    {% endif %}
+    {% endblock %}
+    
+    <span></span>
+    </div>
+    
+  {% endblock %}
+</div>
+
