@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "iscc-service"
+version = "1.1.0-beta.5"
+description = "ISCC Web Service API"
+license = "MIT"
+authors = ["Titusz Pan <tp@py7.de>"]
+readme = "README.md"
+homepage = "https://iscc.codes/"
+repository = "https://github.com/iscc/iscc-service"
+documentation = "https://github.com/iscc/iscc-service"
+keywords = ["iscc", "media", "identifier", "blockchain", "cli", "generator", "webservice", "api"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Adaptive Technologies",
+    "Topic :: Internet",
+    "Topic :: Multimedia",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: System :: Distributed Computing",
+    "Topic :: Text Processing :: Indexing",
+]
+
+[tool.poetry.scripts]
+iscc-service = 'iscc_service.main:run_server'
+iscc-service-init = 'iscc_service.init:init'
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+fastapi = "^0.63"
+iscc = {version = "^1.1.0b0", allow-prereleases = true, extras=["turbo"]}
+uvicorn = "^0.13"
+python-multipart = "^0.0.5"
+aiofiles = "^0.6.0"
+appdirs = "^1.4.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.0"
+black = {version = "19.10b0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"

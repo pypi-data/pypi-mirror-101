@@ -1,0 +1,133 @@
+Metadata-Version: 2.1
+Name: iscc-service
+Version: 1.1.0b5
+Summary: ISCC Web Service API
+Home-page: https://iscc.codes/
+License: MIT
+Keywords: iscc,media,identifier,blockchain,cli,generator,webservice,api
+Author: Titusz Pan
+Author-email: tp@py7.de
+Requires-Python: >=3.6.1,<4.0.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Adaptive Technologies
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Classifier: Topic :: Multimedia
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: System :: Distributed Computing
+Classifier: Topic :: Text Processing :: Indexing
+Requires-Dist: aiofiles (>=0.6.0,<0.7.0)
+Requires-Dist: appdirs (>=1.4.4,<2.0.0)
+Requires-Dist: fastapi (>=0.63,<0.64)
+Requires-Dist: iscc[turbo] (>=1.1.0b0,<2.0.0)
+Requires-Dist: python-multipart (>=0.0.5,<0.0.6)
+Requires-Dist: uvicorn (>=0.13,<0.14)
+Project-URL: Documentation, https://github.com/iscc/iscc-service
+Project-URL: Repository, https://github.com/iscc/iscc-service
+Description-Content-Type: text/markdown
+
+# iscc-service - ISCC Web Service API
+[![Version](https://img.shields.io/pypi/v/iscc-service.svg)](https://pypi.python.org/pypi/iscc-service/)
+[![Downloads](https://pepy.tech/badge/iscc-service)](https://pepy.tech/project/iscc-service)
+[![Pulls](https://shields.beevelop.com/docker/pulls/titusz/iscc-service.svg?style=flat-square)](https://hub.docker.com/r/titusz/iscc-service)
+
+> A REST OpenAPI Backend for creating [**ISCC codes**](https://iscc.codes) for digital media files.
+
+
+**Note**: This is work in progress. Use with care and at your own risk
+
+The Webservice is build with [FastAPI](https://github.com/tiangolo/fastapi) and makes
+use of the [ISCC reference implementation](<https://github.com/iscc/iscc-specs>) and
+the [ISCC Command Line Tool](https://github.com/iscc/iscc-cli) and includes an
+interactive API documentation:
+
+![Interactive ISCC Api Docs](screenshot.jpg)
+
+
+The Docker image is published at https://hub.docker.com/r/titusz/iscc-service
+
+
+## Setup for development
+
+If you are using [poetry](https://python-poetry.org/):
+
+- After checkout cd into code directory and run 'poetry install' to install dependencies.
+- Launch dev server with: 'uvicorn iscc_service.main:app --reload'
+- See API docs at: http://127.0.0.1:8080
+
+For the 'lookup' endpoint to work you must provide env variables for node connection.
+See [config.py](iscc_service/config.py)
+
+## Install via pip
+
+```bash
+$ pip3 install iscc-service
+```
+
+Run webservice via uvicorn
+
+```bash
+$ iscc-service
+INFO:     Started server process [18800]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+```
+
+## Publishing on Docker HUB:
+
+```bash
+docker login
+docker build -t iscc-service -f Dockerfile .
+docker run --rm -p 8080:8080 -it iscc-service
+docker tag iscc-service username/iscc-service:0.1.9
+docker push username/iscc-service:0.1.9
+```
+
+## Change Log
+
+### [0.2.4] - unreleased
+- Add `iscc_raw` field for with hex encoded iscc-code
+- Add new /generate/short_id entpoint
+- Add provisional granular `fingerprint` field for audio iscc-codes
+- Create meta-id from filename as fallback
+- Update to FastAPI 0.61
+
+### [0.2.3] - 2020-06-12
+- Use vendorized tika
+
+### [0.2.2] - 2020-06-12
+- Update to iscc-cli 0.9.11
+
+### [0.2.1] - 2020-05-13
+- Update to iscc-cli 0.9.8
+- More conservative lookup matching
+
+### [0.2.0] - 2020-05-01
+- Update to support flac and opus audio files
+
+### [0.1.9] - 2020-04-27
+
+- Support updated Content-ID Audio
+- Support incomplete ISCC codes
+- Updated dependencies
+
+### [0.1.8] - 2020-03-02
+
+- Add support for mobi files
+- Initial pypi release
+
+
+## License
+
+MIT © 2019-2020 Titusz Pan
+
