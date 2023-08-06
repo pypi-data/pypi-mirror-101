@@ -1,0 +1,35 @@
+include *.txt
+include *.md
+
+graft xrspatial
+
+prune docs
+prune *.egg-info
+
+global-exclude *.png
+prune conda.recipe
+prune img
+prune .idea
+
+include xrspatial/examples/*
+include xrspatial/examples/user_guide/*
+
+exclude examples/.ipynb_checkpoints/*
+exclude xrspatial/_version.py
+exclude xrspatial/__pycache__/*
+exclude xrspatial/examples/user_guide_idea/*
+exclude tile_idea.py
+exclude *.enc
+exclude .gitignore
+exclude .isort.cfg
+exclude *.dot
+exclude *.gif
+exclude *.svg
+exclude tox.ini
+exclude test_examples_cli.py
+include *.yml
+
+recursive-include examples *.gif
+recursive-include examples *.ipynb
+recursive-include examples *.py
+recursive-include examples *.yml
