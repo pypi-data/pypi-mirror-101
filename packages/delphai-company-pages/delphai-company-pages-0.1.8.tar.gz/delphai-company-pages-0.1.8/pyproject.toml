@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "delphai-company-pages"
+version = "0.1.8"
+description = ""
+authors = ["delphai <admin@delphai.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+azure-storage-blob = "^12.8.0"
+warcio = "^1.7.4"
+aiohttp = "^3.7.4"
+networkx = "^2.5"
+
+[tool.poetry.dev-dependencies]
+yapf = "^0.30.0"
+pep8-naming = "^0.11.1"
+flake8 = "^3.8.3"
+poethepoet = "^0.8.0"
+pytest = "^6.2.2"
+pytest-sugar = "^0.9.4"
+pytest-asyncio = "^0.14.0"
+pytest-snapshot = "^0.5.0"
+python-dotenv = "^0.15.0"
+
+
+[tool.poe.tasks]
+test = "pytest"
+publish = [
+  {cmd = "poetry version patch"},
+  {cmd = "poetry build"},
+  {cmd = "poetry publish --username ${PYPI_USERNAME} --password ${PYPI_PASSWORD}"},
+  {cmd = "poetry publish --username ${PYPI_USERNAME} --password ${PYPI_PASSWORD} -r testpypi"}
+]
+
+[tool.pytest.ini_options]
+addopts = "-p no:warnings"
+filterwarnings = [
+  "error"
+]
