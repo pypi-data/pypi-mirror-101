@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% include "markdown-parser.html" %}
+    {% if not view_only %}
+    	<link rel="stylesheet" href="/static/editor.css">
+    	<link rel="stylesheet" href="/static/accessibility.css">
+    	<script async src="/static/editor.js"></script>
+    {% endif %}
+    <link rel="stylesheet" href="/static/markdown.css">
+	{% if search_enabled %}
+		<div id="link-form" style="display: none">
+			<div>
+    			<input type="text" id="searchBar" placeholder="Search for linked note.">
+				<button onclick="toggleLinkForm()" class="btn">Cancel</button>
+			</div>
+    		<ul id="searchHits"></ul>
+		</div>
+	{% endif %}
+    <h2 id="post-title">{{ dataobj['title'] }}</h2>
+    {{ ", ".join(dataobj['tags']) }}
+    <br>
+
+    {{ dataobj['date'] }}
+    {% if dataobj['type'] == 'bookmark' or dataobj['type'] == 'pocket_bookmark' %}
+        <a href="{{ dataobj['url'] }}" rel="noopener">
+            Link
+        </a>
+    {% endif %}
+    <br>
+    {% if not view_only %}
+    	<div class="d-flex" id="post-btns">
+            <button onclick="toggleEditor(this)" class="btn">
+                <svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path></svg>
+                <span>Edit</span>
+            </button>
+            <form action="/dataobj/delete/{{ dataobj['id'] }}" method="delete" onsubmit="return confirm('Delete this item permanently?')" novalidate>
+            	{{ form.hidden_tag() }}
+            	<button class="btn btn-delete">
+              	    <svg class="octicon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path></svg>
+            	    <span>Delete</span>
+            	</button>
+            </form>
+            <label class="sr-only">
+            	<input type="checkbox" id="sr-checkbox">
+          	screenreader mode
+            </label>
+    	</div>
+    {% endif %}
+    <div id="content-cont" class="markdown-body">
+        <div id="content">
+        </div>
+	{% if not view_only %}
+            <textarea id="original-textarea" aria-label="Text editor">
+            </textarea>
+	{% endif %}
+
+	{% if backlinks %}
+	    <ul id="backlinks" style="padding: 0">
+	        <h1>Backlinks</h3>
+		{% for backlink in backlinks %}
+		    <li><a href="/dataobj/{{ backlink['id'] }}">{{ backlink["title"] }}</a></li>
+		{% endfor %}
+	    </ul>
+        {% endif %}
+    </div>
+    <br>
+    {% if not view_only %}
+    	<button class="sr-only" type="button" id="sr-savebutton">Save</button>
+    {% endif %}
+    <script>
+        // escape text for template literal - double slashes for python rendering and js rendering
+        /* {% set content = dataobj["content"]
+                            | replace("\\", "\\\\")
+
+                            | replace("`", "\\`")
+                            | replace("${", "\\${")
+                            | safe
+        %} */
+
+		
+        let contentDiv = document.getElementById("content");
+        function renderContent(content)
+        {
+	  return window.parser.render("${toc}\n\n" + content);
+        }
+        contentDiv.innerHTML = renderContent(`{{ content }}`);
+	{% if not view_only %}
+	    let editorDiv, oldContent, editor, savedContent = `{{ content }}`;
+	    let linkForm = document.getElementById("link-form");
+	
+	    {% if search_enabled %}
+	      let input = document.getElementById("searchBar");
+            {% else %}
+              let input = null;
+            {% endif %}
+	    let searchHits = document.getElementById("searchHits");
+
+	    function toggleLinkForm() {
+              {% if not search_enabled %} return {% endif %}
+	      if (linkForm.style.display == "none")
+	      {
+	        linkForm.style.display = "block";
+	      }
+	      else {
+	        linkForm.style.display = "none";
+	        input.value = "";
+	        searchHits.innerHTML = "";
+              }
+	    }
+            window.addEventListener("load", function() {
+              editor = new EasyMDE({
+                autofocus: true,
+                previewRender: function(content) {
+                  return renderContent(content);
+                },
+                toolbar: [
+                  "bold",
+                  "italic",
+                  "strikethrough",
+                  "heading",
+                  "code",
+                  "quote",
+                  "link",
+                  "image",
+                  "table",
+                  {
+                    name: "LaTeX",
+                    className: "fa fa-math",
+                    action: (editor) => {
+                      editor.codemirror.replaceSelection("$$\n$$")
+                    }
+                  },
+                  "side-by-side",
+                  "fullscreen",
+                  {
+                    name: "save",
+                    action: (editor) => {
+                      fetch(`${SCRIPT_ROOT}/dataobjs/{{dataobj['id']}}`, {
+                        method: "PUT",
+                        body: JSON.stringify({
+                          "content": editor.value()
+                        }),
+                        headers: {
+                          "content-type": "application/json"
+                        }
+                      })
+                      statusBtn.classList.add("fa-check-circle");
+                      statusBtn.classList.remove("fa-times");
+		      savedContent = editor.value();
+                    },
+                    className: "fa fa-save"
+                  },
+                  {% if search_enabled %}
+	            {
+		      name: "bidirBtn",
+		      action: (editor) => {
+		        toggleLinkForm();
+		      },
+		      className: "fa fa-arrow-alt-h"
+		    },
+                    {
+                      name: "status",
+                      className: "fa fa-check-circle status"
+                    },
+                  {% endif %}
+                ],
+                shortcuts: {
+                  "save": "Ctrl-S"
+                }
+              });
+              editor.value(`{{ content }}`)
+	      input?.addEventListener("input", async function() {
+	        let query = input.value;
+	        if (input.value !== "")
+	        {
+                  let searchQuery = await fetch(`${SCRIPT_ROOT}/search?query=${input.value}`, {
+                    "method": "GET"
+                  });
+                  if (searchQuery.ok && query == input.value) {
+                    let data = await searchQuery.json(), i = 0;
+                    searchHits.innerHTML = "";
+                    data.forEach(function(hit) {
+                      let resBtn = document.createElement("button");
+		      resBtn.textContent = hit["title"];
+	              resBtn.onclick = () => {
+		        editor.codemirror.replaceSelection(`[[[${hit["title"]}](/dataobj/${hit["id"]})]]`);
+	                linkForm.style.dislay = "none";
+                        toggleLinkForm();
+	              }
+	              searchHits.appendChild(resBtn);
+	            })
+                  }
+	        }
+              })
+
+              let statusBtn = document.querySelector(".status .fa");
+              editor.codemirror.on("change", function() {
+                statusBtn.classList.remove("fa-check-circle");
+                statusBtn.classList.add("fa-times")
+              })
+              oldContent = document.getElementById("content"), editorDiv = document.querySelector(".EasyMDEContainer");
+              editorDiv.classList.add("hidden");
+              document.getElementById("post-title").scrollIntoView(true);
+
+              /* Screenreader mode checkbox */
+              function toggleScreenReaderMode(cbox, editor)
+              {
+                return function ()
+                {
+                  if (cbox.checked) {
+                    editor.toTextArea();
+                    editor = null;
+                  } else {
+                    location.reload();
+                  }
+                }
+              }
+
+              /* Add screenreader checkbox toggle */
+              let srCbox = document.getElementById("sr-checkbox");
+              srCbox.onchange = toggleScreenReaderMode(srCbox, editor);
+
+              /* Screenreader save button handler */
+              function screenReaderSave(btn) {
+                fetch(`${SCRIPT_ROOT}/dataobjs/{{dataobj['id']}}`, {
+                  method: "PUT",
+                  body: JSON.stringify({
+                    "content": document.getElementById("original-textarea").value
+                  }),
+                  headers: {
+                    "content-type": "application/json"
+                  }
+                });
+                let saveAlert = document.createElement("span");
+                saveAlert.setAttribute("role", "alert");
+                let saveAlertText = document.createTextNode("Note saved");
+                saveAlert.appendChild(saveAlertText);
+                document.body.appendChild(saveAlert);
+              }
+
+              /* Add screenreader save button handler */
+              let srSaveBtn = document.getElementById("sr-savebutton");
+              srSaveBtn.onclick = screenReaderSave;
+            })
+
+
+            function toggleEditor(btn)
+            {
+              let btnText = btn.querySelector("span");
+              if (btnText.textContent == "Edit") {
+	        btnText.textContent = "Hide Editor";
+              }
+
+              else {
+	        btnText.textContent = "Edit";
+	        contentDiv.innerHTML = renderContent(savedContent);
+              }
+              oldContent.classList.toggle("hidden"), editorDiv.classList.toggle("hidden");
+            }
+	{% endif %}
+    </script>
+{% endblock %}
