@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: cm2utils
+Version: 0.0.3
+Summary: Some useful util functions
+Home-page: https://gitlab.com/cm2lab/util_module
+Author: CM2Lab
+Author-email: s.park@openest.eu
+License: UNKNOWN
+Keywords: utils
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Sources
+- `ExternFileParams.py`
+- `Utils.py`
+- `VtkGenerator.py`
+
+# Required pacakges
+- numpy: `conda install numpy`
+- scipy: `conda install scipy`
+- matplotlib: `conda install matplotlib`
+
+# Last update
+- April 07, 2021.
+
