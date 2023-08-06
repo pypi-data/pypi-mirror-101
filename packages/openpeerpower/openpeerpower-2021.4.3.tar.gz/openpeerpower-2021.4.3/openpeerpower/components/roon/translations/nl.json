@@ -1,0 +1,24 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Apparaat is al toegevoegd"
+        },
+        "error": {
+            "duplicate_entry": "Die host is al toegevoegd.",
+            "invalid_auth": "Ongeldige authencatie",
+            "unknown": "Onverwachte fout"
+        },
+        "step": {
+            "link": {
+                "description": "U moet Open Peer Power autoriseren in Roon. Nadat je op verzenden hebt geklikt, ga je naar de Roon Core-applicatie, open je Instellingen en schakel je Open Peer Power in op het tabblad Extensies.",
+                "title": "Autoriseer Open Peer Power in Roon"
+            },
+            "user": {
+                "data": {
+                    "host": "Host"
+                },
+                "description": "Voer de hostnaam of het IP-adres van uw Roon-server in."
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "domain": "deconz",
+  "name": "deCONZ",
+  "config_flow": true,
+  "documentation": "https://www.openpeerpower.io/integrations/deconz",
+  "requirements": ["pydeconz==77"],
+  "ssdp": [
+    {
+      "manufacturer": "Royal Philips Electronics"
+    }
+  ],
+  "codeowners": [],
+  "quality_scale": "platinum"
+}

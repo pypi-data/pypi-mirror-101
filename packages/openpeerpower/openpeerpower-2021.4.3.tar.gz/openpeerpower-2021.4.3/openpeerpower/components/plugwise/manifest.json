@@ -1,0 +1,9 @@
+{
+  "domain": "plugwise",
+  "name": "Plugwise",
+  "documentation": "https://www.openpeerpower.io/integrations/plugwise",
+  "requirements": ["plugwise==0.8.5"],
+  "codeowners": [],
+  "zeroconf": ["_plugwise._tcp.local."],
+  "config_flow": true
+}

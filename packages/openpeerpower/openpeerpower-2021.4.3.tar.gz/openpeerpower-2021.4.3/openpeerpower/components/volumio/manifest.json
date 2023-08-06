@@ -1,0 +1,9 @@
+{
+  "domain": "volumio",
+  "name": "Volumio",
+  "documentation": "https://www.openpeerpower.io/integrations/volumio",
+  "codeowners": [],
+  "config_flow": true,
+  "zeroconf": ["_Volumio._tcp.local."],
+  "requirements": ["pyvolumio==0.1.3"]
+}
