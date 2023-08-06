@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: ofpubsub
+Version: 0.7
+Summary: OnlyFunction PubSub
+Home-page: https://github.com/mejik/ofpubsub
+Author: Mejik
+Author-email: mejik.dev@gmail.com
+License: UNKNOWN
+Description: # Onlyfunction Pubsub
+        
+        ### Installation
+        
+        Add dependency in your `requirements.txt` file
+        
+        ofpubsub
+        
+        ## Kafka
+        
+        from ofpubsub import Kafka
+        
+        kafka = Kafka('access_key', 'secretkey')
+        
+        kafka.publish('topic', 'key', 'message')
+        
+        ## RabbitMQ
+        
+        from ofpubsub import RabbitMQ
+        
+        rabbit = RabbitMQ('access_key', 'secretkey')
+        
+        rabbit.publish('topic', 'message')
+        
+        
+        ## License
+        MIT License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown
