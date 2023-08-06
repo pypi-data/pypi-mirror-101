@@ -1,0 +1,6 @@
+[console_scripts]
+yaml-lsp = yaml_lsp.main:main
+
+[jupyter_lsp_spec_v1]
+jupyter-yaml-language-server = yaml_lsp.main:load
+
