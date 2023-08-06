@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: averager
+Version: 2.0.2
+Summary: Simple utilities for calculating averages
+Home-page: https://averager.readthedocs.io/
+Author: Ben Soyka
+Author-email: bensoyka@icloud.com
+License: MIT
+Project-URL: Source, https://github.com/bsoyka/averager
+Project-URL: Changelog, https://github.com/bsoyka/averager/releases
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+Description-Content-Type: text/markdown
+
+# Averager
+
+**Averager** is a simple way to calculate averages of values.
+
+```py
+>>> average([1, 2, 3])
+2
+
+>>> weighted_average([(1, 2), (2, 3)])
+1.6
+```
+
+[![Downloads](https://pepy.tech/badge/averager)](https://pepy.tech/project/averager)
+[![Supported Versions](https://img.shields.io/pypi/pyversions/averager.svg)](https://pypi.org/project/averager)
+[![Testing](https://img.shields.io/github/workflow/status/bsoyka/averager/Test%20with%20pytest?label=tests)](https://github.com/bsoyka/averager/actions?query=workflow%3A%22Test+with+pytest%22)
+[![License](https://img.shields.io/pypi/l/averager)](https://github.com/bsoyka/averager/blob/master/LICENSE)
+[![Version](https://img.shields.io/pypi/v/averager?label=latest)](https://pypi.org/project/averager)
+
+## Installation
+
+Averager is available on PyPI:
+
+```console
+$ python -m pip install averager
+```
+
+Averager officially supports Python 2.7 & 3.5+.
+
+## API Reference
+
+See [Read the Docs](https://averager.readthedocs.io) for Averager's documentation.
+
+
