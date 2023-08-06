@@ -1,0 +1,356 @@
+The system is: Windows - 10.0.17763 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Build started 4/10/2021 11:46:19 PM.
+Project "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\3.20.0\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "Debug\".
+  Creating directory "Debug\CompilerIdC.tlog\".
+InitializeBuildStatus:
+  Creating "Debug\CompilerIdC.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\HostX64\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc142.pdb" /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+  CMakeCCompilerId.c
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X64 Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\3.20.0\CompilerIdC\CompilerIdC.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx64\x64\cl.exe
+FinalizeBuildStatus:
+  Deleting file "Debug\CompilerIdC.tlog\unsuccessfulbuild".
+  Touching "Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate".
+Done Building Project "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\3.20.0\CompilerIdC\CompilerIdC.vcxproj" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.84
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+
+The C compiler identification is MSVC, found in "C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/3.20.0/CompilerIdC/CompilerIdC.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler:  
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Build started 4/10/2021 11:46:20 PM.
+Project "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\3.20.0\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "Debug\".
+  Creating directory "Debug\CompilerIdCXX.tlog\".
+InitializeBuildStatus:
+  Creating "Debug\CompilerIdCXX.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+ClCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\HostX64\x64\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc142.pdb" /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+  CMakeCXXCompilerId.cpp
+Link:
+  C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\HostX64\x64\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X64 Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\3.20.0\CompilerIdCXX\CompilerIdCXX.exe
+PostBuildEvent:
+  for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+  :VCEnd
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910\bin\Hostx64\x64\cl.exe
+FinalizeBuildStatus:
+  Deleting file "Debug\CompilerIdCXX.tlog\unsuccessfulbuild".
+  Touching "Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate".
+Done Building Project "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\3.20.0\CompilerIdCXX\CompilerIdCXX.vcxproj" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.78
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+
+The CXX compiler identification is MSVC, found in "C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/3.20.0/CompilerIdCXX/CompilerIdCXX.exe"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_bd868.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CMakeCCompilerABI.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_bd868.dir\Debug\\" /Fd"cmTC_bd868.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCCompilerABI.c"
+  cmTC_bd868.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_bd868.exe
+
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_a5e3f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CMakeCXXCompilerABI.cpp
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_a5e3f.dir\Debug\\" /Fd"cmTC_a5e3f.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.20\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_a5e3f.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_a5e3f.exe
+
+
+
+Determining if the include file string.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_6ab0a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6ab0a.dir\Debug\\" /Fd"cmTC_6ab0a.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_6ab0a.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_6ab0a.exe
+
+
+
+Determining if the include file memory.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_99ada.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_99ada.dir\Debug\\" /Fd"cmTC_99ada.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_99ada.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_99ada.exe
+
+
+
+Determining if the include file stdlib.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_9a8ea.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_9a8ea.dir\Debug\\" /Fd"cmTC_9a8ea.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_9a8ea.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_9a8ea.exe
+
+
+
+Determining if the include file stdio.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_f909f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_f909f.dir\Debug\\" /Fd"cmTC_f909f.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_f909f.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_f909f.exe
+
+
+
+Determining if the include file math.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_c233c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c233c.dir\Debug\\" /Fd"cmTC_c233c.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_c233c.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_c233c.exe
+
+
+
+Determining if the include file float.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_14728.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_14728.dir\Debug\\" /Fd"cmTC_14728.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_14728.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_14728.exe
+
+
+
+Determining if the include file time.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_d8121.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_d8121.dir\Debug\\" /Fd"cmTC_d8121.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_d8121.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_d8121.exe
+
+
+
+Determining if the include file stdarg.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_a547a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a547a.dir\Debug\\" /Fd"cmTC_a547a.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_a547a.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_a547a.exe
+
+
+
+Determining if the include file ctype.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_dbb3e.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_dbb3e.dir\Debug\\" /Fd"cmTC_dbb3e.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_dbb3e.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_dbb3e.exe
+
+
+
+Determining if the include file assert.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_817df.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_817df.dir\Debug\\" /Fd"cmTC_817df.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_817df.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_817df.exe
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_eb383.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_eb383.dir\Debug\\" /Fd"cmTC_eb383.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_eb383.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_eb383.exe
+
+
+
+Determining if the include file inttypes.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_750af.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_750af.dir\Debug\\" /Fd"cmTC_750af.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_750af.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_750af.exe
+
+
+
+Determining if the include file sys/stat.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_788f8.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_788f8.dir\Debug\\" /Fd"cmTC_788f8.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_788f8.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_788f8.exe
+
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_98afa.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckIncludeFile.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_98afa.dir\Debug\\" /Fd"cmTC_98afa.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckIncludeFile.c"
+  cmTC_98afa.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_98afa.exe
+
+
+
+Determining if files malloc.h exist passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_5279a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  OPJ_HAVE_MALLOC_H.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_5279a.dir\Debug\\" /Fd"cmTC_5279a.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CheckIncludeFiles\OPJ_HAVE_MALLOC_H.c"
+  cmTC_5279a.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_5279a.exe
+
+
+
+Determining if the _aligned_malloc exist passed with the following output:
+Change Dir: C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/MSBuild/Current/Bin/MSBuild.exe cmTC_c4867.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.9.0+5e4b48a27 for .NET Framework
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Microsoft (R) C/C++ Optimizing Compiler Version 19.28.29913 for x64
+  Copyright (C) Microsoft Corporation.  All rights reserved.
+  CheckSymbolExists.c
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_c4867.dir\Debug\\" /Fd"cmTC_c4867.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\CheckSymbolExists.c"
+  cmTC_c4867.vcxproj -> C:\Users\runneradmin\AppData\Local\Temp\pip-req-build-x_tbt40s\openjpeg\src\openjpeg\build\CMakeFiles\CMakeTmp\Debug\cmTC_c4867.exe
+
+
+File C:/Users/runneradmin/AppData/Local/Temp/pip-req-build-x_tbt40s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <malloc.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _aligned_malloc
+  return ((int*)(&_aligned_malloc))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
