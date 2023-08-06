@@ -1,0 +1,112 @@
+Metadata-Version: 2.1
+Name: austere3d
+Version: 1.0.0
+Summary: Create your own AUtoSTEREograms
+Home-page: https://gitlab.com/RolfSander/austere
+Author: Rolf Sander
+Author-email: mail@rolf-sander.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Natural Language :: English
+Classifier: Topic :: Multimedia :: Graphics
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pillow
+Requires-Dist: scipy
+
+# Autostereogram
+
+An autostereogram creates the visual illusion of a three-dimensional
+scene from a single two-dimensional image [1]. The program `Austere`
+(AUtoSTEREogram) creates such images based on two input files (a
+seamless wallpaper and a depth map):
+
+![](http://www.rolf-sander.net/software/austere/austere-recipe.png)
+
+## Dependencies:
+
+Austere needs the python modules `matplotlib`, `numpy`, `PIL`, `scipy`,
+`tkFileDialog`, `Tkinter`, `tkMessageBox`, and `ttk`.
+
+## Installation:
+
+First, install the package with pip:
+
+`pip3 install austere`
+
+Next, find the location where the installed files are:
+
+`pip3 show -f austere`
+
+The location could be something like
+`$HOME/.local/lib/python3.6/site-packages/austere`. Copy the whole
+`austere` directory to a place where you have read and write access.
+
+## Usage:
+
+This package provides three possibilities to create autostereograms: a
+command line tool, a GUI, and a GIMP plugin.
+
+### Command line version:
+
+Run the command
+
+`austere.py`
+
+to create an autostereogram from the wallpaper `quilt.png` and the
+depthmap `cube.png`. The output will be saved in the `output`
+subdirectory.
+
+Change the definitions of `wallpaperfile` and `depthmapfile` in the
+python script to create other pictures. In addition, the values of
+`d_invert`, `d_factor` and `symmetry` can be used to change the created
+images.
+
+### GUI:
+
+Run the command
+
+`austere-gui.py`
+
+to start the GUI. Select one of the wallpaper images from the
+`wallpaper` directory and one of the depthmap images from the `depthmap`
+directory.
+
+### GIMP plugin:
+
+Copy the file `austere-plugin.py` into your GIMP plug-ins directory
+(e.g., $HOME/.gimp-2.8/plug-ins).
+
+Start GIMP. Open a wallpaper image (must be RGB mode without
+transparency, i.e., no alpha channel). Open a depthmap image (must be
+Grayscale mode). Then select the new item `Autostereogram...` in the
+`Filters/Render` menu.
+
+The GIMP plug-in is slower than the command line version or the GUI.
+
+## Implementation:
+
+The algorithm used by `Austere` is based on an article in the German
+edition of Scientific American from 1995 [2].
+
+See depthmap/README for more information about depth maps.
+
+See wallpaper/README for more information about seamless wallpapers.
+
+## References:
+
+[1] Wikipedia. Autostereogram
+    https://en.wikipedia.org/wiki/Autostereogram
+
+[2] M. Simeth and R. Sander. Mathematische Unterhaltungen: Der kleine
+    Hobbit und das Autostereogramm. Spektrum der Wissenschaft, Jan.,
+    10-15 (1995)
+    http://www.spektrum.de/magazin/der-kleine-hobbit-und-das-autostereogramm/822061
+
+
+
