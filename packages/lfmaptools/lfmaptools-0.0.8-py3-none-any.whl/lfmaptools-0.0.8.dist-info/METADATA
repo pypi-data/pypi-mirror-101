@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: lfmaptools
+Version: 0.0.8
+Summary: Mapping tools for LaharFlow data
+Home-page: UNKNOWN
+Author: Mark Woodhouse
+Author-email: mark.woodhouse@bristol.ac.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: ipython (>7numpy>=1.19)
+Requires-Dist: contextily (>=1.1)
+Requires-Dist: matplotlib (>=3.3)
+Requires-Dist: shapely
+Requires-Dist: pandas
+Requires-Dist: geopandas
+Requires-Dist: xarray
+Requires-Dist: rasterio
+Requires-Dist: rioxarray
+Requires-Dist: pyproj (>=2.6)
+Requires-Dist: scikit-image
+Requires-Dist: scipy
+Requires-Dist: jenkspy
+Requires-Dist: utm
+Requires-Dist: decorator (<5,>=4.3)
+Requires-Dist: networkx
+Requires-Dist: osmnx
+Requires-Dist: folium
+
+# LFMapTools
+
+This is a package for post-processing output from LaharFlow.
+
