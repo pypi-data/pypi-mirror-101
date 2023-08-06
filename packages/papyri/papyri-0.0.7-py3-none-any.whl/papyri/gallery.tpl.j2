@@ -1,0 +1,12 @@
+{% extends "base.tpl.j2" %}
+{%block api%}
+        {% for m,figs in figmap.items() %}
+            <h2>{{m}}</h2>
+            {% for impath, link, name in figs %}
+                {% if loop.changed(link) %}
+                    <h3><a href='{{link}}{{ext}}'>{{name}}</a></h3>
+                {% endif %}
+                <img async=on src='{{impath}}'/>
+            {%endfor%}
+        {%endfor%}
+{% endblock %}
