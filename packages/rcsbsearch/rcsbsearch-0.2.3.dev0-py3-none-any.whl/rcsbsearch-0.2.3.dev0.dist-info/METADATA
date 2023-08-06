@@ -1,0 +1,131 @@
+Metadata-Version: 2.1
+Name: rcsbsearch
+Version: 0.2.3.dev0
+Summary: Access the RCSB Search API
+Home-page: https://github.com/sbliven/rcsbsearch
+Author: Spencer Bliven
+Author-email: spencer.bliven@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Development Status :: 4 - Beta
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Typing :: Typed
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: jsonschema
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: myst-parser ; extra == 'docs'
+Provides-Extra: progressbar
+Requires-Dist: tqdm ; extra == 'progressbar'
+Provides-Extra: tests
+Requires-Dist: tox ; extra == 'tests'
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: black ; extra == 'tests'
+Requires-Dist: flake8 ; extra == 'tests'
+Requires-Dist: mypy ; extra == 'tests'
+
+[![PyPi Release](https://img.shields.io/pypi/v/rcsbsearch.svg)](https://pypi.org/project/rcsbsearch/)
+[![Build Status](https://travis-ci.org/sbliven/rcsbsearch.svg?branch=master)](https://travis-ci.org/sbliven/rcsbsearch)
+[![Documentation Status](https://readthedocs.org/projects/rcsbsearch/badge/?version=latest)](https://rcsbsearch.readthedocs.io/en/latest/?badge=latest)
+
+# rcsbsearch
+
+Python interface for the RCSB search API.
+
+Currently the 'text search' part of the API has been implemented.
+
+This package requires python 3.7 or later.
+
+## Example
+
+Here is a quick example of how the package is used. Two syntaxes are available for
+constructing queries: an "operator" API using python's comparators, and a "builder"
+syntax where terms are chained together. Which to use is a matter of preference.
+
+### Operator example
+
+Here is an example from the [RCSB Search
+API](http://search.rcsb.org/#search-example-1) page, using the operator syntax. This
+query finds symmetric dimers having a twofold rotation with the DNA-binding domain of
+a heat-shock transcription factor.
+
+    from rcsbsearch import TextQuery
+    from rcsbsearch import rcsb_attributes as attrs
+
+    # Create terminals for each query
+    q1 = TextQuery('"heat-shock transcription factor"')
+    q2 = attrs.rcsb_struct_symmetry.symbol == "C2"
+    q3 = attrs.rcsb_struct_symmetry.kind == "Global Symmetry"
+    q4 = attrs.rcsb_entry_info.polymer_entity_count_DNA >= 1
+
+    # combined using bitwise operators (&, |, ~, etc)
+    query = q1 & q2 & q3 & q4  # AND of all queries
+
+    # Call the query to execute it
+    for assemblyid in query("assembly"):
+        print(assemblyid)
+
+### Builder Example
+
+Here is the same example using the builder syntax
+
+    from rcsbsearch import TextQuery
+
+    # Start with a Attr or TextQuery, then add terms
+    results = TextQuery('"heat-shock transcription factor"') \
+        .and_("rcsb_struct_symmetry.symbol").exact_match("C2") \
+        .and_("rcsb_struct_symmetry.kind").exact_match("Global Symmetry") \
+        .and_("rcsb_entry_info.polymer_entity_count_DNA").greater_or_equal(1) \
+        .exec("assembly")
+
+    # Exec produces an iterator of IDs
+    for assemblyid in results:
+        print(assemblyid)
+
+## Installation
+
+Get it from pypi:
+
+    pip install rcsbsearch
+
+Or, download from [github](https://github.com/sbliven/rcsbsearch)
+
+## Documentation
+
+Detailed documentation is at [rcsbsearch.readthedocs.io](https://rcsbsearch.readthedocs.io/en/latest/)
+
+## License
+
+Code is licensed under the BSD 3-clause license. See [LICENSE](LICENSE) for details.
+
+## Citing rcsbsearch
+
+Please cite the rcsbsearch package by URL:
+
+> https://rcsbsearch.readthedocs.io
+
+You should also cite the RCSB service this package utilizes:
+
+> Yana Rose, Jose M. Duarte, Robert Lowe, Joan Segura, Chunxiao Bi, Charmi
+> Bhikadiya, Li Chen, Alexander S. Rose, Sebastian Bittrich, Stephen K. Burley,
+> John D. Westbrook. RCSB Protein Data Bank: Architectural Advances Towards
+> Integrated Searching and Efficient Access to Macromolecular Structure Data
+> from the PDB Archive, Journal of Molecular Biology, 2020.
+> DOI: [10.1016/j.jmb.2020.11.003](https://doi.org/10.1016/j.jmb.2020.11.003)
+
+## Developers
+
+For information about building and developing `rcsbsearch`, see
+[CONTRIBUTING.md](CONTRIBUTING.md)
+
+
