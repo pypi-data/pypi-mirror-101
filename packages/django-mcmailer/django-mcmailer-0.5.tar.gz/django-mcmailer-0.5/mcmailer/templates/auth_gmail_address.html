@@ -1,0 +1,15 @@
+{% extends "no_index_base.html" %}
+{% block content %}
+    <form method="post" action="{% url 'mcmailer:connect_gmail' %}">
+        {% csrf_token %}
+        <label>Enter your Gmail address: <input type="text" name="email" required></label>
+        {% comment %}<label>Select a Gmail Address:
+        <select name="email" required>
+            {% for email_address in email_addresses %}
+                <option value="{{ email_address.pk }}">{{ email_address.email }}</option>
+            {% endfor %}
+        </select>
+    </label>{% endcomment %}
+        <input type="submit">
+    </form>
+{% endblock %}

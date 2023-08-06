@@ -1,0 +1,11 @@
+include README.rst
+recursive-include templates *
+recursive-include mcmailer/templates *
+recursive-include mcmailer/utils *
+recursive-include mcmailer/static *
+
+# Exclude the django_project because we need this only for development
+prune django_project
+
+global-exclude __pycache__
+global-exclude *.py[co]
