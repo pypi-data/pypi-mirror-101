@@ -1,0 +1,36 @@
+[build-system]
+requires = ["flit_core >=2,<3"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "papyri"
+author = "Matthias Bussonnier"
+author-email = "bussonniermatthias@gmail.com"
+home-page = "https://github.com/Carreau/papyri"
+classifiers = ["License :: OSI Approved :: MIT License"]
+description-file="Readme.md"
+requires-python=">=3.8"
+requires=[
+    "urwid",
+    "httpx",
+    "numpydoc",
+    "cachetools",
+    "pygments",
+    "black",
+    "there",
+    "rich",
+    "jedi",
+    "typer",
+    "velin", 
+    "quart-trio",
+    "quart<0.14",
+    "toml",
+    "flatlatex",
+]
+
+[tool.flit.scripts]
+papyri = "papyri:main"
+
+[tool.pytest.ini_options]
+addopts = "--durations=10"
+filterwarnings = "ignore:The module numpy.dual.*:DeprecationWarning"
