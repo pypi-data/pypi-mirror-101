@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: s3dol
+Version: 0.0.2
+Summary: s3 (through boto3) with a simple (dict-like or list-like) interface
+Home-page: https://github.com/i2mint/s3dol
+Author: OtoSense
+License: apache-2.0
+Platform: any
+Description-Content-Type: text/markdown
+Requires-Dist: dol
+Requires-Dist: botocore
+Requires-Dist: boto3
+
+
+# s3dol
+s3 (through boto3) with a simple (dict-like or list-like) interface
+
+
+To install:	```pip install s3dol```
+
+
