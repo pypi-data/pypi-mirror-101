@@ -1,0 +1,13 @@
+# Rule handle KeyMase 300 GPS
+# Actualy it just detect an usb-serial, 
+# assumes it is the GPS and create a /dev/KeyMaze300 symlink
+
+#USB serial Device ID : 067b:2303
+
+SUBSYSTEM!="tty", GOTO="keymaze_rules_end"
+
+SYSFS{idVendor}=="067b", SYSFS{idProduct}=="2303", SUBSYSTEM=="tty", ACTION=="add", KERNEL=="ttyUSB[0-9]*", SYMLINK="KeyMaze300", GROUP="plugdev", MODE="0664", RUN+="/etc/hotplug/usb/gpsd.hotplug remove $root/%k"
+SYSFS{idVendor}=="067b", SYSFS{idProduct}=="2303", SUBSYSTEM=="tty", ACTION=="remove", KERNEL=="ttyUSB[0-9]*", RUN+="/etc/hotplug/usb/gpsd.hotplug remove $root/%k"
+
+
+LABEL="keymaze_rules_end"
