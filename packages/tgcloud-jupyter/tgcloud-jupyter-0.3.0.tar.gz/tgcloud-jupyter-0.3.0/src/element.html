@@ -1,0 +1,162 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style type="text/css">
+    /* MOBILE style */
+@media screen and (max-width: 992px) {
+  /*
+   * In Mobile, hide the tabs controls and undo some potential damage done by the accordion
+   */
+  .responsive-tabs .nav-tabs,
+  .responsive-tabs .tab-content .collapse.active:not(.in) {
+      display: none;
+  }
+  .responsive-tabs .tab-content .collapse.in,
+  .responsive-tabs .tab-content .collapsing {
+      display: block;
+  }
+}
+
+
+/* DESKTOP style */
+@media screen and (min-width: 991px) {
+  /*
+   * In desktop, hide the accordion's controls and undo some potential damage done on the active tab
+   */
+  .responsive-tabs .panel-heading {
+      display: none;
+  }
+  .responsive-tabs > .active {
+      height: auto !important;
+  }
+}
+
+
+/* To make it a bit prettier */
+body {
+  padding: 15px;
+}
+html , body {
+  height: 100%;
+  background: #f7f7f7;
+}
+.tab-content .panel-heading {
+  padding: 0;
+}
+
+.tab-content a {
+  display: block;
+  margin-bottom: -1px;
+  padding: 10px 15px;
+  border: solid #ccc;
+  border-width: 1px 0;
+}
+.table{
+  background: #ffffff;
+  box-shadow: 2px 2px 5px #aaaaaa;
+}
+.welcome{
+  padding: 3px;
+  background: #ffffff;
+  box-shadow: 2px 2px 5px #aaaaaa;
+  border-radius: 5px;
+  border-left: 10px solid #e15f5f;
+}
+.nav-tabs{
+  margin:1%;
+}
+.welcome p{
+  padding: 1%;
+  color: #f17790;
+  margin: 0;
+}
+#tab1 h4{
+  margin: 2% 0;
+}
+#tab1 i.fa-compass{
+  color: #faa70e;
+}
+.fa-file-alt{
+  color: #3a8be5;
+}
+.actions-ul{
+  list-style: none;
+  padding: 5px 25px;
+  padding: 0px;
+  box-shadow: 2px 2px 5px #aaaaaa;
+  width: max-content;
+}
+.actions-ul li a{
+  padding: 5px 25px;
+}
+</style>
+<div class="responsive-tabs">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Tab 1</a>
+        </li>
+        <li role="presentation" class="">
+            <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Tab 2</a>
+        </li>
+    </ul>
+
+    <div class="welcome">
+    	<p>Welcome to TigerGraph Cloud!</p>
+    </div>
+
+    <div id="tabs-content" class="tab-content panel-group">
+        <div class="panel-heading" role="tab" id="heading1">
+            <a href="#tab1" class="" role="button" data-toggle="collapse" data-parent="tabs-content" aria-expanded="true"
+               aria-controls="tab1">Tab 1</a>
+        </div>
+
+        <div id="tab1" role="tabpanel" class="tab-pane active panel-collapse collapse in" aria-labelledby="heading1">
+        	<h4>My solutions <i class="fa fa-compass" aria-hidden="true"></i></h4>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">Name</th>
+						<th scope="col">Tag</th>
+						<th scope="col">Status</th>
+						<th scope="col">Instance</th>
+						<th scope="col">Creation Date</th>
+						<th scope="col">Last Upadated</th>
+						<th scope="col">Actions <i class="fa fa-cog" aria-hidden="true"></i></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row"><i class="fa fa-virus" aria-hidden="true"></th>
+						<td>Mar-24-2021</td>
+						<td>covid-19</td>
+						<td>Stopped</td>
+						<td>TG.Free us-west-1</td>
+						<td>03/24/2021</td>
+						<td>03/29/2021</td>
+						<td>
+							<i class="fa fa-tasks" aria-hidden="true"></i>
+							<ul class="actions-ul">
+								<li><a href="#">Start</a></li>
+								<li><a href="#">Stop</a></li>
+								<li><a href="#">Manage</a></li>
+							</ul>
+						</td>
+					</tr>	
+				</tbody>
+			</table>
+        </div>
+
+        <div class="panel-heading" role="tab" id="heading2">
+            <a href="#tab2" class="collapsed" role="button" data-toggle="collapse" data-parent="tabs-content"
+               aria-expanded="true" aria-controls="tab2">Tab 2</a>
+        </div>
+
+        <div id="tab2" role="tabpanel" class="tab-pane panel-collapse collapse" aria-labelledby="heading2">
+           
+        </div>
+
+
+    </div>
+</div>
+
