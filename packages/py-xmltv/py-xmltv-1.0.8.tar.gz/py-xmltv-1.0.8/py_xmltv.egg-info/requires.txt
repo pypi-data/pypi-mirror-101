@@ -1,0 +1,13 @@
+setuptools
+sh
+xsdata
+
+[build]
+jingtrang
+pytest
+sh
+xsdata[cli]
+
+[test]
+pytest
+tox
