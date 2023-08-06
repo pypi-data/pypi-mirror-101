@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: PyYep
+Version: 0.0.2.dev0
+Summary: A simple schema builder for value parsing and validation
+Home-page: https://github.com/Daniel775/PyYep
+Author: Daniel Montalvão Bomfim
+Author-email: daniellsmv@hotmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/Daniel775/PyYep/issues
+Description: # PyYep
+        
+        PyYep is a python schema builder for value parsing and validation. Define a schema, transform a value to match and validate the inputs with existing validator or custom functions.
+        
+        PyYep is heavily inspired by [Yup](https://github.com/jquense/yup)
+        
+        [Docs](https://daniel775.github.io/PyYep/)
+        
+        ## Install
+        
+        ```sh
+        pip install PyYep
+        ```
+        
+        
+        ## Usage
+        
+        You define and create schema objects with its inputs and validation methods. Then use the verify method to check the schema. A ValidationError will be raised if some input value does not match the validation.
+        
+        ```python
+        from PyYep import Schema, InputItem, ValidationError
+        
+        schema = Schema([
+        	InputItem('name', input_object, 'path-to-input_object-value-property-or-method').string().email(),
+        	InputItem('name', input_object, 'path-to-input_object-value-property-or-method').number().min(10).max(100),
+        ], abort_early=False) 
+        
+        // check validity
+        
+        try:
+        	result = schema.validate()
+        	# handle result
+        except ValidationError:
+        	# handle fail
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
