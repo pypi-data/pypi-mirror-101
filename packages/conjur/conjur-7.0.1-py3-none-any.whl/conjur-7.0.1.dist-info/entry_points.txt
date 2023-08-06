@@ -1,0 +1,6 @@
+[console_scripts]
+conjur = conjur:Cli.launch
+
+[setuptools.installation]
+eggsecutable = conjur:Cli.launch
+
