@@ -1,0 +1,13 @@
+---
+- project:
+    templates:
+      - check-requirements
+      - openstack-python36-jobs
+      - publish-to-pypi
+      - tripleo-standalone-multinode-ipa-pipeline
+    check:
+      jobs:
+      - tripleo-ipa-centos-8-molecule
+    gate:
+      jobs:
+      - tripleo-ipa-centos-8-molecule

@@ -1,0 +1,8 @@
+skip_list:
+  - experimental  # all rules tagged as experimental
+  - no-changed-when  # Commands should not change things if nothing needs doing
+
+warn_list:
+  - literal-compare  # Don't compare to literal True/False
+  - unnamed-task  # All tasks should be named
+  - var-spacing  # Variables should have spaces before and after:  {{ var_name }}

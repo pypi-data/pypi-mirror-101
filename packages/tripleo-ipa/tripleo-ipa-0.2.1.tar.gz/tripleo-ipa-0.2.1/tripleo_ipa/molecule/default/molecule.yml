@@ -1,0 +1,52 @@
+---
+driver:
+  name: docker
+log: true
+
+platforms:
+  - name: centos8
+    hostname: test-0.example.test
+    image: centos/centos:centos8
+    registry:
+      url: quay.io
+    security_opts:
+      - seccomp=unconfined
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/pki/rpm-gpg:/etc/pki/rpm-gpg
+    dockerfile: Dockerfile
+    network_mode: host
+    environment: &env
+      http_proxy: "{{ lookup('env', 'http_proxy') }}"
+      https_proxy: "{{ lookup('env', 'https_proxy') }}"
+
+provisioner:
+  name: ansible
+  log: true
+  env:
+    ANSIBLE_STDOUT_CALLBACK: yaml
+    ANSIBLE_ROLES_PATH: "${ANSIBLE_ROLES_PATH:-/usr/share/ansible/roles}:${HOME}/zuul-jobs/roles"
+    ANSIBLE_LIBRARY: "${ANSIBLE_LIBRARY:-/usr/share/ansible/plugins/modules}"
+    ANSIBLE_FILTER_PLUGINS: "${ANSIBLE_FILTER_PLUGINS:-/usr/share/ansible/plugins/filter}"
+  inventory:
+    hosts:
+      all:
+        hosts:
+          centos8:
+            ansible_python_interpreter: /usr/bin/python3
+
+scenario:
+  test_sequence:
+    - destroy
+    - create
+    - prepare
+    - converge
+    - verify
+    - destroy
+
+verifier:
+  name: testinfra
