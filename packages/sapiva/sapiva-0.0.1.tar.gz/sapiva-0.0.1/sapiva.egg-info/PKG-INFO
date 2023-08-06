@@ -1,0 +1,54 @@
+Metadata-Version: 1.1
+Name: sapiva
+Version: 0.0.1
+Summary: Sapi makes creating virtual assitence very simple
+Home-page: UNKNOWN
+Author: Parteek Deol
+Author-email: 610078787@musd.net
+License: MIT
+Description: Sapi makes creating Virtual Assistant very simple. Sapi uses the pyttsx3 engine to function
+        
+        Here are some functions:
+        
+            speak():
+                speak() allows you to make your Virtual Assistant talk.
+                Example:
+                speak('Hello, World')
+        
+            create():
+                create() allows you to make a file with your Virtual Assistant voice.
+                Example:
+                speak('Hello, World', 'test.mp4')
+            
+            set_rate():
+                set_rate() allows you to set the rate your Virtual Assistant voice.
+                Example:
+                set_rate(125)
+        
+            set_volume():
+                set_volume() allows you to set the volume your Virtual Assistant voice.
+                Example:
+                set_volume(1.0)
+        
+            set_gender():
+                set_gender() allows you to set the voice your Virtual Assistant.
+                Example:
+                set_gender(voices[1].id) for a female voice
+                set_gender(voices[0].id) for a male voice
+        
+        
+        Change Log
+        ==========
+        
+        0.0.1 (4/9/2021)
+        ----------------
+        - First Release
+        
+        Created By: Parteek Deol (http://parteekdeol.netlify.app)
+Keywords: robot
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
