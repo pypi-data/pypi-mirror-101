@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: flowfusic-cli
+Version: 0.1.1
+Summary: Command line tool for Flowfusic
+Home-page: https://github.com/flowfusic/flowfusic-cli
+Author: Flowfusic sp. z o.o.
+Author-email: support@flowfusic.com
+License: UNKNOWN
+Keywords: flowfusic
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: click (==7.1.2)
+Requires-Dist: clint (==0.5.1)
+Requires-Dist: halo (==0.0.31)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: marshmallow (==3.0.0a1)
+Requires-Dist: pytz (>=2016.10)
+Requires-Dist: tabulate (==0.8.7)
+Requires-Dist: pathlib2 (==2.3.5)
+Requires-Dist: PyYAML
+Requires-Dist: raven
+Requires-Dist: scandir ; python_version < "3.5"
+
+<p align="center">
+  <img src="https://www.flowfusic.com/brandmark-design_transparent_for_web.png" width="350">
+</p>
+
+
+# flowfusic-cli
+
+Flowfusic's command line tool for project visualization. The CLI connects your Flowfusic projects with your local Paraview postprocessing software.
+
+Quick Start
+-----------
+
+1.  Create a free Flowfusic account at [flowfusic.com](https://www.flowfusic.com)
+
+2. Install the cli:
+
+   ```
+   $ pip install flowfusic-cli
+   ```
+
+3. Login with the cli by typing:
+
+   ```
+   $ flowfusic login
+   ```
+
+This step will open a web browser and ask for your login credentials.
+
+4. You can now visualize your Flowfusic projects using Paraview by running
+
+   ``` 
+   $ flowfusic paraview --paraview PATH/TO/PARAVIEW 
+   ```
+
+   Note that if paraview is already accessible in your path, it is sufficient to run
+
+   ``` 
+   $ flowfusic paraview
+   ```
+
+
+
+## Acknowledgements
+
+We would like to acknowledge excellent Open Source CLI tools created by FloydHub.
+
+
