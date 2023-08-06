@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: hyrule-compendium-cli
+Version: 3.0.1
+Summary: The official CLI for the Hyrule Compendium API
+Home-page: https://github.com/gadhagod/Hyrule-Compendium-CLI
+Author: Aarav Borthakur
+Author-email: gadhaguy13@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pyrule-compendium (==2.3.0)
+Requires-Dist: click
+Requires-Dist: Pygments
+Requires-Dist: termcolor
+
+# Hyrule Compendium CLI
+The official CLI for the Hyrule Compendium API.
+
+## Installation
+
+    $ pip3 install hyrule-compendium-cli
+
+## Usage
+See documentation.
+
