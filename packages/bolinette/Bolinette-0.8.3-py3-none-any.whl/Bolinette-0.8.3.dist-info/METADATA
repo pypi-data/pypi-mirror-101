@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: Bolinette
+Version: 0.8.3
+Summary: An asynchronous Python web framework
+Home-page: https://github.com/TheCaptainCat/bolinette
+Author: Pierre Chat
+Author-email: pierrechat@outlook.com
+License: MIT
+Keywords: Bolinette,Web,Framework,Async
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp (==3.7.4)
+Requires-Dist: aiohttp-cors (==0.7.0)
+Requires-Dist: aiohttp-swagger (==1.0.15)
+Requires-Dist: bcrypt (==3.2.0)
+Requires-Dist: dnspython (==2.1.0)
+Requires-Dist: Jinja2 (==2.11.3)
+Requires-Dist: json-logging (==1.2.11)
+Requires-Dist: psycopg2-binary (==2.8.6)
+Requires-Dist: PyJWT (==2.0.1)
+Requires-Dist: pymongo (==3.11.3)
+Requires-Dist: pytest (==6.2.2)
+Requires-Dist: pytest-aiohttp (==0.3.0)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: pytz (==2021.1)
+Requires-Dist: PyYAML (==5.4.1)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: setuptools (==54.1.2)
+Requires-Dist: SQLAlchemy (==1.4.0)
+Requires-Dist: twine (==3.4.1)
+Requires-Dist: typing-extensions (==3.7.4.3)
+
+# Bolinette
+
+Bolinette is a Python web framework built on top of [aiohttp](https://github.com/aio-libs/aiohttp)
+
+## Install
+
+### Prerequisites
+
+Bolinette requires Python 3.9. Get it from the [official sources](https://www.python.org/downloads/). Be sure to
+install the pip and virtualenv extensions.
+
+### Create your project folder
+
+```shell script
+mkdir my_project && cd my_project
+```
+
+### Install Bolinette
+
+With a virtual environment:
+```shell script
+python3.9 -m venv venv && source venv/bin/activate && pip install pip --upgrade && pip install bolinette
+```
+
+Globally, with admin rights:
+```shell script
+pip install pip --upgrade && pip install bolinette
+```
+
+## Use the Bolinette CLI
+
+*The CLI is work in progress.*
+
+
