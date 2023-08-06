@@ -1,0 +1,8 @@
+[console_scripts]
+dtags-activate = dtags.commands.activate:execute
+dtags-d = dtags.commands.d:execute
+run = dtags.commands.run:execute
+tag = dtags.commands.tag:execute
+tags = dtags.commands.tags:execute
+untag = dtags.commands.untag:execute
+
