@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: simple-torn-wrapper
+Version: 0.0.2
+Summary: A simple wrapper for the Torn API
+Home-page: https://github.com/SolitudalDeveloper/SimpleTorn
+Author: Solitudal Developer
+Author-email: innominatusofficial@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/SolitudalDeveloper/SimpleTorn/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+## Simple Torn Wrapper
+
+A simple basis wrapper for the torn API. Handles sending and decoding the request.
+
+To use
+```python
+from Wrapper import TornWrapper
+wrapper = TornWrapper(api_key='API_KEY')
+data = wrapper.request(section, id, selections)
+```
+where section is either: `torn`, `user`, `faction`, `properties`, `company`, `market`. ID should be a string/int and selections should be a python list of strings.
+e.g `['stocks','levels']`.  These can be chosen from the API as referenced on: https://www.torn.com/api.html#. The data will be in dictionary form.
+
+https://discord.gg/myTajWNU6q
+
+
