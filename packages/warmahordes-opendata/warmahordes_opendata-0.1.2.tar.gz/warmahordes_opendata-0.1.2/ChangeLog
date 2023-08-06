@@ -1,0 +1,172 @@
+CHANGES
+=======
+
+0.1.2
+-----
+
+* fixing typos
+
+0.1.1
+-----
+
+* add get\_by\_ppid and get\_by\_alias
+* add missing linebreak
+
+0.1.0
+-----
+
+* add fmt\_ tests
+* extend rules with theme rules
+* rework rules data structure
+* add extract\_messages and update catalogs
+* restore translations
+* rework pt and es translations
+* remove empty translations
+* rework translation files
+* fix search query to always be a string
+* initial cli implementation
+* split keyworks with spaces
+* fix line breaks in rules
+* fix coverage
+* update copyright
+* fix case in connectors
+* add band of heroes
+* add black industries
+* add bump i the night
+* add children of the dragon
+* add clockwork legions
+* add dark hosts
+* add dark legacy
+* add dark menagerie
+* add defenders of ios
+* add destruction initiative
+* add disciples of agony
+* add exemplar interdiction
+* add flame in the darkness
+* add forges of war
+* add gravediggers
+* add guardians of the temple
+* add hammer strike
+* add hearts of darkness
+* add heavy metal
+* add jaws of the wolf
+* add kriel company
+* add legions of dawn
+* fixing case of connectors
+* add legions of steel
+* add llaelese resistance
+* add masters of war
+* add operating theater
+* add oracles of annihilation
+* add primal terrors
+* add ravens of war
+* add scourge of the broken coast
+* add secret masters
+* reinforce mandatory fields in themes schema
+* adds shadows of the retribution
+* update pre-commit hooks
+* add soldiers of fortune
+* add sons of the tempest
+* add storm division
+* add storm of the north
+* add strange bedfellows
+* add talion charter
+* add the blindwater congregation
+* add the bones of orboros
+* add the creator's might
+* add the devourer's host
+* add the exalted
+* add the faithful masses
+* add the ghost fleet
+* add the irregulars
+* add the kingmaker's army
+* the power of dhunia
+* add The Thornfall Alliance
+* add the vengeance of dhunia
+* add the wild hunt
+* add warriors of the old faith
+* add will work for food
+* add winds of death
+* add winter guard kommand
+* add wolves\_of\_winter
+* adds themes + tests
+* add armored\_korps
+* fix rules to\_dict
+* merge yaml and slgf into base
+* allign model with rules implementation
+* reformulate rules
+* add slugify
+* simplify rules scheme
+* update mailmap
+* add prima materia theme
+* add magnum opus theme
+* add cerberus pre-commit
+* initial theme schema
+* add Model and Rule YAMLObjects
+* add rule yaml tag
+* add cerberus rules draft
+* theme placeholders
+* rename job to role and add class tag
+* rules as yaml files
+* add new models
+* fix yamllint
+* add yaml loader
+* move tests in and gets rid of datafiles
+* move data inside package
+* add Model.from\_yaml
+* breaks translation an rules tests apart
+* add coverage limit
+* github CI instead of travis
+* rename crucible-guard to crucible\_guard
+* add new models
+* add .mailmap
+* get rid of src folder for coverage
+* Back to basics with testing
+* renaming crucible-guard to crucible\_guard
+* adds first draft of model class
+* update model data with scans and changes type to job
+* add models yaml
+
+0.0.6
+-----
+
+* update translations
+
+0.0.5
+-----
+
+* fix AOE description
+
+0.0.4
+-----
+
+* update translation files to include combat rules
+* Add a portion of Combat rules
+
+0.0.3
+-----
+
+* adds movement and rename keywords to rules
+* add translation link
+* add makefile and fix missing header
+* fix readme linebreaks
+* add apache license
+* restore pbr and commit translations
+* add translation tests
+* add translate
+* add get\_available\_languages
+* bump requirements to python 3.9
+* add install requires
+* fix wrapping
+* remove mo file
+* Update warmahordes\_opendata.po (POEditor.com)
+* Create warmahordes\_opendata.mo (POEditor.com)
+* disable coverage for now
+* black
+* get rid of pbr for now
+* wrap messages
+* update readme
+* Fix typo in ADVANCED\_DEPLOYMENT
+* finish first round of keywords
+* initial import
+* initial structure

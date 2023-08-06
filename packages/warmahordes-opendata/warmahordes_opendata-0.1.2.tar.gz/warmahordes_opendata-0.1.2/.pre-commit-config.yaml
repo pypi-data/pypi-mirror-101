@@ -1,0 +1,35 @@
+---
+default_language_version:
+  python: python3
+
+repos:
+- repo: https://github.com/psf/black
+  rev: 20.8b1
+  hooks:
+  - id: black
+    args: ['--check', '--diff']
+
+- repo: https://gitlab.com/pycqa/flake8
+  rev: 3.9.0
+  hooks:
+  - id: flake8
+    additional_dependencies:
+    - hacking
+
+- repo: https://github.com/adrienverge/yamllint.git
+  rev: v1.26.0
+  hooks:
+  - id: yamllint
+    files: warmahordes_opendata
+
+- repo: https://github.com/moisesguimaraes/cerberus-cli.git
+  rev: 0.0.3
+  hooks:
+  - id: cerberus-validate
+    name: validating models
+    args: ['-s', 'warmahordes_opendata/schema/model.yaml']
+    files: warmahordes_opendata/data/models
+  - id: cerberus-validate
+    name: validating themes
+    args: ['-s', 'warmahordes_opendata/schema/theme.yaml']
+    files: warmahordes_opendata/data/themes
