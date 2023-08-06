@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: pygada-runtime
+Version: 0.3a0
+Summary: Python runtime for gada nodes
+Home-page: https://github.com/gadalang/pygada-runtime
+Author: Jeremy Morosi
+Author-email: jeremymorosi@hotmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/gadalang/pygada-runtime/issues
+Project-URL: Source Code, https://github.com/gadalang/pygada-runtime/
+Description: # pygada-runtime
+        
+        ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pygada-runtime)
+        [![Python package](https://img.shields.io/github/workflow/status/gadalang/pygada-runtime/Python%20package)](https://github.com/gadalang/pygada-runtime/actions/workflows/python-package.yml)
+        [![Documentation Status](https://readthedocs.org/projects/pygada-runtime/badge/?version=latest)](https://pygada-runtime.readthedocs.io/en/latest/?badge=latest)
+        [![Codecov](https://img.shields.io/codecov/c/gh/gadalang/pygada-runtime?token=4CSJTL1ZML)](https://codecov.io/gh/gadalang/pygada-runtime)
+        [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+        [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/gadalang/pygada-runtime/issues)
+        
+        Python runtime for [gada](https://github.com/gadalang/gada) nodes.
+        
+        ## Install
+        
+        Using pip:
+        
+        ```bash
+        $ pip3 install pygada-runtime
+        ```
+        
+        ## Documentation
+        
+        Build the doc with:
+        
+        ```bash
+        $ make html
+        ```
+        
+        You can find the latest documentation on [pygada-runtime.readthedocs.io](https://pygada-runtime.readthedocs.io/).
+        
+        ## Testing
+        
+        The `test` directory contains many tests that you can run with:
+        
+        ```python
+        $ tox .
+        ```
+        
+        ## License
+        
+        Licensed under the [MIT](LICENSE) License.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
