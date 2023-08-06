@@ -1,0 +1,23 @@
+# compiled files
+*.py[cod]
+*.a
+*.o
+__pycache__
+*.telassar/
+*.c
+
+# packages/installer info
+*.egg
+*.egg-info
+dist/
+build/
+setup/
+
+# sandbox/debugging crap
+examples/.ipynb_checkpoints
+.ipynb_checkpoints/
+examples/.ipynb_checkpoints/
+workspace.ipynb
+
+.tox
+.cache
