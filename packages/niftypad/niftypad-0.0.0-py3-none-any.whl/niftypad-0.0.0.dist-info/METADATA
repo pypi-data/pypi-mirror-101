@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: niftypad
+Version: 0.0.0
+Summary: Neuroimaging for the Prevention of Alzheimer's Disease
+Home-page: https://github.com/AMYPAD/NiftyPAD
+Author: Jieqing Jiao
+Author-email: jieqing.jiao@gmail.com
+Maintainer: Casper da Costa-Luis
+Maintainer-email: imaging@cdcl.ml
+License: Apache 2.0
+Project-URL: Changelog, https://github.com/AMYPAD/NiftyPAD/releases
+Project-URL: Documentation, https://github.com/AMYPAD/NiftyPAD/#NiftyPAD
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Provides: niftypad
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: matplotlib
+Requires-Dist: nibabel
+Requires-Dist: numpy
+Requires-Dist: scikit-learn
+Provides-Extra: dev
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+
+NiftyPAD
+========
+
+Neuroimaging for the Prevention of Alzheimer's Disease.
+
+
