@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[tool.flit.metadata]
+module = "mmpy_bot"
+author = "Alex Tzonkov"
+author-email = "alex.tzonkov@gmail.com"
+home-page = "https://github.com/attzonko/mmpy_bot"
+description-file = "README.md"
+classifiers = [
+'License :: OSI Approved :: MIT License',
+'Development Status :: 5 - Production/Stable',
+'Intended Audience :: Developers',
+'Operating System :: OS Independent',
+'Programming Language :: Python',
+'Programming Language :: Python :: 3.8',
+'Programming Language :: Python :: 3.9',
+'Topic :: Internet :: WWW/HTTP',
+'Topic :: Software Development :: Libraries :: Python Modules',
+]
+
