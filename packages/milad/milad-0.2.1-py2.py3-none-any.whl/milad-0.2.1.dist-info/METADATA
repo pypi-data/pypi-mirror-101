@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: milad
+Version: 0.2.1
+Summary: Moment Invariants Local Atomic Descriptor
+Home-page: https://github.com/muhrin/milad.git
+Author: Martin Uhrin
+Author-email: martin.uhrin.10@ucl.ac.uk
+License: GPLv3
+Keywords: machine learning,atomic descriptor,moment invariants
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: dscribe
+Requires-Dist: matplotlib
+Requires-Dist: miniball
+Requires-Dist: numba
+Requires-Dist: numpy
+Requires-Dist: rmsd
+Requires-Dist: torch
+Requires-Dist: scipy
+Requires-Dist: sympy
+Requires-Dist: scikit-learn
+Requires-Dist: scikit-image
+Provides-Extra: dev
+Requires-Dist: ipython ; extra == 'dev'
+Requires-Dist: pip ; extra == 'dev'
+Requires-Dist: pytest (~=5.4) ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pre-commit (~=2.2) ; extra == 'dev'
+Requires-Dist: prospector ; extra == 'dev'
+Requires-Dist: pylint (==2.5.2) ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: yapf ; extra == 'dev'
+
+Moment Invariants Local Atomic Descriptor
+=========================================
+
+.. image:: docs/source/img/encode_decode.png
+   :alt: The rotationally invariant encoding and decoding of a molecule
+
+
+This repository contains code for creating rotation invariant descriptions of atomic environments.
+The resulting fingerprint vectors can be decoded back into the original atomic system allowing one to build generative models of atomic environments in materials or entire molecules.
+
+Code examples will be coming soon!
+
+Contact martin [at] digitalbaker.net for more details.
+
+MILAD is FOSS, under the GPLv3 license.
+
+
