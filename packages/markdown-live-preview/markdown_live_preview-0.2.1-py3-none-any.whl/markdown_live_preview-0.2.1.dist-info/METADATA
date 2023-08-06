@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: markdown-live-preview
+Version: 0.2.1
+Summary: live web preview of markdown docs
+Home-page: https://github.com/ms-jpq/markdown-live-preview
+Author: ms-jpq
+Author-email: github@bigly.dog
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.8.0
+Description-Content-Type: text/markdown
+Requires-Dist: watchdog (==2.0.2)
+Requires-Dist: Markdown (==3.3.4)
+Requires-Dist: Pygments (==2.8.1)
+Requires-Dist: aiohttp (==3.7.4.post0)
+
+# [Markdown Live Preview](https://ms-jpq.github.io/markdown-live-preview)
+
+## Features
+
+- **Live Preview:** Updates preview on file save
+
+- **Auto Follow:** Focus on edited element
+
+- **Syntax Highlight:** Highlighted using [Pygments](https://github.com/pygments/pygments)
+
+- **Github flavoured:** Looks familiar
+
+## Preview
+
+The animation is only choppy because it's a compressed gif.
+
+![preview.gif](https://github.com/ms-jpq/markdown-live-preview/raw/md/preview/smol.gif)
+
+## Usage
+
+```sh
+mlp |name of markdown|
+```
+
+| Flags                  | Flags                    |
+| ---------------------- | ------------------------ |
+| `-p, --port PORT=8080` | Port to use              |
+| `-o, --open`           | No localhost restriction |
+| `--nf, --no-follow`    | Do not follow edits      |
+| `--nf, --no-browser`   | Do not open browser      |
+
+## [Install](https://pypi.org/project/markdown-live-preview)
+
+```sh
+pip install -U markdown_live_preview
+```
+
+
