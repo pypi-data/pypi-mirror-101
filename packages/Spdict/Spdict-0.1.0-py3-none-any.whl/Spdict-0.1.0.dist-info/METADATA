@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: Spdict
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: https://github.com/r2dev2/SpDict
+Author: Ronak Badhe
+Author-email: ronak.badhe@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp (>=3.7.3)
+Requires-Dist: beautifulsoup4 (>=4.9.1)
+Requires-Dist: tabulate (>=0.8.7)
+
+# SpDict
+
+A commandline interface to spanishdict
+
+## Installation
+
+```
+pip install spdict
+```
+
+## Usage
+
+```
+spdict --help
+spdict translate chair desk table hola
+spdict conjugate perder tomar
+spdict conjugate subjunctive perder tomar
+```
+
+
