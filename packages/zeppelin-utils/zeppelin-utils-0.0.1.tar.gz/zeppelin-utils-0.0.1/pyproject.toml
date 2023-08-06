@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "zeppelin-utils"
+version = "0.0.1"
+description = "Package with util functions for zeppelin"
+authors = ["ArcLight_Slavik"]
+packages = [
+    { include = 'zeppelin/utils' },
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "6.0.1"
+pytest-mock = "3.3.1"
+pytest-asyncio = "0.14.0"
+pytest-cov = "2.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
