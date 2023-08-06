@@ -1,0 +1,39 @@
+[package]
+name = "pyoxigraph"
+version = "0.2.3"
+authors = ["Tpt"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["RDF", "SPARQL", "graph-database", "database"]
+repository = "https://github.com/oxigraph/oxigraph/tree/master/python"
+homepage = "https://oxigraph.org/pyoxigraph/"
+description = "Python bindings of Oxigraph, a SPARQL database and RDF toolkit"
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+name = "pyoxigraph"
+doctest = false
+
+[dependencies]
+oxigraph = {version = "0.2", features = ["sled", "http_client"]}
+pyo3 = {version = "0.13", features = ["extension-module", "abi3-py36"]}
+native-tls = {version = "0.2", features = ["vendored"]}
+
+[package.metadata.maturin]
+classifier = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Rust",
+    "Topic :: Database :: Database Engines/Servers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+project-url = { Documentation = "https://oxigraph.org/pyoxigraph/", Source = "https://github.com/oxigraph/oxigraph/tree/master/python", Tracker = "https://github.com/oxigraph/oxigraph/issues" }
+requires-python = ">=3.6"
