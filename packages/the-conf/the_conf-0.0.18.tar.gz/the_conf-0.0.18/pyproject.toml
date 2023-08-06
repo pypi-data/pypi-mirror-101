@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "the_conf"
+version = "0.0.18"
+description = "Config build from multiple sources"
+authors = ["François Schmidts <francois@schmidts.fr>"]
+license = "GPLv3"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
+]
+keywords = ['conf', 'configuration', 'json', 'yaml']
+homepage = "https://github.com/jaesivsm/the_conf"
+repository = "https://github.com/jaesivsm/the_conf"
+documentation = "https://github.com/jaesivsm/the_conf#readme"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pyyaml = "^5.3"
+
+[tool.poetry.dev-dependencies]
+pycodestyle = "^2.7.0"
+coverage = "^5.5"
+coveralls = "^3.0.1"
+ipdb = "^0.13.7"
+pylint = "^2.7.4"
+pytest = "^6.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
