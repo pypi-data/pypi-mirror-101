@@ -1,0 +1,10 @@
+dbnd==0.37.4
+setuptools
+six
+
+[tests]
+pytest==4.5.0
+mock
+WTForms<2.3.0
+apache-airflow==1.10.9
+sh
