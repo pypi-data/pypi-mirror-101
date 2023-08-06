@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: NetLogoDOE
+Version: 0.1.19
+Summary: NetLogoDOE provides a GUI that allows for easy design, execution and analysis of NetLogo experiments
+Home-page: https://github.com/robinfaber97/NetLogoDOE
+Author: Robin Faber
+Author-email: r.j.faber@student.tudelft.nl
+License: MIT
+Download-URL: https://github.com/robinfaber97/NetLogoDOE/archive/refs/tags/0.1.19.tar.gz
+Keywords: NetLogo,Design of experiments,Model design,Agent-based simulation,Data visualisation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: PySimpleGUI
+Requires-Dist: plotly
+Requires-Dist: statsmodels
+Requires-Dist: pandas
+Requires-Dist: pyNetLogo
+Requires-Dist: numpy
+Requires-Dist: pyDOE2
+Requires-Dist: SALib
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: scipy
+Requires-Dist: future
+Requires-Dist: jpype1
+
+UNKNOWN
+
+
