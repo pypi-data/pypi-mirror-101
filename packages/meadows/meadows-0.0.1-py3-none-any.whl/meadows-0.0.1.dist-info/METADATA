@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: meadows
+Version: 0.0.1
+Summary: Meadows Scythe: the Meadows Export & Analysis toolkit
+Home-page: https://github.com/meadowsresearch/scythe
+Author: Jasper van den Bosch
+Author-email: jasper@meadows-research.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Description-Content-Type: text/plain
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: randomgen (==1.19.3)
+Requires-Dist: rsa3 (==3.0.0.post20201106)
+
+Library for meadows users to preprocess downloaded data
+
+
