@@ -1,0 +1,29 @@
+# This workflow will run lint and tests on all branches and deploy on master
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    # Setup and dependencies
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install nox
+        pip install .
+    # Lint
+    - name: Lint with nox
+      run: |
+        nox -s lint
+    # Test
+    - name: Test with nox
+      run: |
+        nox -s tests
