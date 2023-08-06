@@ -1,0 +1,7 @@
+muffin>=0.65.1
+asgi-prometheus>=1.0.0
+
+[tests]
+pytest
+pytest-aio[curio,trio]
+pytest-mypy
