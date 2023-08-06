@@ -1,0 +1,151 @@
+instruction,text,name,definition
+1.1.1,Output,,"Information a program gives to the user, such as text"
+1.1.1,Statement,,A single line of code that performs an action
+1.1.1,String,,"A group of letters, symbols and/or numbers inside double quotation marks"
+1.1.1,Syntax,,"The exact spelling, symbols, and order of code"
+1.1.2,Comment,,A note that the computer ignores
+1.1.2,Error,,When the computer encounters something unexpected in your code
+1.1.2,Header comment,,A multi-line comment at the top of a program surrounded by `"""` marks
+1.1.3,Assignment,,Storing information in a variable
+1.1.3,User input,,Information the program receives from the user
+1.1.3,Variable,,A storage container for information
+1.2.1,Argument,,Information that a function needs to know in order to run
+1.2.1,Function,,A named code action that can be used in a program
+1.2.1,Library,,A collection of code from outside the program
+1.2.2,Documentation,,A written explanation of how to use code
+1.3.1,Data type,,The category a piece of information belongs to
+1.3.1,Float,,A number with a decimal point
+1.3.1,Integer,,A number written without a decimal point
+1.3.1,Literal,,A value you can literally see
+1.3.2,String concatenation,,Join two strings together with the + operator
+1.3.2,String multiplication,,Repeat a string a certain number of times with the * operator
+1.3.2,Typecast,,Treat one data type like another
+1.4.1,Compound assignment operator,,Changes a variable based on the current value
+1.4.1,Decrement,,Decrease a variable by an amount
+1.4.1,Expression,,A piece of code that produces a value
+1.4.1,Increment,,Increase a variable by an amount
+1.4.2,None,,A special literal that means "no value"
+1.4.2,Return value,,Information given back by a function
+2.1.1,Condition,,Asks a yes or no question
+2.1.1,Equal to,Equal to (==),Are the two values the same?
+2.1.1,if statement,,Runs a section of code when the condition is true
+2.1.1,Not equal to,Not equal to (!=),Are the two values different?
+2.1.2,Comparison operator,,Compares two values and gives a yes or no answer
+2.1.2,Greater than,Greater than (>),Is the left value bigger than the right value?
+2.1.2,Less than,Less than (<),Is the left value smaller than the right value?
+2.2.1,Conditional,,Runs the first section of code where the condition is true
+2.2.1,elif clause,,"When all prior conditions are false, runs a section of code when the condition is true"
+2.2.1,else clause,,"When all prior conditions are false, runs a section of code as a last alternative"
+2.2.1,Then block,,A section of code that might get run
+2.2.2,Chained comparison,,An expression with more than one comparison operator
+2.2.2,Nested conditional,,A conditional inside another conditional
+2.3.1,random library,,A library with code to create unpredictable values
+2.3.2,Exponentiation operator,,Multiplies a number by itself some number of times
+2.3.2,Floor division operator,,Rounds the quotient down to a whole number after division
+2.3.2,Modulo operator,,Calculates the remainder after division
+2.4.1,and operator,,True if all parts are True
+2.4.1,Boolean,,A True or False value
+2.4.1,Logical operator,,Combines or modifies a boolean
+2.4.1,not operator,,Gives the opposite boolean value
+2.4.1,or operator,,True if one or more parts are True
+2.4.2,Boolean zen,,Using a boolean as a complete condition
+2.4.2,Compound boolean expression,,A boolean expression made of up of other boolean expressions
+2.pl3.1,Feature,,Something a program can do
+2.pl3.1,Modular design,,Composing a system with independent parts
+2.pl3.1,Retrospective,,A formal review of the successes and failures of recent work
+2.pl3.1,Scope,,The set of work planned for a specific time period
+2.pl3.1,Stretch goal,,An optional goal which won't cause the product to fail if it's not reached
+2.pl3.1,Version,,A unique name or number for the state of a product at a particular time
+3.1.1,Infinite loop,,A loop with a condition that will always be True
+3.1.1,Iteration,,One repetition of a loop
+3.1.1,while loop,,Repeats a section of code until a condition is no longer True
+3.2.1,break statement,,Immediately end a loop
+3.2.1,continue statement,,Immediately end an iteration
+3.2.1,Loop else clause,,A clause following a loop that runs unless the loop ends with break
+3.3.1,Attribute,,A piece of information an object knows about itself
+3.3.1,Class,,A blueprint for creating something specific
+3.3.1,Instance,,A specific copy created from a class
+3.3.1,Method,,A function that belongs to an instance
+3.4.1,Coordinates,,Horizontal (x) and vertical (y) position
+3.4.1,Main loop,,Keeps a window open and updated
+3.4.1,Sprite,,An on-screen graphic based on an image
+3.4.1,tsapp library,,A library used to create programs with graphics
+3.4.1,Window,,A container for displaying graphics
+3.4.2,Constant,,A variable that stores a value that does not change
+3.4.2,Text,,An on-screen graphic based on a string
+3.5.1,Animation,,Rapid changes that the human eye perceives as motion
+3.5.1,Animation rate,,Attribute that controls how fast the images from a spritesheet change
+3.5.1,Frame,,"One still image within an animation, usually one iteration of a loop"
+3.5.1,Speed,,Attributes that control how fast and what direction an instance moves on screen
+3.5.1,Spritesheet,,An image designed to be broken apart and used as an animation
+3.6.1,Duration,,The amount of time between two moments
+3.6.1,Event,,A single action that occurs as a result of the user
+3.6.1,Interaction,,A cycle of user input and program output that influence each other
+3.6.1,Key constant,,An unchanging value representing a key on the keyboard
+3.6.1,State,,Information that is remembered by the program
+3.6.2,Collision,,When sprites touch or overlap
+3.6.2,Multiple assignment,,Assigning more than one variable with the same operator
+3.7.1,for loop,,A loop that runs a specific number of times
+3.7.1,Loop variable,,A variable whose value changes based on the iteration of a loop
+3.7.1,range,,A sequence of integers with a start and an end
+3.7.2,Start,,The first value in a range
+3.7.2,Step,,The amount that a range counts by
+4.1.1,Collection,,A grouping of information
+4.1.1,Element,,A value in a collection at a position
+4.1.1,For-each loop,,A loop that iterates over each element in a collection
+4.1.1,Iterate,,"Operate on the elements of a collection, one at a time in sequential order"
+4.1.1,List,,A changeable collection of ordered elements
+4.1.2,Index,,The zero-based position of an element in a collection
+4.1.2,Length,,The number of elements in a collection
+4.2.1,Element query,,A question about an element in a collection
+4.2.2,List append,,Add an element to the end of a list
+4.2.2,List delete,,Take an element out of a list by its index
+4.2.2,List extend,,Copy all elements of one list to the end of another list
+4.2.2,List insert,,Add an element to a list at a position
+4.2.2,List remove,,Take an element out of a list by its value
+4.3.1,Maximum,,The largest value in a collection
+4.3.1,Minimum,,The smallest value in a collection
+4.3.1,Sort,,Arrange the elements in a collection in ascending order
+4.3.2,Identity comparison,,Check whether two different variables refer to the same data
+4.3.2,List concatenation,,Create a new list by joining two lists together
+4.3.2,List equality comparison,,Check whether two lists contain all of the same elements in the same order
+4.3.2,List repetition,,Create a new list from multiple copies of an existing list
+4.3.2,Reference,,A name that points to data
+4.4.1,Character,,"A single letter, number, punctuation mark, or symbol represented as a string"
+4.4.1,Immutable,,Unable to be changed after it is created
+4.4.1,Substring,,Zero or more sequential characters in a string
+4.4.2,Slice,,Create a new collection by copying a sequence of elements from an existing collection
+4.5.1,Escape sequence,,Two or more sequential characters that have special meaning when combined
+4.5.1,List join,,Join the elements of a list into a string
+4.5.1,String separator,,A substring that is used to mark a division between other strings
+4.5.1,String split,,Split a string into a list of substrings
+4.5.1,Whitespace,,"A character used for spacing, such as a space, tab, or newline"
+4.5.2,Case sensitive,,Treating uppercase and lowercase letters as distinct
+4.5.2,String replace,,Create a new string by replacing all occurrences of a substring with a new substring
+5.1.1,Tuple,,An unchangeable collection of ordered elements
+5.1.2,Collection unpacking,,Assigning the elements of a collection to individual variables in a single statement
+5.2.1,Dictionary,,A collection that pairs two corresponding sets of data
+5.2.1,Key-value pair,,A unique piece of data (the key) used to look up another piece of data (the value)
+5.2.2,Dictionary item,,A key-value pair represented as a tuple
+5.3.1,Nested collection,,A collection that contains other collections
+5.3.1,Data model,,The way data is organized to represent the relationships between information
+5.3.1,Sequential bracket notation,,A series of keys or indexes each surrounded by square brackets
+5.4.1,Server,,A program that provides access to information over a computer network
+5.4.1,Client,,A program that gets information from a server and uses it to complete a task
+5.4.1,URL,URL (Uniform Resource Location),The address of information on a computer network
+5.4.1,HTTP,HTTP (HyperText Transfer Protocol),A set of rules for sending and receiving information over a computer network
+5.4.1,Request,,"A message sent from a client to a server, asking for information"
+5.4.1,Response,,A reply message from a server back to a client containing information that was requested by the client
+5.4.1,JSON,JSON (JavaScript Object Notation),A common data format used to exchange information over a computer network
+5.4.2,Web API,Web API (Web Application Programming Interface),The set of rules for interacting with an HTTP server on the internet
+5.4.2,Request parameter,,Additional information sent with a request as part of the URL
+5.4.2,Response status code,,An integer value that indicates whether a request was successful and why
+5.4.2,Rate limit,,The number of requests a server will accept from one client within a time period
+5.4.2,API key,,A unique identifying value that proves a client is allowed to make a request to a server
+6.1.1,Function call,,Running the code of an action defined elsewhere
+6.1.1,Function definition,,"A named, self-contained block of code that can be used on-demand in a program"
+6.1.1,Abstraction,,The process of hiding the details of how a program works
+6.1.1,Parameter,,A placeholder variable in a function that receives the value of an input argument when the function is called
+6.1.1,Function signature,,A function’s declaration containing its name and its parameters in order
+6.1.2,Return statement,,Immediately end a function and return to the location of the function call
+6.1.2,Recursive function,,A function that calls itself
