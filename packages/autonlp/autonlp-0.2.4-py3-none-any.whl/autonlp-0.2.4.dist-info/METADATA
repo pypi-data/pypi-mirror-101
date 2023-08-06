@@ -1,0 +1,164 @@
+Metadata-Version: 2.1
+Name: autonlp
+Version: 0.2.4
+Summary: HuggingFace/AutoNLP
+Home-page: https://github.com/huggingface/autonlp
+Author: HuggingFace Inc.
+Author-email: abhishek@huggingface.co
+License: Apache 2.0
+Download-URL: https://github.com/huggingface/autonlp/tags
+Keywords: automl autonlp huggingface
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
+Requires-Dist: loguru (==0.5.3)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: tqdm (==4.56.0)
+Requires-Dist: prettytable (==2.0.0)
+Requires-Dist: huggingface-hub (<0.1.0)
+Provides-Extra: dev
+Requires-Dist: loguru (==0.5.3) ; extra == 'dev'
+Requires-Dist: requests (==2.25.1) ; extra == 'dev'
+Requires-Dist: tqdm (==4.56.0) ; extra == 'dev'
+Requires-Dist: prettytable (==2.0.0) ; extra == 'dev'
+Requires-Dist: huggingface-hub (<0.1.0) ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: flake8 (==3.7.9) ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: loguru (==0.5.3) ; extra == 'docs'
+Requires-Dist: requests (==2.25.1) ; extra == 'docs'
+Requires-Dist: tqdm (==4.56.0) ; extra == 'docs'
+Requires-Dist: prettytable (==2.0.0) ; extra == 'docs'
+Requires-Dist: huggingface-hub (<0.1.0) ; extra == 'docs'
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: sphinx (==3.1.2) ; extra == 'docs'
+Requires-Dist: sphinx-markdown-tables ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme (==0.4.3) ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Provides-Extra: quality
+Requires-Dist: loguru (==0.5.3) ; extra == 'quality'
+Requires-Dist: requests (==2.25.1) ; extra == 'quality'
+Requires-Dist: tqdm (==4.56.0) ; extra == 'quality'
+Requires-Dist: prettytable (==2.0.0) ; extra == 'quality'
+Requires-Dist: huggingface-hub (<0.1.0) ; extra == 'quality'
+Requires-Dist: black ; extra == 'quality'
+Requires-Dist: isort ; extra == 'quality'
+Requires-Dist: flake8 (==3.7.9) ; extra == 'quality'
+
+# 🤗 AutoNLP
+
+AutoNLP: faster and easier training and deployments of SOTA NLP models
+
+## Installation
+
+You can Install AutoNLP python package via PIP. Please note you will need python >= 3.7 for AutoNLP to work properly.
+
+    pip install autonlp
+
+Please make sure that you have git lfs installed. Check out the instructions here: https://github.com/git-lfs/git-lfs/wiki/Installation
+
+## Quick start - in the terminal
+
+Please take a look at [AutoNLP Documentation](https://huggingface.co/docs/autonlp/) for a list of supported tasks and languages.
+
+Note:
+AutoNLP is currently in beta release. To participate in the beta, just go to https://huggingface.co/autonlp and apply 🤗
+
+First, create a project:
+
+```bash
+autonlp login --api-key YOUR_HUGGING_FACE_API_TOKEN
+autonlp create_project --name sentiment_detection --language en --task binary_classification
+```
+
+Upload files and start the training. You need a training and a validation split. Only CSV files are supported at the moment.
+```bash
+# Train split
+autonlp upload --project sentiment_detection --split train \
+               --col_mapping review:text,sentiment:target \
+               --files ~/datasets/train.csv
+# Validation split
+autonlp upload --project sentiment_detection --split valid \
+               --col_mapping review:text,sentiment:target \
+               --files ~/datasets/valid.csv
+```
+
+Once the files are uploaded, you can start training the model:
+```bash
+autonlp train --project sentiment_detection
+```
+
+Monitor the progress of your project.
+```bash
+# Project progress
+autonlp project_info --name sentiment_detection
+# Model metrics
+autonlp metrics --project PROJECT_ID
+```
+
+## Quick start - Python API
+
+Setting up:
+```python
+from autonlp import AutoNLP
+client = AutoNLP()
+client.login(token="YOUR_HUGGING_FACE_API_TOKEN")
+```
+
+Creating a project and uploading files to it:
+```python
+project = client.create_project(name="sentiment_detection", task="binary_classification", language="en")
+project.upload(
+    filepaths=["/path/to/train.csv"],
+    split="train",
+    col_mapping={
+        "review": "text",
+        "sentiment": "target",
+    })
+
+# also upload a validation with split="valid"
+```
+
+Start the training of your models:
+```python
+project.train()
+```
+
+To monitor the progress of your training:
+```python
+project.refresh()
+print(project)
+```
+
+After the training of your models has succeeded, you can retrieve the metrics for each model and test them with the 🤗 Inference API:
+
+```python
+client.predict(project="sentiment_detection", model_id=42, input_text="i love autonlp")
+```
+
+or use command line:
+
+```bash
+autonlp predict --project sentiment_detection --model_id 42 --sentence "i love autonlp"
+```
+
+## How much do I have to pay?
+
+It's difficult to provide an exact answer to this question, however, we have an estimator that might help you.
+Just enter the number of samples and language and you will get an estimate. Please keep in mind that this is just an estimate and can easily over-estimate or under-estimate (we are actively working on this).
+
+```bash
+autonlp estimate --num_train_samples 10000 --project_name sentiment_detection
+```
+
+
