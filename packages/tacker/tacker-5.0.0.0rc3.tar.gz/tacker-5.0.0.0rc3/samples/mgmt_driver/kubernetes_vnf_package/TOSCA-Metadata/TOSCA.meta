@@ -1,0 +1,17 @@
+TOSCA-Meta-File-Version: 1.0
+Created-by: Dummy User
+CSAR-Version: 1.1
+Entry-Definitions: Definitions/sample_kubernetes_top.vnfd.yaml
+
+Name: Files/images/ubuntu-20.04-server-cloudimg-amd64.img
+Content-Type: application/x-iso9066-image
+
+Name: Scripts/install_k8s_cluster.sh
+Content-Type: application/sh
+Algorithm: SHA-256
+Hash: bc859fb8ffb9f92a19139553bdd077428a2c9572196e5844f1c912a7a822c249
+
+Name: Scripts/kubernetes_mgmt.py
+Content-Type: text/x-python
+Algorithm: SHA-256
+Hash: b8c558cad30f219634a668f84d6e04998949e941f3909b5c60374b84dff58545
