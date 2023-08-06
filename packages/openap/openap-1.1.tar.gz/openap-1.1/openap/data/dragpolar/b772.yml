@@ -1,0 +1,15 @@
+aircraft: Boeing 777-200ER
+
+clean:
+  cd0:         0.024
+  k:           0.047
+  e:           0.781
+
+mach_crit:     0.646
+
+gears:         0.014
+
+flaps:
+  lambda_f:    0.900
+  cf/c:        0.166
+  Sf/S:        0.157

@@ -1,0 +1,15 @@
+aircraft: Airbus A350-900
+
+clean:
+  cd0:         0.023
+  k:           0.043
+  e:           0.779
+
+mach_crit:     0.646
+
+gears:         0.013
+
+flaps:
+  lambda_f:    0.900
+  cf/c:        0.150
+  Sf/S:        0.150
