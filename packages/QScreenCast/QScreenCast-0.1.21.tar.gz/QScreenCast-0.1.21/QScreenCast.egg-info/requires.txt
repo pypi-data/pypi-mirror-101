@@ -1,0 +1,13 @@
+ffmpeg
+qtpy
+qtawesome
+packaging
+
+[:platform_system == "Darwin"]
+pyqt5>=5.14.0
+
+[:platform_system == "Linux"]
+pyqt5>=5.14.2
+
+[:platform_system == "Windows"]
+pyqt5>=5.12.3
