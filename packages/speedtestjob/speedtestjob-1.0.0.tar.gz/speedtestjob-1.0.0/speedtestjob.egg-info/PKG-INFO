@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: speedtestjob
+Version: 1.0.0
+Summary: speedtest job.
+Home-page: https://www.google.com/
+Author: noname
+Author-email: noname@github.com
+License: MIT
+Description: 
+        这是一个定时自动测速的工具，用于了解你的VPS网络真实带宽。
+        它借助于speedtest.net，因此最终测试数据准确性依赖于speedtest.net的节点。另外，为了保证测试结果最接近真实情况，在测试期间qing不要占用网络带宽。
+        
+        此工具主要实现了：
+            启动后按照设置的时间间隔启动一轮网速测试。
+            每一轮测速耗时与设置的测速节点多少有关。
+            每一轮测试结束后，测试结果会保存到excel文件中。
+            此工具会重复上述测试，直到达到停止时间。
+        
+        
+        设置和说明：
+            
+            日志位置：/var/log/speedtest_job/
+            测试结果文件位置：/var/log/speedtest_job/
+        
+        
+        怎么安装：
+        
+        
+        怎么使用：
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
