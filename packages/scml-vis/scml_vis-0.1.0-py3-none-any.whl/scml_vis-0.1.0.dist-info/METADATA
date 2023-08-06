@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: scml-vis
+Version: 0.1.0
+Summary: A simple visualiser for SCML worlds and tournaments
+Home-page: https://github.com/scml-vis/scml-vis
+License: Apache-2.0
+Author: Yasser Mohammad
+Author-email: yasserfarouk@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyQt5 (>=5.15.4,<6.0.0)
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: click-config-file (>=0.6.0,<0.7.0)
+Requires-Dist: numpy (>=1.20.2,<2.0.0)
+Requires-Dist: pandas (>=1.2.3,<2.0.0)
+Requires-Dist: plotly (>=4.14.3,<5.0.0)
+Requires-Dist: seaborn (>=0.11.1,<0.12.0)
+Requires-Dist: streamlit (>=0.80.0,<0.81.0)
+Requires-Dist: watchdog (>=2.0.2,<3.0.0)
+Project-URL: Repository, https://github.com/scml-vis/scml-vis
+Description-Content-Type: text/markdown
+
+# scml-vis
+
+[![ci](https://github.com/scml-vis/scml-vis/workflows/ci/badge.svg)](https://github.com/scml-vis/scml-vis/actions?query=workflow%3Aci)
+[![documentation](https://img.shields.io/badge/docs-mkdocs%20material-blue.svg?style=flat)](https://scml-vis.github.io/scml-vis/)
+[![pypi version](https://img.shields.io/pypi/v/scml-vis.svg)](https://pypi.org/project/scml-vis/)
+[![gitter](https://badges.gitter.im/join%20chat.svg)](https://gitter.im/scml-vis/community)
+
+A simple visualiser for SCML worlds and tournaments
+
+## Requirements
+
+scml-vis requires Python 3.8 or above.
+
+<details>
+<summary>To install Python 3.8, I recommend using <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a>.</summary>
+
+```bash
+# install pyenv
+git clone https://github.com/pyenv/pyenv ~/.pyenv
+
+# setup pyenv (you should also put these three lines in .bashrc or similar)
+export PATH="${HOME}/.pyenv/bin:${PATH}"
+export PYENV_ROOT="${HOME}/.pyenv"
+eval "$(pyenv init -)"
+
+# install Python 3.8
+pyenv install 3.8.12
+
+# make it available globally
+pyenv global system 3.8.12
+```
+</details>
+
+## Installation
+
+With `pip`:
+```bash
+python3.8 -m pip install scml-vis
+```
+
+With [`pipx`](https://github.com/pipxproject/pipx):
+```bash
+python3.8 -m pip install --user pipx
+
+pipx install --python python3.8 scml-vis
+```
+
