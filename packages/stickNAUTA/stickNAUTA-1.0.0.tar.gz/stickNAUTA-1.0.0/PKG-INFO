@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: stickNAUTA
+Version: 1.0.0
+Summary: Simple managing interface for ETECSA Nauta.
+Home-page: https://github.com/stickM4N/stickNAUTA
+Author: stickM4N
+Author-email: jcgalindo.jcgh@gmail.com
+License: MIT
+Download-URL: https://pypi.org/project/stickNAUTA
+Description: stickNAUTA
+        ==========
+        
+        This is a simple managing interface for ETECSA Nauta with the minimal requirements.
+        
+        DONE
+        ----
+          + Session login.
+          + Session remaining time.
+          + Session credit.
+          + Session logout.
+          + Session is context friendly.
+        
+        TODO
+        ----
+          - Portal account information.
+          - Portal account password change.
+          - Portal account recharge.
+        
+Keywords: python nauta etecsa
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP :: Session
+Classifier: Topic :: Internet :: WWW/HTTP :: Site Management
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
