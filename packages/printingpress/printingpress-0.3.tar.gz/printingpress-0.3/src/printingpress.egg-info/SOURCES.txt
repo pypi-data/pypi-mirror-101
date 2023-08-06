@@ -1,0 +1,15 @@
+.gitignore
+.pre-commit-config.yaml
+README.md
+setup.py
+.github/workflows/ci.yml
+.github/workflows/code-quality.yml
+src/printingpress/__init__.py
+src/printingpress/version.py
+src/printingpress.egg-info/PKG-INFO
+src/printingpress.egg-info/SOURCES.txt
+src/printingpress.egg-info/dependency_links.txt
+src/printingpress.egg-info/entry_points.txt
+src/printingpress.egg-info/top_level.txt
+src/printingpress.egg-info/zip-safe
+tests/all_test.py
