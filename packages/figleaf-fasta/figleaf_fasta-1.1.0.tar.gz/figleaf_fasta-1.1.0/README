@@ -1,0 +1,46 @@
+###Notes on potential improvements
+
+(Could use np array to apply hard/soft mask rather than applying in for loop) NO
+bed file range input (split and make dict)
+N.B if extract mask ranges overlap, overlaps will be extracted - either mention in readme or add option to eliminate overlap extraction
+
+###Misc Notes
+Lots of people wanting functionality:
+https://www.biostars.org/p/263431/  #cut regions from fasta
+https://www.biostars.org/p/305048/
+https://www.biostars.org/p/82788/
+
+
+###Notes on code
+
+#function for converting mask to integer elements
+https://stackoverflow.com/questions/56825965/convert-multiple-nested-lists-to-integers/56826058
+other similar solution (untested)
+https://stackoverflow.com/questions/46548902/converting-elements-of-list-of-nested-lists-from-string-to-integer-in-python
+
+#check all elements are integers
+https://stackoverflow.com/questions/13252333/check-if-all-elements-of-a-list-are-of-the-same-type
+
+#mask_to_complement_indices function
+set.update(range(i,j))
+https://stackoverflow.com/questions/4045403/how-do-i-add-the-contents-of-an-iterable-to-a-set
+
+#function to wrap string to 60 characters
+https://stackoverflow.com/questions/18854620/whats-the-best-way-to-split-a-string-into-fixed-length-chunks-and-work-with-the/18854817
+
+
+#soft vs hard masking
+https://www.drive5.com/usearch/manual/masking.html
+https://bioinformatics.stackexchange.com/questions/225/uppercase-vs-lowercase-letters-in-reference-genome/231
+
+#function for converting list indices to slice ranges
+https://stackoverflow.com/questions/10987777/python-converting-a-list-of-indices-to-slices
+https://jonathanchang.org/blog/group-consecutive-number-ranges/
+
+#miscellaneous
+https://www.geeksforgeeks.org/what-does-the-if-__name__-__main__-do/
+
+
+.+\.(?:fa|fasta)(?:\.gz)?$  #regex to match fa/fasta(.gz)
+
+http://biopython.org/DIST/docs/tutorial/Tutorial.html#sec%3Amutable-seq  #mutableseq object in biopython
