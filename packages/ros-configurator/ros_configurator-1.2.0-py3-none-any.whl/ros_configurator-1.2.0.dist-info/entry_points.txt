@@ -1,0 +1,8 @@
+[console_scripts]
+ros_config_add_source_file = ros_configurator.functions:add_source_file
+ros_config_list_source_files = ros_configurator.functions:list_source_files
+ros_config_remove_source_file = ros_configurator.functions:remove_source_file
+ros_config_set_ip = ros_configurator.functions:set_ip
+ros_config_set_ip_localhost = ros_configurator.functions:set_ip_localhost
+ros_config_set_ros_master_uri = ros_configurator.functions:set_ros_master_uri
+
