@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: d6tflow
+Version: 0.2.4
+Summary: d6tflow is a python library which makes it easier to build data workflows
+Home-page: https://github.com/d6t/d6tflow
+Author: DataBolt Team
+Author-email: support@databolt.tech
+License: MIT
+Keywords: d6tflow,data workflow,data pipelines,luigi
+Platform: UNKNOWN
+Requires-Python: >=3.5
+Requires-Dist: luigi
+Requires-Dist: pandas
+Requires-Dist: pyarrow
+Requires-Dist: d6tcollect
+Provides-Extra: dask
+Requires-Dist: toolz ; extra == 'dask'
+Requires-Dist: dask[dataframe] ; extra == 'dask'
+Provides-Extra: pipe
+Requires-Dist: d6tpipe ; extra == 'pipe'
+Requires-Dist: jinja2 ; extra == 'pipe'
+
+d6tflow is a python library which makes it easier to build data workflowsSee https://github.com/d6t/d6tflow for details
+
+
