@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: py-notifier
+Version: 0.2.0
+Summary: Cross-platform desktop push-notifications.
+Home-page: https://github.com/YuriyLisovskiy/pynotifier
+Author: Yuriy Lisovskiy
+Author-email: yuralisovskiy98@gmail.com
+License: GPLv3
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: win10toast (==0.9) ; platform_system == "Windows"
+
+
+## Desktop Notifications
+
+Simple Python3 module for displaying desktop notifications on Windows and Linux.
+
+### Installation
+```bash
+$ pip install py-notifier
+```
+
+### Requirements
+#### Windows:
+[`win10toast`](https://github.com/jithurjacob/Windows-10-Toast-Notifications) - Python library
+(will be installed automatically)
+#### Linux:
+`libnotify-bin` CLI tool (manual installation is required). For Ubuntu run:
+```bash
+sudo apt-get install libnotify-bin
+```
+
+### Example
+```python
+from pynotifier import Notification
+
+
+Notification(
+	title='Notification Title',
+	description='Notification Description',
+	icon_path='path/to/image/file/icon.png', # On Windows .ico is required, on Linux - .png
+	duration=5,                              # Duration in seconds
+	urgency='normal'
+).send()
+```
+
+### Author
+* [Yuriy Lisovskiy](https://github.com/YuriyLisovskiy)
+
+### License
+The project is licensed under the terms of the [MIT License](https://opensource.org/licenses/mit),
+see the [LICENSE](LICENSE) file for more information.
+
+
