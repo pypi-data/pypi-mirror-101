@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: revjwt
+Version: 1.0.5
+Summary: 
+Author: Chien
+Author-email: a0186163@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyJWT (>=2.0.0,<3.0.0)
+Requires-Dist: boto3 (>=1.17.27,<2.0.0)
+Requires-Dist: jwcrypto (>=0.8,<0.9)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
