@@ -1,0 +1,12 @@
+asyncio-dgram>=1.2.0
+click>=7.1.1
+dnspython3>=1.15.0
+six>=1.14.0
+
+[tests]
+coverage
+mock>=3.0.5
+pytest
+pytest-asyncio
+pytest-cov
+twine
