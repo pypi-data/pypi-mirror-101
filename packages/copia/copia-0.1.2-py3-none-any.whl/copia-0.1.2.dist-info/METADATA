@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: copia
+Version: 0.1.2
+Summary: Bias correction for richness in abundance data
+Home-page: https://github.com/mikekestemont/copia
+Author: Mike Kestemont & Folgert Karsdorp
+License: CC-BY
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.19.0)
+Requires-Dist: scipy (>=1.5.1)
+Requires-Dist: matplotlib (>=3.3.2)
+Requires-Dist: seaborn (>=0.11.0)
+Requires-Dist: pandas (>=1.1.2)
+Requires-Dist: tqdm (>=4.48.0)
+Requires-Dist: pytest (>=6.2.2)
+
+# copia
+Bias correction for richness in abundance data
+
+For development, run 
+
+``` bash
+pip install -e . 
+```
+
+in the top directory of `copia`.
+
+Subsequently, run `pytest` from the same directory. 
+
+## Etymology
+The package is named after the Latin term for "abundance".
+
+
