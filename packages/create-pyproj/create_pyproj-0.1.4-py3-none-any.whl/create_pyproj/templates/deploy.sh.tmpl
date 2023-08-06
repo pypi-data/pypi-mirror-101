@@ -1,0 +1,47 @@
+ #!/bin/bash
+function semverParseInto() {
+    local RE='[^0-9]*\([0-9]*\)[.]\([0-9]*\)[.]\([0-9]*\)\([0-9A-Za-z-]*\)'
+    #MAJOR
+    eval $2=`echo $1 | sed -e "s#$RE#\1#"`
+    #MINOR
+    eval $3=`echo $1 | sed -e "s#$RE#\2#"`
+    #PATCH
+    eval $4=`echo $1 | sed -e "s#$RE#\3#"`
+    #SPECIAL
+    eval $5=`echo $1 | sed -e "s#$RE#\4#"`
+}
+
+if [[ ! "$1" =~ ^(major|minor|patch)$ ]]
+then
+    echo "$1 not valid, must be major|minor|patch"
+    exit
+fi
+
+if [ ! -z "$(git status --porcelain)" ]; then
+  echo "Git: working directory unclean"
+  exit
+fi
+VERSION=$(cat VERSION)
+
+# Get current version
+semverParseInto $VERSION MAJOR MINOR PATCH SPECIAL
+
+# Bump release
+if [[ $1 == 'major' ]]; then
+    ((MAJOR++))
+    MINOR=0
+    PATCH=0
+
+    elif [[ $1 == 'minor' ]]; then
+    ((MINOR++))
+    PATCH=0
+
+    elif [[ $1 == 'patch' ]]; then
+    ((PATCH++))
+fi
+
+VERSION=$MAJOR.$MINOR.$PATCH
+echo $VERSION > VERSION
+git add VERSION
+git commit -m "Bump version to $VERSION"
+

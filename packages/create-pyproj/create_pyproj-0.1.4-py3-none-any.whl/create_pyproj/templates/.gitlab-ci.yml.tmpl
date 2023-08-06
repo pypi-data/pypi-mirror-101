@@ -1,0 +1,23 @@
+# Get a docker container, build the Dockerfile, push the dockerfile to the repo
+stages:
+  - build
+
+variables:
+  REPO: ""
+
+image: docker:19.03
+
+services:
+  - name: docker:19.03.0-dind
+    alias: dindservice
+
+before_script:
+  - echo $CI_COMMIT_MESSAGE
+
+build-master:
+  stage: build
+  script:
+    - VERSION=$(cat VERSION)
+    - echo $VERSION
+  only:
+    - master
