@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: frightcrawler
+Version: 0.0.1
+Summary: MtG deck legality checker
+Home-page: https://github.com/charlesrocket/frightcrawler
+Author: charlesrocket
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: dictor (>=0.1.6)
+Requires-Dist: requests (>=2.25.0)
+
+# frightcrawler
+
+Deck legality checker
+
+```bash
+git clone https://github.com/charlesrocket/frightcrawler
+pip3 install .
+frightcrawler.py -h
+
+
