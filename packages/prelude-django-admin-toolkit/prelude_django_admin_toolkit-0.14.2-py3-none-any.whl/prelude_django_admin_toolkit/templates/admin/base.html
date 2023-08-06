@@ -1,0 +1,69 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+    <link type="text/css" href="{% static 'prelude_django_admin_toolkit/css/normalize.css' %}" rel="stylesheet" media="screen">
+    <link type="text/css" href="{% static 'prelude_django_admin_toolkit/css/' %}{{ admin.site_css }}" rel="stylesheet" media="screen">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'prelude_django_admin_toolkit/icon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'prelude_django_admin_toolkit/icon/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'prelude_django_admin_toolkit/icon/favicon-16x16.png' %}">
+	<link rel="icon" type="image/png" sizes="192x192"  href="{% static 'prelude_django_admin_toolkit/icon/android-chrome-192x192.png' %}">
+	<link rel="icon" type="image/png" sizes="512x512"  href="{% static 'prelude_django_admin_toolkit/icon/android-chrome-512x512.png' %}">
+
+{% comment %}
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-72x72.png'%}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'prelude_django_admin_toolkit/icon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'prelude_django_admin_toolkit/icon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'prelude_django_admin_toolkit/icon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'prelude_django_admin_toolkit/icon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'prelude_django_admin_toolkit/icon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'prelude_django_admin_toolkit/icon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+{% endcomment %}
+    
+    <script type="text/javascript" src="{% static 'prelude_django_admin_toolkit/js/vendor.js' %}"></script>
+
+{% comment %}<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">{% endcomment %}
+{% block extrastyle %}{% endblock %}
+
+{% comment %}
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">{% endif %}
+{% endcomment %}
+
+{% block extrahead %}{% endblock %}
+
+{% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    {% comment %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+    {% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">{% endif %}
+    {% endcomment %}
+{% endblock %}
+
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
+
+	<div id="base_content" class="content">
+    {% block content_base %}{% endblock %}
+    </div>
+
+{% block extrafooter %}{% endblock %}
+
+</body>
+</html>
