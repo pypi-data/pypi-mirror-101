@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include "vesper/header-prefix.html" %}
+
+    <title>Create clip audio files - Vesper</title>
+
+    {% load vesper_extras %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vesper/view/command-form.css' %}">
+
+</head>
+
+<body>
+
+    {% include "vesper/navbar.html" %}
+
+    <h2>Create clip audio files</h2>
+
+    <p>
+        Creates audio files for the specified clips of this Vesper archive.
+    </p>
+    
+    {% include "vesper/clips-specification-message.html" %}
+    
+    <p>
+        The audio files for the recordings of which the clips are parts
+        must be available to supply the clips' audio data. After the clip
+        audio files are created, whenever Vesper needs the clips' audio
+        data it will read them from those files instead of from the
+        recordings.
+    </p>
+
+    {% include "vesper/command-executes-as-job-message.html" %}
+
+    <!--
+        TODO: Get django-widget-tweaks Django app  and use it to set CSS classes
+        of form elements. Or perhaps use django-bootstrap3 app? See
+        http://stackoverflow.com/questions/8474409/django-forms-and-bootstrap-css-classes-and-divs.
+    -->
+
+    <form class="form" role="form" action="{% url 'create-clip-audio-files' %}" method="post">
+
+        {% include "vesper/clip-set-form-elements.html" %}
+
+        <button type="submit" class="btn btn-default form-spacing command-form-spacing">Create</button>
+
+    </form>
+
+</body>
+
+</html>

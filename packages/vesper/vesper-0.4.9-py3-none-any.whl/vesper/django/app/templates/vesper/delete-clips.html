@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include "vesper/header-prefix.html" %}
+
+    <title>Delete clips - Vesper</title>
+
+    {% load vesper_extras %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vesper/view/command-form.css' %}">
+
+</head>
+
+<body>
+
+    {% include "vesper/navbar.html" %}
+
+    <h2>Delete clips</h2>
+
+    <p>
+        Deletes the specified clips from this Vesper archive.
+    </p>
+    
+    {% include "vesper/clips-specification-message.html" %}
+    
+    <p>
+        All data associated with the clips, including their audio
+        files and annotations, are deleted. You can optionally specify a
+        number of clips to retain. The retained clips are selected at random
+        from those specified, with all clips equally likely to be retained.
+    </p>
+    
+    {% include "vesper/command-executes-as-job-message.html" %}
+
+    <p class="warning">
+        This command can delete a lot of clips and annotations, and cannot
+        be undone, so use it with caution!
+    </p>
+
+
+    <!--
+        TODO: Get django-widget-tweaks Django app  and use it to set CSS classes
+        of form elements. Or perhaps use django-bootstrap3 app? See
+        http://stackoverflow.com/questions/8474409/django-forms-and-bootstrap-css-classes-and-divs.
+    -->
+
+    <form class="form" role="form" action="{% url 'delete-clips' %}" method="post">
+
+        {% include "vesper/clip-set-form-elements.html" %}
+        
+        {{ form.retain_count|form_element }}
+
+        <button type="submit" class="btn btn-default form-spacing command-form-spacing">Delete</button>
+
+    </form>
+
+</body>
+
+</html>

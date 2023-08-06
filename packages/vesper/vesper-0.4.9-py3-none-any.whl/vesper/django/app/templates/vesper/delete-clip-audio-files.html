@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include "vesper/header-prefix.html" %}
+
+    <title>Delete clip audio files - Vesper</title>
+
+    {% load vesper_extras %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vesper/view/command-form.css' %}">
+
+</head>
+
+<body>
+
+    {% include "vesper/navbar.html" %}
+
+    <h2>Delete clip audio files</h2>
+
+    <p>
+        Deletes the audio files of the specified clips of this archive.
+    </p>
+    
+    {% include "vesper/clips-specification-message.html" %}
+    
+    <p>
+        After the audio files are deleted, whenever Vesper needs the
+        clips' audio data it will read them from the recordings of which
+        the clips are parts, assuming that the recordings are available.
+        Note that if the recordings are not available, you probably don't
+        want to run this command!
+    </p>
+    
+    {% include "vesper/command-executes-as-job-message.html" %}
+
+    <!--
+        TODO: Get django-widget-tweaks Django app  and use it to set CSS classes
+        of form elements. Or perhaps use django-bootstrap3 app? See
+        http://stackoverflow.com/questions/8474409/django-forms-and-bootstrap-css-classes-and-divs.
+    -->
+
+    <form class="form" role="form" action="{% url 'delete-clip-audio-files' %}" method="post">
+
+        {% include "vesper/clip-set-form-elements.html" %}
+
+        <button type="submit" class="btn btn-default form-spacing command-form-spacing">Delete</button>
+
+    </form>
+
+</body>
+
+</html>
