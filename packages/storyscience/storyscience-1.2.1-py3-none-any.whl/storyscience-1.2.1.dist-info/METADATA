@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: storyscience
+Version: 1.2.1
+Summary: A storyteller
+Home-page: https://github.com/23subbhashit/StoryTellar/
+Author: subbhashit mukherjee
+Author-email: subbhashitmukherjee@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.16.6)
+Requires-Dist: pandas (>=1.0.5)
+Requires-Dist: seaborn (>=0.10.1)
+Requires-Dist: matplotlib (>=3.2.2)
+
+# StoryTellar
+
+## To install
+
+```
+pip install storyscience
+```
+
+## To build package
+
+```
+python setup.py sdist bdist_wheel
+```
+
+## To upload to PYPI
+
+```
+twine upload dist/*
+```
+
+
