@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: esparto
+Version: 0.1.2
+Summary: Minimal frontend web framework written in Python.
+Home-page: https://domvwt.github.io/esparto
+License: MIT
+Author: Dominic Thorn
+Author-email: dominic.thorn@gmail.com
+Requires-Python: >=3.6.1,<4.0.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Provides-Extra: extras
+Requires-Dist: Pillow (<9.0.0)
+Requires-Dist: Pillow (>=7.0.0)
+Requires-Dist: beautifulsoup4 (>=4.9.3,<5.0.0); extra == "extras"
+Requires-Dist: jinja2 (>=2.10.1,<3.0.0)
+Requires-Dist: markdown (>=3.1,<4.0)
+Project-URL: Repository, https://github.com/domvwt/esparto
+Description-Content-Type: text/markdown
+
+esparto
+=======
+
+[![image](https://img.shields.io/pypi/v/esparto.svg)](https://pypi.python.org/pypi/esparto)
+[![Build Status](https://travis-ci.com/domvwt/esparto.svg?branch=main)](https://travis-ci.com/domvwt/esparto)
+[![codecov](https://codecov.io/gh/domvwt/esparto/branch/main/graph/badge.svg?token=35J8NZCUYC)](https://codecov.io/gh/domvwt/esparto)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=domvwt_esparto&metric=alert_status)](https://sonarcloud.io/dashboard?id=domvwt_esparto)
+
+Esparto is a minimal frontend web framework written in Python.
+It aims to be the first choice for designing self-contained documents with productivity as the main concern.
+
+Full documentation available at [domvwt.github.io/esparto/](https://domvwt.github.io/esparto/).
+
+### Features
+* Lightweight API
+* No CSS or HTML required
+* Device responsive display
+* Self contained / inline dependencies
+* Jupyter Notebook support
+* MIT License
+
