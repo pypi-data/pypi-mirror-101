@@ -1,0 +1,19 @@
+
+from airflow import DAG, models
+
+from datetime import timedelta, datetime
+from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
+
+default_args = {
+    'owner': 'airflow',
+    'description': '{{desc}}',
+    'depend_on_past': False,
+    'start_date': datetime.utcnow() - timedelta(days = 1),
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5)
+}
+
+dag = DAG('{{name}}', description='{{desc}}',
+          default_args=default_args, catchup=False)

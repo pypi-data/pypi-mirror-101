@@ -1,0 +1,12 @@
+# FROM python:3.7.7-buster
+FROM hashmapinc/learning_awps_python_base
+
+RUN mkdir -p app
+WORKDIR app
+
+COPY files_to_add.zip zip.zip
+RUN unzip zip.zip && rm zip.zip
+
+COPY {{requirements}} requirements.txt
+RUN pip install -r requirements.txt
+

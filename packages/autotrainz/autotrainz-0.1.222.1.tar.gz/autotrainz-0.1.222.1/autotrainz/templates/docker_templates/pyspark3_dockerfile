@@ -1,0 +1,13 @@
+FROM hashmapinc/spark_base:3.0.1
+
+RUN apt-get update && apt install -y libcurl4-openssl-dev libssl-dev zip unzip git
+
+RUN mkdir -p app
+WORKDIR app
+
+COPY files_to_add.zip zip.zip
+RUN unzip zip.zip && rm zip.zip
+
+COPY {{requirements}} requirements.txt
+RUN pip3 install -r requirements.txt
+

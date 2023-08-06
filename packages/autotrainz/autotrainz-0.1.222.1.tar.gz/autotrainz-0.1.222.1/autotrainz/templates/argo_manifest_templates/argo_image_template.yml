@@ -1,0 +1,5 @@
+      - name: {{dag_name}}
+        dependencies: [{{dependencies}}]
+        template: {{template_name}}
+        arguments:
+          parameters: [{name: method, value: {{method_py}}}]

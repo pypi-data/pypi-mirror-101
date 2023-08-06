@@ -1,0 +1,12 @@
+{{stage}} = KubernetesPodOperator(
+               image='{{img}}',
+               cmds=['bash', '-c'],
+               arguments=['{{cmds}}'],
+               namespace='{{namespace}}',
+               name='airflow-{{stage}}',
+               is_delete_operator_pod=False,
+               in_cluster=True,
+               task_id='{{stage}}',
+               get_logs=True,
+               dag=dag
+           )

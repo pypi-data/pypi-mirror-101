@@ -1,0 +1,9 @@
+  - name: {{template_name}}
+    inputs:
+      parameters:
+      - name: method
+    container:
+      imagePullPolicy: Always
+      image: {{image_name}}
+      command: [ {{cmd}}, "{{ '{{' }}inputs.parameters.method{{ '}}' }}"]
+
