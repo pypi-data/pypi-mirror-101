@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: acmetk
+Version: 0.0.2
+Summary: An ACME Broker for Automated Certificate Acquisition in University Environments
+Home-page: https://github.com/noahkw/acmetk
+Author: Noah Wöhler
+Author-email: noah.woehler@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: acme (==1.9.0)
+Requires-Dist: acme-tiny (==4.1.0)
+Requires-Dist: aiohttp (==3.7.4)
+Requires-Dist: aiohttp-jinja2 (==1.4.2)
+Requires-Dist: alembic (==1.4.3)
+Requires-Dist: asyncpg (==0.21.0)
+Requires-Dist: certbot (==1.10.1)
+Requires-Dist: click (==7.1.2)
+Requires-Dist: cryptography (==3.3.2)
+Requires-Dist: dnspython (==2.0.0)
+Requires-Dist: infoblox-client (==0.5.0)
+Requires-Dist: josepy (~=1.7.0)
+Requires-Dist: psycopg2 (==2.8.6)
+Requires-Dist: PyYAML (==5.4)
+Requires-Dist: sqlalchemy (==1.4.0b1)
+Requires-Dist: trustme (==0.6.0)
+
+# ACME Toolkit ![Docker](https://github.com/noahkw/acmetk/workflows/Docker/badge.svg?branch=master)
+
+ACMEtk's main objective is the integration of Let's Encrypt-like services
+into large decentralized networks by means of a centrally hosted service
+that operates like a standard ACME CA on the client-facing side,
+but relays ACME messages regarding certificate issuances to a
+specified external CA.
+
+- PyPI: https://pypi.org/project/acmetk/
+- Docs: https://acmetk.readthedocs.io/
+
+
