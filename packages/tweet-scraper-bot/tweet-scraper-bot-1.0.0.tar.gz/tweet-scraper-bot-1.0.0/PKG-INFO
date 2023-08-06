@@ -1,0 +1,132 @@
+Metadata-Version: 2.1
+Name: tweet-scraper-bot
+Version: 1.0.0
+Summary: A python library to scrape tweet data from twitter automatically.
+Home-page: https://twitter-api.datakund.com/en/latest/
+Author: DataKund
+Author-email: datakund@gmail.com
+License: Apache License 2.0
+Description: Tweet-Scraper-Bot is a python library to scrape tweets, retweets of a profile using browser automation. 
+        It currently runs only on windows.
+        
+        ### Example 1
+        In this example we first import library, then we login with cookies and get tweets.
+        ```sh
+        from tweet_scraper_bot import *
+        true=True;false=False
+        list_of_cookies=[
+        {
+            "domain": ".twitter.com",
+            "expirationDate": 1676520136,
+            "hostOnly": false,
+            "httpOnly": false,
+            "name": "_ga",
+            "path": "/",
+            "sameSite": "unspecified",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "GA1.2.11102303825.16103497s68",
+            "id": 1
+        }]
+        #please replace the above sample cookies with your cookies, can see below link of how to fetch cookies
+        twitter.login_cookie(cookies=list_of_cookies)
+        twitter.open("https://twitter.com/narendramodi")
+        
+        all_data=[]
+        for i in range(0,5):
+        	response=twitter.get_tweets()
+        	data=response['body']
+        	#data=[{"Tweet": "Tweet Text"},{},]
+        	all_data.extend(data)
+        ```
+        
+        ### Example 2
+        In this example we first import library, then we login with cookies and get retweets.
+        ```sh
+        from tweet_scraper_bot import *
+        list_of_cookies=[
+        {
+            "domain": ".twitter.com",
+            "expirationDate": 1676520136,
+            "hostOnly": false,
+            "httpOnly": false,
+            "name": "_ga",
+            "path": "/",
+            "sameSite": "unspecified",
+            "secure": false,
+            "session": false,
+            "storeId": "0",
+            "value": "GA1.2.11102303825.16103497s68",
+            "id": 1
+        }]
+        #please replace the above sample cookies with your cookies, can see below link of how to fetch cookies
+        twitter.login_cookie(cookies=list_of_cookies)
+        twitter.open("https://twitter.com/narendramodi/status/1344201660784992263/retweets")
+        
+        response=twitter.get_retweets()
+        data=response['body']
+        #data=[{"Link": "https://twitter.com/DeepJagani1", "Info": "Deep Jagani\n@DeepJagani1"},{}]
+        ```
+        
+        
+        This module depends on the following python modules
+        * [requests](https://pypi.org/project/requests/)
+        * [bot_studio](https://pypi.org/project/bot_studio/)
+        
+        #### BotStudio
+        [bot_studio](https://pypi.org/project/bot_studio/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up.
+        
+        Complete documentation for Twitter Automation available [here](https://twitter-api.datakund.com/en/latest/)
+        
+        ### Installation
+        
+        ```sh
+        pip install tweet-scraper-bot
+        ```
+        
+        ### Import
+        ```sh
+        from tweet_scraper_bot import *
+        ```
+        
+        ### Login with credentials
+        ```sh
+        twitter.login(username="twitter username",password="twitter password")
+        ```
+        
+        ### Login with cookies
+        ```sh
+        twitter.login_cookie(cookies=list_of_cookies)
+        ```
+        
+        ### Get tweets
+        ```sh
+        response=twitter.get_tweets()
+        ```
+        
+        ### Get retweets
+        ```sh
+        response=twitter.get_retweets()
+        ```
+        
+        ### Get tweet links
+        ```sh
+        response=twitter.get_tweet_links()
+        ```
+        
+        ### Send Feedback to Developers
+        ```sh
+        bot_studio.send_feedback(feedback="Need help with this ......")
+        ```
+        
+        ### Cookies
+        To login with cookies [Edit this Cookie Extension](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=en) can be added to browser. Please check [this](https://abhishek-chaudhary.medium.com/how-to-get-cookies-of-any-website-from-browser-22b3d6348ed2) link how to get cookies to login to your twitter.
+        ### Contact Us
+        * [Telegram](https://t.me/datakund)
+        * [Website](https://datakund.com)
+        
+        
+Keywords: twitter python bot_studio scraper login tweet data web-scraping
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
