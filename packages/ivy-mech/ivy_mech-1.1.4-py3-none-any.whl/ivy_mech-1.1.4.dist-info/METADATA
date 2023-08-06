@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: ivy-mech
+Version: 1.1.4
+Summary: Mechanics functions with end-to-end support for deep learning developers, written in Ivy
+Home-page: https://ivy-dl.org/mech
+Author: Ivy Team
+Author-email: ivydl.team@gmail.com
+License: Apache 2.0
+Project-URL: Docs, https://ivy-dl.org/mech/
+Project-URL: Source, https://github.com/ivy-dl/mech
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
+Requires-Dist: ivy-core
+
+# What is Ivy Mechanics?
+
+Ivy mechanics provides functions for conversions of orientation,
+      pose, and positional representations, as well as frame-of-reference transformations, and other more applied functions.
+      Ivy currently supports Jax, TensorFlow, PyTorch, MXNet and Numpy. Check out the [docs](https://ivy-dl.org/mech) for more info!
+
