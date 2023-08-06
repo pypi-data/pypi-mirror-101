@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "zemfrog-test"
+version = "1.0.3"
+description = "Zemfrog unit testing tools"
+authors = ["aprilahijriyan <hijriyan23@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["zemfrog"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Framework :: Flask",
+    # "Framework :: Zemfrog",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+zemfrog = "^5.0.1"
+pytest = "^6.2.2"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.11.1"
+ipython = "^7.22.0"
+
+[tool.poetry.urls]
+
+Github = "https://github.com/zemfrog/zemfrog-test"
+"Issue Tracker" = "https://github.com/zemfrog/zemfrog-test/issues"
+Donation = "https://www.patreon.com/aprilahijriyan"
+
+[tool.poetry.plugins]
+
+pytest11 = {zemfrog_test = "zemfrog_test.fixtures"}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
