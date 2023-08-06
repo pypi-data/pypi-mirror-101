@@ -1,0 +1,41 @@
+[build-system]
+requires = [ "setuptools>=40.6.0", "wheel>=0.34.2",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "whey"
+version = "0.0.10"
+description = "A simple Python wheel builder for simple projects."
+readme = "README.rst"
+keywords = [ "pep517", "pep621", "build", "sdist", "wheel", "packaging", "distribution",]
+dynamic = [ "requires-python", "classifiers", "dependencies",]
+
+[[project.authors]]
+email = "dominic@davis-foster.co.uk"
+name = "Dominic Davis-Foster"
+
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/repo-helper/whey"
+"Issue Tracker" = "https://github.com/repo-helper/whey/issues"
+"Source Code" = "https://github.com/repo-helper/whey"
+Documentation = "https://whey.readthedocs.io/en/latest"
+
+[project.scripts]
+whey = "whey.__main__:main"
+
+[project.optional-dependencies]
+readme = [ "readme-renderer[md]>=27.0",]
+all = [ "readme-renderer[md]>=27.0",]
+
+[tool.mkrecipe]
+conda-channels = [ "conda-forge", "domdfcoding",]
+extras = "all"
+license-key = "MIT"
+
+[project.entry-points."whey.builder"]
+whey_sdist = "whey.builder:SDistBuilder"
+whey_wheel = "whey.builder:WheelBuilder"
