@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: unfolded.map-sdk
+Version: 0.1.0
+Summary: Jupyter Widget for Unfolded.ai Maps
+Home-page: UNKNOWN
+Author: UnfoldedInc.
+Author-email: info@unfolded.ai
+License: Unlicensed
+Description: 
+        # unfolded.map_sdk
+        
+        [![Build Status](https://travis-ci.org/Unfolded Inc/unfolded_jupyter.svg?branch=master)](https://travis-ci.org/Unfolded Inc/unfolded_jupyter)
+        [![codecov](https://codecov.io/gh/Unfolded Inc/unfolded_jupyter/branch/master/graph/badge.svg)](https://codecov.io/gh/Unfolded Inc/unfolded_jupyter)
+        
+        
+        Unfolded Map SDK for Jupyter (Python).
+        
+        ## Installation
+        
+        You can install using `pip`:
+        
+        ```bash
+        pip install unfolded.map_sdk
+        ```
+        
+        If you are using Jupyter Notebook 5.2 or earlier, you may also need to enable
+        the nbextension:
+        
+        ```bash
+        jupyter nbextension install --py --symlink --sys-prefix unfolded.map_sdk
+        jupyter nbextension enable --py --sys-prefix unfolded.map_sdk
+        ```
+        
+Keywords: Jupyter,Widgets,IPython
+Platform: Linux
+Platform: Mac OS X
+Platform: Windows
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Framework :: Jupyter
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: examples
+Provides-Extra: docs
