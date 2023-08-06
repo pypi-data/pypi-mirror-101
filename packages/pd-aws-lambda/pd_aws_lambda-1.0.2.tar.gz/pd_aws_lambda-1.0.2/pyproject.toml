@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "pd_aws_lambda"
+version = "1.0.2"
+description = "Integrate your python applications with AWS Lambda and https://pythondeploy.co/."
+authors = ["Federico Jaramillo Martínez <federicojaramillom@gmail.com>"]
+license= "BSD-3-Clause"
+readme = "README.rst"
+homepage = "https://github.com/pythondeploy/aws-lambda"
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+apig-wsgi = ">=2.0.0"
+boto3 = { version = ">=1.0.2", optional = true }
+
+[tool.poetry.dev-dependencies]
+docutils = "*"
+pygments = "*"
+bump2version = "*"
+
+[tool.poetry.extras]
+deploy = ["boto3"]
+
+[tool.poetry.scripts]
+pd_build_and_deploy = 'pd_aws_lambda.scripts.pd_build_and_deploy:run'
+pd_deploy = 'pd_aws_lambda.scripts.pd_deploy:run'
+pd_build = 'pd_aws_lambda.scripts.pd_build:run'
+pd_run = 'pd_aws_lambda.scripts.pd_run:run'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
