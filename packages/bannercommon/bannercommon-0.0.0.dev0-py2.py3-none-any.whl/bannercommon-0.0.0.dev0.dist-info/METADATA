@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: bannercommon
+Version: 0.0.0.dev0
+Summary: UNKNOWN
+Home-page: UNKNOWN
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6, <4
+Description-Content-Type: text/markdown
+
+Placeholder for internal library.
+
+This isn't the library you are looking for.
+
+How to setup:
+
+https://packaging.python.org/guides/distributing-packages-using-setuptools/
+
+    python3.6 -m venv venv
+    . venv/bin/activate
+
+    pip install --upgrade pip
+    pip install wheel
+    pip install twine
+
+    touch setup.py README.md src/__init__.py
+
+    #copy/modify setup.py and src/__init__.py as needed
+
+Test
+
+    python -m pip install -e .
+    python
+
+    import bannercommon # should throw error
+
+
