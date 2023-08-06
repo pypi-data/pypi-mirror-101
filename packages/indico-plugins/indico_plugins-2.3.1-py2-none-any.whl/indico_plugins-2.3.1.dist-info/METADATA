@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: indico-plugins
+Version: 2.3.1
+Summary: A meta-package containing the official Indico plugins
+Home-page: https://github.com/indico/indico-plugins
+Author: Indico Team
+Author-email: indico-team@cern.ch
+License: MIT
+Platform: UNKNOWN
+Classifier: Environment :: Plugins
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: indico (>=2.3.dev0)
+Requires-Dist: indico-plugin-livesync (<2.4.dev0,>=2.3)
+Requires-Dist: indico-plugin-payment-manual (<2.4.dev0,>=1.0.1)
+Requires-Dist: indico-plugin-payment-paypal (<2.4.dev0,>=2.2)
+Requires-Dist: indico-plugin-piwik (<2.4.dev0,>=2.3)
+Requires-Dist: indico-plugin-previewer-code (<2.4.dev0,>=1.0)
+Requires-Dist: indico-plugin-previewer-jupyter (<2.4.dev0,>=1.0)
+Requires-Dist: indico-plugin-search (<2.4.dev0,>=2.3)
+Requires-Dist: indico-plugin-storage-s3 (<2.4.dev0,>=2.3.2)
+Requires-Dist: indico-plugin-ursh (<2.4.dev0,>=2.3)
+Requires-Dist: indico-plugin-vc-vidyo (<2.4.dev0,>=2.3.1)
+Requires-Dist: indico-plugin-vc-zoom (<2.4.dev0,>=2.3)
+Provides-Extra: importer
+Requires-Dist: indico-plugin-importer-invenio (<2.4.dev0,>=2.2) ; extra == 'importer'
+Requires-Dist: indico-plugin-importer (<2.4.dev0,>=2.2) ; extra == 'importer'
+
+UNKNOWN
+
+
