@@ -1,0 +1,7 @@
+[console_scripts]
+har2caselt = httprunnerlt.cli:main_har2case_alias
+hmakelt = httprunnerlt.cli:main_make_alias
+hrunlt = httprunnerlt.cli:main_hrun_alias
+httprunnerlt = httprunnerlt.cli:main
+locustslt = httprunnerlt.ext.locust:main_locusts
+
