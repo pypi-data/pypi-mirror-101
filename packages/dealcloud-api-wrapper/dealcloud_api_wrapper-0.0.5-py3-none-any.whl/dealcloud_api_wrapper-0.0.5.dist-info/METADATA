@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: dealcloud-api-wrapper
+Version: 0.0.5
+Summary: A python wrapper for easily interacting with the Dealcloud REST API.
+Home-page: https://github.com/geg2102/dealcloud_api_wrapper
+Author: Geoffrey Grossman
+Author-email: ggrossman1@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: requests-oauthlib
+Requires-Dist: oauthlib
+
+# DealCloud API Wrapper
+
+This package provides a simple wrapper for interacting with the DealCloud REST API. 
+
+## Installation
+
+The package can be installed through `pip`:
+```
+pip install dealcloud-api-wrapper
+```
+
+The package depends on `requests`, `requests_oauthlib`, and `oauthlib`.
+
+## Example
+
+Using the package is simple:
+
+```python
+from dealcloud_api_wrapper import dc_client
+
+# Initialize Client object
+dc = dc_client.Client(hostname='your hostname here', client_id='your client id', client_secret='your client secret')
+
+# Call schema/data methods (more examples in dc_schema and dc_data classes)
+dc_schema_result = dc.schema_get_entrytypes()
+dc_data_result = dc.data_get_row_entry(entryTypeId, query={'your query'}, params={'your params'})
+```
+
+
+
+
