@@ -1,0 +1,103 @@
+/* Base : Grid : Objects : State: Theme */
+
+/*  Base    */
+
+/*  Grid and Flex */
+
+body {
+display: grid;
+grid-template-columns: 3fr 6fr 2fr;
+grid-template-areas:
+"banner  speech  images"
+"banner  speech  images"
+"banner  speech  images"
+"banner  prompt  images";
+height: 100vh;
+}
+
+.catchphrase-banner {
+grid-area: banner;
+}
+
+main {
+grid-area: speech;
+height: 80vh;
+overflow-y: var(--catchphrase-states-scrolls, visible);
+}
+
+nav {
+grid-area: prompt;
+}
+
+aside.catchphrase-reveal {
+background-color: var(--catchphrase-colour-washout, whitesmoke);
+grid-area: images;
+min-width: 128px;
+}
+
+@media screen and (max-width: 1024px) {
+
+body {
+display: grid;
+grid-template-columns: 5fr 1fr;
+grid-template-areas:
+"speech  images"
+"speech  images"
+"prompt  prompt";
+}
+
+}
+
+/*  Objects  */
+
+.catchphrase-reveal blockquote header {
+color: var(--catchphrase-colour-midtone, grey);
+font-size: 1.1rem;
+font-weight: lighter;
+}
+
+.catchphrase-reveal li {
+animation-fill-mode: var(--catchphrase-reveal-extends, both);
+}
+
+.catchphrase-reveal p {
+font-size: 1.3rem;
+}
+
+
+/*  State   */
+
+
+/*  Theme   */
+
+body {
+color: var(--catchphrase-colour-shadows, grey);
+}
+
+li a {
+font-family: sans-serif;
+font-weight: normal;
+}
+
+button {
+display: none;
+}
+
+input {
+color: var(--catchphrase-colour-shadows, grey);
+font-size: 1.2rem;
+width: 42rem;
+}
+
+.catchphrase-banner h1 {
+color: var(--catchphrase-colour-gravity, magenta);
+display: flex inline;
+flex-direction: column;
+font-size: 2rem;
+font-weight: bold;
+}
+
+.catchphrase-reveal blockquote > header:empty + p {
+letter-spacing: 0.1rem;
+}
+
