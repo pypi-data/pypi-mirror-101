@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: copia
+Version: 0.1.2
+Summary: Bias correction for richness in abundance data
+Home-page: https://github.com/mikekestemont/copia
+Author: Mike Kestemont & Folgert Karsdorp
+License: CC-BY
+Description: # copia
+        Bias correction for richness in abundance data
+        
+        For development, run 
+        
+        ``` bash
+        pip install -e . 
+        ```
+        
+        in the top directory of `copia`.
+        
+        Subsequently, run `pytest` from the same directory. 
+        
+        ## Etymology
+        The package is named after the Latin term for "abundance".
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
