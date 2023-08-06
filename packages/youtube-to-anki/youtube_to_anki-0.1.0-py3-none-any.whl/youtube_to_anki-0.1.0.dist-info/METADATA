@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: youtube-to-anki
+Version: 0.1.0
+Summary: Convert YouTube videos to Anki decks.
+License: MIT
+Author: Jan-Benedikt Jagusch
+Author-email: jan.jagusch@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: click (>=7.1,<8.0)
+Requires-Dist: genanki (>=0.10,<0.11)
+Requires-Dist: pydub (>=0.25,<0.26)
+Requires-Dist: youtube_dl (==2021.04.07)
+Requires-Dist: youtube_transcript_api (==0.4)
