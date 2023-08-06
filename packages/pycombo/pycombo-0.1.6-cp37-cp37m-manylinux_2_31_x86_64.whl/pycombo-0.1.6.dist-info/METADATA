@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: pycombo
+Version: 0.1.6
+Summary: Python wrapper around Combo network partitioning algorythm (C++)
+Home-page: https://github.com/Casyfill/pyCombo
+License: MIT
+Keywords: Networks,Graph Theory,Mathematics,network,graph,discrete mathematics,math
+Author: Philipp
+Author-email: casyfill@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: importlib-metadata (>=1.0,<2.0); python_version < "3.8"
+Requires-Dist: pybind11 (>=2.6.1,<3.0.0)
+Project-URL: Bug Tracker, https://github.com/Casyfill/pyCombo/issues
+Project-URL: Source Code, https://github.com/Casyfill/pyCombo
+Description-Content-Type: text/markdown
+
+# pyCOMBO
+![CI](https://github.com/Casyfill/pyCombo/workflows/CI/badge.svg)
+
+pyCombo is a python wrapper around [C++ implementation](https://github.com/Alexander-Belyi/Combo) of the [network] community detection algorithm called "Combo".
+
+Details of the algorithm are described in the paper "General optimization technique for high-quality community detection":
+
+```
+Sobolevsky, S., Campari, R., Belyi, A. and Ratti, C., 2014. General optimization technique for high-quality community detection in complex networks. Physical Review E, 90(1), p.012811.
+```
+
+## Installation
+You can install the latest release of pycombo from PyPI by executing
+```bash
+python -m pip install pycombo
+```
+
+## Quick Start
+The basic usage is as follows:
+```python
+import pycombo
+import networkx as nx
+
+partition = pycombo.execute(nx.karate_club_graph())
+```
+Package supports [NetworkX](https://networkx.github.io/) graphs and `.net` files. It can also use custom modularity metrics.
+More examples could be found in [example](https://github.com/Casyfill/pyCombo/tree/master/example) folder.
+
+## Development
+
+This repo uses https://github.com/Alexander-Belyi/Combo as a [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+So for local development, clone with `--recurse-submodules` flag, as:
+```bash
+git clone --recurse-submodules https://github.com/Casyfill/pyCombo
+```
+Or, if you've already cloned it without `--recurse-submodules`, run:
+```bash
+git submodule update --init --recursive
+```
+
+Package is built and managed via `poetry`.
+- to install dev version, run `poetry install`
+- To build distributions run `poetry build`.
+
+# Information
+- [project web_site](http://senseable.mit.edu/community_detection/)
+- [paper](http://journals.aps.org/pre/abstract/10.1103/PhysRevE.90.012811)
+
+### Other useful Links and resources
+- [How to build C extension in poetry](https://github.com/python-poetry/poetry/issues/2740)
