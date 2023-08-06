@@ -1,0 +1,69 @@
+Metadata-Version: 2.1
+Name: flask-api-autodoc
+Version: 1.0.0
+Summary: A Python module to generate a page documenting the API of a Flask application.
+Home-page: https://github.com/lsiden/flask-api-autodoc
+License: MIT
+Author: Lawrence Siden
+Author-email: lsiden@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Framework :: Flask
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Documentation
+Requires-Dist: Flask (>=1.1.2,<2.0.0)
+Description-Content-Type: text/markdown
+
+# Flask API Auto-documentation
+
+A Python module to generate a page documenting the API of a Flask application.
+
+## Installation
+
+pip install flask-audo-doc
+
+## Usage
+
+```
+import flask
+from flask_api_autodoc.view import render_page
+
+app = flask.Flask('demo')
+app.route('/info')(render_something)
+app.route('/api/this')(render_something)
+app.route('/api/that')(render_something)
+
+@app.route('/doc')
+def _():
+  return render_page(path_prefixes=['/api'])
+```
+
+## Support
+
+Please [open an issue](https://github.com/lsiden/flask-api-autodoc/issues/new) for support.
+
+## Contributing
+
+Clone, edit, and submit pull requests.
+
+## Dev Automation
+
+- `make clean`
+- `make test`
+- `make tox`
+- `make install-local`
+- `make build`
+
+## Author
+
+Lawrence Siden
+<br>Westside Consulting LLC
+<br>Ann Arbor, MI  USA
+<br>lsiden@gmail.com
+
+## License
+
+MIT
+
