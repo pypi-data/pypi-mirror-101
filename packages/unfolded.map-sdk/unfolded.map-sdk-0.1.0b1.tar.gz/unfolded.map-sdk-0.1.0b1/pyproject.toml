@@ -1,0 +1,8 @@
+[build-system]
+requires = ["jupyter_packaging==0.7.9", "jupyterlab==3.*", "setuptools>=40.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+line_length = 80
+multi_line_output = 4
+known_first_party = ["unfolded"]
