@@ -1,0 +1,10 @@
+include Cargo.*
+include LICENSE
+include build.rs
+recursive-include src *
+recursive-include doc *
+recursive-include addcomb-comp/src *
+include addcomb-comp/Cargo.*
+include cachetools/Cargo.*
+recursive-include cachetools/src *
+include cachetools/build.rs

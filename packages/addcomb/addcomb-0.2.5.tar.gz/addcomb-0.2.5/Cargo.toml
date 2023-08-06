@@ -1,0 +1,24 @@
+[package]
+name = "addcombq"
+version = "0.2.5"
+authors = ["Matt Torrence <gh-Torrencem>"]
+edition = "2018"
+build = "build.rs"
+
+[lib]
+name = "addcombq"
+crate-type = ["rlib", "dylib"]
+
+[features]
+default = ["python2"]
+python3 = ["cpython/python3-sys"]
+python2 = ["cpython/python27-sys"]
+
+[dependencies]
+paste = "0.1.6"
+addcomb_comp = { path = "addcomb-comp" }
+cachetools = { path = "cachetools" }
+
+[dependencies.cpython]
+version = "0.3.0"
+default-features = false
