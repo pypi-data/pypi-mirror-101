@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools", "poetry_core>=1.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "efax"
+version = "1.2.6"
+description = "Exponential families for JAX"
+license = "MIT"
+authors = ["Neil Girdhar <mistersheik@gmail.com>"]
+readme = "README.rst"
+repository = "https://github.com/NeilGirdhar/efax"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+chex = "^0"
+jax = "^0.2"
+tensorflow-probability = "^0.12"
+jaxlib = "^0.1.55"
+numpy = ">=1.20,<1.21"
+scipy = "^1.4"
+tjax = ">=0.9,<1.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.6"
+pytest = "^6"
+
+[tool.isort]
+line_length = 100
+multi_line_output = 0
+known_third_party = ["jax"]
+
+[tool.pycodestyle]
+max-line-length = 100
+exclude = ["__init__.py", "__pycache__"]
+
+[tool.pylint.messages_control]
+disable = [
+    "abstract-method",
+    "arguments-differ",
+    "cyclic-import",  # https://github.com/PyCQA/pylint/issues/3525
+    "invalid-name",
+    "invalid-unary-operand-type",
+    "missing-docstring",
+    "no-member",
+    "no-self-use",
+    "unused-argument"]
+
+[tool.pylint.reports]
+output-format = "colorized"
+
+[tool.pylint.similarities]
+min-similarity-lines = 10
