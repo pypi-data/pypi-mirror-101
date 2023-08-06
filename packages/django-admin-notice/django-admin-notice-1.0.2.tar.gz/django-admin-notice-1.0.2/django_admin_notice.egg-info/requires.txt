@@ -1,0 +1,12 @@
+django>=2.2
+
+[dev]
+flake8~=3.9.0
+black~=19.10b0
+pre-commit~=2.11.0
+faker~=8.0.0
+pytest~=6.2.2
+pytest-cov~=2.11.1
+pytest-django~=4.1.0
+tox~=3.23.0
+twine~=3.4.1
