@@ -1,0 +1,13 @@
+$def with (cache)
+$var title: Cache
+
+<ul>
+$for item in cache:
+    $ repr = representative_hcard(item["data"], item["url"])
+    <li>
+    $if repr:
+        <p><a href=$repr["uid"][0]>$repr["name"][0]</a></p>
+    <p><big><code>$item["url"]</code></big></p>
+    <pre><small>$pformat(item["data"])</small></pre>
+    </li>
+</ul>
