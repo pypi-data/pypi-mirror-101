@@ -1,0 +1,15 @@
+include test/*.py
+
+include doc/*.rst
+include doc/conf.py
+include doc/images/*.png
+include doc/Makefile
+include doc/_static/*.css
+include doc/_templates/*.html
+
+include examples/*.py
+
+include README.rst
+include LICENSE
+
+recursive-include contrib *.sh *.py
