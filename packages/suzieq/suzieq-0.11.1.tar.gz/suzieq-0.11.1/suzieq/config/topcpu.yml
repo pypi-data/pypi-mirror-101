@@ -1,0 +1,46 @@
+service: topcpu
+period: 60
+type: counters
+keys:
+  - procName
+  - pid
+show-fields:
+  - procName
+  - pid
+  - percentCPU
+  - minLoadAvg
+  - percentMem
+  - residentMem
+apply:
+  cumulus:
+    version: all
+    command: top -bn 1 | head -17
+    textfsm: textfsm_templates/cl_top.tfsm
+
+  iosxr:
+    version: all
+    command: show processes cpu
+    textfsm: textfsm_templates/cl_top.tfsm
+
+  linux:
+    version: all
+    command: top -bn 1 | head -17
+    textfsm: textfsm_templates/linux_top.tfsm
+
+  sonic:
+    copy: linux
+
+  eos:
+    version: all
+    command: bash timeout 5 top -bn 1 | head -17
+    format: text
+    textfsm: textfsm_templates/cl_top.tfsm
+
+  platina:
+    copy: cumulus
+
+  nxos:
+    version: all
+    command: run bash top -bn 1 | head -17
+    format: text
+    textfsm: textfsm_templates/cl_top.tfsm
