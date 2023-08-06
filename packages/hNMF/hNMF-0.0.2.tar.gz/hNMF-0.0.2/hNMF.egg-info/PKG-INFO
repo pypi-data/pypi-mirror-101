@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: hNMF
+Version: 0.0.2
+Summary: Hierarchical NMF
+Home-page: https://github.com/estasney/hNMF
+Author: Eric Stasney
+Author-email: estasney@users.noreply.github.com
+License: MIT
+Description: 
+        # hierarchical-nmf-python
+        * fork of https://github.com/rudvlf0413/hierarchical-nmf-python
+        * with familiar SKLearn interface  
+        
+        ## Reference
+        - Papers: [Fast rank-2 nonnegative matrix factorization for hierarchical document clustering](https://smallk.github.io/papers/hierNMF2.pdf)
+        
+        - Original version of codes (matlab): https://github.com/dakuang/hiernmf2
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7.0
+Description-Content-Type: text/markdown
