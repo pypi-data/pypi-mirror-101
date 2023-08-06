@@ -1,0 +1,125 @@
+Linkedin-Search-Posts-Bot is a python library to search keyword in posts and then scrape posts data on linkedin using browser automation. 
+It currently runs only on windows.
+
+### Example1
+In this example we first import library, then we login with cookies and then search and scrape data of a posts.
+```sh
+from linkedin_search_posts_bot import *
+true=True;false=False
+list_of_cookies=[
+{
+    "domain": ".linkedin.com",
+    "expirationDate": 1676463230,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "_ga",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": false,
+    "storeId": "0",
+    "value": "GA1.2.1029585723.1610264105",
+    "id": 1
+}]
+#please replace the above sample cookies with your cookies, can see below link of how to fetch cookies
+linkedin.login_cookie(cookies=list_of_cookies)
+linkedin.search_posts(keyword='data science')
+response=linkedin.posts_results()
+data=response['body']
+#data=[{"User Link": "https://www.linkedin.com/in/ACoAAA-o4hwBSDzBqrYMLlBP_Z6a32-3OXHT1JE?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_content%3BeEN9bbddQ0KdHDbJSiRlNw%3D%3D", "Post Text": "My team at Amazon is hiring multiple data scientis.."},..]
+```
+### Example2:- scrape data of first five pages
+In this example we first import library, then we login with cookies and then search and scrape data of first five pages.
+```sh
+from linkedin_search_posts_bot import *
+linkedin.login_cookie(cookies=list_of_cookies)
+true=True;false=False
+list_of_cookies=[
+{
+    "domain": ".linkedin.com",
+    "expirationDate": 1676463230,
+    "hostOnly": false,
+    "httpOnly": false,
+    "name": "_ga",
+    "path": "/",
+    "sameSite": "unspecified",
+    "secure": false,
+    "session": false,
+    "storeId": "0",
+    "value": "GA1.2.1029585723.1610264105",
+    "id": 1
+}]
+#please replace the above sample cookies with your cookies, can see below link of how to fetch cookies
+linkedin.search_posts(keyword='data science')
+
+all_data=[]
+for i in range(0,5):
+	response=linkedin.posts_results()
+	data=response['body']
+	#data=[{"User Link": "https://www.linkedin.com/in/ACoAAA-o4hwBSDzBqrYMLlBP_Z6a32-3OXHT1JE?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_content%3BeEN9bbddQ0KdHDbJSiRlNw%3D%3D", "Post Text": "My team at Amazon is hiring multiple data scientis.."},..]
+	all_data.extend(data)
+	linkedin.click_next() # clicks in next button
+```
+
+This module depends on the following python modules
+* [requests](https://pypi.org/project/requests/)
+* [bot_studio](https://pypi.org/project/bot_studio/)
+
+#### BotStudio
+[bot_studio](https://pypi.org/project/bot_studio/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up. Complete documentation for Linkedin Automation available [here](https://linkedin-api.datakund.com/en/latest/)
+
+### Installation
+
+```sh
+pip install linkedin-search-posts-bot
+```
+
+### Import
+```sh
+from linkedin_search_posts_bot import *
+```
+
+### Login with credentials
+```sh
+linkedin.login(username="linkedin username",password="linkedin password")
+```
+
+### Login with cookies
+```sh
+linkedin.login_cookie(cookies=list_of_cookies)
+```
+
+### Search in Posts
+```sh
+linkedin.search_posts(keyword='search keyword')
+```
+
+### Get Search Results
+```sh
+response=linkedin.posts_results()
+data=response['body']
+```
+
+### Get Post Links
+```sh
+response=linkedin.posts_links()
+data=response['body']
+```
+
+### Click on Next button
+```sh
+linkedin.click_next()
+```
+
+### Send Feedback to Developers
+```sh
+bot_studio.send_feedback(feedback="Need help with this ......")
+```
+
+### Cookies
+To login with cookies [Edit this Cookie Extension](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=en) can be added to browser. Please check [this](https://abhishek-chaudhary.medium.com/how-to-get-cookies-of-any-website-from-browser-22b3d6348ed2) link how to get cookies to login to your linkedin.
+
+### Contact Us
+* [Telegram](https://t.me/datakund)
+* [Website](https://datakund.com)
+
