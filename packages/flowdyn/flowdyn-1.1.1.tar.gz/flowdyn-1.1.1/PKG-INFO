@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: flowdyn
+Version: 1.1.1
+Summary: Model of discretization of hyperbolic model, base is Finite Volume method
+Home-page: https://github.com/jgressier/flowdyn
+License: MIT
+Author: j.gressier
+Author-email: jeremie.gressier@isae-supaero.fr
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: aerokit (>=1.0,<2.0)
+Requires-Dist: matplotlib (>=3.3,<4.0)
+Requires-Dist: numpy (>=1.15,<2.0)
+Project-URL: Documentation, https://flowdyn.readthedocs.io/en/latest/
+Project-URL: Repository, https://github.com/jgressier/flowdyn
