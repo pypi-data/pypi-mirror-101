@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: NIR_preprocess
+Version: 0.0.1
+Summary: Function to evaluate impact of NIR pre-processing techniques on spectral data
+Home-page: UNKNOWN
+Author: Giverny Robert
+Author-email: giverny.robert@usherbrooke.ca
+License: UNKNOWN
+Description: Function using multiblock partial least squares to evaluate impact of different pre-processing techniques        
+                
+        Different pre-processing techniques tested from RG module:        
+        baseline, detrend, EMSC, MSC, SNV, savitzky_golay        
+                
+         MBPLS function from RG module 
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
