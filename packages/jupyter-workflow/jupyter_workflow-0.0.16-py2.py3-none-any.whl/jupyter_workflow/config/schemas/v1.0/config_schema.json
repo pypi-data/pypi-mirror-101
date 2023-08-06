@@ -1,0 +1,425 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "config_schema.json",
+  "type": "object",
+  "definitions": {
+    "model": {
+      "$id": "#/definitions/model",
+      "type": "object",
+      "definitions": {
+        "docker": {
+          "$id": "#/definitions/model/definitions/docker",
+          "type": "object",
+          "$ref": "docker.json"
+        },
+        "docker-compose": {
+          "$id": "#/definitions/model/definitions/docker-compose",
+          "type": "object",
+          "$ref": "docker-compose.json"
+        },
+        "helm2": {
+          "$id": "#/definitions/model/definitions/helm2",
+          "type": "object",
+          "$ref": "helm2.json#"
+        },
+        "helm3": {
+          "$id": "#/definitions/model/definitions/helm3",
+          "type": "object",
+          "$ref": "helm3.json#"
+        },
+        "pbs": {
+          "$id": "#/definitions/model/definitions/pbs",
+          "type": "object",
+          "$ref": "queue_manager.json#"
+        },
+        "occam": {
+          "$id": "#/definitions/model/definitions/occam",
+          "type": "object",
+          "$ref": "occam.json#"
+        },
+        "singularity": {
+          "$id": "#/definitions/model/definitions/singularity",
+          "type": "object",
+          "$ref": "singularity.json#"
+        },
+        "slurm": {
+          "$id": "#/definitions/model/definitions/slurm",
+          "type": "object",
+          "$ref": "queue_manager.json#"
+        },
+        "ssh": {
+          "$id": "#/definitions/model/definitions/ssh",
+          "type": "object",
+          "$ref": "ssh.json#"
+        }
+      },
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "docker",
+            "docker-compose",
+            "helm",
+            "helm2",
+            "helm3",
+            "pbs",
+            "occam",
+            "singularity",
+            "slurm",
+            "ssh"
+          ]
+        },
+        "external": {
+          "type": "boolean",
+          "description": "If set, StreamFlow does not manage the lifecycle of the execution environment. This means that all required services must be up and running when the workflow starts",
+          "default": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "docker"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$id": "#/definitions/model/properties/config",
+                "type": "object",
+                "$ref": "#/definitions/model/definitions/docker"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "docker-compose"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$id": "#/definitions/model/properties/config",
+                "type": "object",
+                "$ref": "#/definitions/model/definitions/docker-compose"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "helm2"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$id": "#/definitions/model/properties/config",
+                "type": "object",
+                "$ref": "#/definitions/model/definitions/helm2"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "pattern": "helm(3)?"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$id": "#/definitions/model/properties/config",
+                "type": "object",
+                "$ref": "#/definitions/model/definitions/helm3"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "occam"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$id": "#/definitions/model/properties/config",
+                "type": "object",
+                "$ref": "#/definitions/model/definitions/occam"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "slurm"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$id": "#/definitions/model/properties/config",
+                "type": "object",
+                "$ref": "#/definitions/model/definitions/slurm"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "ssh"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "config": {
+                "$id": "#/definitions/model/properties/config",
+                "type": "object",
+                "$ref": "#/definitions/model/definitions/ssh"
+              }
+            }
+          }
+        }
+      ],
+      "required": [
+        "type",
+        "config"
+      ]
+    },
+    "serializer": {
+      "$id": "#/definitions/serializer",
+      "type": "object",
+      "properties": {
+        "predump": {
+          "type": "string"
+        },
+        "postload": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "name",
+            "file"
+          ],
+          "default": "name"
+        }
+      }
+    },
+    "step": {
+      "$id": "#/definitions/step",
+      "type": "object",
+      "properties": {
+        "in": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "scatter": {
+                    "type": "object",
+                    "properties": {
+                      "size": {
+                        "type": "integer",
+                        "default": "The number of elements in the list"
+                      }
+                    }
+                  },
+                  "serializer": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "object",
+                        "$ref": "#/definitions/serializer"
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "control",
+                      "env",
+                      "name",
+                      "file"
+                    ],
+                    "default": "name"
+                  },
+                  "value": {},
+                  "valueFrom": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "uniqueItems": true
+        },
+        "autoin": {
+          "type": "boolean",
+          "default": true
+        },
+        "out": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "gather": {
+                    "strategy": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "serializer": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "object",
+                        "$ref": "#/definitions/serializer"
+                      }
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "control",
+                      "name",
+                      "file"
+                    ],
+                    "default": "name"
+                  },
+                  "valueFrom": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "uniqueItems": true
+        },
+        "workdir": {
+          "type": "string",
+          "description": "Path to the working directory",
+          "default": "${TMPDIR}/streamflow"
+        }
+      },
+      "additionalProperties": false
+    },
+    "target": {
+      "$id": "#/definitions/target",
+      "type": "object",
+      "properties": {
+        "model": {
+          "$id": "#/properties/model",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "$ref": "#/definitions/model"
+            }
+          ]
+        },
+        "resources": {
+          "type": "integer",
+          "default": 1
+        },
+        "service": {
+          "type": "string"
+        },
+        "workdir": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "interpreter": {
+      "$id": "#/properties/interpreter",
+      "type": "string",
+      "default": "ipython"
+    },
+    "models": {
+      "$id": "#/properties/models",
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-zA-Z0-9._-]*$": {
+          "$ref": "#/definitions/model"
+        }
+      },
+      "additionalProperties": false
+    },
+    "serializers": {
+      "$id": "#/properties/serializers",
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-zA-Z0-9._-]*$": {
+          "$ref": "#/definitions/serializer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "step": {
+      "$id": "#/properties/step",
+      "type": "object",
+      "$ref": "#/definitions/step"
+    },
+    "target": {
+      "$id": "#/properties/target",
+      "type": "object",
+      "$ref": "#/definitions/target"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "step",
+    "version"
+  ],
+  "additionalProperties": false
+}
