@@ -1,0 +1,15 @@
+Model: commands*=PerturbatorCommand;
+
+PerturbatorCommand: InsertElementCommand | DeleteElementCommand | InsertSerialCommand | InsertConditionalCommand | InsertParallelCommand | DeleteFragmentCommand;
+
+InsertElementCommand: 'insert' elementType=STRING 'to process in file' path=STRING 'at flow' flow=STRING 'and output in' outputPath=STRING;
+
+DeleteElementCommand: 'delete element with id' elementId=STRING 'from process in file' path=STRING 'and output in' outputPath=STRING;
+
+InsertSerialCommand: 'serial insert process from' extractPath=STRING 'to process in file' path=STRING 'at flow' flow=STRING 'and output in' outputPath=STRING;
+
+InsertConditionalCommand: 'conditionally insert process from' extractPath=STRING 'to process in file' path=STRING 'between' startingFlow=STRING 'and' endingFlow=STRING 'and output in' outputPath=STRING;
+
+InsertParallelCommand: 'parallel insert process from' extractPath=STRING 'to process in file' path=STRING 'between' startingFlow=STRING 'and' endingFlow=STRING 'and output in' outputPath=STRING;
+
+DeleteFragmentCommand: 'delete process fragment from process in file' path=STRING 'between' startingFlow=STRING 'and' endingFlow=STRING 'and output in' outputPath=STRING;
