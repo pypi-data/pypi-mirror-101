@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: pyramid_saml
+Version: 0.0.1
+Summary: Pyramid SAML
+Home-page: https://gitlab.com/geo-bl-ch/pyramid_saml
+Author: Karsten Deininger
+Author-email: karsten.deininger@bl.ch
+License: UNKNOWN
+Description: # Pyramid SAML
+        
+        This is a small library using [OneLogin's SAML Python Toolkit](https://github.com/onelogin/python3-saml) to provide authentication and authorization via SAML for the
+        [Pyramid Web Framework](https://docs.pylonsproject.org/projects/pyramid/en/latest/).
+        
+        For futher information, please refer to the [documentation](https://geo-bl-ch.gitlab.io/pyramid_saml/latest/).
+        
+        
+        Changelog
+        =========
+        
+        0.0.1
+        -----
+        
+        - Initial version
+        
+Keywords: web pyramid saml
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Framework :: Pyramid
+Classifier: Topic :: Internet :: WWW/HTTP
+Description-Content-Type: text/markdown
