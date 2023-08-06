@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: samplingresourcemonitor
+Version: 0.1
+Summary: A wrapper around psutil to sample system resources at a given frequency
+Home-page: https://github.com/fcooper8472/SamplingResourceMonitor
+Author: Fergus Cooper
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/fcooper8472/SamplingResourceMonitor/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: psutil
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Provides-Extra: pypi
+Requires-Dist: build ; extra == 'pypi'
+Requires-Dist: twine ; extra == 'pypi'
+
+# Sampling Resource Monitor
+
+A wrapper around psutil to sample system resources at a given frequency.
+
+
