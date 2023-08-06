@@ -1,0 +1,99 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2021-03-18T15:36:20",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"name\": \"TestDeal.test_create_full\", \"currency\": \"EUR\", \"money\": 200, \"user_id\": 933643740, \"deal_category_id\": 74697, \"reminder_date\": \"2020-01-01\", \"company_id\": 760975931, \"info\": \"more info\", \"status\": \"lost\", \"closed_on\": \"2021-01-01\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "241"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.25.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/deals"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAJbogA/4SRP4+jMBDFv8rp1SayTQLB9V113SnX7GqFHBgia42N7KFAUb77iv1DihTpRqN5P7335grXw+j6qKujQLAjweBEmX+T9TumzG2XyDK1w+w9BDJbnjMMfMwMgUSjCz2ltrdMMNBSy0KqQioIdD5m6tsYYKClVoVUhVQQGGOgBUZLuZMC3ZwShW6BwZ///yDgwhBhMMZEv1wYIgTYXjLM65tAN2eOYzulOFFiRxnmehOYMyWYrzxNWVb7st5LgcGlzN+51jgQ8Hbb2HPX4yYwUcoxwITZ+9VP5jjecXUlm/rQlOqxoQtx28VxsmFZOT/jo5CXabWwoZ+jLNMlpjtrXzX1pvobA9t3dpQoQGBK8WzPzjteYNSq/nxa31reqi8LdTypgykro+ULBOapf3Jz+xgAdjaD2h8CAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "323"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Thu, 18 Mar 2021 15:36:20 GMT"
+          ],
+          "Etag": [
+            "W/\"382499a593a766589c350f81cec60345\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "23169786-e72a-46ad-ae59-a42788933788"
+          ],
+          "X-Runtime": [
+            "0.066447"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/deals"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

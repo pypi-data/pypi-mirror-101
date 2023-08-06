@@ -1,0 +1,99 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-11-24T07:07:21",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"unit_price\": 30, \"unit_cost\": 20, \"quantity\": 3.5, \"description\": \"misc tools\", \"budget_relevant\": true, \"unit\": \"stk\", \"title\": \"fire hydrants\", \"billable\": true, \"date\": \"2020-01-01\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "187"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945371022/expenses"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/4SRT4/bIBDFv4r1ziQCJ44b7rlXVXrpxSIwaWkxdmFYrRXlu6/In81xj+/95sHozQXeQe+kVKoTcIYJGq1s5UqqlVQQYM+hmmefqPmzuGQiZwg4yjb5mf0UoTH6bBueplDR/2Iie16gN+tOoETP0Mj8D3cxzMlbgt7ItXw4dsoM3d6MB1Wyq+pO+huxJSWKdoHG4ecPCJyK+008JAr0ZiJDcyokcPIhmFNd+6XJQZ9NyCRw9oGGkgJ0LCHUZzNP4zCnaabEnjL05Vp/HmcTF+h7Sf1Oftt33XYvEM1YKzlS5u9p+kuWD+8zxUy41vVvzjO233abXsm2/Yy5Mo5L8xgTDVPmhl55m8gwucHw8xRKrdrtUfZa9rpVv2qLs/ti5voRAAD//wgkYT/aAQAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "312"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Tue, 24 Nov 2020 07:07:21 GMT"
+          ],
+          "Etag": [
+            "W/\"5cea17a3992c9681331e71089577c3df\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "4a920022-5cfd-46d8-a4c1-d061fab57bd3"
+          ],
+          "X-Runtime": [
+            "0.045591"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945371022/expenses"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

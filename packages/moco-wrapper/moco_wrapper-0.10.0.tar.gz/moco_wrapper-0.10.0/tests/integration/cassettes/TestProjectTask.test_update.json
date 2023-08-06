@@ -1,0 +1,193 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-12-07T12:46:41",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"name\": \"TestProjectTask.test_update_create\", \"billable\": true, \"active\": true}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "80"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.25.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945383533/tasks"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/3yNwQqCQBRF/+WuRxlH0Xpf0cJVm+HpPMqaNMY3QUT/HiG0bHnhnnNemAKoq/dd3e4MZr4JCL2sekjLRUbteb2WKqv6fA+s4sckrAKDYYqRhyggTVkMeNTp8VtDDidR0JxjNDgvOcWnT1+SbGkNNk3wrCA462xRucJ2feWoaampjjDYiv8+708AAAD//+uRygrAAAAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "159"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 07 Dec 2020 12:46:41 GMT"
+          ],
+          "Etag": [
+            "W/\"f05fc6c6859bdbecf069362e17802d86\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "54ab6ece-71db-4d57-9e6f-436af8ee7afa"
+          ],
+          "X-Runtime": [
+            "0.047897"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945383533/tasks"
+      }
+    },
+    {
+      "recorded_at": "2020-12-07T12:46:41",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"name\": \"TestProjectTask.test_update\", \"billable\": false, \"active\": true, \"budget\": 500, \"hourly_rate\": 20}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "108"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.25.0"
+          ]
+        },
+        "method": "PUT",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945383533/tasks/7397368"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/3yNwQ6CMBAF/+WdCykFQfcrPHDyQha6KlrFtFsTY/x3o969TmYyT8we1NWbrm7XBle+CAi9JN3G5SST9pzOpUrSId88q8BgnEPgMQhozyGJAU863wWkMYvBmP1BFLSytrQGxyXH8BjipyX3RVMUVvEDKwjOOltUrrBdXzlqWmqqHQx+t3/O6x0AAP//BCxleLwAAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "158"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Mon, 07 Dec 2020 12:46:41 GMT"
+          ],
+          "Etag": [
+            "W/\"f995e173e08028acfedd8639b535273b\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "5ad15231-5b9b-481c-9117-feb0ae0c298d"
+          ],
+          "X-Runtime": [
+            "0.053054"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945383533/tasks/7397368"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

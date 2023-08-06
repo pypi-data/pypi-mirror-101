@@ -1,0 +1,105 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-12-02T14:49:16",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "GET",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/units?page=1"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/5zRsWrDMBAG4FcJNyvFsmI70twO7dQhU0swqn1NBJFkpPMQgt+9JDQB2QaXrua+33e/Pi9gWlAyk7zcbvKKgdMWQcEOtV1xYND0kbytu+A7DGQwgroMDPqIIYK6eyFKsZXVhsG3CZF+Q9780QGDk358efYIA0tQIVK0w0gperUdhuidJuNdyqWoeMrXqb2mvZ+0c8YdXhyF89MBqfZ0xFBfbxhvw2UaR5Nt9FfTjlUplpR53DAtoEpx78wI3+LGqkhV21t7Xt1OmljjDqvGOwq6oTgJKtOg+2AaM9dVsZlZYZmV2VJZsz9bfJhZtf2PKvnf1J5BE1ATtrUmUJBnebbmfJ2LXSZVkSkhP4BB37ULM8P+JwAA//+YxVXliQMAAA==",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "298"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Wed, 02 Dec 2020 14:49:16 GMT"
+          ],
+          "Etag": [
+            "W/\"ceebcf88f6bb7b483909350a724c482a\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Page": [
+            "1"
+          ],
+          "X-Per-Page": [
+            "100"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "733a8d41-2e75-4afc-998e-4d8bdffc4ddf"
+          ],
+          "X-Runtime": [
+            "0.041688"
+          ],
+          "X-Total": [
+            "1"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/units?page=1"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

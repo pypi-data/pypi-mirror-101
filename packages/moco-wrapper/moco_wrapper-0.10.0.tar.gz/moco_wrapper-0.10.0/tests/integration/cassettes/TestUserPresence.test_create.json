@@ -1,0 +1,99 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-11-24T07:13:16",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"from\": \"08:30\", \"to\": \"10:30\", \"date\": \"2014-04-10\"}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "54"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/users/presences"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/4SNvcrDMAxF3+XONkhRyI+e45u+paixA4GmKY46lbx7cQNdO57L5ZwXlgQVYeqlC0jmGYqGuI3URiYEzGVboaBBpaJvUDCd8NxzgZ6SUaSTYeQxYF7K7ndbq8vz7gi42Xex65RwBEwlm+d0Mf8kG4rMsWn/qFcW5e6/Bh7px+d4BwAA//976DuHwwAAAA==",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "151"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Tue, 24 Nov 2020 07:13:16 GMT"
+          ],
+          "Etag": [
+            "W/\"750bb12617148c568f2cd95e2a10928b\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "926332ea-1699-473c-8035-bb7ccccc77e2"
+          ],
+          "X-Runtime": [
+            "0.037607"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/users/presences"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

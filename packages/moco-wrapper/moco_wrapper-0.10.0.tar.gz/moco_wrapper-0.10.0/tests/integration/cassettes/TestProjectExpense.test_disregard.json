@@ -1,0 +1,184 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-11-24T07:07:59",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"bulk_data\": [{\"unit_price\": 2, \"unit_cost\": 3, \"quantity\": 1, \"budget_relevant\": false, \"unit\": \"stk\", \"title\": \"dummy project expense, test create bulk (1)\", \"billable\": true, \"date\": \"2020-01-01\"}, {\"unit_price\": 2, \"unit_cost\": 3, \"quantity\": 1, \"budget_relevant\": false, \"unit\": \"stk\", \"title\": \"dummy project expense, test create bulk (2)\", \"billable\": true, \"date\": \"2021-01-01\"}]}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "389"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945371022/expenses/bulk"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/+yRwY7TMBCGXyWaE0gust2mIb73jlC5gFDkxFNk6jjGHiOiqu+OTNqSPa20pz3scebPH9vf9+0C1oDacy6kYGA0ISiQXPINFxsugAFZcmVp8jjOVYjTTxyowj8BfUJWESaqhoiasOqzO1fvxHtgYDAN0QaykwcFwOBX1p4szaDEB84ge0ugINEZlqEL0Q4ISt7TbpgSgdqWeZ2t1kOOEf0wg4LDl8/AoM/mB1IX0eFv7QnUSbuEDHrrnO7LMyjm24zmEZ+swy5HB8pn58p/E01jF+IUMJLFBOpyLSePQfsZ1AKt2fOPbV3vWgZejwXRERN9WgAdFj5wLZf/t7nX2l29bQSX8lF7QvZGFP/3F7im03RXI8RG7o68UbxRdfu1EAzmmW+ubKVarlWLl6uWb6pfo+rvfwMAAP//WthWidcDAAA=",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "332"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Tue, 24 Nov 2020 07:07:59 GMT"
+          ],
+          "Etag": [
+            "W/\"09cbbfb9cc66b43892dfde1a8cd44f2e\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "8c97ad3c-6596-4b65-8ec2-dbfeeb328c1e"
+          ],
+          "X-Runtime": [
+            "0.052066"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945371022/expenses/bulk"
+      }
+    },
+    {
+      "recorded_at": "2020-11-24T07:07:59",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"reason\": \"disregard dummy expenses\", \"expense_ids\": [600121, 600122]}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "71"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945371022/expenses/disregard"
+      },
+      "response": {
+        "body": {
+          "base64_string": "",
+          "encoding": null,
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "no-cache"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Date": [
+            "Tue, 24 Nov 2020 07:07:59 GMT"
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "9e93f038-792e-469d-a248-2fe5c6538ff6"
+          ],
+          "X-Runtime": [
+            "0.101989"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 204,
+          "message": "No Content"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945371022/expenses/disregard"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}

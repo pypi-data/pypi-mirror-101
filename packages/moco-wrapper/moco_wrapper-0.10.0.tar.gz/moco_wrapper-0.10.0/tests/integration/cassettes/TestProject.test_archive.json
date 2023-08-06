@@ -1,0 +1,193 @@
+{
+  "http_interactions": [
+    {
+      "recorded_at": "2020-12-02T14:49:39",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": "{\"currency\": \"EUR\", \"leader_id\": 933638919, \"name\": \"TestProject.test_archive_create\", \"fixed_price\": false, \"finish_date\": \"2020-01-01\", \"customer_id\": 760902806}"
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "163"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "POST",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/6xTTW8aMRD9L3M2yPsRYH2Peo2q9NKqsow9gIvxrsZjmijiv1fmYyG0UlU1t/Vbvzdv5nnewDtQXfvQzLuF7AR4h5H9yiOBgqdayrYGAdHsEBQ8Y+In6n+g5SljYm3IbvwetSU0jCDAWPZ7BMWUUcDSh2CWYTyv/As6PZC3CGplQjpi0aeNdoWvoJa1nMhqIisQYDMRRvsKCh6/fIaTno9rvTfkTWRQMJzc3PwzzhGmBApuQNwZHzT3oGIO4R639h6PPWO6gAmZC+ijDdmhZr9DTTj0xGMXy+zWyKPM8aTxZcCYipCcSgGbPlN41XTs9Ij4uOpPRtmsE6hv3wUEs8Rw/rY5cb/TA/UDEvui9HYQENC4ks85vKaZNYuu6sosKfE5q5IPFLkRMUvr4HBRvQrMZ7KT9ULO/phzaWRkHIrTtC32ztxm1jTtlXlkbTmg5xzX8PsTuHsg78b2bkCVlFN5ELdl5mOZx8g/vd2Gj6+xGGt8IrPy2/+XLzn2kclYvs6tnVWL5mFetwJyQtL/HuRH+HJowuXGaYWdNnxZw6qeyPq5alXbqab7CgLy4P5y5/ArAAD//2LPlAtRBAAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "456"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Wed, 02 Dec 2020 14:49:39 GMT"
+          ],
+          "Etag": [
+            "W/\"92949dfb1e497b321b99cf86e859d285\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "a69f964d-5592-498c-961a-5876fa245adb"
+          ],
+          "X-Runtime": [
+            "0.143628"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects"
+      }
+    },
+    {
+      "recorded_at": "2020-12-02T14:49:40",
+      "request": {
+        "body": {
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Accept": [
+            "*/*"
+          ],
+          "Accept-Encoding": [
+            "gzip, deflate"
+          ],
+          "Authorization": [
+            "Token token=<TOKEN>"
+          ],
+          "Connection": [
+            "keep-alive"
+          ],
+          "Content-Length": [
+            "0"
+          ],
+          "Content-Type": [
+            "application/json"
+          ],
+          "User-Agent": [
+            "python-requests/2.23.0"
+          ]
+        },
+        "method": "PUT",
+        "uri": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945379809/archive"
+      },
+      "response": {
+        "body": {
+          "base64_string": "H4sIAAAAAAAA/6yTS28bIRDHv8ucicU+Ynu5R71GVXppVSEMs/bUmF3B4CaK/N0r/FonrVRVzW3578xvHn94BXKguva+WXRL2Qkgh4GpJ4yg4LGWsq1BQDA7BAVPmPgxDj/Q8owxsTbRbmiP2kY0jCDAWKY9guqNTyhgRd6blUdQHDMK6OkZnR4j2Smmp0Bpo10BKKhlLe9kdScrEGBzjBjsCyh4+PIZTjwKa703kUxgUDCe2rn5Z5yLmBIouBFxZ8hrHkCF7P173dr3ehgY00VMyFxECtZnh5pphzriOESeJs1ujXzFHE8an0cMqYDkTArYDDn6Fx2Pkx4VCv1wapTNOoH69l2ANyv052+bEw87PcZhxMhUSK8HAR6NKwad3WuaebPsqq7sMiY+m1UMgoK7KmZlHRwu1AmwmMtO1ks5/6PRZZBrxqF0mralvXNuM2+adso8Zm3ZI3EOa/j9ClxuyOn0dm1vFlRJOZMHcVtmcS3zEPgn2a3/+BrLa41P0fS0/X988XEIHI3laW/tvFo294u6FZATRv3vRn5EXw6Nv0Sc3rDThi/PsKrvZP1UtartVNN9BQF5dH+JOfwKAAD//yTnGaRSBAAA",
+          "encoding": "utf-8",
+          "string": ""
+        },
+        "headers": {
+          "Cache-Control": [
+            "max-age=0, private, must-revalidate"
+          ],
+          "Content-Encoding": [
+            "gzip"
+          ],
+          "Content-Length": [
+            "459"
+          ],
+          "Content-Type": [
+            "application/json; charset=utf-8"
+          ],
+          "Date": [
+            "Wed, 02 Dec 2020 14:49:40 GMT"
+          ],
+          "Etag": [
+            "W/\"07eb577bdccb5cc7f54dec48873b1fd0\""
+          ],
+          "Referrer-Policy": [
+            "strict-origin-when-cross-origin"
+          ],
+          "Vary": [
+            "Origin",
+            "Accept-Encoding"
+          ],
+          "X-Content-Type-Options": [
+            "nosniff"
+          ],
+          "X-Download-Options": [
+            "noopen"
+          ],
+          "X-Frame-Options": [
+            "SAMEORIGIN"
+          ],
+          "X-Permitted-Cross-Domain-Policies": [
+            "none"
+          ],
+          "X-Request-Id": [
+            "b7c31ff1-94e1-4d25-9907-ed51d216c67a"
+          ],
+          "X-Runtime": [
+            "0.222711"
+          ],
+          "X-Xss-Protection": [
+            "1; mode=block"
+          ]
+        },
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "url": "https://<DOMAIN>.mocoapp.com/api/v1/projects/945379809/archive"
+      }
+    }
+  ],
+  "recorded_with": "betamax/0.8.1"
+}
