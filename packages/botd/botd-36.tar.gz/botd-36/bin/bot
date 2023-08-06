@@ -1,0 +1,27 @@
+#!/usr/bin/env python3 
+# This file is placed in the Public Domain.
+
+import os, sys ; sys.path.insert(0, os.getcwd())
+
+from botl.clt import Console
+from botl.trm import exec
+from botl.zzz import os, time
+from botd.tbl import tbl
+
+def main():
+    k = Console()
+    k.prompt = False
+    k.tbl(tbl)
+    k.cfg.name = "bot"
+    k.parse()
+    k.scan(os.path.join(os.getcwd(), "mod"))
+    if k.cfg.txt:
+        k.run()
+        return
+    if k.op("c"):
+        k.prompt = True
+        k.start()
+        k.init(k.cfg.mods)
+        k.wait()
+
+exec(main)

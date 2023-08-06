@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+# This file is placed in the Public Domain.
+
+import os, sys ; sys.path.insert(0, os.getcwd())
+
+from botl.clt import Test
+from botl.evt import events
+from botl.obj import Cfg
+from botl.prs import parseargs
+from botl.trc import exc
+from botl.trm import exec
+from botl.zzz import shutil, time, unittest
+from botd.tbl import tbl
+
+import botl.obj
+import botl.url
+
+def main():
+    if os.path.exists(".test"):
+        shutil.rmtree(".test")
+    botl.url.debug = True
+    pat = "test_%s*" % "*"
+    suite = unittest.loader.TestLoader().discover("test", pattern=pat)
+    unittest.TextTestRunner(verbosity=3).run(suite)
+
+exec(main)
+for e in exc:
+    print(e)
+for e in events:
+    print(e)
