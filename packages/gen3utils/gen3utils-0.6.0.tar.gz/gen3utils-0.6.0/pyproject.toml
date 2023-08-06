@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "gen3utils"
+version = "0.6.0"
+description = "Gen3 Library Template"
+authors = ["CTDS UChicago <cdis@uchicago.edu>"]
+license = "Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/uc-cdis/gen3utils"
+include = [
+  "CHANGELOG.md",
+  "NOTICE",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+cdislogging = "~=1.0.0"
+click = "*"
+dictionaryutils = "~3.0.0"
+gen3datamodel = "~3.0.0"
+gen3dictionary = "~2.0.1"
+gen3git = "^0.3.10"
+packaging = "~20.0"
+psqlgraph = "~3.0"
+pyyaml = "~5.1"
+six = "~1.12.0"
+
+# optional dependencies
+# `get_session` does not accept the `loop` parameter in aiobotocore>0.11.1
+# so we'd need to fix the `s3log` code
+aiobotocore = "0.11.1"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=3.6"
+
+[tool.poetry.scripts]
+gen3utils = "gen3utils.main:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry.extras]
+s3log = ["aiobotocore"]
