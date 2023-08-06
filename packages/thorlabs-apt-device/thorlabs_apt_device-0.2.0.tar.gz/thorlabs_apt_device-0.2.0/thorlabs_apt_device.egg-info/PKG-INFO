@@ -1,0 +1,38 @@
+Metadata-Version: 1.2
+Name: thorlabs-apt-device
+Version: 0.2.0
+Summary: Interface to ThorLabs devices which communicate using the APT protocol.
+Home-page: https://gitlab.com/ptapping/thorlabs-apt-device
+Author: Patrick Tapping
+Author-email: mail@patricktapping.com
+License: UNKNOWN
+Project-URL: Source, https://gitlab.com/ptapping/thorlabs-apt-device
+Project-URL: Tracker, https://gitlab.com/ptapping/thorlabs-apt-device/-/issues
+Description: thorlabs_apt_device
+        ===================
+        
+        A python interface to ThorLabs devices which communicate using the APT protocol.
+        
+        Currently supports DC motor driven devices such as translation stages, however it should be
+        straightforward to implement extension classes to support other devices.
+        
+        
+        Support
+        -------
+        
+        Documentation can be found online at `<https://thorlabs-apt-device.readthedocs.io/en/latest/>`_.
+        
+        Bug reports, feature requests and suggestions can be submitted to the `issue tracker <https://gitlab.com/ptapping/thorlabs-apt-device/-/issues>`_.
+        
+        
+        License
+        -------
+        
+        All original work is free and open source, licensed under the GNU Public License.
+        See the `LICENSE.txt <https://gitlab.com/ptapping/thorlabs-apt-device/-/blob/main/LICENSE.txt>`_ for details.
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
