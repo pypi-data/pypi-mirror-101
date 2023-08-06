@@ -1,0 +1,192 @@
+Metadata-Version: 2.1
+Name: yourbase
+Version: 4.4.4
+Summary: Skip tests based on tracing data
+Home-page: https://yourbase.io
+Author: YourBase
+Author-email: python@yourbase.io
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: Plugins
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Testing :: Unit
+Classifier: Topic :: Software Development :: Version Control :: Git
+Requires-Python: >=2.7
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+Requires-Dist: coverage (>=5)
+Requires-Dist: pyarmor
+Requires-Dist: python-dateutil
+Requires-Dist: six
+Requires-Dist: backports-tempfile ; python_version < "3"
+Requires-Dist: enum34 ; python_version < "3"
+Requires-Dist: functools32 ; python_version < "3"
+Requires-Dist: pathlib ; python_version < "3"
+Requires-Dist: typing ; python_version < "3"
+
+# YourBase Python Acceleration
+
+Tests are important. For large monoliths, they're also a major source of drag
+on velocity.
+
+YourBase is a tool that traces your tests to determine which functions each
+test depends on. It can later use this information to determine which tests
+don't need to run because their code paths have not changed. These tests are
+skipped automatically.
+
+No configuration, setup, or babysitting required. All you need is
+
+```sh
+pip install yourbase
+```
+
+YourBase works with Python 2.7+ and Python 3.8+; using `pytest` or
+`unittest`.
+
+## Access
+
+YourBase is free to use locally. It uses your local filesystem as a store for
+tracing data. To synchronize tracing data across multiple machines, [visit
+our website][yourbase.io].
+
+[yourbase.io]: https://yourbase.io
+
+## First run
+
+After installing `yourbase`, if you are using `unittest` you must put
+
+```python
+import yourbase
+```
+
+in a file that runs before your tests. If you are using `pytest` this step is
+not necessary.
+
+Run your tests with the same command you typically use. You should see some output from YourBase similar to
+
+```
+[YB] Starting Python acceleration
+```
+
+The first run will be cold, so if you just want to see YourBase in action and
+your tests are going to take a while, you can run a subset of tests. Tracing
+data for the subset will be used correctly even if you later run all tests.
+
+After the run finishes, running again will skip all tests. Modifying a
+dependency will run only tests whose code paths touched the changed code.
+You're YourBased! 🚀
+
+### Installing for yourself vs. your team
+
+If you add YourBase to your requirements file, it will work with no
+configuration for your whole team. However if you want to just try it out
+yourself, you can choose not to add it. Either way, YourBase will behave the
+same.
+
+#### Synchronizing tracing data
+
+By default, YourBase's tracing data will not leave the machine it was
+gathered on without further configuration. This means CI or containerized
+test runs will not be able to share tracing data forward, kneecapping
+YourBase.
+
+To solve this, YourBase can be made to share tracing data among any number of
+machines using an S3 bucket as a collaboration point. To do so, all machines
+should set
+
+```sh
+YOURBASE_BUCKET=s3://BUCKETNAME
+```
+
+where `BUCKETNAME` is an S3 bucket that each machine has Get/Put/List access
+to.
+
+The tracing data includes test names, file names, function names, and a small
+amount of metadata like commit hash and build time. Your code will never be
+uploaded to the bucket. Neither your code nor any of your tracing data will
+touch YourBase servers.
+
+It is safe to share one bucket between multiple repositories, even if across
+multiple YourBase-supported languages.
+
+## Known issues
+
+### Errors
+
+If you run into errors about the `_sqlite3` module not being found, first run
+
+```sh
+# Debian-based
+sudo apt-get install libsqlite3-dev
+# macOS
+brew install sqlite3
+```
+
+then rebuild and reinstall the Python version you are using. If you use
+`pyenv`, this will look something like
+
+```sh
+pyenv install --force <PYTHON_VERSION>
+
+# If that doesn't work, try
+PYTHON_CONFIGURE_OPTS="--enable-loadable-sqlite-extensions" pyenv install --force <PYTHON_VERSION>
+```
+
+### Conflicts
+
+YourBase has logical conflicts with the following packages:
+
+- `pytest-cov`: If installed, YourBase will be unable to trace your tests
+  **and will be unable to realize it**. This will result in
+  nearly-zeroed tracing data, such that tests will appear to have no
+  dependencies. This causes false positive skips. **This issue is high
+  priority for us to fix.** As a workaround, uninstall `pytest-cov` then run
+  `rm -rf ~/.cache/yourbase-python` on any machine with poisoned tracing
+  data. (`pytest` and `coverage` independently are fine.)
+- `moto`: If you use YourBase with S3 sync (see "Synchronizing tracing data"
+  above) and use `moto` mocks in your tests, `moto` will _globally_ mock the
+  `boto3` library YourBase uses to communicate with S3. This will cause
+  errors with stack traces pointing either to your tests or to YourBase
+  internals, depending on initialization order. See
+  [spulec/moto#3140][moto-issue] for details. As a workaround you can
+  [manually start and stop `moto` mocks as needed][moto-workaround], turn off
+  YourBase's S3 sync feature by unsetting `YOURBASE_BUCKET`, or remove uses
+  of `moto` in tests.
+
+[moto-issue]: https://github.com/spulec/moto/issues/3140
+[moto-workaround]: https://github.com/spulec/moto/issues/3140#issuecomment-660621062
+
+## Contributing
+
+This open source package is a lightweight wrapper for YourBase proprietary
+code. We welcome contributions to this wrapper, but at this time we have not
+built shims or mocks to allow it to be tested end to end without both pieces.
+
+### Code style
+
+We use [Black][black] for code formatting, which is similar in personality to
+`gofmt` -- ruthless consistency, no configuration. Your build **will not pass
+CI** if the Black run doesn't come back clean, so we recommend you have your
+editor automatically run it on save. You can run it manually with
+
+```sh
+black .
+```
+
+[black]: https://pypi.org/project/black/
+
+
