@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Use "make GHERKIN_PYTHON_VERSION=python2 ..." to use python2
+if [ -z "$GHERKIN_PYTHON_VERSION" ];
+then
+    python3 `dirname $0`/gherkin.py $@;
+else
+    $GHERKIN_PYTHON_VERSION `dirname $0`/gherkin.py $@;
+fi
