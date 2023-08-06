@@ -1,0 +1,242 @@
+{% macro tasks(heading, name, name_plural) -%}
+<h1>{{ heading }}</h1>
+
+{% include 'fragments/metrics/filters.html' %}
+{% if filter_params %}
+<i>
+  <b>Applied filters</b>:
+  {% for key, value in filter_params.items() %}
+  {% if value %}
+  <b>{{ key }}</b>: {{ value }}{% if not loop.last %}; {% endif %}
+  {% endif %}
+  {% endfor %}
+</i>
+<br/>
+{% endif %}
+
+<div class="mt-3"></div>
+
+<h3>Aggregated Data Visualization</h3>
+
+<div class="mt-3"></div>
+
+<h3>Aggregated Metrics</h3>
+
+<div class="row">
+  {% for attr in ['points_completed', 'points_added', 'num_closed', 'num_created', 'mean_days_to_resolution', 'days_to_resolution_per_point', 'points_per_task', 'tasks_per_point', ] %}
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ aggregated_stats.stats[attr].name }}</h5>
+        <p class="card-text">
+          {{ "%.2f" | format(aggregated_stats.stats[attr].count) }}<br/>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% for segment in aggregated_stats.segments %}
+<div class="mt-3"></div>
+
+<h3>Aggregated Metrics by Segment: {{ segment.name }}</h3>
+
+{# TODO: Too much noise to present in cards. Archive or throw away code
+<div class="row">
+  {% for metric in segment.metrics %}
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ metric.period_name }}</h5>
+        <p class="card-text">
+          <b>Points added</b>: {{ metric.points_added }}<br/>
+          <b>Points completed</b>: {{ metric.points_completed }}<br/>
+          <b>Tasks created</b>: {{ metric.num_created }}<br/>
+          <b>Tasks completed</b>: {{ metric.num_closed }}<br/>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+#}
+
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-10 col-xl-9 col-xxl-8">
+    <canvas id="chart_{{ segment.key }}"></canvas>
+  </div>
+</div>
+
+<script>
+  var ctx = document.getElementById('chart_{{ segment.key }}').getContext('2d');
+  var config = {{ segment.chart_config_json|safe }};
+
+  var chart = new Chart(ctx, config);
+</script>
+
+{% endfor %}
+
+<div class="mt-3"></div>
+
+<h3>Time Series Data Visualization (per {{ filter_params.interval }})</h3>
+
+<div class="row justify-content-center">
+  <div class="col-12 col-lg-10 col-xl-9 col-xxl-8">
+    <canvas id="metrics_chart"></canvas>
+  </div>
+</div>
+
+<script>
+  var TASK_METRICS = {{ metrics_json|safe }};
+
+  var COLOR_RED = 'rgb(255, 0, 0)';
+  var COLOR_BLUE = 'rgb(12, 23, 177)';
+  var COLOR_GREEN = 'rgb(21, 195, 21)';
+  var COLOR_PINK = 'rgb(255, 99, 132)';
+
+  var ctx = document.getElementById('metrics_chart').getContext('2d');
+  var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+
+      // The data for our dataset
+      data: {
+          labels: _.map(TASK_METRICS, (taskMetric) => {
+              return taskMetric.period_name;
+          }),
+          datasets: [
+              // line graphs
+              // keep in front so they don't get obscured by bar graphs
+              {
+                  label: '{{ name }} Ratio',
+                  backgroundColor: COLOR_BLUE,
+                  borderColor: COLOR_BLUE,
+                  data: _.map(TASK_METRICS, (taskMetric) => taskMetric.ratio),
+                  type: 'line',
+                  fill: false,
+                  lineTension: 0,
+                  yAxisID: 'taskRate',
+                  order: 1
+              },
+              {
+                  label: 'Story Points Completed',
+                  backgroundColor: COLOR_RED,
+                  borderColor: COLOR_RED,
+                  data: _.map(TASK_METRICS, (taskMetric) => taskMetric.points_completed),
+                  type: 'line',
+                  fill: false,
+                  lineTension: 0,
+                  yAxisID: 'pointsCompleted',
+                  order: 1
+              },
+              // bar graphs
+              {
+                  label: '{{ name_plural }} Closed',
+                  backgroundColor: COLOR_GREEN,
+                  borderColor: COLOR_GREEN,
+                  data: _.map(TASK_METRICS, (taskMetric) => taskMetric.num_closed),
+                  yAxisID: 'numTasks',
+                  order: 2
+              },
+              {
+                  label: '{{ name_plural }} Created',
+                  backgroundColor: COLOR_PINK,
+                  borderColor: COLOR_PINK,
+                  data: _.map(TASK_METRICS, (taskMetric) => taskMetric.num_created),
+                  yAxisID: 'numTasks',
+                  order: 3
+              }
+          ]
+      },
+
+      // Configuration options go here
+      options: {
+          scales: {
+              yAxes: [
+                  {
+                      id: 'numTasks',
+                      type: 'linear',
+                      position: 'left'
+                  },
+                  {
+                      id: 'taskRate',
+                      type: 'linear',
+                      position: 'right'
+                  },
+                  {
+                      id: 'pointsCompleted',
+                      type: 'linear',
+                      position: 'right'
+                  }
+              ]
+          }
+      }
+  });
+</script>
+
+<div class="mt-3"></div>
+
+<h3>Statistical Analysis (per {{ filter_params.interval }})</h3>
+
+<div class="row">
+  {% for attr in ['points_completed', 'points_added', 'num_closed', 'num_created', 'mean_days_to_resolution', 'days_to_resolution_per_point', 'points_per_task', 'tasks_per_point', ] %}
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ stats[attr].name }}</h5>
+        <p class="card-text">
+          Max: {{ "%.2f" | format(stats[attr].max) }}<br/>
+          Min: {{ "%.2f" | format(stats[attr].min) }}<br/>
+          Mean: {{ "%.2f" | format(stats[attr].mean) }}<br/>
+          Median: {{ "%.2f" | format(stats[attr].median) }}<br/>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="mt-3"></div>
+
+<h3>{{ name }} Details (per {{ filter_params.interval }})</h3>
+
+<div class="accordion" id="tasks-accordion">
+  {% for task_metric in metrics %}
+  <div class="card">
+    <div class="card-header" id="heading-{{ loop.index }}">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{ loop.index }}">
+          <b>{{ task_metric.period_name }}</b>:
+          <i>
+            {{ task_metric.num_closed }} closed vs {{ task_metric.num_created }} created
+            (Ratio: <span style="color: {% if task_metric.ratio > 1 %}green{% else %}red{% endif %};">{{ task_metric.ratio }}</span>)
+          </i>
+        </button>
+      </h2>
+    </div>
+    <div id="collapse-{{ loop.index }}" class="collapse" aria-labelledby="heading-{{ loop.index }}" data-parent="#tasks-accordion">
+      <div class="card-body">
+        <p>
+          <b>{{ task_metric.num_closed }} {{ name_plural }} Closed</b> (<i>{{ task_metric.points_completed }} pts</i>)
+        </p>
+        <ul>
+          {% for task in task_metric.tasks_closed %}
+          <li>{{ task.html|safe }}</li>
+          {% endfor %}
+        </ul>
+
+        <p>
+          <b>{{ task_metric.num_created }} {{ name_plural }} Created</b> (<i>{{ task_metric.points_added }} pts</i>)
+        </p>
+        <ul>
+          {% for task in task_metric.tasks_created %}
+          <li>{{ task.html|safe }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{%- endmacro %}
