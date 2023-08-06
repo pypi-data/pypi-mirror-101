@@ -1,0 +1,77 @@
+Determining if files malloc.h exist failed with the following output:
+Change Dir: /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_bd6fd/fast && /Applications/Xcode_12.4.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_bd6fd.dir/build.make CMakeFiles/cmTC_bd6fd.dir/build
+Building C object CMakeFiles/cmTC_bd6fd.dir/OPJ_HAVE_MALLOC_H.c.o
+/Applications/Xcode_12.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -isysroot /Applications/Xcode_12.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.9 -MD -MT CMakeFiles/cmTC_bd6fd.dir/OPJ_HAVE_MALLOC_H.c.o -MF CMakeFiles/cmTC_bd6fd.dir/OPJ_HAVE_MALLOC_H.c.o.d -o CMakeFiles/cmTC_bd6fd.dir/OPJ_HAVE_MALLOC_H.c.o -c /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CheckIncludeFiles/OPJ_HAVE_MALLOC_H.c
+/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CheckIncludeFiles/OPJ_HAVE_MALLOC_H.c:2:10: fatal error: 'malloc.h' file not found
+#include <malloc.h>
+         ^~~~~~~~~~
+1 error generated.
+make[1]: *** [CMakeFiles/cmTC_bd6fd.dir/OPJ_HAVE_MALLOC_H.c.o] Error 1
+make: *** [cmTC_bd6fd/fast] Error 2
+
+
+Source:
+/* */
+#include <malloc.h>
+
+
+int main(void){return 0;}
+
+Determining if the _aligned_malloc exist failed with the following output:
+Change Dir: /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_135d9/fast && /Applications/Xcode_12.4.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_135d9.dir/build.make CMakeFiles/cmTC_135d9.dir/build
+Building C object CMakeFiles/cmTC_135d9.dir/CheckSymbolExists.c.o
+/Applications/Xcode_12.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -isysroot /Applications/Xcode_12.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.9 -MD -MT CMakeFiles/cmTC_135d9.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_135d9.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_135d9.dir/CheckSymbolExists.c.o -c /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: 'malloc.h' file not found
+#include <malloc.h>
+         ^~~~~~~~~~
+1 error generated.
+make[1]: *** [CMakeFiles/cmTC_135d9.dir/CheckSymbolExists.c.o] Error 1
+make: *** [cmTC_135d9/fast] Error 2
+
+
+File /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <malloc.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef _aligned_malloc
+  return ((int*)(&_aligned_malloc))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+Determining if the memalign exist failed with the following output:
+Change Dir: /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_ce413/fast && /Applications/Xcode_12.4.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_ce413.dir/build.make CMakeFiles/cmTC_ce413.dir/build
+Building C object CMakeFiles/cmTC_ce413.dir/CheckSymbolExists.c.o
+/Applications/Xcode_12.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -isysroot /Applications/Xcode_12.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.9 -MD -MT CMakeFiles/cmTC_ce413.dir/CheckSymbolExists.c.o -MF CMakeFiles/cmTC_ce413.dir/CheckSymbolExists.c.o.d -o CMakeFiles/cmTC_ce413.dir/CheckSymbolExists.c.o -c /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:2:10: fatal error: 'malloc.h' file not found
+#include <malloc.h>
+         ^~~~~~~~~~
+1 error generated.
+make[1]: *** [CMakeFiles/cmTC_ce413.dir/CheckSymbolExists.c.o] Error 1
+make: *** [cmTC_ce413/fast] Error 2
+
+
+File /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/pip-req-build-giuoku0s/openjpeg/src/openjpeg/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <malloc.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef memalign
+  return ((int*)(&memalign))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
