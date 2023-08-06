@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: ivy-memory
+Version: 1.1.4
+Summary: End-to-end memory modules for deep learning developers, written in Ivy.
+Home-page: https://ivy-dl.org/memory
+Author: Ivy Team
+Author-email: ivydl.team@gmail.com
+License: Apache 2.0
+Project-URL: Docs, https://ivy-dl.org/memory/
+Project-URL: Source, https://github.com/ivy-dl/memory
+Description: # What is Ivy Memory?
+        
+        Ivy memory provides differentiable memory modules, including learnt
+              modules such as Neural Turing Machines (NTM), but also parameter-free modules such as End-to-End Egospheric
+              Spatial Memory (ESM). Ivy currently supports Jax, TensorFlow, PyTorch, MXNet and Numpy.
+              Check out the [docs](https://ivy-dl.org/memory) for more info!
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
