@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "RUN ON $YQN_POD_NAMESPACE"
+if [ "$YQN_POD_NAMESPACE" = "pro" ];then
+	gunicorn -c gunicorn_config.py  ${project_name}_flask:app
+else
+	gunicorn -c gunicorn_config_test.py  ${project_name}_flask:app
+fi
