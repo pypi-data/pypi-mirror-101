@@ -1,0 +1,13 @@
+wcwidth
+
+[:python_version<'3.5']
+typing
+
+[dev]
+invoke
+pytest
+pytest-cov
+setuptools>=39.1
+tox
+twine>=1.11
+wheel>=0.31

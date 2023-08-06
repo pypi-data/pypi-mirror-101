@@ -1,0 +1,56 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/vsts/pipelines/languages/python
+
+jobs:
+
+- job: 'Test'
+
+  # Configure Build Environment to use Azure Pipelines to build tableformatter Python project using macOS
+  pool:
+    vmImage: 'macOS-latest'
+
+  # Run the pipeline with multiple Python versions
+  strategy:
+    matrix:
+      Python35:
+        python.version: '3.5'
+      Python36:
+        python.version: '3.6'
+      Python37:
+        python.version: '3.7'
+      Python38:
+        python.version: '3.8'
+    # Increase the maxParallel value to simultaneously run the job for all versions in the matrix (max 10 for free open-source)
+    maxParallel: 3
+
+  steps:
+    # Set the UsePythonVersion task to reference the matrix variable for its Python version
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(python.version)'
+      architecture: 'x64'
+
+    # Install dependencies - install specific PyPI packages with pip, including tableformatter and its dependencies
+  - script: |
+      python -m pip install --upgrade pip && pip install --upgrade gnureadline
+      pip install -e .
+    displayName: 'Install dependencies'
+    continueOnError: false
+
+    # TODO: Consider adding a lint test to use flake8, pylint, or black to validate code style
+
+    # Test - test with pytest, collect coverage metrics with pytest-cov, and publish these metrics to codecov.io
+  - script: |
+      pip install pytest pytest-cov codecov numpy pandas
+      py.test --cov=tableformatter --junitxml=junit/test-results.xml --cov-report=xml --cov-report=html && codecov
+    displayName: 'Test with pytest'
+    continueOnError: false
+
+    # Publish test results to the Azure DevOps server
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/test-*.xml'
+      testRunTitle: 'Python $(python.version)'
+    condition: succeededOrFailed()

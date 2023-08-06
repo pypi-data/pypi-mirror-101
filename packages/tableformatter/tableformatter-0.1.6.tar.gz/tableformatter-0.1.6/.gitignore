@@ -1,0 +1,27 @@
+# Python development, test, and build
+__pycache__
+build
+dist
+.cache
+*.pyc
+.tox
+.pytest_cache
+*.egg-info
+
+# Code Coverage
+.coverage
+htmlcov
+
+# PyCharm
+.idea
+
+# Visual Studio Code
+.vscode
+
+# mypy optional static type checker
+.mypy_cache
+*~
+
+# Pipenv (this is a library, not an application)
+.venv
+Pipfile.lock
