@@ -1,0 +1,9 @@
+name: demo_random_search
+
+pool_size: 2
+max_trials: 400
+
+algorithms: random
+
+producer:
+    strategy: NoParallelStrategy
