@@ -1,0 +1,127 @@
+Metadata-Version: 2.1
+Name: connect-cli
+Version: 22.20
+Summary: CloudBlue Connect Command Line Interface
+Home-page: https://connect.cloudblue.com
+License: Apache-2.0
+Keywords: fulfillment,command,line,interface,utility,cli,vendor,connect,cloudblue
+Author: CloudBlue LLC
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Utilities
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: connect-markdown-renderer (>=1.0.1,<2.0.0)
+Requires-Dist: connect-openapi-client (>=22.0.5,<23.0.0)
+Requires-Dist: connect-reports-core (>=23.0.3,<24.0.0)
+Requires-Dist: cookiecutter (>=1.7.2,<2.0.0)
+Requires-Dist: fs (>=2.4.12,<3.0.0)
+Requires-Dist: interrogatio (>=1.0.3,<2.0.0)
+Requires-Dist: iso3166 (>=1.0.1,<2.0.0)
+Requires-Dist: lxml (>=4.6.2,<5.0.0)
+Requires-Dist: openpyxl (>=3.0.7,<4.0.0)
+Requires-Dist: phonenumbers (>=8.12.19,<9.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: requests-toolbelt (>=0.9.1,<0.10.0)
+Requires-Dist: tqdm (>=4.59.0,<5.0.0)
+Project-URL: Documentation, https://connect.cloudblue.com/community/sdk/cli/
+Project-URL: Repository, https://github.com/cloudblue/connect-cli
+Description-Content-Type: text/markdown
+
+# CloudBlue Connect Command Line Interface
+
+![pyversions](https://img.shields.io/pypi/pyversions/connect-cli.svg) [![PyPi Status](https://img.shields.io/pypi/v/connect-cli.svg)](https://pypi.org/project/connect-cli/) [![Build Status](https://travis-ci.org/cloudblue/connect-cli.svg?branch=master)](https://travis-ci.org/cloudblue/connect-cli) [![codecov](https://codecov.io/gh/cloudblue/connect-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/cloudblue/connect-cli) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=connect-cli&metric=alert_status)](https://sonarcloud.io/dashboard?id=connect-cli)
+
+
+## Introduction
+
+The CloudBlue Connect Command Line Interface (CLI) is an extensible unified tool to perform various automation scenarios. With just one tool, you can control multiple Connect modules from the command line and automate them through scripts.
+
+Since it is extensible, user can write your own plugins to extend its functionalities.
+
+
+## Install
+
+### Prerequisites
+
+`connect-cli` depends on [Cairo](https://www.cairographics.org/), [Pango](https://pango.gnome.org/) and 
+[GDK-PixBuf](https://developer.gnome.org/gdk-pixbuf/stable/).
+
+Please refers to the platform-specific instructions on how to install these dependecies:
+
+* [Linux](docs/linux_deps_install.md)
+* [Mac OSX](docs/osx_deps_install.md)
+* [Windows](docs/win_deps_install.md)
+
+
+### Using PIP
+
+To use `connect-cli` you need a system with python 3.6 or later installed.
+
+```sh
+    $ pip install --upgrade connect-cli
+```    
+
+### Binary distributions
+
+A single executable binary distribution is available for windows, linux and mac os x.
+You can it from the [Github Releases](https://github.com/cloudblue/connect-cli/releases) page.
+
+To install under linux:
+
+```
+    $ curl -O -J https://github.com/cloudblue/connect-cli/releases/download/xx.yy/connect-cli_xx.yy_linux_amd64.tar.gz
+    $ tar xvfz connect-cli_xx.yy_linux_amd64.tar.gz
+    $ sudo cp dist/ccli /usr/local/bin/ccli
+```
+
+To install under Mac OS X:
+
+```
+    $ curl -O -J https://github.com/cloudblue/connect-cli/releases/download/xx.yy/connect-cli_xx.yy_osx_amd64.tar.gz
+    $ tar xvfz connect-cli_xx.yy_osx_amd64.tar.gz
+    $ sudo cp dist/ccli /usr/local/bin/ccli
+```
+
+> If your user is not a sudoer, you can copy the `ccli` executable from the dist directory to a directory of your choice
+> that is listed in the `PATH` variable.
+
+
+To install under Windows
+
+Download the windows single executable zipfile from [Github Releases](https://github.com/cloudblue/connect-cli/releases/download/xx.yy/connect-cli_xx.yy_windows_amd64.zip), extract it and place it in a folder that is included in your `PATH` system variable.
+
+
+## Usage
+
+* [General](docs/core_usage.md)
+* [Products](docs/products_usage.md)
+* [Customers](docs/customers_usage.md)
+* [Reports](docs/reports_usage.md)
+
+
+## Run tests
+
+`connect-cli` uses [poetry](https://python-poetry.org/) for dependencies management and packaging.
+
+To run the `connect-cli` tests suite run:
+
+```
+$ pip install poetry
+$ poetry install
+$ poetry run pytest
+```
+
+
+
+## License
+
+`connect-cli` is released under the [Apache License Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
