@@ -1,0 +1,93 @@
+Metadata-Version: 2.1
+Name: pantsbuild.pants.testutil
+Version: 2.5.0.dev1
+Summary: Test support for writing Pants plugins.
+Home-page: https://github.com/pantsbuild/pants
+License: Apache License, Version 2.0
+Project-URL: Documentation, https://www.pantsbuild.org/
+Project-URL: Source, https://github.com/pantsbuild/pants
+Project-URL: Tracker, https://github.com/pantsbuild/pants/issues
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Testing
+Description-Content-Type: text/x-rst
+Requires-Dist: pantsbuild.pants (==2.5.0.dev1)
+Requires-Dist: pytest (<6.3,>=6.0.1)
+
+Pants is an Apache2 licensed build tool written in Python.
+
+The latest documentation can be found at `pantsbuild <https://www.pantsbuild.org/>`_.
+
+
+# 2.5.x Stable Releases
+
+See https://www.pantsbuild.org/v2.5/docs/release-notes-2-5 for an overview of the changes in this release series.
+
+## 2.5.0.dev1 (Apr 10, 2021)
+
+### New Features
+
+* Add dependency inference for Shell ([#11857](https://github.com/pantsbuild/pants/pull/11857))
+
+* Add Shell support with Shellcheck, shmft, and shunit2 test runner ([#11844](https://github.com/pantsbuild/pants/pull/11844))
+
+* Warn if config files detected but not wired up to Pants ([#11852](https://github.com/pantsbuild/pants/pull/11852))
+
+* Warn when dependency inference fails for `protobuf_library` targets due to ambiguity ([#11849](https://github.com/pantsbuild/pants/pull/11849))
+
+### User API Changes
+
+* Remove deprecated `unzip` field for `pex_binary` ([#11868](https://github.com/pantsbuild/pants/pull/11868))
+
+* Deprecate `--ignore-pants-warnings` in favor of `--ignore-warnings` ([#11851](https://github.com/pantsbuild/pants/pull/11851))
+
+### Plugin API changes
+
+* Require `WorkunitsCallback` to set `can_finish_async` ([#11687](https://github.com/pantsbuild/pants/pull/11687))
+
+### Documentation
+
+* Fix type in tags help message ([#11836](https://github.com/pantsbuild/pants/pull/11836))
+
+## 2.5.0.dev0 (Apr 02, 2021)
+
+### New Features
+
+* Subset lockfile resolves. ([#11773](https://github.com/pantsbuild/pants/pull/11773))
+
+### User API Changes
+
+* Remove deprecated `--process-execution-cleanup-local-dirs`, `--process-execution-use-local-cache`, and `--process-execution-local-enable-nailgun` ([#11821](https://github.com/pantsbuild/pants/pull/11821))
+
+* Always use new pip resolver and remove deprecated `[python-setup].resolver_version` ([#11819](https://github.com/pantsbuild/pants/pull/11819))
+
+* Remove deprecated `[setuptools].entry_point` and `[setuptools].interpreter_constraints` ([#11822](https://github.com/pantsbuild/pants/pull/11822))
+
+* Remove deprecated `--mypy-plugin-version`, `pantsd.log` file, `--plugin-cache-dir`
+
+### Plugin API Changes
+
+* Remove deprecated `InteractiveProcess.hermetic_env`.
+
+* Add `RuleRunner.write_files()` for more declarative tests ([#11817](https://github.com/pantsbuild/pants/pull/11817))
+
+* Upgrade Pex to 2.1.38. ([#11829](https://github.com/pantsbuild/pants/pull/11829))
+
+### Bug fixes
+
+* Fix transitive excludes for generating setup.py ([#11811](https://github.com/pantsbuild/pants/pull/11811))
+
+* Fix workunit visibility calculation. ([#11816](https://github.com/pantsbuild/pants/pull/11816))
+
+* Fix `__run.sh` to respect working_directory. ([#11814](https://github.com/pantsbuild/pants/pull/11814))
+
+### Documentation
+
+* Fix misleading docs for `[mypy].skip` ([#11810](https://github.com/pantsbuild/pants/pull/11810))
+
+
