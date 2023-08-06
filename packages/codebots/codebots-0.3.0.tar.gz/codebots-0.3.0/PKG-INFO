@@ -1,0 +1,67 @@
+Metadata-Version: 1.2
+Name: codebots
+Version: 0.3.0
+Summary: collection of bots for tasks automation
+Home-page: https://github.com/franaudo/codebots
+Author: Francesco Ranaudo
+Author-email: ranaudo@arch.ethz.ch
+License: MIT license
+Description: ========
+        Codebots
+        ========
+        
+        .. image:: https://github.com/franaudo/codebots/actions/workflows/docs.yml/badge.svg
+                :target: https://github.com/franaudo/codebots/actions/workflows/docs.yml
+                :alt: Documentation Status
+        
+        .. image:: https://github.com/franaudo/codebots/actions/workflows/python-package.yml/badge.svg
+                :target: https://github.com/franaudo/codebots/actions/workflows/python-package.yml
+                :alt: Python package
+        
+        
+        This is a collection of simple bots to help with boring tasks during coding.
+        
+        Currently supported bots:
+        
+        * EmailBot: useful to get an email when a task is complete
+        * SlackBot: same thing, but you get a slack message instead.
+        
+        
+        Full documentation: https://franaudo.github.io/codebots/latest/.
+        
+        
+        Features
+        --------
+        
+        * Free software: MIT license
+        
+        Credits
+        ~~~~~~~
+        
+        This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+        
+        
+        =========
+        CHANGELOG
+        =========
+        
+        0.1.0 (2021-03-25)
+        ------------------
+        
+        * First release on GitHub.
+        
+Keywords: codebots
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.5
