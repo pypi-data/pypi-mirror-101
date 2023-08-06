@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: logging-elk-manager
+Version: 0.0.2
+Summary: Facilitate the insertion of logs in our ELK.
+Home-page: UNKNOWN
+Author: Marco Aleixo
+Author-email: marco.aleixo@misterturing.com
+License: UNKNOWN
+Keywords: logging,python,elk,elasticsearch
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: pytz (==2020.5)
+
+Facilitate the insertion of logs in our ELK using this package as a handler for the standard python logging library as a base.
+
+
