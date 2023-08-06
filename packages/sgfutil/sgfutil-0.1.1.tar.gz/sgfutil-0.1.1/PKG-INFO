@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: sgfutil
+Version: 0.1.1
+Summary: An SGF utilization library for Go/chess game players.
+Home-page: https://github.com/wklchris/python-sgfutil
+Author: wklchris
+Author-email: wklchris@hotmail.com
+License: UNKNOWN
+Description: # sgfutil
+        
+        sgfutil is a Python library (see [Github repo](https://github.com/wklchris/python-sgfutil)) for utilizing SGF (Smart Game Format) files. It supports SGF FF4.0 syntax.
+        
+        ## Installation & Dependency
+        
+        Installation:
+        
+        ```python
+        python -m pip install sgfutil 
+        ```
+        
+        Dependency：
+        
+        - Python >= 3.6
+        - `ply` library：This library is no longer maintained on pip. Users can visit its official Github repo [dabeza/ply](https://github.com/dabeaz/ply) for the latest version.
+          
+          However, a stable yet a little older version (3.11) of ply is still accessible through pip installation:
+          
+          `python -m pip install ply`
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
