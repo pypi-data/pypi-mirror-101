@@ -1,0 +1,32 @@
+Metadata-Version: 1.2
+Name: alara_split_gather
+Version: 0.1.1
+Summary: Python package to split and gather ALARA tasks
+Home-page: https://github.com/zxkjack123/alara_split_gather
+Author: Xiaokang Zhang
+Author-email: zxkjack123@163.com
+License: MIT
+Description: ## alara\_split\_gather
+        This package is used to:
+        - split a large ALARA input file to smaller sub-tasks,
+        - check the status of sub-tasks,
+        - gather all phtn_src file
+        
+        ## Installation
+        
+        ```bash
+        pip install alara-split-gather
+        ```
+        
+        ## Usage
+        ```bash
+        alara_split_task -i [alara_inp] -n [num_tasks]
+        ```
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Requires-Python: >=3.6
