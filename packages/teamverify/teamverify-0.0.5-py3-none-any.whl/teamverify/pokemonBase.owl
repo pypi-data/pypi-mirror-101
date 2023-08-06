@@ -1,0 +1,3426 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://web.cs.miami.edu/home/dver751/csc751/pokemon#"
+     xml:base="http://web.cs.miami.edu/home/dver751/csc751/pokemon"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://github.com/danielverd/teamverify/pokemon">
+        <rdfs:comment xml:lang="en">An ontology summarizing the concepts of competitive Pokemon teambuilding and allowing for reason-based team suggestions.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasAbility -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasAbility">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasCompTyping -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasCompTyping">
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#hasSpecies"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasItem -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasItem">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://github.com/danielverd/teamverify/pokemon#Items"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasMove -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasMove">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasNoEffectAgainst -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasNoEffectAgainst">
+        <owl:inverseOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasPokemon -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasPokemon">
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Playstyles"/>
+        <rdfs:range rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasSpecies -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasSpecies">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasType -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasType">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#isImmuneTo -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#isNotVeryEffectiveAgainst -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#isNotVeryEffectiveAgainst">
+        <owl:inverseOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#isResistantTo -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#isSuperEffectiveAgainst -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#isSuperEffectiveAgainst">
+        <owl:inverseOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#isWeakTo -->
+
+    <owl:ObjectProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasAtkEVs -->
+
+    <owl:DatatypeProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasAtkEVs">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasBaseSpeed -->
+
+    <owl:DatatypeProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasBaseSpeed">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasDefEVs -->
+
+    <owl:DatatypeProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasDefEVs">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasHPEVs -->
+
+    <owl:DatatypeProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasHPEVs">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasSpAEVs -->
+
+    <owl:DatatypeProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasSpAEVs">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasSpDEVs -->
+
+    <owl:DatatypeProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasSpDEVs">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#hasSpeEVs -->
+
+    <owl:DatatypeProperty rdf:about="http://github.com/danielverd/teamverify/pokemon#hasSpeEVs">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Abilities -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Abilities">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#GameMechanics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#BalancedTeams -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#BalancedTeams">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Playstyles"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">3</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#BoostingMoves -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#BoostingMoves">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#BugPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#BugPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#GroundResists"/>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#BulkyOffenseTeams -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#BulkyOffenseTeams">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Playstyles"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#ClefableCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#ClefableCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#CorviknightCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#CorviknightCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#DarkPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#DarkPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#DarkResists -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#DarkResists">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#DefensivePivots -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#DefensivePivots">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon"/>
+                                    <owl:Class>
+                                        <owl:complementOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Walls"/>
+                                    </owl:Class>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvPartingShot"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvTeleport"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvU-turn"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvVoltSwitch"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#DefensivePokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAtkEVs"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">40</xsd:maxInclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasSpAEVs"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">40</xsd:maxInclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasDefEVs"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">140</xsd:minInclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasHPEVs"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</xsd:minInclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasHPEVs"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</xsd:minInclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasSpDEVs"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">140</xsd:minInclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+        <owl:disjointWith rdf:resource="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#DragonPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#DragonPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#ElectricPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#ElectricPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#ElementalTypings -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#ElementalTypings">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyNormal"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#GameMechanics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#FIghtingPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#FIghtingPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#FairyPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#FairyPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#FerrothornCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#FerrothornCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#FirePokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#FirePokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#FireResists -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#FireResists">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#FlyingPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#FlyingPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#GroundResists"/>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#GameMechanics -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#GameMechanics"/>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#GhostPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#GhostPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyNormal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#GhostResists -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#GhostResists">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#GrassPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#GrassPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#GroundResists"/>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#GrassResists -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#GrassResists">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#GroundPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#GroundPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#GroundResists -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#GroundResists">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAbility"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#pkzLevitate"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#HazardControllers -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#HazardControllers">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCourtChange"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvDefog"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvRapidSpin"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAbility"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#pkzMagicBounce"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#HazardSetters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#HazardSetters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSpikes"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvStealthRock"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvStickyWeb"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvToxicSpikes"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#HippowdonCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#HippowdonCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#HyperOffenseTeams -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#HyperOffenseTeams">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Playstyles"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">6</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#IcePokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#IcePokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Items -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Items">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#GameMechanics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#KommoOCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#KommoOCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#MandibuzzCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#MandibuzzCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#MoltresCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#MoltresCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Moves -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Moves">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#GameMechanics"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#NormalPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#NormalPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyNormal"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyNormal"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#OffensivePivots -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#OffensivePivots">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvPartingShot"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvTeleport"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvU-turn"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvVoltSwitch"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#OffensivePokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAtkEVs"/>
+                                <owl:someValuesFrom>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasSpAEVs"/>
+                                <owl:someValuesFrom>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#PhysicalAttacks -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#PhysicalAttacks">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Playstyles -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Playstyles">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">6</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#PoisonPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#PoisonPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Pokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">4</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#PriorityMoves -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#PriorityMoves">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#PsychicPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#PsychicPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#RockPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#RockPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyNormal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#ScreenSetters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#ScreenSetters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvLightScreen"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvReflect"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#SlowbroCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#SlowbroCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#SpecialAttacks -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#SpecialAttacks">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#SpeedBoostingMoves -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#SpeedBoostingMoves">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#StallTeams -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#StallTeams">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Playstyles"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasPokemon"/>
+                        <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">6</owl:maxQualifiedCardinality>
+                        <owl:onClass rdf:resource="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Stallbreakers -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Stallbreakers">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvTaunt"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvToxic"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#StatusMoves -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#StatusMoves">
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#StealthRockers -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#StealthRockers">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                        <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#mvStealthRock"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#HazardSetters"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#SteelPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#SteelPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyNormal"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Sweepers -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Sweepers">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                                        <owl:someValuesFrom>
+                                            <owl:Class>
+                                                <owl:oneOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvBulkUp"/>
+                                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCalmMind"/>
+                                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCurse"/>
+                                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvNastyPlot"/>
+                                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSwordsDance"/>
+                                                </owl:oneOf>
+                                            </owl:Class>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasBaseSpeed"/>
+                                        <owl:someValuesFrom>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">98</xsd:minInclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:someValuesFrom>
+                                    </owl:Restriction>
+                                </owl:intersectionOf>
+                            </owl:Class>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvAquaJet"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvFirstImpression"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvIceShard"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvMachPunch"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvShadowSneak"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSuckerPunch"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvClangorousSoul"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvDragonDance"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvShellSmash"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasItem"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#itChoiceScarf"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#ToxapexCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#ToxapexCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#TypedPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:someValuesFrom rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:someValuesFrom rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#UtilityPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#UtilityPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCourtChange"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvDefog"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvLightScreen"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvRapidSpin"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvReflect"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSpikes"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvStealthRock"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvStickyWeb"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvToxicSpikes"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAbility"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#pkzMagicBounce"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Wallbreakers -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Wallbreakers">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasMove"/>
+                                <owl:someValuesFrom>
+                                    <owl:Class>
+                                        <owl:oneOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvBulkUp"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCalmMind"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCurse"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvNastyPlot"/>
+                                            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSwordsDance"/>
+                                        </owl:oneOf>
+                                    </owl:Class>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasItem"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#itChoiceBand"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasItem"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#itChoiceSpecs"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#OffensivePokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#Walls -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#Walls">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#DefensivePokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasDefEVs"/>
+                                <owl:someValuesFrom>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">172</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasSpDEVs"/>
+                                <owl:someValuesFrom>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">172</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:someValuesFrom>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#WaterPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#WaterPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasType"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#TypedPokemon"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isWeakTo"/>
+                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#WaterResists -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#WaterResists">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAbility"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#pkzStormDrain"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAbility"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#pkzWaterAbsorb"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isImmuneTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#isResistantTo"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#WeatherPokemon -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#WeatherPokemon">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasAbility"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:oneOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzDrizzle"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzSandRush"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzSandStream"/>
+                                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzSwiftSwim"/>
+                                </owl:oneOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#ZapdosCounters -->
+
+    <owl:Class rdf:about="http://github.com/danielverd/teamverify/pokemon#ZapdosCounters">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#Pokemon"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://github.com/danielverd/teamverify/pokemon#hasCompTyping"/>
+                                <owl:hasValue rdf:resource="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#itChoiceBand -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#itChoiceBand">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Items"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#itChoiceScarf -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#itChoiceScarf">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Items"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#itChoiceSpecs -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#itChoiceSpecs">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Items"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#itLeftovers -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#itLeftovers">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Items"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#itThroatSpray -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#itThroatSpray">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Items"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvAquaJet -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvAquaJet">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvBodyPress -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvBodyPress">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvBounce -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvBounce">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvBulkUp -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvBulkUp">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvCalmMind -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCalmMind">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvClangingScales -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvClangingScales">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvClangorousSoul -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvClangorousSoul">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvCourtChange -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCourtChange">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvCrunch -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCrunch">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#PhysicalAttacks"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvCurse -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvCurse">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvDefog -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvDefog">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvDragonDance -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvDragonDance">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvEarthquake -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvEarthquake">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvFirstImpression -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvFirstImpression">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvFishiousRend -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvFishiousRend">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#PhysicalAttacks"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvFlamethrower -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvFlamethrower">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#SpecialAttacks"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvFlashCannon -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvFlashCannon">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvIceShard -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvIceShard">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvIronDefense -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvIronDefense">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvIronHead -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvIronHead">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvLavaPlume -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvLavaPlume">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvLightScreen -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvLightScreen">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvMachPunch -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvMachPunch">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvNastyPlot -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvNastyPlot">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvOutrage -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvOutrage">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#PhysicalAttacks"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvPartingShot -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvPartingShot">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvPsychicFangs -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvPsychicFangs">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#PhysicalAttacks"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvRapidSpin -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvRapidSpin">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvReflect -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvReflect">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvShadowSneak -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvShadowSneak">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvShellSmash -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvShellSmash">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvSpikes -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSpikes">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvStealthRock -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvStealthRock">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvStickyWeb -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvStickyWeb">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvSuckerPunch -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSuckerPunch">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvSwordsDance -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvSwordsDance">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvTaunt -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvTaunt">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvTeleport -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvTeleport">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvToxic -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvToxic">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvToxicSpikes -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvToxicSpikes">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvU-turn -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvU-turn">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvVoltSwitch -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvVoltSwitch">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#mvWaterfall -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#mvWaterfall">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Moves"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzBulletproof -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzBulletproof">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzDrizzle -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzDrizzle">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzLevitate -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzLevitate">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzMagicBounce -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzMagicBounce">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzSandRush -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzSandRush">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzSandStream -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzSandStream">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzStormDrain -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzStormDrain">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzStrongJaw -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzStrongJaw">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzSwiftSwim -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzSwiftSwim">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#pkzWaterAbsorb -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#pkzWaterAbsorb">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#Abilities"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyBug -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyBug">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyDark -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyDark">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyDragon -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyDragon">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyElectric -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyElectric">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyFairy -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFairy">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyFighting -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFighting">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyFire -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFire">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyFlying -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFlying">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyGhost -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGhost">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyGrass -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGrass">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyGround -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGround">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyIce -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyIce">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyNormal -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyNormal">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyPoison -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyPoison">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyPsychic -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyPsychic">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyRock -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyRock">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tySteel -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tySteel">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://github.com/danielverd/teamverify/pokemon#tyWater -->
+
+    <owl:NamedIndividual rdf:about="http://github.com/danielverd/teamverify/pokemon#tyWater">
+        <rdf:type rdf:resource="http://github.com/danielverd/teamverify/pokemon#ElementalTypings"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyBug"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyDark"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyDragon"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyElectric"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFairy"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFighting"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFire"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyFlying"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGhost"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGrass"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyGround"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyIce"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyNormal"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyPoison"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyPsychic"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyRock"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tySteel"/>
+            <rdf:Description rdf:about="http://github.com/danielverd/teamverify/pokemon#tyWater"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
