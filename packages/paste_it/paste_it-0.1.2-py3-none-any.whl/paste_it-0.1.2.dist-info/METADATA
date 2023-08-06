@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: paste_it
+Version: 0.1.2
+Summary: a cli script and tiny library to upload files to pastebin
+Home-page: https://github.com/advaithm/paste_it
+Author: nullrequest
+Author-email: advaith.madhukar@gmail.com
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Customer Service
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: requests>=2.25.1
+Requires-Dist: rich>=9.13.0 ;python_version in '3.8,3.8'
+
+# Paste it
+Paste it is a python script that I made to upload files to pastebin using requests. it aims to be fast and light and hence doesn't support a large array of options. Currently paste_it reads from json.config in the directory its launched from, in the future it may support reading from appdata dirs using the `appdirs` python library. I don't intened for this to be used as a library but it can be used as one if you wish to, all functions do have docstrings incase you do decied to use this a library.
+## Usage
+
+```
+usage: paste_it [-h] [--format FORMAT] [--private PRIVATE] [--title [TITLE]] path
+
+positional arguments:
+  path               file who's contents you want to paste on pastebin
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --format FORMAT    format of the file contents. you can find the avalible formats at https://pastebin.com/doc_api
+  --private PRIVATE  if your file should be privte, 0 public, 1 unlisted, 2 Private (only allowed in combination with api_user_key, as you have to be logged into your account to
+                     access the paste)
+  --title [TITLE]    the title of your paste
+  ```
+  
+
