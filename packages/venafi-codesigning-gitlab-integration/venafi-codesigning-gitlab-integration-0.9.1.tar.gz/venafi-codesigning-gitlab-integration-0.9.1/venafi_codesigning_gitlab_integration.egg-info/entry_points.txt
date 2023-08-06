@@ -1,0 +1,8 @@
+[console_scripts]
+venafi-container-init = venafi_codesigning_gitlab_integration.container_init_command:main
+venafi-sign-jarsigner = venafi_codesigning_gitlab_integration.jarsigner_sign_command:main
+venafi-sign-signtool = venafi_codesigning_gitlab_integration.signtool_sign_command:main
+venafi-verify-jarsigner = venafi_codesigning_gitlab_integration.jarsigner_verify_command:main
+venafi-verify-signtool = venafi_codesigning_gitlab_integration.signtool_verify_command:main
+venafi-version = venafi_codesigning_gitlab_integration.version_command:main
+
