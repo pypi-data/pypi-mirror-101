@@ -1,0 +1,90 @@
+---
+- name: Prepare Windows for rdiff-backup development
+  hosts: windows_hosts
+  gather_facts: false
+  tasks:
+  - name: enable running chocolatey scripts without confirmation
+    win_chocolatey_feature:
+      name: allowGlobalConfirmation
+      state: enabled
+  - name: install basis development tools via chocolatey
+    win_chocolatey:
+      name:
+      #- virtio-drivers
+      - git
+      - cygwin
+      - cyg-get  # depends on cygwin
+      - cmake
+      - 7zip
+      - vscode # Visual Studio Code (editor)
+      state: present
+  - name: install python via chocolatey
+    win_chocolatey:
+      name: "python3"
+      version: "{{ python_version_full }}"
+      state: present
+      package_params: /InstallDir:C:\Python64 /InstallDir32:C:\Python32
+  - name: install dependencies, allows for reboot in-between
+    win_chocolatey:
+      name:
+      - ruby  # dependency of asciidoctor, requires reboot
+      - dotnetfx
+      - vcredist140
+      state: present
+    register: vs_deps
+  - name: execute reboot if something has changed to VS dependencies
+    win_reboot:
+    when: vs_deps is changed
+  - name: install visual studio tools via chocolatey
+    win_chocolatey:
+      name:  # VC 2017 is the version available on Travis CI
+      - visualstudio2017buildtools
+      - visualstudio2017-workload-python
+      - visualstudio2017-workload-vctools
+      state: present
+    register: vs
+  - name: execute reboot if something has been changed to visual studio
+    win_reboot:
+    when: vs is changed
+
+  - name: install necessary python libraries
+    win_command: "\\{{ item }}\\Scripts\\pip.exe install --upgrade pywin32 pyinstaller wheel certifi setuptools-scm tox PyYAML"
+    register: pipcmd
+    changed_when: "'Successfully installed ' in pipcmd.stdout"
+    # pylibacl and pyxattr aren't supported under Windows
+    loop:
+      - Python64
+      - Python32
+  - name: validate that python seems to work as it should
+    win_shell: "\\{{ item }}\\python.exe -c 'import pywintypes, winnt, win32api, win32security, win32file, win32con'"
+    changed_when: false  # this command doesn't change anything ever
+    loop:
+      - Python64
+      - Python32
+
+  - name: Install NuGet to overcome issue 50332 in Ansible
+    # https://github.com/ansible/ansible/issues/50332
+    win_shell: Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+  - name: install the Powershell Community Extensions for win_unzip
+    win_psmodule:
+      name: Pscx
+      state: present
+      allow_clobber: true
+  - name: refresh the environment variables as we need gem in the PATH
+    win_command: refreshenv.cmd
+  - name: install asciidoctor gem
+    win_command: gem.cmd install asciidoctor
+
+- name: Prepare Linux to be used as Samba server
+  hosts: samba_servers
+  become: true
+  gather_facts: true
+  pre_tasks:
+  - name: set hostname of server
+    hostname:
+      name: "{{ inventory_hostname_short }}.vagrant.example.com"
+  roles:
+    #- bertvv.rh-base
+  - rh-base
+    #- bertvv.samba
+  - samba
