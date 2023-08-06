@@ -1,0 +1,39 @@
+# image: python:3.7-alpine
+image: python-docker
+
+test:
+  stage: test
+  script:
+  - pip install -U sphinx flit
+  - flit build --format wheel
+  - cd doc
+  - make html
+  - make latexpdf
+  
+  artifacts:
+    expire_in: 2 days
+    name: test"$CI_COMMIT_REF_NAME"
+    paths:
+    - doc/_build
+    - dist
+  only:
+  - branches
+  except:
+  - master
+
+pages:
+  stage: deploy
+  script:
+  - pip install -U sphinx
+  - cd doc
+  - make html
+  - cd ..
+  - mkdir -p public
+  - cp -R doc/_build/html/* public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+
+
