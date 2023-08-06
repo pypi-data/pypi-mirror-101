@@ -1,0 +1,12 @@
+tamu_d3m
+grpcio
+grpcio-tools
+grpcio-testing
+ray<=1.0.1.post1
+networkx==2.4
+
+[cpu]
+tensorflow==2.2.0
+
+[gpu]
+tensorflow-gpu==2.2.0
