@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: wiznote
+Version: 1.1.2
+Summary: Wiz Open API In Python.
+Home-page: https://github.com/536/wiz
+Author: https://github.com/536
+License: MIT
+Project-URL: Documentation, https://www.wiz.cn/wapp/pages/book/bb8f0f10-48ca-11ea-b27a-ef51fb9d4bb4
+Project-URL: Source, https://github.com/536/wiz
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# Wiz Open API In Python
+
++ Unofficial
+
++ [Wiz Open API](https://www.wiz.cn/wapp/pages/book/bb8f0f10-48ca-11ea-b27a-ef51fb9d4bb4)
+
+## Installation
+
+`pip install wiznote`
+
+## Usage
+
+See `./tests/test_base_usage.py`
+
+
