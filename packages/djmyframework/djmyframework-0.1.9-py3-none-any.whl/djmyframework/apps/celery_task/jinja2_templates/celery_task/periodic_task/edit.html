@@ -1,0 +1,519 @@
+{% extends "framework/base.html" %}
+
+{% block header %}
+    <title>{{ _('PeriodicTask 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+    <div id="vue-container" v-cloak>
+        <div class="row header">
+            <div class="col-sm-5">
+                <h1>{{ _('PeriodicTask') }}
+                    <small>{{ _('编辑') }}</small>
+                </h1>
+            </div>
+        </div>
+
+        <hr>
+        <br>
+
+        <form class="form-horizontal" role="form">
+            <div class="row edit-form-container">
+                <div class="col-sm-12">
+                    <br>
+
+
+                    <div class="form-group" style="display:none">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_id">
+
+                            {{ _('ID') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="number" id="id_id" name="id" v-model="model.id"
+                                   class="form-control" value="{{ data.id or "" }}"
+
+                            >
+                            <div id="help_text_id" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_name">
+                            <span class="text-danger">*</span>
+                            {{ _('Name') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_name" name="name" v-model="model.name"
+                                   class="form-control" value="{{ data.name or "" }}"
+                                   maxlength=200
+                                   required=true>
+                            <span class="help-block">{{ _('Short Description For This Task') }}</span>
+                            <div id="help_text_name" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_task">
+                            <span class="text-danger">*</span>
+                            {{ _('Task Name') }} </label>
+
+                        <div class="col-sm-8">
+
+                            <select v-select2 v-model="model.task" class="form-control select2" id="id_task"
+                                    data-placeholder="{{ _('根') }}" name="interval"
+                                    data-url="{{ url('celery_task.tasks') }}?">
+                                <option value="{{ data.task or '' }}">{{ data.task or _('无') }} </option>
+                            </select>
+
+                            <span class="help-block">{{ _('The Name of the Celery Task that Should be Run.  (Example: "proj.tasks.import_contacts")') }}</span>
+
+
+                            <div id="help_text_task" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_interval">
+
+                            {{ _('Interval Schedule') }} </label>
+
+                        <div class="col-sm-8">
+                            <select v-select2 v-model="model.interval" class="form-control select2" id="id_interval"
+                                    data-placeholder="{{ _('根') }}" name="interval"
+                                    data-url="{{ url('celery_task.interval_schedule.list') }}?">
+                                <option value="{{ data.interval or '' }}">{{ data.interval or _('无') }} </option>
+                            </select>
+                            <span class="help-block">{{ _('Interval Schedule to run the task on.  Set only one schedule type, leave the others null.') }}</span>
+                            <div id="help_text_interval" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_crontab">
+
+                            {{ _('Crontab Schedule') }} </label>
+
+                        <div class="col-sm-8">
+                            <select v-select2 v-model="model.crontab" class="form-control select2" id="id_crontab"
+                                    data-placeholder="{{ _('根') }}" name="crontab"
+                                    data-url="{{ url('celery_task.crontab_schedule.list') }}?">
+                                <option value="{{ data.crontab or '' }}">{{ data.crontab or _('无') }} </option>
+                            </select>
+                            <span class="help-block">{{ _('Crontab Schedule to run the task on.  Set only one schedule type, leave the others null.') }}</span>
+                            <div id="help_text_crontab" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_solar">
+
+                            {{ _('Solar Schedule') }} </label>
+
+                        <div class="col-sm-8">
+                            <select v-select2 v-model="model.solar" class="form-control select2" id="id_solar"
+                                    data-placeholder="{{ _('根') }}" name="solar"
+                                    data-url="{{ url('celery_task.solar_schedule.list') }}?">
+                                <option value="{{ data.solar or '' }}">{{ data.solar or _('无') }} </option>
+                            </select>
+                            <span class="help-block">{{ _('Solar Schedule to run the task on.  Set only one schedule type, leave the others null.') }}</span>
+                            <div id="help_text_solar" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_clocked">
+
+                            {{ _('Clocked Schedule') }} </label>
+
+                        <div class="col-sm-8">
+                            <select v-select2 v-model="model.clocked" class="form-control select2" id="id_clocked"
+                                    data-placeholder="{{ _('根') }}" name="clocked"
+                                    data-url="{{ url('celery_task.clocked_schedule.list') }}?">
+                                <option value="{{ data.clocked or '' }}">{{ data.clocked or _('无') }} </option>
+                            </select>
+                            <span class="help-block">{{ _('Clocked Schedule to run the task on.  Set only one schedule type, leave the others null.') }}</span>
+                            <div id="help_text_clocked" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_args">
+
+                            {{ _('Positional Arguments') }} </label>
+
+                        <div class="col-sm-8">
+                <textarea class="form-control limited" id="id_args" name="args" v-model="model.args"
+
+                >{{ data.args or "" }}</textarea>
+                            <span class="help-block">{{ _('JSON encoded positional arguments (Example: ["arg1", "arg2"])') }}</span>
+                            <div id="help_text_args" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_kwargs">
+
+                            {{ _('Keyword Arguments') }} </label>
+
+                        <div class="col-sm-8">
+                <textarea class="form-control limited" id="id_kwargs" name="kwargs" v-model="model.kwargs"
+
+                >{{ data.kwargs or "" }}</textarea>
+                            <span class="help-block">{{ _('JSON encoded keyword arguments (Example: {"argument": "value"})') }}</span>
+                            <div id="help_text_kwargs" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_queue">
+
+                            {{ _('Queue Override') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_queue" name="queue" v-model="model.queue"
+                                   class="form-control" value="{{ data.queue or "" }}"
+                                   maxlength=200
+                            >
+                            <span class="help-block">{{ _('Queue defined in CELERY_TASK_QUEUES. Leave None for default queuing.') }}</span>
+                            <div id="help_text_queue" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_exchange">
+
+                            {{ _('Exchange') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_exchange" name="exchange" v-model="model.exchange"
+                                   class="form-control" value="{{ data.exchange or "" }}"
+                                   maxlength=200
+                            >
+                            <span class="help-block">{{ _('Override Exchange for low-level AMQP routing') }}</span>
+                            <div id="help_text_exchange" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_routing_key">
+
+                            {{ _('Routing Key') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_routing_key" name="routing_key" v-model="model.routing_key"
+                                   class="form-control" value="{{ data.routing_key or "" }}"
+                                   maxlength=200
+                            >
+                            <span class="help-block">{{ _('Override Routing Key for low-level AMQP routing') }}</span>
+                            <div id="help_text_routing_key" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_headers">
+
+                            {{ _('AMQP Message Headers') }} </label>
+
+                        <div class="col-sm-8">
+                <textarea class="form-control limited" id="id_headers" name="headers" v-model="model.headers"
+
+                >{{ data.headers or "" }}</textarea>
+                            <span class="help-block">{{ _('JSON encoded message headers for the AMQP message.') }}</span>
+                            <div id="help_text_headers" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_priority">
+
+                            {{ _('Priority') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="number" id="id_priority" name="priority" v-model="model.priority"
+                                   class="form-control" value="{{ data.priority or "" }}"
+
+                            >
+                            <span class="help-block">{{ _('Priority Number between 0 and 255. Supported by: RabbitMQ, Redis (priority reversed, 0 is highest).') }}</span>
+                            <div id="help_text_priority" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_expires">
+
+                            {{ _('Expires Datetime') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_expires" name="expires" v-model="model.expires"
+                                   class="form-control datetime " value="{{ data.expires  or "" }}"
+                            >
+                            <span class="help-block">{{ _('Datetime after which the schedule will no longer trigger the task to run') }}</span>
+                            <div id="help_text_expires" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_expire_seconds">
+
+                            {{ _('Expires timedelta with seconds') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="number" id="id_expire_seconds" name="expire_seconds"
+                                   v-model="model.expire_seconds"
+                                   class="form-control" value="{{ data.expire_seconds or "" }}"
+
+                            >
+                            <span class="help-block">{{ _('Timedelta with seconds which the schedule will no longer trigger the task to run') }}</span>
+                            <div id="help_text_expire_seconds" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_one_off">
+
+                            {{ _('One-off Task') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="checkbox" class="input-sm " id="id_one_off" v-model="model.one_off"
+                                   data-placeholder="{{ _('One-off Task') }}" name="one_off"
+                                   {% if data.one_off %}checked="checked" value="true"{% endif %}>
+                            </input>
+                            <span class="help-block">{{ _('If True, the schedule will only run the task a single time') }}</span>
+                            <div id="help_text_one_off" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_start_time">
+
+                            {{ _('Start Datetime') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_start_time" name="start_time" v-model="model.start_time"
+                                   class="form-control datetime " value="{{ data.start_time  or "" }}"
+                            >
+                            <span class="help-block">{{ _('Datetime when the schedule should begin triggering the task to run') }}</span>
+                            <div id="help_text_start_time" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_enabled">
+
+                            {{ _('Enabled') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="checkbox" class="input-sm " id="id_enabled" v-model="model.enabled"
+                                   data-placeholder="{{ _('Enabled') }}" name="enabled"
+                                   {% if data.enabled %}checked="checked" value="true"{% endif %}>
+                            </input>
+                            <span class="help-block">{{ _('Set to False to disable the schedule') }}</span>
+                            <div id="help_text_enabled" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_last_run_at">
+
+                            {{ _('Last Run Datetime') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_last_run_at" name="last_run_at" v-model="model.last_run_at"
+                                   class="form-control datetime " value="{{ data.last_run_at  or "" }}"
+                            >
+                            <span class="help-block">{{ _('Datetime that the schedule last triggered the task to run. Reset to None if enabled is set to False.') }}</span>
+                            <div id="help_text_last_run_at" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_total_run_count">
+
+                            {{ _('Total Run Count') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="number" id="id_total_run_count" name="total_run_count"
+                                   v-model="model.total_run_count"
+                                   class="form-control" value="{{ data.total_run_count or "" }}"
+
+                            >
+                            <span class="help-block">{{ _('Running count of how many times the schedule has triggered the task') }}</span>
+                            <div id="help_text_total_run_count" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_date_changed">
+
+                            {{ _('Last Modified') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_date_changed" name="date_changed" v-model="model.date_changed"
+                                   class="form-control datetime " value="{{ data.date_changed  or "" }}"
+                            >
+                            <span class="help-block">{{ _('Datetime that this PeriodicTask was last modified') }}</span>
+                            <div id="help_text_date_changed" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_description">
+
+                            {{ _('Description') }} </label>
+
+                        <div class="col-sm-8">
+                <textarea class="form-control limited" id="id_description" name="description"
+                          v-model="model.description"
+
+                >{{ data.description or "" }}</textarea>
+                            <span class="help-block">{{ _('Detailed description about the details of this Periodic Task') }}</span>
+                            <div id="help_text_description" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row pane edit-save-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                    <button @click="saveModel(true)" :disabled="isExecuting" class="btn btn-primary " type="button">
+                        {{ _('保 存') }}
+                    </button>
+
+                    <div class="pull-right">
+                        <button @click="saveModel(false)" :disabled="isExecuting" class="btn btn-info " type="button">
+                            {{ _('保存并继续编辑') }}
+                        </button>
+                        <button @click="saveModelAddOther" :disabled="isExecuting" class="btn btn-info " type="button">
+                            {{ _('保存并增加另一个') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <script>
+        var modelData = Object({{ data|json_dumps|safe }}) || Object({
+            "id": 1,
+            "name": "",
+            "task": "",
+            "interval": null,
+            "crontab": null,
+            "solar": null,
+            "clocked": null,
+            "args": "[]",
+            "kwargs": "{}",
+            "queue": null,
+            "exchange": null,
+            "routing_key": null,
+            "headers": "{}",
+            "priority": null,
+            "expires": null,
+            "expire_seconds": null,
+            "one_off": false,
+            "start_time": null,
+            "enabled": true,
+            "last_run_at": null,
+            "total_run_count": 0,
+            "date_changed": null,
+            "description": ""
+        })
+
+        var modelShema = Object({{ data.serializer.to_schema()|json_dumps|safe }})
+
+
+        var vue_app = new Vue({
+            el: '#vue-container',
+            delimiters: ['((', '))'],
+            data() {
+                return {
+                    model: modelData,
+                    isExecuting: false,
+                };
+            },
+            watch: {},
+            methods: {
+                ajaxPostData: function (post_data, callback) {
+                    clearHelpText()
+                    this.isExecuting = true
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "{{ url('celery_task.periodic_task.save') }}?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}",
+                        dataType: 'json',
+                        data: JSON.stringify(post_data),
+                        contentType: 'application/json',
+                        success: (rsp) => {
+                            if (rsp.code == 0) {
+                                this.$message.success(rsp.msg, 1)
+                                clearHelpText()
+                                callback ? callback(rsp) : null
+
+                            } else {
+                                rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                            }
+                        },
+                        error: (jqXHR, statusText, errorMsg) => {
+                            ajaxError(jqXHR, statusText, errorMsg)
+
+                        },
+                        complete: (jqXHR, statusText) => {
+                            this.isExecuting = false
+                        }
+
+                    })
+                },
+                saveModel: function (isCloseDialog) {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            this.model = rsp.data
+                            refreshParentTable()
+                            customDispatchEvent('saveModel', this.model, true)
+                            if (isCloseDialog) closeSelfDialog()
+                        }
+                    })
+                },
+                saveModelAddOther: function () {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            window.location.href = window.location.pathname
+                        }
+                    })
+                },
+
+            },
+            mounted: function () {
+
+
+            }
+        })
+
+
+    </script>
+{% endblock %}

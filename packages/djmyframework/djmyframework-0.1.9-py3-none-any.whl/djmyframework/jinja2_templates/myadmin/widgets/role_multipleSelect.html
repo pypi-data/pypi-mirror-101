@@ -1,0 +1,69 @@
+groupBy{#{% load i18n %}#}
+{#{% load mytags %} #}
+<!-- 角色选择控件 -->
+
+<select name="role" id="role_select" class="form-control form-control-lg" multiple></select>
+
+
+<script>
+    /**
+     data: [
+     {
+            type: 'optgroup',
+            label: 'Group 1',
+            children: [
+                {
+                    text: 'January',
+                    value: 1,
+                    selected: true
+                }]
+        }]
+     **/
+
+(function () {
+    var select_data = {{ model.role|json_dumps|safe }}
+        $.getJSON('/myadmin/role/list', {fields: 'id,type_alias,alias'}, function (rsp) {
+            if (rsp.code == 0) {
+                var tmp_data = rsp.data.results
+
+                var data = []
+                var group_map = {}
+
+                for (var i in tmp_data) {
+                    var item = tmp_data[i]
+
+                    if (!group_map.hasOwnProperty(item.type_alias)) {
+                        group_map[item.type_alias] = {
+                            type: 'optgroup',
+                            label: item.type_alias,
+                            children: []
+                        }
+                    }
+                    group_map[item.type_alias].children.push({
+                        text: item.alias,
+                        value: item.id,
+                    })
+
+                }
+                for(var k in group_map){
+                    data.push(group_map[k])
+                }
+                console.dir(data)
+                $('#role_select').multipleSelect({
+                    locale: BootstrapTableLocale,
+                    filter: true,
+                    filterGroup: true,
+                    multiple: true,
+                    multipleWidth: 100,
+                    data: data,
+                })//.multipleSelect('setSelects', select_data)
+                $('#role_select').val(select_data)
+            }
+
+        }).fail(function (jqXHR, statusText, errorMsg) {
+            ajaxError(jqXHR, statusText, errorMsg)
+        })
+})();
+
+</script>
+

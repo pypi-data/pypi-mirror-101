@@ -1,0 +1,55 @@
+<!-- tabletree -->
+<style type="text/css">
+ 
+/* Ensure that the demo table scrolls */
+#query_table,.dataTable  th, .dataTable td { white-space: nowrap; }
+
+div.dataTables_wrapper {
+    width: 100%;
+    margin: 0 auto; 
+}
+.dataTable th,.dataTable tbody td {  border-right: 1px solid #ddd;}
+</style>
+
+
+
+<script>
+var frozen_index=0
+{% for name,config in field_configs.items() %}
+{%if config.frozen%}frozen_index={{loop.index0}}{%endif%}
+{%endfor%}
+
+
+$(function(){
+
+
+setTimeout(function(){
+
+dataTableOption.option.autoWidth=false
+
+dataTableOption.option.scrollY=get_winHeight_Width()[1] - Math.min($('html').height(),$('#query_table').offset().top)  - 160
+dataTableOption.option.scrollY = dataTableOption.option.scrollY < 300 ? 300 : dataTableOption.option.scrollY
+
+delete dataTableOption.option.fixedHeader
+delete dataTableOption.option.footer
+dataTableOption.option.scrollX=true
+dataTableOption.option.scrollCollapse=true
+},100)
+
+})
+
+//dataTableOption.option.deferRender=true,
+//dataTableOption.option.scrollXInner=$('body').width()*1.5,
+dataTableOption.option.fixedColumns= {
+            leftColumns: frozen_index+1,
+            height : 'auto',
+}
+
+</script>
+
+
+
+
+
+
+

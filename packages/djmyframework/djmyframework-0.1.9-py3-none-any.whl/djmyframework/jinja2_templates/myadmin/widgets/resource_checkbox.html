@@ -1,0 +1,100 @@
+<!-- 默认资源选择控件 -->
+
+{% set select_list_ids =  select_list %}
+
+
+<div id="{{ resource_name }}-vue-container" class="" v-cloak>
+
+
+    <div id="{{ resource_name }}-members-toolbar"><h3>{{ _('已选择') }} <span class="badge">((selected_num))</span></h3>
+    </div>
+
+    <table id="{{ resource_name }}-members-table">
+        <thead>
+
+
+        <tr>
+            <th data-checkbox="false" data-width="40">
+
+            <input name="btSelectAll" type="checkbox">
+            </th>
+            <th data-field="alias" data-click-to-select="true" data-align="left">{{ model_resource.label }}</th>
+        </tr>
+        </thead>
+        <tbody class="{{ resource_name }}-members-table-body">
+
+        {% for (id,alias) in  model_resource.get_resource_queryset(request.user).values_list(model_resource.unique_filed_name,model_resource.alias_lookup) %}
+            <tr>
+                <td value="{{ id }}" name="id">
+                  <input type="checkbox" value="{{ id }}" name="{{ model_resource.id_field_lookup }}[]"{% if id in select_list_ids %} checked{% endif %}>
+                </td>
+                <td> {{ alias }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <br>
+
+</div>
+
+
+<script>
+
+    var vue_{{ resource_name }}_app = new Vue({
+        el: '#{{ resource_name }}-vue-container',
+        delimiters: ['((', '))'],
+        data: {
+            selected_list: {{ select_list_ids |safe}},
+        },
+        computed: {
+            selected_num() {
+                return this.selected_list.length
+            }
+        },
+        mounted: function () {
+            this.${{ resource_name }}Table = $('#{{ resource_name }}-members-table')
+            var _this = this
+
+            this.${{ resource_name }}Table.bootstrapTable({
+                uniqueId: 'id',
+                idField: 'id',
+                toolbar: '#{{ resource_name }}-members-toolbar',
+                selectItemName: '{{ model_resource.id_field_lookup }}[]',
+
+                groupBy: false,//分组
+                groupByField: 'status_alias',
+                search: true,
+                clickToSelect: true,
+                showExport: false,
+                groupByFormatter: function (value, idx, data) {
+                    return '<span class="label label-info">' + value + '</span>'
+                },
+                onCheck: function (row, $element) {
+                    _this.getSelectIds()
+
+                },
+                onUncheck: function (row, $element) {
+                    _this.getSelectIds()
+                },
+                onPostBody: function (data) {
+
+
+                },
+            })
+
+        },
+        methods: {
+            getSelectIds: function () {
+                this.selected_list = $.map(this.${{ resource_name }}Table.bootstrapTable('getSelections'), function (row) {
+                    console.dir(row)
+                    return row.id
+                })
+                return this.selected_list
+            },
+        }
+
+    })
+</script>
+
+

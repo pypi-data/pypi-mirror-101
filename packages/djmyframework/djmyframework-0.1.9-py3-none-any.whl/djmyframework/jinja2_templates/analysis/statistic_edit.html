@@ -1,0 +1,120 @@
+{% extends "old/base.html" %}
+
+{% block header%}
+<title>统计编辑</title>
+{% endblock %}
+
+{% block content %}
+<div id="bar">
+	<a href="/analysis/statistic/list">统计列表</a> -> 统计编辑
+	<div class="buttons">
+		<a href="javascript:;" class="submit">保存</a>
+	</div>
+</div>
+
+<form action="/analysis/statistic/save?statistic_id={{model.id}}" method="post">
+    {{ csrf_input }}
+
+	<table class="form">
+		<tr>
+			<th>统计日志：</th><td>
+			<select name="log_type" class="log_def_list " >
+				{%for item in logs%}
+				<option value="{{item.id}}" {% if item.id == model.log_type %}selected="selected"{% endif %}>{{item.name}}({{item.key}})</option>
+				{%endfor%}
+			</select>
+			<input type="text" class="search_log_def"  placeholder="搜索..." style="width:50px;" onkeyup="javascript:search_dbl_list('log_def_list','search_log_def');" />
+			<a href="javascript:;" onclick="art.dialog.open('/log/log_define/edit?log_key='+$('[name=log_key]').val())">编辑</a>
+		</td>
+	</tr>
+
+	<tr>
+		<th>统计名称：</th><td><input type="text" name="name" value="{{model.name}}" /></td>
+	</tr>
+
+
+	<tr>
+		<th>保存结果表名：</th><td>
+
+		<input type="text" name="save_table_name" size="50" value="{{model.save_table_name}}" />
+
+			<label class="inline">
+				
+				<input type="checkbox" value="1" {%if model.is_save_center %} checked="checked"{%endif%} name="is_save_center" >
+				保存在中央服
+			</label>
+		 </td>
+	</tr>
+
+<tr>
+	<th>自动统计启用：</th><td>
+		<label class="inline">
+			<input type="checkbox" value="1" {%if model.is_auto_execute %} checked="checked"{%endif%} offval="No" id="stock" name="is_auto_execute" role="checkbox" class="FormElement ace ace-switch ace-switch-5"><span class="lbl"></span>启用自动统计后会在后台自动执行统计,避免太过频繁的统计
+		</label>
+	 </td>
+</tr>
+<tr>
+	<th>统计间隔：</th><td><input type="text" name="auto_exec_interval" maxlength="5" value="{{model.auto_exec_interval}}" /> 天 *自动统计开始日期减去的天数,涉及未来数据(例如留存,流失)必须填写.
+</td>
+</tr>
+<tr>
+	<th>统计时间维护字段：</th><td><input type="text" name="remove_field" maxlength="100" value="{{model.remove_field}}" /> 字段名 *统计数据清除是搜索字段,默认log_time, 涉及未来数据(例如留存,流失)必须修改,避免删除数据.
+</td>
+</tr>
+<tr>
+	<th>备注：</th>
+	<td>
+	<textarea  name="remark" >{{model.remark}}</textarea>
+</td>
+</tr>
+
+<tr>
+	<th>SQL语句：</th>
+	<td style="border:1px solid gray">
+	<textarea id="code" name="sql" style="width:800px;height:400px;">{{model.sql}}</textarea>
+</td>
+</tr>
+
+<tr>
+	<th>帮助:</th>
+	<td >
+		<div class="alert alert-info">
+				<p>*注意 必须返回5列 时间点,游戏名,平台名,服务器ID,渠道标识,渠道标识2,标识值(没有也要设置为0),值,即必须是group by 4列的</p>
+				<p>值列:log_now,log_previous,log_result,log_data</p>
+				<p>取游戏代号:  log_name={{ '{{' }}game_alias{{ '}}' }}</p>
+				<!-- <p>取服务器ID:  log_server={{ '{{' }}server_id{{ '}}' }}</p> -->
+				<p>取开始时间: {{ '{{' }}sdate{{ '}}' }}</p>
+				<p>取结束时间: {{ '{{' }}edate{{ '}}' }}</p>
+
+		</div>
+	</td>
+</tr>
+
+</table>
+
+</form>
+
+{% with URL = '/static/assets/codemirror'  %}
+<script src={{URL}}/lib/codemirror.js></script>
+<link rel="stylesheet" href="{{URL}}/lib/codemirror.css" />
+<script src="{{URL}}/mode/sql/sql.js"></script>
+<script type="text/javascript">
+window.onload = function() {
+	var mime = 'text/x-mariadb';
+	if (window.location.href.indexOf('mime=') > -1) {
+		mime = window.location.href.substr(window.location.href.indexOf('mime=') + 5);
+	}
+	var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+		mode: mime,
+		indentWithTabs: true,
+		smartIndent: true,
+		lineNumbers: true,
+		matchBrackets : true,
+		//autofocus: true,
+		tabSize: 4,
+	});
+  //editor.setSize(100,100)
+};
+</script>
+{%endwith%}
+{% endblock %}

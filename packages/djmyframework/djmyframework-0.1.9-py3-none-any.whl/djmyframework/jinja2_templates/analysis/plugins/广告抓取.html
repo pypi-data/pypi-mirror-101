@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="/static/css/bootstrap-table.min.css" />
+<p id="datatable_toolbar1"  style="float: left;">广告代理设置帮助，请<a href="http://182.254.151.34:8109/static/help.html" class='openDialog1' data-width='800px' data-height='1000px'>点击</a>, <span style="color:red">推广连接打开后显示空白？，右键"使用新标签打开连接"</span></p>
+
+<script type="text/javascript">
+
+dataTableOption.convertOutputDataFuncs = [function(data) {
+
+    listData = data.list_data;
+    for (var i in listData){
+	    var tag = listData[i][TH["标题"]];
+	    listData[i][TH["游戏名"]] = "<a href='#' onclick='game_filter(this)' class='game_name' title='"+ listData[i][TH["游戏名"]] +"'>" + listData[i][TH["游戏名"]] + "</a>";
+		 listData[i][TH["标题"]] = listData[i][TH['标题']] + " <a href='/ad/not_game_ad_report?tag="+ tag +"' class='openDialog1' title='过滤该标题的广告' data-width='500px' data-height='40px'>X</a>";
+	     source = listData[i][7];
+	     var imgs = listData[i][7] ? listData[i][7].toString().split(',') :'';
+        var url = listData[i][4];
+	     if (url){
+	         listData[i][4] =  "<a href='" + url + "' target='_blank' data-width='500px' data-height='800px'>[推广地址]</a>";
+		   }
+        listData[i][7] = ""	   
+	     for (var img in imgs){
+
+		   listData[i][7] = listData[i][7] + "<img style='max-height: 112px;' class='lazy' src='http://182.254.151.34:8109/static/imgs/"+ imgs[img] +"' alt=''>"
+	  }
+	      listData[i][7] = listData[i][7] + "<a href='#' onclick='img_filter(this)' title='"+ source +"'>同一套素材</a>";
+    }
+    return data
+}]
+ function game_filter(target){
+   
+   game_name = $(target).attr("title");
+   var url ="/query/view/广告抓取查询?game_name="+ game_name +"&sdate=1990-01-01&edate=2099-01-01"; 
+	var width = "1024";
+	var height = "980";
+	var title = game_name
+	art.dialog.open(url,{title:title}, true)
+   return false;
+  }
+  $(function(){
+	$SEARCH.trigger('click');
+  });
+  function img_filter(target){
+   
+   imgs = $(target).attr("title");
+   var url ="/query/view/广告抓取查询?imgs="+ imgs +"&sdate=1990-01-01&edate=2099-01-01"; 
+	var width = "1024";
+	var height = "980";
+	var title = "同素材投放计划"
+	art.dialog.open(url,{title:title}, true)
+   return false;
+  }
+  $(function(){
+	$SEARCH.trigger('click');
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,156 @@
+{#{% load i18n %}#}
+
+<div id="permission-container" class="row" v-cloak>
+
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>{{ _('可读') }} <span class="badge">((select_read_member_num))</span></h3>
+            </div>
+            <div class="panel-body">
+
+                <table id="read-member-table" data-show-columns="false" data-show-export="false">
+                    <thead>
+                    <th data-checkbox="true"></th>
+                    <th data-field="alias" data-click-to-select="true" data-align="left"></th>
+                    <th data-field="type_alias" data-visible="false"></th>
+                    </thead>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>{{ _('可写') }} <span class="badge">(( select_write_member_num ))</span>
+            </h3></div>
+            <div class="panel-body">
+                <table id="write-member-table" data-show-columns="false" data-show-export="false">
+                    <thead>
+                    <th data-checkbox="true"></th>
+                    <th data-field="alias" data-click-to-select="true" data-align="left">
+                    </th>
+                    <th data-field="type_alias" data-visible="false"></th>
+                    </thead>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    disabledEditBtn()
+    var svn_path_permission_app = new Vue({
+        el: '#permission-container',
+        delimiters: ['((', '))'],
+        data: {
+            read_member: {{ data.read_member |safe}},
+            write_member: {{ data.write_member|safe }},
+            user_list: [],
+            group_list: [],
+            select_read_member_num: 0,
+            select_write_member_num: 0,
+        },
+        computed: {},
+        mounted: function () {
+
+            var _this = this
+            $.when(
+                $.get('/myadmin/user/list?fields=username,alias,status,status_alias&page_size=10000&status__in=0', '', function (rsp) {
+                    if (rsp.code != 0) {
+                        alertError(rsp.msg)
+                        return
+                    }
+                    _this.user_list = $.map(rsp.data.results, function (item) {
+                        return {name: item.username, alias: item.alias +' ('+item.username + ')', type_alias: '{{ _('用户') }}', parent: null}
+                    })
+                }, 'json'),
+                $.get('/myadmin/role/list?type__exact=2&fields=name,alias,parent&page_size=10000', '', function (rsp) {
+                    if (rsp.code != 0) {
+                        alertError(rsp.msg)
+                        return
+                    }
+                    _this.group_list = $.map(rsp.data.results, function (item) {
+                        return {
+                            name: '@' + item.name,
+                            alias: item.alias,
+                            type_alias: '{{ _('用户组') }}',
+                            parent: item.parent
+                        }
+                    })
+                }, 'json')
+            ).done(function () {
+                var member_list = _this.group_list.concat(_this.user_list)
+                $('#read-member-table').bootstrapTable({
+                    uniqueId: 'name',
+                    idField: 'name',
+                    selectItemName: 'read_member',
+                    data: member_list,
+                    groupBy: true,//分组
+                    groupByField: 'type_alias',
+                    search: true,
+                    clickToSelect: true,
+
+                    groupByFormatter: function (value, idx, data) {
+                        return '<span class="label label-info">' + value + '</span>'
+                    },
+                    onCheck: function (row, $element) {
+                        _this.select_read_member_num += 1
+
+                    },
+                    onUncheck: function (row, $element) {
+                        _this.select_read_member_num -= 1
+                    }
+                    ,
+                    onPostBody: function (data) {
+
+                        setTimeout(function () {
+                            enabledEditBtn()
+                            $('#read-member-table').bootstrapTable('checkBy', {
+                                field: 'name',
+                                values: _this.read_member
+                            })
+                        }, 50)
+
+                    },
+                })
+
+                $('#write-member-table').bootstrapTable({
+                    uniqueId: 'name',
+                    idField: 'name',
+                    selectItemName: 'write_member',
+                    data: member_list,
+                    groupBy: true,//分组
+                    groupByField: 'type_alias',
+                    groupByFormatter: function (value, idx, data) {
+                        return '<span class="label label-info">' + value + '</span>'
+                    },
+                    search: true,
+                    clickToSelect: true,
+                    onCheck: function (row, $element) {
+                        _this.select_write_member_num += 1
+
+                    },
+                    onUncheck: function (row, $element) {
+                        _this.select_wirte_member_num -= 1
+                    },
+                    onPostBody: function (data) {
+                        setTimeout(function () {
+                            enabledEditBtn()
+                            $('#write-member-table').bootstrapTable('checkBy', {
+                                field: 'name',
+                                values: _this.write_member
+                            })
+                        }, 50)
+
+                    },
+                })
+                enabledEditBtn()
+
+            });
+        },
+        methods: {}
+
+    })
+</script>

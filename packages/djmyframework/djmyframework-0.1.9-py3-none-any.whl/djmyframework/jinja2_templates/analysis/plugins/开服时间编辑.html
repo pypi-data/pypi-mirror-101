@@ -1,0 +1,40 @@
+目标游戏:<input type="text" id="target">
+<input type="button" class="btn btn-xs" value="同步表" id="btn_sync_table" onclick="sync_table()">
+<script type="text/javascript">
+  var url = "/log/server/open_time_edit"
+
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+   game_alias = $("#game-alias-select").attr("value")
+        listData = data.list_data;
+    for (var i in listData){
+          var id = listData[i][TH['id']]
+		     var default_time = listData[i][TH['开服时间']]
+
+          params = "id=" + id + "&" +
+                     "game_alias=" + game_alias + "&" +
+                     "default_time=" + default_time 
+
+                listData[i][TH['操作']] = "<a href='" + url + "?" + params + "' class='openDialog'>[编辑]</a>";
+    }
+
+
+    return data
+}]
+
+  function sync_table(){
+    var url = "/log/server/open_time_sync"
+  var from = $("#game-alias-select").attr("value")
+  var target = $("#target").attr("value")
+  $.post(url, {from:from, target:target}, function(e){
+    alert("同步成功")
+  })
+  }
+</script>
+
+
+
+
+
+
+
+

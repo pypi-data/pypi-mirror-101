@@ -1,0 +1,28 @@
+{#{% load i18n %}#}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{ request.session.items }}
+<form name="testform" id="testform" method='post'>{{ csrf_input }}
+    <select id="language" name="language" onchange="selectdb(this)">
+        <option value="1">{{ _('Languages') }}</option>
+        {% for lang in LANGUAGES %}
+        <option value="{{ lang.0 }}" > {{ lang.1 }}</option>
+        {% endfor %}
+    </select>
+</form>
+{{ request.language }}
+<script>
+function selectdb(obj) {
+    str="/i18n/setlang/";
+    myform = document.getElementById('testform');
+    myform.method = "POST";
+    myform.action = str;
+    myform.submit();
+}
+</script>
+</body>
+</html>

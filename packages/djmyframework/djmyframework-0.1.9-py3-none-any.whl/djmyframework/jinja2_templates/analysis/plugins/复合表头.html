@@ -1,0 +1,134 @@
+<script id="header-tpl" type="template/text">
+
+<tr id="headers_1">
+
+<th class="sorting_disabled" rowspan="1" colspan="8" aria-label="日期" style="width: 64px;"><%=it.data.title%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.one%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.two%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.three%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.four%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.five%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.six%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.seven%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.eight%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"><%=it.data.nine%></th>
+</tr>
+	
+</script>
+<script id="header-tpl_1" type="template/text">
+
+<tr id="headers_1">
+
+<th class="sorting_disabled" rowspan="1" colspan="8" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="2" aria-label="日期" style="width: 64px;"></th>
+</tr>
+	
+</script>
+
+<script>
+  $QUERY_TABLE.find('thead').prepend(get_views('header-tpl_1', {}))
+
+
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+   index = 0
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+      debugger;
+		if (!row[TH['游戏']]){
+		  index = i
+		  data.list_data.splice(i, 1)
+		  var data_obj = {}
+		  data_obj.title = row[TH['日期']]
+		  data_obj.one = row[TH['当周充值']]
+		  data_obj.two = row[TH['2周充值']]
+		  data_obj.three = row[TH['3周充值']]
+		  data_obj.four = row[TH['4周充值']]
+		  data_obj.five = row[TH['5周充值']]
+		  data_obj.six = row[TH['6周充值']]
+		  data_obj.seven = row[TH['7周充值']]
+		  data_obj.eight = row[TH['8周充值']]
+		  data_obj.nine = row[TH['9周充值']]
+		  var result = get_views('header-tpl', data_obj)
+       $("table.dataTable").find('thead tr#headers_1').replaceWith(result)
+		}
+	  
+	}
+  	return data
+})
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

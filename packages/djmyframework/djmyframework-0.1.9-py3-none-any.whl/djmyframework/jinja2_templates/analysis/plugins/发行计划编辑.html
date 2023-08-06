@@ -1,0 +1,22 @@
+<script>
+  
+  dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		row[TH['下载数']] = ' <a href="/analysis/query/view/广告下载点击?' +row[TH['操作']]+ '"  class="openDialog" >' + row[TH['下载数']] + '</a>'
+
+		row[TH['操作']] = ' <a href="/analysis/query/view/发行计划?' +row[TH['操作']]+ '"  class="openDialog" >[发行计划]</a>'
+
+		
+		
+
+	}
+  	return data
+
+})     //输出处理
+</script>
+
+
+
+

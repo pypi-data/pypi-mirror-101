@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  var url = "/query/view/跨SDK设备数"
+
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+   game_alias = $("#game-alias-select").attr("value")
+        listData = data.list_data;
+    for (var i in listData){
+          var params_list = listData[i][TH['查看明细']].split('|')
+		  	  var sdate = listData[i][TH['流失时间']]
+          var game_alias = params_list[0]
+          var game_alias1 = params_list[1]
+		     var log_sdk_code = params_list[2]
+		  	  var edate = listData[i][TH['流失时间']].split(" ")[0]
+
+          params = "target_p=" + game_alias1  + "&" + 
+			"game_alias=" + game_alias + "&" + "sdate=" + sdate + "&" + "edate=" + edate + " 23:59:59"
+		                         
+								
+                listData[i][TH['查看明细']] = "<a href='" + url + "?" + params + "' class='openDialog'>[查看明细]</a>";
+    }
+
+
+    return data
+}]
+
+</script>
+
+
+
+
+
+

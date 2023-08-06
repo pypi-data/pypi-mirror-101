@@ -1,0 +1,246 @@
+
+<div id="filter-vue-container" class="row ">
+    <input style="display:none" type="text">
+    <div v-for="(field,i) in filter_conditions" class="col-sm-4 form-group form-group-sm " :key="i" v-cloak>
+        <label class=" form-control-static text-nowrap text-right control-label col-sm-2 "> (( field.label
+            )):</label>
+        <div class="col-sm-10 ">
+            <div class="input-group">
+                <!-- 选择操作 -->
+                <div class="input-group-btn">
+                    <select v-model="field.operator" :data-type='field.type' @change="change_input(field)"
+                            class="form-control cursor-pointer " style="width:66px">
+                        <option v-for="(operator,ii) in ConditionSchema[field.type]" :value="operator[0]">((
+                            operator[1] ))
+                        </option>
+                    </select>
+                </div>
+                <!-- 定值,不需要输入框 -->
+                <input v-if="not_input_operator.indexOf(field.operator)>=0" type="hidden" value="true'"
+                       :name="input_name(field)">
+
+                <!-- 多选,关联对象 -->
+                <span v-else-if="field.data_url">
+                    <select v-model='field.value.split(/,/)' :name='input_name(field)' style="height: 20px;"
+                            :data-url='field.data_url'  class="select2"
+                            :multiple="field.operator!=='single_in' ?'multiple':'flase'">
+                    </select>
+                </span>
+                <!-- 单选 有列表选择 -->
+                <span v-else-if="field.choices && field.choices.length>0 && field.operator=='single_in'">
+                    <select v-model='field.value'
+                            :name='input_name(field)' class="select2" data-allow-clear="true">
+                        <option v-for="(item,i) in field.choices" :value="item[0]"> (( item[1] ))</option>
+                    </select>
+                </span>
+                <!-- 多选 有列表选择 -->
+                <span v-else-if="field.choices && field.choices.length>0">
+                    <select v-model='field.value.split(/,/)' style="height: 20px;"
+                            :name='input_name(field)' class="select2" data-allow-clear="true"
+                            multiple="multiple">
+                        <option v-for="(item,i) in field.choices" :value="item[0]" selected> (( item[1] ))</option>
+                    </select>
+                </span>
+
+                <!-- 多选 文本输入框 -->
+                <span v-else-if="['in','not_in'].indexOf(field.operator)>=0">
+                    <input :type='get_input_type(field)' v-model='field.value' :name="input_name(field)"
+                           :class='{"form-control":1,"tagsinput":1,"input-sm":1}'
+                    >
+                </span>
+                <!-- 区间 -->
+                <div v-else-if="field.operator=='range'" class="">
+                    <input type='number' v-model='field.min' class="form-control text-center"
+                           style="width: 80px">
+                    <span class="form-control close"> - </span>
+                    <input type='number' v-model='field.max' class="form-control text-center"
+                           style="width: 80px" :min="field.min">
+
+                    <input type="hidden" :value='[field.min,field.max].join(",")' :name="input_name(field)">
+                </div>
+
+                <!-- 一般输入框 -->
+                <input v-else :type="get_input_type(field)" v-model='field.value' :name="input_name(field)"
+                       :class='{"form-control":1,"daterange":field.type == "date" }'
+                       :placeholder="field.label">
+
+
+                <div v-if="!field.is_default" class="input-group-btn">
+                    <button type="button" @click="remove_condition(i)" class=" close cursor-pointer red">
+                        <span class="glyphicon glyphicon-minus btn-sm"></span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div :class="{'col-sm-12':filter_conditions.length>=3, 'col-sm-4':filter_conditions.length<3,'text-center':true}">
+
+        <button @click="doSearch"
+                type="button"
+                class="btn btn-sm btn-success filter-btn search-btn"
+                aria-label="Left Align">
+            <i class="glyphicon glyphicon-search"></i>
+            {{ _('筛 选') }}
+        </button>
+
+        <input @click='reset' type='button' class="btn btn-sm btn-default" value='{{ _('重 置') }}'>
+
+        <div class="btn-group ">
+            <button type="button" class="btn btn-sm btn-default dropdown-toggle"
+                    data-toggle="dropdown" data-hover="dropdown">
+                <span class="glyphicon glyphicon-plus"></span>
+                {{ _('条 件') }}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+
+                <li v-for="(field_schema,name) in filter_field_schemas">
+                    <a @click="add_condition(field_schema)" href="javascript:void(0)">(( field_schema.label ))</a>
+                </li>
+
+                <li class="divider"></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+
+    (function () {
+        var filter_vue_app = new Vue({
+            el: '#filter-vue-container',
+            delimiters: ['((', '))'],
+            data: {
+                filed_schema: {
+                    name: 'id',
+                    operator: "exact",
+                    value: "",
+                    type: "number",
+                    label: "ID",
+                    choices: []
+                },
+                not_input_operator: ['is_true', 'is_false', 'not_null', 'is_null', 'is_empty', 'not_empty'],
+                filter_field_schemas: filter_field_schemas,
+                ConditionSchema: ConditionSchema,
+                filter_conditions: filter_conditions,
+                current_filter_condition: null,
+                DELIMITER: '__'
+            },
+            created: function () {
+                this.init_filter_conditions()
+                this.init_query_condition()
+            },
+            computed: {},
+            updated: function () {
+                if (this.current_filter_condition && this.current_filter_condition.type == 'choice') {
+                }
+                initSelect2()
+
+                // initTagsinput()
+
+            },
+            methods: {
+                input_name: function (field) {
+                    return field.name + '__' + field.operator
+                },
+                change_range_max_value: function (filed) {
+
+                },
+                trigger_filter: function () {
+                    $('.filter-btn').trigger('click')
+                },
+                // 根据Query参数,初始化条件
+                init_query_condition: function () {
+                    for (var k in QueryParamsMap) {
+                        // {alias__exact : ['1','2']}
+                        var name_operator_arr = k.split(this.DELIMITER)
+                        var values = QueryParamsMap[k]
+                        if (!values) {
+                            continue
+                        }
+                        if (name_operator_arr.length > 1) {
+                            for (var ii in values) {
+                                var filed_schema = this.filter_field_schemas[name_operator_arr[0]]
+                                var filter_condition = this.build_condition(filed_schema, name_operator_arr[1], values[ii])
+                                this.filter_conditions.push(filter_condition)
+                            }
+                        }
+
+                    }
+                },
+                // 初始化 过滤条件
+                init_filter_conditions: function () {
+
+                    for (var i in this.filter_conditions) {
+                        var default_condition = this.filter_conditions[i]
+                        var field_schema = this.filter_field_schemas[default_condition.name]
+                        field_schema = Object.assign(default_condition, field_schema)
+                        this.filter_conditions[i] = this.build_condition(field_schema, default_condition.operator, default_condition.value)
+
+                        this.$set(this.filter_conditions, i, this.filter_conditions[i])
+                    }
+                },
+                build_condition: function (filed_schema, operator, values) {
+                    var filter_condition = Object.assign({}, filed_schema);
+                    filter_condition.value = values || ''
+                    filter_condition.operator = operator || this.ConditionSchema[filed_schema.type][0][0]
+                    if (filter_condition.operator in this.not_input_operator) {
+                        filter_condition.value = 'true'
+                    }
+                    if (filter_condition.operator == 'range') {
+                        var range_arr = filter_condition.value.split(/,/)
+                        filter_condition.min = range_arr[0] || 0
+                        filter_condition.max = range_arr[1] || 0
+                    }
+                    console.dir(filter_condition)
+                    return filter_condition
+                },
+                change_input: function (value) {
+                    this.current_filter_condition = value
+
+                },
+                add_condition: function (filed_schema) {
+                    var filter_condition = this.build_condition(filed_schema)
+                    this.filter_conditions.push(filter_condition)
+                    this.current_filter_condition = filter_condition
+                },
+
+                remove_condition: function (index) {
+                    this.filter_conditions.splice(index, 1)
+
+                },
+                get_input_type: function (field) {
+                    if (field.type == 'number') {
+                        return 'number'
+                    }
+                    return 'text'
+
+                },
+                reset: function () {
+
+                    for (var i in this.filter_conditions) {
+                        this.filter_conditions[i].value = ''
+                        this.filter_conditions[i].min = ''
+                        this.filter_conditions[i].max = ''
+                        this.$set(this.filter_conditions, i, this.filter_conditions[i])
+                    }
+
+                    $('#filter-container .tagsinput').tagsinput('removeAll')
+                    $('#filter-container .select2').val(null).trigger("change")
+
+                },
+                doSearch: function () {
+                    window.dispatchEvent(new CustomEvent("filterCondition", {detail:this.filter_conditions}))
+                }
+
+            }
+
+        })
+
+    }());
+</script>

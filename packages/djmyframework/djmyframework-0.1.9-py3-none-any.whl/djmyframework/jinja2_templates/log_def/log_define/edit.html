@@ -1,0 +1,347 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{#{% load mytags %} #}
+{% block header %}
+    <title>{{ _('日志类定义 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="row header">
+    <div class="col-sm-5">
+        <h1>{{ _('日志类定义') }}
+            <small>{{ _('编辑') }}</small>
+        </h1>
+    </div>
+</div>
+
+<hr><br>
+
+<form action="/log_def/log_define/save?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}"
+          method="POST"
+          class="form-horizontal"
+          role="form">
+        <div class="row edit-container">
+            <div class="col-sm-8">
+                {{ csrf_input }}
+                
+
+
+        <div class="form-group" style="display:none">
+            <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                
+                {{ _('id') }} </label>
+
+            <div class="col-sm-8">
+                 <input type="number" id="id_id" name="id"
+                        class="form-control" value="{{ data.id  or ""}}"
+                        
+                        
+                >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_name">
+                <span class="text-danger">*</span>
+                {{ _('日志名') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_name" name="name"
+                        class="form-control" value="{{ data.name  or ""}}"
+                        maxlength=50
+                        required=true
+                 >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_key">
+                <span class="text-danger">*</span>
+                {{ _('日志表标示') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_key" name="key"
+                        class="form-control" value="{{ data.key  or ""}}"
+                        maxlength=100
+                        required=true
+                 >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_remark">
+                <span class="text-danger">*</span>
+                {{ _('备注') }} </label>
+
+            <div class="col-sm-8">
+
+                <textarea type="text" id="id_remark" name="remark"
+                        class="form-control"
+                        maxlength=1000
+                        required=true
+                >{{ data.remark  or ""}}</textarea>
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_status">
+                
+                {{ _('保存位置') }} </label>
+
+            <div class="col-sm-8">
+                <select class="form-control col-lg-5 select2" id="id_status" name="status" svalue="{{ data.status }}">
+                    {% for o in data.serializer.instance.get_fields_map().status.choices %}
+                        <option value="{{ o.0 }}">{{ o.1 }}</option>
+                    {% endfor %}
+                </select>
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_trigger">
+                
+                {{ _('触发器sql') }} </label>
+
+            <div class="col-sm-8">
+
+                <textarea class="form-control limited"    id="id_trigger" name="trigger"
+
+                >{{ data.trigger or ""}}</textarea>
+                <br>
+<pre>
+
+    *注意先使用 DROP TRIGGER IF EXISTS triggerName 删除旧触发器,使用{{server_id}}代表服务器ID,使用分号 ';'分割sql语句
+    * ALTER TABLE tablename ADD UNIQUE 索引的名字 (列的列表);
+    触发器语法:
+    create trigger triggerName
+    after/before insert/update/delete on #表名
+    for each row                         #这句话在mysql是固定的
+    sql语句;
+	</pre>
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_create_datetime">
+                
+                {{ _('创建时间') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_create_datetime" name="create_datetime"
+                           class="form-control datetime " value="{{ data.create_datetime   or "" }}"
+                           
+                    >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_update_datetime">
+                
+                {{ _('更新时间') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_update_datetime" name="update_datetime"
+                           class="form-control datetime " value="{{ data.update_datetime   or "" }}"
+                           
+                    >
+
+
+            </div>
+        </div>
+            </div>
+
+            <div class="col-sm-4">
+                	<div class="tabbable">
+                    <ul class="nav nav-tabs padding-12 ">
+                        <li class="active"><a data-toggle="tab" href="#tab2">字段管理</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="tab2" class="tab-pane active">
+                            <a></a>
+                            <table class="list">
+                            <thead>
+                                <th>字段名</th>
+                                <th>描述</th>
+                                <th>索引</th>
+                            </thead>
+                            {% for k,v in data.config.items() %}
+                            <tr class="config">
+                            <td class="field" field="{{k}}">{{k}}</td>
+                                <td><input type="text" name="verbose_name" value="{{v.verbose_name}}" ></td>
+                                <td>
+
+                                    <label><input type="checkbox" name="db_index" {%if v.default_db_index %}disabled="true"{% endif %} {%if v.db_index or v.default_db_index%}checked="checked"{%endif%}>索引</label>
+
+                                </td>
+                            </tr>
+                            {%endfor%}
+                            </table>
+
+                            <textarea id="config_input" name="config" class="check_json" style="display:none">{{data.config|json_dumps|safe}}</textarea>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+
+
+        <div class="row pane edit-save-bar">
+            <div class="col-sm-offset-3 col-sm-3">
+                <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                <button id="save-btn" class="btn btn-primary " type="button">
+                    {{ _('保 存') }}
+                </button>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <button id="save-edit-btn" class="btn btn-info " type="button">
+                        {{ _('保存并继续编辑') }}
+                    </button>
+                    <button id="save-add-btn" class="btn btn-info " type="button">
+                        {{ _('保存并增加另一个') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+{% with URL = '/static/assets/codemirror'  %}
+<script src={{URL}}/lib/codemirror.js></script>
+<link rel="stylesheet" href="{{URL}}/lib/codemirror.css" />
+<script src="{{URL}}/mode/sql/sql.js"></script>
+<script type="text/javascript">
+
+
+  var mime = 'text/x-mariadb';
+  if (window.location.href.indexOf('mime=') > -1) {
+    mime = window.location.href.substr(window.location.href.indexOf('mime=') + 5);
+  }
+  var editor = CodeMirror.fromTextArea(document.getElementById('id_trigger'), {
+    mode: mime,
+    indentWithTabs: true,
+    smartIndent: true,
+    lineNumbers: true,
+    matchBrackets : true,
+    //autofocus: true,
+    tabSize: 4,
+  });
+  //editor.setSize(100,100)
+
+	function convertConfigToJson(){
+		var config = {}
+		$('.config').each(function(i,ele){
+			var This = $(ele)
+			var filedName = This.find('.field').attr('field')
+			config[filedName] = {}
+			This.find(':text').each(function(ii,_ele){
+				config[filedName][$(_ele).attr('name')] =$(_ele).val()
+			})
+			This.find(':checkbox').each(function(ii,_ele){
+				config[filedName][$(_ele).attr('name')] =$(_ele).is(':checked')?true:false
+			})
+
+		})
+		return config
+	}
+</script>
+{%endwith%}
+
+<script>
+    var $form = $('form')
+    $form.submit(function (e) {
+        stopEevent(e)
+        return false
+    })
+
+    function ajaxPostData(ele, callback) {
+        clearHelpText()
+        $(ele).attr("disabled", true);
+        var post_data = $form.serializeToJSON()
+        post_data.trigger = editor.getValue()
+        post_data.config = convertConfigToJson()
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: $form.attr('action'),
+            dataType: 'json',
+            data: JSON.stringify(post_data),
+            contentType: 'application/json',
+            success: function (rsp) {
+                if (rsp.code == 0) {
+                    $('[name="id"]').val(rsp.data.id)
+                    art.dialog(rsp.msg).time(1)
+                    clearHelpText()
+                    callback ? callback(rsp) : null
+                } else {
+                    rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                }
+            },
+            error: function (jqXHR, statusText, errorMsg) {
+                ajaxError(jqXHR, statusText, errorMsg)
+
+            },
+            complete: function (jqXHR, statusText) {
+                $(ele).removeAttr("disabled");
+            }
+
+        })
+    }
+
+    $('#save-add-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            if (rsp.code == 0) {
+                window.location.href = window.location.pathname
+            }
+        })
+    })
+
+    $('#save-edit-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            $form.attr('action', '/log_def/log_define/save?id=' + rsp.data.id)
+            refreshParentTable()
+
+        })
+    })
+
+    $('#save-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            refreshParentTable()
+            closeSelfDialog()
+        })
+    })
+
+</script>
+{% endblock %}

@@ -1,0 +1,155 @@
+<div id="datatable_toolbar" class="row">
+
+	<div class="col-sm-8">
+		<ul class="nav nav-tabs"  >
+			<li class="active">
+				<a class="type-tab" data-value="android" data-toggle="tab" href="#">
+					安卓
+				</a>
+			</li>
+
+			<li class="">
+				<a class="type-tab" data-value="ios" data-toggle="tab" href="#">
+					IOS
+				</a>
+			</li>
+
+			<li class="">
+				<a class="type-tab" data-value="H5" data-toggle="tab" href="#">
+					H5
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="col-sm-4">
+		<label id="send_resouces" class="fr" >
+
+	    {% if params.project_version_id[0]%}
+		  <a href="/sdk/game/push_config?pv_id={{params.project_version_id[0]}}" class="btn  btn-xs btn-primary openDialog" >
+	    	 更新SDK配置
+	    </a>
+	    {%endif%}
+		</label>
+			  	    {% if params.project_version_id[0]%}
+		  <span style="float: right;
+                       color: red;
+                       margin-top: 4px;">
+	    参数要更新才生效，点击这里->
+	    </span>
+	    {%endif%}
+	</div>
+
+	
+</div>
+
+
+
+<script id="caozuo-tpl" type="template/text">
+
+<%? it.data.id%>
+	<a title="<%=it.data.sdk_name%> V<%=it.data.sdk_version_name%> " href="/projects_version_sdk/edit?project_version_id=<%=it.data.projectVersionId%>&sdk_id=<%=it.data.sdk_id%>&sdk_version_id=<%=it.data.sdk_version_id%>&id=<%=it.data.id%>" class="openDialog btn btn-xs btn-sussess"  >
+	编辑参数</a>
+	
+	
+	<%if (it.data.client_type.toLocaleLowerCase()=='ios'){ %>
+	<a title="<%=it.data.sdk_name%> V<%=it.data.sdk_version_name%> " href="/projects_version_sdk_ios_setting/download?project_version_id=<%=it.data.projectVersionId%>&sdk_id=<%=it.data.sdk_id%>&sdk_version_id=<%=it.data.sdk_version_id%>&id=<%=it.data.id%>" target="_blank" class=" btn btn-xs btn-danger"  >
+	下载打包配置</a>
+	
+	<% } %>
+	
+	
+<%??%>
+	<a title="<%=it.data.sdk_name%> V<%=it.data.sdk_version_name%> " href="/projects_version_sdk/edit?project_version_id=<%=it.data.projectVersionId%>&sdk_id=<%=it.data.sdk_id%>&sdk_version_id=<%=it.data.sdk_version_id%>" class="openDialog btn btn-xs btn-danger"  >
+	增加接入</a>
+
+<%?%>
+
+</script>
+
+
+<script>
+var projectVersionId = '{{params.project_version_id[0]}}'
+
+
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+
+		var sId_svId_id  = row[TH['操作']].split('|')
+		row[TH['图标']] = '<img height=50 width=50 src="'+row[TH['图标']]+'">'
+		var join_status_obj = {}
+		join_status_obj.sdk_id = sId_svId_id[0]
+		join_status_obj.sdk_version_id = sId_svId_id[1]
+		join_status_obj.id = sId_svId_id[2]
+		join_status_obj.sdk_name = row[TH['SDK名称']]
+		join_status_obj.sdk_version_name = row[TH['SDK版本']]
+		join_status_obj.projectVersionId = projectVersionId
+		join_status_obj.client_type = row[TH['类型']]
+		if (row[TH['服务端问题反馈地址']] != null){
+		    var params = row[TH['服务端问题反馈地址']].split('/')
+	        var game_alias = params[0]
+	        var sdk = params[1]
+	        var version = params[2]
+            var pay_url = "http://182.254.151.34:9001/app/kibana#/discover/18581e50-4faf-11e9-96c5-ed00675e4040?_g=(refreshInterval:('$$hashKey':'object:1471',display:'30%20seconds',pause:!t,section:1,value:30000),time:(from:now-12h,mode:quick,to:now))&_a=(columns:!(_source),filters:!(('$$hashKey':'object:1381','$state':(store:appState),meta:(alias:!n,disabled:!f,index:'sdk-log-index-*',key:gameSimpleName,negate:!f,value:" + game_alias +"),query:(match:(gameSimpleName:(query:" + game_alias +",type:phrase)))),('$$hashKey':'object:1829','$state':(store:appState),meta:(alias:!n,disabled:!f,index:'sdk-log-index-*',key:sdkSimpleName,negate:!f,value:" + sdk +"),query:(match:(sdkSimpleName:(query:" + sdk +",type:phrase)))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'sdk-log-index-*',key:sdkVersionCode,negate:!f,value:" + version +"),query:(match:(sdkVersionCode:(query:" + version +",type:phrase))))),index:'sdk-log-index-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'_type:pay')),sort:!('@timestamp',desc))"
+            var login_url = "http://182.254.151.34:9001/app/kibana#/discover/18581e50-4faf-11e9-96c5-ed00675e4040?_g=(refreshInterval:('$$hashKey':'object:1471',display:'30%20seconds',pause:!t,section:1,value:30000),time:(from:now-12h,mode:quick,to:now))&_a=(columns:!(_source),filters:!(('$$hashKey':'object:1381','$state':(store:appState),meta:(alias:!n,disabled:!f,index:'sdk-log-index-*',key:gameSimpleName,negate:!f,value:" + game_alias +"),query:(match:(gameSimpleName:(query:" + game_alias +",type:phrase)))),('$$hashKey':'object:1829','$state':(store:appState),meta:(alias:!n,disabled:!f,index:'sdk-log-index-*',key:sdkSimpleName,negate:!f,value:" + sdk +"),query:(match:(sdkSimpleName:(query:" + sdk +",type:phrase)))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'sdk-log-index-*',key:sdkVersionCode,negate:!f,value:" + version +"),query:(match:(sdkVersionCode:(query:" + version +",type:phrase))))),index:'sdk-log-index-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'_type:login')),sort:!('@timestamp',desc))"
+            row[TH['服务端问题反馈地址']] = '<a href="'+login_url +'" target="_blank">[登录问题反馈]</a><a href="'+pay_url +'" target="_blank">[充值问题反馈]</a>'
+		}
+		row[TH['操作']] =  get_views('caozuo-tpl',join_status_obj)
+		
+		{% if request.user.is_root%}
+		row[TH['SDK名称']] = '<a class="openDialog" href="/sdk/edit?id=' + join_status_obj.sdk_id +'"> ' + row[TH['SDK名称']] + ' </a>'
+		row[TH['SDK版本']] = '<a title="' + join_status_obj.sdk_name +'V' + join_status_obj.sdk_version_name+' " class="openDialog" href="/sdk_version/edit?id=' + join_status_obj.sdk_version_id +'&sdkid='+join_status_obj.sdk_id+' "> ' + row[TH['SDK版本']] + ' </a>'
+		
+		
+		{%endif%}
+		if (join_status_obj.id){
+			row[TH['操作']] += '    <a href="/projects_version_sdk/remove?id=' +join_status_obj.id+ '" class="delete"  >[取消]</a>'
+		}
+
+	}
+  	return data
+
+})     //输出处理
+
+$(function(){
+
+ $('#search_form').append('<input type="hidden" name="client_type" value="android">')
+  $SEARCH.trigger('click');
+
+
+  $('.type-tab').click(function(event) {
+  		$('[name="client_type"]').val($(this).attr('data-value'))
+  		 $SEARCH.trigger('click');
+  });
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

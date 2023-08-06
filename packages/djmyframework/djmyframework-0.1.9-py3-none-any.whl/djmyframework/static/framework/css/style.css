@@ -1,0 +1,116 @@
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice__remove {
+    margin-right: 0px;
+    float: right;
+    margin-left: 3px;
+}
+
+.select2-container {
+    min-width: 100px;
+}
+
+
+.glyphicon-plus-remove {
+    color: red;
+    transform: rotate(45deg);
+}
+
+.cursor-pointer {
+    cursor: pointer
+}
+
+.daterange {
+    min-width: 160px;
+}
+
+.red {
+    color: red;
+}
+
+.header {
+    line-height: 50px;
+    background-color: white;
+    height: 50px;
+}
+
+.header h1:first-letter {
+    border-left: 3px solid #88B7E0;
+    padding-left: 5px;
+    line-height: 50px;
+}
+
+.header .nav-tabs{
+    margin-top: 10px;
+}
+.pane {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    margin-bottom: 5px;
+}
+
+
+.edit-container {
+    margin-bottom: 50px;
+}
+
+.edit-form-container {
+    margin-bottom: 55px;
+}
+
+.edit-save-bar {
+    position: fixed;
+    bottom: -5px;
+    width: 100%;
+    background-color: white;
+    z-index: 999;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    line-height: 1.2;
+    font-size: 14px;
+    font-family: inherit;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+/*.groupBy {*/
+/*text-align: left;*/
+/*}*/
+#filter-container select[multiple] {
+    max-height: 30px;
+}
+
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading {
+    background: #f1080800;
+}
+
+.daterangepicker {
+    z-index: 99999999;
+}
+
+.checkbox input[type=checkbox], input[type=radio], .checkbox-inline input[type=checkbox] {
+    margin: 2px 0 0 -20px;
+}
+
+.dl-inline dt,
+.dl-inline dd {
+    display: inline-block;
+}
+
+.dl-inline dd {
+    margin-right: 28px;
+}
+
+.fixed-header{
+    position:fixed;
+    z-index:999
+}
+

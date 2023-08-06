@@ -1,0 +1,104 @@
+<!-- 时间更新组件 -->
+
+<style>
+
+.large {
+    font-family: unset;
+    height: 27px;
+    width: 300px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+</style>
+
+
+{% if has_sdate or has_edate %}
+
+    {% if has_edate %}
+        <b>时间区间选择：</b><input type="text" id="wdate" class="large" value="" style="margin-bottom: 5px">
+    {% else %}
+        <b>时间选择：</b><input type="text" id="wdate" value="" style="margin-bottom: 5px">
+    {% endif %}
+
+    {% if has_sdate %}
+        <span style="display: inline-block;">
+        <input type="hidden" style="font-weight: bold;color: black;" name="sdate"
+                            class="Wdate" value="{{ sdate }}"/>
+        </span>
+    {% endif %}
+    {% if has_edate %}
+        <span style="display: inline-block;">
+        <input type="hidden" style="font-weight: bold;color: black;" name="edate"
+                            class="Wdate" value="{{ edate }}"/>
+        </span>
+    {% endif %}
+
+{% endif %}
+
+
+<script type="text/javascript">
+
+    $(function () {
+    var locale = {
+        "format": 'YYYY-MM-DD HH:mm:ss',
+        "separator": " - ",
+        "applyLabel": "确定",
+        "cancelLabel": "取消",
+        "fromLabel": "起始时间",
+        "toLabel": "结束时间'",
+        customRangeLabel: "自定义",
+        "weekLabel": "W",
+        "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"],
+        "monthNames": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+        "firstDay": 1
+    };
+    {% if has_edate %}
+        $('#wdate').daterangepicker({
+            "timePicker": true,
+            'locale': locale,
+            ranges: {
+                '今日': [moment().format('YYYY-MM-DD 00:00:00'), moment().hour(23).minute(59).second(59)],
+                '昨日': [moment().hour(00).minute(00).second(00).subtract(1, 'days').format(), moment().subtract(1, 'days').hour(23).minute(59).second(59)],
+                '最近7日': [moment().hour(00).minute(00).second(00).subtract(6, 'days').format(), moment().hour(23).minute(59).second(59)],
+                '最近30日': [moment().hour(00).minute(00).second(00).subtract(29, 'days').format(), moment().hour(23).minute(59).second(59)],
+                '本月': [moment().startOf('month'), moment().endOf('month')],
+                '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month')
+                    .endOf('month')],
+                '今年': [moment().startOf('year'), moment().endOf('year')],
+                '去年': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year')
+                    .endOf('year')]
+            },
+
+            "alwaysShowCalendars": true,
+            "showDropdowns": true,
+            "startDate": "{{ sdate }}",
+            "endDate": "{{ edate }}",
+            "timePicker24Hour": true,
+            "timePickerSeconds": true,
+    }, function (start, end, label) {
+        $("input[name=sdate]").attr('value', start.format("YYYY-MM-DD HH:mm:ss"));
+        $("input[name=edate]").attr('value', end.format("YYYY-MM-DD HH:mm:ss"));
+        console.log('New date range selected: ' + start.format('YYYY-MM-DD HH:mm:ss') + ' to ' + end.format('YYYY-MM-DD HH:mm:ss') + ' (predefined range: ' + label + ')');
+    });
+    {% else %}
+    $('#wdate').daterangepicker({
+        "timePicker": true,
+        'locale': locale,
+        "alwaysShowCalendars": true,
+        "startDate": "{{ sdate }}",
+        "showDropdowns": true,
+        "timePicker24Hour": true,
+        "timePickerSeconds": true,
+        "singleDatePicker": true
+    }, function (start, end, label) {
+        $("input[name=sdate]").attr('value', start.format("YYYY-MM-DD HH:mm:ss"));
+        console.log('New date range selected: ' + start.format('YYYY-MM-DD HH:mm:ss') + ' to ' + end.format('YYYY-MM-DD HH:mm:ss') + ' (predefined range: ' + label + ')');
+    });
+    {% endif %}
+
+
+})
+
+</script>
+

@@ -1,0 +1,30 @@
+<script type="text/javascript">
+dataTableOption.convertOutputDataFuncs = [function(data) {
+    listData = data.list_data;
+    for (var i in listData){
+	  var params = listData[i][TH['操作']].split('|')
+	  var game_alias = params[0]
+	  var log_time = params[1]
+	  var log_channel = params[2]
+	  var sdk_code = params[3]
+	  if (listData[i][TH['日期']].length>0){
+	  	var dateStr = listData[i][TH['日期']]
+		listData[i][TH['日期']] = '<a href="/query/view/市场投放报表?hui_zong=,g_log_channel&sdate=' + dateStr+ ' 00:00:00' + '&edate='+ dateStr +' 23:59:59&game_alias='+ game_alias +'" class="openDialog">'+ dateStr+'</a>'
+	  
+	  }
+	  
+	  if (game_alias && log_time && log_channel && log_channel){
+		listData[i][TH['操作']] = '<a href="/log/media/media_edit?table_name=log_media_delivery_first_channel&game_alias='+ game_alias + '&sdk_code='+ sdk_code + '&log_time='+ log_time + '&log_channel='+ log_channel + '" class="openDialog">编辑</a>'
+
+	  }
+	  else{
+	    listData[i][TH['操作']] = "不汇总才能编辑"
+	  }
+    }
+
+
+    return data
+}]
+
+</script>
+

@@ -1,0 +1,40 @@
+<div id="datatable_toolbar" class="row">
+	<div class="col-sm-12">
+		<label id="send_resouces" class="fr">
+		  <a href="/sdk_version/edit?sdk_id={{params.sdk_id.0}}" class="btn  btn-xs btn-primary openDialog" >
+	    	 增加SDK版本
+	    </a>
+	</label>
+	</div>
+</div>
+
+
+
+
+
+<script>
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var sdk_id  = row[TH['操作']]
+		row[TH['插入插件包下载地址']] = '<a href="'+ row[TH['插入插件包下载地址']]+'" target="_blank">'+row[TH['插入插件包下载地址']]+'</a>'
+		row[TH['SDK下载地址']] = '<a href="'+ row[TH['SDK下载地址']]+'" target="_blank">'+row[TH['SDK下载地址']]+'</a>'
+		row[TH['操作']] = '<a href="/sdk_version/edit?id=' +sdk_id+ '" class="openDialog"  >[编辑]</a>'
+		row[TH['操作']] += '<a href="/sdk_version/edit?id=' +sdk_id+ '&is_copy=1" class="openDialog"  >[复制]</a>'
+	}
+  	return data
+
+})     //输出处理
+
+$(function(){
+	 $SEARCH.trigger('click');
+})
+</script>
+
+
+
+

@@ -1,0 +1,50 @@
+<script type="text/javascript">
+  var url = "/log/vip/vip_edit"
+  var payurl = "/query/view/充值日志"
+  var record_view_url = "/query/view/沟通记录列表"
+  var record_edit_url = "/log/vip/record_edit"
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+   game_alias = $("#game-alias-select").attr("value")
+        listData = data.list_data;
+    for (var i in listData){
+          var params_list = listData[i][TH['操作']].split('|')
+          var log_user = params_list[2]
+          var log_now = params_list[3]
+          var log_sdk_code = params_list[0]
+          var log_server = params_list[1]
+          params = "log_user=" + log_user + "&" +
+                     "log_sdk_code=" + log_sdk_code + "&" +
+                     "log_result=" + log_now + "&" +
+                     "log_server=" + log_server + "&" +
+                     "game_alias=" + game_alias + "&" +
+                     "modify=" + "log_now,log_previous,log_resolution,f1,f2,f3,f4,f5,f6,log_level,log_mobile_key,log_data,log_time,log_type,log_channel,log_channel2"
+
+          listData[i][TH['操作']] = "<a href='" + url + "?" + params + "' class='openDialog'>[编辑]</a>";
+          params = "log_user=" + log_user + "&" +
+                 "log_sdk_code=" + log_sdk_code + "&" +
+                 "log_now=" + log_now + "&" +
+                 "log_server=" + log_server + "&" +
+                 "game_alias=" + game_alias + "&sdate=2007-07-14&edate=2097-07-20"
+          listData[i][TH['沟通记录']] = "<a title='玩家沟通记录' href='" + record_view_url + "?" + params + "' class='openDialog'>"+ "查看记录" +"</a>|" + "<a title='添加沟通记录' href='" + record_edit_url + "?" + params + "' class='openDialog'>"+ "添加记录" +"</a>";
+
+          params = "log_user=" + log_user + "&" +
+                 "log_sdk_code=" + log_sdk_code + "&" +
+                 "log_now=" + log_now + "&" +
+                 "game_alias=" + game_alias + "&sdate=2007-07-14&edate=2097-07-20"
+          listData[i][TH['帐号ID']] = "<a title='玩家充值信息' href='" + payurl + "?" + params + "' class='openDialog'>"+ listData[i][TH['帐号ID']]  +"</a>";
+     
+	  
+	}
+
+
+    return data
+}]
+
+</script>
+
+
+
+
+
+
+

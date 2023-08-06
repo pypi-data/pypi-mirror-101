@@ -1,0 +1,103 @@
+
+<!-- 角色选择控件 -->
+
+
+<table style=""
+       id="role-table"
+       data-toggle="table"
+       data-url="/myadmin/role/list?fields=id,type_alias,alias,parent&page_size=10000">
+    <thead>
+    <tr>
+
+    </tr>
+    </thead>
+</table>
+
+<script>
+    var select_role_list =
+    {{ select_list |json_dumps|safe }} ||
+    [];
+
+    $(function () {
+        disabledEditBtn();
+    }); // 沙箱前必须加;
+
+    ;(function () {
+        var $table = $('#role-table')
+        $table.bootstrapTable({
+            height: Math.max(600, getWindowHeightWidth()[1] - Math.min($('html').height(), $('#role-table').offset().top)),
+            striped: true,
+            selectItemName: 'role[]',//checkbox name
+            // multipleSelectRow: true,
+            uniqueId: 'id',
+            filterControl: false,
+            search: true,
+            showSearchClearButton: true,
+            pagination: false,
+            trimOnSearch: true,
+            clickToSelect: true,
+            showRefresh: true, //是否显示刷新按钮
+            totalField: 'count',
+            dataField: 'results',
+            responseHandler: function (res) {
+                return res.data
+            },
+            showExport:false,
+            groupBy: true,//分组
+            groupByField: 'type_alias',
+            ignoreClickToSelectOn: function ignoreClickToSelectOn(e) {
+                return ['SPAN', 'BUTTON', 'LABEL', 'INPUT', 'A'].indexOf(e.tagName) > -1
+            },
+            onDblClickRow: function (row, $element, field) {
+                $element.treegrid('toggle');
+            },
+            // 表格树设置
+            idField: 'id',
+            treeEnable: true,
+            treeShowField: 'alias',//在哪一列展开树形
+            parentIdField: 'parent',
+            //rootParentId:'null',
+            onPostBody: function (data) {
+                var columns = $table.bootstrapTable('getOptions').columns
+                console.dir(columns)
+                enabledEditBtn()
+                // http://maxazan.github.io/jquery-treegrid
+                if (columns && columns[0][1].visible) {
+                    $table.treegrid({
+                        initialState: 'expanded',
+                        treeColumn: 1,
+                        onChange: function () {
+                            $table.bootstrapTable('resetWidth')
+                        }
+                    })
+                }
+                $table.bootstrapTable('checkBy', {field: 'id', values: select_role_list})
+            },
+            columns: [{
+                checkbox: true,
+                align: 'center',
+                valign: 'middle',
+                width: 40,
+            }, {
+                field: 'alias',
+                title: "{{ _('角色') }}",
+                align: 'middle',
+                valign: 'middle',
+                sortable: false,
+                visible: true,
+            }, {
+                field: 'parent',
+                title: "{{ _('上级') }}",
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                visible: false,
+            }
+
+            ]
+
+        })
+    }());
+</script>
+
+

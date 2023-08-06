@@ -1,0 +1,31 @@
+{% extends "myadmin/base.html" %}
+{#{% load mytags %} #}
+{% block header %}
+    <title>切换管理员</title>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+
+
+
+
+
+    <select type="text" class="select2" name="change_user_id" required />
+    {% for admin in data.user_list %}
+        <option value="{{ admin.id }}"> {{ admin.alias }} - {{ admin.name }}</option>
+    {% endfor %}
+    </select>
+
+    <input type="submit" class="btn radius-4 pull-right " value="确定"/>
+
+
+
+
+    </form>
+
+    <script>
+
+    </script>
+
+{% endblock %}

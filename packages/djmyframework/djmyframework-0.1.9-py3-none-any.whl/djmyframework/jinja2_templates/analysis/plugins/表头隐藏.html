@@ -1,0 +1,134 @@
+<!-- tabletree -->
+
+
+<div id="table_th_select_cont" class="inline position-relative dropdown-hover ">
+	
+			<button id="table_th_select_cont_btn" data-toggle="dropdown" class="btn btn-primary btn-sm dropdown-toggle hide">
+				表头隐藏
+				<span class="icon-caret-down icon-on-right"></span>
+			</button>
+			<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-caret dropdown-close pull-right">
+				{%for field in the_query.selects%}
+						<li>
+								<a>
+								<label class="">
+									<input name="form-field-checkbox" type="checkbox" class="ace hide-column" checked="checked" data-index={{loop.index}} >
+									<span class="lbl">{{field}}</span>
+								</label>
+								</a>
+						
+							</span>
+							
+						</li>
+
+				{%endfor%}
+			</ul>
+</div>
+
+
+<script>
+$('#table_th_select_cont').appendTo('.widget-header')
+
+var th_hidden = new ThHidden()
+
+$('#table_th_select_cont .hide-column').click(function(event) {
+	var $this = $(this)
+	var index = $this.attr('data-index') - 1
+	var column = window.odataTable.column(index ) 
+	var is_show = $this.is(':checked')
+	column.visible( is_show )
+	th_hidden.change(index,is_show)
+   
+});
+  
+dataTableOption.option.initComplete= function(settings, json) {
+     th_hidden.init()
+	   $('#table_th_select_cont_btn').removeClass('hide')
+}
+
+function ThHidden(){
+	var This = this
+	//this.key = window.location.href + '_th_hidden_config'
+	this.config = {}
+	this.key = {{the_query.id}} + '_th_hidden_config'
+  	this.load_config = function(){
+		This.config = localJson.get(This.key,{})
+  	}
+  
+	this.init = function(){
+		This.load_config()
+
+		for (var k in This.config){
+		  if (!isNaN(k)){
+			//alert(k)
+			window.odataTable.column(k).visible( false )
+			$('#table_th_select_cont').find(':checkbox:eq('+k+')').prop('checked',0).parent('label').removeClass('checked')
+			}
+		}
+	}
+	this.change = function(index,is_show){
+	  var index = index.toString()
+	  console.dir(index)
+	 
+	  if (! is_show){
+	  	This.config[index] = is_show
+	  } else {
+	  	delete This.config[index]
+	  }
+
+	  This.save()
+	  console.dir(This.config)
+	}
+	this.save = function(){
+		localJson.save(This.key,This.config)
+	}
+
+ 
+}
+  
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

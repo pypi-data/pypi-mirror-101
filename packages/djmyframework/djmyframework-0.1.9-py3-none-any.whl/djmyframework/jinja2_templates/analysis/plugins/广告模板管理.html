@@ -1,0 +1,120 @@
+<link rel="stylesheet" href="/static/css/bootstrap-table.min.css" />
+<script type="text/javascript" src="/static/js/bootstrap-table.js"></script>
+
+<div id="datatable_toolbar1" class="row">
+    <div class="col-sm-12">
+        <label  class="fr">
+          <a href="/ad/tepl_edit" class="btn  btn-sm btn-primary openDialog" >
+             增加模板
+        </a>
+        </label>
+    </div>
+</div>
+
+<table id="table"></table>
+<script type="text/javascript">
+var tfoot_data = []
+
+function sumFormatter(data) {
+    field = this.field;
+    if (tfoot_data[field] != null) {
+        return tfoot_data[field].toString();
+    }
+    //return new Date();
+}
+
+;
+(function($) {
+    var initTable = function(element, options, tfoot) {
+        var $element = $(element);
+        var fields = [],
+            colArr = [],
+            listData = [],
+            tfootData = tfoot;
+
+        var ths = $("#query_table thead th")
+        for (var i = 0; i < ths.length; i++) {
+            fields.push($(ths[i]).html());
+        }
+        for (var key in fields) {
+            var obj = {
+                title: fields[key],
+                align: "center",
+                valign: "middle",
+                footerFormatter: sumFormatter
+            };
+            if (dataTableOption.option.aoColumnDefs[0].aTargets.indexOf(parseInt(key)) == -1) {
+                obj.sortable = "true";
+            };
+            colArr.push(obj);
+        };
+        this.DEFAULTS = {
+            height: 700,
+            striped: true, //是否显示行间隔色  
+            pagination: false, //是否显示分页
+            sortOrder: 'asc',
+            columns: colArr,
+            showFooter: false,
+            tfoot: [],
+            data: []
+
+        };
+        var options = $.extend({}, this.DEFAULTS, options || {});
+        $element.bootstrapTable(options).on('sort.bs.table', function(e, name, order) {
+            debugger
+            if (order == "desc") {
+                sort_class = 'sorting_desc'
+            } else {
+                sort_class = 'sorting_asc'
+            }
+            $($("#query_table thead th")[name]).attr("class", sort_class)
+            $("#query_table thead th")[name].click();
+
+            //$result.text('Event: sort.bs.table, data: ' + name + ', ' + order);
+        });
+        $element.css("padding", 0);
+
+    };
+    window.initTable = initTable;
+})(jQuery);
+
+
+var $table = $('#table')
+var tfoot = []
+$table.insertBefore($QUERY_TABLE)
+$("#datatable_toolbar1").insertBefore('#table')
+new initTable("#table", {});
+ss = $('#query_table')
+ss.hide()
+
+dataTableOption.convertOutputDataFuncs = [function(data) {
+
+    listData = data.list_data;
+    for (var i in listData){
+        var temp_id = listData[i][0];
+        var url = listData[i][6];
+        listData[i][7] = listData[i][7] + "<a href='/ad/tepl_use?id=" + temp_id + "' class='openDialog'>[使用]</a>";
+        listData[i][8] = "<a href='" + url + "' class='openDialog1' data-width='500px' data-height='800px'>[预览]</a>" + "|" + "<a href='/ad/tepl_edit?id=" + temp_id + "' class='openDialog'>[编辑]</a>" + "<a href='/ad/tepl_remove?id=" + temp_id + "' class='delete'>[删除]</a>"
+    }
+
+    if (data.tfoot_data.length != 0) {
+        tfoot_data = data.tfoot_data[0]
+    }
+    $table.bootstrapTable("refreshOptions", {
+        'showFooter': data.tfoot_data[0] != null
+    });
+    $table.bootstrapTable("load", listData);
+    return data
+}]
+</script>
+
+
+
+
+
+
+
+
+
+
+

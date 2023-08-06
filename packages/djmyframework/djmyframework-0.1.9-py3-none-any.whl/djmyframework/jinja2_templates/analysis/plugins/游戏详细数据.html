@@ -1,0 +1,47 @@
+<script type="text/javascript">
+var global_post_data = {} 
+
+dataTableOption.convertInputDataFuncs.push(function(data){
+  var new_data = data
+  for (var i in data){
+    var item = data[i]
+    if(item.name =='sdate'){
+        global_post_data.sdate = item.value
+    }
+    if(item.name =='edate'){
+        global_post_data.edate = item.value
+    }
+  }
+
+  return data
+})
+
+
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+  LIST_DATA = data.list_data
+  for (var i in LIST_DATA) {
+    var row = LIST_DATA[i]
+   
+    var game_alias = row[TH['产品']]
+
+    var game_alias_match = game_alias.match(/\((\w+)\)/)
+
+    if (game_alias_match){
+        game_alias = game_alias_match[1]
+    
+        var q_condition_str = QUERY_URL +'&game_alias=' + game_alias
+            q_condition_str += '&sdate=' + global_post_data.sdate
+            q_condition_str += '&edate=' + global_post_data.edate
+            q_condition_str += '&group_by=log_sdk_code'
+            q_condition_str += '&query_do=1'
+            q_condition_str += '&template=table'
+
+        row[TH['产品']] = '<a class="openDialog" href="' + q_condition_str + '">'+ row[TH['产品']] + '</a>'
+    }
+
+  }
+    return data
+
+})     
+
+</script>

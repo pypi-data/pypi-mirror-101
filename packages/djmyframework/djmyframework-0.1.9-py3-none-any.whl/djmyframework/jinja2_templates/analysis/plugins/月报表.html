@@ -1,0 +1,132 @@
+<script type="text/javascript">
+  $('#date_select_cont ul').html('')
+
+
+  var sdate_str = new Date().dateAdd('m',-(new Date().getDate()-1)).Format("yyyy-MM")
+  var edate = new Date()
+  if (edate.getDate() != 1){
+    edate.dateAdd('d',-1)
+  }
+  edate_str = edate.Format("yyyy-MM")
+  sdate_str = edate_str
+  var one = $("<li>")
+
+  var close_12_month_btn = $('<a>',{"html":"今月","href":"javascript:void(0)",click:function(){
+  var sdate = new Date().dateAdd('d',-(new Date().getDate()-1))
+	 sdate_str = sdate.Format("yyyy-MM")
+	 var edate = new Date()
+	 if (edate.getDate() != 1){
+	   edate.dateAdd('d',-1)
+	 }
+	 edate_str = edate.Format("yyyy-MM")
+	 $('[name="sdate"]').val(sdate_str)
+	 $('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont ul').append(one)
+
+  var one = $("<li>")
+
+  var close_12_month_btn = $('<a>',{"html":"上月","href":"javascript:void(0)",click:function(){
+
+	var sdate = new Date().dateAdd('m',-1)
+	sdate.setDate(1)
+	sdate_str = sdate.Format("yyyy-MM")
+	var edate = sdate
+
+	edate_str = edate.Format("yyyy-MM")
+
+	$('[name="sdate"]').val(sdate_str)
+	$('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont  ul').append(one)
+  var one = $("<li>")
+
+  var close_12_month_btn = $('<a>',{"html":"近三月","href":"javascript:void(0)",click:function(){
+	var sdate = new Date().dateAdd('m',-2)
+	sdate.setDate(1)
+	sdate_str = sdate.Format("yyyy-MM")
+	var edate = new Date()
+
+	edate_str = edate.Format("yyyy-MM")
+
+	$('[name="sdate"]').val(sdate_str)
+	$('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont ul').append(one)
+  var one = $("<li>")
+
+  var close_12_month_btn = $('<a>',{"html":"近1年","href":"javascript:void(0)",click:function(){
+	  var sdate = new Date().dateAdd('m',-12)
+	  sdate.setDate(1)
+	  sdate_str = sdate.Format("yyyy-MM")
+	  var edate = new Date()
+
+	  edate_str = edate.Format("yyyy-MM")
+
+	  $('[name="sdate"]').val(sdate_str)
+	  $('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont ul').append(one)
+
+  $('[name="sdate"]').val(sdate_str).width(100)
+  $('[name="edate"]').val(edate_str).width(100)
+
+</script>
+
+<script>
+
+
+  $('[name="sdate"]').removeClass('Wdate')
+  $('[name="edate"]').removeClass('Wdate')
+
+
+
+  $('[name="sdate"]').focus(function(){
+    WdatePicker({
+      dateFmt :  'yyyy-MM'
+  })
+  })
+  $('[name="edate"]').focus(function(){
+    WdatePicker({
+      dateFmt :  'yyyy-MM'
+  })
+  })
+
+dataTableOption.convertInputDataFuncs.push(function(data){
+  var new_data = []
+  for (var i in data){
+    var item = data[i]
+    if(item.name =='sdate'){
+    item.value = item.value + '-01 00:00:00'
+    }
+    if(item.name =='edate'){
+    item.value = item.value + '-01T00:00:00'
+    item.value = new Date(item.value).dateAdd('m',1).dateAdd('d',-1).Format("yyyy-MM-dd 23:59:59")
+
+	}
+    new_data.push(item)
+  }
+  console.dir(new_data)
+  return new_data
+  })//输入处理
+
+</script>
+
+
+
+
+
+
+

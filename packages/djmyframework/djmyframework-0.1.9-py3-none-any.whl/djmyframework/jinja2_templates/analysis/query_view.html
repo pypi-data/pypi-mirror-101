@@ -1,0 +1,462 @@
+{% extends "analysis/base.html" %}
+{#{% load mytags %} #}
+{% block header %}
+    <title>{{ the_query.name }}</title>
+    <style>
+        .tooltip-inner {
+            background: aliceblue;
+            border-style: groove;
+            border-radius: 9px;
+            text-shadow: None;
+            max-width: 2000px;
+
+        }
+
+        .input1 {
+            display: inline-block;
+            border: 1px solid #ddd;
+            /* border-radius: 5px; */
+            width: 129px;
+            height: 29px;
+            line-height: 30px;
+            /* margin: 100px; */
+            padding-left: 16px;
+            color: black;
+            /* margin-top: 1px; */
+            padding-top: -4px;
+        }
+
+        .enfoldment {
+            max-height: 32em;
+            overflow: auto;
+            height: inherit;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+
+    {% if  request.allow_menu.查询管理 or request.allow_menu.清除缓存 or request.allow_menu.查询_编辑 or request.allow_menu.查询管理 or request.allow_menu.刷新统计 %}
+        <div class="bar">
+            {% if  request.allow_menu.查询管理 or request.allow_menu.清除缓存 or request.allow_menu.查询_编辑 or request.allow_menu.查询管理 or request.allow_menu.刷新统计 %}
+                <a href="/log/log_define/list">日志类型列表-></a>
+
+
+
+                <div class="inline  position-relative dropdown-hover">
+                    <a href="/analysis/query/list?log_key={{ the_query.log_key }}">查询列表-></a>
+
+                    {% if request.allow_menu.查询权限 %}
+                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-caret dropdown-close"
+                            style="min-width: 600px;">
+                            <li>
+                                <div class="sub-menu sortable" id="query_nav">
+                                    {% for item in same_log_key_query_list %}
+                                        <a href="/analysis/query/view?query_name={{ item.name }}"
+                                                {% if item.id == the_query.id %}
+                                           class="active"{% endif %}>{{ item.name }}</a>
+                                    {% endfor %}
+                                </div>
+                            </li>
+                        </ul>
+                    {% endif %}
+                </div>
+
+            {% endif %}
+            {{ the_query.name }}
+
+            <div class="buttons">
+                {% if request.allow_menu.清除缓存 %}
+                    <a href="/analysis/query/clear/cache" class="openDialog">清除缓存</a>
+                {% endif %}
+                {% if  request.allow_menu.刷新统计 and is_center_query %}
+                    <a id="statistic-execute-btn">刷新统计</a>
+                    {% for id, name in statistic %}
+                        <input type="hidden" name="statistic" data-id="{{ id }}" data-name="{{ name }}"/>
+                    {% endfor %}
+                {% endif %}
+
+                {% if request.allow_menu.查询_编辑 and the_query.id %}
+                    <a href="/analysis/query/edit?id={{ the_query.id }}" class="openDialog" target='_blank'>编辑</a>
+                {% endif %}
+                {% if  request.allow_menu.查询管理 and the_query.id %}
+                    <a href="/analysis/query/list?log_type={{ the_query.log_type }}">返回</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+
+    <div id="search_form" method="post">
+
+        <div class="widget-box condition  collapsed">
+
+            <div class="widget-header   header-color-blue">
+                <h3></h3>
+                {% include "analysis/widgets/datetime_picker.html" %}
+
+
+                <div id="search-toolbar" class="widget-toolbar no-border">
+
+                    {% if the_query.remark %}
+                        <span class="help-button  tooltip-info" data-rel="popover" data-placement="bottom"
+                              data-content="{{ the_query.remark|linebreaksbr }}" title="帮助" data-original-title="帮助"
+                              data-trigger="click">?</span>
+                        <script type="text/javascript">
+                            $('[data-rel=popover]').popover({container: 'body', html: true, trigger: "click"});
+                        </script>
+                    {% endif %}
+
+                    <div class="btn-group ">
+                        <a id="search_btn" class="btn btn-sm btn-success ">
+                            <i class="icon-search "></i>查询
+                        </a>
+                        {% if request.allow_menu.查询_导出 %}
+                            <a id="export_all_btn" class="btn btn-sm btn-success ">
+                                <i class="cus-table-go"></i>
+                                导出
+                            </a>
+                        {% endif %}
+                        {% if request.allow_menu.查询_导出 %}
+                            <a data-toggle="dropdown" class="btn btn-sm  btn-success dropdown-toggle">
+                                <span class="icon-caret-down icon-only"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:;" id="export_currently_btn">
+                                        <i class="cus-page-excel"></i>
+                                        导出当前
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% if has_conditions or has_other_conditions %}
+                <div class="widget-body padding-16 " style="display: block;z-index: 10;">
+                    <div class="widget-body-inner" style="display: block;">
+                        <table id="conditions-table" class="width-100 table" style="margin-bottom: 0px;">
+                            <tr>
+                                <td>
+                                    {% for mark_name,condition_config in mark_conditions.items() %}
+                                        {% if condition_config and condition_config.get('template') %}
+                                            {% with context_data=query_analysis.get_context_func(mark_name)(request) %}
+                                                {% include condition_config['template'] %}
+                                            {% endwith %}
+                                        {% endif %}
+                                    {% endfor %}
+
+
+                                    {% for name,config,order_num in conditions_configs %}
+                                        {% if config.search and config.name %}
+                                            <span style="margin-left:10px;display: inline-block;">
+                                            <b>{{ name }}:</b>
+                                            {% if config.multiple and config.dict %}
+                                                <!-- 多条件 select 定值只能选dict内的值-->
+
+                                                <select name="{{ config.name }}" multiple="multiple"
+                                                        {% if config.dict %}chosen_key="{{ config.dict }}"
+                                                        {% if config.merge_value %}value_format="__value__(__key__)" {% else %}{% endif %}value_format="__value__" {% endif %}
+                                                        data-placeholder="选择{{ name }}.."
+                                                        data-default-value="{{ config.value }}"
+                                                        style="height:0px"></select>
+
+                                                {#% elif config.multiple and config.dict %#}
+                                                <!-- !多条条件非定值 tag -->
+                                                <!--                        <span>
+                                                <input type="text" name="{{config.name}}"  value="{{config.value}}" tag_key="{{config.dict}}" value_format="__value__(__key__)"  placeholder="选择{{name}}.." >
+                                                 </span> -->
+
+                                            {% elif config.multiple %}
+                                                <!-- 多条件输入框 -->
+                                                <textarea name="{{ config.name }}"
+                                                          style="vertical-align: middle;min-height: 38px;width:130px"
+                                                          placeholder="支持使用回车,空格 或者,多个输入">{{ config.value }}</textarea>
+
+                                            {% elif config.single %}
+                                                {% for k,v in config.value.items() %}
+                                                    <label><input name="{{ config.name }}" type="radio" class="ace"
+                                                                  value="{{ k }}"
+                                                            {% if k == config.request_value or loop.first %}
+                                                                  checked="checked"{% endif %}><span
+                                                            class="lbl">{{ v }}</span></label>
+                                                {% endfor %}
+                                            {% elif config.fixed %}
+                                                <!-- 单条件 checkbox 开关-->
+                                                <label>
+                                                    <input name="{{ config.name }}"
+                                                           class="ace ace-switch ace-switch-7"
+                                                           value="{{ config.dict }}"
+                                                           {% if config.value %}checked="checked"
+                                                           disabled="true"{% endif %}
+                                                           type="checkbox">
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            {% else %}
+                                                <!-- 单条件输入框 -->
+                                                <input type="text"
+                                                       name="{{ config.name }}"
+                                                       class="{% if '时间' in name %}Wdate{% else %}input-small {% endif %}"
+                                                       {% if config.dict %}select_key="{{ config.dict }}" {% endif %}
+                                                       value="{% if '时间' in name and config.dict %}{{ sdate }}{% else %}{{ config.value }}{% endif %}">
+                                            {% endif %}
+                                        {% endif %}
+                                    </span>
+                                    {% endfor %}
+
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="sortable">
+        <div id="plugins-cont">
+            <table id="query_table" class="table  table-striped table-hover">
+                <thead>
+                <tr>
+                    {% for field in the_query.selects %}
+                        <th>{{ field }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot style="font-weight: bold;">
+                <tr>
+                    {% for field in the_query.selects %}
+                        <td></td>
+                    {% endfor %}
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // 定义全局变量
+        var $SEARCH_FORM = $('#search_form'),
+            QUERY_URL = "{{request.get_full_path()|safe}}",
+            QUERY_NAME = "{{the_query.name}}",
+            $CONT = $('#plugins-cont'),
+            $SEARCH = $('#search_btn'),                           //查询按钮
+            $EXPORT_ALL = $('#export_all_btn'),                  //导出按钮
+            $EXPORT_CURRENTLY = $('#export_currently_btn'),      // 导出当前按钮
+            $QUERY_TABLE = $('#query_table'),
+            FIELDS = {{the_query.selects|json_dumps|safe}},
+            TH = {},
+            LIST_DATA = null
+
+        // 隐藏搜索条件
+        function hideSearchToolbar() {
+
+            $('[data-action="collapse"] .icon-chevron-up').length > 0 ? $('[data-action="collapse"]').trigger('click') : ''
+            {%if not request.user.is_root %}
+                $('#query_nav').hide()
+
+            {%endif%}
+
+        }
+
+        // 表头的索引
+        function getThindex(thText) {
+            return $CONT.find('table:first thead th:contains("' + thText + '"):first').index()
+        }
+
+        for (var i in FIELDS) {
+            var field = FIELDS[i]
+            TH[field] = getThindex(field)
+        }
+
+        //获取输入条件的值
+        function getFormData() {
+            var aObjData = $SEARCH_FORM.find('[name]').serializeArray()
+            return aObjData
+        }
+
+        function setTableCheckbox(checked) {
+            $QUERY_TABLE.find('tbody :checkbox[value]').prop('checked', checked)
+        }
+
+        {%if server_id %}
+            $(function () {
+                hideSearchToolbar()
+            })
+        {%endif%}
+    </script>
+
+    {% include 'analysis/plugins/datatable.html' %}
+
+    {% if plugin_templates %}
+        {% for tpl in plugin_templates %}
+            {% include tpl %}
+        {% endfor %}
+    {% endif %}
+
+    {% if request.allow_menu.查询_导出 %}
+        {% include 'analysis/plugins/export.html' %}
+    {% endif %}
+
+    <script type="text/javascript">
+
+        function is_auto_query() {
+            return localStorage.getItem('auto-query') == 'true'
+        }
+
+        $SEARCH.click(function () {
+            hideSearchToolbar()
+            flushDataTable()
+            $('[data-rel=popover]').popover('hide')
+        })
+
+        var cache_params = ""
+
+
+
+
+
+        (function () {
+            // canvas 实现 watermark
+            function __canvasWM({
+                                    // 使用 ES6 的函数默认值方式设置参数的默认取值
+                                    // 具体参见 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Default_parameters
+                                    container = document.body,
+                                    width = '400',
+                                    height = '400',
+                                    textAlign = 'center',
+                                    textBaseline = 'middle',
+                                    font = "20px Microsoft Yahei",
+                                    fillStyle = 'rgba(184, 184, 184, 0.6)',
+                                    content = '请勿外传',
+                                    rotate = '30',
+                                    zIndex = 2147483647
+                                } = {}) {
+                const args = arguments[0];
+                const canvas = document.createElement('canvas');
+                canvas.setAttribute('width', width);
+                canvas.setAttribute('height', height);
+                const ctx = canvas.getContext("2d");
+                ctx.textAlign = textAlign;
+                ctx.textBaseline = textBaseline;
+                ctx.font = font;
+                ctx.fillStyle = fillStyle;
+                ctx.rotate(Math.PI / 180 * rotate);
+                var lines = content.split('\n');
+
+                for (var i = 0; i < lines.length; i++) {
+                    ctx.fillText(lines[i], 150, 10 + (i * 25));
+                }
+                //ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 2);
+
+                for (var i = 0; i < lines.length; i++) {
+                    ctx.fillText(lines[i], 150, 10 + (i * 25));
+                }
+                //ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 2);
+
+                for (var i = 0; i < lines.length; i++) {
+                    ctx.fillText(lines[i], 150, 10 + (i * 25));
+                }
+                //ctx.fillText(content, parseFloat(width) / 2, parseFloat(height) / 2);
+
+                const base64Url = canvas.toDataURL();
+                const __wm = document.querySelector('.__wm');
+
+                const watermarkDiv = __wm || document.createElement("div");
+                const styleStr = `
+          position:absolute;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          z-index:${zIndex};
+          opacity: 0.2;
+          pointer-events:none;
+          background-repeat:repeat;
+          background-image:url('${base64Url}')`;
+                watermarkDiv.setAttribute('style', styleStr);
+                watermarkDiv.classList.add('__wm');
+                if (!__wm) {
+                    container.style.position = 'relative';
+                    container.insertBefore(watermarkDiv, container.firstChild);
+                }
+
+                const MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+                if (MutationObserver) {
+                    let mo = new MutationObserver(function () {
+                        const __wm = document.querySelector('.__wm');
+                        // 只在__wm元素变动才重新调用 __canvasWM
+                        if ((__wm && __wm.getAttribute('style') !== styleStr) || !__wm) {
+                            // 避免一直触发
+                            mo.disconnect();
+                            mo = null;
+                            __canvasWM(JSON.parse(JSON.stringify(args)));
+                        }
+                    });
+                    mo.observe(container, {
+                        attributes: true,
+                        subtree: true,
+                        childList: true
+                    })
+                }
+            }
+
+            if (typeof module != 'undefined' && module.exports) {  //CMD
+                module.exports = __canvasWM;
+            } else if (typeof define == 'function' && define.amd) { // AMD
+                define(function () {
+                    return __canvasWM;
+                });
+            } else {
+                window.__canvasWM = __canvasWM;
+            }
+        })();
+        // 调用
+        __canvasWM({
+            content: '{{request.user.alias}} {{request.real_ip}}'
+        });
+        $(function () {
+
+
+
+            {%if not is_center_query%}
+
+                if (is_auto_query()) {
+                    $('#auto-query-btn').prop("checked", is_auto_query())
+                    setTimeout(function () {
+                        $SEARCH.trigger('click')
+                    }, 500)
+
+                }
+
+                $('#auto-query-btn').click(function () {
+                    localStorage.setItem('auto-query', $(this).is(":checked"))
+                })
+
+            {%endif%}
+
+            {% if not has_conditions%}
+                $('#search_form').hide()
+                $SEARCH.trigger('click')
+            {%endif%}
+        })
+
+    </script>
+
+
+
+
+{% endblock %}

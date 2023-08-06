@@ -1,0 +1,377 @@
+<!-- datatable 1.10处理 -->
+
+<script type="text/javascript">
+    function DataTableOption() {
+        var This = this
+        this.fnGetKey = function (aoData, sKey) { // 获取datable 的数据
+
+            return aoData[sKey];
+        }
+
+        this.convertDataTableInputData = function (saoData) { //转换datatable的输入参数
+            /* 请求参数
+            draw: 1
+            columns[0][data]: id
+            columns[0][name]:
+            columns[0][searchable]: true
+            columns[0][orderable]: true
+            columns[0][search][value]:
+            columns[0][search][regex]: false
+            columns[1][data]: firstName
+            columns[1][name]:
+            columns[1][searchable]: true
+            columns[1][orderable]: true
+            columns[1][search][value]:
+            columns[1][search][regex]: false
+            columns[2][data]: lastName
+            columns[2][name]:
+            columns[2][searchable]: true
+            columns[2][orderable]: true
+            columns[2][search][value]:
+            columns[2][search][regex]: false
+            order[0][column]: 0
+            order[0][dir]: asc
+            start: 0
+            length: 10
+            search[value]:
+            search[regex]: false
+            start: 其实记录位置
+
+            length: 页面显示数量
+
+            order[0][column]: 因为是二维的表格，因此只有一维需要排序，所以 order 的下标未 0. 该属性表示第几列需要排序。
+
+            order[0][dir]: 排序方式 ASC | DESC
+
+            search[value]: search 输入框中的值
+            */
+            console.dir(saoData)
+            var anewData = []
+            var convertList = [
+                {
+                    "sname": "search",//每页大小原参数名
+                    "dname": "search",     //目标参数名
+                    "getValueFunc": function (saoData, value) {
+                        return value.value
+                    }
+                },
+                {
+                    "sname": "length",//每页大小原参数名
+                    "dname": "page_size",     //目标参数名
+                    "getValueFunc": function (saoData, value) {
+                        return value
+                    }
+                },
+                {
+                    "sname": "order",//排序index
+                    "dname": "sort_index",
+                    "getValueFunc": function (saoData, value) {
+
+
+                        return value.length == 0 ? -1 : value[0].column
+                    }
+                },
+                {
+                    "sname": "order",//排序方式
+                    "dname": "sort_type",
+                    "getValueFunc": function (saoData, value) {
+
+                        return value.length == 0 ? '' : value[0].dir
+                    }
+                },
+                {
+                    "sname": "start",//开始步进
+                    "dname": "page_num",      //页码
+                    "getValueFunc": function (saoData, value) {
+                        var iDisplayLength = This.fnGetKey(saoData, 'length')
+                        return Math.round((iDisplayLength + value) / iDisplayLength)
+                    }
+                },
+                {
+                    "sname": "draw",
+                    "dname": "session_id",
+                }
+
+            ]
+            try {
+                for (var i in convertList) {
+                    var convOjb = convertList[i],
+                        newObj = {}
+                    var value = This.fnGetKey(saoData, convOjb.sname)
+                    if (convOjb.getValueFunc) {
+                        value = convOjb.getValueFunc(saoData, value)
+                    }
+                    newObj['name'] = convOjb.dname
+                    newObj['value'] = value
+                    anewData.push(newObj)
+                }
+            } catch (e) {
+                console.dir(e)
+            }
+
+
+            var mydata = getFormData()
+            return anewData.concat(mydata)
+        }
+
+        this.convertInputDataFuncs = [function (data) {
+            return data
+        }]  //增加转换数据输入处理方法数组
+        this.convertOutputDataFuncs = [function (data) {
+            return data
+        }] //增加转换数据输出处理方法数组
+
+        // 输入数据处理
+        this.convertInputData = function (data) {
+            for (var i in this.convertInputDataFuncs) {
+                var func = this.convertInputDataFuncs[i]
+                data = func(data)
+            }
+            return data
+        }
+
+        // 输出数据处理
+        this.convertOutputData = function (data) {
+            for (var i in this.convertOutputDataFuncs) {
+                var func = this.convertOutputDataFuncs[i]
+                data = func(data)
+            }
+            return data
+        }
+
+        this.paddingtfoot = function (data) {
+            var list_data = data
+            for (var i in list_data) {
+                var tr = list_data[i]
+                for (var j in tr) {
+                    var td = tr[j]
+                    $(window.odataTable.column(j).footer()).html(td)
+                }
+            }
+
+        }
+        this.tfoot_data = []
+
+        this.fnajaxQuery = function (data, callback, settings) { //dataTable AJAX请求函数
+            console.dir(data)
+            //console.dir(settings)
+            var amyData = This.convertDataTableInputData(data)
+            amyData = This.convertInputData(amyData)
+            var dataTableData = {}
+
+            $.ajax({
+                url: QUERY_URL,
+                type: 'POST',
+                dataType: 'json',
+                data: amyData,
+            })
+                .done(function (data, textStatus, jqXHR) {
+                    console.dir(textStatus)
+                    console.dir(jqXHR)
+                    data = This.convertOutputData(data)
+                    if (data.code != 0) {
+
+                        alertError(data.msg)
+                    } else {
+                        $('.query_table_use_time').html('用时:' + data.exec_time)
+                        dataTableData['draw'] = data.session_id
+                        dataTableData['recordsTotal'] = data.total_record
+                        dataTableData['recordsFiltered'] = data.total_record
+                        dataTableData['data'] = data.list_data
+                        if (!isNaN(data.result_cache_time) && parseInt(data.result_cache_time) > 0) {
+                            $('.query_table_use_time').append(' - (cache:' + timestamp_to_datetime_str(data.result_cache_time) + ')')
+                        }
+                        console.dir(data.result_cache_time)
+
+
+                        This.tfoot_data = data.tfoot_data
+
+                        callback(dataTableData);
+
+                    }
+
+                })
+                .fail(function (o, x, text) {
+                    console.dir(o)
+                    console.dir(x)
+                    console.dir(text)
+                    $.dialog({"title": "错误", "content": o.responseText.replace(/\n/g, '<br>'), "top": 0})
+                })
+                .always(function () {
+                    console.log("complete");
+                });
+
+        }
+
+        this.page_size = 5
+        this.page_size_list = [5, 100, 500]
+
+        this.option = {
+            //"scrollY": get_winHeight_Width()[1] - $('#query_table').offset().top -110,
+            //"scrollCollapse": true,
+            //"scrollX": true,
+
+            "fixedHeader": true,
+
+            "autoWidth": false,//列的宽度会根据table的宽度自适应
+
+            "orderClasses": true,
+            "stateSave": false,
+            "processing": true, //是否显示正在处理的提示
+            "pageLength": This.page_size,//默认每页显示的记录数
+            "paging": true, // 是否使用分页
+
+            //"orderClasses":true,
+
+            "serverSide": false,//服务端模式
+
+            "ajax": This.fnajaxQuery,//自定服务器请求
+
+            "pagingType": "full_numbers",
+
+            //"searching": true,
+            "lengthMenu": This.page_size_list,
+            "lengthChange": true,
+            "search": {
+                "search": "",//默认的框文字
+                "regex": true,//支持正则搜索
+            },
+            //https://datatables.net/reference/option/dom
+            //"dom": "<'row' f>rt<'row'<'col-sm-2' i <'query_table_use_time'> ><'col-sm-1'><'col-sm-2' l><'col-sm-7'<'datable-page-input'>p>> ",
+            "dom": "rt<'row'<'col-sm-2' i <'query_table_use_time'> ><'col-sm-1'><'col-sm-2' l><'col-sm-7'<'datable-page-input'>p>> ",
+            "info": true,
+            "language": {
+                "search": "筛选:",//
+                "zeroRecords": "没有匹配记录",
+                "info": '当前第 _START_ - _END_ 条 共 _TOTAL_ 条',
+                "infoFiltered": "(从 _MAX_ 条记录中过滤)",
+                "lengthMenu": "每页显示 _MENU_条",
+                "infoEmpty": "",
+                "processing": '<img src="/static/images/loading.gif">正在加载数据...<a href="javascript:void(0)" onclick="$(\'#query_table_processing\').css(\'visibility\',\'hidden\')" ><i class="icon-remove"></i></a>',
+                "paginate": {
+                    "first": "首页",
+                    "previous": "前一页",
+                    "next": "后一页",
+                    "last": "尾页"
+                }
+
+            },
+
+            "order": [],//默认不排序
+            "columnDefs": [
+
+                {% for name,config in field_configs.items() %} {% if config.className %}
+                {"className": "{{config.className}}", "targets": [{{loop.index0 }}]},
+                {% endif %}{% endfor %}
+
+
+                {
+                    "orderable": false,//不排序的列
+                    "targets": [{% for name,config in field_configs.items() %} {% if not config.sort %}{{loop.index0 }}{%if not loop.last%}, {%endif%}{% endif %}{% endfor %}]
+                }
+            ],
+            //向下兼容
+            "aoColumnDefs": [
+                {% for name,config in field_configs.items() %} {% if config.className %}
+                {"className": "{{config.className}}", "targets": [{{loop.index0 }}]},
+                {% endif %}{% endfor %}
+
+                {
+                    "orderable": false,//不排序的列
+                    "aTargets": [{% for name,config in field_configs.items() %} {% if not config.sort %}{{loop.index0 }}{%if not loop.last%}, {%endif%}{% endif %}{% endfor %}]
+                }
+            ],
+
+            "fnDrawCallback": function (settings) {
+
+                $('.datable-page-input input').length == 0 ? $('.datable-page-input').append($('<input>', {
+                    "type": "number",
+                    "style": "width:60px;float:right;margin-top: 2px;height:30px",
+                    "keyup": function (e) {
+                        var page_num = this.value
+                        var iTotalPages = window.odataTable.page.info().pages
+                        page_num = page_num <= iTotalPages ? page_num : iTotalPages
+                        page_num = parseInt(page_num) - 1
+
+                        window.odataTable.page(page_num).draw('page');
+
+                    }
+
+                })) : ''
+
+
+            },
+            "initComplete": function (settings, json) {
+
+                //alert( 'DataTables has finished its initialisation.' );
+            },
+
+            "footerCallback": function (tfoot, data, start, end, display) {
+                var list_data = This.tfoot_data
+                if (list_data.length == 0) {
+                    list_data.push([])
+                    for (var i in this.api().columns()[0]) {
+                        list_data[0].push('')
+                    }
+                }
+                console.dir(list_data)
+                var api = this.api()
+                var freeze_tds = $('.DTFC_LeftFootWrapper table tfoot tr td')
+                for (var i in list_data) {
+                    var tr = list_data[i]
+                    for (var j in tr) {
+                        var td = tr[j]
+                        $(api.column(j).footer()).html(td)
+                        if (freeze_tds.length > j) {
+                            $(freeze_tds[j]).html(td)
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+
+        this.update_option = function () {
+            This.option.pageLength = This.page_size
+            This.option.lengthMenu = This.page_size_list
+
+        }
+
+
+    }
+
+
+    var dataTableOption = new DataTableOption()
+
+    function flushDataTable(beforefunc, afterfunc) {
+        dataTableOption.update_option()
+        if (beforefunc) {
+            beforefunc()
+        }
+        if (window.odataTable) {
+            // window.odataTable.draw()
+            window.odataTable.ajax.reload()
+        } else {
+            //alert($('#query_table').offset().top)
+            ///dataTableOption.option.scrollY = get_winHeight_Width()[1] - $('#query_table').offset().top -125
+
+            window.odataTable = $QUERY_TABLE.DataTable(dataTableOption.option)
+        }
+        if (afterfunc) {
+            afterfunc()
+        }
+    }
+
+
+    $(function () {
+        $QUERY_TABLE.find('tbody:first').attr('id', 'checkbox-area')
+        $QUERY_TABLE.find('thead th').eq(TH['-']).html('<input type="checkbox" checkbox-area="checkbox-area">')
+        $('#datatable_toolbar').insertBefore($QUERY_TABLE)
+
+    })
+
+</script>
+
+

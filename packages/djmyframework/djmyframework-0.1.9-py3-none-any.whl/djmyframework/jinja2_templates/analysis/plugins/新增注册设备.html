@@ -1,0 +1,31 @@
+
+<script type="text/javascript">
+  var url = "/query/view/游戏角色"
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+   game_alias = $("#game-alias-select").attr("value")
+        listData = data.list_data;
+    for (var i in listData){
+          var log_mobile_key = listData[i][TH['设备号']]
+          params = "log_mobile_key=" + log_mobile_key + "&" +
+                     "game_alias=" + game_alias + "&sdate=2007-07-14&edate=2097-07-20"
+
+          listData[i][TH['角色数']] = "<a href='" + url + "?" + params + "' class='openDialog'>"+ listData[i][TH['角色数']] + "</a>";
+
+     
+	  
+	}
+
+
+    return data
+}]
+
+</script>
+
+
+
+
+
+
+
+
+

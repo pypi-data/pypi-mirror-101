@@ -1,0 +1,649 @@
+{% include 'game/resource_editor.html' %}
+<!-- 表功工具条 -->
+<div id="datatable_toolbar" class="row">
+	{% if request.allow_menu.发送资源权限 %}
+	<label id="send_resouces" class=" ">
+	    <a href="javascript:;" class="btn  btn-xs btn-primary" onclick="send_resouces.show_resource_window()">
+	        <i class="cus-pill"></i>
+	        发送资源
+	    </a>
+	</label>
+	<script type="text/javascript">
+	$('#send_resouces').appendTo('.widget-header');
+	</script>
+	{% endif %}
+
+    {% if request.allow_menu.发送邮件 %}
+    <label id="send_mail" class="btn-group">
+        <a href="javascript:;" class="btn btn-sm btn-primary" onclick="send_mail.show_resource_window()">
+            <i class="icon-envelope-alt"></i>
+            发送邮件
+        </a>
+    </label>
+    <script>
+    $('#send_mail').appendTo('.widget-header');
+    </script>
+    {% endif %}
+
+
+
+	{% if request.allow_menu.内部号_注册%}
+	<label id="add_inside_player" class=" ">
+	    <a href="javascript:;" class="btn  btn-xs btn-primary" onclick="inside_player.show()">
+	        <i class="cus-status-online"></i>
+	        标记内部号
+	    </a>
+	</label>
+
+	<script type="text/javascript">
+	$('#add_inside_player').appendTo('.widget-header');
+	</script>
+	{%endif%}
+
+	{% if request.has_shutup and request.allow_menu.解禁言%}
+	<label id="shutup-cont">禁言玩家:
+		<input id="shutup-btn" name="is_shutup" class="ace ace-switch ace-switch-5" type="checkbox">
+		<span class="lbl"></span>
+	</label>
+	<script type="text/javascript">
+	$('#shutup-cont').appendTo('.widget-header');
+	</script>
+	{%endif%}
+</div>
+
+
+<div id="block_player_div" class="dialog-div ">
+	<div class="row">
+		<select name="block_type">
+			<option value="1">封号</option>
+			<option value="0">解封</option>
+		</select>
+		<textarea name="remark" placeholder="备注(150字内)"></textarea>
+		<div class="col-md-offset-3 col-md-9">		
+		<button id="block_player_sure_btn" class="btn btn-xs btn-success">确定</button>
+		</div>
+	</div>
+</div>
+
+<div id="shutup_player_div" class="dialog-div ">
+	<div class="row"> 
+		<div class="col-md-12">
+		<table>
+			<tr><td>时间:</td>
+				<td>
+					<label>
+					<input type="text" id="shutup_time" name="seconds" class="input-number" value="1800" />(秒)
+					</label>
+					<a href="javascript:void(0)" onclick="$('#shutup_time').val(86400)" >1天</a>
+					<a href="javascript:void(0)" onclick="$('#shutup_time').val(259200)" >3天</a>
+				</td>
+			</tr>
+			<tr>
+				<td>理由:</td>
+				<td>
+					<textarea  name="remark"  placeholder="备注(150字内)"></textarea>
+				</td>
+			</tr>
+		</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-3 col-md-9">		
+			<button id="shutup_player_sure_btn" class="btn btn-xs btn-success">确定</button>
+		</div>
+	</div>
+</div>
+
+<div id="resource_content" class="dialog-div">
+    <div class="row">
+        <div id="to">
+            <label>玩家：</label>
+            <span></span>
+        </div>
+		<div>
+           <label>原因：</label>
+           <input type="text" id="subject" size="40" class="not-empty"/>
+           <a href="javascript:;" id="set_show" onclick="$('#resource_set').toggle();">[资源设置]</a>
+        </div>
+        <div>
+            <div></div>
+            <div style="width: 545px; border-bottom: 1px solid cornflowerblue; margin-bottom: 10px;"></div>
+            <div id="resource_set" style="border-bottom: 1px solid cornflowerblue; display: none; padding-bottom: 10px;">
+                <div><button class="btn btn-xs btn-default" onclick="send_resouces.add_resources();">添加资源</button></div>
+            </div>
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="javascript:;" class="btn btn-sm btn-primary pull-right" onclick="send_resouces.do_send_resouces(this)">确定</a>
+        </div>
+    </div>
+
+</div>
+
+
+<!--  内网充值测试 -->
+<div id="pay_content" class="dialog-div">
+    <div class="row">
+        <input type="hidden" name="player_id" value="">
+
+        <table class="form2">
+            <tr><th>充值元宝:</th>
+                    <td><input type="input" name="pay_gold" class="input-small input-number"></td>
+            </tr>
+            <tr><th>额外赠送元宝:</th>
+                    <td><input type="input" name="extra_gold" class="input-small input-number"></td>
+            </tr>
+            <tr><th>月卡钻石(小于等于充值钻石才算月卡):</th>
+                    <td><input type="input" name="month_card_gold" class="input-small input-number"></td>
+            </tr>
+        </table>
+        <div style="margin-top: 10px;width: 200px;">
+            <a href="javascript:;" class="btn btn-sm btn-primary pull-right" onclick="pay_sure(this)">确定</a>
+        </div>
+    </div>
+
+</div>
+<script>
+var $pay_cont = $('#pay_content')
+function player_pay(player_id){
+    $pay_cont.find('[name="player_id"]').val(player_id)
+    $pay_cont.dialog()
+}
+function pay_sure(ele){
+    var params = $pay_cont.find('[name]').serialize()
+    $.ajax({
+        url: '/game_manage/game/player/pay',
+        type: 'POST',
+        data: params
+    })
+    .done(function(msg) {
+        $.dialog({"fixed": true,"content":msg})
+    })
+    
+}
+</script>
+<!--  内网充值测试 END -->
+
+
+
+{%include "contextmenu.html"%}
+<div  id="contextMenu" class="contextMenu hide">
+	<ul>
+
+	</ul>
+</div>
+
+<script type="text/javascript">
+//标题为   -,角色ID,角色名称,所属渠道,玩家类型,关联账号,登录数,手机标识,上次登录时间,创建时间,玩家状态,操作
+$QUERY_TABLE.find('tbody:first').attr('id','checkbox-area')
+$QUERY_TABLE.find('thead th').eq(TH['-']).html('<input type="checkbox" checkbox-area="checkbox-area">')
+
+function resetPlayerCheckbox(){
+	$QUERY_TABLE.find('tbody :checkbox[value]').prop('checked',false)
+}
+function getPlayerIds(){
+	return $QUERY_TABLE.find('tbody :checked').serialize()
+}
+
+// 获取已服务器ID分组的角色ID列表
+function getServerPlaterIdArray(){
+    var server_player_id_dict = {},
+        tol_server_num = 0
+    $QUERY_TABLE.find('tbody :checked').each(function(i,ele){
+        var check_box_ele = $(ele)
+        var player_id = check_box_ele.val()
+        player_id = !isNaN(player_id) ? parseInt(player_id) : 0
+        if (player_id>0){
+            var server_id = player_id >> 20
+            if (!server_player_id_dict.hasOwnProperty(server_id) ){
+                 server_player_id_dict[server_id] = []
+                 tol_server_num += 1
+            }
+            server_player_id_dict[server_id].push(player_id)
+        }
+    })
+    return [server_player_id_dict,tol_server_num]
+}
+
+function getServerIds(){
+    return $('[name=server_id]').val()
+}
+function getServerId(){
+	return $('[name=server_id]').val()
+}
+
+var SERVER_ID = 0
+var LIST_DATA = null
+
+//标记内部号
+function InsidePlayer(){
+	var This = this
+
+	this.register_url = '/game_manage/player/player/inside_player_register'
+	this.dialog = null
+
+	this.show = function() {
+		var player_ids = getPlayerIds()
+		var msg = ''
+		if (!player_ids){
+			msg = '<span class="red"><i class="icon-exclamation-sign"></i> 没有需要操作的角色, 请去勾选角色</span>'
+		}else{
+			msg = '<span class="green"><i class="icon-ok-sign"></i> 已勾选角色</span>'
+		}
+		This.dialog = $.dialog({
+						title:"标记内部号:",
+					    content:'标记原因:'+msg+'<textarea id="inside_player_remark"></textarea>',
+						    ok: function () {
+						    	var remark = $('#inside_player_remark').val()
+						    	var player_ids = getPlayerIds()
+						    	var data = getPlayerIds() + '&remark=' + remark
+						    	if (!remark) {alert('请输入标记原因!');return false}
+						    	if (!player_ids) {alert('没有勾选需要标记的角色!');return false}
+							    This.register(data)
+							    this.close()
+						    },
+						    cancelVal: '关闭',
+						    cancel: true //为true等价于function(){}
+						});
+	}
+
+	this.register = function(data) {
+		$.ajax({
+			url: This.register_url,
+			type: 'POST',
+			dataType: 'json',
+			data: data
+		})
+		.done(function(data) {
+			$.dialog( {"title":"消息","content":linebreaksbr(data.msg)} )
+		})
+		.fail(function(o,t,e) {
+			$.dialog( {"title":"错误","content":o.responseText.replace(/\n/g,'<br>')})
+		})
+
+		
+	}
+}
+
+
+
+// 判断资源权限
+{% if not request.allow_menu.发送_元宝%}
+delete ResourceMap[1]
+{%endif%}
+{% if not request.allow_menu.发送_赠送元宝%}
+delete ResourceMap[2]
+{%endif%}
+{% if not request.allow_menu.发送_掌门经验%}
+delete ResourceMap[5]
+{%endif%}
+{% if not request.allow_menu.发送_添加物品%}
+delete ResourceMap[7]
+{%endif%}
+{% if not request.allow_menu.发送_体力%}
+delete ResourceMap[16]
+{%endif%}
+{% if not request.allow_menu.发送_声望值%}
+delete ResourceMap[10]
+{%endif%}
+{% if not request.allow_menu.发送_侠客%}
+delete ResourceMap[12]
+{%endif%}
+
+// 发送资源 start ========
+function SendResouces(){
+    var This = this;
+    this.ri = new ResourceInput();
+    this.dialog = $("#resource_content");
+    this.url = "/game_manage/game/player/send_resouces";
+    this.method = "POST"
+    this.row = this.dialog.html();
+
+    $("#content").css({"margin":"5px", "width":"500px"});
+
+    this.add_resources = function(){
+        var resource_item = $(This.ri.get_item_html(null,null,true))
+        resource_item.attr("style","margin:5px; border-bottom:1px dotted grey;display:block")
+        $("#resource_set").append(resource_item);
+        resource_item.find("[name='v']").focus();
+    };
+
+    this.show_resource_window = function(){
+        var players = getPlayerIds();
+        var _span = $("#to").find("span");
+
+        if(players.length == 0){
+            _span.html("<i class='icon-exclamation-sign'></i> 没有需要操作的角色, 请去勾选角色");
+            _span.attr("class","red")
+        }else{
+            _span.html("<i class='icon-ok-sign'></i> 已勾选角色");
+            _span.attr("class", "green");
+        }
+
+        This.dialog.dialog({title:"发送资源"});
+    };
+    this._do_send_resouces = function(server_id,player_id_list,resources,subject){
+        var key_str = '&player_id='
+        var players =  key_str + player_id_list.join(key_str)
+        var params = players + "&server_id=" + server_id + "&resources=" + JSON.stringify(resources) + '&subject=' + subject
+
+        
+        return $.ajax({
+                    url : This.url,
+                    type : This.method,
+                    dataType:'json',
+                    data : params,
+                    timeout : 60000
+                })
+    }
+    this.do_send_resouces = function(ele){
+    	
+        var players = getPlayerIds(),
+            subject = $("#subject").val();
+            resources = [];
+        var server_player_array = getServerPlaterIdArray()
+        var server_player_id_list = server_player_array[0],
+            tol_length = server_player_array[1]
+        if (!check_input_empty(This.dialog)){
+        	return
+        }
+        $(".equipitem").each(function(){
+            resources.push(This.ri.to_json($(this)));
+        });
+        if (resources.length<=0){
+        	alert('没有设置资源！')
+        	return
+        }
+        if (!check_input_empty($('#resource_content'))){
+        	return false
+        }
+	    if (!confirm('确认为勾选的角色发送资源吗?')){return false}
+        if (!players){alert('没有勾选角色!');return false}
+        $(ele).attr('disabled','disabled'); 
+
+        var _dialog = $.dialog( {"title":"消息","content":'<img src="/static/skin/images/loading.gif"> 资源发送中....'})
+        var n = 0
+        $('.progress_span').remove()
+        for (var k in server_player_id_list){
+            var server_id = k,
+                player_id_list = server_player_id_list[k]
+            this._do_send_resouces(
+                server_id,player_id_list,resources,subject
+            ).done(function(data){
+               This.send_progress(data)
+            }).fail(function(o,x,text){
+                _dialog.content( o.responseText.replace(/\n/g,'<br>') ).title('错误')
+                //$.dialog( {"title":"错误","content":o.responseText.replace(/\n/g,'<br>')})
+            }).always(function() {
+                 console.dir(tol_length)
+                 n += 1
+                 console.dir(n)
+                 if (n >= tol_length){
+                     $(ele).removeAttr('disabled'); 
+                     _dialog.close()
+                 }
+
+            });
+        }
+
+    }
+    this.send_progress = function(data){
+        for (var i in data.ok_list){
+            var player_id = data.ok_list[i]
+            this.change_progress_tip(player_id,data.msg,false)
+        }
+        for (var i in data.err_list){
+            var player_id = data.err_list[i]
+            this.change_progress_tip(player_id,data.msg,true)
+        }
+    }
+    this.change_progress_tip = function(player_id,msg,is_err){
+        var player_checkbox = $('[player_id="' + player_id +'"]')
+        var progress_span = player_checkbox.next('.progress_span')
+
+       if (!is_err){
+            player_checkbox.prop({checked: false})
+            msg = '<span class="label label-success">' + msg +'</span>'
+        } else {
+            msg = '<span class="label label-danger">' + msg +'</span>'
+        }
+
+        if (progress_span.length==0){
+            progress_span = $('<span></span>',{"class":"progress_span"})
+            player_checkbox.after(progress_span)
+        }
+        progress_span.html(msg)
+
+    }
+}
+// ======== 发送资源 end
+
+function SendMail(){
+
+
+    this.show_resource_window = function(){
+        var This = $(this)
+        var player_ids_str = getPlayerIds().replace(/[&]?player_id=/g,',').replace(/,,/g,',').replace(/^,|,$/g,'')
+        var url = '/game_manage/game/player/send_mail?send_type=1&server_id=' + getServerId() + '&player_ids=' + player_ids_str
+        art.dialog.open(url,{title:document.title})
+    }
+
+}
+
+
+//禁言
+function ShutPlayer(){
+	var This = this
+	this.shutup_player_list = {}
+	this.url = '/game_manage/game/player/player_shutup'
+	this.dialog = $('#shutup_player_div')
+	this.is_shutup = $('#shutup-btn').is(':checked')
+	this.action_str = ''
+	this.show = function(player_id,is_unshutup) {
+
+		resetPlayerCheckbox()
+		if (player_id) {
+			$QUERY_TABLE.find('tbody :checkbox[value="'+player_id+'"]').prop('checked',true)
+		}
+		if (is_unshutup) {
+			This.action_str = '解禁言'
+			This.dialog.find('tr:first').hide()
+		} else {
+			This.dialog.find('tr:first').show()
+			This.action_str = '禁言'
+		}
+		This.dialog.dialog({title:player_id+ '-' + this.action_str +'理由:',close:function(){resetPlayerCheckbox()}})
+	}
+
+	this.shutup_do = function() {
+		var player_ids = getPlayerIds()
+		var remark = this.dialog.find('[name="remark"]').val()
+		var other_data = this.dialog.find('[name]').serialize()
+		var unshutp = this.is_shutup ? 'unshutp=true' : ''
+		var data = player_ids + '&server_id=' + SERVER_ID + '&' + other_data + '&' + unshutp
+		if (!remark) {alert('输入'+ This.action_str + '理由!');return}
+		$.ajax({
+			url: This.url,
+			type: 'POST',
+			data: data,
+			timeout:60000,
+		})
+		.done(function(data) {
+			This.dialog.dialog().close()
+			$.dialog( {"title":"消息","content":data.replace(/\n/g,'<br>')})
+
+		})
+		.fail(function(o,x,text) {
+			$.dialog( {"title":"错误","content":o.responseText.replace(/\n/g,'<br>')})
+		})
+	}
+
+	$('#shutup_player_sure_btn').click(function(){
+		This.shutup_do()
+	})
+
+	$('#shutup-btn').click(function(){
+		This.is_shutup = $('#shutup-btn').is(':checked')
+		flushDataTable()
+	})
+}
+
+//封号
+function BlockPlayer(){
+	var This = this
+	this.url = '/game_manage/player/player/player_block'
+	this.dialog = $('#block_player_div')
+	this.show = function(player_id,is_unblock) {
+		resetPlayerCheckbox()
+		if (player_id) {
+			$QUERY_TABLE.find('tbody :checkbox[value="'+player_id+'"]').prop('checked',true)
+		}
+		This.dialog.find('[name="block_type"]').val(is_unblock ? '0' : '1')
+		This.dialog.dialog({title:"解封号",close:function(){resetPlayerCheckbox()}})
+	}
+
+	this.block_do = function() {
+		var player_ids = getPlayerIds()
+		var remark = this.dialog.find('[name="remark"]').val()
+		var other_data = this.dialog.find('[name]').serialize()
+		This.is_unblock
+		var data = player_ids + '&server_id=' + SERVER_ID + '&' + other_data
+		if (!remark) {alert('输入理由!');return}
+		$.ajax({
+			url: This.url,
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			timeout:60000,
+		})
+		.done(function(data) {
+			if (data.code==0) {
+				alert('成功!')
+				This.dialog.dialog().close()
+			} else {
+				$.dialog( {"title":"错误","content":data.msg.replace(/\n/g,'<br>')})
+			}
+		})
+		.fail(function(o,x,text) {
+			$.dialog( {"title":"错误","content":o.responseText.replace(/\n/g,'<br>')})
+		})
+
+	}
+
+	$('#block_player_sure_btn').click(function(){
+		block_player.block_do()
+	})
+}
+
+
+
+
+var shutup_player = new ShutPlayer()
+var block_player = new BlockPlayer()
+var send_resouces = new SendResouces()
+var inside_player = new InsidePlayer()
+var send_mail = new SendMail()
+
+dataTableOption.option['bAutoWidth'] = false
+//delete dataTableOption.option['sScrollY']
+
+
+// 按player_id设置默认服务器id
+function set_default_server_id(data){
+	var new_data = data.concat(),
+		player_id = $(':text[name="player_id"]').val()
+	if (player_id) {
+		player_id = player_id.split(/\s/)[0]
+		SERVER_ID = parseInt(player_id)>>20
+		$('select[name=server_id]').val(SERVER_ID)
+		for (var i=0 ;i<data.length;i++){
+			if(data[i].name=="server_id") {
+				new_data.splice(i,1)
+			}
+		}
+		new_data.push({"name":"server_id","value":SERVER_ID})
+	}
+	return new_data
+}
+
+
+//输入处理
+dataTableOption.convertInputDataFuncs.push(function(data){
+	LIST_DATA = null
+	return set_default_server_id(data)
+})
+//输出处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+
+    LIST_DATA = data.list_data
+    SERVER_ID = data.server_id
+	var new_list_data = []
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var new_row = row.concat()
+		var player_status = row[TH['玩家状态']]
+		var caozuo_index = TH['操作']
+		var player_id = row[TH['角色ID']]
+		var server_id = parseInt(player_id)>>20
+		var ulr_params = 'player_id='+row[TH['角色ID']]+'&server_id='+server_id+'&player_name='+row[TH['角色名称']]
+
+		new_row[TH['-']] = '<input player_id="' + player_id +'" type="checkbox" name="player_id" value="'+ row[TH['角色ID']] +'">'
+		new_row[TH['角色ID']] = '<a  title="查看角色信息" href="/game_manage/game/player/player_info?'+ ulr_params +'" class="openDialog" tag-name="pid">'+player_id+'</a>'
+
+		new_row[TH['关联账号']] = '<a title="查看游爱帐号" href="/game_manage/user/list?key_type=0&key='+row[TH['关联账号']]+'" class="openDialog" tag-name="uid">'+row[TH['关联账号']]+'</a>'
+
+
+		{% if request.allow_menu.解禁言%}
+		if (shutup_player.is_shutup) {
+            new_row[caozuo_index]   += '禁言时段:<br><b>' + row[caozuo_index+1] + ' - ' + row[caozuo_index+2] + '</b><br>' //增加禁言时段显示
+			new_row[caozuo_index]	+= '<a href="javascript:;" onclick="shutup_player.show('+player_id+',true)" >[解禁言]</a>' 
+
+		} else {
+            new_row[caozuo_index]	+= '<a href="javascript:;" onclick="shutup_player.show('+player_id+')" >[禁言]</a>' 
+		}
+		
+		{% endif %}
+
+
+		{% if request.allow_menu.踢下线%}	
+		new_row[caozuo_index]	+= '<a href="/game_manage/game/send?'+ ulr_params +'" class="openDialog">[消息]</a>'
+		{% endif %}
+
+		{% if request.allow_menu.解封号%}	    
+		new_row[caozuo_index]	+=  '<a href="/game_manage/game/player/player_kick?'+ ulr_params +' " class="openDialog">[踢下线]</a>'
+		{% endif %}
+
+		{% if request.allow_menu.解封号%}
+		if (player_status=='封号') {
+		new_row[caozuo_index] += ' <a href="javascript:;" onclick="block_player.show('+player_id+',true)" >[解封]</a>'
+			                +  ' <a  href="/analysis/query/view/角色操作记录?template=table&log_type=封号&player_id='+player_id+'" class="openDialog" ">[封号原因]</a>'
+		} else {
+		new_row[caozuo_index] += ' <a href="javascript:;" onclick="block_player.show('+player_id+')" >[封号]</a>'
+		}
+		{% endif %}
+
+		{% if request.allow_menu.直冲%}
+		new_row[caozuo_index] += '<a href="/game_manage/pay/add/zhichong?'+ulr_params+'" class="openDialog" >[直充]</a>'
+		{% endif %}
+		
+        {% if  request.user.is_root%}
+            new_row[caozuo_index]   += '<a href="javascript:;" onclick="player_pay('+player_id+')" >[手动充值]</a>' 
+        {%endif%}
+		new_list_data.push(new_row)
+	}
+    data.list_data = new_list_data
+	return data
+}
+)
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

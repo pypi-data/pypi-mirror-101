@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  var record_edit_url = "/log/vip/record_edit"
+  var record_remove_url = "/log/vip/record_remove"
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+   game_alias = $("#game-alias-select").attr("value")
+    listData = data.list_data;
+    for (var i in listData){
+          var row = listData[i];
+          var id = row[TH['编辑']]
+		  listData[i][TH['沟通记录']] = "<pre>" + listData[i][TH['沟通记录']] + "</pre>"
+          params = "id=" + id + "&" +
+                 "game_alias=" + game_alias
+          listData[i][TH['编辑']] = "<a title='编辑' href='" + record_edit_url + "?" + params + "' class='openDialog'>编辑</a>|<a title='删除' href='"+ record_remove_url + "?" + params + "' class='delete'>删除</a>";
+    }
+
+
+    return data
+}]
+
+</script>
+
+
+

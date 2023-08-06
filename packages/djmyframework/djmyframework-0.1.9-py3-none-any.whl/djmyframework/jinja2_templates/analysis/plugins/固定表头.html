@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="/static/css/bootstrap-table.min.css" />
+<script type="text/javascript" src="/static/js/bootstrap-table.js"></script>
+<table id="table"></table>
+<script type="text/javascript">
+var tfoot_data = []
+
+function sumFormatter(data) {
+    field = this.field;
+    if (tfoot_data[field] != null) {
+        return tfoot_data[field].toString();
+    }
+    //return new Date();
+}
+
+;
+(function($) {
+    var initTable = function(element, options, tfoot) {
+        var $element = $(element);
+        var fields = [],
+            colArr = [],
+            listData = [],
+            tfootData = tfoot;
+
+        var ths = $("#query_table thead th")
+        for (var i = 0; i < ths.length; i++) {
+            fields.push($(ths[i]).html());
+        }
+        for (var key in fields) {
+            var obj = {
+                title: fields[key],
+                align: "center",
+                valign: "middle",
+                footerFormatter: sumFormatter
+            };
+            if (dataTableOption.option.aoColumnDefs[0].aTargets.indexOf(parseInt(key)) == -1) {
+                obj.sortable = "true";
+            };
+            colArr.push(obj);
+        };
+        this.DEFAULTS = {
+            height: 700,
+            striped: true, //是否显示行间隔色  
+            pagination: false, //是否显示分页
+            sortOrder: 'asc',
+            columns: colArr,
+            showFooter: false,
+            tfoot: [],
+            data: []
+
+        };
+        var options = $.extend({}, this.DEFAULTS, options || {});
+        $element.bootstrapTable(options).on('sort.bs.table', function(e, name, order) {
+            debugger
+            if (order == "desc") {
+                sort_class = 'sorting_desc'
+            } else {
+                sort_class = 'sorting_asc'
+            }
+            $($("#query_table thead th")[name]).attr("class", sort_class)
+            $("#query_table thead th")[name].click();
+
+            //$result.text('Event: sort.bs.table, data: ' + name + ', ' + order);
+        });
+        $element.css("padding", 0);
+
+    };
+    window.initTable = initTable;
+})(jQuery);
+
+
+var $table = $('#table')
+var tfoot = []
+$table.insertBefore($QUERY_TABLE)
+new initTable("#table", {});
+ss = $('#query_table')
+ss.hide()
+
+dataTableOption.convertOutputDataFuncs = [function(data) {
+    listData = data.list_data;
+    if (data.tfoot_data.length != 0) {
+        tfoot_data = data.tfoot_data[0]
+    }
+    $table.bootstrapTable("refreshOptions", {
+        'showFooter': data.tfoot_data[0] != null
+    });
+    $table.bootstrapTable("load", listData);
+    //$table.resetFooter();
+
+    return data
+}]
+</script>

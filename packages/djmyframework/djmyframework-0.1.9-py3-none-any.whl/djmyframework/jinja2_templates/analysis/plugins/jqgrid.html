@@ -1,0 +1,295 @@
+
+
+<style type="text/css">
+.frozen-div,.frozen-bdiv{
+	background-color: white;
+	overflow-y:hidden;
+	opacity:1;
+}
+.ui-jqgrid-htable th, .ui-jqgrid-htable td { white-space: nowrap; }
+</style>
+
+<table id="grid-table"></table>
+<div id="grid-pager"></div>
+
+
+<script type="text/javascript">
+
+
+function styleCheckbox(table) {
+	/**
+		$(table).find('input:checkbox').addClass('ace')
+		.wrap('<label />')
+		.after('<span class="lbl align-top" />')
+		$('.ui-jqgrid-labels th[id*="_cb"]:first-child')
+		.find('input.cbox[type=checkbox]').addClass('ace')
+		.wrap('<label />').after('<span class="lbl align-top" />');
+	*/
+}
+
+
+function updateActionIcons(table) {
+	/**
+	var replacement =
+	{
+		'ui-icon-pencil' : 'icon-pencil blue',
+		'ui-icon-trash' : 'icon-trash red',
+		'ui-icon-disk' : 'icon-ok green',
+		'ui-icon-cancel' : 'icon-remove red'
+	};
+	$(table).find('.ui-pg-div span.ui-icon').each(function(){
+		var icon = $(this);
+		var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+		if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+	})
+	*/
+}
+
+
+
+function updatePagerIcons(table) {
+			var replacement =
+			{
+				'ui-icon-seek-first' : 'icon-double-angle-left bigger-140',
+				'ui-icon-seek-prev' : 'icon-angle-left bigger-140',
+				'ui-icon-seek-next' : 'icon-angle-right bigger-140',
+				'ui-icon-seek-end' : 'icon-double-angle-right bigger-140'
+			};
+			$('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+				var icon = $(this);
+				var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+				if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+			})
+}
+
+function enableTooltips(table) {
+			$('.navtable .ui-pg-button').tooltip({container:'body'});
+			$(table).find('.ui-pg-div').tooltip({container:'body'});
+}
+
+
+var pager_selector = "#grid-pager";
+
+function DataTableOption() {
+	var This = this
+
+	this.fnGetKey = function( aoData, sKey){ // 获取datable 的数据
+			return aoData[sKey];
+	}
+	this.convertDataTableInputData = function(saoData){ //转换datatable的输入参数
+	/* 请求参数
+	_search ： （不清楚）
+	nd ： （不清楚）
+	page ： 当前页
+	rows ： 每页记录数
+	sidx ： sort index，排序字段名
+	sord ： sort direction，排序方式：asc， desc
+	*/
+
+			var anewData = []
+			var convertList = [
+								{"sname":"rows",//每页大小原参数名
+								 "dname":"page_size",     //目标参数名
+								 "getValueFunc":function(saoData,value){return value}
+								},
+								{"sname":"sidx",//排序index
+								 "dname":"sort_index",
+								 "getValueFunc":function (saoData,value) {
+									return value
+									}
+								},
+								{"sname":"sord",//排序方式
+								 "dname":"sort_type",
+			 					"getValueFunc":function (saoData,value) {
+									return value
+									}
+								},
+								{"sname":"page",//开始步进
+								 "dname":"page_num",      //页码
+								 "getValueFunc":function (saoData,value) {
+											return value
+											}
+								},
+								{"sname":"nd",
+								 "dname":"session_id",
+								}
+
+			]
+			for (var i in convertList) {
+				var convOjb = convertList[i],
+				    newObj = {}
+				var value = This.fnGetKey(saoData,convOjb.sname)
+				if (convOjb.getValueFunc) {
+					value = convOjb.getValueFunc(saoData,value)
+				}
+					newObj['name'] = convOjb.dname
+					newObj['value'] = value
+				anewData.push(newObj)
+			}
+			var mydata = getFormData()
+			return anewData.concat(mydata)
+	}
+
+	this.convertInputDataFuncs = [function(data){return data},This.convertDataTableInputData]  //增加转换数据输入处理方法数组
+	this.convertOutputDataFuncs = [function(data){return data}] //增加转换数据输出处理方法数组
+
+	// 输入数据处理
+	this.convertInputData = function(data){
+		for (var i in this.convertInputDataFuncs) {
+			var func = this.convertInputDataFuncs[i]
+			data = func(data)
+		}
+		return data
+	}
+
+	// 输出数据处理
+	this.convertOutputData = function(data){
+		for (var i in this.convertOutputDataFuncs) {
+			var func = this.convertOutputDataFuncs[i]
+			data = func(data)
+		}
+		return data
+	}
+	this.reset_frozen = function($table){
+			$('.frozen-div,.frozen-bdiv').remove()
+			var table_height=$('.ui-jqgrid-bdiv').height()
+			$table.jqGrid('setFrozenColumns');
+			setTimeout(function(){
+					//$('.frozen-bdiv.ui-jqgrid-bdiv').height(table_height-1)
+			}, 1);
+
+	}
+
+	this.tfoot_data = []
+	this.page_size = 50
+	this.page_size_list = [50,100,500]
+
+	this.option  =  {
+					caption: '',
+					//shrinkToFit:false,
+
+					autowidth: true,
+					url: QUERY_URL,
+					datatype: "json",
+					mtype:"POST",
+					height:get_winHeight_Width()[1] - Math.max($('html').height(),$('#query_table').offset().top) -60 ,//$('body').height() *0.8,
+					colNames:FIELDS,
+					colModel:[
+						{% for name,config in field_configs.items() %}
+						{name:'{{loop.index0}}',
+						 index:'{{loop.index0}}',
+						 align: 'center',
+						 "width":{%if config.width_num%}{{config.width_num}}{%else%}{{name|length}}0{%endif%},
+						 "sortable":{% if config.sort %}true{%else%}false{%endif%},
+						 {%if config.frozen%}"frozen":true,{%endif%}
+						}{%if not loop.last%},{%endif%}{% endfor %}
+					],
+
+					viewrecords : true,
+					rowNum:This.page_size,
+					rowList:This.page_size_list,
+
+					pager : pager_selector,
+
+					altRows: false,
+					toppager: false,
+					footerrow:true,
+					//multiselect: true,
+					//multikey: "ctrlKey",
+			        //multiboxonly: true,
+			        userDataOnFooter:true,
+
+					loadComplete : function() {
+						var table = this;
+						setTimeout(function(){
+								//styleCheckbox(table);
+								//updateActionIcons(table);
+								updatePagerIcons(table);
+								//enableTooltips(table);
+							}, 0);
+
+
+					},
+					gridComplete:function(a){
+						var $this = $(this)
+						$this.footerData("set",This.tfoot_data);
+						var data = $this.getGridParam('userData')
+						$('#grid-pager_left').html('用时:'+ data.exec_time)
+						if (!isNaN(data.result_cache_time) && parseInt(data.result_cache_time)>0 ) {
+							$('#grid-pager_left').append(' - (cache:'+ timestamp_to_datetime_str(data.result_cache_time)+')')
+						}
+
+						This.reset_frozen($this)
+					},
+					loadError:function(xhr,status,error){
+						$.dialog( {"title":"错误","content":xhr.responseText.replace(/\n/g,'<br>'),"top":0})
+					},
+					serializeGridData:function(postData){
+					//增加自定和转换提交参数名
+						console.dir(postData)
+						return This.convertInputData(postData)
+					},
+					jsonReader : {
+								     root: function(data){
+								     	var jqgrid_data = []
+								     	var jqgrid_tfoot_data = {}
+								     	for (var i in data.list_data){
+								     		jqgrid_data.push({"id":i,
+								     						  "cell":data.list_data[i]
+								     						})
+								     	}
+								     	console.dir(data)
+								     	if (data.tfoot_data.length>0){
+								     		for (var i in data.tfoot_data[0]){
+								     			jqgrid_tfoot_data[i] = data.tfoot_data[0][i]
+								     		}
+
+											This.tfoot_data = jqgrid_tfoot_data
+										}
+								     	return jqgrid_data
+								     },
+								     page: "page_num",
+								     total: function(data){
+								         return Math.ceil(data.total_record/data.page_size)
+                                     }
+								     ,
+								     records: "total_record",
+									 cell: "cell",
+								     id: "id",
+
+								     userdata: function(data){
+								     		return data
+								     },
+
+					}
+	}
+
+
+
+	this.update_option = function(){
+		This.option.pageLength = This.page_size
+		This.option.lengthMenu = This.page_size_list
+
+	}
+
+
+}
+
+
+var dataTableOption = new DataTableOption()
+function flushDataTable(beforefunc,afterfunc) {
+	dataTableOption.update_option()
+	if (beforefunc){ beforefunc() }
+		if (window.odataTable) {
+			window.odataTable.trigger("reloadGrid"); //重新载入
+
+		} else {
+			window.odataTable = $QUERY_TABLE.jqGrid(dataTableOption.option);
+		}
+	if (afterfunc){ afterfunc() }
+}
+
+
+
+</script>

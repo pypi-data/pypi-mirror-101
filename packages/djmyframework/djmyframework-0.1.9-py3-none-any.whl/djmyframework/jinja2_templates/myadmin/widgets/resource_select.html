@@ -1,0 +1,32 @@
+<!-- 默认资源选择控件 -->
+
+{% set select_server_ids =  select_list %}
+
+
+<div id="{{ resource_name }}-vue-container" class="mT10" v-cloak>
+<br>
+    <select multiple v-model="selectIds" name="{{ model_resource.id_field_lookup }}" class="select2" v-select2>
+        {%   for (id,alias) in  model_resource.get_resource_queryset(request.user).values_list(model_resource.unique_filed_name,model_resource.alias_lookup) %}
+            <option value="{{ id }}">{{ alias }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+
+<script>
+    var vue_{{ resource_name }}_app = new Vue({
+        el: '#{{ resource_name }}-vue-container',
+        delimiters: ['((', '))'],
+        data: {
+            selectIds: {{ select_server_ids |safe}},
+        },
+        computed: {},
+        mounted: function () {
+
+        },
+        methods: {}
+
+    })
+</script>
+
+

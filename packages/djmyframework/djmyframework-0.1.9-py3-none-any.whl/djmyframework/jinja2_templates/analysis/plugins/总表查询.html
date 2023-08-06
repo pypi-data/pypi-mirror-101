@@ -1,0 +1,29 @@
+<script type="text/javascript">
+ //获取指定参数名的参数值  
+function getQueryParameter(qs)  
+{  
+    var s = location.href;  
+    s = s.replace("?","?&").split("&");//这样可以保证第一个参数也能分出来  
+    var re = "";  
+    for(i=1;i<s.length;i++)  
+        if(s[i].indexOf(qs+"=")==0)  
+            re = s[i].replace(qs+"=","");//取代前面的参数名，只剩下参数值  
+              
+    return re;  
+}
+if (getQueryParameter("p_sdate") == ""){
+  $('[name="p_sdate"]').val(new Date().dateAdd('d',-6).Format("yyyy-MM-dd 00:00:00"))
+}
+if (getQueryParameter("p_edate") == ""){
+  $('[name="p_edate"]').val(new Date().Format("yyyy-MM-dd 23:59:59"))
+
+}
+</script>
+
+  
+
+
+
+
+
+

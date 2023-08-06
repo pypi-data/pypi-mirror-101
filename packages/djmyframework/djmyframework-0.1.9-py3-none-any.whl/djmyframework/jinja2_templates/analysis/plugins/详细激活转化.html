@@ -1,0 +1,22 @@
+<script type="text/javascript">
+  var url = "/query/view/小时激活注册比"
+
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+        listData = data.list_data;
+    for (var i in listData){
+          var row = listData[i];
+   		  var game_alias = row[TH['game_alias']]
+		  var log_date = row[TH['日期']]
+		  params =  "sdate=" + log_date + " 00:00:00" + "&" +
+                     "edate=" + log_date  + " 23:59:59" + "&" +
+                     "game_alias=" + game_alias 
+           listData[i][TH['日期']] = "<a title='详细激活转化' href='" + url + "?" + params + "' class='openDialog'>"+ listData[i][TH['日期']]  +"</a>";
+    }
+
+
+    return data
+}]
+
+</script>
+
+

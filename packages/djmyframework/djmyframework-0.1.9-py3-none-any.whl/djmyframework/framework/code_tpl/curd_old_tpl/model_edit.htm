@@ -1,0 +1,118 @@
+{% extends "framework/base.html" %}
+
+{% block header %}
+    <title>{{ _('${model_desc} 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="row header">
+    <div class="col-sm-5">
+        <h1>{{ _('${model_desc}') }}
+            <small>{{ _('编辑') }}</small>
+        </h1>
+    </div>
+</div>
+
+<hr><br>
+
+<form action="{{ url('${app_name}.${model_lower_name}.save') }}?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}"
+          method="POST"
+          class="form-horizontal"
+          role="form">
+        <div class="row ">
+            <div class="col-sm-12">
+                {{ csrf_input }}
+                % for f in fields:
+                <%include file="model_field.htm" args="f=f"/>
+                % endfor
+            </div>
+        </div>
+
+
+        <div class="row pane edit-save-bar">
+            <div class="col-sm-offset-3 col-sm-3">
+                <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                <button id="save-btn" class="btn btn-primary " type="button">
+                    {{ _('保 存') }}
+                </button>
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <button id="save-edit-btn" class="btn btn-info " type="button">
+                        {{ _('保存并继续编辑') }}
+                    </button>
+                    <button id="save-add-btn" class="btn btn-info " type="button">
+                        {{ _('保存并增加另一个') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+<script>
+    var $form = $('form')
+    $form.submit(function (e) {
+        stopEevent(e)
+        return false
+    })
+
+    function ajaxPostData(ele, callback) {
+        clearHelpText()
+        $(ele).attr("disabled", true);
+        var post_data = $form.serializeToJSON()
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: $form.attr('action'),
+            dataType: 'json',
+            data: JSON.stringify(post_data),
+            contentType: 'application/json',
+            success: function (rsp) {
+                if (rsp.code == 0) {
+                    $('[name="id"]').val(rsp.data.id)
+                    art.dialog(rsp.msg).time(1)
+                    clearHelpText()
+                    callback ? callback(rsp) : null
+                } else {
+                    rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                }
+            },
+            error: function (jqXHR, statusText, errorMsg) {
+                ajaxError(jqXHR, statusText, errorMsg)
+
+            },
+            complete: function (jqXHR, statusText) {
+                $(ele).removeAttr("disabled");
+            }
+
+        })
+    }
+
+    $('#save-add-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            if (rsp.code == 0) {
+                window.location.href = window.location.pathname
+            }
+        })
+    })
+
+    $('#save-edit-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            $form.attr('action', '{{ url('${app_name}.${model_lower_name}.save') }}?id=' + rsp.data.id)
+            refreshParentTable()
+
+        })
+    })
+
+    $('#save-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            refreshParentTable()
+            closeSelfDialog()
+        })
+    })
+
+</script>
+{% endblock %}

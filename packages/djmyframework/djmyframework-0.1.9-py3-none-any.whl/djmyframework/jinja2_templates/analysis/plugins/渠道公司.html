@@ -1,0 +1,54 @@
+<div id="datatable_toolbar" class="row">
+	<div class="col-sm-12">
+		<label id="send_resouces" class="fr">
+		  <a href="{{ url('sdk_center.channel.channel_company_edit')}}" class="btn btn-sm btn-primary openDialog" >
+	    	 增加渠道公司
+	    </a>
+	</label>
+	</div>
+</div>
+
+
+
+<script>
+
+  
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var id  = row[TH['操作']]
+		
+		{%if request.allow_menu.渠道公司_编辑%}
+		row[TH['操作']] = '<a href="{{ url('sdk_center.channel.channel_company_edit')}}?id=' +id+ '" class="openDialog"  >[编辑]</a>'
+		{%endif%}
+		{%if request.allow_menu.渠道公司_删除%}
+		row[TH['操作']] += ' <a href="{{ url('sdk_center.channel.channel_company_remove')}}?id=' +id+ '"  class="ajax del"  >[删除]</a>'
+		{%endif%}
+	}
+  	return data
+
+})     //输出处理
+
+$(function(){
+  	 $('[name="sdate"]').val('')
+	 $('[name="edate"]').val('') 
+	 $SEARCH.trigger('click');
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

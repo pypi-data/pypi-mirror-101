@@ -1,0 +1,23 @@
+<script>
+
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+
+var type_index = TH['角色ID'] ? TH['角色ID'] : TH['攻击方id']
+var type_index2 = TH['角色ID'] ? TH['角色ID'] : TH['防守方id']
+
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	var server_id = data.server_id
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+
+		var player_id = row[type_index]
+        var player_id2 = row[type_index2]
+		row[type_index] = '<a href="game/player/player_info?player_id='+player_id+'&server_id='+server_id+'" class="openDialog" title="点我查询角色信息" >'+player_id+'</a>'
+        row[type_index2] = '<a href="game/player/player_info?player_id='+player_id2+'&server_id='+server_id+'" class="openDialog" title="点我查询角色信息" >'+player_id2+'</a>'
+	}
+
+  	return data
+
+})
+</script>

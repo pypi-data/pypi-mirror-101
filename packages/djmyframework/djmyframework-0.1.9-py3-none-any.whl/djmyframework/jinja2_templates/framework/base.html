@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{ request.language }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    {% include "framework/header.html" %}
+    {% block title %} {% endblock %}
+    {% block header %} {% endblock %}
+    {% block css %} {% endblock %}
+    <script type="text/javascript" src="/static/assets/progress.js-0.1.0/minified/progress.min.js"></script>
+    <link rel="stylesheet" href="/static/assets/progress.js-0.1.0/minified/progressjs.min.css"/>
+</head>
+
+<body id="body">
+
+<script>
+    progressJs().setOptions({overlayMode: true, theme: 'blue'}).start().autoIncrease(4, 1000);
+    if (window.attachEvent) {
+        window.attachEvent('onload', function () {
+            progressJs().end();
+        });
+    } else {
+        if (window.onload) {
+            var curronload = window.onload;
+            var newonload = function () {
+                curronload();
+                progressJs().end();
+            };
+            window.onload = newonload;
+        } else {
+            window.onload = function () {
+                progressJs().end();
+            };
+        }
+    }
+</script>
+{% include "framework/js_css.html" %}
+
+<div class="container-fluid">
+    {% if code != 0 %}
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <div class="alert alert-danger err_msg ">
+                    <a href="#" class="close" data-dismiss="alert">
+                        &times;
+                    </a>
+                    <p>{{ msg|linebreaksbr }}</p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+{% block js %} {% endblock %}
+</html>

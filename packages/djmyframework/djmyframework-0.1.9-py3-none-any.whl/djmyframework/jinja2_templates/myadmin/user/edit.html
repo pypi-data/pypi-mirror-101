@@ -1,0 +1,300 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{% block header %}
+    <title>{{ _('用户 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row header">
+        <div class="col-sm-5">
+            <h1>{{ _('用户 模型') }}
+                <small>{{ _('编辑') }}</small>
+            </h1>
+
+        </div>
+        <div class="col-sm-4">
+            <h1>
+                <small>{{ _('所属角色') }}</small>
+            </h1>
+        </div>
+    </div>
+
+    <hr>
+
+
+    <form class="form-horizontal" role="form">
+
+        <div class="row edit-container">
+
+            <div class="col-sm-5" id="vue-container" v-cloak>
+                <br>
+                {{ csrf_input }}
+                <div class="form-group" style="display:none">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                        {{ _('id') }} </label>
+
+                    <div class="col-sm-8">
+                        <input type="number" id="id_id" name="id"
+                               class="form-control" v-model="model.id"
+                        >
+
+                        <div id="help_text_id" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_alias">
+                        {{ _('别名(姓名)') }} <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="id_alias" name="alias"
+                               class="form-control" v-model="model.alias"
+                               maxlength=50
+                               required=true
+                        >
+
+                        <div id="help_text_alias" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_username">
+                        {{ _('用户名(登录名)') }} <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="id_username" name="username"
+                               class="form-control" v-model="model.username"
+                               maxlength=50
+                               required=true
+                        >
+
+                        <div id="help_text_username" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_password">
+                        {{ _('密码') }} <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="id_password" name="password"
+                               class="form-control" v-model="model.password"
+                               maxlength=32
+                               required=true
+                        >
+
+                        <div id="help_text_password" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_last_ip">
+                        {{ _('最后登录ip') }} </label>
+
+                    <div class="col-sm-8">
+                        <input type="text" id="id_last_ip" name="last_ip"
+                               class="form-control" v-model="model.last_ip"
+                               maxlength=20
+
+                        >
+
+                        <div id="help_text_last_ip" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_last_time">
+                        {{ _('最后登录时间') }} </label>
+
+                    <div class="col-sm-8">
+
+                        <input type="text" id="id_last_time" name="last_time"
+                               class="form-control datetime " v-model="model.last_time"
+
+                        >
+
+                        <div id="help_text_last_time" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_login_count">
+                        {{ _('登录次数') }} </label>
+
+                    <div class="col-sm-8">
+                        <input type="number" id="id_login_count" name="login_count"
+                               class="form-control" v-model="model.login_count"
+
+
+                        >
+
+                        <div id="help_text_login_count" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_status">
+                        {{ _('状态') }} </label>
+
+                    <div class="col-sm-8">
+                        <select class="form-control col-lg-5 select2" id="id_status" v-model="model.status"
+                                data-placeholder="{{ _('状态') }}" name="status" svalue="{{ data.status }}">
+                            {% for o in data.serializer.Meta.model.fields_map.status.choices %}
+                                <option value="{{ o.0 }}">{{ o.1 }}</option>
+                            {% endfor %}
+
+                        </select>
+
+                        <div id="help_text_status" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_create_datetime">
+                        {{ _('创建时间') }} </label>
+
+                    <div class="col-sm-8">
+
+                        <input type="text"
+                               id="id_create_datetime"
+                               name="create_datetime"
+                               v-model="model.create_datetime"
+                               class="form-control datetime "
+                        >
+
+                        <div id="help_text_create_datetime" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="row pane edit-save-bar">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                        <button @click="saveModel(true)" :disabled="isExecuting" class="btn btn-primary " type="button">
+                            {{ _('保 存') }}
+                        </button>
+
+                        <div class="pull-right">
+                            <button @click="saveModel(false)"
+                                    :disabled="isExecuting"
+                                    class="btn btn-info "
+                                    type="button">
+                                {{ _('保存并继续编辑') }}
+                            </button>
+                            <button @click="saveModelAddOther"
+                                    :disabled="isExecuting"
+                                    class="btn btn-info "
+                                    type="button">
+                                {{ _('保存并增加另一个') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+
+              {% set select_list = data.role%}
+              {% include 'myadmin/widgets/role_table_select.html' %}
+
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+
+
+    <script>
+        var modelData = Object({{ data|json_dumps|safe }})
+
+        var modelShema = Object({{ data.serializer.to_schema()|json_dumps|safe }})
+
+
+        var vue_app = new Vue({
+            el: '#vue-container',
+
+            delimiters: ['((', '))'],
+            data() {
+                return {
+                    model: modelData,
+                    isExecuting: false,
+                };
+            },
+            watch: {},
+            methods: {
+                ajaxPostData: function (post_data, callback) {
+                    clearHelpText()
+                    var post_data = $('form').serializeToJSON()
+                    this.isExecuting = true
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "{{ url('myadmin.user.save') }}?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}",
+                        dataType: 'json',
+                        data: JSON.stringify(post_data),
+                        contentType: 'application/json',
+                        success: (rsp) => {
+                            if (rsp.code == 0) {
+                                this.$message.success(rsp.msg, 1)
+                                clearHelpText()
+                                callback ? callback(rsp) : null
+
+                            } else {
+                                rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                            }
+                        },
+                        error: (jqXHR, statusText, errorMsg) => {
+                            ajaxError(jqXHR, statusText, errorMsg)
+
+                        },
+                        complete: (jqXHR, statusText) => {
+                            this.isExecuting = false
+                        }
+
+                    })
+                },
+                saveModel: function (isCloseDialog) {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            this.model = rsp.data
+                            refreshParentTable()
+                            customDispatchEvent('saveModel', this.model, true)
+                            if (isCloseDialog) closeSelfDialog()
+                        }
+                    })
+                },
+                saveModelAddOther: function () {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            window.location.href = window.location.pathname
+                        }
+                    })
+                },
+
+            },
+            mounted: function () {
+
+
+            }
+        })
+
+
+    </script>
+
+
+
+{% endblock %}

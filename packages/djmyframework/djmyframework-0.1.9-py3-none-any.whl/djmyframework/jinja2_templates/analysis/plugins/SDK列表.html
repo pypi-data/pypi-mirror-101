@@ -1,0 +1,98 @@
+<div id="datatable_toolbar" class="row">
+  
+  
+	<div class="col-sm-8">
+		<ul class="nav nav-tabs"  >
+			<li class="active">
+				<a class="type-tab" data-value="android" data-toggle="tab" href="#">
+					安卓
+				</a>
+			</li>
+
+			<li class="">
+				<a class="type-tab" data-value="ios" data-toggle="tab" href="#">
+					IOS
+				</a>
+			</li>
+
+			<li class="">
+				<a class="type-tab" data-value="H5" data-toggle="tab" href="#">
+					H5
+				</a>
+			</li>
+		</ul>
+	</div>
+  
+	<div class="col-sm-4">
+		<label id="send_resouces" class="fr">
+	    <a href="/sdk_center/sdk/edit" class="btn  btn-xs btn-primary openDialog" >
+	    	 增加SDK
+	    </a>
+	</label>
+	</div>
+</div>
+
+
+
+
+
+<script>
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var sdk_id  = row[TH['操作']]
+		var sdk_name = row[TH['名称']]
+		var simpleName = row[TH['简称']]
+
+		row[TH['图标']] = '<img height=50 width=50 src="'+row[TH['图标']]+'">'
+
+		row[TH['操作']] = '<a href="/query/view/SDK版本列表?sdk_id=' +sdk_id+ '" data-height="500px" class="openDialog"  tab_name="'+sdk_name+' 版本">[查看SDK版本]</a>'
+
+		row[TH['操作']] += '    <a href="/sdk/edit?id=' +sdk_id+ '" class="openDialog"  >[编辑]</a>'
+		row[TH['操作']] += '    <a href="/sdk/get?simpleName=' +simpleName+ '" class="openDialog"  >[更新]</a>'
+		
+
+		{%if request.user.is_root%}
+		row[TH['操作']] += '    <a href="/sdk/remove?id=' +sdk_id+ '" class="delete"  >[删除]</a>'
+		
+		{%endif%}
+	}
+  	return data
+
+})     //输出处理
+
+$(function(){
+	 $SEARCH.trigger('click');
+})
+
+
+$(function(){
+
+ $('#search_form').append('<input type="hidden" name="client_type" value="android">')
+  $SEARCH.trigger('click');
+
+
+  $('.type-tab').click(function(event) {
+  		$('[name="client_type"]').val($(this).attr('data-value'))
+  		 $SEARCH.trigger('click');
+  });
+})
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

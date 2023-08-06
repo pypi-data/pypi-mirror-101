@@ -1,0 +1,12 @@
+<script type="text/javascript">
+
+  var sdate_str = new Date().Format("yyyy-MM-dd 00:00:00")
+  	$('[name="sdate"]').val(sdate_str)
+$(function(){
+    //实时类只能查询近3天,关闭时间选择
+    //$('[name="sdate"]').attr('readonly','readonly').removeClass('Wdate')
+    //$('[name="edate"]').attr('readonly','readonly').removeClass('Wdate')
+    $('#date_select_cont li:gt(3)').remove()
+})
+</script>
+

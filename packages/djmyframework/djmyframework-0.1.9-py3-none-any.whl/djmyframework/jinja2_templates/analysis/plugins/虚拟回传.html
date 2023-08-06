@@ -1,0 +1,43 @@
+<script type="text/javascript">
+
+ dataTableOption.convertOutputDataFuncs = [function(data) {
+    listData = data.list_data;
+    for (var i in listData){
+
+	  if (listData[i][TH['补充回传']]){
+
+		listData[i][TH['补充回传']] = "<a href='#' onclick='callback(this)' data-params='"+ listData[i][TH['补充回传']] + "'>[补充回传]</a>";
+
+	  }
+    }
+
+
+    return data
+}]
+
+ function callback(target) {
+    var count = prompt("请输入回传次数","1");
+    if (count != null){
+      var params = $(target).attr('data-params').split('|')
+		var game_alias = params[0]
+		var c1 = params[1]
+		var c2 = params[2]
+		var url = "/ad_click/callback"
+		$.get(url, { game_alias: game_alias, c1: c1, c2:c2, count:count } ).done(function( data ) {
+    		alert(data );
+ 		 });
+    }else{
+        alert("你按了[取消]按钮");
+    }
+   return false
+}
+</script>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+var LOCALE_JSON={
+"daterangepicker":{
+"locale": {
+"format": "YYYY-MM-DD",
+"separator": " - ",
+"applyLabel": "{{ _('应用') }}",
+"cancelLabel": "{{ _('取消') }}",
+"resetLabel": "{{ _('重置') }}",
+"customRangeLabel": "{{ _('自定义') }}",
+"daysOfWeek" : [ "{{ _('日') }}", "{{ _('二') }}", "{{ _('三') }}","{{ _('四') }}","{{ _('五') }}","{{ _('六') }}" ],
+"monthNames" : [ "{{ _('一月') }}",
+                "{{ _('二月') }}",
+                "{{ _('三月') }}",
+                "{{ _('四月') }}",
+                "{{ _('五月') }}",
+                "{{ _('六月') }}",
+                "{{ _('七月') }}",
+                "{{ _('八月') }}",
+                "{{ _('九月') }}",
+                "{{ _('十月') }}",
+                "{{ _('十一月') }}",
+                "{{ _('十二月') }}" ]
+},
+"ranges": {
+        "clear": "{{ _('清空') }}",
+        "today": "{{ _('今天') }}",
+        "yesterday":"{{ _('昨天') }}",
+        "beforeYesterday":"{{ _('前天') }}",
+        "last7Days":"{{ _('最近7天') }}",
+        "last30Days":"{{ _('最近30天') }}",
+        "thisMonth":"{{ _('本月') }}",
+        "lastMonth":"{{ _('上月') }}",
+        "last3Months":"{{ _('最近3个月') }}",
+        "lastYear":"{{ _('最近1年') }}",
+        "thisYear":"{{ _('本年') }}"
+}
+}
+}
+var BootstrapTableLocaleMap = {'zh-hans':'zh-CN','zh-hant':'zh-TW'}
+var BootstrapTableLocale = BootstrapTableLocaleMap['{{ request.language }}'] ? BootstrapTableLocaleMap['{{ request.language }}']: '{{ request.language }}'
+
+var ConditionSchema = {{ data.condition_schema | json_dumps |safe}}
