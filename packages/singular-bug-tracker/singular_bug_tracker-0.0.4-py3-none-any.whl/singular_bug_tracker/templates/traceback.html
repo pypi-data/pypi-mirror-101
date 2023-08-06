@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traceback</title>
+</head>
+<body>
+<ul>
+    <li><b>URL:</b> {{ url }}</li>
+    <li><b>POST:</b> {{ post }}</li>
+    <li><b>GET:</b> {{ get }}</li>
+    <li><b>TRACEBACK:</b>
+        <ul>
+            {% for i in traceback %}
+                <li>{{ i }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
