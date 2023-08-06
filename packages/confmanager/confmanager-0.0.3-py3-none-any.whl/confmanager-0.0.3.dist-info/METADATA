@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: confmanager
+Version: 0.0.3
+Summary: Assist in parsing cli options and parameters
+Home-page: https://github.com/haogooder666/conf_man
+Author: Haogooder
+Author-email: haogooder@163.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Requires-Dist: pyyaml
+
+# conf_man
+Python程序的配置处理
+
+## 安装
+
+    pip install confmanager
+
+## 使用
+
+1. 显示设置的值
+2. 环境变量
+    可以设置前缀
+    如果设置前缀prefix，那么绑定xxx之后，将会查找PREFIX_XXX的环境变量
+    如果没有设置前缀，那么绑定xxx之后，将会查找XXX的环境变量
+3. CLI选项
+    仅仅支持选项flag的绑定，不支持参数绑定
+    绑定xxx之后，将会映射到--xxx的值
+4. 配置文件
+    可以多个配置文件，每个配置文件在不同目录，但是文件名称必须一致，文件类型仅仅支持JSON
+    JSON文件内容格式需要满足{str: str}，不支持嵌套
+5. 默认值
+
+
