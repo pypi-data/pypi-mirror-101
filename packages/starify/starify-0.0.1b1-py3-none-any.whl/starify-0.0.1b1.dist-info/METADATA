@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: starify
+Version: 0.0.1b1
+Summary: Starify: convert string to asterisks for confidentiality display
+Home-page: https://github.com/patrickphat/starify
+Author: Truong-Phat Nguyen
+Author-email: me@patrickphat.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >3.6
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+
+# starify
+
+Convert part of strings to asterisks to display confidential information
+# Installation
+```bash
+pip install starify
+```
+# Usage:
+```python
+import starify
+
+credential = "ABCDEFGHI_TH1SCR3D3ENTIAL"
+starify.star(credential) 
+# "***************TH1SCR3D3ENTIAL"
+```
+
+
