@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: auto-machine-learning
+Version: 0.0.11
+Summary: This is an python Library for AutoML which works for prediction and classification tasks.
+Home-page: https://github.com/mihir2510/AutoML_library
+Author: Mihir Gada, Zenil Haria, Arnav Mankad, Kaustubh Damania
+Author-email: 
+License: MIT
+Download-URL: https://pypi.org/project/auto-machine-learning/
+Project-URL: Documentation, https://github.com/mihir2510/AutoML_library
+Project-URL: Source Code, https://github.com/mihir2510/AutoML_library
+Keywords: automl,data preprocessing,feature engineering,ensembling,super learner
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: imblearn
+Requires-Dist: pandas
+Requires-Dist: scikit-optimize
+Requires-Dist: hyperopt
+Requires-Dist: scikit-learn (==0.24.1)
+Requires-Dist: kiwisolver (==1.3.1)
+Requires-Dist: matplotlib (==3.3.4)
+Requires-Dist: Pillow (==8.1.0)
+Requires-Dist: openpyxl
+Requires-Dist: plotly
+Requires-Dist: pytest
+Requires-Dist: pytest-runner
+Requires-Dist: seaborn
+Requires-Dist: psutil
+Requires-Dist: kaleido
+
+# AutoML-library
+
+### Data Preprocessing:
+  get_features
+
+    Parameters
+    --------
+    - dataset : Pandas Dataframe
+    Dataset containing features *AND* labels
+    - label : String 
+    Column name of label
+
+    Returns
+    --------
+    List of Features in String
+
+  remove_null
+
+    Parameters
+    --------
+    - dataset : Pandas Dataframe
+    Dataset containing features  **AND** labels
+    - label : String 
+    Column name of label
+
+    Returns
+    --------
+    Modified dataset with null values removed
+
+label_encode
+
+    Parameters
+    --------
+    - dataset : Pandas Dataframe
+    Dataset containing features **AND** labels
+    - label : String 
+    Column name of label
+
+    Returns
+    --------
+    Modified dataset with Label encoded values
+
+oversampling
+
+    Parameters
+    --------
+    - dataset : Pandas Dataframe
+    Dataset containing features AND labels
+    - label : String 
+    Column name of label
+
+    Returns
+    --------
+    Modified dataset with oversampling performed
+
+
+### Feature Engineering:
+`TBD`
+
+### Hyperparameter Optimization:
+
+HPO
+
+    Parameters
+    --------
+    - dataset : Pandas Dataframe
+    Dataset containing features AND labels
+    - label : String 
+    Column name of label
+    - Model name : String
+    - Method name : String ['all', 'grid', 'random', 'bayesian-gp','bayesian-tpe']
+    - Time taken?
+
+    Returns
+    --------
+    Sklearn model of type `Model name`
+
+
