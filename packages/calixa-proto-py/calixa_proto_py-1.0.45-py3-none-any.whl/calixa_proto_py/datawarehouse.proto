@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+import "integration_source.proto";
+import "common.proto";
+import "entity.proto";
+
+option java_package = "io.calixa.domain.datawarehouse";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+package calixa.domain.warehouse;
+
+
+message BigQueryCredentials {
+  string project_id = 1; // freds-datawarehouse-testing
+  string data_location = 2; // US
+  string data_processing_location = 3; // US
+
+  // This is something that we'll have to programmatically create
+  // in Calixa's account. This property will be created once and be unique
+  // for the lifetime of the credentials.
+  //
+  // For the sake of testing, I've created a service account called
+  // 'green-turtle-data-warehouse-testing' in our IAM:
+  // https://console.cloud.google.com/iam-admin/serviceaccounts/details/117200714810804291448?project=production-base-b35c
+  //
+  // The service account "green-turtle-data-warehouse-testing" has no access
+  // in production-base, but I have added permission to it in
+  // freds-datawarehouse-testing:
+  // https://console.cloud.google.com/iam-admin/iam?project=freds-datawarehouse-testing
+  //
+  // This simulates what our customers would do. See this guide here:
+  // https://www.notion.so/Data-Warehouse-Import-v0-1-193fe0bc7cd04b2ab739604b49f2ee6e#31f28a3b614940b48d1d97c3910642cd
+  string service_account_id = 4;
+}
+
+message SnowflakeCredentials {
+  // snowflake uses "login" and "password" based authentication
+
+}
+
+message RedshiftCredentials {
+  // This is *probably* the same as BigQuery, but I haven't explored it yet
+
+}
+
+message Credentials {
+  string organization_id = 1;
+  oneof credentials {
+    BigQueryCredentials bigquery = 10;
+    SnowflakeCredentials snowflake = 11;
+    RedshiftCredentials redshift = 12;
+  }
+
+}
+
+enum FieldType {
+  FIELD_TYPE_UNSPECIFIED = 0;
+  FIELD_TYPE_INTEGER = 1;
+  FIELD_TYPE_STRING = 2;
+  FIELD_TYPE_ENUM = 3;      // TODO(freds): Not sure how to capture this yet...
+  FIELD_TYPE_BOOLEAN = 4;      // TODO(freds): Not sure how to capture this yet...
+
+  FIELD_TYPE_TIMESTAMP = 5;
+
+  // Special case field that supplies the unique external ID for the entity represented
+  // by the row
+  FIELD_TYPE_PRIMARY_EXTERNAL_ID = 1000;
+}
+
+message FieldMapper {
+  FieldType field_type = 1;
+
+  // The SQL column in the output that corresponds to the the field to map to the Entity
+  string sql_column_name = 2;
+
+  // The fully qualified Proto field name (scoped at the level of the Entity). For instance,
+  // to specify the account name, this would be "account.name". To specify the external created
+  // at time, the field would be "external_created_at", etc.
+  //
+  int32 entity_field_number = 3;
+}
+
+message QueryContext {
+
+  string organization_id = 1;
+  string query = 2;
+
+  // The mappers that translate the fields from the output to an Entity.
+  repeated FieldMapper field_mappers = 3;
+
+  // The entity type to produce
+  common.EntityType output_entity_type = 4;
+
+  // Set the IntegrationSource for the query
+  domain.integration.IntegrationSource source = 5;
+
+  // ... some number of bookkeeping fields...
+  google.protobuf.Timestamp last_run_at = 6;
+}
+
+/*********************************************************************** RPC */
+
+message ExecuteQueryRequest {
+
+  Credentials credentials = 1;
+  QueryContext query_context = 2;
+
+}
+
+message ExecuteQueryResponse {
+
+  int32 entitiesUpdated = 1;
+  int32 entitiesCreated = 2;
+  int32 entitiesDeleted = 3;
+
+}
+
+message VerifyCredentialsRequest {
+
+  Credentials credentials = 1;
+}
+
+message VerifyCredentialsResponse {
+
+
+}
+
+service DataWarehouseService {
+
+  rpc ExecuteQuery(ExecuteQueryRequest) returns (stream calixa.domain.entity.Entity);
+  rpc VerifyCredentials(VerifyCredentialsRequest) returns (VerifyCredentialsResponse);
+
+}
+
