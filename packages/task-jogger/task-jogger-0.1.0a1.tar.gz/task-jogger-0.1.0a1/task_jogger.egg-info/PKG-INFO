@@ -1,0 +1,23 @@
+Metadata-Version: 1.2
+Name: task-jogger
+Version: 0.1.0a1
+Summary: A simple Python-based command line tool that is not quite a fully-fledged task runner
+Home-page: https://github.com/oogles/task-jogger
+Author: Alex Church
+Author-email: alex@church.id.au
+License: MIT
+Project-URL: Documentation, https://task-jogger.readthedocs.io/en/latest/
+Project-URL: Bug Tracker, https://github.com/oogles/task-jogger/issues
+Description: task-jogger
+        ===========
+        
+        More affectionately known as ``jogger``.
+        
+        ``jogger`` is a simple Python-based command line tool that isn't quite a fully-fledged task *runner*. In addition to supporting arbitrary tasks, run either directly on the command line or as Python scripts, it ships with some common, useful, Django-aware tasks that can adapt their behaviour based on which packages are available in the system.
+        
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
