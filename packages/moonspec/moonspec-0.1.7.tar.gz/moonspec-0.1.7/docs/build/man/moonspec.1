@@ -1,0 +1,924 @@
+.\" Man page generated from reStructuredText.
+.
+.TH "MOONSPEC" "1" "Apr 09, 2021" "" "moonspec"
+.SH NAME
+moonspec \- moonspec 0.1.7
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.sp
+\fImoonspec\fP is test\-driven infrastructure specifications and monitoring framework.
+.sp
+\fImoonspec\fP allows system administrators to create automated tests to assert the state of a host,
+local and remote services, etc.
+.SH QUICKSTART
+.sp
+TODO
+.sp
+spec_hostname.py
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+from moonspec.api import (api, any_of, capture,
+                          spec, describe, expect,
+                          fact, historic_fact, maybe,
+                          apply_to_roles)
+
+apply_to_roles(\(aqserver\(aq)
+
+@capture(roles=[\(aqextra_role_a\(aq])
+def capture_hostname():
+    return api.host.name()
+
+
+@spec(roles=[\(aqextra_role_b\(aq])
+def it_has_expected_hostname():
+    fact(\(aqhostname\(aq).should_equal(\(aqsome_hostname\(aq)
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SH MOONSPEC.API PACKAGE
+.sp
+The \fImoonspec.api\fP package contains all public APIs useful for writing specifications.
+.sp
+This package also exports global instance of \fImoonspec.api.Api\fP as var \fIapi\fP for you to use in your spec files to
+access APIs various APIs useful for host testing using fluent interfaces, for example,
+\fIapi.fs.hash_file(‘/example.txt’)\fP\&.
+.sp
+\fBBasic import\fP
+.sp
+This import contains all the basic members you might need to write your specifications.
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+from moonspec.api import (api, any_of, capture,
+                          spec, describe, expect,
+                          fact, historic_fact, maybe,
+                          apply_to_roles)
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.Api
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B host: moonspec.api.interface.host.HostApi
+Access information related to local host
+.UNINDENT
+.INDENT 7.0
+.TP
+.B fs: moonspec.api.interface.fs.FileSystemApi
+Access information related to local file systems
+.UNINDENT
+.INDENT 7.0
+.TP
+.B net: moonspec.api.interface.inet.InetApi
+Access network resources
+.UNINDENT
+.INDENT 7.0
+.TP
+.B ssl: moonspec.api.interface.ssl.SSLApi
+Query various SSL related items
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.capture(key: Optional[str] = None, roles: Optional[List[str]] = None) -> Callable[[Callable[], None]], None]
+Capture a fact to be used in tests or to be checked for state changes when executing
+specifications with state persistence.
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBkey\fP – globally unique identifier of a fact.
+.IP \(bu 2
+\fBroles\fP – list of zero or more roles this fact should be captured for.
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.spec(roles: Optional[List[str]] = None) -> Callable[[Callable[], None]], None]
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.describe(description: str) -> None
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.fact(key: str) -> moonspec.api.fact.Fact
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.historic_fact(key: str) -> moonspec.api.fact.HistoricFact
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.expect(value: Any, identity: Optional[str] = None) -> moonspec.api.subject.Subject
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.maybe(assertion: Callable, *assertion_args: Any) -> bool
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.any_of(*assertions: Callable, description: Optional[str] = None) -> None
+.UNINDENT
+.INDENT 0.0
+.TP
+.B moonspec.api.apply_to_roles(*roles: str) -> None
+Add given roles to all subsequent facts and specifications, in addition to roles defined per\-specification
+or per capture, within the current file (module).
+.INDENT 7.0
+.TP
+.B Parameters
+\fBroles\fP – one or more roles
+.UNINDENT
+.UNINDENT
+.SS Subpackages
+.SS moonspec.api.interface package
+.SS Submodules
+.SS moonspec.api.interface.facter module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.facter.FacterApi
+Bases: \fBobject\fP
+.sp
+Interface to \fIfacter\fP utility.
+.INDENT 7.0
+.TP
+.B static is_supported() -> bool
+Check if \fIfacter\fP utility is found on current host.
+.INDENT 7.0
+.TP
+.B Returns
+True if facter is found on current host, False otherwise
+.UNINDENT
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static get_facts() -> dict
+Retrieve facts about host operating system using \fIfacter\fP utility.
+.INDENT 7.0
+.TP
+.B Returns
+facter command output as dict
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.interface.fs module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.fs.Mount(dev: str, mount: str, fstype: str, options: Dict[str, Any])
+Bases: \fBobject\fP
+.sp
+Holds information about a file system mount
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.fs.MountCollection(mounts: List[moonspec.api.interface.fs.Mount])
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B has_mount(mount_path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B has_dev(dev: str) -> bool
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.fs.PathApi
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B static is_owned_by_uid(path: str, uid: int) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_owned_by_user(path: str, user: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_owned_by_gid(path: str, gid: int) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_owned_by_group(path: str, group: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static exists_owned_by_u(path: str, user: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static exists_owned_by_g(path: str, group: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static exists_owned_by_ug(path: str, user: str, group: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static can_read(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static can_write(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static can_exec(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static exists(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_file(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_link(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_mount(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_dir(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_empty(path: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static get_size_b(path: str) -> int
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static has_extension(path: str, ext: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_smaller_than(path: str, size_b: int) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_larger_than(path: str, size_b: int) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_of_size(path: str, size_b: int) -> bool
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.fs.FileSystemApi
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B Variables
+\fBpath\fP – PathApi: instance of PathApi
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static stat(path: str) -> os.stat_result
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static hash_file(path: str, *hash_names: str) -> Union[str, Dict[str, str]]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static all_files_in(path: str, matcher: Union[Callable[[str], bool], Pattern]) -> List[str]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static line_in_file(path: str, matcher: Union[Callable[[str], bool], Pattern]) -> Union[bool, str]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static lines_in_file(path: str, matcher: Union[Callable[[str], bool], Pattern]) -> List[str]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static space_free(path: str) -> int
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static space_used(path: str) -> int
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static space_total(path: str) -> int
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static space_gt_threshold(path: str, threshold_percent: Union[float, int]) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static mounts() -> moonspec.api.interface.fs.MountCollection
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.interface.host module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.host.HostUser
+Bases: \fBobject\fP
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.host.HostGroup
+Bases: \fBobject\fP
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.host.HostApi
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B static username() -> str
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static fqdn() -> str
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static name() -> str
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static user_exists(user: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static group_exists(group: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static users() -> List[moonspec.api.interface.host.HostUser]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static groups() -> List[moonspec.api.interface.host.HostGroup]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static cpu_count() -> int
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static load_avg() -> Tuple[float, float, float]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static load_avg_percent() -> Tuple[float, float, float]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static load_1_above(percent_threshold: float) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static load_5_above(percent_threshold: float) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static load_15_above(percent_threshold: float) -> bool
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.interface.inet module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.inet.InetApi
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B static tcp_check_open(host: str, port: int, timeout_ms: int = 1000) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static tcp_latency(host: str, port: int, timeout_ms: int = 1000) -> float
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static tcp_latency_avg(host: str, port: int, runs: int = 5, timeout_ms: int = 1000, delay_ms: int = 100) -> float
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.interface.libvirtd module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.libvirtd.LibvirtApi
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B static ro() -> libvirt.virConnect
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static admin() -> libvirt.virConnect
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.interface.osqueryd module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.osqueryd.OSQueryApi
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B static supports() -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static client() -> osquery.extensions.ExtensionManager.Client
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static query(query: str) -> Optional[Union[Dict, List, float, int, bool]]
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.interface.ssl module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.ssl.SSLApi
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B static get_remote_x509(host: str, port: int, verify: bool = True, timeout_ms: int = 1000) -> Union[cryptography.x509.base.Certificate, None, bool]
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBhost\fP – 
+.IP \(bu 2
+\fBport\fP – 
+.IP \(bu 2
+\fBverify\fP – 
+.IP \(bu 2
+\fBtimeout_ms\fP – 
+.UNINDENT
+.TP
+.B Returns
+Instance of Certificate, None if certificate can’t be retrieved, or False if verify=True, and
+certificate is invalid.
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.interface.systemd module
+.INDENT 0.0
+.TP
+.B class moonspec.api.interface.systemd.SystemdApi
+Bases: \fBobject\fP
+.sp
+Interface to SystemD
+.INDENT 7.0
+.TP
+.B static is_supported() -> bool
+Check if SystemD is supported on this host
+.INDENT 7.0
+.TP
+.B Returns
+True if supported, False otherwise
+.UNINDENT
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static show(service: str) -> Dict[str, Any]
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_active(service_name: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static is_enabled(service_name: str) -> bool
+.UNINDENT
+.INDENT 7.0
+.TP
+.B static get_service_state(service_name: str) -> Union[None, str]
+.UNINDENT
+.UNINDENT
+.SS Submodules
+.SS moonspec.api.fact module
+.INDENT 0.0
+.TP
+.B class moonspec.api.fact.HistoricFact(key: str, value: Any)
+Bases: \fI\%moonspec.api.subject.Subject\fP
+.sp
+A subject used to hold value of a fact from previous runs
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.fact.Fact(key: str, value: Any)
+Bases: \fI\%moonspec.api.subject.Subject\fP
+.sp
+A subject used to hold state indicator of a system \- a fact
+.INDENT 7.0
+.TP
+.B should_not_have_changed(missing_ok: bool = True) -> None
+Verify if value of this fact has not changed over time
+:param missing_ok: True if absent historic values should be ignored, False otherwise. By default, True.
+:return: True if fact value has not changed when compared to current value (self vs historic)
+.UNINDENT
+.UNINDENT
+.SS moonspec.api.subject module
+.INDENT 0.0
+.TP
+.B class moonspec.api.subject.ComparatorExpectations(value)
+Bases: \fBenum.Enum\fP
+.sp
+An enumeration.
+.INDENT 7.0
+.TP
+.B ABSENT = 0
+.UNINDENT
+.INDENT 7.0
+.TP
+.B PRESENT = 1
+.UNINDENT
+.INDENT 7.0
+.TP
+.B EQUAL = 2
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NOT_EQUAL = 3
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NOT_CHANGED = 4
+.UNINDENT
+.INDENT 7.0
+.TP
+.B SELF_IS_NUMBER = 5
+.UNINDENT
+.INDENT 7.0
+.TP
+.B OTHER_IS_NUMBER = 6
+.UNINDENT
+.INDENT 7.0
+.TP
+.B LT = 7
+.UNINDENT
+.INDENT 7.0
+.TP
+.B GT = 8
+.UNINDENT
+.INDENT 7.0
+.TP
+.B LTE = 9
+.UNINDENT
+.INDENT 7.0
+.TP
+.B GTE = 10
+.UNINDENT
+.INDENT 7.0
+.TP
+.B EMPTY = 11
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NOT_EMPTY = 12
+.UNINDENT
+.INDENT 7.0
+.TP
+.B CB = 13
+.UNINDENT
+.INDENT 7.0
+.TP
+.B TYPE = 14
+.UNINDENT
+.INDENT 7.0
+.TP
+.B ANY_OF = 15
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NONE_OF = 16
+.UNINDENT
+.INDENT 7.0
+.TP
+.B CONTAIN_ANY_OF = 17
+.UNINDENT
+.INDENT 7.0
+.TP
+.B CONTAIN_NONE_OF = 18
+.UNINDENT
+.INDENT 7.0
+.TP
+.B CONTAIN_ALL_OF = 19
+.UNINDENT
+.INDENT 7.0
+.TP
+.B HAVE_KEYS = 20
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NOT_HAVE_KEYS = 21
+.UNINDENT
+.INDENT 7.0
+.TP
+.B MATCH = 22
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NOT_MATCH = 23
+.UNINDENT
+.INDENT 7.0
+.TP
+.B CONTAIN_MATCH = 24
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NOT_CONTAIN_MATCH = 25
+.UNINDENT
+.INDENT 7.0
+.TP
+.B LENGTH = 26
+.UNINDENT
+.INDENT 7.0
+.TP
+.B NOT_LENGTH = 27
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B exception moonspec.api.subject.SubjectExpectationException(identity: Optional[str], expected_value: Any, actual_value: Any, expectation: Optional[moonspec.api.subject.ComparatorExpectations] = None)
+Bases: \fBRuntimeError\fP
+.UNINDENT
+.INDENT 0.0
+.TP
+.B class moonspec.api.subject.Subject(value: Any, identity: Optional[str] = None)
+Bases: \fBobject\fP
+.INDENT 7.0
+.TP
+.B should_be_present() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_absent() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_equal(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_not_equal(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_empty() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_not_be_empty() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_lt(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_gt(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_lte(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_gte(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_true() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_false() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_any_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_be_none_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_contain_any_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_contain_none_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_contain_all_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_have_keys(*args: str) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_not_have_keys(*args: str) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_not_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_contain_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_not_contain_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_have_length(length: int) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should_not_have_length(length: int) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B should(matcher: Callable[[Any], bool]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_present() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_absent() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_equal(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_not_equal(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_empty() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_not_be_empty() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_lt(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_gt(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_lte(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_gte(other: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to(matcher: Callable[[Any], bool]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_true() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_false() -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_any_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_be_none_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_contain_any_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_contain_none_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_contain_all_of(*args: Any) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_have_keys(*args: str) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_not_have_keys(*args: str) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_not_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_contain_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_not_contain_match(pattern: Union[Pattern, str]) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_have_length(length: int) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B to_not_have_length(length: int) -> None
+.UNINDENT
+.INDENT 7.0
+.TP
+.B lookup(key: str) -> moonspec.api.subject.Subject
+.UNINDENT
+.INDENT 7.0
+.TP
+.B at(index: int) -> moonspec.api.subject.Subject
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.IP \(bu 2
+genindex
+.IP \(bu 2
+modindex
+.IP \(bu 2
+search
+.UNINDENT
+.SH AUTHOR
+Matīss Treinis
+.SH COPYRIGHT
+2021, Matīss Treinis
+.\" Generated by docutils manpage writer.
+.

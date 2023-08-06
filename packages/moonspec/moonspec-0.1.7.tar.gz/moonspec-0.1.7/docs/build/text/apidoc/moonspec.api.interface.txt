@@ -1,0 +1,253 @@
+moonspec.api.interface package
+******************************
+
+
+Submodules
+==========
+
+
+moonspec.api.interface.facter module
+====================================
+
+class moonspec.api.interface.facter.FacterApi
+
+   Bases: "object"
+
+   Interface to *facter* utility.
+
+   static is_supported() -> bool
+
+      Check if *facter* utility is found on current host.
+
+      Returns:
+         True if facter is found on current host, False otherwise
+
+   static get_facts() -> dict
+
+      Retrieve facts about host operating system using *facter*
+      utility.
+
+      Returns:
+         facter command output as dict
+
+
+moonspec.api.interface.fs module
+================================
+
+class moonspec.api.interface.fs.Mount(dev: str, mount: str, fstype: str, options: Dict[str, Any])
+
+   Bases: "object"
+
+   Holds information about a file system mount
+
+class moonspec.api.interface.fs.MountCollection(mounts: List[moonspec.api.interface.fs.Mount])
+
+   Bases: "object"
+
+   has_mount(mount_path: str) -> bool
+
+   has_dev(dev: str) -> bool
+
+class moonspec.api.interface.fs.PathApi
+
+   Bases: "object"
+
+   static is_owned_by_uid(path: str, uid: int) -> bool
+
+   static is_owned_by_user(path: str, user: str) -> bool
+
+   static is_owned_by_gid(path: str, gid: int) -> bool
+
+   static is_owned_by_group(path: str, group: str) -> bool
+
+   static exists_owned_by_u(path: str, user: str) -> bool
+
+   static exists_owned_by_g(path: str, group: str) -> bool
+
+   static exists_owned_by_ug(path: str, user: str, group: str) -> bool
+
+   static can_read(path: str) -> bool
+
+   static can_write(path: str) -> bool
+
+   static can_exec(path: str) -> bool
+
+   static exists(path: str) -> bool
+
+   static is_file(path: str) -> bool
+
+   static is_link(path: str) -> bool
+
+   static is_mount(path: str) -> bool
+
+   static is_dir(path: str) -> bool
+
+   static is_empty(path: str) -> bool
+
+   static get_size_b(path: str) -> int
+
+   static has_extension(path: str, ext: str) -> bool
+
+   static is_smaller_than(path: str, size_b: int) -> bool
+
+   static is_larger_than(path: str, size_b: int) -> bool
+
+   static is_of_size(path: str, size_b: int) -> bool
+
+class moonspec.api.interface.fs.FileSystemApi
+
+   Bases: "object"
+
+   Variables:
+      **path** – PathApi: instance of PathApi
+
+   static stat(path: str) -> os.stat_result
+
+   static hash_file(path: str, *hash_names: str) -> Union[str, Dict[str, str]]
+
+   static all_files_in(path: str, matcher: Union[Callable[[str], bool], Pattern]) -> List[str]
+
+   static line_in_file(path: str, matcher: Union[Callable[[str], bool], Pattern]) -> Union[bool, str]
+
+   static lines_in_file(path: str, matcher: Union[Callable[[str], bool], Pattern]) -> List[str]
+
+   static space_free(path: str) -> int
+
+   static space_used(path: str) -> int
+
+   static space_total(path: str) -> int
+
+   static space_gt_threshold(path: str, threshold_percent: Union[float, int]) -> bool
+
+   static mounts() -> moonspec.api.interface.fs.MountCollection
+
+
+moonspec.api.interface.host module
+==================================
+
+class moonspec.api.interface.host.HostUser
+
+   Bases: "object"
+
+class moonspec.api.interface.host.HostGroup
+
+   Bases: "object"
+
+class moonspec.api.interface.host.HostApi
+
+   Bases: "object"
+
+   static username() -> str
+
+   static fqdn() -> str
+
+   static name() -> str
+
+   static user_exists(user: str) -> bool
+
+   static group_exists(group: str) -> bool
+
+   static users() -> List[moonspec.api.interface.host.HostUser]
+
+   static groups() -> List[moonspec.api.interface.host.HostGroup]
+
+   static cpu_count() -> int
+
+   static load_avg() -> Tuple[float, float, float]
+
+   static load_avg_percent() -> Tuple[float, float, float]
+
+   static load_1_above(percent_threshold: float) -> bool
+
+   static load_5_above(percent_threshold: float) -> bool
+
+   static load_15_above(percent_threshold: float) -> bool
+
+
+moonspec.api.interface.inet module
+==================================
+
+class moonspec.api.interface.inet.InetApi
+
+   Bases: "object"
+
+   static tcp_check_open(host: str, port: int, timeout_ms: int = 1000) -> bool
+
+   static tcp_latency(host: str, port: int, timeout_ms: int = 1000) -> float
+
+   static tcp_latency_avg(host: str, port: int, runs: int = 5, timeout_ms: int = 1000, delay_ms: int = 100) -> float
+
+
+moonspec.api.interface.libvirtd module
+======================================
+
+class moonspec.api.interface.libvirtd.LibvirtApi
+
+   Bases: "object"
+
+   static ro() -> libvirt.virConnect
+
+   static admin() -> libvirt.virConnect
+
+
+moonspec.api.interface.osqueryd module
+======================================
+
+class moonspec.api.interface.osqueryd.OSQueryApi
+
+   Bases: "object"
+
+   static supports() -> bool
+
+   static client() -> osquery.extensions.ExtensionManager.Client
+
+   static query(query: str) -> Optional[Union[Dict, List, float, int, bool]]
+
+
+moonspec.api.interface.ssl module
+=================================
+
+class moonspec.api.interface.ssl.SSLApi
+
+   Bases: "object"
+
+   static get_remote_x509(host: str, port: int, verify: bool = True, timeout_ms: int = 1000) -> Union[cryptography.x509.base.Certificate, None, bool]
+
+      Parameters:
+         * **host** –
+
+         * **port** –
+
+         * **verify** –
+
+         * **timeout_ms** –
+
+      Returns:
+         Instance of Certificate, None if certificate can’t be
+         retrieved, or False if verify=True, and certificate is
+         invalid.
+
+
+moonspec.api.interface.systemd module
+=====================================
+
+class moonspec.api.interface.systemd.SystemdApi
+
+   Bases: "object"
+
+   Interface to SystemD
+
+   static is_supported() -> bool
+
+      Check if SystemD is supported on this host
+
+      Returns:
+         True if supported, False otherwise
+
+   static show(service: str) -> Dict[str, Any]
+
+   static is_active(service_name: str) -> bool
+
+   static is_enabled(service_name: str) -> bool
+
+   static get_service_state(service_name: str) -> Union[None, str]

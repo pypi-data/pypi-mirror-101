@@ -1,0 +1,11 @@
+requests>=2.20.0
+cryptography>=3.2
+
+[libvirt_support]
+libvirt-python>=6.7.0
+
+[osquery_support]
+osquery>=3.0.6
+
+[systemd_logging]
+systemd>=0.16.1

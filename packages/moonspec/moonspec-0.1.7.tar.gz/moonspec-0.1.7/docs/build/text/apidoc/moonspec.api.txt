@@ -1,0 +1,308 @@
+moonspec.api package
+********************
+
+The *moonspec.api* package contains all public APIs useful for writing
+specifications.
+
+This package also exports global instance of *moonspec.api.Api* as var
+*api* for you to use in your spec files to access APIs various APIs
+useful for host testing using fluent interfaces, for example,
+*api.fs.hash_file(‘/example.txt’)*.
+
+**Basic import**
+
+This import contains all the basic members you might need to write
+your specifications.
+
+   from moonspec.api import (api, any_of, capture,
+                             spec, describe, expect,
+                             fact, historic_fact, maybe,
+                             apply_to_roles)
+
+class moonspec.api.Api
+
+   Bases: "object"
+
+   host: moonspec.api.interface.host.HostApi
+
+      Access information related to local host
+
+   fs: moonspec.api.interface.fs.FileSystemApi
+
+      Access information related to local file systems
+
+   net: moonspec.api.interface.inet.InetApi
+
+      Access network resources
+
+   ssl: moonspec.api.interface.ssl.SSLApi
+
+      Query various SSL related items
+
+moonspec.api.capture(key: Optional[str] = None, roles: Optional[List[str]] = None) -> Callable[[Callable[], None]], None]
+
+   Capture a fact to be used in tests or to be checked for state
+   changes when executing specifications with state persistence.
+
+   Parameters:
+      * **key** – globally unique identifier of a fact.
+
+      * **roles** – list of zero or more roles this fact should be
+        captured for.
+
+moonspec.api.spec(roles: Optional[List[str]] = None) -> Callable[[Callable[], None]], None]
+
+moonspec.api.describe(description: str) -> None
+
+moonspec.api.fact(key: str) -> moonspec.api.fact.Fact
+
+moonspec.api.historic_fact(key: str) -> moonspec.api.fact.HistoricFact
+
+moonspec.api.expect(value: Any, identity: Optional[str] = None) -> moonspec.api.subject.Subject
+
+moonspec.api.maybe(assertion: Callable, *assertion_args: Any) -> bool
+
+moonspec.api.any_of(*assertions: Callable, description: Optional[str] = None) -> None
+
+moonspec.api.apply_to_roles(*roles: str) -> None
+
+   Add given roles to all subsequent facts and specifications, in
+   addition to roles defined per-specification or per capture, within
+   the current file (module).
+
+   Parameters:
+      **roles** – one or more roles
+
+
+Subpackages
+===========
+
+* moonspec.api.interface package
+
+  * Submodules
+
+  * moonspec.api.interface.facter module
+
+  * moonspec.api.interface.fs module
+
+  * moonspec.api.interface.host module
+
+  * moonspec.api.interface.inet module
+
+  * moonspec.api.interface.libvirtd module
+
+  * moonspec.api.interface.osqueryd module
+
+  * moonspec.api.interface.ssl module
+
+  * moonspec.api.interface.systemd module
+
+
+Submodules
+==========
+
+
+moonspec.api.fact module
+========================
+
+class moonspec.api.fact.HistoricFact(key: str, value: Any)
+
+   Bases: "moonspec.api.subject.Subject"
+
+   A subject used to hold value of a fact from previous runs
+
+class moonspec.api.fact.Fact(key: str, value: Any)
+
+   Bases: "moonspec.api.subject.Subject"
+
+   A subject used to hold state indicator of a system - a fact
+
+   should_not_have_changed(missing_ok: bool = True) -> None
+
+      Verify if value of this fact has not changed over time :param
+      missing_ok: True if absent historic values should be ignored,
+      False otherwise. By default, True. :return: True if fact value
+      has not changed when compared to current value (self vs
+      historic)
+
+
+moonspec.api.subject module
+===========================
+
+class moonspec.api.subject.ComparatorExpectations(value)
+
+   Bases: "enum.Enum"
+
+   An enumeration.
+
+   ABSENT = 0
+
+   PRESENT = 1
+
+   EQUAL = 2
+
+   NOT_EQUAL = 3
+
+   NOT_CHANGED = 4
+
+   SELF_IS_NUMBER = 5
+
+   OTHER_IS_NUMBER = 6
+
+   LT = 7
+
+   GT = 8
+
+   LTE = 9
+
+   GTE = 10
+
+   EMPTY = 11
+
+   NOT_EMPTY = 12
+
+   CB = 13
+
+   TYPE = 14
+
+   ANY_OF = 15
+
+   NONE_OF = 16
+
+   CONTAIN_ANY_OF = 17
+
+   CONTAIN_NONE_OF = 18
+
+   CONTAIN_ALL_OF = 19
+
+   HAVE_KEYS = 20
+
+   NOT_HAVE_KEYS = 21
+
+   MATCH = 22
+
+   NOT_MATCH = 23
+
+   CONTAIN_MATCH = 24
+
+   NOT_CONTAIN_MATCH = 25
+
+   LENGTH = 26
+
+   NOT_LENGTH = 27
+
+exception moonspec.api.subject.SubjectExpectationException(identity: Optional[str], expected_value: Any, actual_value: Any, expectation: Optional[moonspec.api.subject.ComparatorExpectations] = None)
+
+   Bases: "RuntimeError"
+
+class moonspec.api.subject.Subject(value: Any, identity: Optional[str] = None)
+
+   Bases: "object"
+
+   should_be_present() -> None
+
+   should_be_absent() -> None
+
+   should_equal(other: Any) -> None
+
+   should_not_equal(other: Any) -> None
+
+   should_be_empty() -> None
+
+   should_not_be_empty() -> None
+
+   should_be_lt(other: Any) -> None
+
+   should_be_gt(other: Any) -> None
+
+   should_be_lte(other: Any) -> None
+
+   should_be_gte(other: Any) -> None
+
+   should_be_true() -> None
+
+   should_be_false() -> None
+
+   should_be_any_of(*args: Any) -> None
+
+   should_be_none_of(*args: Any) -> None
+
+   should_contain_any_of(*args: Any) -> None
+
+   should_contain_none_of(*args: Any) -> None
+
+   should_contain_all_of(*args: Any) -> None
+
+   should_have_keys(*args: str) -> None
+
+   should_not_have_keys(*args: str) -> None
+
+   should_match(pattern: Union[Pattern, str]) -> None
+
+   should_not_match(pattern: Union[Pattern, str]) -> None
+
+   should_contain_match(pattern: Union[Pattern, str]) -> None
+
+   should_not_contain_match(pattern: Union[Pattern, str]) -> None
+
+   should_have_length(length: int) -> None
+
+   should_not_have_length(length: int) -> None
+
+   should(matcher: Callable[[Any], bool]) -> None
+
+   to_be_present() -> None
+
+   to_be_absent() -> None
+
+   to_equal(other: Any) -> None
+
+   to_not_equal(other: Any) -> None
+
+   to_be_empty() -> None
+
+   to_not_be_empty() -> None
+
+   to_be_lt(other: Any) -> None
+
+   to_be_gt(other: Any) -> None
+
+   to_be_lte(other: Any) -> None
+
+   to_be_gte(other: Any) -> None
+
+   to(matcher: Callable[[Any], bool]) -> None
+
+   to_be_true() -> None
+
+   to_be_false() -> None
+
+   to_be_any_of(*args: Any) -> None
+
+   to_be_none_of(*args: Any) -> None
+
+   to_contain_any_of(*args: Any) -> None
+
+   to_contain_none_of(*args: Any) -> None
+
+   to_contain_all_of(*args: Any) -> None
+
+   to_have_keys(*args: str) -> None
+
+   to_not_have_keys(*args: str) -> None
+
+   to_match(pattern: Union[Pattern, str]) -> None
+
+   to_not_match(pattern: Union[Pattern, str]) -> None
+
+   to_contain_match(pattern: Union[Pattern, str]) -> None
+
+   to_not_contain_match(pattern: Union[Pattern, str]) -> None
+
+   to_have_length(length: int) -> None
+
+   to_not_have_length(length: int) -> None
+
+   lookup(key: str) -> moonspec.api.subject.Subject
+
+   at(index: int) -> moonspec.api.subject.Subject
