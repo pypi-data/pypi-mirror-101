@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: depcheck
+Version: 0.1.0
+Summary: Depcheck is a tool to check package dependencies between predefined layers to make sure that the application always complies with the Hexagonal Architecture principle of creating loosely coupled application components.
+Home-page: https://github.com/flix-tech/depcheck
+License: MIT
+Keywords: depcheck,Dependency Checker,Clean Architecture,Hexagonal Architecture
+Author: FlixMobility Tech
+Author-email: open-source@flixbus.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Provides-Extra: pyre
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: pydeps (>=1.9.13,<2.0.0)
+Project-URL: Documentation, https://github.com/flix-tech/depcheck
+Project-URL: Repository, https://github.com/flix-tech/depcheck
+Description-Content-Type: text/markdown
+
+![Depcheck: Dependency Checker](/docs/.img/depcheck_logo.jpg)
+
+[![pipeline status](https://git.flix.tech/network/optimization/depcheck/badges/master/pipeline.svg)](https://git.flix.tech/network/optimization/depcheck/-/commits/master)
+
+Depcheck is a tool to check package-dependencies between predefined layers. In the configuration file(`.depcheck.yml`) located in the project root, which packages belong to which layers and allowed dependencies between layers are configurable. In this way, you can make sure that the application always complies with the <a href="https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)">Hexagonal Architecture</a> principle of creating loosely coupled application components.
+
+## Usage
+Let's say you have a project with the directory structure below:
+```text
+project_directory
+    root_package
+        package-1
+        package-2
+        main.py
+    README.md
+    .gitignore
+    .depcheck.yml
+```
+- Navigate to the `project_directory` then run `depcheck` for your project:
+    ```shell
+    depcheck root_package
+    ```
+- As you can see in the directory structure above, we have `.depcheck.yml` configuration file in the project directory. If you would like to change the path of the configuration file, use `-f` or `--file` argument:
+    ```shell
+    depcheck root_package -f config/customized_depcheck.yml
+    ```
+
