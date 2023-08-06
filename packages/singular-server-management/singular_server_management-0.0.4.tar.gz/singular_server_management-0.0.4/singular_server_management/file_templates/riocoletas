@@ -1,0 +1,26 @@
+server {
+    listen 8006;
+    server_name host;
+    client_max_body_size 250M;
+
+    location = /favicon.ico {
+        access_log off;
+        log_not_found off;
+    }
+
+    location /static/ {
+        alias /var/www/django_apps/riocoletas/deployment/riocoletas/collected_static/;
+    }
+
+    location /media {
+        alias /var/www/django_apps/riocoletas/riocoletas/media_root/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn_riocoletas.sock;
+        client_max_body_size 100m;
+        proxy_read_timeout 3600s;
+        proxy_connect_timeout 75s;
+    }
+}
