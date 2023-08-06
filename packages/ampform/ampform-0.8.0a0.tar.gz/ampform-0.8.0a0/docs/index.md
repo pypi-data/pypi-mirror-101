@@ -1,0 +1,45 @@
+# Welcome to AmpForm!
+
+```{title} Welcome
+
+```
+
+[![PyPI package](https://badge.fury.io/py/ampform.svg)](https://pypi.org/project/ampform)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/ampform)](https://pypi.org/project/ampform)
+[![Test coverage](https://codecov.io/gh/ComPWA/ampform/branch/main/graph/badge.svg)](https://codecov.io/gh/ComPWA/ampform)
+
+<!-- [![Codacy Badge](https://api.codacy.com/project/badge/Grade/***](https://www.codacy.com/gh/ComPWA/ampform) -->
+
+````{margin}
+```{tip}
+For an overview of upcoming releases and planned functionality, see
+[here](https://github.com/ComPWA/ampform/milestones?direction=asc&sort=title&state=open).
+```
+````
+
+## Table of Contents
+
+```{toctree}
+---
+maxdepth: 2
+---
+install
+usage
+references
+API <api/ampform>
+Changelog <https://github.com/ComPWA/ampform/releases>
+Develop <https://pwa.readthedocs.io/develop.html>
+```
+
+- {ref}`Python API <modindex>`
+- {ref}`General Index <genindex>`
+- {ref}`Search <search>`
+
+```{toctree}
+---
+caption: Related projects
+hidden:
+---
+TensorWaves <http://tensorwaves.readthedocs.io>
+PWA Pages <http://pwa.readthedocs.io>
+```
