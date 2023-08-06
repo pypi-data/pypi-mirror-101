@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: RobotRaconteurCompanion
+Version: 0.1.7
+Summary: Robot Raconteur Python Companion Library
+Home-page: https://github.com/robotraconteur/robotraconteur_companion_python
+Author: John Wason
+Author-email: wason@wasontech.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: RobotRaconteur
+Requires-Dist: numpy
+Requires-Dist: PyYAML
+Requires-Dist: setuptools
+Requires-Dist: importlib-resources
+Requires-Dist: general-robotics-toolbox
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+
+UNKNOWN
+
+
