@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "exact_cover"
+version = "0.5.0"
+description = "Solve exact cover problems"
+readme = "README.md"
+authors = ["Moy Easwaran"]
+maintainers = ["Jack Grahl <jack.grahl@gmail.com>"]
+homepage = "https://github.com/jwg4/exact_cover"
+repository = "https://github.com/jwg4/exact_cover"
+license = "GPL-2.0-only"
+include = [
+    {path = "src/*.c", format = "sdist"},
+    {path = "src/*.h", format = "sdist"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.7.1"
+numpy = "^1.20"
+setuptools = "^51.1.2"
+
+[tool.poetry.dev-dependencies]
+hypothesis = "^5.41.3"
+pytest = "^6.1.2"
+flake8 = "^3.8.4"
+
+[tool.poetry.build]
+script = "build.py"
+
+[tool.poetry.scripts]
+test = 'run_tests:test'
+doctest = 'run_tests:run_doctest'
+
+[build-system]
+requires = ["setuptools", "numpy>=1.19.4,<2.0", "poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
