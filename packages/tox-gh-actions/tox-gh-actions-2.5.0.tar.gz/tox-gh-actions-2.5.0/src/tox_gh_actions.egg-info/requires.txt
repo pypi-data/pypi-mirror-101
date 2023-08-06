@@ -1,0 +1,16 @@
+tox>=3.12
+
+[:python_version < "3.5"]
+typing
+
+[testing]
+flake8<4,>=3
+pytest<6,>=4.0.0
+pytest-cov<3,>=2
+pytest-mock<3,>=2
+
+[testing:platform_python_implementation == "CPython" and python_version >= "3.6"]
+black
+
+[testing:python_version >= "3.5"]
+pytest-randomly>=3
