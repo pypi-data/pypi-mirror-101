@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.py
+imagepro/__init__.py
+imagepro/_version.py
+imagepro/main_example.py
+imagepro.egg-info/PKG-INFO
+imagepro.egg-info/SOURCES.txt
+imagepro.egg-info/dependency_links.txt
+imagepro.egg-info/requires.txt
+imagepro.egg-info/top_level.txt
+imagepro/core/__init__.py
+imagepro/core/resize_images.py
+imagepro/core/save_to_s3.py
+imagepro/ports/__init__.py
+imagepro/ports/connect_s3.py
