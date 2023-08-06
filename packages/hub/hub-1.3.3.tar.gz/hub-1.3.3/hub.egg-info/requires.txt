@@ -1,0 +1,17 @@
+click<8,>=6.7
+numpy<2,>=1.17
+requests<3,>=2
+fsspec<1,>=0.8
+gcsfs<0.7,>=0.6.2
+s3fs<0.5.2,==0.4.2
+boto3==1.17.43
+lz4<4,>=3
+zarr<2.8,>=2.4
+tqdm<5,>=4.1
+azure-storage-blob<13,>=12
+pathos<0.3,>=0.2
+humbug<0.2,>=0.1.14
+Pillow>=6
+msgpack>=0.6
+psutil>=5.8
+cachey>=0.2.1
