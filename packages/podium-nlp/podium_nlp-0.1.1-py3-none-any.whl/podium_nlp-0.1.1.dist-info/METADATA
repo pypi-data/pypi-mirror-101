@@ -1,0 +1,98 @@
+Metadata-Version: 2.1
+Name: podium-nlp
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: https://github.com/TakeLab/podium
+Author: TakeLab
+Author-email: takelab@fer.hr
+License: BSD-3
+Download-URL: https://github.com/TakeLab/podium/tags
+Keywords: podium nlp natural-language-processing machine learning
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Text Processing
+Requires-Python: >=3.6
+Requires-Dist: dill
+Requires-Dist: nltk (<3.6,>=3.0)
+Requires-Dist: paramiko
+Requires-Dist: requests
+Requires-Dist: scikit-learn
+Requires-Dist: tqdm
+Requires-Dist: numpy (<=1.19) ; python_version < "3.7"
+Requires-Dist: pandas (<1.2.0) ; python_version < "3.7"
+Requires-Dist: scipy (<1.6.0) ; python_version < "3.7"
+Requires-Dist: dataclasses ; python_version < "3.7"
+Requires-Dist: numpy ; python_version >= "3.7"
+Requires-Dist: pandas ; python_version >= "3.7"
+Requires-Dist: scipy ; python_version >= "3.7"
+Provides-Extra: datasets
+Requires-Dist: conllu ; extra == 'datasets'
+Requires-Dist: datasets ; extra == 'datasets'
+Requires-Dist: pyarrow (>=1.0.0) ; extra == 'datasets'
+Requires-Dist: spacy ; extra == 'datasets'
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-mock ; extra == 'dev'
+Requires-Dist: urllib3 ; extra == 'dev'
+Requires-Dist: spacy ; extra == 'dev'
+Requires-Dist: spacy-lookups-data ; extra == 'dev'
+Requires-Dist: conllu ; extra == 'dev'
+Requires-Dist: datasets ; extra == 'dev'
+Requires-Dist: pyarrow (>=1.0.0) ; extra == 'dev'
+Requires-Dist: sacremoses ; extra == 'dev'
+Requires-Dist: clean-text ; extra == 'dev'
+Requires-Dist: truecase ; extra == 'dev'
+Requires-Dist: rake-nltk ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: docformatter ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: nbformat ; extra == 'docs'
+Requires-Dist: datasets ; extra == 'docs'
+Provides-Extra: quality
+Requires-Dist: black ; extra == 'quality'
+Requires-Dist: flake8 ; extra == 'quality'
+Requires-Dist: isort ; extra == 'quality'
+Requires-Dist: docformatter ; extra == 'quality'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+Requires-Dist: pytest-mock ; extra == 'tests'
+Requires-Dist: urllib3 ; extra == 'tests'
+Requires-Dist: spacy ; extra == 'tests'
+Requires-Dist: spacy-lookups-data ; extra == 'tests'
+Requires-Dist: conllu ; extra == 'tests'
+Requires-Dist: datasets ; extra == 'tests'
+Requires-Dist: pyarrow (>=1.0.0) ; extra == 'tests'
+Requires-Dist: sacremoses ; extra == 'tests'
+Requires-Dist: clean-text ; extra == 'tests'
+Requires-Dist: truecase ; extra == 'tests'
+Requires-Dist: rake-nltk ; extra == 'tests'
+Provides-Extra: torch
+Requires-Dist: torch ; extra == 'torch'
+
+
+TakeLab Podium is an open source library for natural language processing.
+
+Podium accelerates data loading, preprocessing & batching to enable faster development of NLP models.
+See http://takelab.fer.hr/podium/ for complete documentation.
+
+
