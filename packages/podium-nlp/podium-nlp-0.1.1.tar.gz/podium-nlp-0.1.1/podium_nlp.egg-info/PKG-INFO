@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: podium-nlp
+Version: 0.1.1
+Summary: UNKNOWN
+Home-page: https://github.com/TakeLab/podium
+Author: TakeLab
+Author-email: takelab@fer.hr
+License: BSD-3
+Download-URL: https://github.com/TakeLab/podium/tags
+Description: 
+        TakeLab Podium is an open source library for natural language processing.
+        
+        Podium accelerates data loading, preprocessing & batching to enable faster development of NLP models.
+        See http://takelab.fer.hr/podium/ for complete documentation.
+        
+Keywords: podium nlp natural-language-processing machine learning
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Text Processing
+Requires-Python: >=3.6
+Provides-Extra: torch
+Provides-Extra: datasets
+Provides-Extra: docs
+Provides-Extra: quality
+Provides-Extra: tests
+Provides-Extra: dev
