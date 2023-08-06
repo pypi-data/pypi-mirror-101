@@ -1,0 +1,24 @@
+
+	<script type="text/javascript">
+		jQuery.fn.responsiveTabs = function() {
+	    var container = this;
+	    container
+	        .on('show.bs.collapse', '.panel-collapse', function() {
+	            jQuery(this).addClass('active')
+	                .siblings('.panel-collapse').removeClass('active').collapse('hide');
+	            container.find('.nav-tabs a[href="#' + jQuery(this).attr('id') + '"]').parent().addClass('active')
+	                .siblings().removeClass('active');
+	        })
+	        .on('show.bs.tab', '.nav-tabs a', function() {
+	            jQuery(jQuery(this).attr('href')).addClass('in')
+	                .siblings('.tab-pane').removeClass('in');
+	        });
+		};
+
+		// Instanciation
+		jQuery(document).ready(function() {
+		    jQuery('.responsive-tabs').responsiveTabs();
+		});
+	</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
