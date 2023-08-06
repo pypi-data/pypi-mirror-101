@@ -1,0 +1,221 @@
+Metadata-Version: 2.1
+Name: tinybird-cli
+Version: 1.0.0b30
+Summary: Tinybird Command Line Tool
+Home-page: https://docs.tinybird.co/cli.html
+Author: Tinybird
+Author-email: support@tinybird.co
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6, <3.10
+Description-Content-Type: text/x-rst
+Requires-Dist: click (==7.0)
+Requires-Dist: humanfriendly (==8.2)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: tabulate (==0.8.3)
+Requires-Dist: toposort (==1.5)
+Requires-Dist: tornado (==5.1.1)
+Requires-Dist: wheel
+Provides-Extra: bigquery
+Requires-Dist: google-api-python-client (==2.0.2) ; extra == 'bigquery'
+Requires-Dist: google-auth-httplib2 (==0.1.0) ; extra == 'bigquery'
+Requires-Dist: google-auth (==1.27.1) ; extra == 'bigquery'
+Requires-Dist: google-cloud-bigquery (==2.11.0) ; extra == 'bigquery'
+Requires-Dist: google-cloud-storage (==1.36.2) ; extra == 'bigquery'
+Requires-Dist: gsutil (==4.58) ; extra == 'bigquery'
+Requires-Dist: urllib3 (<1.25.10,>=1.25.4) ; extra == 'bigquery'
+Provides-Extra: snowflake
+Requires-Dist: chardet (<4,>=3.0.2) ; extra == 'snowflake'
+Requires-Dist: google-api-python-client (==2.0.2) ; extra == 'snowflake'
+Requires-Dist: google-auth-httplib2 (==0.1.0) ; extra == 'snowflake'
+Requires-Dist: google-auth (==1.27.1) ; extra == 'snowflake'
+Requires-Dist: google-cloud-storage (==1.36.2) ; extra == 'snowflake'
+Requires-Dist: gsutil (==4.58) ; extra == 'snowflake'
+Requires-Dist: oauth2client (==3.0.0) ; extra == 'snowflake'
+Requires-Dist: pyOpenSSL (<20.0.0,>=16.2.0) ; extra == 'snowflake'
+Requires-Dist: snowflake-connector-python (==2.3.8) ; extra == 'snowflake'
+
+
+Tinybird CLI
+============
+
+The Tinybird command-line tool allows you to use all the Tinybird functionality directly from the command line. Additionally, it includes several functions to create and manage data projects easily.
+
+Changelog
+---------
+
+1.0.0b30
+********
+
+- Improve server error handling and sort datasource's dependencies.
+- Fix the Job tracking in cli operations when the Job enters cancelled status.
+- Fix returning an error if there are wrong options when creating a data source
+
+
+1.0.0b29
+********
+
+- Added support for Python 3.9
+
+
+1.0.0b28
+********
+
+- Changed ``--skip-table-check`` error message to indicate how to use the flag
+- Fixed checking Content-Type header
+
+
+1.0.0b27
+********
+
+- Added flag ``--skip-table-check`` to skip materialized view and table checks
+
+1.0.0b26
+********
+
+- Fix regression tests execution.
+
+1.0.0b25
+********
+
+- Added support for job cancellation `tb job cancel <job_id>`
+
+1.0.0b24
+********
+
+- Added support for `ingesting data from Snowflake <https://docs.tinybird.co/cli/snowflake.html>`_
+
+
+1.0.0b23
+********
+
+- Added support for truncate operations `tb datasource truncate <datasource_name>`
+- Added support for replace operations `tb datasource replace <datasource_name> <URL or file>`
+- Added support for replace with condition operations `tb datasource replace <datasource_name> <URL or file> --sql-condition="country='ES'"`
+- Added support for `ingesting data from BigQuery <https://docs.tinybird.co/cli/bigquery.html>`_
+- Fix --wait option on populate
+- Report progress bar when waiting for a populate job to finish
+- Pull also resources with prefixes
+- Disable detecting TOKEN envvar
+- Fix auth from other commands
+
+
+1.0.0b22
+********
+
+- Add support for ``ENGINE_SETTINGS`` and ``ENGINE_TTL``
+
+
+1.0.0b21
+********
+
+- Added population time to populate pipe option. It returns the actual population time from the population job when debug is used along with populate and wait options.
+
+1.0.0b20
+********
+
+- Add missing dependency. It fixes version 1.0.0b19
+
+1.0.0b19
+********
+
+- Remove red color on pull (#847) (!1243)
+- Change color palette feedback (!1243)
+- When doing a query against a datasource that doesn't exist, the CLI returns a proper error (#846) (!1243)
+- Fix 'blog_log' key error when pulling (#656) (!1243)
+- Make tb commands async (!1243)
+- Display a warning if there is a more recent version (#950) (!1243)
+
+1.0.0b18
+********
+
+- Fix sql command (!1264)
+
+1.0.0b17
+********
+
+- Fix auth CLI workspace commands (!1256)
+
+1.0.0b16
+********
+
+- Add CLI workspace commands (!1246)
+
+1.0.0b15
+********
+
+- Support for CSV and JSON output to "sql" CLI command
+- Fixed ``datasource rm`` command not working when there is a MV pointing to the datasource being removed
+
+
+1.0.0b14
+********
+
+- Added missed dependency. It fixes version 1.0.0b13.  
+
+
+1.0.0b13
+********
+
+- Added wait option to push command for waiting the populate job to finish.
+- Fixed appending large files (more than 2GB). Now, files are uploaded using multipart and without loading the whole file in memory. (!833)(!1221)
+- Added feedback about appended rows, total rows and errors to append command output  (!1205)
+
+1.0.0b12
+********
+
+- Added support for `ENGINE options to match the API parameters <https://docs.tinybird.co/api-reference/datasource-api.html#engines-parameters-and-options>`_
+- Deprecating ENGINE_FULL, SORTING_KEY, PRIMARY_KEY, SAMPLING_KEY, and TTL options.
+- Added job commands to list jobs and see job details
+- Added pipe_stats command
+- New set of tokens are created per prefix
+- Fixed drop-prefix to remove resources in the right order
+
+1.0.0b11
+********
+
+- Better error reporting when a table for a data source does not exist (!1020)
+
+1.0.0b10
+********
+
+- Better error reporting when pushing a not supported file extension (!966)
+
+1.0.0b9
+*******
+
+- Fix parsing schemas in datasource files when using aggregate function (!956)
+
+1.0.0b8
+*******
+
+- Fix CLI error when pushing fixtures (!938)
+
+2020-08-28 1.0.0b7
+******************
+
+- Support for Python versions 3.6, 3.7 and 3.8 for both MacOSX and Linux
+
+2020-08-26: 1.0.0b6
+*******************
+
+- Fixes saving pipe descriptions on pull and push
+
+
+2020-08-24: 1.0.0b5
+*******************
+- Fixes appending a datasource from a URL
+
+
+2020-08-10: 1.0.0b4
+*******************
+- Fixes the version parser.
+
+2020-08-10: 1.0.0b3
+*******************
+- Limited the amount of rows fetched when running ``tb sql`` to 100. Added ``--row-limit``.
+- Fixed warning when pipes use internal tables like ``datasources_ops_log``
+- Raise an error when ``INSERT`` sql statement is used.
+
+
