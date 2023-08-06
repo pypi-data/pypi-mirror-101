@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: emojisearcher
+Version: 0.4.0
+Summary: Look up emojis by text and copy them to the clipboard.
+Home-page: https://github.com/bbelderbos/emojisearcher
+License: MIT
+Keywords: emoji,search
+Author: Bob Belderbos
+Author-email: bobbelderbos@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: emoji (>=1.2.0,<2.0.0)
+Requires-Dist: pyperclip (>=1.8.2,<2.0.0)
+Project-URL: Repository, https://github.com/bbelderbos/emojisearcher
+Description-Content-Type: text/markdown
+
+## Emoji Searcher
+
+Automate the boring stuff: I have been googling emojis and manually copying them to my clipboard.
+
+So it was time to write a script to look up emojis by text from the command line and copy them to the clipboard.
+
+By default it takes the first match in case there are multiple matching emojis. However if you append a dot (.) to a word you get to choose which emoji gets copied.
+
+### How to run it
+
+```
+git clone git@github.com:bbelderbos/emojisearcher.git
+cd emojisearcher
+poetry install
+poetry run emo
+```
+
+(New to `poetry`? [Start here](https://python-poetry.org/docs/).)
+
+You can also make a shell alias:
+
+```
+# .bashrc
+alias emo="cd $HOME/code/emojisearcher && poetry run emo"
+```
+
+And to run the tests:
+
+```
+poetry run pytest
+```
+
+### Other ways
+
+While sharing this on social media I learned about some useful OS shortcuts to retrieve emojis, [thanks Matt!](https://twitter.com/bbelderbos/status/1374414940988043264)
+
