@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: Flaskel
+Version: 2.2.0
+Summary: Skeleton for flask applications
+Home-page: https://github.com/cs91chris/flaskel
+Author: cs91chris
+Author-email: cs91chris@voidbrain.me
+License: MIT
+Platform: any
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Requires-Python: >3.6
+Requires-Dist: Flask (==1.1.*)
+Requires-Dist: Flask-APScheduler (==1.12.*)
+Requires-Dist: Flask-Caching (==1.10.*)
+Requires-Dist: Flask-CloudflareRemote (==1.1.*)
+Requires-Dist: Flask-Cors (==3.0.*)
+Requires-Dist: Flask-ErrorsHandler (==4.0.*)
+Requires-Dist: Flask-HTTPAuth (==4.2.*)
+Requires-Dist: Flask-JWT-Extended (==4.1.*)
+Requires-Dist: Flask-Limiter (==1.4.*)
+Requires-Dist: Flask-Logify (==2.2.3)
+Requires-Dist: Flask-Mail (==0.9.*)
+Requires-Dist: Flask-ResponseBuilder (==2.0.*)
+Requires-Dist: Flask-SQLAlchemy (==2.5.*)
+Requires-Dist: Flask-TemplateSupport (==2.0.*)
+Requires-Dist: aiohttp (==3.7.*)
+Requires-Dist: argon2-cffi (==20.1.*)
+Requires-Dist: coverage (==5.3.*)
+Requires-Dist: nest-asyncio (==1.5.*)
+Requires-Dist: psutil (==5.8.*)
+Requires-Dist: pytest (==6.2.*)
+Requires-Dist: pytest-cov (==2.11.*)
+Requires-Dist: python-dateutil (==2.8.*)
+Requires-Dist: python-decouple (==3.4.*)
+Requires-Dist: PyYAML (==5.4.*)
+Requires-Dist: requests (==2.25.*)
+Requires-Dist: jsonschema (==3.2.*)
+Requires-Dist: simplejson (==3.*)
+Requires-Dist: sqlalchemy-schemadisplay (==1.3.*)
+Requires-Dist: user-agents (==2.2.*)
+Requires-Dist: webargs (==7.0.*)
+Requires-Dist: redis (==3.5.*)
+Requires-Dist: hiredis (==1.1.*)
+
+UNKNOWN
+
+
