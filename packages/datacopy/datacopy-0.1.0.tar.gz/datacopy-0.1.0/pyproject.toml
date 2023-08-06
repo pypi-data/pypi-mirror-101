@@ -1,0 +1,61 @@
+[tool.poetry]
+authors = ["Ken Van Haren <kenvanharen@gmail.com>"]
+description = "dcp - Data Copy"
+license = "BSD-3-Clause"
+name = "datacopy"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+PyYAML = "^5.4.1"
+SQLAlchemy = "^1.4.3"
+cleo = "^0.8.1"
+loguru = "^0.5.3"
+networkx = "^2.5"
+openmodel = "^0.1.0"
+pandas = "^1.2.3"
+python = "^3.7.4"
+python-dateutil = "^2.8.1"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+flake8 = "^3.8.1"
+ipython = "^7.13.0"
+isort = "^4.3.21"
+mkdocs = "^1.1.2"
+mkdocs-material = "^6.1.7"
+mypy = "^0.770"
+mysqlclient = "^2.0.3"
+# openmodel = {path = "../openmodel/python", develop = true}
+pre-commit = "^2.1.1"
+psycopg2-binary = "2.8.4"
+pyarrow = "^3.0.0"
+pydeps = "^1.9.0"
+pytest = "^4.6"
+pytest-cov = "^2.8.1"
+
+[tool.poetry.scripts]
+snapflow = "datacopy.cli:app"
+
+[tool.black]
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
+use_parentheses = true
+
+[build-system]
+build-backend = "poetry.masonry.api"
+requires = ["poetry>=0.12"]
