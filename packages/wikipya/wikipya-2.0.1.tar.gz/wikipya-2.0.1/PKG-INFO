@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: wikipya
+Version: 2.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/jDan735/wikipya
+Author: Daniel Zakharov
+Author-email: daniel734@bk.ru
+License: MIT
+Description: # 📚 wikipya
+        A simple async python library for search pages and/or images in Wikipedia.
+        
+        ## 🚀 Install
+        To install, run this code:
+        ```
+        pip install wikipya
+        ```
+        
+        ## 🛠 Usage
+        ```python
+        # Import wikipya
+        from wikipya.aiowiki import Wikipya
+        
+        # Create Wikipya object with wikipedia methods
+        wiki = Wikipya("en")
+        
+        # Get a pages list from search
+        search = wiki.search("test")
+        
+        # Get a pages list from opensearch
+        opensearch = wiki.opensearch("test")
+        
+        # Get page class
+        # You can give to wiki.page() search item, title of page, page id
+        
+        # Search item (supported ONLY wiki.search)
+        page = wiki.page(search[0])
+        
+        # Page title
+        page = wiki.page("git")
+        
+        # Pageid
+        page = wiki.page(800543)
+        
+        print(page.html)       # Get page html
+        print(page.soup)       # Get parsed html (Beatiful Soup 4)
+        print(page.parsed)     # Get html cleared of link, and other non-formating tags 
+        print(page.fixed)      # [RU/UK] Свойство, в котором исправлены спорные слова (В/НА, Беларусь)
+        
+        # Get page image
+        image = page.image()
+        
+        print(image.source)    # Image url
+        print(image.width)     # Image width
+        print(image.height)    # Image height
+        ```
+        
+Keywords: api wikipedia python
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3
+Description-Content-Type: text/markdown
