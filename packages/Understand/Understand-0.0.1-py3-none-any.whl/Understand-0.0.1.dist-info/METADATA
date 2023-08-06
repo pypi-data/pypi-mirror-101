@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: Understand
+Version: 0.0.1
+Summary: A package to detect intent from text based on training.
+Home-page: https://github.com/Ulto85/horoscope
+Author: Robowolf
+Author-email: ultoulto4@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/Ulto85/horoscope/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Understand:
+## Description:
+Understand is a tool used to easily recognize intent based on training data. Visit the [site](https://ulto4.pythonanywhere.com) for more details
+
+## Basic Usage:
+```
+from understand import Understand
+model = Understand() #Initialize the model
+model.fit() #Fits model based off training.json
+model.predict('text') to predict text
+
+```
+
