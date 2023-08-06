@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "oronium"
+version = "0.1.3"
+description = "Webbot selenium driver for testing openremote"
+authors = ["Michal Rutka <michal@openremote.io>"]
+maintainers = ["OpenRemote <developers@openremote.io>"]
+repository = "https://github.com/aktur/webbot"
+keywords = ['webbot', 'selenium', 'chromium']
+classifiers = ["Topic :: Home Automation ", "Topic :: Utilities "]
+license = "AGPLv3"
+packages = [
+    { include="webbot", from="." },
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+selenium = "^3.141.0"
+
+[tool.poetry.dev-dependencies]
+behave = "^1.2.6"
+black = "^20.8b1"
+pre-commit = "^2.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+oronium = 'webbot.webbot:main'
+
+[tool.black]
+skip-string-normalization = true
+line-length = 79
