@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "zemfrog-theme"
+version = "1.0.1"
+description = "Zemfrog theme - to register your own theme template!"
+authors = ["aprilahijriyan <hijriyan23@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["zemfrog"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Framework :: Flask",
+    # "Framework :: Zemfrog",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+zemfrog = "^5.0.1"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.urls]
+
+Github = "https://github.com/zemfrog/zemfrog-theme"
+"Issue Tracker" = "https://github.com/zemfrog/zemfrog-theme/issues"
+Donation = "https://www.patreon.com/aprilahijriyan"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
