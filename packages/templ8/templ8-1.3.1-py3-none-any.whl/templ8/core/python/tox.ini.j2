@@ -1,0 +1,29 @@
+[tox]
+envlist = 
+    {{  tox_envlist | join("\n") | indent(4) }}
+
+[testenv]
+deps = 
+    .[tests]
+    pytest
+    pytest-cov
+    
+commands = 
+    coverage run --include {{ package_name }}/* -m    \
+    pytest --doctest-modules {{ package_name }}
+    {%- if pytest_ignore_glob %}
+    {{ "\\" | pad_in(3) }}
+    --ignore-glob={{pytest_ignore_glob}}
+    {% endif %}
+    
+
+    coverage run --include {{ package_name }}/* -a -m \
+    pytest
+    {%- if pytest_ignore_glob %}
+    {{ "\\" | pad_in(28) }}
+    --ignore-glob={{pytest_ignore_glob}}
+    {% endif %}
+
+
+    coverage report
+    coverage xml

@@ -1,0 +1,9 @@
+project: {{ project_name }}
+version: {{ version }}
+author: {{ author }}
+verbose_name: {{ verbose_name }}
+html_title: {{ verbose_name }} 
+github_url: {{ repository }}
+{% if is_pypi_package %}
+apidoc_module_dir: {{ package_name }}
+{% endif %}
