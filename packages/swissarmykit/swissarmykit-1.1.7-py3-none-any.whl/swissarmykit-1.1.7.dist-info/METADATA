@@ -1,0 +1,78 @@
+Metadata-Version: 2.1
+Name: swissarmykit
+Version: 1.1.7
+Summary: Swiss Army Kit
+Home-page: https://github.com/pypa/swissarmykit
+Author: Will Nguyen
+Author-email: will.ng.nguyen@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp
+Requires-Dist: slack-sdk
+Requires-Dist: fake-useragent
+Requires-Dist: beautifulsoup4
+Requires-Dist: mongoengine
+Requires-Dist: redis
+Requires-Dist: peewee
+Requires-Dist: requests
+Requires-Dist: openpyxl
+Requires-Dist: validate-email
+Requires-Dist: validators
+Requires-Dist: PyExecJS
+Requires-Dist: Pillow
+Requires-Dist: pandas
+Requires-Dist: scikit-image
+Requires-Dist: texttable
+Requires-Dist: wordcloud
+Requires-Dist: nltk
+Requires-Dist: usaddress
+Requires-Dist: us
+Requires-Dist: pyap
+Requires-Dist: brotli
+Requires-Dist: cfscrape
+Requires-Dist: Faker
+Requires-Dist: google-auth-oauthlib
+Requires-Dist: google-auth
+
+# README #
+
+
+# Start project
+
+    Usage: 
+        python -c "from swissarmykit.admin import setup; setup.init()
+
+# Library for
+    global appConfig
+        connect to mongodb.
+        path file, html
+
+
+    Multiple tools to speed up dev.
+    Wrapper for all common use
+
+
+
+-----
+
+Install C++ build tool
+https://visualstudio.microsoft.com/downloads/
+
+
+On Linux or macOS:
+    pip install -U pip
+
+On Windows:  
+    python -m pip install -U pip
+
+On Mac, need to enable 
+    xcode-select --install          to import setuptools success.
+
+
+    willnguyen7
+    By Will Nguyen (will.ng.nguyen@gmail.com)
+
