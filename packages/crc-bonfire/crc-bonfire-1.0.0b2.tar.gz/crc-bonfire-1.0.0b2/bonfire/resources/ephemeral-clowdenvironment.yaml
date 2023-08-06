@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: ephemeral-clowdenvironment
+
+objects:
+- apiVersion: cloud.redhat.com/v1alpha1
+  kind: ClowdEnvironment
+  metadata:
+    name: ${ENV_NAME}
+  spec:
+    targetNamespace: ${NAMESPACE}
+    resourceDefaults:
+      limits:
+        cpu: 300m
+        memory: 256Mi
+      requests:
+        cpu: 30m
+        memory: 128Mi
+    providers:
+      web:
+        port: 8000
+        mode: operator
+      featureFlags:
+        mode: none
+      metrics:
+        port: 9000
+        mode: operator
+        path: "/metrics"
+      kafka:
+        namespace: default
+        clusterName: my-cluster
+        mode: local
+      db:
+        image: "registry.redhat.io/rhel8/postgresql-12:1-36"
+        mode: local
+      logging:
+        mode: none
+      objectStore:
+        mode: minio
+      inMemoryDb:
+        mode: redis
+parameters:
+- name: NAMESPACE
+  description: Namespace that ClowdEnvironment components will be deployed to
+- name: ENV_NAME
+  description: Name of the ClowdEnvironment
+  required: true
