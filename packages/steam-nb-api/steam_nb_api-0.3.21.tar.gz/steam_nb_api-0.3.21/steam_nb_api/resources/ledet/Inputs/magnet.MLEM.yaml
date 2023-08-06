@@ -1,0 +1,24 @@
+I: 330                  # A             Magnet current
+T: 4.2                  # K             Magnet temperature
+type: solenoid          # -             Magnet winding type
+flagIron: 0             # -             1 - iron yoke or shielding, 0 - no iron
+flagSelfField: 0        # -             1 - correction for self-field, 0 - no correction
+blocks:                 # -             block (or coils) of magnet 
+  Main2:              # -             block (or coil) name
+    A1: 0.090000        # m             smaller radial dimension of solenoid
+    A2: 0.111000        # m             larger radial dimension of solenoid
+    B1: 0.0             # m             smaller axial dimension of solenoid
+    B2: 1.6005          # m             larger axial dimension of solenoid
+    wire: W1            # -             wire name - name must coresponds existing wire.name.yaml
+  Trim2A:
+    A1: 0.111000
+    A2: 0.12885
+    B1: 1.539450
+    B2: 1.60045
+    wire: W1
+  Trim2B:
+    A1: 0.111000
+    A2: 0.12885
+    B1: 0.00000
+    B2: 0.03960
+    wire: W1

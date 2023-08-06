@@ -1,0 +1,43 @@
+flagIron: 1
+flagSelfField: 1
+columnsXY: 
+        - 4
+        - 5
+columnsBxBy:
+        - 6
+        - 7
+flagPlotMTF: 0
+flag_calculateInductanceMatrix: 0
+flag_useExternalInitialization: 0
+flag_initializeVar: 0
+flag_fastMode: 1
+flag_controlCurrent: 0
+flag_automaticRefinedTimeStepping: 1
+flag_IronSaturation: 1
+flag_InvertCurrentsAndFields: 0
+flag_ScaleDownSuperposedMagneticField: 1
+flag_HeCooling: 2
+fScaling_Pex: 1
+fScaling_MR: 1
+flag_scaleCoilResistance_StrandTwistPitch: 2
+flag_separateInsulationHeatCapacity: 0
+flag_ISCL: 0
+fScaling_Mif: 1
+fScaling_Mis: 1
+flag_StopIFCCsAfterQuench: 0
+flag_StopISCCsAfterQuench: 0
+tau_increaseRif: 0.005
+tau_increaseRis: 0.01
+fScaling_RhoSS: 1.09
+maxVoltagePC: 10
+minCurrentDiode: 0
+flag_symmetricGroundingEE: 0
+flag_removeUc: 0
+BtX_background: 0
+BtY_background: 0
+flag_showFigures: 0
+flag_saveFigures: 0
+flag_saveMatFile: 1
+flag_saveTxtFiles: 0
+flag_generateReport: 1
+flag_hotSpotTemperatureInEachGroup: 0
