@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: release-mgr
+Version: 0.1.4
+Summary: A simple tool for managing software releases on GitHub.
+Author: Mathew Robinson
+Author-email: mathew@chasinglogic.io
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
