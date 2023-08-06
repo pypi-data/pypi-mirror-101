@@ -1,0 +1,12 @@
+packaging
+tomlkit
+setuptools>=46.4.0
+wheel
+deprecation
+
+[test]
+build
+coverage
+pytest
+pytest-cov
+pytest-mock
