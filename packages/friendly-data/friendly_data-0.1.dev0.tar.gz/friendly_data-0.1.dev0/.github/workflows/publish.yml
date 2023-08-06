@@ -1,0 +1,42 @@
+name: Publish docs
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "testing/**"
+  # schedule:
+  #   - cron: '0 0 * * *'
+
+jobs:
+  docs:
+    if: "!(contains(github.event.head_commit.message, 'skip ci') || contains(github.event.head_commit.message, 'skip doc'))"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y \
+            texlive-latex-recommended \
+            texlive-fonts-recommended \
+            texlive-latex-extra \
+            texlive-xetex \
+            latexmk
+          python -m pip install --upgrade pip
+          pip install -r requirements-docs.txt
+      - name: Build docs
+        run: |
+          python -m friendly_data.doc > doc/api/registry.rst
+          make -C doc html
+          # make -C doc latexpdf html
+      - name: Publish pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: doc/_build/html
+          force_orphan: true

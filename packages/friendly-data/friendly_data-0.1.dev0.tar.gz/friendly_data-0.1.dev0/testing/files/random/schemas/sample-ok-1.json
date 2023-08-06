@@ -1,0 +1,60 @@
+{
+    "fields": [
+        {
+            "name": "time",
+            "type": "datetime",
+            "format": "default"
+        },
+        {
+            "name": "QWE",
+            "type": "integer",
+            "format": "default"
+        },
+        {
+            "name": "RTY",
+            "type": "boolean",
+            "format": "default"
+        },
+        {
+            "name": "UIO",
+            "type": "string",
+            "format": "default"
+        },
+        {
+            "name": "ASD",
+            "type": "number",
+            "format": "default"
+        },
+        {
+            "name": "FGH",
+            "type": "number",
+            "format": "default"
+        },
+        {
+            "name": "JKL",
+            "type": "number",
+            "format": "default"
+        },
+        {
+            "name": "ZXC",
+            "type": "number",
+            "format": "default"
+        },
+        {
+            "name": "VBN",
+            "type": "number",
+            "format": "default"
+        },
+        {
+            "name": "MPQ",
+            "type": "string",
+            "format": "default"
+        }
+    ],
+    "missingValues": [
+        ""
+    ],
+    "primaryKey": [
+	"time"
+    ]
+}

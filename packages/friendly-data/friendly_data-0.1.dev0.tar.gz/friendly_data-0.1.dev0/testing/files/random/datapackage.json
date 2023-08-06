@@ -1,0 +1,144 @@
+{
+    "name": "test",
+    "title": "Some title",
+    "license": {
+	"name": "CC0-1.0",
+	"path": "https://creativecommons.org/publicdomain/zero/1.0/",
+	"title": "CC0 1.0"
+    },
+    "profile": "tabular-data-package",
+    "resources": [
+	{
+	    "path": "data/sample-ok-1.csv",
+	    "profile": "tabular-data-resource",
+	    "name": "sample-ok-1",
+	    "format": "csv",
+	    "mediatype": "text/csv",
+	    "encoding": "utf-8",
+	    "schema": {
+		"fields": [
+		    {
+			"name": "time",
+			"type": "datetime",
+			"format": "%Y-%m-%d %H:%M:%S"
+		    },
+		    {
+			"name": "QWE",
+			"type": "integer",
+			"format": "default"
+		    },
+		    {
+			"name": "RTY",
+			"type": "boolean",
+			"format": "default"
+		    },
+		    {
+			"name": "UIO",
+			"type": "string",
+			"format": "default"
+		    },
+		    {
+			"name": "ASD",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "FGH",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "JKL",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "ZXC",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "VBN",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "MPQ",
+			"type": "string",
+			"format": "default"
+		    }
+		],
+		"missingValues": [
+		    ""
+		]
+	    }
+
+	},
+	{
+	    "path": "data/sample-ok-2.csv",
+	    "profile": "tabular-data-resource",
+	    "name": "sample-ok-2",
+	    "format": "csv",
+	    "mediatype": "text/csv",
+	    "encoding": "utf-8",
+	    "schema": {
+		"fields": [
+		    {
+			"name": "lvl",
+			"type": "integer",
+			"format": "default"
+		    },
+		    {
+			"name": "TRE",
+			"type": "string",
+			"format": "default"
+		    },
+		    {
+			"name": "IUY",
+			"type": "string",
+			"format": "default"
+		    },
+		    {
+			"name": "APO",
+			"type": "string",
+			"format": "default"
+		    },
+		    {
+			"name": "FDS",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "JHG",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "ZLK",
+			"type": "number",
+			"format": "default"
+		    },
+		    {
+			"name": "VCX",
+			"type": "integer",
+			"format": "default"
+		    },
+		    {
+			"name": "MNB",
+			"type": "integer",
+			"format": "default"
+		    },
+		    {
+			"name": "remarks",
+			"type": "string",
+			"format": "default"
+		    }
+		],
+		"missingValues": [
+		    ""
+		]
+	    }
+
+	}
+    ]
+}
