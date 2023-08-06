@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% include "vesper/header-prefix.html" %}
+
+    <title>Clip Calendar</title>
+    
+    {% load vesper_extras %}
+
+    {% if not error_message %}
+        <script type="module">
+            import { init } from '/static/vesper/view/clip-calendar.js';
+            init({
+                'stationMicName': '{{station_mic_name|default_if_none:''|escapejs}}',
+                'detectorName': '{{detector_name|default_if_none:''|escapejs}}',
+                'classification': '{{classification|escapejs}}',
+                // 'tag': '{{tag|escapejs}}',
+                'periods': {{periods_json|safe}},
+                'settingsPresetPath': "{{settings_preset_path|default:''}}",
+                'keyBindingsPresetPath': "{{commands_preset_path|default:''}}"
+            });
+        </script>
+    {% endif %}
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vesper/view/clip-calendar.css' %}">
+
+</head>
+
+<body>
+
+    {% include "vesper/navbar.html" %}
+    
+    {% if error_message %}
+    
+        <div id="error-div">
+            {{error_message|safe}}
+        </div>
+
+    {% else %}
+    
+        {% include "vesper/clip-album-filter-clips-modal.html" %}
+    
+        <div id="main-div" class="container">
+    
+            <div id="calendar">
+    
+                <div id="title-div">
+                
+                    <h3 id="title"></h3>
+    
+    		        <div id="title-buttons">
+    		        
+                        <button id="filter-clips-button" type="button" class="btn-xs btn-default title-button" data-toggle="tooltip" title="Filter clips">
+                            <span class="glyphicon glyphicon-filter"></span>
+                        </button>
+                        
+    		        </div>
+    		        
+    		    </div>
+    		    
+                <div id="periods"></div>
+    
+            </div>
+    
+        </div>
+        
+    {% endif %}
+
+</body>
+
+</html>

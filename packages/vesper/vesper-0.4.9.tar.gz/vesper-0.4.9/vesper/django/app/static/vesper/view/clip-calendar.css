@@ -1,0 +1,115 @@
+#main-div {
+  text-align: center;
+}
+
+#error-div {
+  display: inline-block;
+  text-align: left;
+}
+
+#title-div {
+  display: inline-block;
+}
+
+#title {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  #title {
+    text-align: center;
+  }
+}
+
+#title-buttons {
+    display: inline-block;
+    vertical-align: text-bottom;
+    margin-left: 20px;
+}
+
+.title-button:disabled {
+    color: #dddddd;
+}
+
+.title-dropdown {
+    display: inline-block;
+}
+
+.title-dropdown-anchor:disabled {
+    color: #dddddd;
+}
+
+.modal-select {
+    width: auto;
+}
+
+.period {
+}
+
+.period-name {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .period-name {
+    text-align: center;
+  }
+}
+
+.period-rule {
+    margin: 0.5em auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.month {
+}
+
+.month-name {
+  text-align: center;
+}
+
+.month-days {
+  display: flex;
+  flex-wrap: wrap;
+  width: 210px;
+  height: 180px;
+  margin: auto;
+}
+
+.day {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  position: relative;
+}
+
+.circle {
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.day-num {
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;    /* Put dates on top of circles. */
+}
+
+.day-num:visited {
+  color: white;
+}
