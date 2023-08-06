@@ -1,0 +1,68 @@
+stages:
+  - build
+  - build:docker
+
+build:py2:
+  stage: build
+  image: python:2
+  artifacts:
+    paths:
+    - dist/*
+  script:
+    - python setup.py sdist bdist_wheel
+
+build:py3:
+  stage: build
+  image: python:3
+  artifacts:
+    paths:
+    - dist/*
+  script:
+    - python setup.py sdist bdist_wheel
+
+
+build:docker:
+  stage: build:docker
+  image: docker:stable-git
+  services:
+  - docker:stable-dind
+  variables:
+    DOCKER_DRIVER: overlay2
+  script:
+    - setup_docker
+    - build
+
+# ---------------------------------------------------------------------------
+
+.auto_devops: &auto_devops |
+  # Auto DevOps variables and functions
+  [[ "$TRACE" ]] && set -x
+  export CI_APPLICATION_REPOSITORY=$CI_REGISTRY_IMAGE
+  export CI_APPLICATION_TAG=$CI_COMMIT_REF_SLUG
+
+  function setup_docker() {
+    if ! docker info &>/dev/null; then
+      if [ -z "$DOCKER_HOST" -a "$KUBERNETES_PORT" ]; then
+        export DOCKER_HOST='tcp://localhost:2375'
+      fi
+    fi
+  }
+
+  function build() {
+
+    if [[ -n "$CI_REGISTRY_USER" ]]; then
+      echo "Logging to GitLab Container Registry with CI credentials..."
+      docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+      echo ""
+    fi
+
+    echo "Building Dockerfile-based application..."
+    docker build -t "$CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG" .
+
+    echo "Pushing to GitLab Container Registry..."
+    docker push "$CI_APPLICATION_REPOSITORY:$CI_APPLICATION_TAG"
+    echo ""
+  }
+
+before_script:
+  - *auto_devops

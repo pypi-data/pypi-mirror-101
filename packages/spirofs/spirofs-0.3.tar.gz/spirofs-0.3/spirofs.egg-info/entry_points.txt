@@ -1,0 +1,20 @@
+[salt.loader]
+auth_dirs = spirofs.loader:auth
+beacons_dirs = spirofs.loader:beacons
+cache_dirs = spirofs.loader:cache
+engines_dirs = spirofs.loader:engines
+executor_dirs = spirofs.loader:executor
+fileserver_dirs = spirofs.loader:fileserver
+grains_dirs = spirofs.loader:grains
+log_handlers_dirs = spirofs.loader:log_handlers
+module_dirs = spirofs.loader:module
+pillar_dirs = spirofs.loader:pillar
+render_dirs = spirofs.loader:render
+returner_dirs = spirofs.loader:returner
+runner_dirs = spirofs.loader:runner
+serializers_dirs = spirofs.loader:serializers
+tokens_dirs = spirofs.loader:tokens
+top_dirs = spirofs.loader:top
+utils_dirs = spirofs.loader:utils
+wheel_dirs = spirofs.loader:wheel
+

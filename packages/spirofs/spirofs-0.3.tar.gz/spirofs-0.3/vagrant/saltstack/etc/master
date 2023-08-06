@@ -1,0 +1,10 @@
+fileserver_backend:
+  - roots
+  - spiro
+
+engines:
+  - spiro:
+      port: 4510
+      ssl_key: /etc/ssl/private/ssl-cert-snakeoil.key
+      ssl_crt: /etc/ssl/certs/ssl-cert-snakeoil.pem
+

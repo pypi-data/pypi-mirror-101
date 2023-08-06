@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  os = "generic/ubuntu2004"
+  net_ip = "192.168.50"
+
+  config.vm.network "forwarded_port", guest: 4510, host: 4510
+
+  config.vm.define :master, primary: true do |master_config|
+    master_config.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 1
+        vb.name = "master"
+    end
+      master_config.vm.box = "#{os}"
+      master_config.vm.host_name = 'saltmaster.local'
+      master_config.vm.network "private_network", ip: "#{net_ip}.10"
+      master_config.vm.synced_folder "saltstack/salt/", "/srv/salt"
+      master_config.vm.synced_folder "saltstack/pillar/", "/srv/pillar"
+      master_config.vm.synced_folder "..", "/opt/spirofs"
+
+      master_config.vm.provision :salt do |salt|
+        salt.master_config = "saltstack/etc/master"
+        salt.minion_config = "saltstack/etc/minion"
+        salt.master_key = "saltstack/keys/master_minion.pem"
+        salt.master_pub = "saltstack/keys/master_minion.pub"
+        salt.minion_key = "saltstack/keys/master_minion.pem"
+        salt.minion_pub = "saltstack/keys/master_minion.pub"
+        salt.seed_master = {
+                            "minion" => "saltstack/keys/master_minion.pub",
+                           }
+        salt.install_type = "stable"
+        salt.install_master = true
+        salt.verbose = true
+        salt.colorize = true
+        salt.bootstrap_options = "-P -c /tmp"
+        salt.run_highstate = true
+      end
+
+      $script = <<-SCRIPT
+      apt-get install python3-pip
+      pip3 install -e /opt/spirofs
+      service salt-master restart
+      service salt-minion restart
+      SCRIPT
+      master_config.vm.provision "shell", inline: $script
+    end
+  end
