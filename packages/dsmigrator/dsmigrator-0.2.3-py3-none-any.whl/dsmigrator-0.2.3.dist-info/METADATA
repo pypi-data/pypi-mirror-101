@@ -1,0 +1,111 @@
+Metadata-Version: 2.1
+Name: dsmigrator
+Version: 0.2.3
+Summary: A cli tool to migrate Trend Micro Deep Security to the cloud.
+Home-page: https://github.com/ajaxbits/ds-migrator
+License: GPLv3
+Keywords: Trend,Micro,deepsecurity,cloudone,migrator,trendmicro,security,cli
+Author: Alex Jackson
+Author-email: alex_jackson@trendmicro.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: certifi (>=2020.12.5,<2021.0.0)
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: deep-security-api (>=20.0.60,<21.0.0)
+Requires-Dist: nested-lookup (>=0.2.22,<0.3.0)
+Requires-Dist: python-dateutil (>=2.8.1,<3.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: rich (>=10.0.0,<11.0.0)
+Requires-Dist: six (>=1.15.0,<2.0.0)
+Requires-Dist: urllib3 (>=1.26.4,<2.0.0)
+Requires-Dist: zeep (>=4.0.0,<5.0.0)
+Description-Content-Type: text/markdown
+
+# Trend Micro Deep Security Migrator
+
+**Moves your existing on-prem DS deployment to CloudOne Workload security. Automatically.**
+
+* [Quickstart](#quickstart)
+* [Usage](#usage)
+  * [Command Reference](#command-reference)
+  * [Use Environment Variables](#use-environment-variables)
+* [Requirements](#requirements)
+* [Contributing](#contributing)
+
+## Quickstart
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install dsmigrator.
+
+1. Run ```pip install dsmigrator``` on a machine with access to your DSM.
+
+2. Run ```dsmg -k``` and fill out the credential prompts.
+
+## Usage
+
+### Command Reference
+
+```text
+Usage: dsmg [OPTIONS]
+
+  Moves your on-prem DS deployment to the cloud!
+
+Options:
+  -ou, --original-url TEXT        A resolvable FQDN for the old DSM, with port
+                                  number (e.g. https://192.168.1.1:4119)
+
+  -oa, --original-api-key TEXT    API key for the old DSM with Full Access
+                                  permissions
+
+  -nu, --new-url TEXT             Destination url  [default:
+                                  https://cloudone.trendmicro.com/]
+
+  -coa, --cloud-one-api-key TEXT  API key for Cloud One Workload Security with
+                                  Full Access permissions
+
+  -k, --insecure                  Suppress the InsecureRequestWarning for
+                                  self-signed certificates
+
+  -c, --cert TEXT                 (Optional) Allows the use of a cert file
+                                  [default: False]
+
+  --help                          Show this message and exit.
+```
+### Use Environment Variables
+
+You can optionally use the following environment variables to pass in your credentials:
+
+- ORIGINAL_API_KEY
+- ORIGINAL_URL
+- CLOUD_ONE_API_KEY
+
+## Requirements
+
+- Python3 (only tested on Python 3.7 or greater so far, so your mileage may vary)
+- One api key for your old Deep Security Manager with "Full Access" permissions
+- One api key for your Cloud One account with "Full Access" permissions
+- A resolvable FQDN to your old Deep Security Manager
+
+**NOTE:** DS Migrator currently only supports migrations from Deep Security 20 and 12.
+
+## Contributing
+
+1. Run ./dev-setup.sh, which will download nix and nix flakes.
+2. Run `nix develop` which will download and build dependencies, and drop you in a shell.
+
+(only tested on Arch and Ubuntu so far, so your mileage may vary)
+
+## Support
+
+For support, please open an issue on Github.
+
+## License
+
+GNU General Public License
+
+GNU General Public License
+
