@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: jembe
+Version: 0.3.0
+Summary: Jembe Web Framework
+Home-page: https://jembe.io
+License: LGPL-3.0-only
+Keywords: framework
+Author: Predrag Peranovic
+Author-email: predrag.peranovic@blokkod.me
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Requires-Dist: flask (>=1.1.2,<2.0.0)
+Requires-Dist: lxml (>=4.5.2,<5.0.0)
+Requires-Dist: simplejson (>=3.17.2,<4.0.0)
+Project-URL: Repository, https://github.com/Jembe/jembe
+Description-Content-Type: text/x-rst
+
+Jembe Web Framework
+===================
+
+Python Web Framework for modern web applications, build on top of Flask, designed with following goals:
+
+- App is build using custom, reusable, reactive, responsive UI components;
+- Developers can stay focused on "business" logic and write UI logic only for very specific use cases;
+- UI Component is created by extending Python class, with simple API, and writing associated Jinja2 template; 
+- Complex UI interactions can be created without or with minimal use of javascript code;
+- There should be no reason to think off, consider or implement logic for:
+    - Handling http request-response cycle
+    - Routing
+    - Handling any "low level" web/http api
+
+Official web site https://jembe.io
+
+
+License
+-------
+
+
+Jembe Web Framework 
+Copyright (C) 2021 BlokKod <info@blokkod.me>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
