@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: wikitrad
+Version: 0.2.0
+Summary: 
+Home-page: https://github.com/ewen-lbh/wikitrad
+Author: Ewen Le Bihan
+Author-email: hey@ewen.works
+Requires-Python: >=3.6,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: beautifulsoup4 (>=4.9.3,<5.0.0)
+Requires-Dist: docopt (>=0.6.2,<0.7.0)
+Requires-Dist: langdetect (>=1.0.8,<2.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: rich (>=10.1.0,<11.0.0)
+Project-URL: Repository, https://github.com/ewen-lbh/wikitrad
+Description-Content-Type: text/markdown
+
+# wikitrad
+
+## Installation
+
+_wikitrad_ is available on [PyPI](https://pypi.org):
+
+```
+pip install wikitrad
+```
+
+## Usage
+
+Language codes refer to the language codes used by wikipedia: `en` for `en.wikipedia.org`, `fr` for `fr.wikipedia.org`, etc.
+
+### Without specifying the source language
+
+```
+wikitrad "word to translate" target_language_code
+```
+### specifying the source language
+
+```
+wikitrad source_language_code "word to translate" target_language_code
+```
+
+
