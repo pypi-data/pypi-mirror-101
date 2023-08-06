@@ -1,0 +1,51 @@
+Youtube-Video-Play-Pause-Bot is a python library to play or pause video on youtube using browser automation. 
+It currently runs only on windows.
+
+### Example
+In this example we first import library, then we opened video link and paused video.
+```sh
+from youtube_video_play_pause_bot import *
+youtube.open("https://www.youtube.com/watch?v=LMmuChXra_M")
+youtube.play_pause_video()
+```
+
+This module depends on the following python modules
+* [requests](https://pypi.org/project/requests/)
+* [bot_studio](https://pypi.org/project/bot_studio/)
+
+#### BotStudio
+[bot_studio](https://pypi.org/project/bot_studio/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up in which video will be opened.
+
+Complete documentation for YouTube Automation available [here](https://youtube-api.datakund.com/en/latest/)
+
+### Installation
+
+```sh
+pip install youtube-video-play-pause-bot
+```
+
+### Import
+```sh
+from youtube_video_play_pause_bot import *
+```
+
+
+### Open video
+```sh
+youtube.open("video url")
+```
+
+### Play or Pause video
+```sh
+youtube.play_pause_video()
+```
+
+### Send Feedback to Developers
+```sh
+bot_studio.send_feedback(feedback="Need help with this ......")
+```
+
+### Contact Us
+* [Telegram](https://t.me/datakund)
+* [Website](https://datakund.com)
+
