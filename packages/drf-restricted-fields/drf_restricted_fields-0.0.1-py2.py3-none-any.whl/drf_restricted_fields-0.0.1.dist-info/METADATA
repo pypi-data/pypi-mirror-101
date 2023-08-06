@@ -1,0 +1,143 @@
+Metadata-Version: 2.1
+Name: drf-restricted-fields
+Version: 0.0.1
+Summary: Restrict fields returned by DRF serializers
+Home-page: https://github.com/tj-django/drf-restricted-fields
+Author: Tonye Jack
+Author-email: jtonye@ymail.com
+License: MIT license
+Keywords: drf_restricted_fields,restricted_fields
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=2.6
+Description-Content-Type: text/x-rst
+Requires-Dist: django
+Requires-Dist: djangorestframework
+Provides-Extra: deploy
+Requires-Dist: bump2version ; extra == 'deploy'
+Requires-Dist: readme-renderer[md] ; extra == 'deploy'
+Requires-Dist: changes ; extra == 'deploy'
+Requires-Dist: git-changelog ; extra == 'deploy'
+Requires-Dist: twine ; extra == 'deploy'
+Requires-Dist: wheel ; extra == 'deploy'
+Provides-Extra: development
+Requires-Dist: django ; extra == 'development'
+Requires-Dist: djangorestframework ; extra == 'development'
+Requires-Dist: bump2version ; extra == 'development'
+Requires-Dist: readme-renderer[md] ; extra == 'development'
+Requires-Dist: changes ; extra == 'development'
+Requires-Dist: git-changelog ; extra == 'development'
+Requires-Dist: twine ; extra == 'development'
+Requires-Dist: wheel ; extra == 'development'
+Requires-Dist: pytest (>=3) ; extra == 'development'
+Requires-Dist: tox ; extra == 'development'
+Requires-Dist: tox-gh-actions ; extra == 'development'
+Requires-Dist: coverage ; extra == 'development'
+Requires-Dist: flake8 ; extra == 'development'
+Requires-Dist: yamllint ; extra == 'development'
+Requires-Dist: isort ; extra == 'development'
+Requires-Dist: black ; extra == 'development'
+Requires-Dist: black ; (python_version >= "3.6") and extra == 'development'
+Provides-Extra: docs
+Requires-Dist: watchdog[watchmedo] ; extra == 'docs'
+Requires-Dist: Sphinx ; extra == 'docs'
+Provides-Extra: lint
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: yamllint ; extra == 'lint'
+Requires-Dist: isort ; extra == 'lint'
+Requires-Dist: black ; extra == 'lint'
+Requires-Dist: black ; (python_version >= "3.6") and extra == 'lint'
+Provides-Extra: test
+Requires-Dist: pytest (>=3) ; extra == 'test'
+Requires-Dist: tox ; extra == 'test'
+Requires-Dist: tox-gh-actions ; extra == 'test'
+Requires-Dist: coverage ; extra == 'test'
+
+=====================
+drf-restricted-fields
+=====================
+
+.. image:: https://img.shields.io/pypi/v/drf_restricted_fields.svg
+        :target: https://pypi.python.org/pypi/drf_restricted_fields
+
+.. image:: https://github.com/tj-django/drf-restricted-fields/actions/workflows/test.yml/badge.svg
+        :target: https://github.com/tj-django/drf-restricted-fields/actions/workflows/test.yml
+
+
+.. image:: https://readthedocs.org/projects/drf-restricted-fields/badge/?version=latest
+        :target: https://drf-restricted-fields.readthedocs.io/en/latest/?version=latest
+        :alt: Documentation Status
+
+.. image:: https://pyup.io/repos/github/tj-django/drf-restricted-fields/shield.svg
+     :target: https://pyup.io/repos/github/tj-django/drf-restricted-fields/
+     :alt: Updates
+
+
+Features
+========
+
+Restrict fields returned by DRF serializers using the ``only`` query parameter
+------------------------------------------------------------------------------
+
+.. code-block:: console
+
+    GET http://127.0.0.1:8000/api/users/?only=id&only=name
+
+
+Serialize only the `id` and `name` fields.
+
+.. code-block:: console
+
+    {
+        "count": 198,
+        "next": "http://127.0.0.1:8000/api/users/?only=id&only=name&page=1",
+        "previous": null,
+        "results":[
+            {
+                "id": 1,
+                "name": "Test"
+            },
+            ...
+        ],
+    }
+
+
+Defer fields returned by DRF serializers using the ``defer`` query parameter
+----------------------------------------------------------------------------
+
+.. code-block:: console
+
+    GET http://127.0.0.1:8000/api/users/?defer=name&defer=age
+
+
+Serialize only the `id` and `name` fields.
+
+.. code-block:: console
+
+    {
+        "count": 198,
+        "next": "http://127.0.0.1:8000/api/users/?defer=name&defer=age&page=1",
+        "previous": null,
+        "results":[
+            {
+                "id": 1,
+            },
+            ...
+        ],
+    }
+
+
+* Free software: MIT license
+* Documentation: https://drf-restricted-fields.readthedocs.io.
+
+
+
