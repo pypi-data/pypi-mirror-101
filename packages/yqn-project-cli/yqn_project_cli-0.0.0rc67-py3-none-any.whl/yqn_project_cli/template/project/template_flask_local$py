@@ -1,0 +1,71 @@
+# -*- coding: utf-8 -*-
+# Author: ZKH
+# Date：2021/2/24
+from flask_cors import CORS
+from flask_compress import Compress
+from flask_restx.api import Api
+from config import (
+    ProjectConfig,
+    ApolloClientConfig,
+    MySQLConfig,
+    ODPSConfig,
+    LoggerConfig,
+)
+from yqn_project_cli.utils.core.as_flask import (
+    DAFlask,
+    Plugin,
+    PluginTail,
+    Server,
+)
+from yqn_project_cli.utils.app import (
+    flask_restx_tail,
+    general_error_handler,
+)
+from yqn_project_cli.rpc.apollo.apollo_config import ApolloConfig
+from yqn_project_cli.rpc.mysql_ import MySQLClient
+from yqn_project_cli.rpc.odps_ import ODPSClient
+from config.app import Config
+from api import heartbeats
+
+app = DAFlask(__name__,
+              project_config=ProjectConfig,
+              config_object=Config,
+              logger_config=LoggerConfig)
+
+app.add_url_rules(ProjectConfig.heartbeat_urls,
+                  view_func=heartbeats,
+                  endpoint='heartbeats',
+                  methods=['GET', 'POST'])
+
+# plugins
+app.register_plugins(
+    Plugin('flask_cors', CORS),
+    Plugin('flask_compress', Compress),
+    Plugin('flask_restx', Api, title=ProjectConfig.name, doc='/doc.html'),
+)
+
+# extra certain tail works from plugins to add by plugin's registered name
+app.register_plugin_tails(
+    PluginTail('flask_restx', flask_restx_tail),
+)
+
+# register services such as apollo, mysql ...
+app.register_services(
+    Server('apollo', ApolloConfig, client_config=ApolloClientConfig, as_server_manager=True),
+    Server('mysql', MySQLClient, client_config=MySQLConfig, use_conf_management=True),
+    Server('odps', ODPSClient, client_config=ODPSConfig, use_conf_management=True),
+)
+
+# before_first_request(), before_request(), after_request(response), teardown_request(error)
+app.register_request_hooks(
+    # ('teardown_request', lambda e: None),
+)
+
+# register exception handlers
+app.register_error_handlers(
+    (Exception, general_error_handler),
+)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=ProjectConfig.id, debug=True, use_reloader=False)
