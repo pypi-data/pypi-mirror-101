@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+
+import json
+import argparse
+import skillsnetwork.cvstudio
+
+token = skillsnetwork.cvstudio.CVStudio.interactive()
+
+print(token)
