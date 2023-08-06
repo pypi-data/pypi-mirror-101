@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: tsdat
+Version: 0.2.0
+Summary: A data processing framework used to convert time series data into standardized format.
+Home-page: https://github.com/tsdat/tsdat
+Author: Carina Lansing <carina.lansing@pnnl.gov>, Maxwell Levin <maxwell.levin@pnnl.gov>
+Author-email: carina.lansing@pnnl.gov
+License: Simplified BSD (2-clause)
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: act-atmos
+Requires-Dist: cfunits
+Requires-Dist: netcdf4
+Requires-Dist: numpy
+Requires-Dist: pandas (>=1.0.0)
+Requires-Dist: pyyaml
+Requires-Dist: xarray
+Requires-Dist: yamllint
+Requires-Dist: boto3
+Requires-Dist: cmocean
+Requires-Dist: seaborn
+
+# Time Series Data Library
+This library provides general utility methods for working with 
+time series datasets, which are stored as Xarray Dataset objects.
+In particular, it will provide declarative methods for being able
+standardize, apply Q/C checks, correct, and transform datastreams
+as a whole, reducing the amount of coding required for data
+processing.
+
+# Getting Started
+
+## Installation
+You can install tsdat and its dependencies using pip
+
+```bash
+pip3 install tsdat
+```
+
+## Documentation
+For help using tsdat, please see our documentation at
+https://tsdat.readthedocs.io/
+
+# Docker
+Please see https://hub.docker.com/orgs/tsdat for the list of available 
+tsdat docker images.
+
+# Installation from Source
+If you will be developing/contributing to the tsdat code base,
+first clone the repository from 
+
+```bash
+git clone https://github.com/tsdat/tsdat.git
+```
+
+You can install the tsdat  requirements via:
+
+```bash
+pip3 install -r requirements.txt
+```
+
+## Releasing to pypi
+TODO: to be replaced by CICD build instead of manual process.
+
+### Prereq: Make sure that you have twine installed
+```bash
+pip install twine
+```
+
+### 1) Update the version number in setup.py
+
+### 2) Then deploy the new release.
+
+```bash
+cd tsdat
+python setup.py sdist bdist_wheel
+twine upload dist/*
+```
+
+```
+
+
