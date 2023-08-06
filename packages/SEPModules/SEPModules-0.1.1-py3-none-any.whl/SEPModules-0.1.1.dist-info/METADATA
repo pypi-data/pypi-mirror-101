@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: SEPModules
+Version: 0.1.1
+Summary: SEPModules provides a handful of modules to aid in speeding up the production of small or medium-sized scripts.
+Home-page: https://github.com/SEOriginal/SEPModules
+Author: Marcel Simader
+Author-email: marcel0simader@gmail.com
+License: UNKNOWN
+Project-URL: Documentation, https://seoriginal.github.io/SEPModules/
+Project-URL: Source, https://github.com/SEOriginal/SEPModules
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: Free for non-commercial use
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: colorama (==0.4.4)
+
+# SEPModules
+
+[![Publish to PyPI](https://github.com/SEOriginal/SEPModules/actions/workflows/python-publish.yml/badge.svg)](https://github.com/SEOriginal/SEPModules/actions/workflows/python-publish.yml) 
+|  [Documentation](https://seoriginal.github.io/SEPModules/)
+
+Python package providing basic modules and functionality for various common tasks.
+
+---
+
+The package includes four base modules:
+- ### SEPMaths
+  For mathematical operations, helper functions, and classes.
+
+- ### SEPIO
+  Aids in IO tasks such as reading console line arguments and parameters.
+
+- ### SEPDecorators
+  Contains miscellaneous function decorators.
+
+- ### SEPPrinting
+  Provides easy and quick implementations of console UI elements like graphs and progress bars, and colored console printing.
+
+
