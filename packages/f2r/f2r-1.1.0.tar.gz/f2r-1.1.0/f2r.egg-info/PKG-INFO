@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: f2r
+Version: 1.1.0
+Summary: Produces RPMs for FLP packages out of aliBuild ouput
+Home-page: https://gitlab.cern.ch/AliceO2Group/flp-to-rpm
+Author: Adam Wegrzynek
+Author-email: adam.wegrzynek@cern.ch
+License: GPLv3
+Description: f2r
+        ===
+        
+        Command line tool to create RPMs out of aliBuild output
+        
+        ## Installation
+        
+        `f2r` is available in PyPI: https://pypi.org/project/f2r
+        
+        Steps:
+        - Use `f2r` Ansible role from [system-configration](https://gitlab.cern.ch/AliceO2Group/system-configuration).
+        - Create S3 config file under `~/.s3cfg`, see: https://gitlab.cern.ch/AliceO2Group/system-configuration
+        
+        
+        ## Devel
+        
+        #### Devel installation
+        
+        - Instll prerequisites
+          - Environment Modules > 4
+          - aliBuild
+          - Optional install system dependencies that aliBuild can pick up
+        - Clone the repo
+        - Prepare S3 config
+        - `python3 -m pip install -r requirements.txt --user`
+        
+        #### Publishing to PyPI
+        - Update version in `setup.py` file.
+        - Test: `python3 -m tests.f2r`
+        - Build and publish:
+        ```
+        python3 setup.py sdist bdist_wheel
+        python3 -m twine upload --repository pypi dist/*
+        ```
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities
+Classifier: Environment :: Console
+Classifier: Operating System :: Unix
+Classifier: Development Status :: 4 - Beta
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
