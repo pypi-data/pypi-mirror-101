@@ -1,0 +1,38 @@
+[build-system]
+requires = ["poetry>=1.1"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+line-length = 96
+target-version = ['py38']
+
+[tool.poetry]
+name = "fondat-postgresql"
+version = "3.0b5"
+description = "PostgreSQL module for Fondat."
+readme = "README.md"
+authors = ["fondat-postgresql authors"]
+homepage = "https://github.com/fondat/fondat-postgresql/"
+documentation = "https://github.com/fondat/fondat-postgresql/wiki"
+license = "MIT"
+keywords = ["asgi", "framework", "resource", "openapi"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+packages = [
+    { include = "fondat" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fondat-core = "^3.0b47"
+asyncpg = "^0.21"
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+pre-commit = "^2.12"
+pytest = "^6.2"
+pytest-asyncio = "^0.14"
+pytest-cov = "^2.11"
