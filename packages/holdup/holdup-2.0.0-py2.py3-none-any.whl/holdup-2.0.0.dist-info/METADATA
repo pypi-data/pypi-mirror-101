@@ -1,0 +1,228 @@
+Metadata-Version: 2.1
+Name: holdup
+Version: 2.0.0
+Summary: A tool to wait for services and execute command. Useful for Docker containers that depend on slow to start services (like almost everything).
+Home-page: https://github.com/ionelmc/python-holdup
+Author: Ionel Cristian Mărieș
+Author-email: contact@ionelmc.ro
+License: BSD-2-Clause
+Project-URL: Documentation, https://python-holdup.readthedocs.io/
+Project-URL: Changelog, https://python-holdup.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/ionelmc/python-holdup/issues
+Keywords: wait,port,service,docker,unix,domain,socket,tcpwaiter,holdup,hold-up
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*
+Provides-Extra: pg
+Requires-Dist: psycopg2 ; (platform_python_implementation=="CPython") and extra == 'pg'
+Requires-Dist: psycopg2cffi ; (platform_python_implementation=="PyPy") and extra == 'pg'
+
+========
+Overview
+========
+
+
+
+A tool to wait for services and execute command. Useful for Docker containers that depend on slow to start services
+(like almost everything).
+
+* Free software: BSD 2-Clause License
+
+Installlation
+=============
+
+Currently holdup is only published to PyPI and `hub.docker.com <https://hub.docker.com/r/ionelmc/holdup>`_.
+
+To install from PyPI::
+
+    pip install holdup
+
+It has no dependencies except the optional PostgreSQL check support, which you'd install with::
+
+    pip install 'holdup[pg]'
+
+You can also install the in-development version with::
+
+    pip install https://github.com/ionelmc/python-holdup/archive/master.zip
+
+Alternate installation (Docker image)
+-------------------------------------
+
+Example::
+
+    docker run --rm ionelmc/holdup tcp://foobar:1234
+
+Note that this will have some limitations:
+
+* executing the ``command`` is pretty pointless because holdup will run in its own container
+* you'll probably need extra network configuration to be able to access services
+* you won't be able to use `docker run` inside a container without exposing a docker daemon in said container
+
+
+Usage
+=====
+
+usage: holdup [-h] [-t SECONDS] [-T SECONDS] [-i SECONDS] [-n] service [service ...] [-- command [arg [arg ...]]]
+
+Wait for services to be ready and optionally exec command.
+
+positional arguments:
+  service
+    A service to wait for. Supported protocols: "tcp://host:port/", "path:///path/to/something", "unix:///path/to/domain.sock", "eval://expr", "pg://user:password@host:port/dbname" ("postgres" and "postgresql" also allowed), "http://urn", "https://urn", "https+insecure://urn" (status 200 expected for http*). Join protocols with a comma to make holdup exit at the first passing one, eg: "tcp://host:1,host:2" or "tcp://host:1,tcp://host:2" are equivalent and mean `any that pass`.
+  command
+    An optional command to exec.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t SECONDS, --timeout SECONDS
+                        Time to wait for services to be ready. Default: 60.0
+  -T SECONDS, --check-timeout SECONDS
+                        Time to wait for a single check. Default: 1.0
+  -i SECONDS, --interval SECONDS
+                        How often to check. Default: 0.2
+  -v, --verbose         Verbose mode.
+  --verbose-passwords   Disable PostgreSQL/HTTP password masking.
+  -n, --no-abort        Ignore failed services. This makes `holdup` return 0 exit code regardless of services actually responding.
+  --insecure            Disable SSL Certificate verification for HTTPS services.
+  --version             display the version of the holdup package and its location, then exit.
+
+Example::
+
+    holdup tcp://foobar:1234 -- django-admin ...
+
+Documentation
+=============
+
+https://python-holdup.readthedocs.io/
+
+Development
+===========
+
+To run all the tests run::
+
+    tox
+
+Note, to combine the coverage data from all the tox environments run:
+
+.. list-table::
+    :widths: 10 90
+    :stub-columns: 1
+
+    - - Windows
+      - ::
+
+            set PYTEST_ADDOPTS=--cov-append
+            tox
+
+    - - Other
+      - ::
+
+            PYTEST_ADDOPTS=--cov-append tox
+
+
+Changelog
+=========
+
+2.0.0 (2021-04-08)
+------------------
+
+* Added support for password masking (``--verbose-passwords`` to disable this feature).
+* Overhauled checks display a bit, output might be slightly different.
+* Added support for basic and digest HTTP authentication.
+* Published Docker image at https://hub.docker.com/r/ionelmc/holdup (Alpine based).
+
+1.9.0 (2021-01-11)
+------------------
+
+* Added a ``--version`` argument.
+* Changed verbose output to mask passwords in postgresql checks.
+
+1.8.1 (2020-12-16)
+------------------
+
+* Add support for PostgreSQL 12+ clients (strict integer type-checking on ``connect_timeout``). The float is now converted to an integer.
+
+1.8.0 (2019-05-28)
+------------------
+
+* Added a PostgreSQL check. It handles the ``the database system is starting up`` problem.
+  Contributed by Dan Ailenei in `#6 <https://github.com/ionelmc/python-holdup/pull/6>`_.
+* Changed output so it's more clear and more brief:
+
+  * arguments (checks) are quoted when printed,
+  * "any" checks give exact info about what made it pass,
+  * repetitive information is removed.
+* Simplified the internals for the "AnyCheck".
+
+1.7.0 (2018-11-24)
+------------------
+
+* Added support for skipping SSL certificate verification for HTTPS services
+  (the ``--insecure`` option and ``https+insecure`` protocol).
+  Contributed by Mithun Ayachit in `#2 <https://github.com/ionelmc/python-holdup/pull/2>`_.
+
+1.6.0 (2018-03-22)
+------------------
+
+* Added verbose mode (`-v` or ``--verbose``).
+* Changed default timeout to 60s (from 5s).
+
+1.5.0 (2017-06-07)
+------------------
+
+* Added an ``eval://expression`` protocol for weird user-defined checks.
+
+1.4.0 (2017-03-27)
+------------------
+
+* Added support for HTTP(S) check.
+
+1.3.0 (2017-02-21)
+------------------
+
+* Add support for "any" service check (service syntax with comma).
+
+1.2.1 (2016-06-17)
+------------------
+
+* Handle situation where internal operations would take more than planned.
+
+1.2.0 (2016-05-25)
+------------------
+
+* Added a file check.
+
+1.1.0 (2016-05-06)
+------------------
+
+* Removed debug print.
+* Added ``--interval`` option for how often to check. No more spinloops.
+
+1.0.0 (2016-04-22)
+------------------
+
+* Improved tests.
+* Always log to stderr.
+
+0.1.0 (2016-04-21)
+------------------
+
+* First release on PyPI.
+
+
