@@ -1,0 +1,24 @@
+apiVersion: "cardanopy.block_producer.config.v1"
+substitutions:
+  _NAME: "bp-k8s"
+  _IMAGE: "floydcraft/cardano-py-slim"
+  _TAG: "0.1.7-dev27"
+  _APP_DIR: "/home/ada/app"
+  _MOUNT: True
+network: "testnet"
+configPath: "$_APP_DIR/config.json"
+topologyPath: "$_APP_DIR/topology.json"
+databasePath: "$_APP_DIR/db"
+socketPath: "$_APP_DIR/node.socket"
+hostAddr: "0.0.0.0"
+port: 3001
+shelleyKesKey: "$_APP_DIR/bp/kes.skey"
+shelleyVrfKey: "$_APP_DIR/bp/vrf.skey"
+shelleyOperationalCertificate: "$_APP_DIR/bp/node.cert"
+docker:
+  name: "$_NAME"
+  image: "$_IMAGE:$_TAG"
+  rootVolume: "$_APP_DIR"
+  mount: $_MOUNT
+k8s:
+  namespace: "cardano-testnet"
