@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>Module architecture &#8212; pyroute2 0.5.18 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Netlink" href="netlink.html" />
+    <link rel="prev" title="Project contribution guide" href="devcontribute.html" /> 
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="netlink.html" title="Netlink"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="devcontribute.html" title="Project contribution guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item"><a href="http://pyroute2.org">Project home</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyroute2 0.5.18 documentation</a> &#187;</li> 
+      </ul>
+        </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-architecture">
+<h1>Module architecture<a class="headerlink" href="#module-architecture" title="Permalink to this headline">¶</a></h1>
+<section id="sockets">
+<h2>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">¶</a></h2>
+<p>The idea behind the pyroute2 framework is pretty simple. The
+library provides socket objects, that have:</p>
+<ul class="simple">
+<li><p>shortcuts to establish netlink connections</p></li>
+<li><p>extra methods to run netlink queries</p></li>
+<li><p>some magic to handle packet bursts</p></li>
+<li><p>another magic to transparently mangle netlink messages</p></li>
+</ul>
+<p>In other sense any netlink socket is just an ordinary socket
+with <cite>fileno()</cite>, <cite>recv()</cite>, <cite>sendto()</cite> etc. Of course, one
+can use it in <cite>poll()</cite>.</p>
+<p>There is an inheritance diagram of Linux netlink sockets, provided
+by the library:</p>
+digraph inheritance2ee30167cf {
+bgcolor=transparent;
+rankdir=LR;
+ratio=auto;
+size=&quot;8.0, 12.0&quot;;
+  &quot;AcpiEventSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;EventSocket&quot; -&gt; &quot;AcpiEventSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;BatchSocket&quot; [URL=&quot;nlsocket.html#pyroute2.netlink.nlsocket.BatchSocket&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;];
+  &quot;NetlinkMixin&quot; -&gt; &quot;BatchSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;DQuotSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;EventSocket&quot; -&gt; &quot;DQuotSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;DevlinkSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;GenericNetlinkSocket&quot; -&gt; &quot;DevlinkSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;DiagSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Usage::&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;DiagSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;EventSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;GenericNetlinkSocket&quot; -&gt; &quot;EventSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;GenericNetlinkSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Low-level socket interface. Provides all the&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;GenericNetlinkSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPBatch&quot; [URL=&quot;iproute.html#pyroute2.iproute.linux.IPBatch&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Netlink requests compiler. Does not send any requests, but&quot;];
+  &quot;RTNL_API&quot; -&gt; &quot;IPBatch&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPBatchSocket&quot; -&gt; &quot;IPBatch&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPBatchSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;IPRSocketMixin&quot; -&gt; &quot;IPBatchSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;BatchSocket&quot; -&gt; &quot;IPBatchSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPQSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Low-level socket interface. Provides all the&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;IPQSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPRSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;The simplest class, that connects together the netlink parser and&quot;];
+  &quot;IPRSocketMixin&quot; -&gt; &quot;IPRSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;IPRSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPRSocketMixin&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;IPRoute&quot; [URL=&quot;iproute.html#pyroute2.iproute.linux.IPRoute&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Regular ordinary utility class, see RTNL API for the list of methods.&quot;];
+  &quot;RTNL_API&quot; -&gt; &quot;IPRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPRSocket&quot; -&gt; &quot;IPRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPSet&quot; [URL=&quot;ipset.html#pyroute2.ipset.IPSet&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;NFNetlink socket (family=NETLINK_NETFILTER).&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;IPSet&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IW&quot; [URL=&quot;devmodules.html#pyroute2.iwutil.IW&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;];
+  &quot;NL80211&quot; -&gt; &quot;IW&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NFCTSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;NFCTSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NFTSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;NFNetlink socket (family=NETLINK_NETFILTER).&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;NFTSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NL80211&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;GenericNetlinkSocket&quot; -&gt; &quot;NL80211&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NetNS&quot; [URL=&quot;netns.html#pyroute2.netns.nslink.NetNS&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;NetNS is the IPRoute API with network namespace support.&quot;];
+  &quot;RTNL_API&quot; -&gt; &quot;NetNS&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RemoteSocket&quot; -&gt; &quot;NetNS&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NetlinkMixin&quot; [URL=&quot;nlsocket.html#pyroute2.netlink.nlsocket.NetlinkMixin&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Generic netlink socket&quot;];
+  &quot;NetlinkSocket&quot; [URL=&quot;nlsocket.html#pyroute2.netlink.nlsocket.NetlinkSocket&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;];
+  &quot;NetlinkMixin&quot; -&gt; &quot;NetlinkSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NlEthtool&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;GenericNetlinkSocket&quot; -&gt; &quot;NlEthtool&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RTNL_API&quot; [URL=&quot;iproute.html#pyroute2.iproute.linux.RTNL_API&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;`RTNL_API` should not be instantiated by itself. It is intended&quot;];
+  &quot;RawIPRSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;RawIPRSocketMixin&quot; -&gt; &quot;RawIPRSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;RawIPRSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RawIPRSocketMixin&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;RawIPRoute&quot; [URL=&quot;iproute.html#pyroute2.iproute.linux.RawIPRoute&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;The same as `IPRoute`, but does not use the netlink proxy.&quot;];
+  &quot;RTNL_API&quot; -&gt; &quot;RawIPRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RawIPRSocket&quot; -&gt; &quot;RawIPRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RemoteIPRoute&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;RTNL_API&quot; -&gt; &quot;RemoteIPRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RemoteSocket&quot; -&gt; &quot;RemoteIPRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RemoteSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;NetlinkMixin&quot; -&gt; &quot;RemoteSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ShellIPR&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;RTNL_API&quot; -&gt; &quot;ShellIPR&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RemoteSocket&quot; -&gt; &quot;ShellIPR&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;TaskStats&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;GenericNetlinkSocket&quot; -&gt; &quot;TaskStats&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ThermalEventSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;EventSocket&quot; -&gt; &quot;ThermalEventSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;UeventSocket&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;NetlinkSocket&quot; -&gt; &quot;UeventSocket&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;WireGuard&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;GenericNetlinkSocket&quot; -&gt; &quot;WireGuard&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<section id="under-the-hood">
+<h3>under the hood<a class="headerlink" href="#under-the-hood" title="Permalink to this headline">¶</a></h3>
+<p>Let’s assume we use an <cite>IPRoute</cite> object to get the
+interface list of the system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyroute2</span> <span class="kn">import</span> <span class="n">IPRoute</span>
+<span class="n">ipr</span> <span class="o">=</span> <span class="n">IPRoute</span><span class="p">()</span>
+<span class="n">ipr</span><span class="o">.</span><span class="n">get_links</span><span class="p">()</span>
+<span class="n">ipr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The <cite>get_links()</cite> method is provided by the <cite>IPRouteMixin</cite>
+class. It chooses the message to send (<cite>ifinfmsg</cite>), prepares
+required fields and passes it to the next layer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nlm_request</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">RTM_GETLINK</span><span class="p">,</span> <span class="n">msg_flags</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The <cite>nlm_request()</cite> is a method of the <cite>NetlinkMixin</cite> class.
+It wraps the pair request/response in one method. The request
+is done via <cite>put()</cite>, response comes with <cite>get()</cite>. These
+methods hide under the hood the asynchronous nature of the
+netlink protocol, where the response can come whenever –
+the time and packet order are not guaranteed. But one can
+use the <cite>sequence_number</cite> field of a netlink message to
+match responses, and the pair <cite>put()/get()</cite> does it.</p>
+</section>
+<section id="cache-thread">
+<h3>cache thread<a class="headerlink" href="#cache-thread" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes it is preferrable to get incoming messages asap
+and parse them only when there is time for that. For that
+case the <cite>NetlinkMixin</cite> provides a possibility to start a
+dedicated cache thread, that will collect and queue incoming
+messages as they arrive. The thread doesn’t affect the
+socket behaviour: it will behave exactly in the same way,
+the only difference is that <cite>recv()</cite> will return already
+cached in the userspace message. To start the thread,
+one should call <cite>bind()</cite> with <cite>async_cache=True</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ipr</span> <span class="o">=</span> <span class="n">IPRoute</span><span class="p">()</span>
+<span class="n">ipr</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">async_cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="o">...</span>  <span class="c1"># do some stuff</span>
+<span class="n">ipr</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="message-mangling">
+<h3>message mangling<a class="headerlink" href="#message-mangling" title="Permalink to this headline">¶</a></h3>
+<p>An interesting feature of the <cite>IPRSocketMixin</cite> is a netlink
+proxy code, that allows to register callbacks for different
+message types. The callback API is simple. The callback
+must accept the message as a binary data, and must return
+a dictionary with two keys, <cite>verdict</cite> and <cite>data</cite>. The
+verdict can be:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>for <cite>sendto()</cite>: <cite>forward</cite>, <cite>return</cite> or <cite>error</cite></p></li>
+<li><p>for <cite>recv()</cite>: <cite>forward</cite> or <cite>error</cite></p></li>
+</ul>
+</div></blockquote>
+<p>E.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="n">ifinfmsg</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+<span class="o">...</span>  <span class="c1"># mangle msg</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+<span class="k">return</span> <span class="p">{</span><span class="s1">&#39;verdict&#39;</span><span class="p">:</span> <span class="s1">&#39;forward&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()}</span>
+</pre></div>
+</div>
+<p>The <cite>error</cite> verdict raises an exception from <cite>data</cite>. The
+<cite>forward</cite> verdict causes the <cite>data</cite> to be passed. The
+<cite>return</cite> verdict is valid only in <cite>sendto()</cite> callbacks and
+means that the <cite>data</cite> should not be passed to the kernel,
+but instead it must be returned to the user.</p>
+<p>This magic allows the library to transparently support
+ovs, teamd, tuntap calls via netlink. The corresponding
+callbacks transparently route the call to an external
+utility or to <cite>ioctl()</cite> API.</p>
+<p>How to register callbacks, see <cite>IPRSocketMixin</cite> init.
+The <cite>_sproxy</cite> serves <cite>sendto()</cite> mangling, the <cite>_rproxy</cite>
+serves the <cite>recv()</cite> mangling. Later this API can become
+public.</p>
+</section>
+</section>
+<section id="netlink-messages">
+<h2>Netlink messages<a class="headerlink" href="#netlink-messages" title="Permalink to this headline">¶</a></h2>
+<p>To handle the data going through the sockets, the library
+uses different message classes. To create a custom message
+type, one should inherit:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>nlmsg</cite> to create a netlink message class</p></li>
+<li><p><cite>genlmsg</cite> to create generic netlink message class</p></li>
+<li><p><cite>nla</cite> to create a NLA class</p></li>
+</ul>
+</div></blockquote>
+<p>The messages hierarchy:</p>
+digraph inheritance944fd15cbe {
+bgcolor=transparent;
+rankdir=LR;
+ratio=auto;
+size=&quot;8.0, 12.0&quot;;
+  &quot;acpimsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;acpimsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ctrlmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Netlink control message&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;ctrlmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;devlinkcmd&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;devlinkcmd&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;dquotmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;dquotmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ethtool_linkinfo_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;ethtool_linkinfo_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ethtool_linkmode_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;ethtool_linkmode_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ethtool_linkstate_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;ethtool_linkstate_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ethtool_strset_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;ethtool_strset_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ethtool_wol_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;ethtool_wol_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;fibmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;IP rule message&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;fibmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;genlmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Generic netlink message&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;genlmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifaddrmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;IP address information&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ifaddrmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifinfbase&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Network interface message.&quot;];
+  &quot;ifinfmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;ifinfbase&quot; -&gt; &quot;ifinfmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ifinfmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifinfveth&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;ifinfbase&quot; -&gt; &quot;ifinfveth&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nla&quot; -&gt; &quot;ifinfveth&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifstatsmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ifstatsmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;inet_addr_codec&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;inet_addr_codec&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;inet_diag_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;inet_addr_codec&quot; -&gt; &quot;inet_diag_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;inet_diag_req&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;inet_addr_codec&quot; -&gt; &quot;inet_diag_req&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ipq_base_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ipq_base_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ipq_mode_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ipq_mode_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ipq_packet_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;ipq_base_msg&quot; -&gt; &quot;ipq_packet_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ipq_verdict_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;ipq_base_msg&quot; -&gt; &quot;ipq_verdict_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ipset_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Since the support just begins to be developed,&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;ipset_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;iw_event&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nla&quot; -&gt; &quot;iw_event&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ndmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;ARP cache update message&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ndmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ndtmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Neighbour table message&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ndtmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nfct_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nfct_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nfct_stats&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nfct_stats&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nfct_stats_cpu&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nfct_stats_cpu&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nfgen_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;nfgen_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_chain_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nft_chain_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_contains_expr&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nft_gen_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nft_gen_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_rule_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nft_rule_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_contains_expr&quot; -&gt; &quot;nft_rule_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_set_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nft_set_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_contains_expr&quot; -&gt; &quot;nft_set_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_table_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nfgen_msg&quot; -&gt; &quot;nft_table_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nft_contains_expr&quot; -&gt; &quot;nft_table_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nh&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;rtmsg_base&quot; -&gt; &quot;nh&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nla&quot; -&gt; &quot;nh&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nl80211cmd&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;nl80211cmd&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nla&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Main NLA class&quot;];
+  &quot;nla_base&quot; -&gt; &quot;nla&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg_atoms&quot; -&gt; &quot;nla&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nla_base&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Generic NLA base class.&quot;];
+  &quot;nla_header&quot; -&gt; &quot;nla_base&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg_base&quot; -&gt; &quot;nla_base&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg_decoder_generic&quot; -&gt; &quot;nla_base&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nla_header&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlflags&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Main netlink message class&quot;];
+  &quot;nlmsg_base&quot; -&gt; &quot;nlmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg_decoder_generic&quot; -&gt; &quot;nlmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg_atoms&quot; -&gt; &quot;nlmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg_atoms&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;A collection of base NLA types&quot;];
+  &quot;nlmsg_base&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Netlink base class. You do not need to inherit it directly, unless&quot;];
+  &quot;nlmsg_decoder_generic&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nsidmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;rtgenmsg&quot; -&gt; &quot;nsidmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nsinfmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Fake message type to represent network namespace information.&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;nsinfmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;rtgenmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;rtgenmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;rtmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;rtmsg_base&quot; -&gt; &quot;rtmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;rtmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;rtmsg_base&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Route message&quot;];
+  &quot;nlflags&quot; -&gt; &quot;rtmsg_base&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;taskstatsmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;taskstatsmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;tcmd&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;tcmd&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;tcmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;tcmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;thermal_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;thermal_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ueventmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;ueventmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;unix_diag_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;unix_diag_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;unix_diag_req&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg&quot; -&gt; &quot;unix_diag_req&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;wgmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;genlmsg&quot; -&gt; &quot;wgmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+</section>
+<section id="pf-route-messages">
+<h2>PF_ROUTE messages<a class="headerlink" href="#pf-route-messages" title="Permalink to this headline">¶</a></h2>
+<p>PF_ROUTE socket is used to receive notifications from the BSD
+kernel. The PF_ROUTE messages:</p>
+digraph inheritanced553a8d5f3 {
+bgcolor=transparent;
+rankdir=LR;
+ratio=auto;
+size=&quot;8.0, 12.0&quot;;
+  &quot;bsdmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg_base&quot; -&gt; &quot;bsdmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;if_announcemsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;bsdmsg&quot; -&gt; &quot;if_announcemsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;if_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;bsdmsg&quot; -&gt; &quot;if_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifa_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;ifa_msg_base&quot; -&gt; &quot;ifa_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;rt_msg&quot; -&gt; &quot;ifa_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifa_msg_base&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;bsdmsg&quot; -&gt; &quot;ifa_msg_base&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifma_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;ifma_msg_base&quot; -&gt; &quot;ifma_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;rt_msg&quot; -&gt; &quot;ifma_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ifma_msg_base&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;bsdmsg&quot; -&gt; &quot;ifma_msg_base&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;nlmsg_base&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Netlink base class. You do not need to inherit it directly, unless&quot;];
+  &quot;rt_msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;rt_msg_base&quot; -&gt; &quot;rt_msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;rt_msg_base&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;bsdmsg&quot; -&gt; &quot;rt_msg_base&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;rt_slot&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;nlmsg_base&quot; -&gt; &quot;rt_slot&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+</section>
+<section id="ipdb">
+<h2>IPDB<a class="headerlink" href="#ipdb" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>IPDB</cite> module implements high-level logic to manage
+some of the system network settings. It is completely
+agnostic to the netlink object’s nature, the only requirement
+is that the netlink transport must provide RTNL API.</p>
+<p>So, using proper mixin classes one can create a custom
+RTNL-compatible transport. E.g., this way <cite>IPDB</cite> can work
+over <cite>NetNS</cite> objects, providing the network management
+within some network namespace — while itself it runs in the
+main namespace.</p>
+<p>The <cite>IPDB</cite> architecture is not too complicated, but it
+implements some useful transaction magic, see <cite>commit()</cite>
+methods of the <cite>Transactional</cite> objects.</p>
+digraph inheritancebd2219997f {
+bgcolor=transparent;
+rankdir=LR;
+ratio=auto;
+size=&quot;8.0, 12.0&quot;;
+  &quot;BaseRoute&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Persistent transactional route object&quot;];
+  &quot;Transactional&quot; -&gt; &quot;BaseRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Dotkeys&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;This is a sick-minded hack of dict, intended to be an eye-candy.&quot;];
+  &quot;Encap&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;Transactional&quot; -&gt; &quot;Encap&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;IPDB&quot; [URL=&quot;ipdb.html#pyroute2.ipdb.main.IPDB&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;The class that maintains information about network setup&quot;];
+  &quot;IPaddrSet&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;LinkedSet child class with different target filter. The&quot;];
+  &quot;LinkedSet&quot; -&gt; &quot;IPaddrSet&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Interface&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Objects of this class represent network interface and&quot;];
+  &quot;Transactional&quot; -&gt; &quot;Interface&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;LinkedSet&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Utility class, used by `Interface` to track ip addresses&quot;];
+  &quot;MPLSRoute&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;BaseRoute&quot; -&gt; &quot;MPLSRoute&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;MPLSTable&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;RoutingTable&quot; -&gt; &quot;MPLSTable&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Metrics&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;Transactional&quot; -&gt; &quot;Metrics&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;NextHopSet&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;LinkedSet&quot; -&gt; &quot;NextHopSet&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Route&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;BaseRoute&quot; -&gt; &quot;Route&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RoutingTable&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;RoutingTableSet&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;Rule&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Persistent transactional rule object&quot;];
+  &quot;Transactional&quot; -&gt; &quot;Rule&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;RulesDict&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;Transactional&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,tooltip=&quot;Utility class that implements common transactional logic.&quot;];
+  &quot;Dotkeys&quot; -&gt; &quot;Transactional&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;Via&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;Transactional&quot; -&gt; &quot;Via&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+</section>
+<section id="internet-protocols">
+<h2>Internet protocols<a class="headerlink" href="#internet-protocols" title="Permalink to this headline">¶</a></h2>
+<p>Beside of the netlink protocols, the library implements a
+limited set of supplementary internet protocol to play with.</p>
+digraph inheritance15756ada77 {
+bgcolor=transparent;
+rankdir=LR;
+ratio=auto;
+size=&quot;8.0, 12.0&quot;;
+  &quot;dhcp4msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;dhcpmsg&quot; -&gt; &quot;dhcp4msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;dhcpmsg&quot; [URL=&quot;dhcp.html#pyroute2.dhcp.dhcpmsg&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;];
+  &quot;msg&quot; -&gt; &quot;dhcpmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ethmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;msg&quot; -&gt; &quot;ethmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;ip4msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;msg&quot; -&gt; &quot;ip4msg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;msg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;udp4_pseudo_header&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;msg&quot; -&gt; &quot;udp4_pseudo_header&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;udpmsg&quot; [fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;];
+  &quot;msg&quot; -&gt; &quot;udpmsg&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Module architecture</a><ul>
+<li><a class="reference internal" href="#sockets">Sockets</a><ul>
+<li><a class="reference internal" href="#under-the-hood">under the hood</a></li>
+<li><a class="reference internal" href="#cache-thread">cache thread</a></li>
+<li><a class="reference internal" href="#message-mangling">message mangling</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#netlink-messages">Netlink messages</a></li>
+<li><a class="reference internal" href="#pf-route-messages">PF_ROUTE messages</a></li>
+<li><a class="reference internal" href="#ipdb">IPDB</a></li>
+<li><a class="reference internal" href="#internet-protocols">Internet protocols</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="devcontribute.html"
+                        title="previous chapter">Project contribution guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="netlink.html"
+                        title="next chapter">Netlink</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/arch.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="netlink.html" title="Netlink"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="devcontribute.html" title="Project contribution guide"
+             >previous</a> |</li>
+        <li class="nav-item"><a href="http://pyroute2.org">Project home</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyroute2 0.5.18 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Module architecture</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Peter V. Saveliev.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
+</html>

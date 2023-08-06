@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>IP addresses management &#8212; pyroute2 0.5.18 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Routes management" href="ndb_routes.html" />
+    <link rel="prev" title="Network interfaces" href="ndb_interfaces.html" /> 
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ndb_routes.html" title="Routes management"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ndb_interfaces.html" title="Network interfaces"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item"><a href="http://pyroute2.org">Project home</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyroute2 0.5.18 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="ndb.html" accesskey="U">NDB module</a> &#187;</li> 
+      </ul>
+        </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-pyroute2.ndb.objects.address">
+<span id="ip-addresses-management"></span><h1>IP addresses management<a class="headerlink" href="#module-pyroute2.ndb.objects.address" title="Permalink to this headline">¶</a></h1>
+<section id="using-the-global-view">
+<h2>Using the global view<a class="headerlink" href="#using-the-global-view" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>addresses</cite> view provides access to all the addresses registered in the DB,
+as well as methods to create and remove them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eth0</span> <span class="o">=</span> <span class="n">ndb</span><span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+
+<span class="c1"># create an address</span>
+<span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">addresses</span>
+ <span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s1">&#39;10.0.0.1&#39;</span><span class="p">,</span> <span class="n">prefixlen</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">eth0</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">])</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+
+<span class="c1"># remove it</span>
+<span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">addresses</span><span class="p">[</span><span class="s1">&#39;10.0.0.1/24&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+
+<span class="c1"># list addresses</span>
+<span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">addresses</span>
+ <span class="o">.</span><span class="n">summary</span><span class="p">())</span>  <span class="c1"># see also other view dump methods</span>
+</pre></div>
+</div>
+</section>
+<section id="using-ipaddr-views">
+<h2>Using ipaddr views<a class="headerlink" href="#using-ipaddr-views" title="Permalink to this headline">¶</a></h2>
+<p>Interfaces also provide address views as subsets of the global
+address view:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">ipaddr</span>
+ <span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>It is possible use the same API as with the global address view:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">ipaddr</span>
+ <span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s1">&#39;10.0.0.1&#39;</span><span class="p">,</span> <span class="n">prefixlen</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c1"># index is implied</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="using-interface-methods">
+<h2>Using interface methods<a class="headerlink" href="#using-interface-methods" title="Permalink to this headline">¶</a></h2>
+<p>Interfaces provide also simple methods to manage addresses:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">del_ip</span><span class="p">(</span><span class="s1">&#39;172.16.0.1/24&#39;</span><span class="p">)</span>                   <span class="c1"># remove an existing address</span>
+ <span class="o">.</span><span class="n">del_ip</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="n">AF_INET</span><span class="p">)</span>                    <span class="c1"># remove all IPv4 addresses</span>
+ <span class="o">.</span><span class="n">add_ip</span><span class="p">(</span><span class="s1">&#39;10.0.0.1/24&#39;</span><span class="p">)</span>                     <span class="c1"># add a new IP address</span>
+ <span class="o">.</span><span class="n">add_ip</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="s1">&#39;10.0.0.2&#39;</span><span class="p">,</span> <span class="n">prefixlen</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>  <span class="c1"># if you prefer keyword args</span>
+ <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;up&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Functions <cite>add_ip()</cite> and <cite>del_ip()</cite> return the interface object, so they
+can be chained as in the example above, and the final <cite>commit()</cite> will
+commit all the changes in the chain.</p>
+<p>The keywords to <cite>del_ip()</cite> are the same object field names that may be used
+in the selectors or report filters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">del_ip</span><span class="p">(</span><span class="n">prefixlen</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>    <span class="c1"># remove all addresses with mask /25</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>A match function that may be passed to the <cite>del_ip()</cite> is the same as for
+<cite>addresses.dump().filter()</cite>, and it gets a named tuple as the argument.
+The fields are named in the same way as address objects fields. So if you
+want to filter addresses by a pattern or the <cite>prefixlen</cite> field with a
+match function, you may use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">del_ip</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;192.168&#39;</span><span class="p">))</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+
+<span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth1&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">del_ip</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">prefixlen</span> <span class="o">==</span> <span class="mi">25</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>An empty <cite>del_ip()</cite> removes all the IP addresses on the interface:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">ndb</span>
+ <span class="o">.</span><span class="n">interfaces</span><span class="p">[</span><span class="s1">&#39;eth0&#39;</span><span class="p">]</span>
+ <span class="o">.</span><span class="n">del_ip</span><span class="p">()</span>                <span class="c1"># flush all the IP:s</span>
+ <span class="o">.</span><span class="n">commit</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="accessing-one-address-details">
+<h2>Accessing one address details<a class="headerlink" href="#accessing-one-address-details" title="Permalink to this headline">¶</a></h2>
+<p>Access an address as a separate RTNL object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ndb</span><span class="o">.</span><span class="n">addresses</span><span class="p">[</span><span class="s1">&#39;10.0.0.1/24&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Please notice that address objects are read-only, you may not change them,
+only remove old ones, and create new.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">IP addresses management</a><ul>
+<li><a class="reference internal" href="#using-the-global-view">Using the global view</a></li>
+<li><a class="reference internal" href="#using-ipaddr-views">Using ipaddr views</a></li>
+<li><a class="reference internal" href="#using-interface-methods">Using interface methods</a></li>
+<li><a class="reference internal" href="#accessing-one-address-details">Accessing one address details</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ndb_interfaces.html"
+                        title="previous chapter">Network interfaces</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ndb_routes.html"
+                        title="next chapter">Routes management</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ndb_addresses.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ndb_routes.html" title="Routes management"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ndb_interfaces.html" title="Network interfaces"
+             >previous</a> |</li>
+        <li class="nav-item"><a href="http://pyroute2.org">Project home</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">pyroute2 0.5.18 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="ndb.html" >NDB module</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">IP addresses management</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2013, Peter V. Saveliev.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
+</html>
