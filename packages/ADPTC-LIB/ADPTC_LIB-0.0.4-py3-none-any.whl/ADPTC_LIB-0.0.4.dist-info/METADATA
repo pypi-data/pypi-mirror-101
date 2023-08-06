@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: ADPTC-LIB
+Version: 0.0.4
+Summary: 自适应密度峰值树聚类（Adaptive Density Peak Tree Clustering）
+Home-page: UNKNOWN
+Author: SongJ
+Author-email: songjie0613@126.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+
+## 自适应密度峰值树聚类（Adaptive Density Peak Tree Clustering）
+本算法是在快速搜索与发现密度峰值聚类算法（Clustering by fast search and find of density peaks）CFSFDP的基础上进行改进的成果，主要解决的问题有:
+- 手动选择聚类中心
+- 单簇多密度峰值导致类簇误分
+- 面向时空数据聚类时，无法顾及时空耦合
+### 原理：
+通过CFSFDP算法的核心概念：局部密度和斥群值，构建密度峰值树，通过直达点、连通点和切割点分离子树，达到类簇划分的目的。
+
+<img src="https://cdn.jsdelivr.net/gh/SuilandCoder/PicStorage//img/image-20210409210616098.png" alt="image-20210409210616098" style="zoom: 80%;" />
+
+![image-20210409210731545](https://cdn.jsdelivr.net/gh/SuilandCoder/PicStorage//img/image-20210409210731545.png)
+
+![image-20210409212843640](https://cdn.jsdelivr.net/gh/SuilandCoder/PicStorage//img/image-20210409212843640.png)
+
+### 使用方法：
+#### 1. 安装:
+
+```python
+pip install ADPTC-LIB
+```
+
+#### 2. 空间数据聚类：
+
+
+
