@@ -1,0 +1,8 @@
+recursive-exclude .circleci/ *
+recursive-exclude .docker/ *
+recursive-exclude .github/ *
+recursive-exclude .git/ *
+recursive-exclude docs/ *
+
+exclude .*
+exclude Dockerfile
