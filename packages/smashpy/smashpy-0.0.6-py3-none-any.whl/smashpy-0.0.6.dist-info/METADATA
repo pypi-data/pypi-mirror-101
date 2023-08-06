@@ -1,0 +1,35 @@
+Metadata-Version: 2.1
+Name: smashpy
+Version: 0.0.6
+Summary: SMaSH: A scalable, general marker gene identification framework for single-cell RNA sequencing and Spatial Transcriptomics
+Home-page: https://gitlab.com/cvejic-group/smash
+Author: Simone Riva
+Author-email: sgr34@cam.ac.uk
+License: LICENSE
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Requires-Python: >=3.5
+Requires-Dist: shap (>=0.37.0)
+Requires-Dist: matplotlib (>=3.3.2)
+Requires-Dist: numpy (>=1.19.2)
+Requires-Dist: scanpy (>=1.7.1)
+Requires-Dist: pandas (>=0.25.2)
+Requires-Dist: seaborn (>=0.11.0)
+Requires-Dist: tensorflow (>=2.4.1)
+Requires-Dist: scikit-learn (>=0.23.1)
+Requires-Dist: xgboost (>=1.3.3)
+Requires-Dist: keras (>=2.4.3)
+Requires-Dist: imbalanced-learn (>=0.7.0)
+Requires-Dist: numba (>=0.51.2)
+Requires-Dist: harmonypy (>=0.0.5)
+
+The ```SMaSH``` (Scalable Marker gene Signal Hunter) framework is a general, scalable codebase for calculating marker genes from single-cell RNA-sequencing data for a variety of different cell annotations as provided by the user, using supervised machine learning approaches.  These annotations can be truly general: they can be broad cell types/clusters, detailed sub-types of different broad clusters, cell organ of origin, whether the cell inhabits tumour tissue, surrounding microenvironment, or healthy tissue, and more besides. ```SMaSH``` implements marker gene extraction using four different models (Random Forest, Balanced Random Forest, XGBoost, and a deep neural network) and two different information gain metrics (Gini impurity for the ensemble learners, and Shapley value for the neural network). For some details on the ```SMaSH``` implementation please consult our pre-print: https://www.biorxiv.org/content/10.1101/2021.04.08.438978v1, or visit our GitLab repository: https://gitlab.com/cvejic-group/smash. ```SMaSH``` is integrated with the ```ScanPy``` framework, working directly from the ```AnnData``` object of RNA-sequencing counts and a vector of user-defined annotations for each cell according to the marker gene extraction problem. 
+
+
+We're always happy to hear of any suggestions, issues, bug reports, and possible ideas for collaboration.
+
+- Mike Nelson <nelson@ebi.ac.uk> (University of Cambridge, and EMBL-EBI)
+
+- Simone Riva <sgr34@cam.ac.uk>, <sr31@sanger.ac.uk> (University of Cambridge, and Wellcome Sanger Institute) 
+
+
