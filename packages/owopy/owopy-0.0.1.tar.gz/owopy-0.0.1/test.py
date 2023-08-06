@@ -1,0 +1,2 @@
+import owopy
+print(owopy)
