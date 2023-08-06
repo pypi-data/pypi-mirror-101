@@ -1,0 +1,15 @@
+[invenio_base.api_apps]
+nr_generic=nr_generic:NRCommon
+
+[invenio_base.apps]
+nr_generic=nr_generic:NRCommon
+
+[invenio_pidstore.fetchers]
+nr_generic=nr_generic.fetchers:nr_id_generic_fetcher
+
+[invenio_pidstore.minters]
+nr_generic=nr_generic.minters:nr_id_generic_minter
+
+[invenio_search.mappings]
+nr_common=nr_generic.mappings
+
