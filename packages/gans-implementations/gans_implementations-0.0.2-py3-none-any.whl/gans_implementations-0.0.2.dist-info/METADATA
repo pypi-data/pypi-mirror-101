@@ -1,0 +1,51 @@
+Metadata-Version: 2.1
+Name: gans-implementations
+Version: 0.0.2
+Summary: A bunch of GAN implementations
+Home-page: https://github.com/UdbhavPrasad072300/GANs-Implementations
+Author: Udbhav Prasad
+Author-email: udbhavprasad072300@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: Python :: 3 :: Only
+Description-Content-Type: text/markdown
+
+# GANs-Implementations
+
+GANs Implementations and their Training (in .ipynb)
+
+Implemented:
+<ul>
+  <li>Vanilla GAN</li>
+  <li>DCGAN - Deep Convolutional GAN</li>
+  <li>WGAN - Wasserstein GAN</li>
+  <li>SNGAN - Spectrally Normalized GAN </li>
+  <li>StyleGAN</li>
+</ul>
+
+## Installation
+
+<a href="https://pypi.org/project/gans-implementations/">PyPi Installation</a>
+
+```bash
+$ pip install gans-implementations
+```
+
+## Handwritten Digits - MNIST 
+
+<ul>
+  <li><a href="https://github.com/UdbhavPrasad072300/GANs-Implementations/blob/main/notebooks/GAN%20with%20BCE%20-%20MNIST.ipynb">GAN with BCELoss</a></li>
+  <li><a href="https://github.com/UdbhavPrasad072300/GANs-Implementations/blob/main/notebooks/DCGAN%20with%20BCE%20-%20MNIST.ipynb">DCGAN with BCELoss</a></li>
+  <li><a href="https://github.com/UdbhavPrasad072300/GANs-Implementations/blob/main/notebooks/SN-WGAN%20with%20GP%20-%20MNIST.ipynb">SN-WGAN with Wasserstein Loss</a></li>
+</ul>
+
+## Work Cited
+
+https://www.coursera.org/specializations/generative-adversarial-networks-gans?
+
+
