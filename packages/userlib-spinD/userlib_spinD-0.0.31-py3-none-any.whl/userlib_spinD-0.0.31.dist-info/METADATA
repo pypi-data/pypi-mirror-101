@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: userlib-spinD
+Version: 0.0.31
+Summary: userlibrary functions for using SpinD-code of the spintronics group in Kiel
+Home-page: https://gitlab.com/hschrautzer/seafood
+Author: Moritz Goerzen
+Author-email: h.schrautzer@gmx.de
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+##Userlibrary Spin D
+This library was written by Moritz Goerzen to handle the Spin Dynamic simulations more efficient.
+For descriptions see LIBRARY_DOCUMENTATION_072020.pdf
+
+Can be installed via
+'pip install userlib-spinD'.
+
+##Updating library on package index PyPi
+1. upgrade setuptools:
+'pip install --upgrade setuptools wheel' and 'pip install --upgrade setuptools twine'
+2. remove all files in old distribution file (dist/)
+3. build: 'python setup.py sdist bdist_wheel'
+4. distribute: 'python -m twine upload dist/*
+5. enter username and password
+
