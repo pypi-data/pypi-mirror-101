@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: cm2diffop
+Version: 0.0.5
+Summary: differential operator
+Home-page: https://gitlab.com/cm2lab/diffop_module
+Author: CM2Lab
+Author-email: s.park@openest.eu
+License: UNKNOWN
+Keywords: differential operator
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Sources
+- `Calc_3d.py`
+- `Calc_diff_ops.py`
+- `Taylor.py`
+- `Get_Diff_Op_mat_vec.py`
+
+# Required pacakges
+- numpy: `conda intall numpy`
+- scipy: `conda install scipy`
+- cm2utils: `[your anaconda env]/bin/pip install cm2utils`, developed by CM2Lab.
+
+# Last update
+- April 07, 2021
+
