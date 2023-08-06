@@ -1,0 +1,109 @@
+Metadata-Version: 2.1
+Name: pytojcamp
+Version: 0.1.0
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Kevin M. Jablonka
+Author-email: kevin.jablonka@epfl.ch
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.19)
+Provides-Extra: docs
+Requires-Dist: Sphinx ; extra == 'docs'
+Requires-Dist: sphinx-book-theme ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Provides-Extra: pre-commit
+Requires-Dist: pre-commit ; extra == 'pre-commit'
+Requires-Dist: black ; extra == 'pre-commit'
+Requires-Dist: prospector ; extra == 'pre-commit'
+Requires-Dist: pylint ; extra == 'pre-commit'
+Requires-Dist: versioneer ; extra == 'pre-commit'
+Requires-Dist: isort ; extra == 'pre-commit'
+Requires-Dist: gitchangelog ; extra == 'pre-commit'
+Provides-Extra: testing
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-cov (<2.11) ; extra == 'testing'
+
+# PyToJCAMP
+
+[![Documentation Status](https://readthedocs.org/projects/pytojcamp/badge/?version=latest)](https://pytojcamp.readthedocs.io/en/latest/?badge=latest)
+![Python package](https://github.com/cheminfo-py/pytojcamp/workflows/Python%20package/badge.svg)
+![pre-commit](https://github.com/cheminfo-py/pytojcamp/workflows/pre-commit/badge.svg)
+[![codecov](https://codecov.io/gh/cheminfo-py/pytojcamp/branch/master/graph/badge.svg)](https://codecov.io/gh/cheminfo-py/pytojcamp)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pytojcamp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![GitHub last commit](https://img.shields.io/github/last-commit/cheminfo-py/pytojcamp)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cheminfo-py/pytojcamp/master?filepath=examples%2Fexample.ipynb)
+
+Python to JCAMP converter. Inspired by [PyToJCAMP](https://github.com/cheminfo/convert-to-jcamp).
+
+Some tools work well with the [JCAMP](http://jcamp-dx.org/) format.
+This package allows converting Python data structures to JCAMP, this can make it easier for Python based web services to interact with the [ELN](eln.epfl.ch).
+
+## Installation
+
+To get the latest development version from the head use
+
+```
+pip install git+https://github.com/cheminfo-py/pytojcamp.git
+```
+
+to install the latest stable release use
+
+```
+pip install pytojcamp
+```
+
+## Usage
+
+See the example notebooks, which you can [try out on Binder](https://mybinder.org/v2/gh/kjappelbaum/pytojcamp/master?filepath=examples%2Fexample.ipynb).
+
+### x/y data
+
+For simple x/y data you can use
+
+```python
+from pytojcamp import from_xy
+jcamp_string = from_xy((x,y))
+```
+
+## multicolumn data
+
+For multicolumn data you can use
+
+```python
+from pytojcamp import from_dict
+
+data_dictionaries = {
+    'x' : {
+        'data': [1,2,3],
+        'type': 'INDEPENDENT',
+        'unit': 'cm'
+    },
+    'y' : {
+        'data': [3,2,3],
+        'type': 'DEPENDENT',
+        'unit': 'h'
+    },
+    'z' : {
+        'data': [3,2,3],
+        'type': 'DEPENDENT',
+        'unit': 'kg'
+    }
+}
+
+jcamp_string = from_dict(data_dictionaries)
+```
+
+
