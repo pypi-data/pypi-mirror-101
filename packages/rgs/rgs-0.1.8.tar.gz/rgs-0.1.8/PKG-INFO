@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: rgs
+Version: 0.1.8
+Summary: A small package to display and manipulate random geometry structures like pairings, meanders, triangulations and tilings.
+Home-page: https://github.com/slavakargin/RandomGeeometricStructures
+License: MIT
+Author: Vladislav Kargin
+Author-email: slavakargin@yahoo.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: numdifftools
+Project-URL: Repository, https://github.com/slavakargin/RandomGeeometricStructures
+Description-Content-Type: text/markdown
+
+# RandomGeometricStructures
+A collection of various function to draw and analyze random geometric structures (like pairings, tilings etc.)
+
+An illustration can be found at: 
+
+For pmaps package:
+[Triangulations](https://colab.research.google.com/drive/1URQte3-X6Lau74B0JSjU7gkStO_-kx0O?usp=sharing )
+
