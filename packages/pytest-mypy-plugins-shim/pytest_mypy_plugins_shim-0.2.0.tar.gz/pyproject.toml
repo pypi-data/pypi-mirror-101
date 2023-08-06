@@ -1,0 +1,55 @@
+[build-system]
+requires = [ "whey",]
+build-backend = "whey"
+
+[project]
+name = "pytest-mypy-plugins-shim"
+version = "0.2.0"
+description = "Substitute for \"pytest-mypy-plugins\" for Python implementations which aren't supported by mypy."
+readme = "README.rst"
+keywords = []
+dynamic = []
+dependencies = [ "pytest>=6.0.0",]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+requires-python = ">=3.6"
+
+[[project.authors]]
+email = "dominic@davis-foster.co.uk"
+name = "Dominic Davis-Foster"
+
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/python-coincidence/pytest-mypy-plugins-shim"
+"Issue Tracker" = "https://github.com/python-coincidence/pytest-mypy-plugins-shim/issues"
+"Source Code" = "https://github.com/python-coincidence/pytest-mypy-plugins-shim"
+
+[tool.importcheck]
+always = [ "pytest_mypy_plugins_shim",]
+
+[tool.mkrecipe]
+conda-channels = [ "python-coincidence",]
+extras = "all"
+license-key = "MIT"
+package = "pytest_mypy_plugins_shim"
+
+[tool.whey]
+base-classifiers = []
+python-versions = [ "3.6", "3.7",]
+python-implementations = [ "PyPy",]
+platforms = [ "Windows", "macOS", "Linux",]
+license-key = "MIT"
+package = "pytest_mypy_plugins_shim"
+
+[project.entry-points.pytest11]
+pytest-mypy-plugins-shim = "pytest_mypy_plugins_shim"
