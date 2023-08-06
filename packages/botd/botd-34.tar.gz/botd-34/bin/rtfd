@@ -1,0 +1,8 @@
+#!/bin/bash
+# This file is placed in the Public Domain.
+
+bin/env
+env/bin/python3 env/bin/pip3 install -r docs/requirements.txt
+env/bin/python3 env/bin/pip3 install -f ../botl/dist botl
+env/bin/python3 env/bin/pip3 install -f dist botd
+env/bin/python3 env/bin/sphinx-build docs html

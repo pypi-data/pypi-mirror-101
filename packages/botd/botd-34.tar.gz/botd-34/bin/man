@@ -1,0 +1,9 @@
+pandoc man/bot.1.md -s -t man -o man/bot.1
+gzip -f man/bot.1
+pandoc man/botd.8.md -s -t man -o man/botd.8
+gzip -f man/botd.8
+pandoc man/botctl.8.md -s -t man -o man/botctl.8
+gzip -f man/botctl.8
+python3 setup.py install_data
+mandb
+chown -R bart:bart man
