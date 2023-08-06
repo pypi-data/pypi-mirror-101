@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "entity.proto";
+import "action.proto";
+import "google/protobuf/struct.proto";
+import "integration_source.proto";
+import "common.proto";
+
+option java_package = "io.calixa.domain.action";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+package calixa.domain.action;
+
+message GetActionsRequest {
+
+}
+
+message GetActionsResponse {
+    repeated calixa.domain.entity.Entity actions = 1;
+}
+
+message InvokeActionRequest {
+    calixa.domain.entity.Entity action_config = 1;
+    calixa.domain.action.ActionParams override_action_params = 2;
+    string entity_canonical_id = 3;
+}
+
+message InvokeActionResponse {
+    ActionInvocationStatus action_status = 1;
+    calixa.domain.action.ThirdPartyActionInvocationResponse raw = 2;
+}
+
+service ActionService {
+    rpc GetActions (GetActionsRequest) returns (stream GetActionsResponse);
+    rpc InvokeAction (InvokeActionRequest) returns (InvokeActionResponse);
+}

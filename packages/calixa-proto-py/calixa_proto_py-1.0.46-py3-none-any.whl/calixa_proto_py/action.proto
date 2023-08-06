@@ -1,0 +1,49 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "common.proto";
+import "integration_source.proto";
+
+option java_package = "io.calixa.domain.action";
+package calixa.domain.action;
+
+enum ActionInvocationStatus {
+    ACTION_INVOCATION_STATUS_UNSPECIFIED = 0;
+    ACTION_INVOCATION_STATUS_SUCCESS = 1;
+    ACTION_INVOCATION_STATUS_FAILED = 2;
+}
+
+message ChargeRefundParams {
+    calixa.domain.common.Amount amount = 1;
+    string reason = 2;
+}
+
+message WebhookParams {
+    string url = 1;
+}
+
+// When adding new actions, keep "themes" together in their namespace/number ranger
+message ActionParams {
+    oneof params {
+        ChargeRefundParams charge_refund_params = 1;
+
+        // Placeholder experiment for Custom actions. May ending up being removed
+        WebhookParams webhook_params = 10000;
+    }
+}
+
+message ThirdPartyActionInvocationResponse {
+    map<string, string> headers = 1;
+    map<string, string> meta = 2;
+    string body = 3;
+}
+
+message ActionConfig {
+    string title = 1;
+    calixa.domain.integration.IntegrationSource source = 2;
+    calixa.domain.common.EntityType entity_type = 3;
+    string created_by_organization_user = 4;
+    ActionParams default_action_params = 5;
+}
