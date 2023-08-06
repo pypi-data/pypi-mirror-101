@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: amazon-product-reviews-scraper
+Version: 1.0.0
+Summary: A python library to scrape product reviews data automatically on amazon.
+Home-page: https://amazon-api.datakund.com/en/latest/
+Author: DataKund
+Author-email: datakund@gmail.com
+License: Apache License 2.0
+Description: Amazon-Product-Reviews-Scraper is a python library to get product reviews on amazon automatically using browser automation. 
+        It currently runs only on windows.
+        
+        ### Example
+        In this example we first import library, then we will open the product reviews and fetch them.
+        ```sh
+        from amazon_product_reviews_scraper import *
+        amazon.open("https://www.amazon.in/Intellilens%C2%AE-Spectacles-Anti-glare-Protection-Computer/product-reviews/B07JCKYCJ1/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews") # product reviews link
+        
+        for i in range(0,5):
+        	response=amazon.get_reviews()
+        	data=response['body']
+        	amazon.click_next_reviews() # clicks on next button
+        #data=[{"Stars": "5", "Review Link": "https://www.amazon.in/gp/customer-reviews/R2X17YCIE6PP8O/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=B07JCKYCJ1", "Review": " Brilliant!! A must buy"},{},...]
+        ```
+        
+        This module depends on the following python modules
+        * [requests](https://pypi.org/project/requests/)
+        * [bot_studio](https://pypi.org/project/bot_studio/)
+        
+        #### BotStudio
+        [bot_studio](https://pypi.org/project/datakund/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up in which product reviews will be opened.
+        
+        Complete documentation for Amazon Automation available [here](https://amazon-api.datakund.com/en/latest/)
+        
+        ### Installation
+        
+        ```sh
+        pip install amazon-product-reviews-scraper
+        ```
+        
+        ### Import
+        ```sh
+        from amazon_product_reviews_scraper import *
+        ```
+        
+        ### Open reviews
+        ```sh
+        response=amazon.open("reviews link")
+        ```
+        
+        ### Get reviews
+        ```sh
+        response=amazon.get_reviews()
+        ```
+        
+        ### Move to next page of reviews
+        ```sh
+        amazon.click_next_reviews()
+        ```
+        
+        ### Send Feedback to Developers
+        ```sh
+        bot_studio.send_feedback(feedback="Need help with this ......")
+        ```
+        
+        ### Contact Us
+        * [Telegram](https://t.me/datakund)
+        * [Website](https://datakund.com)
+        
+        
+Keywords: amazon python bot_studio scraper reviews product data web-scraping
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
