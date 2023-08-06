@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: pidcalib2
+Version: 0.2.0
+Summary: A set of tools for estimating LHCb PID efficiencies
+Home-page: https://gitlab.cern.ch/lhcb-rta/pidcalib2
+Author: Daniel Cervenkov
+Author-email: daniel.cervenkov@cern.ch
+License: GNU General Public License v3 (GPLv3)
+Project-URL: Bug Tracker, https://gitlab.cern.ch/lhcb-rta/pidcalib2/issues
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: boost-histogram
+Requires-Dist: logzero
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: tqdm
+Requires-Dist: uproot
+Requires-Dist: uproot3
+
+# PIDCalib2
+
+A set of software tools for estimating LHCb PID efficiencies. A rewrite of the original PIDCalib.
+
+
