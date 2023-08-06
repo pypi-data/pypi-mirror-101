@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: ceda-cc
+Version: 1.9.0
+Summary: CEDA Conformance Checker
+Home-page: https://github.com/cedadev/ceda-cc
+Author: Martin Juckes
+Author-email: Martin.Juckes@stfc.ac.uk
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python :: 3
+
+
+
+USAGE
+-----
+
+From the command line:
+----------------------
+
+Required arguments:
+
+python ceda_cc/c4.py -p <project> -D <directory>  ## check all files in directory tree, for project in SPECS, CORDEX, CCMI, CMIP5.
+python ceda_cc/c4.py -p <project> -d <directory>  ## check all files in directory
+python ceda_cc/c4.py -p <project> -f <file>       ## check a single file.
+python ceda_cc/c4.py --copy-config <dest-dir>     ## copy the default configuration directory to <dest-dir> to enable customisation.
+
+
+
