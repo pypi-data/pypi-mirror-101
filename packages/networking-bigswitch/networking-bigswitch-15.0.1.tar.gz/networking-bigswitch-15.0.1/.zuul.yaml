@@ -1,0 +1,12 @@
+# this job definition is based on
+# https://docs.openstack.org/infra/openstack-zuul-jobs/project-templates.html
+#
+# moving to an in-repo project template definition for faster iteration
+# also keeps project maintainers in know-how about the build stuff
+#
+# reference about zuul-v3 available at
+# https://docs.openstack.org/infra/manual/zuulv3.html
+- project:
+    templates:
+      - openstack-python-jobs-neutron
+      - openstack-python3-train-jobs-neutron
