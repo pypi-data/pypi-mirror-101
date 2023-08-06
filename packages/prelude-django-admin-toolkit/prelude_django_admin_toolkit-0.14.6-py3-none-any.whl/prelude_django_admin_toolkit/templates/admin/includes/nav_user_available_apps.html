@@ -1,0 +1,13 @@
+{% load i18n static %}
+
+{% for app in available_apps %}
+<li class="uk-nav-header"><a href="{{ app.app_url }}">{{ app.name }}</a></li>
+    {% for model in app.models %} 
+    <li><a href="{{ model.admin_url }}"><span class="uk-margin-small-right" uk-icon="icon: table"></span>{{ model.name }}</a></li>
+    {% endfor %}
+{% endfor %}
+
+{% if admin.show_about %}
+<li class="uk-nav-header">{% trans 'Help' %}</li>
+<li><a href="{% url 'admin:about' %}"><span uk-icon="icon: info; ratio: 0.75"></span> {% trans 'About' %}</a></li>
+{% endif %}

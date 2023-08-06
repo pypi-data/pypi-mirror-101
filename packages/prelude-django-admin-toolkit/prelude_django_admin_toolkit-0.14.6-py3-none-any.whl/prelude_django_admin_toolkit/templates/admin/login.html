@@ -1,0 +1,115 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block usertools %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content_base %}
+
+<div class="uk-section uk-height-viewport uk-section-primary uk-preserve-color">
+    <div class="uk-container">
+        <div class="uk-grid-match uk-child-width-1-2@m" uk-grid>
+            <div class="uk-light">
+                <div>
+                    {% block branding %}
+                        <h1 id="uk-h1"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+                    {% endblock %}
+                </div>
+            </div>
+            <div>
+                <div class="uk-margin uk-width-large uk-margin-auto uk-flex-middle uk-card uk-card-default uk-card-body uk-box-shadow-large uk-dark">
+                    {# Error message handling #}
+                    {% if user.is_authenticated %}
+                    <div class="uk-alert-warning" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        {% blocktrans trimmed %}
+                            You are authenticated as {{ username }}, but are not authorized to
+                            access this page. Would you like to login to a different account?
+                        {% endblocktrans %}
+                    </div>
+                    {% endif %}
+
+                    {% if form.errors and not form.non_field_errors %}
+                    <div class="uk-alert-warning" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        {% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+                    </div>
+                    {% endif %}
+
+                    {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                    <div class="uk-alert-warning" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+                        <div class="uk-margin">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                    <input class="uk-input uk-form-large" name="username" type="text">
+                            </div>
+                            {{ form.username.errors }}
+                        </div>
+                        <div class="uk-margin">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                <input class="uk-input uk-form-large" name="password" type="password">	
+                            </div>
+                            {{ form.password.errors }}
+                        </div>
+                        <div class="uk-margin">
+                            <button id="prl-btn-login" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+                        </div>
+                        {% comment %}
+                        <div class="uk-text-small uk-text-center">
+                            Not registered? <a href="#">Create an account</a>
+                        </div>
+                        {% endcomment %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% comment %}
+
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+  <div class="form-row">
+    {{ form.username.errors }}
+    {{ form.username.label_tag }} {{ form.username }}
+  </div>
+  <div class="form-row">
+    {{ form.password.errors }}
+    {{ form.password.label_tag }} {{ form.password }}
+    <input type="hidden" name="next" value="{{ next }}">
+  </div>
+  {% url 'admin_password_reset' as password_reset_url %}
+  {% if password_reset_url %}
+  <div class="password-reset-link">
+    <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
+  </div>
+  {% endif %}
+  <div class="submit-row">
+    <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}">
+  </div>
+</form>
+
+</div>
+{% endcomment %}
+
+{% endblock %}
