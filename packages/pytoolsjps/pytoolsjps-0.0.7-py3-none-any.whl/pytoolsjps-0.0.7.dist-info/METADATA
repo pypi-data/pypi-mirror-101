@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: pytoolsjps
+Version: 0.0.7
+Summary: Collection of helper tools
+Home-page: https://github.com/jan-schueler/pytools
+Author: Jan Schüler
+Author-email: janpschueler@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 1 - Planning
+Description-Content-Type: text/markdown
+Requires-Dist: greenlet (>=1.0.0)
+Requires-Dist: numpy (>=1.20.2)
+Requires-Dist: pandas (>=1.2.3)
+Requires-Dist: psycopg2-binary (>=2.8.6)
+Requires-Dist: python-dateutil (>=2.8.1)
+Requires-Dist: python-dotenv (>=0.16.0)
+Requires-Dist: pytz (>=2021.1)
+Requires-Dist: six (>=1.15.0)
+Requires-Dist: SQLAlchemy (>=1.4.4)
+Provides-Extra: dev
+Requires-Dist: pytest (>=3.7) ; extra == 'dev'
+
+# pytools
+
+Collection of helper tools
+
+## Installation
+
+Run the following to install:
+```python
+pip install toolsjps
+```
+
+# Developing
+To install the package along with the tools you need to develop and run the tests,
+run the following in your virtualenv:
+
+```bash
+$ pip install -e .[dev]
+```
+
