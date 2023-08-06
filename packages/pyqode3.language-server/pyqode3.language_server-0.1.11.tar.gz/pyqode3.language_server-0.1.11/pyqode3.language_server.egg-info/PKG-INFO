@@ -1,0 +1,65 @@
+Metadata-Version: 1.1
+Name: pyqode3.language-server
+Version: 0.1.11
+Summary: Adds language-server support to pyqode.core
+Home-page: https://github.com/open-cogsci/pyqode.language_server
+Author: Sebastiaan Mathot
+Author-email: s.mathot@cogsci.nl
+License: MIT
+Description: .. image:: https://raw.githubusercontent.com/pyQode/pyQode/master/media/pyqode-banner.png
+        
+        
+        About
+        -----
+        
+        This is a fork of PyQode, which is now developed as the editor component for Rapunzel_ and OpenSesame_. The original PyQode repository (<= v2) is no longer maintained.
+        
+        *pyqode.language_server* adds **language server protocol (LSP_)** support to `pyQode`. The Language Server protocol is used between a tool (the client) and a language smartness provider (the server) to integrate features like auto complete, go to definition, find all references and alike into the tool
+        
+        .. _LSP: https://langserver.org/
+        .. _OpenSesame: https://osdoc.cogsci.nl/
+        .. _Rapunzel: https://rapunzel.cogsci.nl/
+        
+        Features:
+        ---------
+        
+        * calltips mode
+        * code completion
+        * diagnostics
+        
+        
+        License
+        -------
+        
+        pyQode is licensed under the **MIT license**.
+        
+        Requirements
+        ------------
+        
+        pyqode.language_server depends on the following libraries:
+        
+        - _pylspclient
+        
+        .. _pylspclient: https://github.com/yeger00/pylspclient
+        
+Keywords: CodeEdit PySide PyQt code editor widget lsp language-server
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Environment :: Win32 (MS Windows)
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Topic :: Software Development :: Widget Sets
+Classifier: Topic :: Text Editors :: Integrated Development Environments (IDE)
