@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: chinormfilter
+Version: 0.5.0
+Summary: 
+Home-page: http://github.com/po3rin/chinormfilter
+License: Apache-2.0
+Author: po3rin
+Author-email: abctail30@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: sudachidict_core (>=20201223.post1,<20201224)
+Requires-Dist: sudachidict_full (>=20201223.post1,<20201224)
+Requires-Dist: sudachipy (>=0.5.2,<0.6.0)
+Project-URL: Repository, http://github.com/po3rin/chinormfilter
+Description-Content-Type: text/markdown
+
+# chinormfilter
+
+[![PyPi version](https://img.shields.io/pypi/v/chinormfilter.svg)](https://pypi.python.org/pypi/chinormfilter/)
+![PyTest](https://github.com/po3rin/chinormfilter/workflows/PyTest/badge.svg)
+[![](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-390/)
+![](https://img.shields.io/pypi/l/chinormfilter)
+
+Filter synonym files written in lucene format to avoid duplication with Sudachi normalization. Mainly used when migrating to sudachi analyzer.
+
+## Usage
+
+```sh
+$ chinormfilter tests/test.txt -o out.txt
+```
+
+filtered result is following.
+
+```txt
+レナリドミド,レナリドマイド
+リンゴ => 林檎
+飲む,呑む
+tlc => tlc,全肺気量
+リンたんぱく質,リン蛋白質,リンタンパク質
+
+↓ filter
+
+レナリドミド,レナリドマイド
+tlc => tlc,全肺気量
+```
+
+
