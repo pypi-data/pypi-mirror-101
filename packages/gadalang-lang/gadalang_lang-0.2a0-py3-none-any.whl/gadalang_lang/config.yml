@@ -1,0 +1,8 @@
+runner: pymodule
+nodes:
+  json:
+    module: gadalang_lang.parser._json
+    entrypoint: main
+  yaml:
+    module: gadalang_lang.parser._yaml
+    entrypoint: main
