@@ -1,0 +1,43 @@
+parameters:
+  sqlalchemybundle:
+    connections:
+      default:
+
+services:
+  sqlalchemybundle.engine.default:
+    factory: ['@sqlalchemybundle.engine.EngineFactory', 'create']
+    arguments:
+      - '%sqlalchemybundle.connections.default%'
+
+  sqlalchemybundle.engine.EngineFactoryResolver:
+    arguments:
+      - !tagged 'sqlalchemybundle.engine_factory'
+
+  sqlalchemybundle.engine.EngineFactory:
+
+  sqlalchemybundle.mssql.MsSqlEngineFactory:
+    tags:
+      - 'sqlalchemybundle.engine_factory'
+
+  sqlalchemybundle.mysql.MySqlEngineFactory:
+    tags:
+      - 'sqlalchemybundle.engine_factory'
+
+  sqlalchemybundle.session.SessionFactory:
+
+  sqlalchemybundle.session.default:
+    class: sqlalchemy.orm.session.Session
+    factory: ['@sqlalchemybundle.session.SessionFactory', 'create']
+    arguments:
+      - '@sqlalchemybundle.engine.default'
+
+  sqlalchemybundle.table.TableCreatorCommand:
+    arguments:
+      - '%sqlalchemybundle.connections%'
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
+  sqlalchemybundle.testing.DummyEngineFactory:
+    tags:
+      - 'sqlalchemybundle.engine_factory'

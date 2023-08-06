@@ -1,0 +1,9 @@
+parameters:
+  sqlalchemybundle:
+    connections:
+      default:
+        engine: dummy
+        host: 'foo.bar'
+        database: 'mydatabase'
+        username: 'root'
+        password: 'pass123'
