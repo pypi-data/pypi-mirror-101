@@ -1,0 +1,12 @@
+[invenio_base.api_apps]
+oarepo_fsm = oarepo_fsm.ext:OARepoFSM
+
+[invenio_base.apps]
+oarepo_fsm = oarepo_fsm.ext:OARepoFSM
+
+[invenio_jsonschemas.schemas]
+oarepo_fsm = oarepo_fsm.jsonschemas
+
+[oarepo_mapping_includes]
+oarepo_fsm = oarepo_fsm.included_mappings
+
