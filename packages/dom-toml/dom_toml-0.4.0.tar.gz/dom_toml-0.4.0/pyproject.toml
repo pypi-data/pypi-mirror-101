@@ -1,0 +1,30 @@
+[build-system]
+requires = [ "setuptools>=40.6.0", "wheel>=0.34.2",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dom_toml"
+version = "0.4.0"
+description = "Dom's tools for Tom's Obvious, Minimal Language."
+readme = "README.rst"
+keywords = [ "toml", "serialize", "configuration",]
+dynamic = [ "requires-python", "classifiers", "dependencies",]
+
+[[project.authors]]
+email = "dominic@davis-foster.co.uk"
+name = "Dominic Davis-Foster"
+
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/domdfcoding/dom_toml"
+"Issue Tracker" = "https://github.com/domdfcoding/dom_toml/issues"
+"Source Code" = "https://github.com/domdfcoding/dom_toml"
+Documentation = "https://dom_toml.readthedocs.io/en/latest"
+
+[tool.mkrecipe]
+conda-channels = [ "conda-forge", "domdfcoding",]
+extras = "all"
+license-key = "MIT"
