@@ -1,0 +1,541 @@
+{
+  "நீட்சி": {
+    "த": "யாகி"
+  },
+  "பெயர்": {
+    "த": "யாவாக்கிறிட்டு"
+  },
+  "பதிப்புகள்": {
+    "": [
+      "start : source_elements ?",
+      "source_elements : statement +",
+      "statement : block \n    | variable_statement \n    | empty_statement \n    | expression_statement \n    | if_statement \n    | iteration_statement \n    | continue_statement \n    | break_statement \n    | return_statement \n    | with_statement \n    | labelled_statement \n    | switch_statement \n    | throw_statement \n    | try_statement \n    | debugger_statement",
+      "block : OPEN_BRACE statement_list ? CLOSE_BRACE",
+      "statement_list : statement +",
+      "variable_statement : \"var\" variable_declaration_list",
+      "variable_declaration_list : variable_declaration ( COMMA variable_declaration ) *",
+      "variable_declaration : IDENTIFIER initialiser ?",
+      "initialiser : ASSIGN single_expression",
+      "empty_statement : EOS",
+      "expression_statement : expression_sequence",
+      "if_statement : \"if\" OPEN_PAREN expression_sequence CLOSE_PAREN statement ( \"else\" statement ) ?",
+      "iteration_statement : \"do\" statement \"while\" OPEN_PAREN expression_sequence CLOSE_PAREN -> do_statement \n    | \"while\" OPEN_PAREN expression_sequence CLOSE_PAREN statement -> while_statement \n    | \"for\" OPEN_PAREN expression_sequence ? EOS expression_sequence ? EOS expression_sequence ? CLOSE_PAREN statement -> for_statement \n    | \"for\" OPEN_PAREN \"var\" variable_declaration_list EOS expression_sequence ? EOS expression_sequence ? CLOSE_PAREN statement -> for_var_statement \n    | \"for\" OPEN_PAREN single_expression \"in\" expression_sequence CLOSE_PAREN statement -> for_in_statement \n    | \"for\" OPEN_PAREN \"var\" variable_declaration \"in\" expression_sequence CLOSE_PAREN statement -> for_var_in_statement",
+      "continue_statement : \"continue\" IDENTIFIER ?",
+      "break_statement : \"break\" IDENTIFIER ?",
+      "return_statement : \"return\" ( expression_sequence ) ?",
+      "with_statement : \"with\" OPEN_PAREN expression_sequence CLOSE_PAREN statement",
+      "switch_statement : \"switch\" OPEN_PAREN expression_sequence CLOSE_PAREN case_block",
+      "case_block : OPEN_BRACE case_clauses ? ( default_clause case_clauses ? ) ? CLOSE_BRACE",
+      "case_clauses : case_clause +",
+      "case_clause : \"case\" expression_sequence COLON statement_list ?",
+      "default_clause : \"default\" COLON statement_list ?",
+      "labelled_statement : IDENTIFIER COLON statement",
+      "throw_statement : \"throw\" expression_sequence",
+      "try_statement : \"try\" block ( catch_production | finally_production | ( catch_production finally_production ) )",
+      "catch_production : \"catch\" OPEN_PAREN IDENTIFIER CLOSE_PAREN block",
+      "finally_production : \"finally\" block",
+      "debugger_statement : \"debugger\"",
+      "function_declaration : \"function\" IDENTIFIER OPEN_PAREN formal_parameter_list ? CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE",
+      "formal_parameter_list : IDENTIFIER ( COMMA IDENTIFIER ) *",
+      "function_body : source_elements ?",
+      "class_declaration : \"class\" IDENTIFIER OPEN_BRACE class_body CLOSE_BRACE",
+      "class_body : ( method_declaration | property_assignment ) *",
+      "method_declaration : IDENTIFIER OPEN_PAREN formal_parameter_list ? CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE",
+      "array_literal : OPEN_BRACKET element_list ? COMMA ? elision ? CLOSE_BRACKET",
+      "element_list : elision ? single_expression ( COMMA elision ? single_expression ) *",
+      "elision : COMMA +",
+      "object_literal : OPEN_BRACE CLOSE_BRACE \n    | OPEN_BRACE property_name_and_value_list COMMA ? CLOSE_BRACE",
+      "property_name_and_value_list : property_assignment ( COMMA property_assignment ) *",
+      "property_assignment : property_name COLON single_expression -> property_expression_assignment \n    | \"get\" property_name OPEN_PAREN CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE -> property_getter \n    | \"set\" property_name OPEN_PAREN property_set_parameter_list CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE -> property_setter",
+      "property_name : IDENTIFIER | STRING | numeric_literal",
+      "property_set_parameter_list : IDENTIFIER",
+      "arguments : OPEN_PAREN argument_list ? CLOSE_PAREN",
+      "argument_list : single_expression ( COMMA single_expression ) *",
+      "expression_sequence : single_expression ( COMMA single_expression ) *",
+      "identifier_expression : IDENTIFIER",
+      "single_expression : function_declaration \n    | class_declaration \n    | single_expression OPEN_BRACKET expression_sequence CLOSE_BRACKET -> member_index_expression \n    | single_expression DOT identifier_expression -> member_dot_expression \n    | single_expression arguments -> arguments_expression \n    | \"new\" single_expression arguments ? -> new_expression \n    | single_expression PLUS_PLUS -> post_increment_expression \n    | single_expression MINUS_MINUS -> post_decrease_expression \n    | \"delete\" single_expression -> delete_expression \n    | \"void\" single_expression -> void_expression \n    | \"typeof\" single_expression -> typeof_expression \n    | PLUS_PLUS single_expression -> pre_increment_expression \n    | MINUS_MINUS single_expression -> pre_decrease_expression \n    | PLUS single_expression -> unary_plus_expression \n    | MINUS single_expression -> unary_minus_expression \n    | BIT_NOT single_expression -> bit_not_expression \n    | NOT single_expression -> not_expression \n    | single_expression ( MULTIPLY | DIVIDE | MODULUS ) single_expression -> multiplicative_expression \n    | single_expression ( PLUS | MINUS ) single_expression -> additive_expression \n    | single_expression ( LEFT_SHIFT_ARITHMETIC | RIGHT_SHIFT_ARITHMETIC | RIGHT_SHIFT_LOGICAL ) single_expression -> bit_shift_expression \n    | single_expression ( LESS_THAN | GREATER_THAN | LESS_THAN_EQUALS | GREATER_THAN_EQUALS ) single_expression -> relational_expression \n    | single_expression \"instanceof\" single_expression -> instanceof_expression \n    | single_expression \"in\" single_expression -> in_expression \n    | single_expression ( EQUALS | NOT_EQUALS | IDENTITY_EQUALS | IDENTIFY_NOT_EQUALS ) single_expression -> equality_expression \n    | single_expression BIT_AND single_expression -> bit_and_expression \n    | single_expression BIT_XOR single_expression -> bit_xor_expression \n    | single_expression BIT_OR single_expression -> bit_or_expression \n    | single_expression AND single_expression -> logical_and_expression \n    | single_expression OR single_expression -> logical_or_expression \n    | single_expression QUESTIONMARK single_expression COLON single_expression -> ternary_expression \n    | single_expression ASSIGN expression_sequence -> assignment_expression \n    | single_expression assignment_operator expression_sequence -> assignment_operator_expression \n    | \"this\" -> this_expression \n    | identifier_expression \n    | literal -> literal_expression \n    | array_literal -> array_literal_expression \n    | object_literal -> object_literal_expression \n    | \"(\" expression_sequence \")\" -> parenthesized_expression",
+      "assignment_operator : MULTIPLY_ASSIGN \n    | DIVIDE_ASSIGN \n    | MODULUS_ASSIGN \n    | PLUS_ASSIGN \n    | MINUS_ASSIGN \n    | LEFT_SHIFT_ARITHMETIC_ASSIGN \n    | RIGHT_SHIFT_ARITHMETIC_ASSIGN \n    | RIGHT_SHIFT_LOGICAL_ASSIGN \n    | BIT_AND_ASSIGN \n    | BIT_XOR_ASSIGN \n    | BIT_OR_ASSIGN",
+      "literal : NULL_LITERAL | BOOLEAN_LITERAL | STRING | numeric_literal",
+      "numeric_literal : DEC_NUMBER | HEX_NUMBER | OCT_NUMBER | FLOAT_NUMBER",
+      "OPEN_BRACKET : \"[\"",
+      "CLOSE_BRACKET : \"]\"",
+      "OPEN_PAREN : \"(\"",
+      "CLOSE_PAREN : \")\"",
+      "OPEN_BRACE : \"{\"",
+      "CLOSE_BRACE : \"}\"",
+      "SEMICOLON : \";\"",
+      "COMMA : \",\"",
+      "ASSIGN : \"=\"",
+      "QUESTIONMARK : \"?\"",
+      "COLON : \":\"",
+      "DOT : \".\"",
+      "PLUS_PLUS : \"++\"",
+      "MINUS_MINUS : \"--\"",
+      "PLUS : \"+\"",
+      "MINUS : \"-\"",
+      "BIT_NOT : \"~\"",
+      "NOT : \"!\"",
+      "MULTIPLY : \"*\"",
+      "DIVIDE : \"/\"",
+      "MODULUS : \"%\"",
+      "RIGHT_SHIFT_ARITHMETIC : \">>\"",
+      "LEFT_SHIFT_ARITHMETIC : \"<<\"",
+      "RIGHT_SHIFT_LOGICAL : \">>>\"",
+      "LESS_THAN : \"<\"",
+      "GREATER_THAN : \">\"",
+      "LESS_THAN_EQUALS : \"<=\"",
+      "GREATER_THAN_EQUALS : \">=\"",
+      "EQUALS : \"==\"",
+      "NOT_EQUALS : \"!=\"",
+      "IDENTITY_EQUALS : \"===\"",
+      "IDENTIFY_NOT_EQUALS : \"!==\"",
+      "BIT_AND : \"&\"",
+      "BIT_XOR : \"^\"",
+      "BIT_OR : \"|\"",
+      "AND : \"&&\"",
+      "OR : \"||\"",
+      "MULTIPLY_ASSIGN : \"*=\"",
+      "DIVIDE_ASSIGN : \"/=\"",
+      "MODULUS_ASSIGN : \"%=\"",
+      "PLUS_ASSIGN : \"+=\"",
+      "MINUS_ASSIGN : \"-=\"",
+      "LEFT_SHIFT_ARITHMETIC_ASSIGN : \"<<=\"",
+      "RIGHT_SHIFT_ARITHMETIC_ASSIGN : \">>=\"",
+      "RIGHT_SHIFT_LOGICAL_ASSIGN : \">>>=\"",
+      "BIT_AND_ASSIGN : \"&=\"",
+      "BIT_XOR_ASSIGN : \"^=\"",
+      "BIT_OR_ASSIGN : \"|=\"",
+      "NULL_LITERAL : \"null\"",
+      "BOOLEAN_LITERAL : \"true\" | \"false\"",
+      "HEX_NUMBER : /0x[\\da-f]*/i",
+      "OCT_NUMBER : /0o[0-7]*/i",
+      "BIN_NUMBER : /0b[0-1]*/i",
+      "FLOAT_NUMBER : /((\\d+\\.\\d*|\\.\\d+)(e[-+]?\\d+)?|\\d+(e[-+]?\\d+))/i",
+      "STRING : /(\"(?!\"\").*?(?<!\\\\)(\\\\\\\\)*?\"|'(?!'').*?(?<!\\\\)(\\\\\\\\)*?')/i",
+      "NEWLINE : ( /\\r?\\n[\\t ]*/ ) +",
+      "EOS : ( NEWLINE + | SEMICOLON )",
+      "IDENTIFIER : NAME",
+      "%ignore /[\\r\\u2028\\u2029]/",
+      "%ignore /[\\t \\f]+/"
+    ]
+  },
+  "விதிகள்": {
+    "start : source_elements ?": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "source_elements : statement +": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "statement : block \n    | variable_statement \n    | empty_statement \n    | expression_statement \n    | if_statement \n    | iteration_statement \n    | continue_statement \n    | break_statement \n    | return_statement \n    | with_statement \n    | labelled_statement \n    | switch_statement \n    | throw_statement \n    | try_statement \n    | debugger_statement": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "block : OPEN_BRACE statement_list ? CLOSE_BRACE": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "statement_list : statement +": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "variable_statement : \"var\" variable_declaration_list": {
+      "பெயர்ப்பு": {}
+    },
+    "variable_declaration_list : variable_declaration ( COMMA variable_declaration ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "variable_declaration : IDENTIFIER initialiser ?": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "initialiser : ASSIGN single_expression": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "empty_statement : EOS": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "expression_statement : expression_sequence": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "if_statement : \"if\" OPEN_PAREN expression_sequence CLOSE_PAREN statement ( \"else\" statement ) ?": {
+      "பெயர்ப்பு": {}
+    },
+    "iteration_statement : \"do\" statement \"while\" OPEN_PAREN expression_sequence CLOSE_PAREN -> do_statement \n    | \"while\" OPEN_PAREN expression_sequence CLOSE_PAREN statement -> while_statement \n    | \"for\" OPEN_PAREN expression_sequence ? EOS expression_sequence ? EOS expression_sequence ? CLOSE_PAREN statement -> for_statement \n    | \"for\" OPEN_PAREN \"var\" variable_declaration_list EOS expression_sequence ? EOS expression_sequence ? CLOSE_PAREN statement -> for_var_statement \n    | \"for\" OPEN_PAREN single_expression \"in\" expression_sequence CLOSE_PAREN statement -> for_in_statement \n    | \"for\" OPEN_PAREN \"var\" variable_declaration \"in\" expression_sequence CLOSE_PAREN statement -> for_var_in_statement": {
+      "பெயர்ப்பு": {}
+    },
+    "continue_statement : \"continue\" IDENTIFIER ?": {
+      "பெயர்ப்பு": {}
+    },
+    "break_statement : \"break\" IDENTIFIER ?": {
+      "பெயர்ப்பு": {}
+    },
+    "return_statement : \"return\" ( expression_sequence ) ?": {
+      "பெயர்ப்பு": {}
+    },
+    "with_statement : \"with\" OPEN_PAREN expression_sequence CLOSE_PAREN statement": {
+      "பெயர்ப்பு": {}
+    },
+    "switch_statement : \"switch\" OPEN_PAREN expression_sequence CLOSE_PAREN case_block": {
+      "பெயர்ப்பு": {}
+    },
+    "case_block : OPEN_BRACE case_clauses ? ( default_clause case_clauses ? ) ? CLOSE_BRACE": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "case_clauses : case_clause +": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "case_clause : \"case\" expression_sequence COLON statement_list ?": {
+      "பெயர்ப்பு": {}
+    },
+    "default_clause : \"default\" COLON statement_list ?": {
+      "பெயர்ப்பு": {}
+    },
+    "labelled_statement : IDENTIFIER COLON statement": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "throw_statement : \"throw\" expression_sequence": {
+      "பெயர்ப்பு": {}
+    },
+    "try_statement : \"try\" block ( catch_production | finally_production | ( catch_production finally_production ) )": {
+      "பெயர்ப்பு": {}
+    },
+    "catch_production : \"catch\" OPEN_PAREN IDENTIFIER CLOSE_PAREN block": {
+      "பெயர்ப்பு": {}
+    },
+    "finally_production : \"finally\" block": {
+      "பெயர்ப்பு": {}
+    },
+    "debugger_statement : \"debugger\"": {
+      "பெயர்ப்பு": {}
+    },
+    "function_declaration : \"function\" IDENTIFIER OPEN_PAREN formal_parameter_list ? CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE": {
+      "பெயர்ப்பு": {}
+    },
+    "formal_parameter_list : IDENTIFIER ( COMMA IDENTIFIER ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "function_body : source_elements ?": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "class_declaration : \"class\" IDENTIFIER OPEN_BRACE class_body CLOSE_BRACE": {
+      "பெயர்ப்பு": {}
+    },
+    "class_body : ( method_declaration | property_assignment ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "method_declaration : IDENTIFIER OPEN_PAREN formal_parameter_list ? CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "array_literal : OPEN_BRACKET element_list ? COMMA ? elision ? CLOSE_BRACKET": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "element_list : elision ? single_expression ( COMMA elision ? single_expression ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "elision : COMMA +": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "object_literal : OPEN_BRACE CLOSE_BRACE \n    | OPEN_BRACE property_name_and_value_list COMMA ? CLOSE_BRACE": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "property_name_and_value_list : property_assignment ( COMMA property_assignment ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "property_assignment : property_name COLON single_expression -> property_expression_assignment \n    | \"get\" property_name OPEN_PAREN CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE -> property_getter \n    | \"set\" property_name OPEN_PAREN property_set_parameter_list CLOSE_PAREN OPEN_BRACE function_body CLOSE_BRACE -> property_setter": {
+      "பெயர்ப்பு": {}
+    },
+    "property_name : IDENTIFIER | STRING | numeric_literal": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "property_set_parameter_list : IDENTIFIER": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "arguments : OPEN_PAREN argument_list ? CLOSE_PAREN": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "argument_list : single_expression ( COMMA single_expression ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "expression_sequence : single_expression ( COMMA single_expression ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "identifier_expression : IDENTIFIER": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "single_expression : function_declaration \n    | class_declaration \n    | single_expression OPEN_BRACKET expression_sequence CLOSE_BRACKET -> member_index_expression \n    | single_expression DOT identifier_expression -> member_dot_expression \n    | single_expression arguments -> arguments_expression \n    | \"new\" single_expression arguments ? -> new_expression \n    | single_expression PLUS_PLUS -> post_increment_expression \n    | single_expression MINUS_MINUS -> post_decrease_expression \n    | \"delete\" single_expression -> delete_expression \n    | \"void\" single_expression -> void_expression \n    | \"typeof\" single_expression -> typeof_expression \n    | PLUS_PLUS single_expression -> pre_increment_expression \n    | MINUS_MINUS single_expression -> pre_decrease_expression \n    | PLUS single_expression -> unary_plus_expression \n    | MINUS single_expression -> unary_minus_expression \n    | BIT_NOT single_expression -> bit_not_expression \n    | NOT single_expression -> not_expression \n    | single_expression ( MULTIPLY | DIVIDE | MODULUS ) single_expression -> multiplicative_expression \n    | single_expression ( PLUS | MINUS ) single_expression -> additive_expression \n    | single_expression ( LEFT_SHIFT_ARITHMETIC | RIGHT_SHIFT_ARITHMETIC | RIGHT_SHIFT_LOGICAL ) single_expression -> bit_shift_expression \n    | single_expression ( LESS_THAN | GREATER_THAN | LESS_THAN_EQUALS | GREATER_THAN_EQUALS ) single_expression -> relational_expression \n    | single_expression \"instanceof\" single_expression -> instanceof_expression \n    | single_expression \"in\" single_expression -> in_expression \n    | single_expression ( EQUALS | NOT_EQUALS | IDENTITY_EQUALS | IDENTIFY_NOT_EQUALS ) single_expression -> equality_expression \n    | single_expression BIT_AND single_expression -> bit_and_expression \n    | single_expression BIT_XOR single_expression -> bit_xor_expression \n    | single_expression BIT_OR single_expression -> bit_or_expression \n    | single_expression AND single_expression -> logical_and_expression \n    | single_expression OR single_expression -> logical_or_expression \n    | single_expression QUESTIONMARK single_expression COLON single_expression -> ternary_expression \n    | single_expression ASSIGN expression_sequence -> assignment_expression \n    | single_expression assignment_operator expression_sequence -> assignment_operator_expression \n    | \"this\" -> this_expression \n    | identifier_expression \n    | literal -> literal_expression \n    | array_literal -> array_literal_expression \n    | object_literal -> object_literal_expression \n    | \"(\" expression_sequence \")\" -> parenthesized_expression": {
+      "பெயர்ப்பு": {}
+    },
+    "assignment_operator : MULTIPLY_ASSIGN \n    | DIVIDE_ASSIGN \n    | MODULUS_ASSIGN \n    | PLUS_ASSIGN \n    | MINUS_ASSIGN \n    | LEFT_SHIFT_ARITHMETIC_ASSIGN \n    | RIGHT_SHIFT_ARITHMETIC_ASSIGN \n    | RIGHT_SHIFT_LOGICAL_ASSIGN \n    | BIT_AND_ASSIGN \n    | BIT_XOR_ASSIGN \n    | BIT_OR_ASSIGN": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "literal : NULL_LITERAL | BOOLEAN_LITERAL | STRING | numeric_literal": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "numeric_literal : DEC_NUMBER | HEX_NUMBER | OCT_NUMBER | FLOAT_NUMBER": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "OPEN_BRACKET : \"[\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "CLOSE_BRACKET : \"]\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "OPEN_PAREN : \"(\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "CLOSE_PAREN : \")\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "OPEN_BRACE : \"{\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "CLOSE_BRACE : \"}\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "SEMICOLON : \";\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "COMMA : \",\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "ASSIGN : \"=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "QUESTIONMARK : \"?\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "COLON : \":\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "DOT : \".\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "PLUS_PLUS : \"++\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "MINUS_MINUS : \"--\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "PLUS : \"+\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "MINUS : \"-\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "BIT_NOT : \"~\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "NOT : \"!\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "MULTIPLY : \"*\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "DIVIDE : \"/\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "MODULUS : \"%\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "RIGHT_SHIFT_ARITHMETIC : \">>\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "LEFT_SHIFT_ARITHMETIC : \"<<\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "RIGHT_SHIFT_LOGICAL : \">>>\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "LESS_THAN : \"<\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "GREATER_THAN : \">\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "LESS_THAN_EQUALS : \"<=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "GREATER_THAN_EQUALS : \">=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "EQUALS : \"==\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "NOT_EQUALS : \"!=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "IDENTITY_EQUALS : \"===\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "IDENTIFY_NOT_EQUALS : \"!==\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "BIT_AND : \"&\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "BIT_XOR : \"^\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "BIT_OR : \"|\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "AND : \"&&\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "OR : \"||\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "MULTIPLY_ASSIGN : \"*=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "DIVIDE_ASSIGN : \"/=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "MODULUS_ASSIGN : \"%=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "PLUS_ASSIGN : \"+=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "MINUS_ASSIGN : \"-=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "LEFT_SHIFT_ARITHMETIC_ASSIGN : \"<<=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "RIGHT_SHIFT_ARITHMETIC_ASSIGN : \">>=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "RIGHT_SHIFT_LOGICAL_ASSIGN : \">>>=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "BIT_AND_ASSIGN : \"&=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "BIT_XOR_ASSIGN : \"^=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "BIT_OR_ASSIGN : \"|=\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "NULL_LITERAL : \"null\"": {
+      "பெயர்ப்பு": {}
+    },
+    "BOOLEAN_LITERAL : \"true\" | \"false\"": {
+      "பெயர்ப்பு": {}
+    },
+    "HEX_NUMBER : /0x[\\da-f]*/i": {
+      "பெயர்ப்பு": {}
+    },
+    "OCT_NUMBER : /0o[0-7]*/i": {
+      "பெயர்ப்பு": {}
+    },
+    "BIN_NUMBER : /0b[0-1]*/i": {
+      "பெயர்ப்பு": {}
+    },
+    "FLOAT_NUMBER : /((\\d+\\.\\d*|\\.\\d+)(e[-+]?\\d+)?|\\d+(e[-+]?\\d+))/i": {
+      "பெயர்ப்பு": {}
+    },
+    "STRING : /(\"(?!\"\").*?(?<!\\\\)(\\\\\\\\)*?\"|'(?!'').*?(?<!\\\\)(\\\\\\\\)*?')/i": {
+      "பெயர்ப்பு": {}
+    },
+    "NEWLINE : ( /\\r?\\n[\\t ]*/ ) +": {
+      "பெயர்ப்பு": {}
+    },
+    "EOS : ( NEWLINE + | SEMICOLON )": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "IDENTIFIER : NAME": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%ignore /[\\r\\u2028\\u2029]/": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%ignore /[\\t \\f]+/": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    }
+  },
+  "மொழிபெயர்ப்பாளர்கள்": [
+    "ம. ஜூலீஎன் (julien.malard@mail.mcgill.ca)",
+    "Fred Lin மற்றும் zhpy பங்களிப்பாளர்கள் (https://github.com/gasolin/zhpy; MIT உரிமம்)"
+  ]
+}

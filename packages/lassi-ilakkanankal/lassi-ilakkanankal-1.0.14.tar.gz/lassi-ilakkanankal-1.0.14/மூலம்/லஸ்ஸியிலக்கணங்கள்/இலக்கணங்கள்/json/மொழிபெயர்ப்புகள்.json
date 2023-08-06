@@ -1,0 +1,62 @@
+{
+  "நீட்சி": {
+    "த": "ஜெஸான்"
+  },
+  "பெயர்": {},
+  "பதிப்புகள்": {
+    "": [
+      "?start : value",
+      "?value : object \n      | array \n      | string \n      | DEC_NUMBER -> number \n      | \"true\" -> true \n      | \"false\" -> false \n      | \"null\" -> null",
+      "array : \"[\" [ value ( \",\" value ) * ] \"]\"",
+      "object : \"{\" [ pair ( \",\" pair ) * ] \"}\"",
+      "pair : string \":\" value",
+      "string : ESCAPED_STRING",
+      "%import common . ESCAPED_STRING",
+      "%import common . WS",
+      "%ignore WS"
+    ]
+  },
+  "விதிகள்": {
+    "?start : value": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "?value : object \n      | array \n      | string \n      | DEC_NUMBER -> number \n      | \"true\" -> true \n      | \"false\" -> false \n      | \"null\" -> null": {
+      "பெயர்ப்பு": {
+        "fr": "?value : object \n      | array \n      | string \n      | DEC_NUMBER -> number \n      | \"vrai\" -> true \n      | \"faux\" -> false \n      | \"nul\" -> null",
+        "த": "?value : object \n      | array \n      | string \n      | DEC_NUMBER -> number \n      | \"உண்மை\" -> true \n      | \"தப்பு\" -> false \n      | \"எதுமில்லை\" -> null",
+        "es": "?value : object \n      | array \n      | string \n      | DEC_NUMBER -> number \n      | \"verdadero\" -> true \n      | \"falso\" -> false \n      | \"nulo\" -> null",
+        "हिं": "?value : object \n      | array \n      | string \n      | DEC_NUMBER -> number \n      | \"सही\" -> true \n      | \"ग़लत\" -> false \n      | \"रिक्त\" -> null"
+      }
+    },
+    "array : \"[\" [ value ( \",\" value ) * ] \"]\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "object : \"{\" [ pair ( \",\" pair ) * ] \"}\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "pair : string \":\" value": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "string : ESCAPED_STRING": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%import common . ESCAPED_STRING": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%import common . WS": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%ignore WS": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    }
+  },
+  "மொழிபெயர்ப்பாளர்கள்": []
+}
