@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: fractal-toolkit
+Version: 0.1.2
+Summary: Fractal is a scaffolding toolkit for building SOLID logic for your Python applications.
+Home-page: https://github.com/douwevandermeij/fractal
+Author: Douwe van der Meij
+Author-email: douwe@karibu-online.nl
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python
+Requires-Dist: python-dotenv
+Requires-Dist: black ; extra == "test"
+Requires-Dist: flake8 ; extra == "test"
+Requires-Dist: isort ; extra == "test"
+Provides-Extra: test
+
+# Fractal
+
+> Fractal is a scaffolding toolkit for building SOLID logic for your Python applications.
+
+[![PyPI Version][pypi-image]][pypi-url]
+[![Build Status][build-image]][build-url]
+[![Code Coverage][coverage-image]][coverage-url]
+[![Code Quality][quality-image]][quality-url]
+
+## Installation
+
+```sh
+pip install fractal-toolkit
+```
+
+<!-- Badges -->
+
+[pypi-image]: https://img.shields.io/pypi/v/fractal-toolkit
+[pypi-url]: https://pypi.org/project/fractal-toolkit/
+[build-image]: https://github.com/douwevandermeij/fractal/actions/workflows/build.yml/badge.svg
+[build-url]: https://github.com/douwevandermeij/fractal/actions/workflows/build.yml
+[coverage-image]: https://codecov.io/gh/douwevandermeij/fractal/branch/main/graph/badge.svg
+[coverage-url]: https://codecov.io/gh/douwevandermeij/fractal
+[quality-image]: https://api.codeclimate.com/v1/badges/55adbc041d119d371ef7/maintainability
+[quality-url]: https://codeclimate.com/github/douwevandermeij/fractal
