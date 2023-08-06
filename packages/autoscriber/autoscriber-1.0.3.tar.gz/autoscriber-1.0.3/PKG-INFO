@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: autoscriber
+Version: 1.0.3
+Summary: Python library for the autoscriber summarizer.
+Home-page: https://github.com/autoscriber-app/autoscriber-lib
+Author: KentoNishi
+Author-email: kento24gs@outlook.com
+License: UNKNOWN
+Description: # autoscriber-lib
+        Python library for the autoscriber summarizer.
+        
+        ## Install
+        ```bash
+        python3 -m pip install --upgrade autoscriber
+        ```
+        
+        ## Usage
+        ```python
+        from autoscriber import summarize
+        summarize("text here") # list of bullets
+        ```
+        
+        ## Run Example
+        ```python
+        python3 example.py
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.4
+Description-Content-Type: text/markdown
