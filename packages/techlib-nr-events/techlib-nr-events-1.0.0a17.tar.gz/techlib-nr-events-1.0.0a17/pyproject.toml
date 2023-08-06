@@ -1,0 +1,57 @@
+[tool]
+[tool.poetry]
+name = "techlib-nr-events"
+version = "1.0.0a17"
+description = "National repository events metadata model"
+license = "MIT"
+keywords = ["National repository", "events"]
+classifiers = ["Environment :: Web Environment", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Programming Language :: Python", "Topic :: Internet :: WWW/HTTP :: Dynamic Content", "Topic :: Software Development :: Libraries :: Python Modules", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.7", "Development Status :: 3 - Alpha"]
+authors = ["Daniel Kopecký <Daniel.Kopecky@techlib.cz>"]
+readme = "README.md"
+packages = [{include='nr_events'}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+techlib-nr-common = "^3.0.0a44"
+
+[tool.poetry.dev-dependencies]
+oarepo-mapping-includes = "<=1.2.0"
+oarepo-records-draft = "^5.0.0a7"
+oarepo-references = "^1.9.0"
+oarepo-taxonomies = "^3.0.0a1"
+oarepo-validate = "^1.2.8"
+oarepo-invenio-model = "^2.0.1"
+oarepo-multilingual = "^2.2.0"
+pytest = "^5.0.0"
+pytest-cov ="^2.10.1"
+oarepo = "^3.3"
+pytest-runner = "^5.2"
+oarepo-fsm = "^1.5.0"
+oarepo-communities = "^2.0.0"
+techlib-nr-common = "^3.0.0-alpha.44"
+
+[tool.poetry.extras]
+tests = ["oarepo", "pytest", "pytest-cov"]
+
+[tool.poetry.plugins]
+[tool.poetry.plugins."invenio_base.apps"]
+'events' = 'nr_events:NREvents'
+
+[tool.poetry.plugins."invenio_base.api_apps"]
+'events' = 'nr_events:NREvents'
+
+[tool.poetry.plugins.'invenio_jsonschemas.schemas']
+'nr_events' = 'nr_events.jsonschemas'
+
+[tool.poetry.plugins.'invenio_search.mappings']
+'nr_events' = 'nr_events.mappings'
+
+[tool.poetry.plugins.'oarepo_mapping_includes']
+'nr_events' = 'nr_events.mapping_includes'
+
+[tool.poetry.plugins."invenio_pidstore.minters"]
+'nr_events' = 'nr_events.minters:nr_events_id_minter'
+
+[tool.poetry.plugins."invenio_pidstore.fetchers"]
+'nr_events' = 'nr_events.fetchers:nr_events_id_fetcher'
+
