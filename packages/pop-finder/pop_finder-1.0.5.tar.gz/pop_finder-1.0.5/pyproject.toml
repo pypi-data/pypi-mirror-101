@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "pop_finder"
+version = "1.0.5"
+description = "\"Python package that uses neural networks for population assignment\""
+authors = ["Katie Birchard <birchardkatie@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.7.1, <3.10"
+numpy = "1.19.5"
+pandas = "^1.1.5"
+h5py = "2.10.0"
+tensorflow = {version = "2.4.1", optional = true}
+keras-tuner = "1.0.2"
+matplotlib = "3.3.2"
+zarr = "^2.6.1"
+seaborn = "^0.11.1"
+wheel = "^0.35.1"
+scikit-allel = "1.3.3"
+scipy = ">=1.6.0, <2.0.0"
+tqdm = "^4.59.0"
+tensorflow-cpu = "2.4.1"
+scikit-learn = "^0.24.1"
+
+[tool.poetry.dev-dependencies]
+sphinx = "^3.5.1"
+sphinxcontrib-napoleon = "^0.7"
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
+flake8 = "^3.8.4"
+python-semantic-release = "^7.15.0"
+sphinx-rtd-theme = "^0.5.1"
+wheel = "^0.36.2"
+
+[tool.poetry.extras]
+tf = ["tensorflow"]
+
+[tool.poetry.scripts]
+pop_finder_classifier = "pop_finder.cli_classifier:main"
+pop_finder_regressor = "pop_finder.cli_regressor:main"
+
+[tool.semantic_release]
+version_variable = "pop_finder/__init__.py:__version__"
+version_source = "commit"
+upload_to_pypi = "false"
+patch_without_tag = "true"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
