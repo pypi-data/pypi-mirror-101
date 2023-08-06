@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: vula-libnss
+Version: 0.0.4
+Summary: nss-altfiles for vula
+Home-page: https://codeberg.org/vula/vula_libnss
+Author: Vula Authors
+Author-email: git@vula.link
+License: GPLv3
+Description: This project provides a source package and also an architecture specific libnss
+        shared object file which are suitable for upload to pypi. We encourage users to
+        build a deb and it will put the required libnss shared object into
+        `/lib/libnss_vula.so.2`; users of the pip installed `vula_libnss` need to copy
+        the `libnss_vula.so.2` into the correct place and reconfigure `nsswitch.conf`
+        to use this new module.
+        
+        If in doubt, build a Debian package and install it; if you're an advanced user,
+        you may pip install `vula_libnss` and manually configure it for use with
+        `vula`.
+        
+        To build a Debian package:
+        
+        ```make deb```
+        
+        For developers, we also provide some additional build targets.
+        
+        To build a python source package and an arch specific wheel for the current
+        system architecture suitable for upload to pypi:
+        
+        ```make pypi-build```
+        
+        To upload those files to pypi:
+        
+        ```make pypi-upload```
+        
+        To clean up after the build:
+        
+        ```make clean```
+        
+        
+Keywords: WireGuard,mDNS,encryption,libnss
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown

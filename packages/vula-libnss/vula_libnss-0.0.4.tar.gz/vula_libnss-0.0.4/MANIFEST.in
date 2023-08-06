@@ -1,0 +1,7 @@
+include MANIFEST.in LICENSE README.md requirements.txt
+include setup.py
+include minimal.c 
+recursive-include vula_libnss *.py
+recursive-include nss-altfiles *.c *.h
+recursive-include nss-altfiles COPYING Makefile README.md
+recursive-include nss-altfiles config.mk configure updatefiles
