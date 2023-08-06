@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: ivy-core
+Version: 1.1.4
+Summary: The templated deep learning framework, enabling framework-agnostic functions, layers and libraries.
+Home-page: https://ivy-dl.org/ivy
+Author: Ivy Team
+Author-email: ivydl.team@gmail.com
+License: Apache 2.0
+Project-URL: Docs, https://ivy-dl.org/ivy/
+Project-URL: Source, https://github.com/ivy-dl/ivy
+Description: # What is Ivy?
+        
+        Ivy is a templated deep learning framework which maximizes the portability
+              of deep learning codebases. Ivy wraps the functional APIs of existing frameworks. Framework-agnostic functions,
+              libraries and layers can then be written using Ivy, with simultaneous support for all frameworks.
+              Ivy currently supports Jax, TensorFlow, PyTorch, MXNet and Numpy. Check out the [docs](https://ivy-dl.org/ivy) for more info!
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
