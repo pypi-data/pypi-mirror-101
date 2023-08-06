@@ -1,0 +1,30 @@
+Metadata-Version: 1.1
+Name: libresoc-nmutil
+Version: 0.0.1
+Summary: A nmigen utility library
+Home-page: http://git.libre-soc.org/?p=nmutil.git
+Author: Luke Kenneth Casson Leighton
+Author-email: lkcl@libre-soc.org
+License: LGPLv3+
+Description: # NMigen Util 
+        
+        This project implements utilities for nmigen.  Its development is covered
+        under an NLNet Grant and the top-level bugreport is here:
+        http://bugs.libre-riscv.org/show_bug.cgi?id=62
+        
+        # Requirements
+        
+        * nmigen
+        * yosys (latest git repository, required by nmigen)
+        * pyvcd (for stylish GTKWave documents) - available on Pypi
+        
+        
+        # Mon 12 Apr 2021
+        
+        Upload of first release 0.0.1 to pypi
+        
+Keywords: nmigen utilities
+Platform: UNKNOWN
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Programming Language :: Python :: 3
