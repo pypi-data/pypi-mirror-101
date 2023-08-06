@@ -1,0 +1,35 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "dc_memory_used.json",
+    "type": "object",
+    "required": [
+        "memory"
+    ],    
+    "properties": {
+        "memory": {
+            "type": "object",
+            "items": {
+                "type": "object",
+                "required": ["phys_total", "phys_available", "dc_memory_usage", "dc_total_memory"],
+                "properties": {
+                    "phys_total": {
+                        "type": "number",
+                        "description": "Total physical memory (in GB) from psutil.virtual_memory().total"
+                    },
+                    "phys_available": {
+                        "type": "number",
+                        "description": "Available physical memory (in GB) from psutil.virtual_memory().available"
+                    },
+                    "dc_memory_usage": {
+                        "type": "number",
+                        "description": "Total memory (in GB) used by DataContainer object"
+                    },
+                    "dc_total_memory": {
+                        "type": "number",
+                        "description": "Total allowed memory (in GB) to be used by DataContainer object"
+                    }
+                }
+            }
+        }	
+    }
+}

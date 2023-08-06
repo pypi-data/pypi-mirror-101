@@ -1,0 +1,72 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "master.json",
+    "required": [
+	"time_event",
+	"session_id",
+	"version",
+	"user_email"
+    ],
+    "properties": {
+        "time_event": {
+            "type": "string",
+            "description": "Time of event in UTC following the ISO-8601 standard.",
+	    "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z)?$",
+            "examples": ["2016-04-06T10:10:09Z"]
+	    
+        },
+        "time_ingest": {
+            "type": "string",
+            "description": "Time of event in UTC following the ISO-8601 standard.",	    
+	    "pattern": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z)?$",	    
+            "examples": ["2016-04-06T10:10:09Z"]
+        },
+        "session_id": {
+            "type": "string",
+            "description": "A unique identifier used throughout all subsystems.",
+            "examples": [
+                "1234567"
+            ]
+        },
+        "version": {
+            "type": "string",
+            "description": "The current version of the PerceptiLabs package",
+            "examples": [
+                "0.1.1"
+            ]
+        },
+        "commit": {
+            "type": "string",
+            "description": "The commit that was used to build the PerceptiLabs package",
+            "examples": [
+                "9c2da2780cb2aee533b92804de91fe0c2a8fcee4"
+            ]
+        },
+        "user_email": {
+            "type": "string",
+            "description": "User identified via email",
+            "default": null,
+	    "pattern": "^\\S+@\\S+$",
+            "examples": ["anton.k@perceptilabs.com"]
+        },
+        "system": {
+            "type": "string",
+            "description": "The users system",
+	    "enum": ["Linux", "Windows", "Darwin"]
+        },
+        "tf2x": {
+            "type": "boolean",
+            "description": "Whether the Kernel is running in TensorFlow 2 mode"
+	},
+	"user_email_set": {"$ref": "user_email_set.json"},
+	"training_started": {"$ref": "training_started.json"},
+	"training_ended": {"$ref": "training_ended.json"},
+	"nth_iteration_ended": {"$ref": "nth_iteration_ended.json"},			
+	"dc_memory_used": {"$ref": "dc_memory_used.json"},
+	"memory_limit_exceeded": {"$ref": "memory_limit_exceeded.json"},
+	"lwcore_finished": {"$ref": "lwcore_finished.json"},		
+	"memory_limit_exceeded": {"$ref": "memory_limit_exceeded.json"}
+    }
+}
+
+

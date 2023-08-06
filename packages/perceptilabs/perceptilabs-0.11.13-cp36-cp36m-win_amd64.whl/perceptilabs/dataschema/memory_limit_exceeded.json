@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "memory_limit_exceeded.json",
+    "type": "object",
+
+    "required": [
+	"cpu_count",
+	"platform",
+	"memory",
+	"core_interfaces",
+	"max_memory_rate"
+    ],    
+    "properties": {
+	"max_memory_rate": {"type": "number", "description": "The percentage of memory used to trigger this event"},	
+	"cpu_count": {"type": "number"},
+	"memory": {
+	    "type": "object",
+	    "required": ["phys_total", "phys_available", "swap_total", "swap_free"],	    
+	    "properties": {
+		"phys_total": {"type": "number", "description": "From 'psutil.virtual_memory().total'"},
+		"phys_available": {"type": "number", "description": "From 'psutil.virtual_memory().available'"},
+		"swap_total": {"type": "number", "description": "From 'psutil.swap_memory().total'"},		
+		"swap_free": {"type": "number"}, "description": "From 'psutil.swap_memory().free'"}	
+	},
+	"platform": {
+	    "type": "object",
+	    "required": ["platform", "system", "release", "version", "processor"],
+	    "properties": {
+		"platform": {"type": "string", "description": "From platform.platform()"}, 
+		"system": {"type": "string", "description": "From platform.system()"},
+		"release": {"type": "string", "description": "From platform.release()"},
+		"version": {"type": "string", "description": "From platform.version()"},
+		"processor": {"type": "string", "description": "From platform.processor()"}
+	    }	     
+	},	
+	"python": {
+	    "type": "object",
+	    "required": ["version", "packages"],
+	    "properties": {
+		"version": {"type": "string"},
+		"packages": {"type": "array", "items": {"type": "string"}}
+	    }	    
+	},
+	"gpus": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"required": ["name", "driver", "memory_total"],
+		"properties": {
+		    "name": {"type": "string"},
+		    "driver": {"type": "string"},
+		    "memory_total": {"type": "number", "description": "Total memory in MB"}
+		}
+	    }
+	},
+	"core_interfaces": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"required": ["running_mode", "training_session_id", "training_state"],
+		"properties": {
+		    "running_mode": {"type": "string"},
+		    "training_session_id": {"type": "string"},
+		    "training_state": {"type": "string"}		   
+		}
+	    }
+	}
+    }    
+}
+
+
