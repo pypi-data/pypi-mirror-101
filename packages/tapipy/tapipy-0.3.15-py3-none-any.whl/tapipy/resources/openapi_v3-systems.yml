@@ -1,0 +1,1631 @@
+openapi: 3.0.3
+info:
+  title: Tapis Systems API
+  description: The Tapis Systems API provides for management of Tapis Systems including transfer methods, permissions and credentials.
+  version: '0.0.1'
+  termsOfService: "https://tapis-project.org"
+  contact:
+    name: "Systems API - CICSupport"
+    url: "https://tapis-project.org"
+    email: "cicsupport@tacc.utexas.edu"
+  license:
+    name: 3-Clause BSD License
+    url: 'https://opensource.org/licenses/BSD-3-Clause'
+externalDocs:
+  description: Tapis Project
+  url: 'https://tapis-project.org'
+servers:
+  - url: 'http://localhost:8080/'
+    description: Local test environment
+    variables: {}
+  - url: 'https://dev.develop.tapis.io/'
+    description: Development environment
+    variables: {}
+security:
+  - TapisJWT: []
+tags:
+  - name: Systems
+    description: manage Systems
+
+# ------------------------------------------------------------------------------
+# --- Paths -------------------------------------------------------------------
+paths:
+
+  # --- Paths for /systems -----------------------------------------------------
+  '/v3/systems/healthcheck':
+    get:
+      tags:
+        - General
+      description: Health check.
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Message received.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+  '/v3/systems/readycheck':
+    get:
+      tags:
+        - General
+      description: Ready check.
+      operationId: readyCheck
+      responses:
+        '200':
+          description: Service ready.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '503':
+          description: Service unavailable.
+
+  '/v3/systems':
+    get:
+      tags:
+        - Systems
+      summary: Retrieve systems
+      description: Retrieve list of systems. Use search and select query parameters to limit results.
+      operationId: getSystems
+      parameters:
+        - name: allAttributes
+          in: query
+          description: 'Include all attributes. Default is to return minimal attributes: id, systemType, host, defaultAuthnMethod, canExec.'
+          schema:
+            type: boolean
+            default: false
+        - name: search
+          in: query
+          description: Search conditions as a single query paramter. For example search=(name.like.MySys*)~(enabled.eq.true)
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Limit number of items returned. For example limit=10. Use -1 for unlimited. Default is unlimited.
+          schema:
+            type: integer
+        - name: sortBy
+          in: query
+          description: Attribute for sorting. Direction may be included. For example sortBy=id(desc). Default direction is (asc).
+          schema:
+            type: string
+        - name: skip
+          in: query
+          description: Number of items to skip. Use one of skip or startAfter. For example skip=10. Default is 0.
+          schema:
+            type: integer
+        - name: startAfter
+          in: query
+          description: Where to start when sorting. Use one of skip or startAfter. Must also specify sortBy. For example, limit=10&sortBy=id(asc)&startAfter=my.sys1
+          schema:
+            type: string
+        - name: computeTotal
+          in: query
+          description: Compute total number of results that would have been returned if unlimited. Default is false.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespSystemsBasic'
+#                $ref: '#/components/schemas/RespSystemsBasicOrFull'
+#                oneOf:
+#                  - $ref: '#/components/schemas/RespSystems'
+#                  - $ref: '#/components/schemas/RespSystemsBasic'
+        '400':
+          description: Input error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+    post:
+      tags:
+        - Systems
+      summary: Create a system
+      description: Create a system using a request body. System name must be unique within a tenant and can be composed of alphanumeric characters and the following special characters [-._~]. Name must begin with an alphabetic character and can be no more than 80 characters in length. Description is optional with a maximum length of 2048 characters.'
+      operationId: createSystem
+      requestBody:
+        required: true
+        description: A JSON object specifying information for the system to be created.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReqCreateSystem'
+      responses:
+        '201':
+          description: System created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespResourceUrl'
+        '400':
+          description: Input error. Invalid JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '409':
+          description: System already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespResourceUrl'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+  '/v3/systems/search':
+    get:
+      tags:
+        - Systems
+      summary: Retrieve list of systems matching search conditions specified as query parameters
+      description: Retrieve details for systems. Use query parameters to specify search conditions. For example owner.eq=jdoe&port.gt=1024
+      operationId: searchSystemsQueryParameters
+      parameters:
+        - name: allAttributes
+          in: query
+          description: 'Include all attributes. Default is to return minimal attributes: id, systemType, host, defaultAuthnMethod, canExec.'
+          schema:
+            type: boolean
+            default: false
+        - name: limit
+          in: query
+          description: Limit number of items returned. For example limit=10. Use -1 for unlimited. Default is unlimited.
+          schema:
+            type: integer
+        - name: sortBy
+          in: query
+          description: Attribute for sorting. Direction may be included. For example sortBy=id(desc). Default direction is (asc).
+          schema:
+            type: string
+        - name: skip
+          in: query
+          description: Number of items to skip. Use one of skip or startAfter. For example skip=10. Default is 0.
+          schema:
+            type: integer
+        - name: startAfter
+          in: query
+          description: Where to start when sorting. Use one of skip or startAfter. Must also specify sortBy. For example, limit=10&sortBy=id(asc)&startAfter=my.sys2
+          schema:
+            type: string
+        - name: computeTotal
+          in: query
+          description: Compute total number of results that would have been returned if unlimited. Default is false.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespSystemsBasic'
+#                $ref: '#/components/schemas/RespSystemsBasicOrFull'
+#                oneOf:
+#                  - $ref: '#/components/schemas/RespSystems'
+#                  - $ref: '#/components/schemas/RespSystemsBasic'
+        '400':
+          description: Input error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+    post:
+      tags:
+        - Systems
+      summary: Retrieve list of systems matching search conditions
+      description: Retrieve details for systems. Use request body to specify SQL-like search conditions.
+      operationId: searchSystemsRequestBody
+      parameters:
+        - name: allAttributes
+          in: query
+          description: 'Include all attributes. Default is to return minimal attributes: id, systemType, host, defaultAuthnMethod, canExec.'
+          schema:
+            type: boolean
+            default: false
+        - name: limit
+          in: query
+          description: Limit number of items returned. For example limit=10. Use -1 for unlimited. Default is unlimited.
+          schema:
+            type: integer
+        - name: sortBy
+          in: query
+          description: Attribute for sorting. Direction may be included. For example sortBy=id(desc). Default direction is (asc).
+          schema:
+            type: string
+        - name: skip
+          in: query
+          description: Number of items to skip. Use one of skip or startAfter. For example skip=10. Default is 0.
+          schema:
+            type: integer
+        - name: startAfter
+          in: query
+          description: Where to start when sorting. Use one of skip or startAfter. Must also specify sortBy. For example, limit=10&sortBy=id(asc)&startAfter=my.sys1
+          schema:
+            type: string
+        - name: computeTotal
+          in: query
+          description: Compute total number of results that would have been returned if unlimited. Default is false.
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        required: true
+        description: A JSON object specifying SQL-like search conditions as an array of strings. Strings are concatenated to form full search query.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReqSearchSystems'
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespSystemsBasic'
+#                $ref: '#/components/schemas/RespSystemsBasicOrFull'
+#                oneOf:
+#                  - $ref: '#/components/schemas/RespSystems'
+#                  - $ref: '#/components/schemas/RespSystemsBasic'
+        '400':
+          description: Input error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+#  '/v3/systems/match/constraints':
+#    post:
+#      tags:
+#        - Systems
+#      summary: Retrieve systems satisfying specified constraint conditions
+#      description: Retrieve details for systems. Use request body to specify constraint conditions as an SQL-like WHERE clause.
+#      operationId: matchConstraints
+#      requestBody:
+#        required: true
+#        description: A JSON object specifying SQL-like constraint conditions as an array of strings. Strings are concatenated to form full query.
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/ReqMatchConstraints'
+#      responses:
+#        '200':
+#          description: Success.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/RespSystems'
+#        '400':
+#          description: Input error.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/RespBasic'
+#        '401':
+#          description: Not authorized.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/RespBasic'
+#        '500':
+#          description: Server error.
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/RespBasic'
+  '/v3/systems/{systemId}':
+    get:
+      tags:
+        - Systems
+      summary: Retrieve system details
+      description: Retrieve information for a system given the system name. Use query parameter returnCredentials=true to have effectiveUserId credentials included in the response. Use query parameter authnMethod=<method> to override default authn method.
+      operationId: getSystem
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: returnCredentials
+          in: query
+          description: Highly restricted. Only certain Tapis services are authorized to get credentials.
+          schema:
+            type: boolean
+            default: false
+        - name: authnMethod
+          in: query
+          description: Desired authn method to use when fetching credentials, default authn method used if this is null.
+          schema:
+            type: string
+            default: ''
+        - name: requireExecPerm
+          in: query
+          description: check for EXECUTE permission as well as READ permission.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: System found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespSystem'
+        '400':
+          description: Input error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+    delete:
+      tags:
+        - Systems
+      summary: Soft delete a system
+      description: Soft delete a system given the system name. Must specify confirm=true to complete the action.
+      operationId: deleteSystem
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: confirm
+          in: query
+          description: Must be specified to complete the action. For example confirm=true. Default is false.
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: System deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespChangeCount'
+        '400':
+          description: Input error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+    patch:
+      tags:
+        - Systems
+      summary: Update a system
+      description: Update attributes for a system. Attributes that may be updated are description, host, effectiveUserId, defaultAuthnMethod, transferMethods, port, useProxy, proxyHost, proxyPort, jobCapabilities, tags, notes.
+      operationId: updateSystem
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: A JSON object specifying changes to be applied.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReqUpdateSystem'
+      responses:
+        '200':
+          description: System updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespResourceUrl'
+        '400':
+          description: Input error. Invalid JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+  '/v3/systems/{systemId}/isEnabled':
+    get:
+      tags:
+        - Systems
+      summary: Check if system is currently enabled
+      description: Check if a system is currently enabled, i.e. available for use.
+      operationId: isEnabled
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Check successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBoolean'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+  '/v3/systems/{systemId}/enable':
+    post:
+      tags:
+        - Systems
+      summary: Mark a system availabe for use.
+      description: Mark a system available for use.
+      operationId: enableSystem
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: System enabled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespChangeCount'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+  '/v3/systems/{systemId}/disable':
+    post:
+      tags:
+        - Systems
+      summary: Mark a system unavailabe for use.
+      description: Mark a system unavailable for use.
+      operationId: disableSystem
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: System disabled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespChangeCount'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+  '/v3/systems/{systemId}/changeOwner/{userName}':
+    post:
+      tags:
+        - Systems
+      summary: Change system owner
+      description: Change owner of a system.
+      operationId: changeSystemOwner
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: System owner updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespChangeCount'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+
+  # --- Paths for /credentials ------------------------------------------------
+  '/v3/systems/credential/{systemId}/user/{userName}':
+    get:
+      tags:
+        - Credentials
+      summary: Retrieve system user credentials
+      description: Highly restricted. Only certain Tapis services authorized. Retrieve credentials for given system and user. Use query parameter authnMethod=<method> to override default authn method.
+      operationId: getUserCredential
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: authnMethod
+          in: query
+          description: Desired authn method to use when fetching credentials, default authn method used if not provided.
+          schema:
+            type: string
+            default: ''
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespCredential'
+        '400':
+          description: Input error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+    post:
+      tags:
+        - Credentials
+      summary: Create or update system user credentials
+      description: Create or update credentials in the Security Kernel for given system and user using a request body. Requester must be owner of the system.
+      operationId: createUserCredential
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: A JSON object specifying a credential.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Credential'
+      responses:
+        '200':
+          description: Credential updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '400':
+          description: Input error. Invalid JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+    delete:
+      tags:
+        - Credentials
+      summary: Remove system user credentials
+      description: Remove credential from the Security Kernel for given system and user. Requester must be owner of the system.
+      operationId: removeUserCredential
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Credential removed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '400':
+          description: Input error. Invalid JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+
+  # --- Paths for /perms -------------------------------------------------------
+  '/v3/systems/perms/{systemId}/user/{userName}':
+    get:
+      tags:
+        - Permissions
+      summary: Retrieve system user permissions
+      description: Retrieve all system related permissions for a given system and user.
+      operationId: getUserPerms
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespNameArray'
+        '400':
+          description: Input error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '404':
+          description: System not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+    post:
+      tags:
+        - Permissions
+      summary: Grant system user permissions
+      description: Create permissions in the Security Kernel for a user. Requester must be owner of the system. Permissions are READ, MODIFY, EXECUTE.
+      operationId: grantUserPerms
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: A JSON object specifying a list of permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReqPerms'
+      responses:
+        '200':
+          description: Permissions granted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '400':
+          description: Input error. Invalid JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+
+  '/v3/systems/perms/{systemId}/user/{userName}/revoke':
+    post:
+      tags:
+        - Permissions
+      summary: Revoke system user permissions
+      description: Remove permissions from the Security Kernel for a user. Requester must be owner of the system. Permissions are READ, MODIFY, EXECUTE.
+      operationId: revokeUserPerms
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: A JSON object specifying a list of permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReqPerms'
+      responses:
+        '200':
+          description: Permission revoked.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+
+  '/v3/systems/perms/{systemId}/user/{userName}/{permission}':
+    delete:
+      tags:
+        - Permissions
+      summary: Revoke system user permission
+      description: Remove system user permission from the Security Kernel. Requester must be owner of the system. Permissions are READ, MODIFY, EXECUTE.
+      operationId: revokeUserPerm
+      parameters:
+        - name: systemId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: permission
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Permission revoked.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '400':
+          description: Input error. Invalid JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '401':
+          description: Not authorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+        '500':
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespBasic'
+
+# ------------------------------------------------------------------------------
+# --- Components ---------------------------------------------------------------
+components:
+  securitySchemes:
+    TapisJWT:
+      type: apiKey
+      description: Tapis signed JWT token authentication
+      name: X-Tapis-Token
+      in: header
+  schemas:
+    RespSystemsBasicOrFull:
+      oneOf:
+      - $ref: '#/components/schemas/RespSystems'
+      - $ref: '#/components/schemas/RespSystemsBasic'
+      discriminator:
+        propertyName: realType
+    # ------------------------------------------------------------------------------
+    # --- Model objects ------------------------------------------------------------
+    # ------------------------------------------------------------------------------
+    # --- ResultSystemBasic ------------------------------------------------------------------
+    ResultSystemBasic:
+      type: object
+      properties:
+        id:
+          type: string
+        systemType:
+          $ref: '#/components/schemas/SystemTypeEnum'
+        host:
+          type: string
+        defaultAuthnMethod:
+          $ref: '#/components/schemas/AuthnEnum'
+        canExec:
+          type: boolean
+    # --- ResultSystem ------------------------------------------------------------------
+    ResultSystem:
+      type: object
+      properties:
+        tenant:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        systemType:
+          $ref: '#/components/schemas/SystemTypeEnum'
+        owner:
+          type: string
+          default: "${apiUserId}"
+        host:
+          type: string
+        enabled:
+          type: boolean
+          default: true
+        effectiveUserId:
+          type: string
+          default: "${apiUserId}"
+        defaultAuthnMethod:
+          $ref: '#/components/schemas/AuthnEnum'
+        authnCredential:
+          $ref: '#/components/schemas/Credential'
+        bucketName:
+          type: string
+        rootDir:
+          type: string
+        transferMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferMethodEnum'
+        port:
+          type: integer
+          format: int32
+        useProxy:
+          type: boolean
+          default: false
+        proxyHost:
+          type: string
+        proxyPort:
+          type: integer
+          format: int32
+        dtnSystemId:
+          type: string
+        dtnMountPoint:
+          type: string
+        dtnMountSourcePath:
+          type: string
+        isDtn:
+          type: boolean
+          default: false
+        canExec:
+          type: boolean
+        jobRuntimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRuntime'
+        jobWorkingDir:
+          type: string
+        jobEnvVariables:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+        jobMaxJobs:
+          type: integer
+          default: 2147483647
+        jobMaxJobsPerUser:
+          type: integer
+          default: 2147483647
+        jobIsBatch:
+          type: boolean
+          default: false
+        batchScheduler:
+          $ref: '#/components/schemas/SchedulerTypeEnum'
+        batchLogicalQueues:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogicalQueue'
+        batchDefaultLogicalQueue:
+          type: string
+        jobCapabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Capability'
+        tags:
+          type: array
+          items:
+            type: string
+        notes:
+          type: object
+        uuid:
+          type: string
+          format: uuid
+        deleted:
+          type: boolean
+        created:
+          type: string
+        updated:
+          type: string
+    # --- JobRuntime ------------------------------------------------------------------
+    JobRuntime:
+      type: object
+      properties:
+        runtimeType:
+          $ref: '#/components/schemas/RuntimeTypeEnum'
+        version:
+          type: string
+    # --- LogicalQueue ------------------------------------------------------------------
+    LogicalQueue:
+      type: object
+      properties:
+        name:
+          type: string
+        hpcQueueName:
+          type: string
+        maxJobs:
+          type: integer
+          default: 2147483647
+        maxJobsPerUser:
+          type: integer
+          default: 2147483647
+        maxNodeCount:
+          type: integer
+        maxCoresPerNode:
+          type: integer
+        maxMemoryMB:
+          type: integer
+        maxMinutes:
+          type: integer
+    # --- Capability ------------------------------------------------------------------
+    Capability:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        name:
+          type: string
+        datatype:
+          $ref: '#/components/schemas/DatatypeEnum'
+        precedence:
+          type: integer
+        value:
+          type: string
+    # --- Credential ------------------------------------------------------------------
+    Credential:
+      type: object
+      properties:
+        password:
+          type: string
+        privateKey:
+          type: string
+        publicKey:
+          type: string
+        accessKey:
+          type: string
+        accessSecret:
+          type: string
+        certificate:
+          type: string
+    # --- KeyValuePair -------------------------------------------------------
+    KeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    # -------------------------------------------------------------------------
+    # --- Request objects -----------------------------------------------------
+    # -------------------------------------------------------------------------
+    ReqCreateSystem:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        systemType:
+          $ref: '#/components/schemas/SystemTypeEnum'
+        owner:
+          type: string
+        host:
+          type: string
+        enabled:
+          type: boolean
+          default: true
+        effectiveUserId:
+          type: string
+        defaultAuthnMethod:
+          $ref: '#/components/schemas/AuthnEnum'
+        authnCredential:
+          $ref: '#/components/schemas/Credential'
+        bucketName:
+          type: string
+        rootDir:
+          type: string
+        transferMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferMethodEnum'
+        port:
+          type: integer
+          format: int32
+        useProxy:
+          type: boolean
+          default: false
+        proxyHost:
+          type: string
+        proxyPort:
+          type: integer
+          format: int32
+        dtnSystemId:
+          type: string
+        dtnMountPoint:
+          type: string
+        dtnMountSourcePath:
+          type: string
+        isDtn:
+          type: boolean
+          default: false
+        canExec:
+          type: boolean
+        jobRuntimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRuntime'
+        jobWorkingDir:
+          type: string
+        jobEnvVariables:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+        jobMaxJobs:
+          type: integer
+        jobMaxJobsPerUser:
+          type: integer
+        jobIsBatch:
+          type: boolean
+          default: false
+        batchScheduler:
+          $ref: '#/components/schemas/SchedulerTypeEnum'
+        batchLogicalQueues:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogicalQueue'
+        batchDefaultLogicalQueue:
+          type: string
+        jobCapabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Capability'
+        tags:
+          type: array
+          items:
+            type: string
+        notes:
+          type: object
+    ReqUpdateSystem:
+      type: object
+      properties:
+        description:
+          type: string
+        host:
+          type: string
+        effectiveUserId:
+          type: string
+        defaultAuthnMethod:
+          $ref: '#/components/schemas/AuthnEnum'
+        transferMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferMethodEnum'
+        port:
+          type: integer
+          format: int32
+        useProxy:
+          type: boolean
+        proxyHost:
+          type: string
+        proxyPort:
+          type: integer
+          format: int32
+        dtnSystemId:
+          type: string
+        dtnMountPoint:
+          type: string
+        dtnMountSourcePath:
+          type: string
+        jobRuntimes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobRuntime'
+        jobWorkingDir:
+          type: string
+        jobEnvVariables:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+        jobMaxJobs:
+          type: integer
+        jobMaxJobsPerUser:
+          type: integer
+        jobIsBatch:
+          type: boolean
+        batchScheduler:
+          $ref: '#/components/schemas/SchedulerTypeEnum'
+        batchLogicalQueues:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogicalQueue'
+        batchDefaultLogicalQueue:
+          type: string
+        jobCapabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Capability'
+        tags:
+          type: array
+          items:
+            type: string
+        notes:
+          type: object
+    ReqPerms:
+      type: object
+      properties:
+        permissions:
+          type: array
+          items:
+            type: string
+    ReqSearchSystems:
+      type: object
+      properties:
+        search:
+          type: array
+          items:
+            type: string
+#    ReqMatchConstraints:
+#      type: object
+#      properties:
+#        match:
+#          type: array
+#          items:
+#            type: string
+    # -------------------------------------------------------------------------
+    # --- Response objects ----------------------------------------------------
+    # -------------------------------------------------------------------------
+    RespBasic:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          type: object
+    RespBoolean:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          type: boolean
+    RespNameArray:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          $ref: '#/components/schemas/ResultNameArray'
+    ResultNameArray:
+      type: object
+      properties:
+        names:
+          type: array
+          items:
+            type: string
+    RespChangeCount:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          $ref: '#/components/schemas/ResultChangeCount'
+    ResultChangeCount:
+      type: object
+      properties:
+        changes:
+          type: integer
+          format: int32
+    RespResourceUrl:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          $ref: '#/components/schemas/ResultResourceUrl'
+    ResultResourceUrl:
+      type: object
+      properties:
+        url:
+          type: string
+    RespSystem:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          $ref: '#/components/schemas/ResultSystem'
+    RespSystems:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        realType:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResultSystem'
+    RespSystemsBasic:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        realType:
+          type: string
+        result:
+          type: object
+          properties:
+            metadata:
+              type: object
+              properties:
+                recordCount:
+                  type: integer
+                recordLimit:
+                  type: integer
+                recordsSkipped:
+                  type: integer
+                sortBy:
+                  type: string
+                startAfter:
+                  type: string
+                totalCount:
+                  type: integer
+            search:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResultSystemBasic'
+    RespSystemsSearch:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          type: object
+          properties:
+            metadata:
+              type: object
+              properties:
+                recordCount:
+                  type: integer
+                recordLimit:
+                  type: integer
+                recordsSkipped:
+                  type: integer
+                sortBy:
+                  type: string
+                startAfter:
+                  type: string
+                totalCount:
+                  type: integer
+            search:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResultSystem'
+    RespCredential:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        version:
+          type: string
+        result:
+          $ref: '#/components/schemas/Credential'
+    # -------------------------------------------------------------------------
+    # --- Enums ---------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    SystemTypeEnum:
+      type: string
+      enum:
+        - LINUX
+        - OBJECT_STORE
+    AuthnEnum:
+      type: string
+      enum:
+        - PASSWORD
+        - PKI_KEYS
+        - ACCESS_KEY
+        - CERT
+    TransferMethodEnum:
+      type: string
+      enum:
+        - SFTP
+        - S3
+    CategoryEnum:
+      type: string
+      enum:
+        - SCHEDULER
+        - OS
+        - HARDWARE
+        - SOFTWARE
+        - JOB
+        - CONTAINER
+        - MISC
+        - CUSTOM
+    DatatypeEnum:
+      type: string
+      enum:
+        - STRING
+        - INTEGER
+        - BOOLEAN
+        - NUMBER
+        - TIMESTAMP
+    RuntimeTypeEnum:
+      type: string
+      enum:
+        - DOCKER
+        - SINGULARITY
+    SchedulerTypeEnum:
+      type: string
+      enum:
+        - SLURM
+        - CONDOR
+        - PBS
+        - SGE
+        - UGE
+        - TORQUE
