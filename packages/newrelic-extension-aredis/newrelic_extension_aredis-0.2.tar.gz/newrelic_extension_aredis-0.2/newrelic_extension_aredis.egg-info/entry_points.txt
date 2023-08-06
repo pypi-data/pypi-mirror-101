@@ -1,0 +1,3 @@
+[newrelic.hooks]
+aredis = newrelic_extension_aredis.datastore_aredis:instrument
+
