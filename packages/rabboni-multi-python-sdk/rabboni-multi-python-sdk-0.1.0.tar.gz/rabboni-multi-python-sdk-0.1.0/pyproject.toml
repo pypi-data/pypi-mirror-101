@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "rabboni-multi-python-sdk"
+version = "0.1.0"
+description = ""
+authors = ["NCTUTWT Lab <nctutwtlab@nctu.edu.tw>", "Bobson Lin <bobson801104@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+bleak = "^0.10.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^3.8.4"
+pydoc-markdown = "^3.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.dephell.main]
+# read from poetry format
+from = {format = "poetry", path = "pyproject.toml"}
+# drop dev-dependencies
+envs = ["main"]
+# and convert into setup.py
+to = {format = "setuppy", path = "setup.py"}
