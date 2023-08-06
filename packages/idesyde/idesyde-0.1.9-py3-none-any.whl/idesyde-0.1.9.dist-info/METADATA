@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: idesyde
+Version: 0.1.9
+Summary: Generic Design Space Exploration for models based system design
+Home-page: https://forsyde.github.io/IDeSyDe/
+License: MIT
+Author: jordao
+Author-email: jordao@kth.se
+Maintainer: jordao
+Maintainer-email: jordao@kth.se
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: forsyde-io-python (>=0.2.7,<0.3.0)
+Requires-Dist: minizinc (>=0.4,<0.5)
+Requires-Dist: numpy (>=1.20,<2.0)
+Requires-Dist: sympy (>=1.7,<2.0)
+Project-URL: Documentation, https://forsyde.github.io/IDeSyDe/
+Project-URL: Repository, https://github.com/forsyde/IDeSyDe
+Description-Content-Type: text/markdown
+
+# IDeSyDe
+
+This is the generic Design Space Exploration (DSE) tool associated with the ForSyDe Ecosystem and the spiritual sucessor of [DeSyDe](https://github.com/forsyde/DeSyDe). Check the [documentation website for more information](https://forsyde.github.io/IDeSyDe/)!
+
