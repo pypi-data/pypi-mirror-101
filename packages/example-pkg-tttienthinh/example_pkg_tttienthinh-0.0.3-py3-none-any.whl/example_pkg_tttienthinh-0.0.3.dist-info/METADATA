@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: example-pkg-tttienthinh
+Version: 0.0.3
+Summary: A small example package
+Home-page: https://github.com/tttienthinh/packaging_tutorial.git
+Author: tttienthinh
+Author-email: tranthuongtienthinh@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/pypa/sampleproject/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Packaging Python Projects
+Following this [course](https://packaging.python.org/tutorials/packaging-projects/)
+
+## Coding steps
+Make sure you have the latest versions of PyPA’s build installed:
+```bash
+pip install --upgrade build
+```
+This command should output a lot of text and once completed should generate two files in the dist directory:
+```bash
+build
+```
+### Uploading the distribution archives
+You can use twine to upload the distribution packages. You’ll need to install Twine:
+```bash
+pip install --upgrade twine
+```
+Once installed, run Twine to upload all of the archives under dist:
+```bash
+twine upload dist/*
+```
+
