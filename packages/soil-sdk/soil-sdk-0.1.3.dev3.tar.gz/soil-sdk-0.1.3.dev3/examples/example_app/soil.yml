@@ -1,0 +1,22 @@
+# Defines scripts that will be executed on a schedule
+# Check here to set the schedule https://crontab.guru/
+setup:
+    - reset-dbs:
+        path: iris_dataset.setup.reset_dbs
+
+data:
+    - new-data:
+        path: iris_dataset.new_data.new_data
+        params:
+            schema-file: config/schema.json
+
+schedules:
+    - train:
+        path: iris_dataset.scheduler.train # product.schedules.train
+        schedule: 00 00 * * 7        # At 00:00 every sunday
+
+    - predict:
+        path:  iris_dataset.scheduler.predict # product.schedules.predict
+        schedule: 00 01 * * 7        # At 01:00 every sunday
+        params:
+            unlabeled-data-file: data/unknown.csv
