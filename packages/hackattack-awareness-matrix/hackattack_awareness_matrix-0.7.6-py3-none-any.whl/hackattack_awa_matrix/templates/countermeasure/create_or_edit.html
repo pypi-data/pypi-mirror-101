@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block title %}tech./org. Gegenmaßnahmen{% endblock %}
+
+{% block header %}
+  {% if countermeasure is defined %}
+        <h1>tech./org. Gegenmaßnahme bearbeiten</h1>
+    {% else %}
+        <h1>Neue tech./org. Gegenmaßnahme erstellen</h1>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-name">Name:</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="name" id="name" aria-describedby="label-name" required value="{{ countermeasure['name'] if countermeasure is defined and countermeasure['name'] is defined }}">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Beschreibung:</span>
+      </div>
+      <textarea class="form-control" id="description" name="description" aria-label="Beschreibung">{{ countermeasure['description'] if countermeasure is defined and countermeasure['description'] is defined }}</textarea>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-percentage-executed">% umgesetzt:</span>
+      </div>
+        <input type="number" min="0" max="100" class="form-control" placeholder="% umgesetzt" aria-label="% umgesetzt" name="percentage_executed" id="percentage_executed" aria-describedby="label-percentage-executed" required value="{{ countermeasure['percentage_executed'] if countermeasure is defined and countermeasure['percentage_executed'] is defined else 0}}">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-due_date"><i class="far fa-question-circle mr-1" data-toggle="tooltip" data-placement="top" title="Das Fälligkeits-Datum ist optional"></i> Fälligkeits-Datum: </span>
+      </div>
+      <input type="date" class="form-control" aria-label="Fälligkeits-Datum" aria-describedby="label-due_date"  name="due_date" id="due_date" value="{{ countermeasure['due_date'].strftime("%Y-%m-%d") if countermeasure is defined and countermeasure['due_date'] is defined and countermeasure['due_date'] is not none }}">
+    </div>
+    <div class="input-group mb-3">
+      {% if countermeasure is defined %}
+        <input type="submit" class="btn btn-secondary" value="Speichern">
+        {% else %}
+        <input type="submit" class="btn btn-secondary" value="Erstellen">
+      {% endif %}
+        &nbsp;<input type="button" class="btn btn-secondary" value="Zurück" onclick="history.back()">
+    </div>
+  </form>
+{% endblock %}
+

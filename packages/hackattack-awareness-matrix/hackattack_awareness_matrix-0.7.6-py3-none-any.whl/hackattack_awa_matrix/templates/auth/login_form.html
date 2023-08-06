@@ -1,0 +1,12 @@
+<form method="post" action="{{ url_for('auth.login') }}">
+  <div class="form-group">
+    <label for="username"><strong>Nutzername</strong></label>
+    <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp">
+    <small id="usernameHelp" class="form-text text-muted">Geben Sie Ihren Nutzernamen ein</small>
+  </div>
+  <div class="form-group">
+    <label for="password"><strong>Passwort</strong></label>
+    <input type="password" class="form-control" id="password" name="password">
+  </div>
+  <button type="submit" class="btn btn-secondary">Log In</button>
+</form>

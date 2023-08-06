@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="jumbotron " style="margin-bottom:0">
+      <h1 class="display-4">{% block title %}Details der tech./org. Gegenmaßnahme{% endblock %}</h1>
+      <div class="lead text-left">
+          <strong>Name: </strong>{{ countermeasure["name"] }}<br/>
+          <strong>Beschreibung: </strong>{{ countermeasure["description"] }}<br/>
+          <strong>% umgesetzt: </strong>{{ countermeasure["percentage_executed"] }}<br/>
+          {% if countermeasure["created_at"] is defined %}
+            <strong>Erstellt am: </strong>{{ countermeasure["created_at"] }}<br/>
+          {% endif %}
+          {% if countermeasure["due_date"] is defined %}
+            <strong>Zu erledigen bis: </strong>{{ countermeasure["due_date"] }}
+          {% endif %}
+      </div>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <h3>Bedrohungen</h3>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Beschreibung</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Bearbeiten</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for t in assigned_threats %}
+                  <tr>
+                      <td>{{ t['name'] }}</td>
+                      <td>{{ t['description'][:50] + " ..." if t['description']|length > 50 else t['description']  }}</td>
+                      <td><a href="{{ url_for('threat.details', project_id=t['project_id'], threat_id=t['id']) }}">Details</a></td>
+                      <td><a href="{{ url_for('threat.edit', project_id=t['project_id'], threat_id=t['id']) }}">Bearbeiten</a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
