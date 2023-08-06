@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: TracTags
+Version: 0.12.1
+Summary: Tags plugin for Trac
+Home-page: https://trac-hacks.org/wiki/TagsPlugin
+Author: Alec Thomas
+Author-email: alec@swapoff.org
+License: BSD
+Platform: UNKNOWN
+Classifier: Framework :: Trac
+Requires-Dist: Trac
+Provides-Extra: babel
+Requires-Dist: Babel (>=0.9.5) ; extra == 'babel'
+Provides-Extra: tracrpc
+Requires-Dist: TracXMLRPC (>=1.1.0) ; extra == 'tracrpc'
+Provides-Extra: wikiautocomplete
+Requires-Dist: WikiAutoComplete (>=1.4dev) ; extra == 'wikiautocomplete'
+
+UNKNOWN
+
+
