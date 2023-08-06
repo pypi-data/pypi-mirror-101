@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: arianna
+Version: 0.0.1
+Summary: Replica Exchange Slice Sampling
+Home-page: https://github.com/minaskar/arianna
+Author: Minas Karamanis
+Author-email: minaskar@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy (>=1.5.0)
+Requires-Dist: tqdm
+Requires-Dist: setuptools
+Requires-Dist: pytest
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: sklearn
+
+# arianna
+
+
