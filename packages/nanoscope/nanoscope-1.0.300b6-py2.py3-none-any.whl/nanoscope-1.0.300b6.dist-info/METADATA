@@ -1,0 +1,116 @@
+Metadata-Version: 2.1
+Name: nanoscope
+Version: 1.0.300b6
+Summary: Python library for Bruker AFMi Nanoscope files
+Home-page: UNKNOWN
+Author: Bruker Santa Barbara
+Author-email: AFM.support@bruker.com
+License: OSI Approved :: Apache Software License
+Platform: win32
+Platform: win_amd64
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=2.7,<=3.7.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+
+
+## Nanoscope
+[![PyPI download month](https://img.shields.io/pypi/dm/nanoscope.svg)](https://pypi.python.org/pypi/nanoscope/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/nanoscope.svg)](https://pypi.python.org/pypi/nanoscope/)
+[![PyPI status](https://img.shields.io/pypi/status/nanoscope.svg)](https://pypi.python.org/pypi/nanoscope/)
+
+
+Package to read data files collected using Bruker, Veeco, and Digital Instruments Atomic Force Microscopes (AFMs) using Nanoscope v5.12 - v10.00 acquisition software.  There is also some support for data acquired with the NanoDrive acquisition software.  
+
+Supported file types include:
+
+1. Image data files
+2. Ramp data (e.g. force curves without a surface hold segment, SECM data, etc. ) 
+3. Force curves with a surface hold segment
+4. Force Volume data without hold segment
+5. Force Volume data with surface hold segment (electrical DCUBEs, AFM-nDMA, FFV-CR, etc.)
+6. PeakForce Capture (PFC) data (collected in PeakForce QNM)
+7. High Speed Data Capture (HSDC) data
+8. Script data (RampScripting, AFM-nDMA, SS-PFM, etc.)
+9. NanoDrive Image data
+
+The package parses the header and provides scaled data in desired units (Volt, Metric, Force).  Additionally there is a small subset of other header information available (spring constant, etc.).
+
+
+## Installation
+
+Use the pip package manager to install nanoscope.
+
+```bash
+$ pip install nanoscope
+```
+
+### Requirements
+
+This module requires the following:
+
+- Microsoft Windows 7 - 10 operating system
+- Python 2.78 - 3.78 (64bit preferred)
+  - You can check the version and whether it is 64bit by launching the Python command line interface.
+- Microsoft Visual C++ 2015 or 2017 Redistributable (x64 version if using 64bit Python).
+  - You can check which version(s) are installed by looking in “Control Panel\All Control Panel Items\Programs and Features”.
+  - If needed, download it from https://visualstudio.microsoft.com/vs/older-downloads/
+
+
+## Usage
+
+Note that acquisition channel numbers start with zero, not with one as is the convention in Nanoscope software.  
+
+For detailed examples, please refer to the included example code (and associated raw data files).  It is contained in the module, but not imported by default. 
+
+```python
+import nanoscope as ns
+ns.examples.copy_examples_code()  # prompt user to save a copy of the examples code Examples.py
+help(ns.examples)  # get a list of specific examples
+ns.examples.run_example(2)  # run example #2
+```
+
+*Examples.py* contains the following code for example #2 to read and plot a force curve with hold segment:
+
+```python
+import matplotlib.pyplot as plt
+import nanoscope
+from nanoscope import files
+from nanoscope.constants import FORCE, METRIC, VOLTS, PLT_kwargs
+
+i_chan = 0  # This will provide Nanoscope channel #1
+with files.HoldCurveFile("ForceHold.spm") as file_:
+    channel = file_[i_chan]
+    # get timed data of channel
+    ft_plot, ax_properties = channel.create_force_time_plot(METRIC)
+    plt.plot(ft_plot.x, ft_plot.y)
+    plt.gca().set(**ax_properties)  # set axes properties
+    plt.show()
+
+    hold_plot, ax_properties = channel.create_force_hold_time_plot(METRIC)
+    plt.plot(hold_plot.x, hold_plot.y)
+    plt.gca().set(**ax_properties)  # set axes properties
+    plt.show()
+```
+
+Resulting in 2 plots, the first showing the deflection error versus time, the second showing the same data but only for the force hold.
+
+## Support
+
+Support for installation issues can be obtained by contacting the Bruker AFM service team at [afm.support@bruker.com](afm.support@bruker.com).  As this package is provided at no charge, it is not feasible to provide support beyond helping with installation issues at this time.  
+
+For bug reports and feature requests, please email [afm.support@bruker.com](afm.support@bruker.com) with "BUG" or "FEATURE" in the subject line.  Also, please include an example raw Nanoscope data file along with the usual other relevant information.
+
+## License
+
+[![PyPI license](https://img.shields.io/pypi/l/nanoscope.svg)](https://https://www.apache.org/licenses/LICENSE-2.0/)
+
+
