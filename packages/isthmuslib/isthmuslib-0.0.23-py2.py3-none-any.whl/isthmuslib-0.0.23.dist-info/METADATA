@@ -1,0 +1,181 @@
+Metadata-Version: 2.1
+Name: isthmuslib
+Version: 0.0.23
+Summary: Misc utilities, mostly related to plotting
+Home-page: https://github.com/mitchellpkt/python-isthmuslib
+Author: Isthmus (Mitchell P. Krawiec-Thayer)
+Author-email: isthmuslib@mitchellpkt.com
+License: LGPL-3.0-only
+Project-URL: Changelog, https://github.com/mitchellpkt/python-isthmuslib/blob/master/CHANGELOG.rst
+Project-URL: Issue Tracker, https://github.com/mitchellpkt/python-isthmuslib/issues
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+
+========
+Overview
+========
+
+
+
+Misc utilities, mostly related to plotting conveniences
+
+* Turns matplotlib.pyplot figure generation into one-liners.
+* Free software for personal or academic use: **GNU Lesser General Public License v3 (LGPLv3).**
+* Contact licensing@mitchellpkt.com for commercial applications.
+* To-do: expand types of parameters that can be passed through (e.g. marker style, legend placement, etc).
+
+Installation
+============
+
+::
+
+    pip install isthmuslib
+
+You can also install the in-development version with::
+
+    pip install https://github.com/mitchellpkt/python-isthmus/archive/master.zip
+
+
+Documentation
+=============
+
+
+To use the project:
+
+.. code-block:: python
+
+    import isthmuslib
+
+
+Demo
+=============
+See a light demo here: https://github.com/Mitchellpkt/python-isthmuslib/blob/main/light-demo.ipynb
+
+
+Changelog
+=========
+
+0.0.4 (2021-02-14)
+------------------
+
+* First release on PyPI.
+
+0.0.5 (2021-02-15)
+------------------
+
+* Extra data set
+* Dictionary scatter
+
+0.0.6 (2021-02-15)
+------------------
+
+* Minor tweaks (extra passthroughs)
+
+0.0.7 (2021-02-15)
+------------------
+
+* Minor tweaks
+* Fixes a few bad links in README
+* Updates the changelog
+
+0.0.8 (2021-02-17)
+------------------
+
+* Adds data frame overviews
+
+
+0.0.9 (2021-02-17)
+------------------
+
+* Allows specification of plot types in 2d
+
+0.0.10 (2021-02-19)
+-------------------
+
+* Cumulative histograms
+
+0.0.11 (2021-02-19)
+-------------------
+
+* Histogram normalization
+
+0.0.12 (2021-02-25)
+-------------------
+
+* Heatmaps
+
+0.0.13 (2021-02-26)
+-------------------
+
+* Feature engineering code generator
+
+0.0.14 (2021-02-26)
+-------------------
+
+* Adds print template
+
+0.0.15 (2021-03-14)
+-------------------
+
+* Adds requirements
+
+0.0.16 (2021-03-14)
+-------------------
+
+* Fixes histogram color passthrough
+
+0.0.17 (2021-03-14)
+-------------------
+
+* Adds internal face color for histogram (probably extend to others later)
+
+0.0.18 (2021-03-28)
+-------------------
+
+* Adds gaussian demo data
+* Histagram alpha parameter
+
+0.0.19 (2021-04-09)
+-------------------
+
+* Adds rolling mean and median to scatter function
+
+0.0.20 (2021-04-09)
+-------------------
+
+* Fixes mean / median bugs
+
+0.0.21 (2021-04-09)
+-------------------
+
+* Fixes mean / median bugs
+
+0.0.22 (2021-04-09)
+-------------------
+
+* Adds line of best fit
+
+0.0.23 (2021-04-11)
+-------------------
+
+* Adds watermark
+
