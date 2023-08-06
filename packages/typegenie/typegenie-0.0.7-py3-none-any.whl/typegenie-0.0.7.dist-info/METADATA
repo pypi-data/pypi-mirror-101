@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: typegenie
+Version: 0.0.7
+Summary: Client Library for TypeGenie API. Check out http://api.typegenie.net for more info.
+Home-page: https://github.com/abhitopia/TypeGenieApiClient
+Author: abhitopia
+Author-email: hi@typegenie.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: requests
+
+# TypeGenieAPIClient
+Python API client to access TypeGenie API. 
+
+# Documentation
+Check out detailed API documentation at [http://api.typegenie.net](http://api.typegenie.net)
+
+## Installation
+Run the following to install:
+
+`pip install typegenie`
+
+
