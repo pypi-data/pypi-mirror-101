@@ -1,0 +1,1 @@
+{target_partition_field} >= '{oldest_target_partition}'
