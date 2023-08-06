@@ -1,0 +1,21 @@
+ampform==0.8.0a1
+iminuit>=2.0
+numpy
+phasespace>=1.2.0
+PyYAML
+sympy
+tensorflow>=2.4
+tqdm>=4.24.0
+
+[:python_version < "3.8.0"]
+typing-extensions
+
+[jax]
+jax
+jaxlib
+
+[numba]
+numba
+
+[scipy]
+scipy>=1
