@@ -1,0 +1,21 @@
+{
+    "Plugins": [
+        {
+            "Info": {
+                "Types": {
+                    "UsdHydraDiscoveryPlugin": {
+                        "bases": [
+                            "NdrDiscoveryPlugin"
+                        ],
+                        "displayName": "Discovery plugin for deprecated hydra shaders."
+                    }
+                }
+            },
+            "LibraryPath": "../../../usd_core.libs/libusdHydra-6377f0c8.so",
+            "Name": "usdHydra",
+            "ResourcePath": "resources",
+            "Root": "..",
+            "Type": "library"
+        }
+    ]
+}
