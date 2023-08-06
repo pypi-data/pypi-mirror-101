@@ -1,0 +1,72 @@
+# https://matplotlib.org/3.2.1/tutorials/introductory/customizing.html#customizing-with-matplotlibrc-files
+
+# figure
+figure.facecolor: white
+patch.facecolor: white
+figure.autolayout: True
+
+# axes
+axes.labelcolor: black
+axes.facecolor: white
+axes.edgecolor: black
+axes.linewidth: 1
+axes.grid: True
+axes.axisbelow: True
+# axes.prop_cycle: cycler('color', ['E24A33', '348ABD', '988ED5', '777777', 'FBC15E', '8EBA42', 'FFB5B8'])
+
+# x ticks
+xtick.top: True
+xtick.bottom: True
+xtick.direction: in
+xtick.color: black
+xtick.major.size: 10
+xtick.minor.top: True
+xtick.minor.bottom: True
+xtick.minor.size: 5
+xtick.minor.visible: True
+
+# y ticks
+ytick.left: True
+ytick.right: True
+ytick.direction: in
+ytick.color: black
+ytick.major.size: 10
+ytick.minor.left: True
+ytick.minor.right: True
+ytick.minor.size: 5
+ytick.minor.visible: True
+
+# text
+text.color: black
+font.style: normal
+font.weight: normal
+font.family: sans-serif
+# used to be Arial
+font.sans-serif: DejaVu Sans
+font.size: 12
+# used to be 14
+axes.labelsize: 12
+axes.titlesize: 12
+legend.fontsize: 12
+xtick.labelsize: 12
+ytick.labelsize: 12
+# used to be stix
+mathtext.fontset: dejavusans
+
+# legend
+legend.frameon: False
+legend.numpoints: 1
+legend.scatterpoints: 1
+
+# specific parameters
+image.cmap: rainbow
+lines.solid_capstyle: round
+
+# grid
+grid.linestyle: :
+grid.color: lightgray
+
+# bar
+patch.edgecolor: black
+patch.linewidth: 1
+patch.force_edgecolor: True
