@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: hunspellcheck
+Version: 0.0.5
+Summary: Spell checkers builder using hunspell.
+Home-page: https://github.com/mondeja/hunspellcheck
+Author: Álvaro Mondéjar Rubio
+Author-email: mondejar1994@gmail.com
+License: BSD-3-Clause
+Project-URL: Documentation, https://github.com/mondeja/hunspellcheck#documentation
+Project-URL: GitHub Project, https://github.com/mondeja/hunspellcheck
+Project-URL: Issue Tracker, https://github.com/mondeja/hunspellcheck/issues
+Description: # hunspellcheck
+        
+        [![PyPI][pypi-version-badge-link]][pypi-link]
+        [![Python versions][pypi-pyversions-badge-link]][pypi-link]
+        [![License][license-image]][license-link]
+        [![Tests][tests-image]][tests-link]
+        [![Coverage status][coverage-image]][coverage-link]
+        
+        ## [Documentation][documentation-link]
+        
+        ### Acknowledgment
+        
+        - [AFPy](https://github.com/AFPy) because
+         [pospell](https://github.com/AFPy/pospell) has been the main inspiration for
+         this library.
+        
+        [pypi-link]: https://pypi.org/project/hunspellcheck
+        [pypi-version-badge-link]: https://img.shields.io/pypi/v/hunspellcheck
+        [pypi-pyversions-badge-link]: https://img.shields.io/pypi/pyversions/hunspellcheck
+        [license-image]: https://img.shields.io/pypi/l/hunspellcheck?color=light-green
+        [license-link]: https://github.com/mondeja/hunspellcheck/blob/master/LICENSE
+        [tests-image]: https://img.shields.io/github/workflow/status/mondeja/hunspellcheck/CI
+        [tests-link]: https://github.com/mondeja/hunspellcheck/actions?query=workflow%3ACI
+        [coverage-image]: https://img.shields.io/coveralls/github/mondeja/hunspellcheck?logo=coveralls
+        [coverage-link]: https://coveralls.io/github/mondeja/hunspellcheck
+        [documentation-link]: https://hunspellcheck.readthedocs.io
+        
+Platform: UNKNOWN
+Classifier: Framework :: Pytest
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Provides-Extra: docs
+Provides-Extra: lint
+Provides-Extra: test
