@@ -1,0 +1,10 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  i18n_domain="eea">
+
+  <adapter factory=".blocks.FixedLayoutBlocksJSONFieldSerializer" />
+  
+  <adapter factory=".sync.ExtendedFixedLayoutSync" />
+  <!-- adapter factory=".sync.CustomFixedLayoutSync" name="custom-block" /-->
+
+</configure>

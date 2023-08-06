@@ -1,0 +1,27 @@
+Changelog
+=========
+
+2.3 - (2021-04-09)
+---------------------------
+* Feature: Apply ExtendedFixedLayoutSync by default on all blocks
+  [avoinea]
+
+2.2 - (2021-04-05)
+---------------------------
+* Feature: Add support for accordionPanel block and propagate readOnlySettings to sub-blocks
+  [avoinea]
+
+2.1 - (2021-04-03)
+---------------------------
+* Internal: Add doctests for fixed layout sync multi-adapter IFixedLayoutBlockSerializationSync
+  [avoinea]
+
+2.0 - (2021-04-02)
+---------------------------
+* Feature: Add "volto.blocks.fixed.layout" behavior with auto-sync support
+  [avoinea]
+
+1.0 - (2021-03-19)
+------------------
+* Blocks **@layout** endpoint
+  [avoinea]
