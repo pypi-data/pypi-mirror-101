@@ -1,0 +1,4 @@
+include CHANGES.md
+recursive-include stubs *.pyi
+include tox.ini
+recursive-include unit_tests *.py
