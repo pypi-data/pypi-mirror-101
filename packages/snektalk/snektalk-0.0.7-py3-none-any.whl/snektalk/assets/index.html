@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta http-equiv="Content-type" content="text/html" charset="UTF-8" />
+        <link rel="stylesheet" href="/style/snek.css">
+        <script type="text/javascript" src="/lib/require.min.js"></script>
+        <script type="text/javascript" src="/lib/fuse.min.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="snek-pin-pane-left" class="snek-pin-pane"></div>
+            <div id="snek-gutter-left" class="gutter gutter-horizontal"></div>
+            <div id="snek-interactor" class="snek-interactor">
+                <div class="snek-outer-pane">
+                    <div class="snek-pane"></div>
+                </div>
+                <div class="snek-input-box">
+                    <div class="snek-input-mode"></div>
+                    <div class="snek-input"></div>
+                </div>
+                <div class="snek-nav">
+                </div>
+                <div class="snek-status-bar">
+                </div>
+            </div>
+            <div id="snek-gutter-right" class="gutter gutter-horizontal"></div>
+            <div id="snek-pin-pane-right" class="snek-pin-pane"></div>
+        </div>
+        <script>
+            require(["scripts/repl", "lib/split-grid.min"], (repl, Split) => {
+                // Set up split screen
+                Split({
+                    columnGutters: [
+                        {
+                            track: 1,
+                            element: document.querySelector("#snek-gutter-left"),
+                        },
+                        {
+                            track: 3,
+                            element: document.querySelector("#snek-gutter-right"),
+                        }
+                    ]
+                })
+
+                let the_repl = new repl.Repl(document.getElementById("main"));
+                the_repl.connect();
+                the_repl.editor.focus();
+            });
+        </script>
+    </body>
+</html>
