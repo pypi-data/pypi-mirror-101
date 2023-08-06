@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: zemfrog-theme
+Version: 1.0.1
+Summary: Zemfrog theme - to register your own theme template!
+License: MIT
+Keywords: zemfrog
+Author: aprilahijriyan
+Author-email: hijriyan23@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: zemfrog (>=5.0.1,<6.0.0)
+Project-URL: Donation, https://www.patreon.com/aprilahijriyan
+Project-URL: Github, https://github.com/zemfrog/zemfrog-theme
+Project-URL: Issue Tracker, https://github.com/zemfrog/zemfrog-theme/issues
+Description-Content-Type: text/markdown
+
+# zemfrog-theme
+
+Zemfrog theme - to register your own theme template!
+The main idea is to make a template for a theme that is easy to customize.
+
+
+# Usage
+
+Install this
+
+```sh
+pip install zemfrog-theme
+```
+
+Add this to the `EXTENSIONS` configuration
+
+```python
+EXTENSIONS = ["zemfrog_theme"]
+```
+
+And you can register your own theme via the `ZEMFROG_THEMES` configuration.
+
+See boilerplate for theme creation here https://github.com/aprilahijriyan/zemfrog-theme-template
+See sample themes here https://github.com/zemfrog/zemfrog-quasar
+
