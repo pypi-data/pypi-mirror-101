@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CWLab</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-dark-grey.css">
+        <link rel="stylesheet" 
+            href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" 
+            integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/custom.css">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+        <script src="/static/utils.js" type="text/babel"></script>
+        <script src="/static/import_wf.js" type="text/babel"></script>
+        <script src="/static/create_job.js" type="text/babel"></script>
+        <script src="/static/job_exec.js" type="text/babel"></script>
+        <script src="/static/users.js" type="text/babel"></script>
+        <script src="/static/main.js" type="text/babel"></script>
+
+        <script src="/static/oidc-client.min.js"></script>
+
+
+        <script > 
+            // global params feeded by back end
+            const routeUploadWf = "{{ url_for('upload_wf') }}"
+            const routeListAvailWfsInJanis = "{{ url_for('list_avail_wfs_in_janis') }}"
+            const routeUploadCwlZip = "{{ url_for('upload_cwl_zip') }}"
+            const routeImportCwlByPathOrUrl = "{{ url_for('import_wf_by_path_or_url') }}"
+            const routeImportCwlByTrsUri = "{{ url_for('import_wf_by_trs_uri') }}"
+            const routeGetJobTemplList = "{{ url_for('get_job_templ_list') }}"
+            const routeGetJobTemplConfigInfo = "{{ url_for('get_job_templ_config_info') }}"
+            const routeGetParamValues = "{{ url_for('get_param_values') }}"
+            const routeGenParamFormSheet = "{{ url_for('generate_param_form_sheet') }}"
+            const routeCreateJobFromParamFormSheet = "{{ url_for('create_job_from_param_form_sheet') }}"
+            const routeCreateJobFromParamValues = "{{ url_for('create_job_from_param_values') }}"
+            const routeGetJobList = "{{ url_for('get_job_list') }}"
+            const routeGetRunList = "{{ url_for('get_run_list') }}"
+            const routeStartExec = "{{ url_for('start_exec') }}"
+            const routeGetRunStatus = "{{ url_for('get_run_status') }}"
+            const routeGetRunDetails = "{{ url_for('get_run_details') }}"
+            const routeTerminateRuns = "{{ url_for('terminate_runs') }}"
+            const routeDeleteJob = "{{ url_for('delete_job') }}"
+            const routeGetAccessToken = "{{ url_for('get_access_token') }}"
+            const routeRegister = "{{ url_for('register') }}"
+            const routeGetAllUsersInfo = "{{ url_for('get_all_users_info') }}"
+            const routeChangePassword = "{{ url_for('change_password') }}"
+            const routeDeleteAccount = "{{ url_for('delete_account') }}"
+            const routeModifyOrDeleteUsers = "{{ url_for('modify_or_delete_users') }}"
+            const routeBrowseDir = "{{ url_for('browse_dir') }}"
+            const routeUploadFile = "{{ url_for('upload_file') }}"
+            const routeDownload = "{{ url_for('download') }}"
+            const routeValidateOIDC = "{{ url_for('validate_oidc') }}"
+            const autoRefreshInterval = parseInt(parseFloat("{{ config.WEB_AUTO_REFRESH_INTERVAL }}")*1000)
+            const readMaxCharsFromFile = parseInt("{{ config.READ_MAX_CHARS_FROM_FILE }}")
+            const loginEnabled = "{{ config.ENABLE_USERS }}" === "True"
+            const loginInstruction = "{{ config.LOGIN_INSTRUCTION }}"
+            const registrationInstruction = "{{ config.REGISTRATION_INSTRUCTION }}"
+            const useOIDC = "{{ config.USE_OIDC }}" === "True"
+            const buildNumber = "{{ config.BUILD_NUMBER }}"
+            const min_remaining_access_token_time_for_exec = parseInt("{{ config.MIN_REMAINING_ACCESS_TOKEN_TIME_FOR_EXEC }}")
+            const inputSources = JSON.parse('{{ config.INPUT_SOURCES | tojson | safe }}')
+            const permanetlyDisableInputValidation = "{{ config.PERMANENTLY_DISABLE_INPUT_VALIDATION }}" === "True"
+            const customLoginIconHTML = `{{ config.CUSTOM_LOGIN_ICON_HTML | safe}}` == "None" ? (
+                null
+            ) : (
+                `{{ config.CUSTOM_LOGIN_ICON_HTML | safe}}`
+            )
+            const demo = "{{ config.DEMO }}" === "True"
+
+            // other global params:
+            Oidc.Log.logger = console;
+            const serverNotReachableError = "The server could not be reached."
+            const serverReachedWithError = "The server failed to work on your request."
+            
+            //TODO: Use config rather than hardcoded values in Oidc.UserManager
+            const oidcConf = useOIDC ? JSON.parse('{{ config.OIDC_CONF | tojson | safe }}') : null
+
+            //TODO: Consule experts if this is a good idea
+            const oidcUserManager = useOIDC ? new Oidc.UserManager(oidcConf) : null
+            
+        </script>
+
+        <script>
+
+        </script>
+
+        <script type="text/babel">
+            ReactDOM.render(
+                <Root />,
+                document.getElementById('root')
+            );
+        </script>
+
+    </head>
+    <body class="w3-theme-d3 w3-medium">
+            <div id="root"></div>
+    </body>
+
+</html>
