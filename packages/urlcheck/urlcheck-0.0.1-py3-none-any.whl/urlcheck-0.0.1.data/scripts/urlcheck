@@ -1,0 +1,31 @@
+#!python
+
+import argparse
+
+from urlcheck import check
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('codes', nargs=1)
+    parser.add_argument('url', nargs=1)
+
+    args = parser.parse_args()
+
+    codes = args.codes[0]
+    codes = codes.split(',')
+    codes = [int(x) for x in codes]
+    codes = list(set(codes))
+
+    url = args.url[0]
+
+    succeed = check(codes, url)
+
+    if succeed:
+        exit(0)
+    else:
+        exit(-1)
+
+
+if __name__ == '__main__':
+    main()
