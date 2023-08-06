@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: zemfrog-auth
+Version: 1.0.3
+Summary: Authentication for the zemfrog framework
+License: MIT
+Keywords: zemfrog
+Author: aprilahijriyan
+Author-email: hijriyan23@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: zemfrog (>=5.0.1,<6.0.0)
+Project-URL: Donation, https://www.patreon.com/aprilahijriyan
+Project-URL: Github, https://github.com/zemfrog/zemfrog-auth
+Project-URL: Issue Tracker, https://github.com/zemfrog/zemfrog-auth/issues
+Description-Content-Type: text/markdown
+
+# zemfrog-auth
+
+Authentication for the zemfrog framework
+
+Currently only supports JWT (JSON Web Token) authentication.
+
+
+# Features
+
+* JWT Authentication Blueprint
+* Event signal support for user information (login, register, etc)
+
+
+Usage
+=====
+
+Install the module
+
+```sh
+pip install zemfrog-auth
+```
+
+
+Add jwt blueprints to your zemfrog application
+
+```python
+BLUEPRINTS = ["zemfrog_auth.jwt"]
+```
+
+
+Using event signals
+-------------------
+
+In this section I will give an example of using the event signal using a blinker.
+
+```python
+# Add this to wsgi.py
+
+from zemfrog_auth.signals import on_user_logged_in
+
+@on_user_logged_in.connect
+def on_logged_in(user):
+    print("Signal user logged in:", user)
+```
+
+For a list of available signals, you can see it [here](https://github.com/zemfrog/zemfrog-auth/blob/main/zemfrog_auth/signals.py).
+For signal documentation you can visit [here](https://pythonhosted.org/blinker/).
+
