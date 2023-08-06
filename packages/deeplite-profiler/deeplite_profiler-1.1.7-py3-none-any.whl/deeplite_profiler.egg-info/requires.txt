@@ -1,0 +1,29 @@
+numpy>=1.17
+
+[all]
+torch==1.4.0
+ptflops==0.6.2
+
+[all-gpu]
+torch==1.4.0
+ptflops==0.6.2
+
+[all-gpu:python_version <= "3.7.10"]
+tensorflow-gpu==1.14
+
+[all:python_version <= "3.7.10"]
+tensorflow==1.14
+
+[tf]
+
+[tf-gpu]
+
+[tf-gpu:python_version <= "3.7.10"]
+tensorflow-gpu==1.14
+
+[tf:python_version <= "3.7.10"]
+tensorflow==1.14
+
+[torch]
+torch==1.4.0
+ptflops==0.6.2
