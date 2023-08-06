@@ -1,0 +1,13 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include basement/locale *
+recursive-include basement/templates *
+recursive-include basement/static *
+recursive-include basement/assets/locale *
+recursive-include basement/assets/templates *
+recursive-include basement/assets/static *
+recursive-include basement/images/locale *
+recursive-include basement/images/templates *
+recursive-include basement/images/static *
+prune *.pyc

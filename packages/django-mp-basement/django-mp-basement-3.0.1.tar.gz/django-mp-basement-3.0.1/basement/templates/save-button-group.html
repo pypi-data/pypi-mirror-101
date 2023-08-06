@@ -1,0 +1,25 @@
+
+{% load i18n %}
+
+<div class="btn-group">
+    <button type="submit" class="btn btn-success">
+        <i class="fa fa-check"></i>
+        {% trans 'Save' %}
+    </button>
+    <button type="button"
+            class="btn btn-success dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false">
+        <span class="caret"></span>
+        <span class="sr-only">{% trans 'Toggle Dropdown' %}</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right save-buttons-dropdown-menu">
+        <button class="dropdown-item" name="save-and-continue" type="submit">
+            {% trans 'Save and continue' %}
+        </button>
+        <button class="dropdown-item" name="save-and-create" type="submit">
+            {% trans 'Save and add more' %}
+        </button>
+    </div>
+</div>
