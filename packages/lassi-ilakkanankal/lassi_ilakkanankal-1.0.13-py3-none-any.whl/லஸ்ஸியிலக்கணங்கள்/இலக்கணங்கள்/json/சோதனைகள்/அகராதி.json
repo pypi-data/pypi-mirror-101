@@ -1,0 +1,31 @@
+{
+  "number": -1.234,
+  "exponent": -0.123e-4,
+  "string": "abc",
+  "true": true,
+  "false": false,
+  "null": null,
+  "unicode": "வணக்கம்",
+  "ஒருங்குறி": "今日は",
+  "array": [
+    1,
+    2,
+    3,
+    "abc"
+  ],
+  "nestedarray": [
+    "a",
+    [
+      "b",
+      "c"
+    ]
+  ],
+  "object": {
+    "a": 1,
+    "b": 2,
+    "c": {
+      "d": 4,
+      "e": 5
+    }
+  }
+}
