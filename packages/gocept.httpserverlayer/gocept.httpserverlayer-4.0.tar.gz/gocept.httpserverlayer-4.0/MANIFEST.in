@@ -1,0 +1,7 @@
+include *.rst
+include *.txt
+include *.yaml
+include .coveragerc
+include tox.ini
+
+recursive-include src *.txt *.zcml
