@@ -1,0 +1,15 @@
+[flask.commands]
+cesnet:group = cesnet_openid_remote.cli:cesnet_group
+
+[invenio_base.api_apps]
+cesnet_openid_remote = cesnet_openid_remote:CESNETOpenIDRemote
+
+[invenio_base.apps]
+cesnet_openid_remote = cesnet_openid_remote:CESNETOpenIDRemote
+
+[invenio_db.alembic]
+cesnet_openid_remote = cesnet_openid_remote:alembic
+
+[invenio_db.models]
+cesnet_openid_remote = cesnet_openid_remote.models
+
