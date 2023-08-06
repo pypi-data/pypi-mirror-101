@@ -1,0 +1,39 @@
+# edata
+edata means 'easy data', is a wrapper of csv, xlrd, xlwt, pylightxl.
+edata can be used to read csv, xls, xlsx format file as dict list data and write dict list data to those format file.
+
+
+## install
+```cmd
+pip install edata
+```
+
+## example
+```python
+import edata
+
+data_list = [{'id': 1, 'name': 'Lena'},
+             {'id': 2, 'name': 'Java'},
+             {'id': 3, 'name': 'Gaga'}]
+
+# write data to file
+edata.write('test.csv', data_list[0:100])
+edata.write('test.xls', data_list[0:100])
+edata.write('test.xlsx', data_list[0:100])
+# read data from file
+print(edata.read('test.csv'))
+print(edata.read('test.xls'))
+print(edata.read('test.xlsx'))
+# get sheet names
+print(edata.get_sheet_names('test.xls'))
+print(edata.get_sheet_names('test.xlsx'))
+
+```
+3 file will be created and console will print:
+```text
+[{'id': '1', 'name': 'Lena'}, {'id': '2', 'name': 'Java'}, {'id': '3', 'name': 'Gaga'}]
+[{'id': 1, 'name': 'Lena'}, {'id': 2, 'name': 'Java'}, {'id': 3, 'name': 'Gaga'}]
+[{'id': 1, 'name': 'Lena'}, {'id': 2, 'name': 'Java'}, {'id': 3, 'name': 'Gaga'}]
+['Sheet1']
+['Sheet1']
+```
