@@ -1,0 +1,11 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "clmystes_podsearch"
+author = "clmystes"
+author-email = "clmystes@gmail.com"
+home-page = "https://github.com/clmystes/podsearch"
+classifiers = [ "License :: OSI Approved :: MIT License",]
+
