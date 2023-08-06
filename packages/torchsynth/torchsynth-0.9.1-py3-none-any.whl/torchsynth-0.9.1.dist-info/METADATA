@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: torchsynth
+Version: 0.9.1
+Summary: A modular synthesizer in pytorch, GPU-optional and differentiable
+Home-page: https://github.com/torchsynth/torchsynth
+Author: Jordie Shier, Joseph Turian, Max Henry
+Author-email: firstnamelastname@gmail.com
+License: Apache-2.0
+Download-URL: https://github.com/torchsynth/torchsynth/
+Project-URL: Bug Tracker, https://github.com/torchsynth/torchsynth/issues
+Project-URL: Documentation, https://torchsynth.rtfd.io/en/latest/
+Project-URL: Source Code, https://github.com/torchsynth/torchsynth/
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Environment :: GPU
+Classifier: Natural Language :: English
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Multimedia :: Sound/Audio :: Sound Synthesis
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: torch (>=1.8)
+Requires-Dist: pytorch-lightning
+Provides-Extra: dev
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: nbstripout (==0.3.9) ; extra == 'dev'
+Requires-Dist: black (==20.8b1) ; extra == 'dev'
+Requires-Dist: jupytext (==v1.10.3) ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: ipython ; extra == 'dev'
+Requires-Dist: librosa ; extra == 'dev'
+Requires-Dist: matplotlib ; extra == 'dev'
+Requires-Dist: numba (>=0.49.0) ; extra == 'dev'
+Requires-Dist: pygments (>=2.7.4) ; extra == 'dev'
+Requires-Dist: pytest-env ; extra == 'dev'
+Requires-Dist: sphinx (>=3.0.4) ; extra == 'dev'
+Requires-Dist: unofficial-pt-lightning-sphinx-theme ; extra == 'dev'
+Requires-Dist: sphinxcontrib-napoleon ; extra == 'dev'
+Requires-Dist: mock ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme ; extra == 'dev'
+Requires-Dist: myst-parser ; extra == 'dev'
+Requires-Dist: linkify-it-py ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pygments (>=2.7.4) ; extra == 'test'
+Requires-Dist: pytest-env ; extra == 'test'
+
+<div align="center">
+
+# torchsynth
+
+The fastest synth in the universe.
+
+<img width="450px" src="https://raw.githubusercontent.com/torchsynth/torchsynth/main/assets/logo-with-caption.jpg">
+
+</div>
+
+## Introduction
+
+torchsynth is based upon traditional modular synthesis written in
+pytorch. It is GPU-optional and differentiable.
+
+Most synthesizers are fast in terms of latency. torchsynth is fast
+in terms of throughput.
+
+<div align="center">
+
+[Documentation](https://torchsynth.rtfd.io/en/latest/)
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/torchsynth/torchsynth/blob/main/examples/examples.ipynb)
+
+[![PyPI](https://img.shields.io/pypi/v/torchsynth)](https://pypi.org/project/torchsynth/)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/torchsynth)
+![PyPI - License](https://img.shields.io/pypi/l/torchsynth)
+[![codecov.io](https://codecov.io/gh/torchsynth/torchsynth/branch/main/graphs/badge.svg?logoWidth=18)](https://codecov.io/github/torchsynth/torchsynth?branch=master)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/torchsynth/torchsynth.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/torchsynth/torchsynth/alerts/)
+[![Travis CI build status](https://travis-ci.com/torchsynth/torchsynth.png)](https://travis-ci.com/torchsynth/torchsynth)
+
+</div>
+
+## Installation
+
+```
+pip3 install torchsynth
+```
+
+Note that torchsynth requires PyTorch version 1.8 or greater.
+
+
