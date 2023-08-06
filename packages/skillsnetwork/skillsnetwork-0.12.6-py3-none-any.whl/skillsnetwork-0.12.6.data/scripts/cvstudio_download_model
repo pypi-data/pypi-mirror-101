@@ -1,0 +1,18 @@
+#!python
+
+import json
+import argparse
+import skillsnetwork.cvstudio
+
+def download(interactive):
+    cvstudio = skillsnetwork.cvstudio.CVStudio(interactive=interactive)
+
+    model = cvstudio.downloadModel()
+    print('Successfully download model to: ' + model['filename'])
+
+
+parser = argparse.ArgumentParser(description='Download Model from CV Studio')
+parser.add_argument('-i', '--interactive', nargs='*', help='Interactive login prompt')
+args = parser.parse_args()
+
+download(interactive=args.interactive is not None)
