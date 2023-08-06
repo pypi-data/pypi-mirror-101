@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: pcapstats
+Version: 1.0.0
+Summary: UNKNOWN
+Home-page: https://github.com/sanaakhelloqi/pcapstats
+Author: Sanaa Khelloqi
+Author-email: sanaa.khelloqi@stud-mail.uni-wuerzburg
+License: Apache License 2.0
+Description: # pcapstats
+        
+        ## Install
+        `pip install pcapstats`
+        
+        ## CLI
+        ### pcapstats-stats
+        ```
+        Usage: pcapstats-stats [OPTIONS] [FILES]...
+        
+        Options:
+          -o, --output TEXT
+          --help             Show this message and exit.
+        ```
+        
+        ### pcapstats-compare
+        ```
+        Usage: pcapstats-compare [OPTIONS] ORIGINAL [TARGETS]...
+        
+        Options:
+          -o, --output TEXT
+          --help             Show this message and exit.
+        ```
+        
+Keywords: pcap,network,network traffic
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
