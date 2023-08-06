@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: bidsphysio.edf2bids
+Version: 21.4.12
+Summary: EDF-to-BIDS Converter
+Home-page: UNKNOWN
+Author: Chrysa Papadaniil
+Author-email: chrysa@nyu.edu
+License: MIT
+Platform: UNKNOWN
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.6
+Requires-Dist: bidsphysio.base (>=21.4.12)
+Requires-Dist: bidsphysio.session (>=21.1.28)
+Requires-Dist: bidsphysio.events (>=21.1.28)
+Requires-Dist: h5py (>=2.9.0)
+Requires-Dist: Cython (>=0.29.13)
+Requires-Dist: pandas (>=1.1.0)
+Requires-Dist: numpy (>=1.17.1)
+Provides-Extra: all
+Requires-Dist: pytest ; extra == 'all'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+
+Converts EDF eye-tracker data (from a SR Research Eyelink system) to BIDS eye-tracker physiological recording and events.
+
+
