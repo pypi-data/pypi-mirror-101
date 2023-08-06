@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: aiarena21
+Version: 1.0.4
+Summary: 1v1 Game for AIArena competition 2021
+Home-page: https://github.com/monash-programming-team/aiarena21
+Author: Jackson Goerner, Ali Toosi
+Author-email: jgoerner@outlook.com, alitoosi137@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Libraries :: pygame
+Requires-Python: >=3.6.0
+Description-Content-Type: text/markdown
+Requires-Dist: pygame (>=2.0.1)
+Requires-Dist: opensimplex (>=0.3)
+
+# What is this?
+
+A small game for Monash Competitive Programming Contest AIArena21.
+
+If you are competing, you should have recieved a document containing all the documentation required. Please refer to that.
+
+# Contributing
+
+    pip install -e ./
+
+    aiarena21 -h
+
+# Building
+
+    pip install twine
+
+    python setup.py sdist bdist_wheel
+
+    twine upload dist/*
+
+
