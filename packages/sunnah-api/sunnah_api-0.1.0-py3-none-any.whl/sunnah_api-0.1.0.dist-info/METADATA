@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: sunnah-api
+Version: 0.1.0
+Summary: Exposes Sunnah.com API as clean & typed dataclass objects
+Home-page: https://github.com/NaxAlpha/sunnah-api
+Author: Nauman Mustafa
+Author-email: nauman.mustafa.x@gmail.com
+License: UNKNOWN
+Project-URL: Bug Reports, https://github.com/NaxAlpha/sunnah-api/issues
+Project-URL: Source, https://github.com/NaxAlpha/sunnah-api
+Keywords: sunnah,sunnah-com,api,wrapper
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8, <4
+Description-Content-Type: text/markdown
+Requires-Dist: orjson
+Requires-Dist: desert
+Requires-Dist: marshmallow-enum
+
+# sunnah-api
+Lightweight Python client for APIs of https://sunnah.com with full type annotations
+
+
