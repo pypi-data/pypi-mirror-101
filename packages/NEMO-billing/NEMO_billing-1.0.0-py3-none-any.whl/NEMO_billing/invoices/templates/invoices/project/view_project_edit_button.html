@@ -1,0 +1,8 @@
+<div id="project_edit_button" style="position: relative; display: inline; margin-left: 10px">
+	<button style="position: absolute" class="btn btn-xs btn-info" title="Edit" onclick="window.location = '{% url 'invoices_edit_project' project_id %}'"><i class="glyphicon glyphicon-pencil"></i></button>
+</div>
+<script>
+	let edit_button = document.getElementById('project_edit_button');
+	let project_chevron = document.getElementById('project_{{ project_id }}_chevron');
+	project_chevron.parentNode.parentNode.insertBefore(edit_button, null);
+</script>

@@ -1,0 +1,110 @@
+{% extends 'rates/base.html' %}
+{% load custom_tags_and_filters %}
+{% block title %}Rate{% endblock %}
+{% block content %}
+	<h1>{% if rate_id %}Edit{% else %}Create{% endif %} rate</h1>
+	{% if form.errors %}
+		<div class="alert alert-danger">
+			Oops! Something went wrong. Please correct the errors highlighted below.<br>
+			{{ form.non_field_errors }}
+		</div>
+	{% endif %}
+	{% if not rate_id %}
+		<p>
+			Use this form to set rates for tools, areas, supplies and staff charges.
+		</p>
+	{% endif %}
+	<p>The rates for tool usage & training, area access and staff charges are to be expressed <strong>per hour</strong>.</p>
+	<form id="rate_form" method="post" class="form-horizontal" action="{% if rate_id %}{% url 'edit_rate' rate_type_choice rate_id %}{% else %}{% url 'create_rate' rate_type_choice %}{% endif %}" style="margin-top: 25px">
+		{% csrf_token %}
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="rate_type"><strong>Rate type</strong></label>
+			<div class="col-sm-4">
+				<select id="rate_type" name="rate_type" class="form-control" onchange="window.location = '{% url 'create_rate' 'tool' %}'.replace('tool', this.value)">
+					<option value="">Select rate type</option>
+					{% for value, display in rate_type_choices %}
+						{% if rate_id %}
+							{% if value == rate_type_choice %}
+								<option value="{{ value }}" selected>{{ display }}</option>
+							{% endif %}
+						{% else %}
+							<option value="{{ value }}" {% if value == rate_type_choice %}selected{% endif %}>{{ display }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+			</div>
+			{% if form.type.errors %}
+				<div class="col-sm-6 form-control-static danger-highlight">
+					{{ form.type.errors|striptags }}
+				</div>
+			{% endif %}
+		</div>
+		{% if tools %}
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="tool"><strong>Tool</strong></label>
+				<div class="col-sm-4">
+					<select id="tool" name="tool" class="form-control" required>
+						<option disabled selected>&nbsp;</option>
+						{% regroup tools by category as tool_categories %}
+						{% for category in tool_categories %}
+							{% if tool_categories|length > 1 or category.grouper %}
+							<optgroup label="{{ category.grouper|default_if_none:'Uncategorized' }}">
+							{% endif %}
+							{% for item in category.list %}
+								<option value="{{ item.id }}" {% if form.tool.value|to_int == item.id %}selected{% endif %}>{{ item.name }}</option>
+							{% endfor %}
+							{% if tool_categories|length > 1 or category.grouper %}
+							</optgroup>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+		{% elif areas %}
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="area"><strong>Area</strong></label>
+				<div class="col-sm-4">
+					<select id="area" name="area" class="form-control" required>
+						{% if areas|length == 1 %}
+							<option value="{{ areas.0.id }}">{{ areas.0 }}</option>
+						{% elif areas %}
+							<option disabled selected value="">Choose an area</option>
+							{% for area in areas %}
+								<option value="{{ area.id }}" {% if form.area.value|to_int == area.id %}selected{% endif %}>{{ area.name }}</option>
+							{% endfor %}
+						{% endif %}
+					</select>
+				</div>
+			</div>
+		{% elif consumables %}
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="consumable"><strong>Supply</strong></label>
+				<div class="col-sm-4">
+					<select id="consumable" name="consumable" class="form-control" required>
+						<option disabled selected value="">Choose a supply</option>
+						{% regroup consumables by category as consumable_categories %}
+						{% for category in consumable_categories %}
+							{% if consumable_categories|length > 1 or category.grouper %}
+							<optgroup label="{{ category.grouper|default_if_none:"Uncategorized" }}">
+							{% endif %}
+							{% for item in category.list %}
+								<option value="{{ item.id }}" {% if form.consumable.value|to_int == item.id %}selected{% endif %}>{{ item.name }}</option>
+							{% endfor %}
+							{% if consumable_categories|length > 1 or category.grouper %}
+							</optgroup>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+		{% endif %}
+		{% for rate_type in rate_types %}
+			{% include "rates/rate_form_details.html" with rate_type=rate_type %}
+		{% endfor %}
+		{% if rate_type_choice %}
+			<div class="col-sm-6 text-right">
+				<button type="submit" class="btn btn-success">Confirm</button>
+			</div>
+		{% endif %}
+	</form>
+{% endblock %}
