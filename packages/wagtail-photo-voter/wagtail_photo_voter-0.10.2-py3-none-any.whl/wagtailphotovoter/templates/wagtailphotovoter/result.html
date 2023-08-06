@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags static %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            <h2>{{ page.title }}</h2>
+            <a href="{{self.url}}csv">Download CSV</a>
+        </p>
+    </div>
+
+</div>
+<div class="col-md-12">
+    <table class="table">
+        <thead class="thead-light">
+            <th></th>
+            <th>#</th>
+            <th>Points</th>
+            <th>Title</th>
+            <th>Author</th>
+        </thead>
+        <tbody>
+            {% for e in entries %}
+            {% image e fill-200x200 as thumb %}
+            <tr>
+                <td>
+                    <a href="{{e.link}}" data-lightbox="{{page.id}}" 
+                        data-title="#{{ forloop.counter }} - '{{e.title}}' {{e.user.name}} <br>{{e.total_points}}">
+                        <img {{ thumb.attrs }} class="img-fluid" />
+                    </a>
+                </td>
+                <td>
+                    {{ forloop.counter }}
+                </td>
+                <td>
+                    {{e.total_points}}
+                </td>
+                <td>
+                    <b>{{e.title}}</b>
+                    {% for v in e.votes.all %}
+                    {% if v.comments %} <br> <p>{{v.user}}: {{ v.comments }}</p>{% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {{e.user.name}}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'lightbox/css/lightbox.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'lightbox/js/lightbox.js' %}"></script>
+
+<script>
+    $(function () {
+        $.ajaxSetup({
+            headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+        lightbox.option({
+            'resizeDuration': 200,
+        })
+    });
+
+
+</script>
+{% endblock %}
