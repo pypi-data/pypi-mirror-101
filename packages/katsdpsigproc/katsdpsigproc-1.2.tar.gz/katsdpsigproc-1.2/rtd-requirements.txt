@@ -1,0 +1,17 @@
+-c https://raw.githubusercontent.com/ska-sa/katsdpdockerbase/master/docker-base-build/base-requirements.txt
+
+# Extra requirements/version pins for readthedocs.org
+# These are needed because readthedocs doesn't install requirements.txt
+# (and it can't, because things like pycuda won't install).
+appdirs
+asynctest
+decorator
+mako
+nose
+numba
+pandas
+scipy
+rtd-tikz        # See https://tikz-in-readthedocs.readthedocs.io/
+typing_extensions
+
+sphinx
