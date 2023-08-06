@@ -1,0 +1,52 @@
+Metadata-Version: 1.2
+Name: teamux
+Version: 0.21.15.0
+Summary: Tmux library
+Home-page: https://notabug.org/dugres/teamux/src/stable
+Author: Louis RIVIERE
+Author-email: louis@riviere.xyz
+License: MIT
+Description: ########
+         Teamux
+        ########
+        
+        **Teamux**
+        
+        Tmux wrapper
+        
+        ========
+        Abstract
+        ========
+        
+        Tmux Python library
+        
+        =====
+        Usage
+        =====
+        
+        Python:
+        .. code-block:: python
+        
+           from teamux import tmux
+        
+        ============
+        Installation
+        ============
+        
+        .. code-block:: shell 
+        
+            $ pip install teamux
+        
+Keywords: utility
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
+Requires-Python: >3.6
