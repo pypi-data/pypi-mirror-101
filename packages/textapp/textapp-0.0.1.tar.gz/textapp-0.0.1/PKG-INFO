@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: textapp
+Version: 0.0.1
+Summary: Create simple but useful terminal menus.
+Home-page: https://github.com/TandonDevOps/textapp
+Author: Gene Callahan
+Author-email: gcallah@mac.com
+License: UNKNOWN
+Description: # text_menu
+        
+        A small facility for making menus in a terminal.
+        
+        ## Requirements
+        
+        - Runs in standard terminals.
+        - Uses single key entry for menu choices.
+        - Can be used to either:
+            - Read menus from a JSON file or
+            - Be passed JSON as parameter.
+        - Will recognize default choices that only require "Enter."
+        - Menu choices may be de-activated according to circumstances.
+        
+        ## Possible future enhancements:
+        
+        - Use of library to get fancy colors. (colorama?)
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
