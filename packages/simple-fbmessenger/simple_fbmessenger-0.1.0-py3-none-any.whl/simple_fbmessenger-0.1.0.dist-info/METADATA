@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: simple-fbmessenger
+Version: 0.1.0
+Summary: An unofficial simple library to provide basic communication with Facebooks Messenger API
+Home-page: https://github.com/eknoes/simple-fbmessenger
+Author: Soenke Huster
+Author-email: projects@eknoes.de
+License: GPLv3
+Project-URL: Bug Reports, https://github.com/eknoes/simple-fbmessenger/issues
+Project-URL: Source, https://github.com/eknoes/simple-fbmessenger
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Internet
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: aiohttp (<4.0)
+
+# Simple Facebook Messenger
+This is an unofficial, simple library to provide basic communication with Facebooks Messenger API: https://developers.facebook.com/docs/messenger-platform/introduction
+
+## Supported Features
+* Send & receive messages
+* Support for Buttons and QuickReplies
+* Support for images
+
+It is currently Work in progress, Pull Requests are more than welcome! Examples can be found in [examples/
+](https://github.com/eknoes/simple-fbmessenger/tree/main/examples).
+
+Uses: 
+* [aiohttp](https://github.com/aio-libs/aiohttp), Apache Software License (Apache 2)
+
