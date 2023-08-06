@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "csv-reconcile-geo"
+version = "0.1.0"
+description = "Geo distance scoring plugin for csv-reconcile"
+authors = ["Douglas Mennella <trx2358-pypi@yahoo.com>"]
+license = "MIT"
+readme = 'README.md'
+repository = "https://github.com/gitonthescene/csv-reconcile"
+keywords = ["OpenRefine",
+            "reconcile",
+            "fuzzy search",
+            "gis",
+            "geooding",
+            "geocode"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+geopy = "^2.1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.plugins."csv_reconcile.scorers"]
+"geo" = "csv_reconcile_geo"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

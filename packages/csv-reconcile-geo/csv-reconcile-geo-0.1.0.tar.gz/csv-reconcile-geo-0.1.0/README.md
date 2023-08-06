@@ -1,0 +1,56 @@
+
+# Table of Contents
+
+1.  [CSV Reconcile Geo distance scoring plugin](#org6e1bd07)
+    1.  [Reconciliation](#org12cc092)
+    2.  [Scoring](#orgf733f5f)
+    3.  [Future enhancements](#org0bf55a3)
+
+
+<a id="org6e1bd07"></a>
+
+# CSV Reconcile Geo distance scoring plugin
+
+A scoring plugin for [csv-reconcile](https://github.com/gitonthescene/csv-reconcile) using geodesic distance.  See csv-reconcile for details.
+
+
+<a id="org12cc092"></a>
+
+## Reconciliation
+
+This plugin is used to reconcile values representing points on the globe.  It expects those
+values to be in [well-known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) format for a point.  That is, like so: `POINT( longitude latitude )`.
+
+The pre-processor automatically strips off [literal datatypes](https://www.w3.org/TR/sparql11-query/#matchingRDFLiterals) when present as well as double quotes.
+
+The CSV column to be reconciled needs to be in the same format.  In addition, there must be at
+most one instance of any id column.  For instance, if reconciling against [coordinate location](https://www.wikidata.org/wiki/Property:P625) for
+a [wikidata item](https://www.wikidata.org/wiki/Help:Items), there must be at most one location per item.
+
+
+<a id="orgf733f5f"></a>
+
+## Scoring
+
+The scoring used is more or less arbitrary but has the following properties:
+
+-   The highest score is 100 and occurs when the distance to the reconciliation candidate is zero
+-   The lower the score the greater the distance to the reconciliation candidate
+-   The score is scaled so that a distance of 10km yields a score of 50
+
+
+<a id="org0bf55a3"></a>
+
+## Future enhancements
+
+Some of the current implementation was driven by the current design of csv-reconcile.  Both may
+be updated to accommodate the following:
+
+-   Allow for separate latitude and longitude column in the CSV file
+-   Do some preliminary checks on coordinates before calculating distance for performance
+-   Add some scoring options such as the following:
+    -   Change the scale of the scoring to place the distance for a score of 50 somewhere else for
+        better granularity
+    -   Allow for overriding the scaling function
+    -   etc.
+
