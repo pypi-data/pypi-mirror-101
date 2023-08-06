@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+import click
+from pyrule_compendium import compendium as c
+import utils
+from json import dumps
+from handlers import handle
+
+comp = c(default_timeout=5)
+
+@click.group()
+def compendium():
+    "Get the Hyrule Compendium onto your command line"
+    
+@compendium.command()
+@click.argument("target_entry")
+def entry(target_entry):
+    "Get data on an entry"
+    try:
+        target_entry = int(target_entry)
+    except ValueError: pass
+    click.echo(utils.format_dict(comp.get_entry(target_entry)))
+
+
+@compendium.command()
+@click.argument("target_category")
+def category(target_category):
+    "Get items in a category"
+    click.echo(utils.format_dict(comp.get_category(target_category)))
+
+@compendium.command()
+def all():
+    "Get all items from the compendium"
+    click.echo(utils.format_dict(comp.get_all()))
+    
+@compendium.command()
+@click.argument("entry")
+@click.option("--output", "-o", type=click.Path(), default=None, help="The output file of the image")
+def image(entry, output):
+    "Download the image of an entry"
+    comp.download_entry_image(entry, output)
+
+handle(compendium)
