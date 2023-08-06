@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: paper-rq
+Version: 0.1.0
+Summary: An administrative interface for managing RQ tasks in Paper Admin
+Home-page: https://github.com/dldevinc/paper-rq
+Author: Mihail Mishakin
+Author-email: x896321475@gmail.com
+Maintainer: Mihail Mishakin
+Maintainer-email: x896321475@gmail.com
+License: BSD license
+Description: # paper-rq
+        An administrative interface for managing RQ tasks in Paper Admin.
+        
+        [![PyPI](https://img.shields.io/pypi/v/paper-rq.svg)](https://pypi.org/project/paper-rq/)
+        [![Build Status](https://travis-ci.com/dldevinc/paper-rq.svg?branch=master)](https://travis-ci.org/dldevinc/paper-rq)
+        [![Software license](https://img.shields.io/pypi/l/paper-rq.svg)](https://pypi.org/project/paper-rq/)
+        
+        ## Compatibility
+        * [`paper-admin`](https://github.com/dldevinc/paper-admin) >= 2.0
+        * [`django-rq`](https://github.com/rq/django-rq) >= 2.4
+        * `python` >= 3.6
+        
+        ## Installation
+        Install the latest release with pip:
+        
+        ```shell
+        pip install paper-rq
+        ```
+        
+        Add `paper_rq` to your INSTALLED_APPS in django's `settings.py`:
+        
+        ```python
+        INSTALLED_APPS = (
+            # other apps
+            "paper_rq",
+        )
+        ```
+        
+        Add `paper_rq` to your `PAPER_MENU`:
+        ```python
+        PAPER_MENU = [
+            # ...
+            dict(
+                app="paper_rq",
+                icon="fa fa-fw fa-lg fa-clock-o",
+            ),
+            # ...
+        ]
+        ```
+        
+        ## Result
+        [![4d17958f25.png](https://i.postimg.cc/mgzCsHVG/4d17958f25.png)](https://postimg.cc/tsbYd7Lr)
+        
+Platform: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
