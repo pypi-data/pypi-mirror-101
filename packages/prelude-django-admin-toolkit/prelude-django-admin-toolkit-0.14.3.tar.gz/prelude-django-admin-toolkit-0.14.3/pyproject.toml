@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "prelude-django-admin-toolkit"
+version = "0.14.3"
+description = "An alternative Django Admin theme with Batteries; project Bruh"
+authors = ["Jonhnatha Trigueiro <joepreludian@gmail.com>"]
+include = ['prelude_django_admin_toolkit/static/**/*', 'prelude_django_admin_toolkit/templates/**/*']
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^3"
+
+[tool.poetry.dev-dependencies]
+neovim = "^0.3.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

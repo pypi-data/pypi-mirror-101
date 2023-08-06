@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="uk-clearfix uk-background-muted uk-padding-remove">
+	<div class="uk-container" uk-height-match>
+		<div class="uk-float-left uk-padding-small uk-padding-remove-horizontal uk-flex uk-flex-middle">
+			<span class="uk-text-lead">{% trans 'About' %}</span>
+		</div>
+	</div>
+</div>
+
+<div class="uk-container uk-padding uk-padding-remove-horizontal">
+	<p>{% trans 'This project has been created using Django with Prelude Django Admin Toolkit. Click on the project page for more info.' %}</p>
+	<p><a class="uk-button uk-button-default" href="https://github.com/joepreludian/prelude-django-admin-toolkit" target='_blank'><span uk-icon="github"></span> Github</a></p>
+</div>
+{% endblock %}
