@@ -1,0 +1,16 @@
+dkist-processing-core>=0.0.9
+dkist-header-validator>=1.0.6
+dkist-fits-specifications>=0.9.1
+globus-sdk==2.0.1
+gqlclient==0.9.6
+talus==0.2.0
+astropy>=4.2
+redis==3.5.3
+numpy>=1.20.2
+
+[test]
+pytest
+pytest-cov
+pytest-mock
+hypothesis
+dkist-data-simulator
