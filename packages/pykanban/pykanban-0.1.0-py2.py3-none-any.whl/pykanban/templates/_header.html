@@ -1,0 +1,19 @@
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/header.css') }}">
+</head>
+<header class="site-header">
+    <div class="site-identity">
+        <h1><a href="/">Online Kanban board</a></h1>
+    </div>  
+    <nav class="site-navigation">
+        <ul class="nav">
+        {% if not current_user.is_authenticated %}
+            <li><a href="/login">Login</a></li> 
+            <li><a href="/signup">Sign up</a></li> 
+        {% endif %}
+        {% if current_user.is_authenticated %}
+            <li><a href="/logout">Logout</a></li> 
+        {% endif %}
+        </ul>
+    </nav>
+</header>

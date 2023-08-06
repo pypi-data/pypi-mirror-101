@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+    <title>Kanban</title>
+</head>
+    <body>
+        {% include '_header.html' %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <span style="color: grey; text-align: center; display: block;">{{ message }}</span>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h1>
+            Login to create and manage your Kanban Board.
+        </h1>
+
+        <div class="info">
+            <h3><a href="https://github.com/luccabb/flask_kanban">Git Repository</a></h3>
+            <h3><a href="https://github.com/luccabb/flask_kanban/issues">Report Issue</a></h3>
+        </div>
+    </body>
+</html>
