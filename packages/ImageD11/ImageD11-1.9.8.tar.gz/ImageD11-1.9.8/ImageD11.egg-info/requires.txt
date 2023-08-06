@@ -1,0 +1,43 @@
+six
+numpy
+setuptools
+fabio
+xfab>=0.0.4
+matplotlib
+pyopengltk
+scipy
+pyyaml
+
+[:sys_platform != "win32"]
+h5py
+
+[:sys_platform == "win32" and python_version < "3"]
+h5py
+
+[:sys_platform == "win32" and python_version >= "3"]
+h5py<=2.10.0
+
+[full]
+pytest
+pillow
+lmfit
+PyMca5
+sympy
+ipywidgets
+pyopencl
+
+[full:python_version < "3"]
+numba==0.46.0
+pyFAI<=0.18.0
+
+[full:python_version > "3"]
+numba
+
+[full:python_version >= "3"]
+pyFAI
+silx[full]
+
+[rare]
+FitAllB
+minuit
+PyTango
