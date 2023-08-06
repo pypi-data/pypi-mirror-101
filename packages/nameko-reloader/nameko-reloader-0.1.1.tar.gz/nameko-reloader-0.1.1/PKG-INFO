@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: nameko-reloader
+Version: 0.1.1
+Summary: Add hot reload feature for nameko services
+Home-page: https://github.com/instruct-br/nameko-reloader
+License: MIT
+Keywords: nameko,hot,reload
+Author: Instruct Developers
+Author-email: oss@instruct.com.br
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: nameko (>=2.13.0,<3.0.0)
+Project-URL: Repository, https://github.com/instruct-br/nameko-reloader
+Description-Content-Type: text/markdown
+
+# nameko-reloader
+
+Extension for [Nameko](https://www.nameko.io/), that implements the _hot-reload_ feature, when detects changes in service file.
+
+## Usage
+
+Start your services using `nameko_reloader`, and passing the `--reload` option:
+
+```sh
+nameko_reloader run service.service_a service.service_b --reload
+```
+
