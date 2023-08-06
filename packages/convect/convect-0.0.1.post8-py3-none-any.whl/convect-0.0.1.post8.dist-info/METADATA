@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: convect
+Version: 0.0.1.post8
+Summary: SDK for Convect
+Home-page: https://github.com/convect-ml/convect
+Author: Sameeran Kunche
+Author-email: sameeran@convect.ml
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/convect-ml/convect/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7.0
+Description-Content-Type: text/markdown
+Requires-Dist: dill
+Requires-Dist: requests
+Requires-Dist: notebook
+Requires-Dist: ipykernel
+Requires-Dist: jupyter-contrib-nbextensions
+Requires-Dist: nbconvert (<6)
+Requires-Dist: pandas (>=1.0.0)
+Requires-Dist: scikit-learn (>=0.24.0)
+
+# Welcome to the Convect
+
+**The fastest way to deploy machine learning models.**
+
+Convect enables you to turn trained machine learning models into a sharable API endpoints in seconds from within a notebook. This SDK is in Python, open-source, and free! And once you've deployed your model, you can use the [Convect Admin](https://app.convect.ml/) to manage and share your model with the world.
+
