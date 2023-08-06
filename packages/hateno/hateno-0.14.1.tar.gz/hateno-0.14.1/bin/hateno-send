@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+'''
+This script uses the RemoteFolder class to send the program files of a folder.
+'''
+
+import argparse
+
+from hateno import string
+from hateno.folder import Folder
+from hateno.remote import RemoteFolder
+from hateno.ui import UI
+
+def addArguments(parser):
+	parser.add_argument('--config', type = str, help = 'name of the config to use')
+	parser.add_argument('--replace', action = 'store_true', help = 'force the replacement of the remote files')
+	parser.add_argument('folder_path', type = str, help = 'path to the simulations folder')
+
+def action(args):
+	folder = Folder(args.folder_path)
+	files = folder.program_files
+
+	if len(files) == 0:
+		print('There is no file to send')
+		return
+
+	with RemoteFolder(folder.config('folder', args.config)) as remote_folder:
+		ui = UI()
+		infos_line = ui.addTextLine(f'Sending {string.plural(len(files), "file", "files")}…')
+		bar = ui.addProgressBar(len(files))
+
+		for local_path, remote_path in folder.program_files:
+			remote_folder.send(local_path, remote_path, replace = args.replace)
+			bar.counter += 1
+
+		ui.removeItem(bar)
+		infos_line.text = string.plural(len(files), "file", "files") + ' sent'
+
+if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description = 'Send files or directory to a remote folder.')
+	addArguments(parser)
+	action(parser.parse_args())

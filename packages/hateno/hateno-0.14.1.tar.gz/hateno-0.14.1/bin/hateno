@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import importlib.util
+import argparse
+
+from hateno import utils
+
+parser = argparse.ArgumentParser()
+subparsers = parser.add_subparsers()
+
+importlib.machinery.SOURCE_SUFFIXES.append('')
+
+bin_folder = os.path.dirname(__file__)
+scriptnames = [
+	filename.split('-', maxsplit = 1)[1]
+	for filename in os.listdir(bin_folder)
+	if os.path.isfile(os.path.join(bin_folder, filename)) and filename.startswith('hateno-')
+]
+
+for scriptname in scriptnames:
+	subparser = subparsers.add_parser(scriptname)
+
+	module = utils.loadModuleFromFile(os.path.join(bin_folder, f'hateno-{scriptname}'))
+	module.addArguments(subparser)
+	subparser.set_defaults(func = module.action)
+
+args = parser.parse_args()
+try:
+	args.func(args)
+
+except AttributeError:
+	parser.print_help()
