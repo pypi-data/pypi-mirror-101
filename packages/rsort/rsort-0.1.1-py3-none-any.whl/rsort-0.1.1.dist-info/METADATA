@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: rsort
+Version: 0.1.1
+Summary: Sort requirements with ease! 🎉
+Home-page: https://github.com/Kludex/rsort
+License: MIT
+Author: Marcelo Trylesinski
+Author-email: marcelotryle@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: toml (>=0.10.2,<0.11.0)
+Requires-Dist: typer[all] (>=0.3.2,<0.4.0)
+Project-URL: Repository, https://github.com/Kludex/rsort
+Description-Content-Type: text/markdown
+
+<h1 align="center">
+    <strong>rsort</strong>
+</h1>
+<p align="center">
+    <a href="https://github.com/Kludex/rsort" target="_blank">
+        <img src="https://img.shields.io/github/last-commit/Kludex/rsort" alt="Latest Commit">
+    </a>
+        <img src="https://img.shields.io/github/workflow/status/Kludex/rsort/Test">
+        <img src="https://img.shields.io/codecov/c/github/Kludex/rsort">
+    <br />
+    <a href="https://pypi.org/project/rsort" target="_blank">
+        <img src="https://img.shields.io/pypi/v/rsort" alt="Package version">
+    </a>
+    <img src="https://img.shields.io/pypi/pyversions/rsort">
+    <img src="https://img.shields.io/github/license/Kludex/rsort">
+</p>
+
+
+## Installation
+
+``` bash
+pip install rsort
+```
+
+## License
+
+This project is licensed under the terms of the MIT license.
+
