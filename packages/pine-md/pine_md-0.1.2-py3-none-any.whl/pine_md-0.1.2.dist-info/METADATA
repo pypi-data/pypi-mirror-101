@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: pine-md
+Version: 0.1.2
+Summary: Pine Markdown: An acid markdown flavour.
+Home-page: https://github.com/pedromxavier/pine-md
+Author: Pedro Maciel Xavier
+Author-email: pedromxavier@poli.ufrj.br
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/pedromxavier/pine-md/issues
+Project-URL: Source, https://github.com/pedromxavier/pine-md
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Python: <4,>=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: argparse
+Requires-Dist: pyckage (>=0.1.1)
+Requires-Dist: cstream (>=1.0.0)
+Requires-Dist: ply (>=3.11.0)
+
+# Pine Markdown
+### _An acid markdown flavour_
+
+<br>
+<br>
+
+## Install & Quick Start
+```shell
+$ pip install pine-md
+$ pine --help
+```
+### For Linux users:
+```bash
+$ pine source.md > index.html
+```
+### For MacOS users:
+```bash
+$ python -m pine source.md > index.html
+```
+### For Windows users (UTF-8 issues involved):
+```shell
+> pine source.md -o index.html
+```
+
+## Introduction
+This is _Pine Markdown_, or simply, _pine-md_.
+
+
+_**Disclaimer:** Unfortunately this README.md document wasn't rendered with pine-md. Yet!_
+
