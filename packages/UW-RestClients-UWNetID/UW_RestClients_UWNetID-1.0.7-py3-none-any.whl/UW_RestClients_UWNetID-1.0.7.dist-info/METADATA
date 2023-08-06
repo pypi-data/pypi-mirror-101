@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: UW-RestClients-UWNetID
+Version: 1.0.7
+Summary: A library for connecting to the UW NetID API
+Home-page: https://github.com/uw-it-aca/uw-restclients-uwnetid
+Author: UW-IT AXDD
+Author-email: aca-it@uw.edu
+License: Apache License, Version 2.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: UW-RestClients-Core (<2.0,>1.0)
+Requires-Dist: UW-Restclients-PWS (<3.0,>2.0)
+Requires-Dist: python-dateutil
+Requires-Dist: pytimeparse
+
+
+See the README on `GitHub
+<https://github.com/uw-it-aca/uw-restclients-uwnetid>`_.
+
+
