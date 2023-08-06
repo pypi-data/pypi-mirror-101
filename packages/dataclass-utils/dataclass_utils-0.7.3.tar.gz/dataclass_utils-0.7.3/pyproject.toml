@@ -1,0 +1,21 @@
+[build-system]
+requires = [ "poetry-core>=1.0.0",]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "dataclass_utils"
+version = "0.7.3"
+description = ""
+authors = [ "Yohei Tamura <tamuhey@gmail.com>",]
+
+[tool.versionup]
+tag = true
+commit = true
+files = [ "dataclass_utils/VERSION.py",]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+mypy = "^0.800"
