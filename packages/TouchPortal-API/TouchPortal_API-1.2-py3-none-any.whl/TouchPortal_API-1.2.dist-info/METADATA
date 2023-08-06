@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: TouchPortal-API
+Version: 1.2
+Summary: Touch Portal API for Python
+Home-page: https://github.com/KillerBOSS2019/TouchPortal-API
+Author: Damien
+Author-email: DamienWeiFen@gmail.com
+License: MIT
+Keywords: TouchPortal,API,Plugin
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: pyee
+Requires-Dist: requests
+
+This is TouchPortal API made for easily create TouchPortal Plugin
+
+Change Log
+==========
+
+
+1.2 (4/12/2021)
+-------------------
+# Features
+- isActionBeingHeld(actionId) returns True or False
+
+# Fixes
+- It doesnt send Close Plugin when you exit TP
+
+1.1 (3/23/2021)
+-------------------
+- Fixed some typos
+
+1.0 (3/23/2021)
+-------------------
+# Feautres
+- Easy to use
+- createState
+- removeState
+- choice Update
+- choice Update Specific
+- setting Update
+- state Update
+- State Update Many
+- Converting image to base64
+- Update check
+
+
