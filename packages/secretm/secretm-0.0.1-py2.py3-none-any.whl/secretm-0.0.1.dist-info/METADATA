@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: secretm
+Version: 0.0.1
+Summary: A tiny secret manager written in python
+Home-page: https://github.com/baileywickham/secrets
+Author: Bailey Wickham
+Author-email: baileywickham@gmail.com
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+
+# secrets
+A tiny secret manager in python. Adds the secrets file to the `.gitignore`.
+
+
+## Example
+```python
+import secrets
+
+# The class takes an optional path for the secrets file
+s = secrets.Secrets()
+
+# Write the api key to the secrets file
+s['api_key'] = 'abc'
+
+# Print the secret
+print(s['api_key'])
+```
+
