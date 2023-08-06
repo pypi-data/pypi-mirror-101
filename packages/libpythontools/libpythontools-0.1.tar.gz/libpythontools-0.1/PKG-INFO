@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: libpythontools
+Version: 0.1
+Summary: Módulo para exemplificar construções de projetos com a linguagem python.
+Home-page: https://github.com/deivisonsilva-dev/lib-pytools
+Author: Deivison Silva
+Author-email: deivisondamiao01@outlook.com
+License: GNU AFFERO GENERAL PUBLIC LICENSE
+Description: # lib-pytools
+        
+        [![Build Status](https://travis-ci.com/deivisonsilva-dev/lib-pytools.svg?branch=main)](https://travis-ci.com/deivisonsilva-dev/lib-pytools)
+        [![Updates](https://pyup.io/repos/github/deivisonsilva-dev/lib-pytools/shield.svg)](https://pyup.io/repos/github/deivisonsilva-dev/lib-pytools/)
+        [![Python 3](https://pyup.io/repos/github/deivisonsilva-dev/lib-pytools/python-3-shield.svg)](https://pyup.io/repos/github/deivisonsilva-dev/lib-pytools/)
+        [![codecov](https://codecov.io/gh/deivisonsilva-dev/lib-pytools/branch/main/graph/badge.svg?token=WFL2NV8FUN)](https://codecov.io/gh/deivisonsilva-dev/lib-pytools)
+        
+        Conjunto de ferramentas para construÃ§Ã£o de um projeto com a linguagem python.
+        
+        TÃ³picos a serem abordados:
+        
+        1. Git
+        2. Virtualenv
+        3. Pip
+        
+        Para instalar:
+        
+        ```console
+        1. git clone (repository)
+        
+        2. cd (repository)
+        
+        3. python -m venv .venv <- (Windows) ou source .venv/bin/activate <- (Linux)
+        
+        4. .venv\Scripts\activate
+        
+        5. pip install -r requirements-dev.txt
+        ```
+        
+        Para conferir a qualidade do cÃ³digo execute:
+        
+        ```console
+        1. flake8
+        ```
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Framework :: Pytest
+Description-Content-Type: text/markdown
