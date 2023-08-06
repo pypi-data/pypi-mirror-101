@@ -1,0 +1,543 @@
+.TH COBIB 1 2021-04-10 v3.0.0
+.SH NAME
+coBib \- Console-based Bibliography Management
+.SH SYNOPSIS
+.B cobib
+[\fB\-\-version\fR]
+[\fB\-h\fR|\fB\-\-help\fR]
+[\fB\-v\fR|\fB\-\-verbose\fR]
+[\fB\-c\fR|\fB\-\-config\fR \fI<path>\fR]
+\fB<subcommand>\fR [\fI<args>\fR]
+.SH DESCRIPTION
+coBib is a console-based bibliography manager written in Python.
+It maintains a plain-text database of literature data in YAML format at
+\fI$HOME/.local/share/cobib/literature.yaml\fR.
+.PP
+coBib provides a variety of \fBSUBCOMMANDS\fR through which you may
+investigate and manage the database.
+For easy of use it also comes with a curses-based \fBTUI\fR which is
+automatically started when no other subcommand is found (more information is
+provided in that section).
+.SH OPTIONS
+.TP
+.BR \-\-version
+Prints the version information and exits.
+.TP
+.BR \-h ", " \-\-help
+Prints a help message and exits.
+.TP
+.BR \-v ", " \-\-verbose
+Increases the verbosity level of the logging. This option may be provided up to
+two times (increasing the logging to \fIinfo\fR and \fIdebug\fR, respectively).
+By default, the verbosity of coBib's CLI is set to \fIwarning\fR but if the TUI
+is started, logging will be increased to \fIinfo\fR and redirected to
+\fIconfig.logging.logfile\fR.
+.TP
+.BR \-c ", " \-\-config " " \fI<path>\fR
+Run with an alternate configuration file at \fI<path>\fR.
+.TP
+.BR \-l ", " \-\-log " " \fI<path>\fR
+Run with an alternate log file at \fI<path>\fR.
+.SH SUBCOMMANDS
+All subcommands listed below also provide the \fI\-h\fR and \fI\-\-help\fR
+options which provide additional information for each subcommand.
+.TP
+.B cobib init \fI<args>\fR
+Initializes the literature database.
+The path to this file can be configured in the \fIDATABASE\fR section of the
+configuration file (see also \fBCONFIGURATION\fR).
+The only available argument is:
+.PP
+.in +8n
+.BR \-g ", " \-\-git
+.in +4n
+Initializes coBib's integrated history tracking through git.
+This command will preserve any existing database file, but it is a good idea to
+make a backup before doing this, just in case.
+Note, that in order to use this functionality you must also enable the
+\fIDATABASE/git\fR configuration option (see also \fBCONFIGURATION\fR).
+Also be sure to at least set a \fIname\fR and \fIemail\fR in the git config!
+.TP
+.B cobib add \fI<args>\fR ...
+Adds a new entry to the database.
+The positional arguments may be used to provide \fItags\fR to associate with the
+newly added entries.
+The \fI<args>\fR may be any of the following:
+.PP
+.in +8n
+.BR \-a ", " \-\-arxiv " " \fI<arxiv\ id>\fR
+.in +4n
+Adds an entry specified by the \fIarXiv\fR id.
+.PP
+.in +8n
+.BR \-b ", " \-\-bibtex " " \fI<path>\fR
+.in +4n
+Adds the bibliography data from the \fIBibLaTex\fR file at the provided path.
+.PP
+.in +8n
+.BR \-d ", " \-\-doi " " \fI<doi>\fR
+.in +4n
+Adds an entry specified by the \fIDOI\fR.
+.PP
+.in +8n
+.BR \-i ", " \-\-isbn " " \fI<doi>\fR
+.in +4n
+Adds an entry specified by the \fIISBN\fR.
+.PP
+.in +8n
+.BR \-f ", " \-\-file " " \fI<path>\fR
+.in +4n
+Associate the newly added entry with the \fIfile\fR at the provided path.
+As of version 2.5 you can specify multiple files, too.
+.PP
+.in +8n
+.BR \-l ", " \-\-label  " " \fI<label>\fR
+.in +4n
+Store the newly added entry under the specified \fIlabel\fR.
+.TP
+.B cobib delete \fI<label>\fR
+Deletes the entry with the given \fIlabel\fR.
+.TP
+.B cobib edit \fI<label>\fR
+Opens the entry with the given \fIlabel\fR in an external editor.
+The entry is copied verbatim in \fIYAML\fR format from and to the database file.
+The editor respects the \fI$EDITOR\fR environment variable unless overwritten by
+\fIconfig.commands.edit.editor\fR. It will fallback to \fIvim\fR if neither is
+configured.
+.PP
+.in +8n
+.BR \-a ", " \-\-add " " \fI<path>\fR
+.in +4n
+Allows editing a non-existing label to manually add it to the database.
+.TP
+.B cobib modify \fI<modification>\fR \fI<args>\fR ...
+Applies a modification to multiple entries at once.
+The positional arguments may be used to provide \fBFILTERS\fR which the entries
+must match in order to be modified \fIor\fR to provide a list of labels of the
+entries which are to be modified (this requires the \fI-s\fR flag to be set).
+The \fI<args>\fR may be any of the following:
+.PP
+.in +8n
+.BR \fI<modification>\fR
+.in +4n
+The modification must be provided in the format \fI<field>:<value>\fR and will
+set the field of all selected entries to the given value.
+.PP
+.in +8n
+.BR \-a ", " \-\-append
+.in +4n
+This is \fBNOT\fR implemented yet. However, in the future this will provide the
+possibility to append the new value to the modified field rather than
+overwriting it.
+.PP
+.in +8n
+.BR \-s ", " \-\-selection
+.in +4n
+This boolean flag enables the \fIselection\fR mode in which the positional args
+are interpreted as a list of labels which are to be exported. The name for this
+argument is a result of the TUI's selection interface.
+.TP
+.B cobib undo \fI<args>\fR
+If you enabled the git-integration of coBib (available since v2.6.0) you can
+undo the changes done to your database file by commands such as add, edit and
+delete. See also \fIDATABASE/git\fR in the \fBCONFIGURATION\fR section for more
+information.
+.PP
+.in +8n
+.BR \-f ", " \-\-force
+.in +4n
+Overwrites the check for an auto-committed change. Thus, the undo command will
+now undo the last commit with a message that does not start with "Undo".
+.TP
+.B cobib redo
+If you enabled the git-integration of coBib (available since v2.6.0) you can
+reapply the last undone changes (see above). See also \fIDATABASE/git\fR in the
+\fBCONFIGURATION\fR section for more information.
+.TP
+.B cobib open \fI<label>\fR
+Opens any associated \fIfile\fR of the entry with the given \fIlabel\fR.
+If multiple files are associated with the entry, the user can choose which file(s) to open through
+an interactive menu.
+.TP
+.B cobib show \fI<label>\fR
+Prints the entry with the given \fIlabel\fR in \fIBibLaTex\fR format to stdout.
+.TP
+.B cobib list \fI<args>\fR
+Lists all entries of the database in a basic table format to stdout which match
+the specified \fBFILTERS\fR (more information is provided in that section).
+Additionally, the following \fI<args>\fR are also allowed:
+.PP
+.in +8n
+.BR \-l ", " \-\-long
+.in +4n
+Print the table in \fIlong\fR format, i.e. without wrapping the lines to fit the
+current terminal width.
+.PP
+.in +8n
+.BR \-s ", " \-\-sort " " \fI<field>\fI
+.in +4n
+Specify the entry field to use as the \fIsorting column\fR of the table.
+.PP
+.in +8n
+.BR \-r ", " \-\-reverse
+.in +4n
+Reverses the sorting order.
+.PP
+.in +8n
+.BR \-x ", " \-\-or
+.in +4n
+Concatenate the filters using logical \fIOR\fR rather than the default
+\fIAND\fR.
+.TP
+.B cobib search \fI<args>\fR ...
+Searches the database recursively (i.e. including any associated files) for the
+specified keyword.
+The positional arguments may be used to provide \fBFILTERS\fR which the entries
+must match in order to be included in the export.
+Additionally, the following \fI<args>\fR are also allowed:
+.PP
+.in +8n
+.BR \-c ", " \-\-context " " \fI<int>\fI
+.in +4n
+Specify the number of context lines to provide for each match.
+This values defaults to 1.
+.PP
+.in +8n
+.BR \-i ", " \-\-ignore-case
+.in +4n
+Makes the search case-insensitive.
+.TP
+.B cobib export \fI<args>\fR ...
+Exports the database.
+The positional arguments may be used to provide \fBFILTERS\fR which the entries
+must match in order to be included in the export \fIor\fR to provide a list of
+labels of the entries which are to be exported (this requires the \fI-s\fR flag
+to be set).
+The \fI<args>\fR may be any of the following:
+.PP
+.in +8n
+.BR \-b ", " \-\-bibtex " " \fI<path>\fR
+.in +4n
+Export the entries to a \fIBibLaTex\fR file at the specified path.
+.PP
+.in +8n
+.BR \-z ", " \-\-zip " " \fI<path>\fR
+.in +4n
+Export a \fIBibLaTex\fR file of the entries and all of the associated files into
+a single \fIZIP\fR file at the specified path.
+.PP
+.in +8n
+.BR \-s ", " \-\-selection
+.in +4n
+This boolean flag enables the \fIselection\fR mode in which the positional args
+are interpreted as a list of labels which are to be exported. The name for this
+argument is a result of the TUI's selection interface.
+.SH FILTERS
+In order to limit the output of the \fIlist\fR and \fIexport\fR commands you can
+apply additional filters via keyword arguments.
+Their availability depends on your database since they are added to the argument
+parser at runtime.
+However, you can find a full list for your specific case with \fIcobib list
+\-\-help\fR.
+.PP
+The general syntax for filtering is the following
+.in +8n
+[\fB++\fR|\fB\-\-\fR]\fB<field>\fR \fI<value>\fR
+.in
+which is to be understood as the following:
+When the keyword argument is started with \fB++\fR the entry must positively
+\fImatch\fR this filter; if started with \fB\-\-\fR it must \fINOT\fR match.
+The \fB<field>\fR may be any available field in your database.
+It should be noted, that this string is matched exactly which means no plurals
+are allowed.
+The \fI<value>\fR finally specifies what is matched against.
+.PP
+In general, multiple filters provided to the \fIlist\fR and \fIexport\fR
+commands are combined with logical \fIAND\fR.
+This may be overwritten by adding the \fI\-x\fR or \fI\-\-or\fR arguments as
+described in the arguments section of the \fIlist\fR command.
+.SH EXAMPLES
+This section provides a few examples of \fBFILTERS\fR as described above.
+.TP
+.B cobib list ++year 2020
+Lists only entries which were published in 2020.
+.TP
+.B cobib list --tags chemistry
+Lists only entries without the `chemistry` tag.
+.TP
+.B cobib list ++year 2019 ++tags quantum
+Lists only entries with the `quantum` tag from the year 2019.
+.TP
+.B cobib list -x ++year 2019 ++year 2020
+Lists only entries published in 2019 or 2020.
+.SH TUI
+The curses-based TUI is started automatically when no other subcommand is
+supplied, i.e. by simply running \fBcobib\fR.
+By default, it lists all entries of the database in a buffer which may be
+scrolled in vim-fashion with \fIh,j,k,l,^B,^U,^D,^F\fR.
+The arrow and paging keys are also available for scrolling.
+The following default key bindings are available:
+.TP
+.BR q " " quit
+Quits one level of the viewing buffer.
+.TP
+.BR ? " " help
+Opens a small window providing help for the key bindings.
+.TP
+.BR ENTER " " show
+Populates the viewing buffer with a BibLaTex view of the selected entry.
+.TP
+.BR o " " open
+Opens the current (or \fIselected\fR) label(s).
+.TP
+.BR w " " wrap
+Toggles wrapping of the viewing buffer.
+.TP
+.BR a " " add
+Opens a command prompt which allows running the \fBadd\fR command as if outside
+of the TUI.
+.TP
+.BR d " " delete
+Deletes the current (or \fIselected\fR) label(s).
+.TP
+.BR e " " edit
+Opens the current label in an external editor.
+.TP
+.BR m " " modify
+Opens a command prompt which allows running the \fBmodify\fR command as if
+outside of the TUI. If a \fIselection\fR is present, the \fI-s\fR argument will
+be set automatically.
+.TP
+.BR u " " undo
+Undoes the last auto-committed change to the database file.
+This requires the git-integration (since v2.6.0) to be enabled!
+.TP
+.BR r " " redo
+Reapplies the last undone change.
+This requires the git-integration (since v2.6.0) to be enabled!
+.TP
+.BR / " " search
+Opens a search prompt and views the results in the viewing buffer.
+.TP
+.BR f " " filter
+Allows adding filters to the list view.
+.TP
+.BR s " " sort
+Allows sorting the list view.
+.TP
+.BR v " " select
+Adds the current label to the \fIselection\fR.
+.TP
+.BR x " " export
+Opens a command prompt which allows running the \fBexport\fR command as if
+outside of the TUI. If a \fIselection\fR is present, the \fI-s\fR argument will
+be set automatically.
+.TP
+.BR : " " prompt
+Opens a command prompt allowing the user to execute an arbitrary coBib CLI command.
+.SH CONFIGURATION
+Since version 3.0, coBib can be configured directly via \fIPython\fR. To do so,
+you must place the configuration file at \fI$HOME/.config/cobib/config.py\fR.
+If you don't have a configuration file yet, you can get started by copying the
+well-documented example configuration to the right location via:
+.in +4n
+    \fIcobib _example_config > ~/.config/cobib/config.py\fR
+.in -4n
+If you do have an old configuration file (prior to v3.0) and would like some
+guidance on how to migrate it, please read this short blog post of mine:
+https://mrossinek.gitlab.io/programming/cobibs-new-configuration/
+.PP
+The following section summarizes the syntax and all possibly settings, for
+completeness.
+.TP
+.BR Configuration " " Syntax
+Internally, coBib's configuration is nothing but a (nested) Python dictionary.
+Thus, after importing the config with
+.in +4n
+    \fIfrom cobib.config import config\fR
+.in -4n
+it is very straight forward to change any setting by simply changing the value
+stored in the dictionary. For example:
+.in +4n
+    \fIconfig['database']['git'] = True\fR
+.in -4n
+However, for ease of use, all of the fields are also exposed as attributes. This
+means, the same can be achieved via:
+.in +4n
+    \fIconfig.database.git = True\fR
+.in -4n
+.PP
+.BR LOGGING
+.TP
+.IR config.logging.logfile = '~/.cache/cobib/cobib.log'
+This setting sets the path to the default logfile. This logfile can be
+overwritten using the \fI--logfile\fR command-line argument.
+.PP
+.BR COMMANDS
+.TP
+.IR config.commands.edit.default_entry_type = 'article'
+This setting indicates the default entry type which will be used for manually
+entered entries.
+.TP
+.IR config.commands.edit.editor = $EDITOR " if available else " 'vim'
+This setting can be used to overwrite the external editor used for manual
+editing of database entries. It defaults to the environment variable
+\fI$EDITOR\fR and falls back to \fIvim\fR if that is not set either.
+.TP
+.IR config.commands.open.command = 'xdg-open' " (on Linux); " 'open' " (on Mac OS)"
+Specifies the program used to open associated files.
+.TP
+.IR config.commands.search.grep = 'grep'
+Specifies the program used to search in associated files.
+.TP
+.IR config.commands.search.ignore_case = False
+This boolean setting indicates whether search defaults to be case-insensitive.
+.PP
+.BR DATABASE
+.TP
+.IR config.database.file = '~/.local/share/cobib/literature.yaml'
+This setting sets the path to the database file. You can use \fI~\fR to
+represent your \fI$HOME\fR directory.
+.TP
+.IR config.database.git = False
+This boolean field indicates whether the database file should automatically be
+tracked in a git repository.
+Note, that you must initialize the git-tracking with \fIcobib init --git\fR. If
+you already have an existing database file, it will be preserved. Nonetheless,
+it is a good idea to make a backup before doing so, just in case.
+Also be sure to at least set a \fIname\fR and \fIemail\fR in the git config!
+.TP
+.IR config.database.format.month = int
+This field may either be \fIint\fR (default) or \fIstr\fR and it specifies the
+type into which the \fBmonth\fR field should be converted before storing.
+.TP
+.IR config.database.format.suppress_latex_warnings = True
+This boolean field indicates whether latex warnings will be ignored during the
+escaping of special characters.
+.PP
+.BR PARSERS
+.TP
+.IR config.parsers.bibtex.ignore_non_standard_types = False
+This boolean setting indicates whether non-standard BibLaTex entry types should
+be ignored or not.
+.PP
+.BR TUI
+.TP
+.IR config.tui.default_list_args = ['\-l']
+This can be set to a list of default arguments to use for the TUI's list view.
+.TP
+.IR config.tui.prompt_before_quit = True
+This setting specifies whether the user is prompted to verify the final quit
+operation.
+.TP
+.IR config.tui.reverse_order = True
+This setting specifies whether the database is listed in reverse order by
+default. This is useful because the most recently added entries will be at the
+top.
+.TP
+.IR config.tui.scroll_offset = 3
+This setting specifies the scrolling offset used to prevent the cursor line from
+coming too close to the ends of the screen while scrolling.  The intent of this
+setting is to provide a similar behavior as the 'scrolloff' option available in
+Vim. Note, that you can pin the cursor line to the center of the screen by
+setting this option to a very large value (e.g. 99).
+.PP
+.BR TUI.COLORS
+With the following settings you can change the look of the TUI. Each of these
+settings accepts any of the following color names: \fIblack\fR, \fIred\fR,
+\fIgreen\fR, \fIyellow\fR, \fIblue\fR, \fImagenta\fR, \fIcyan\fR and
+\fIwhite\fR.
+.TP
+.IR config.tui.colors.cursor_line_fg = 'white'
+.TP
+.IR config.tui.colors.cursor_line_bg = 'cyan'
+.TP
+.IR config.tui.colors.top_statusbar_fg = 'black'
+.TP
+.IR config.tui.colors.top_statusbar_bg = 'yellow'
+.TP
+.IR config.tui.colors.bottom_statusbar_fg = 'black'
+.TP
+.IR config.tui.colors.bottom_statusbar_bg = 'yellow'
+.TP
+.IR config.tui.colors.search_label_fg = 'blue'
+.TP
+.IR config.tui.colors.search_label_bg = 'black'
+.TP
+.IR config.tui.colors.search_query_fg = 'red'
+.TP
+.IR config.tui.colors.search_query_bg = 'black'
+.TP
+.IR config.tui.colors.popup_help_fg = 'white'
+.TP
+.IR config.tui.colors.popup_help_bg = 'green'
+.TP
+.IR config.tui.colors.popup_stdout_fg = 'white'
+.TP
+.IR config.tui.colors.popup_stdout_bg = 'blue'
+.TP
+.IR config.tui.colors.popup_stderr_fg = 'white'
+.TP
+.IR config.tui.colors.popup_stderr_bg = 'red'
+.TP
+.IR config.tui.colors.selection_fg = 'white'
+.TP
+.IR config.tui.colors.selection_bg = 'magenta'
+.PP
+.BR TUI.KEY_BINDINGS
+You can change the default key bindings of the TUI by overwriting any of the
+following settings with a different key. Any setting will interpret the provided
+string as a single character whose ASCII value is used for triggering the
+command.
+The only exception is the \fIENTER\fR string, which will be internally mapped to
+the ASCII codes 10 (\fIline feed\fR) and 13 (\fIcarriage return\fR).
+.TP
+.IR config.tui.key_bindings.prompt = ':'
+.TP
+.IR config.tui.key_bindings.search = '/'
+.TP
+.IR config.tui.key_bindings.help = '?'
+.TP
+.IR config.tui.key_bindings.add = 'a'
+.TP
+.IR config.tui.key_bindings.delete = 'd'
+.TP
+.IR config.tui.key_bindings.edit = 'e'
+.TP
+.IR config.tui.key_bindings.filter = 'f'
+.TP
+.IR config.tui.key_bindings.modify = 'm'
+.TP
+.IR config.tui.key_bindings.open = 'o'
+.TP
+.IR config.tui.key_bindings.quit = 'q'
+.TP
+.IR config.tui.key_bindings.redo = 'r'
+.TP
+.IR config.tui.key_bindings.sort = 's'
+.TP
+.IR config.tui.key_bindings.undo = 'u'
+.TP
+.IR config.tui.key_bindings.select = 'v'
+.TP
+.IR config.tui.key_bindings.wrap = 'w'
+.TP
+.IR config.tui.key_bindings.export = 'x'
+.TP
+.IR config.tui.key_bindings.show = 'ENTER'
+.PP
+.SH ENVIRONMENT
+.TP
+.IR $EDITOR
+Specifies the editor program to use for the \fBedit\fR command.
+.SH FILES
+.TP
+.IR $HOME/.config/cobib/config.ini
+The configuration file.
+.TP
+.IR $HOME/.local/share/cobib/literature.yaml
+The default location of the database file.
+.SH SEE ALSO
+The internal help documentation via the \fI\-\-help\fR arguments.
+.PP
+The source code and issue tracker at https://gitlab.com/mrossinek/cobib
