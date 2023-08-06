@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+
+from fire import Fire
+import seread.sng # this will import all variables?
+from seread import sng
+from seread.version import __version__
+
+import sys
+import threading
+#------ CONFIG FILES---------------
+# INPUT
+INP_calib="~/.seread.calib"
+INP_discover = "~/.seread_discover8086"
+INP_permanent = "~/.seread_permanent8086"
+INP_influx_cred = "~/.influx_userpassdb"
+INP_udp_out = "~/.seread_udp_out"
+INP_script = "script"
+
+# this runs one line at a time and repeats the last line forever. The example starts the ORTEC counter
+# OUTPUT
+OUT_ = "~/serial_NG2_udp"
+OUT_ = "~/serial_NG2_jso"
+
+SHOST, SPORT = "0.0.0.0", 8099
+# UDP_IP = "127.0.0.1"
+UDP_PORT = 8080
+
+
+#================================================= end of different configs
+
+def launch(MODE="help",p=1):
+    if MODE=="help":
+        print("h... available modes: help ...")
+        return
+    if MODE=="    ":print("ok")
+    if MODE=="    ":print("ok")
+    return p
+
+
+
+
+if __name__=="__main__":
+    print("D... seread script; version:",__version__)
+    # print("D... version :", __version__ )
+    print("D... use :  -D device OR  -l location  -c listen|word|script -b 19200")
+    print("D... e.g. ./sng2.py -l 2-1.1:1.0 -i false (to send no inlfux)")
+    print("                    -l is enough, just see the location of device")
+    print("-----MODES------")
+    print("    listen")
+    print("          - no write nowhere")
+#    print("    mirror")
+#    print("          - Writes 'K' and listens")
+    print("    word")
+    print("          - Writes 'Slau;' and listens")
+    print("    script")
+    print("          - reads 'script' file, sends line by line. Last line repeats ")
+    #print("----------------")
+
+
+
+
+    res,code,sub_code,timeout,baudrate,influxyes,debug=Fire( sng.select_device )   # FIRE HERE
+    # res,code,sub_code,timeout,baudrate,influxyes,debug=sng.select_device()
+    if res=="":
+        # if no device selected
+        print()
+        print("X... DEVICE doesnt exist, it is not in device's list")
+        print()
+        print("D... it is possible to create a virtual serial device (install socket)")
+        print("D... ")
+        print("D...  socat PTY,link=/tmp/virtser_connect,raw,echo=0 PTY,link=/tmp/virtser_speak,raw,echo=0&")
+        print("D... echo ahoj > /tmp/virtser_speak")
+        print("D... and connect to it ")
+        print("D...   -D /tmp/virtser_connect")
+        print("D...")
+        sys.exit(1)
+        # devout=DEV
+
+
+
+
+    print("D... DEVICE SELECTED=/{}/".format(res))
+    print("i... code     =",code)
+    print("i... subcode  =",sub_code)
+    print("i... timeout  =",timeout,"     can be 1,10 for new line every 10sec.")
+    print("i... baudrate =",baudrate)
+    print("i... influxyes=",influxyes)
+    print("i... debug    =",debug)
+    if res=="":quit()
+    if influxyes=="false":influxyes=False
+    #quit()
+    #======================================
+    sng.init_udp_and_name() # prepare UDP server IP  ipsudp
+
+    if influxyes:
+        sng.init_influx_and_name(silent=False) # prepare credentials
+    else:
+        print("X... influx write False on commandline")
+    sng.init_calibration()
+
+    #==========sserver
+    print("i... SERVER  RUNS..........")
+    x = threading.Thread(target=sng.sserver, args=(SHOST, SPORT))
+    x.start()
+    #==================================== RUN=============
+    loop = sng.get_event_loop()
+    loop.run_until_complete( sng.run( res, baudrate, code ,sub_code, timeout, influxyes ,debug) )
+
+
+#if __name__=="__main__":
+#    print("D... seread script; version:",__version__)
+#    Fire( launch )
