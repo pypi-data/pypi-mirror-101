@@ -1,0 +1,11 @@
+include LICENSE
+include *.txt
+include *.py
+include *.md
+include *.yml
+include *.env
+include *.gitignore
+recursive-include zmongo *
+prune build
+prune dist
+exclude *.pyc
