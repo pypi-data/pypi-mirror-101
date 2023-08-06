@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: pytyle1x
+Version: 1.0.1
+Summary: A tiling manager for EWMH compliant window managers
+Home-page: https://github.com/programical/pytyle1x
+Author: programical
+License: UNKNOWN
+Description: ![](banner.png)
+        
+        PyTyle is an extremely versatile and extensible tiling manager that is meant
+        to be used on top of EWMH window managers. Its feature set was modeled after
+        the basic tiling features of XMonad.
+        
+        This is a fork of the [original PyTyle](http://github.com/BurntSushi/pytyle1),
+        adjusted to work with Python 3. Development continues, and you can expect optimizations, new features and bug fixes.
+        
+        Check out [the wiki](https://github.com/programical/pytyle1x/wiki) for installation instructions.
+        
+        ![](screenshot.png)
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Desktop Environment :: Window Managers
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
