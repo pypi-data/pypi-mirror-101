@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: package-manager-TirsvadCLI
+Version: 0.1.12
+Summary: UNKNOWN
+Home-page: https://github.com/orgs/Tirsvad-CLI-Tools/
+Author: Jens Tirsvad Nielsen
+Author-email: jenstirsvad@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Environment :: Console
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6, <4
+Description-Content-Type: text/markdown
+Requires-Dist: distro
+Provides-Extra: test
+Requires-Dist: coverage ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: coveralls ; extra == 'test'
+Requires-Dist: PyYAML ; extra == 'test'
+
+# Package Manager
+
+[![Build Status](https://travis-ci.com/TirsvadCLI-Tools/PackageManager.svg?branch=main)](https://travis-ci.com/TirsvadCLI-Tools/PackageManager)
+[![Coverage Status](https://coveralls.io/repos/github/TirsvadCLI-Tools/PackageManager/badge.svg?branch=main)](https://coveralls.io/github/TirsvadCLI-Tools/PackageManager?branch=main)
+
+Package Manager for different distrobution of linux.
+
+## Conventions
+
+\# - requires given linux commands to be executed with root privileges either directly as a root user or by use of sudo command
+$ - requires given linux commands to be executed as a regular non-privileged user
+
+### Installation
+
+  $ pip install package-manager-TirsvadCLI
+
+### TODO
+
+* Package install
+  * Add support for fedora and centos
+
+### Development
+
+Want to contribute? Great!
+
+
