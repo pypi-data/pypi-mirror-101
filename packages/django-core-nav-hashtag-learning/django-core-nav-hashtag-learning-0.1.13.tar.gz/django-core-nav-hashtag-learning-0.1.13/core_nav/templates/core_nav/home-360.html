@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <main role="main" class="content">
+
+    <div class="intro-block text-center p-5">
+        <h1>Impact 360</h1>
+        <h4>The Leadership and Teaching 360 Toolkit</h4>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+            {% if show_overview_help %}
+                <a href="{% url 'base:overview-help' 'leadership' %}">
+            {% else %}
+                <a href="{% url 'base:survey-menu' 'leadership' %}">
+            {% endif %}
+             <div class="block-container square box1 square-100 tint t3">
+                 <h4 class="block-title">How Good is my Leadership?</h4>
+                <div class="">
+                <div class="">
+                   <h4 class="block-title">How Good is my Leadership?</h4>
+                </div>
+                 </div>
+             </div>
+                 <div class="block-description">
+                     <h5>Carry out a leadership evaluation</h5>
+                </div>
+             </a>
+            </div>
+
+            <div class="col-md-4">
+            </div>
+
+            <div class="col-md-4">
+            {% if show_overview_help %}
+                <a href="{% url 'base:overview-help' 'teaching' %}">
+            {% else %}
+                <a href="{% url 'base:survey-menu' 'teaching' %}">
+            {% endif %}
+             <div class="block-container square box2 square-100 tint t2">
+                 <h4 class="block-title">How Good is my Teaching?</h4>
+                <div class="">
+                <div class="">
+                   <h4 class="block-title">How Good is my Teaching?</h4>
+                </div>
+                 </div>
+             </div>
+                 <div class="block-description">
+                     <h5>Carry out a teaching evaluation</h5>
+                </div>
+             </a>
+            </div>
+        </div>
+    </div>
+
+    </main>
+{% endblock %}
+

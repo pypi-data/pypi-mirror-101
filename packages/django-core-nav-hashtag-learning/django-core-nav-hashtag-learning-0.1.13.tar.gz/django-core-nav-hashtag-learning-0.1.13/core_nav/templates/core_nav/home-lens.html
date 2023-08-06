@@ -1,0 +1,43 @@
+{% extends "default-home.html" %}
+
+{% block content %}
+    <main role="main" class="content">
+
+    <div class="intro-block text-center p-5">
+        <h1>Impact Lens</h1>
+        <h4>The Lesson Observation and Analysis Toolkit</h4>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+
+            <div class="col-md-4">
+            {% if show_overview_help %}
+                <a href="{% url 'base:overview-help' %}">
+            {% else %}
+                <a href="{% url 'blocks:observation-block-menu' %}">
+            {% endif %}
+
+             <div class="block-container square box1 square-100 tint t1">
+                 <h4 class="block-title">Lesson Observations</h4>
+                <div class="">
+                <div class="">
+                   <h4 class="block-title">Lesson Observations</h4>
+                </div>
+                 </div>
+             </div>
+                 <div class="block-description">
+                     <h5>Record and analyse a series of lesson observations</h5>
+                </div>
+             </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    </main>
+{% endblock %}

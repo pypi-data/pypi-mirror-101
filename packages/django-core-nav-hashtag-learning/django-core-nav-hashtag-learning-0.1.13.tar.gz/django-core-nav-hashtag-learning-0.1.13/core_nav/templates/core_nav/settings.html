@@ -1,0 +1,198 @@
+{% extends "generic-base.html" %}
+
+    {% block title %}{{ program_name }} - Settings{% endblock %}
+
+{% block content %}
+
+
+
+    <main role="main" class="content">
+	<div class="container">
+
+
+    <div class="form-group">
+
+    <div class="card generic-card-card">
+        <div class="card-header generic-card-header">
+            <h4>Settings</h4>
+        </div>
+        <table class="table table-bordered table-container mb-0">
+            <thead class="generic-table-card">
+            <tr>
+                <th>Name</th>
+                <th>School</th>
+                <th>Department</th>
+                <th>Subscription</th>
+                <th>Account Expiry</th>
+            </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 20%">{{ current_user.first_name }} {{ current_user.last_name }}</td>
+                    <td style="width: 25%">{{ current_user.school }}</td>
+                    <td style="width: 25%">{{ current_user.faculty }}</td>
+                    <td style="width: 15%">
+                        {% if subscription.is_paid %}
+                            Paid
+                        {% else %}
+                            Trial
+                        {% endif %}
+                    </td>
+                    <td style="width: 15%">{{ subscription.expiry|date:"M d, Y" }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-container mb-0">
+            <thead class="generic-table-card">
+            <tr>
+                <th colspan="12">Other Actions</th>
+            </tr>
+            </thead>
+             <tbody>
+                {% if current_user.school_admin is True  %}
+                <tr>
+                    <td style="width: 90%; vertical-align: middle">Invite other staff to sign up to this {{ program_name }} school account</td>
+                    <td style="width: 10%; vertical-align: middle" align="center">
+                    <a href="{% url 'schools:invite-users' %}"
+                        class="btn btn-secondary" role="button"><i class="material-icons">person_add</i>
+                    </a>
+                    </td>
+                </tr>
+
+                    {% if current_user.school.is_departmental_school is True %}
+                        <tr>
+                            <td style="width: 90%; vertical-align: middle">Manage the school's departments / faculties</td>
+                            <td style="width: 10%; vertical-align: middle" align="center">
+                            <a href="{% url 'schools:manage-departments' %}"
+                                class="btn btn-secondary" role="button"><i class="material-icons">business</i>
+                            </a>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                {% endif %}
+                {% if current_user.school.is_departmental_school is True %}
+                    <tr>
+                        <td style="width: 90%; vertical-align: middle">Join / leave departments</td>
+                        <td style="width: 10%; vertical-align: middle" align="center">
+                        <a href="{% url 'schools:user-edit-departments' %}"
+                            class="btn btn-secondary" role="button"><i class="material-icons">swap_horiz</i>
+                        </a>
+                        </td>
+                    </tr>
+                    {% if user_department_membership_count > 1 %}
+                        <tr>
+                            <td style="width: 90%; vertical-align: middle">Switch department</td>
+                            <td style="width: 10%; vertical-align: middle" align="center">
+                            <a href="{% url 'schools:user-change-department' %}"
+                                class="btn btn-secondary" role="button"><i class="material-icons">transfer_within_a_station</i>
+                            </a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endif %}
+                {% if show_manage_custom_staff %}
+                    <tr>
+                        <td style="width: 90%; vertical-align: middle">Manage custom staff roles</td>
+                        <td style="width: 10%; vertical-align: middle" align="center">
+                            <a href="{% url 'schools_plans:custom-staff-list' %}"
+                                class="btn btn-secondary" role="button"><i class="material-icons">people</i>
+                            </a>
+                        </td>
+                     </tr>
+                {% endif %}
+                <tr>
+                    <td style="width: 90%; vertical-align: middle">Change password</td>
+                    <td style="width: 10%; vertical-align: middle" align="center">
+                    <a href="{% url 'account_change_password' %}"
+                        class="btn btn-secondary" role="button"><i class="material-icons">lock</i>
+                    </a>
+                    </td>
+                </tr>
+
+             </tbody>
+        </table>
+        <table class="table table-bordered table-container mb-0">
+            <thead class="generic-table-card">
+            <tr>
+                <th colspan="12">General Information</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="width: 90%; vertical-align: middle">Help: Frequently Asked Questions</td>
+                <td style="width: 10%; vertical-align: middle" align="center">
+                <a href="{{ faq_page }}"
+                    class="btn btn-secondary" role="button" target="_blank"><i class="material-icons">help</i>
+                </a>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 90%; vertical-align: middle">About {{ program_name }}</td>
+                <td style="width: 10%; vertical-align: middle" align="center">
+                <a href="{% url 'core_nav:about' %}"
+                    class="btn btn-secondary" role="button"><i class="material-icons">info</i>
+                </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        {% if can_upload_badge %}
+        <table class="table table-bordered table-container mb-0">
+            <thead class="generic-table-card">
+            <tr>
+                <th colspan="12">School Logo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% if school_badge_url is None %}
+                    <td style="width: 90%; vertical-align: middle">Upload the school logo</td>
+                    <td style="width: 10%; vertical-align: middle" align="center">
+                        <a href="{% url 'schools:upload-school-badge' %}"
+                           class="btn btn-secondary" role="button"><i class="material-icons">add_photo_alternate</i>
+                        </a>
+                {% else %}
+                    <td style="width: 85%; vertical-align: middle">Upload the school logo</td>
+                    <td style="width: 15%" align="center">
+                        <a href="{% url 'schools:upload-school-badge' %}">
+                            <img src="{{ current_user.school.school_badge.url }}" width="150" height="150">
+                        </a>
+                    </td>
+                {% endif %}
+            </tr>
+            </tbody>
+        </table>
+        {% endif %}
+
+        {% if request.user.is_staff %}
+        <table class="table table-bordered table-container mb-0">
+            <thead class="generic-table-card">
+            <tr>
+                <th colspan="12">Stats</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="width: 90%; vertical-align: middle">User tracking dashboard</td>
+                <td style="width: 10%; vertical-align: middle" align="center">
+                    <a href="{% url 'stats:user-tracking-dashboard' %}"
+                       class="btn btn-secondary" role="button"><i class="material-icons">double_arrow</i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    {% endif %}
+
+    </div>
+    </div>
+
+
+    </div>
+
+    </main>
+
+{% endblock %}
