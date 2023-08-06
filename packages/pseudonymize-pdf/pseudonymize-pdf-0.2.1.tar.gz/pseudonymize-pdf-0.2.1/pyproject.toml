@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "pseudonymize-pdf"
+version = "0.2.1"
+description = "A convenience library to read and alter PDFs to remove personally identifying data"
+authors = ["Stephen Badger <stephen.badger@vitalbeats.com>"]
+license = "GPL-3.0-or-later"
+include = ["LICENSE"]
+readme = "README.md"
+homepage = "https://github.com/vitalbeats/pseudonymize-pdf"
+repository = "https://github.com/vitalbeats/pseudonymize-pdf"
+keywords = ["pdf"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Topic :: Text Processing"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.3"
+pytest-cov = "^2.11.1"
+pycodestyle = "^2.7.0"
+autopep8 = "^1.5.6"
+pylint = "^2.7.4"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
