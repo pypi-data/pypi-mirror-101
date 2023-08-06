@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "deserialize"
+version = "1.8.1"
+description = "A library to make deserialization easy."
+
+license = "MIT"
+
+authors = [
+    "Dale Myers <dale@myers.io>"
+]
+
+readme = 'README.md'
+
+repository = "https://github.com/dalemyers/deserialize"
+homepage = "https://github.com/dalemyers/deserialize"
+
+keywords = ['deserialization', 'deserialize', 'objects', 'object', 'json']
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Topic :: Software Development :: Libraries"
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+black = "=19.10b0"
+mypy = "=0.750"
+pylint = "=2.4.4"
+pytest = "=5.3.2"
+pytest-cov = "=2.8.1"
+recommonmark = "=0.6.0"
+sphinx = "^2.3"
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
