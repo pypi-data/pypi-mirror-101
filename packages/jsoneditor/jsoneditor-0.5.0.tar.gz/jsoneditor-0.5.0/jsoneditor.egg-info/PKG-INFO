@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: jsoneditor
+Version: 0.5.0
+Summary: Visualize and edit JSON
+Home-page: https://github.com/dermasmid/py-jsoneditor
+Author: Cheskel Twersky
+Author-email: twerskycheskel@gmail.com
+License: MIT
+Description: # Installation
+        
+        ```bash
+        pip3 install jsoneditor
+        ```
+        
+        # Usage
+        
+        ```python
+        import requests
+        import jsoneditor
+        
+        data = requests.get('your endpiont here').json()
+        jsoneditor.editjson(data)
+        ```
+        
+Keywords: python3 JSON jsoneditor
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
