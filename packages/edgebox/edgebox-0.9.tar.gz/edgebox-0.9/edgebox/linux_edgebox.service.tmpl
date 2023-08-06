@@ -1,0 +1,7 @@
+[Unit]
+Description=Start up all MobiledgeX Edgeboxes
+
+[Service]
+Type=oneshot
+ExecStart={{edgebox_comm}} startall
+KillMode=process
