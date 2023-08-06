@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Projekte{% endblock %}
+
+{% block header %}
+    {% if project is defined %}
+        <h1>Projekt bearbeiten</h1>
+    {% else %}
+        <h1>Neues Projekt erstellen</h1>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% include 'project/creation_edit_form.html' %}
+{% endblock %}

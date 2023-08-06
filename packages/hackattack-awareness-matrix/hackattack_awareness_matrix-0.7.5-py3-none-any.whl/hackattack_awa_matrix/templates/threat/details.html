@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="jumbotron" style="margin-bottom:0">
+      <h1 class="display-4">{% block title %}Bedrohungsdetails{% endblock %}</h1>
+          <div class="lead text-left">
+              <strong>Name: </strong>{{ threat["name"] }}<br/>
+              <strong>Beschreibung: </strong>{{ threat["description"] }}<br/>
+              <strong>Priorität: </strong>{{ threat["priority"] }}<br/>
+              {% if threat["created_at"] is defined %}
+                <strong>Erstellt am: </strong>{{ threat["created_at"] }}<br/>
+              {% endif %}
+              {% if threat["due_date"] is defined %}
+                <strong>Zu erledigen bis: </strong>{{ threat["due_date"] }}
+              {% endif %}
+          </div>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-6">
+            <h3>tech./org. Gegenmaßnahmen&nbsp;<a href="{{ url_for('threat.manage_countermeasures', project_id=threat['project_id'], threat_id=threat['id']) }}"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i></button></a></h3>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Beschreibung</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Bearbeiten</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cm in already_assigned_countermeasures %}
+                  <tr>
+                      <td>{{ cm['name'] }}</td>
+                      <td>{{ cm['description'][:50] + " ..." if cm['description']|length > 50 else cm['description']  }}</td>
+                      <td><a href="{{ url_for('countermeasure.details', project_id=cm['project_id'], countermeasure_id=cm['id']) }}">Details</a></td>
+                      <td><a href="{{ url_for('countermeasure.edit', project_id=cm['project_id'], countermeasure_id=cm['id']) }}">Bearbeiten</a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <h3>Awarenessmaßnahmen&nbsp;<a href="{{ url_for('threat.manage_awarenessmeasures', project_id=threat['project_id'], threat_id=threat['id']) }}"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i></button></a></h3>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Beschreibung</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Bearbeiten</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for am in already_assigned_awarenessmeasures %}
+                  <tr>
+                      <td>{{ am['name'] }}</td>
+                      <td>{{ am['description'][:50] + " ..." if am['description']|length > 50 else am['description']  }}</td>
+                      <td><a href="{{ url_for('awarenessmeasure.details', project_id=am['project_id'], awarenessmeasure_id=am['id']) }}">Details</a></td>
+                      <td><a href="{{ url_for('awarenessmeasure.edit', project_id=am['project_id'], awarenessmeasure_id=am['id']) }}">Bearbeiten</a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <h3>Betroffene Mitarbeiter&nbsp;<a href="{{ url_for('threat.manage_employee_groups', project_id=threat['project_id'], threat_id=threat['id']) }}"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i></button></a></h3>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Beschreibung</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Bearbeiten</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for ae in affected_employees %}
+                  <tr>
+                      <td>{{ ae['name'] }}</td>
+                      <td>{{ ae['description'][:50] + " ..." if ae['description']|length > 50 else ae['description']  }}</td>
+                      <td><a href="{{ url_for('employee.details', project_id=ae['project_id'], employee_id=ae['id']) }}">Details</a></td>
+                      <td><a href="{{ url_for('employee.edit', project_id=ae['project_id'], employee_id=ae['id']) }}">Bearbeiten</a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

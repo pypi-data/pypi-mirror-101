@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Mitarbeiter{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="float-right mb-3">
+        <a href="{{ url_for('employee.create', project_id=session['selected_project']) }}">
+            <button class="btn btn-sm btn-info"><i class="fas fa-plus-circle"></i> Neue Mitarbeitergruppe hinzufügen</button>
+        </a>
+    </div>
+
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Beschreibung</th>
+          <th scope="col">Bearbeiten</th>
+          <th scope="col">Löschen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for emp in employees %}
+          <tr>
+              <td>{{ emp['name'] }}</td>
+              <td>{{ emp['description'][:50] + " ..." if emp['description']|length > 50 else emp['description']  }}</td>
+              <td><a href="{{ url_for('employee.edit', project_id=session['selected_project'], employee_id=emp['id']) }}"><button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Bearbeiten</button></a></td>
+              <td><button class="btn btn-sm btn-danger open-delete-dialog" data-form-delete-action="{{ url_for('employee.delete', project_id=session['selected_project']) }}" data-id="{{ emp['id'] }}" data-name="{{ emp['name'] }}" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash"></i> Löschen</button></td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+
+    {% include 'helper/delete-dialog.html' %}
+
+{% endblock %}

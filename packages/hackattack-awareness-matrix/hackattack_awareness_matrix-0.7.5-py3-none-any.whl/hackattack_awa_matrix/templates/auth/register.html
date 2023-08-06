@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h4>Nur Eingeloggte Benutzer dürfen neue User erstellen!</h4>
+    <form method="post">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="label-name">Benutzername:</span>
+          </div>
+          <input type="text" class="form-control" id="username" placeholder="Benutzername" name="username" aria-label="Name" aria-describedby="label-name" required>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="label-password">Passwort:</span>
+          </div>
+          <input type="password" class="form-control" placeholder="Passwort" name="password" id="password" aria-label="Passwort" aria-describedby="label-password" required>
+        </div>
+        <div class="input-group mb-3">
+            <input type="submit" class="btn btn-secondary" value="Erstellen">&nbsp;
+            <input type="button" class="btn btn-secondary" value="Zurück" onclick="history.back()">
+        </div>
+    </form>
+
+{% endblock %}

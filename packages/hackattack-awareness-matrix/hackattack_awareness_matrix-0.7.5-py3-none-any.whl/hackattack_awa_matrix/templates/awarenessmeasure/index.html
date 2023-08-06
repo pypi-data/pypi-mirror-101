@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Awarenessmaßnahmen für Projekt "{{ project['name'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="float-right mb-3">
+        <a href="{{ url_for('awarenessmeasure.create', project_id=project['id']) }}">
+            <button class="btn btn-sm btn-info"><i class="fas fa-plus-circle"></i> Neue Awarenessmaßnahme hinzufügen</button>
+        </a>
+    </div>
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Beschreibung</th>
+          <th scope="col">umgesetzt</th>
+          <th scope="col">rechtlich abzuklären</th>
+          <th scope="col">rechtliche Beschreibung</th>
+          <th scope="col">Due-Date</th>
+          <th scope="col">Details</th>
+          <th scope="col">Bearbeiten</th>
+          <th scope="col">Löschen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for am in awarenessmeasures %}
+          <tr>
+              <td>{{ am['name'] }}</td>
+              {% if am['description']|length > 50 %}
+                <td data-toggle=tooltip title="{{am['description']}}">{{ am['description'][:50] + " ..." }}</td>
+              {% else %}
+                  <td>{{ am['description']  }}</td>
+              {% endif %}
+              <td><span>{{ am["percentage_executed"] if am["percentage_executed"] is defined }}%</span></td>
+              <td><input name="{{ am['id'] }}_needs_legal_attention" value="1" type="checkbox" disabled {{ "checked" if am["needs_legal_attention"] == 1 }}></td>
+              <td>{{ am['legal_description'][:50] + " ..." if am['legal_description']|length > 50 else am['legal_description']  }}</td>
+              <td>{{ am['due_date'].strftime("%d.%m.%Y") if am['due_date'] is defined and am['due_date'] is not none }}</td>
+              <td><a href="{{ url_for('awarenessmeasure.details', project_id=am['project_id'], awarenessmeasure_id=am['id']) }}"><button class="btn btn-sm btn-primary"><i class="fas fa-info"></i> Details</button></a></td>
+              <td><a href="{{ url_for('awarenessmeasure.edit', project_id=am['project_id'], awarenessmeasure_id=am['id']) }}"><button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Bearbeiten</button></a></td>
+              <td><button class="btn btn-sm btn-danger open-delete-dialog" data-form-delete-action="{{ url_for('awarenessmeasure.delete', project_id=am['project_id']) }}" data-id="{{ am['id'] }}" data-name="{{ am['name'] }}" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash"></i> Löschen</button></td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+    {% include 'helper/delete-dialog.html' %}
+
+{% endblock %}
