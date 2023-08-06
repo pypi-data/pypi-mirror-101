@@ -1,0 +1,24 @@
+<footer>
+	
+</footer>
+<script type="text/javascript">
+    function LogOutSuc () {
+        window.location.href = "/";
+    }
+
+    function nvgpost(what, data, fcallback) {
+        fetch(what,
+            {
+                method: 'POST',
+                cache: 'no-cache',
+                credentials: 'same-origin',
+                body: data
+            }).then( x => {
+            return x.json();
+        }).then( y => {
+            fcallback(y);
+        });
+    }
+
+</script>
+<script src="/js/script.js?<?=$CACHE;?>"></script>

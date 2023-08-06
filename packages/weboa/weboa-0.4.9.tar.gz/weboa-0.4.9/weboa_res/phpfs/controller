@@ -1,0 +1,42 @@
+<?php
+$user = false;
+
+include_once __DIR__."/language.php";
+if(in_array($lang, $langs))
+    include_once __DIR__."/../configs/".$lang.".php";
+else
+	include_once __DIR__."/../configs/en.php";
+
+include_once __DIR__."/../configs/consts.php";
+include_once __DIR__."/auth.php";
+include_once __DIR__."/router.php";
+
+function include_to_var($file, $datatype, $data){
+    if($datatype=="YOURVAR") {
+        $YOURVAR = $data;
+    }
+
+    ob_get_clean();
+    ob_start();
+    include $file;
+    return ob_get_clean();
+}
+
+/*Stat*/
+if($_SERVER['SERVER_NAME']!="localhost") {
+    $cccc = new nvgData("stati","ips",'ip',$_SITE_TITLE,6,1,1);
+    $cccc2 = new nvgCount("stati","visitors",$_SITE_TITLE);
+    $cccc2->enableLangC("langs");
+    $cccc2->Count();
+} else {
+    $user = new class {
+        public $first_name = 'hello';
+        public $last_name = 'world';
+        public $avatar = "f01b884581aedd08352a4b189b30a71b";
+        public $myutc = 7200;
+        public $id = 34;
+    };
+
+    //$user = false;
+}
+?>

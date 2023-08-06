@@ -1,0 +1,61 @@
+<?php
+function hedset($kuda = "?")
+{
+    header("Location: ".$kuda);
+}
+
+if(isset($_GET['api']) and $_GET['api']=="auth" and isset($_GET['hash']) and isset($_SERVER['HTTP_REFERER']) )
+{
+    R::selectDatabase("nvgpass");
+
+    $ses = R::findOne("sessions","hash = ? LIMIT 1",[$_GET['hash']]);
+    if($ses)
+    {
+        $user = R::findOne("users","id = ?",[$ses->user_ide]);
+        if($user)
+            $hash = hash("sha256",$DOMAIN.$user->id);
+    }
+    else
+        $hash = false;
+
+    if($user and $ses and $hash == $_GET['hash'] and !$ses->ban)
+        setcookie("nvg_auth_user", $ses->hash, time() + $ses->time2,'/');
+    hedset();
+
+    R::selectDatabase('default');
+}
+
+if( isset($_COOKIE['nvg_auth_user']) )
+{
+    R::selectDatabase("nvgpass");
+    $ses = R::findOne("sessions","hash = ? LIMIT 1",[$_COOKIE['nvg_auth_user']]);
+    if($ses)
+        $hash = hash("sha256",$DOMAIN.@R::findOne("users","id = ?",[$ses->user_ide])->id);
+    else
+        $hash = false;
+
+    $data = [
+        'path' => '/php/api/',
+        'advance' => true,
+        'tab' => 'sessions'
+      ];
+
+    if($ses and $hash == $_COOKIE['nvg_auth_user'])
+    {
+        if(!$ses->ban)
+        {
+            $ses->time = time();
+            $ses->is_online = true;
+            $ses->ip = $_SERVER['REMOTE_ADDR'];
+            $ses->user_agent = $_SERVER['HTTP_USER_AGENT'];
+            R::store($ses);
+
+            setcookie("nvg_auth_user", $ses->hash, time() + $ses->time2,'/');
+            $user = R::findOne("users","id = ?",[@R::findOne("users","id = ?",[$ses->user_ide])->id]);
+        }
+    }
+    else
+        setcookie("nvg_auth_user",0, time() -1,'/');
+    R::selectDatabase('default');
+}
+?>
