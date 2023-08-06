@@ -1,0 +1,38 @@
+{
+  "runtime_id": 216,
+  "types": {
+    "Address": "MultiAddress",
+    "LookupSource": "MultiAddress",
+    "AccountInfo": "AccountInfoWithTripleRefCount",
+    "FullIdentification": "()",
+    "Keys": {
+      "type": "struct",
+      "type_mapping": [
+         ["grandpa", "AccountId"],
+         ["babe", "AccountId"],
+         ["im_online", "AccountId"],
+         ["para_validator", "AccountId"],
+         ["para_assignment", "AccountId"],
+         ["authority_discovery", "AccountId"]
+      ]
+    }
+  },
+  "versioning": [
+    {
+      "runtime_range": [0, 200],
+      "types": {
+        "Address": "AccountIdAddress",
+        "LookupSource": "AccountIdAddress",
+        "AccountInfo": "AccountInfoWithDualRefCount"
+      }
+    },
+    {
+      "runtime_range": [201, null],
+      "types": {
+        "Address": "MultiAddress",
+        "LookupSource": "MultiAddress",
+        "AccountInfo": "AccountInfoWithTripleRefCount"
+      }
+    }
+  ]
+}
