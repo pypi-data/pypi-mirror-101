@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: khbr
+Version: 0.1
+Summary: UNKNOWN
+Home-page: https://github.com/thundrio-kh/khbr
+Author: Thundrio
+Author-email: thundrio@yahoo.com
+Maintainer-email: thundrio@yahoo.com
+License: MIT
+Platform: any
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: PyYAML
+
+## Developing using Docker
+
+* Have docker installed
+* clone this repo and navigate to this directory
+* run `docker build . --tag khbr`
+* run `docker run -it -v %cd%/src:/app/src -v %cd%/public:/app/public -p 3001:3000 -e CHOKIDAR_USEPOLLING=true khbr:latest`
+
+* After a minute the console will say it was compiled successfully and the site will be available at `localhost:3001` (and your changes will hot reload). Closing the terminal will cause the server to shut down.
+
