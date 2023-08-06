@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: aa-policy-validator
+Version: 0.2
+Summary: Run AWS Access Analyzer Policy Validation against all your IAM Policies (account-wide)
+Home-page: https://github.com/z0ph/aa-policy-validator
+Author: Victor GRENU
+Author-email: vgrenu@zoph.io
+License: MIT
+Download-URL: https://github.com/z0ph/aa-policy-validator/archive/refs/tags/0.2.tar.gz
+Keywords: AWS,IAM,AccessAnalyzer,PolicyValidation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: boto3
+
+# :white_check_mark: Access Analyzer - Batch Policy Validator
+
+This script will analyze using [AWS Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html) all your account customer IAM Policies.
+
+## Usage
+
+> ProTip :bulb: : Use AWS CloudShell to run this directly on your AWS Account
+
+        $ pip install aa-policy-valitor
+
+Change path to your preferred folder.
+
+        $ mkdir policy-validator
+        $ cd policy-validator
+        $ aa-policy-validator
+## Results
+
+Results will be written into a `findings` folder with a `README.md` file.
+
+![findings screenshot](./assets/screenshot.png)
+
+
