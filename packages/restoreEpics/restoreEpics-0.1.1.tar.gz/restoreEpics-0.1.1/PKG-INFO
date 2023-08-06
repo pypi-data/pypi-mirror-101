@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: restoreEpics
+Version: 0.1.1
+Summary: A simple package that gives wrapped caput and writeMatrix functions for writing EPICS channels which save previous values and a restoreEpics function can be used later to restore all values in case of error, interrupt, or as a final restore.
+Home-page: https://git.ligo.org/anchal.gupta/restoreepics
+Author: Anchal Gupta
+Author-email: anchal@caltech.edu
+License: MIT
+Download-URL: https://git.ligo.org/anchal.gupta/restoreepics/-/archive/0.1.1/restoreepics-0.1.1.tar.gz
+Description: UNKNOWN
+Keywords: EPICS,RESTORE,MATRIX
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
