@@ -1,0 +1,21 @@
+pytz>=2016.10
+six>=1.14.0
+
+[:python_version <= "3.4"]
+decorator<5.0,>=4.0.11
+
+[:python_version <= "3.5"]
+stomp.py<5.0.0,>=4.1.23
+
+[:python_version == "2.7"]
+requests>=2.20.1
+
+[:python_version == "3.4"]
+requests<2.22.0,>=2.20.1
+
+[:python_version >= "3.5"]
+decorator>=4.0.11
+requests>=2.20.1
+
+[:python_version >= "3.6"]
+stomp.py>=4.1.23
