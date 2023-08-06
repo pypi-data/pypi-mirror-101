@@ -1,0 +1,80 @@
+Metadata-Version: 2.1
+Name: py-xmltv
+Version: 1.0.8
+Summary: An Auto-Generated Python Module for Reading and Writing XMLTV Files based on the official XMLTV XSD and DTD schema.
+Home-page: https://github.com/chris102994/py-xmltv
+Author: Chris102994
+Author-email: chris102994@yahoo.com
+License: LGPL-3.0+
+Project-URL: Source, https://github.com/chris102994/py-xmltv
+Project-URL: Changelog, https://github.com/chris102994/py-xmltv/blob/master/CHANGELOG.md
+Keywords: tv,,xml,,xmltv,,xsd,,xsdata
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: setuptools
+Requires-Dist: sh
+Requires-Dist: xsdata
+Provides-Extra: build
+Requires-Dist: jingtrang ; extra == 'build'
+Requires-Dist: pytest ; extra == 'build'
+Requires-Dist: sh ; extra == 'build'
+Requires-Dist: xsdata[cli] ; extra == 'build'
+Provides-Extra: test
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: tox ; extra == 'test'
+
+<!-- Links -->
+[py-xmltv]: (https://github.com/chris102994/py-xmltv)
+[Jing-Trang]: (https://github.com/relaxng/jing-trang)
+[xsData]: (https://github.com/tefra/xsdata)
+
+# [py-xmltv]
+
+This is a simple project to turn the official XMLTV DTD/XSDs into proper serialized Python Data classes for easy writing/reading.
+
+This is accomplished by using the [Jing-Trang] project to transform the supplied DTD into a valid XML. Once there's a valid XSD corresponding Python data classes are generated using the [xsData] project.
+
+[![Build Status](https://travis-ci.com/chris102994/py-xmltv.svg?branch=master)](https://travis-ci.com/github/chris102994/py-xmltv)
+[![PyPi Link](https://img.shields.io/pypi/status/py-xmltv?label=PyPi)](https://pypi.org/project/py-xmltv/)
+# Changelog
+
+## 1.0
+* Initial Release.
+
+## 1.0.1
+* Updating the build process for travis-ci.
+* Ensured it could push to PyPi repo.
+* Adding pytest unit tests.
+
+## 1.0.2
+* Add helper method to get a proper rating object.
+  * Added tests for this method.
+
+## 1.0.3
+* Updating the setup and dependencies.
+
+## 1.0.4
+* Fixed missing files in pypi.
+
+## 1.0.5
+* Added missing data files.
+
+## 1.0.6
+* Fixed the packaging issues.
+
+## 1.0.7
+* Add binary distribution and twine tests.
+
