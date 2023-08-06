@@ -1,0 +1,215 @@
+Metadata-Version: 2.1
+Name: robustnessgym
+Version: 0.0.4a1
+Summary: Robustness Gym is an evaluation toolkit for natural language processing.
+Home-page: https://robustnessgym.com
+License: Apache-2.0
+Keywords: Machine Learning,Natural Language Processing,Evaluation
+Author: Robustness Gym
+Author-email: kgoel@cs.stanford.edu
+Maintainer: Karan Goel
+Maintainer-email: kgoel@cs.stanford.edu
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Provides-Extra: adversarial
+Provides-Extra: augmentation
+Provides-Extra: summarization
+Provides-Extra: text
+Provides-Extra: vision
+Requires-Dist: Cython (>=0.29.21,<0.30.0)
+Requires-Dist: allennlp (>=1.3.0,<2.0.0); extra == "text"
+Requires-Dist: allennlp-models (>=1.3.0,<2.0.0); extra == "text"
+Requires-Dist: cytoolz (>=0.11.0,<0.12.0)
+Requires-Dist: datasets (>=1.1.3,<2.0.0)
+Requires-Dist: dill (>=0.3.3,<0.4.0)
+Requires-Dist: fastBPE (>=0.1.0,<0.2.0)
+Requires-Dist: fuzzywuzzy (>=0.18.0,<0.19.0)
+Requires-Dist: hydra-core (>=1.0.4,<2.0.0)
+Requires-Dist: ipywidgets (>=7.6.2,<8.0.0)
+Requires-Dist: jsonlines (>=1.2.0,<2.0.0)
+Requires-Dist: jupyterlab (>=3.0.0,<4.0.0)
+Requires-Dist: kaleido (==0.1.0)
+Requires-Dist: multiprocess (>=0.70.11,<0.71.0)
+Requires-Dist: nlpaug (>=1.1.1,<2.0.0); extra == "augmentation"
+Requires-Dist: nltk (>=3.5,<4.0); extra == "text"
+Requires-Dist: numpy (>=1.18.0,<2.0.0)
+Requires-Dist: omegaconf (>=2.0.5,<3.0.0)
+Requires-Dist: plotly (>=4.14.1,<5.0.0)
+Requires-Dist: progressbar (>=2.5,<3.0)
+Requires-Dist: pyahocorasick (>=1.4.0,<2.0.0)
+Requires-Dist: python-Levenshtein (>=0.12.0,<0.13.0)
+Requires-Dist: pytorch-lightning (>=1.1.2,<2.0.0)
+Requires-Dist: rouge-score (>=0.0.4,<0.0.5); extra == "summarization"
+Requires-Dist: scikit-learn (>=0.24.1,<0.25.0)
+Requires-Dist: semver (>=2.13.0,<3.0.0)
+Requires-Dist: spacy (>=2.3.5,<3.0.0); extra == "text"
+Requires-Dist: stanza (>=1.1.1,<2.0.0); extra == "text"
+Requires-Dist: tensorflow (>=2.3.0,<3.0.0)
+Requires-Dist: textattack (>=0.2.15,<0.3.0); extra == "adversarial"
+Requires-Dist: textblob (>=0.15.3,<0.16.0); extra == "text"
+Requires-Dist: torchvision (>=0.8.0,<0.9.0); extra == "vision"
+Requires-Dist: tqdm (>=4.27.0,<5.0.0)
+Requires-Dist: transformers (>=4.0.0,<5.0.0)
+Project-URL: Documentation, https://robustnessgym.readthedocs.io
+Project-URL: Issue Tracker, https://github.com/robustness-gym/robustness-gym/issues
+Project-URL: Repository, https://github.com/robustness-gym/robustness-gym/
+Description-Content-Type: text/markdown
+
+
+
+<img src="docs/logo.png" width="50" height="50" alt="Robustness Gym logo"/> Robustness Gym
+================================
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/robustness-gym/robustness-gym/CI)
+![GitHub](https://img.shields.io/github/license/robustness-gym/robustness-gym)
+[![codecov](https://codecov.io/gh/robustness-gym/robustness-gym/branch/main/graph/badge.svg?token=MOLQYUSYQU)](https://codecov.io/gh/robustness-gym/robustness-gym)
+[![Documentation Status](https://readthedocs.org/projects/robustnessgym/badge/?version=latest)](https://robustnessgym.readthedocs.io/en/latest/?badge=latest)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![website](https://img.shields.io/badge/website-live-brightgreen)](https://robustnessgym.com)
+
+Robustness Gym is a Python evaluation toolkit for natural language processing. 
+
+#### Coming Soon
+- Examples & tutorials
+- More documentation
+- Contributing guidelines
+
+
+### About
+Robustness Gym is being developed to address challenges in evaluating machine
+ learning models today. You can read more about the ideas underlying Robustness Gym
+  in our paper on [arXiv](https://arxiv.org/pdf/2101.04840.pdf). We also have a
+   [website](https://robustnessgym.com).
+
+The Robustness Gym project is an ongoing collaboration between [Stanford Hazy
+ Research](https://hazyresearch.stanford.edu), [Salesforce Research](https://einstein.ai
+ ) and [UNC Chapel-Hill](http://murgelab.cs.unc.edu/). 
+
+_Note: Robustness Gym is in alpha, so expect frequent updates in the coming weeks and 
+months. Reach out to kgoel [at] cs [dot] stanford [dot] edu if you'd like to become an active contributor, 
+or if you work on an interesting NLP task that you'd like to see supported. 
+Feel free to raise issues on GitHub for bugs/feature requests._
+
+### Installation
+```
+pip install robustnessgym
+```
+
+### Robustness Gym in 5 minutes
+
+#### Datasets that extend Huggingface `datasets`
+```python
+# robustnessgym.Dataset wraps datasets.Dataset
+from robustnessgym import Dataset
+
+# Use Dataset.load_dataset(..) exactly like datasets.load_dataset(..) 
+dataset = Dataset.load_dataset('boolq')
+dataset = Dataset.load_dataset('boolq', split='train[:10]')
+```
+
+#### Cache information
+```python
+# Get a dataset
+from robustnessgym import Dataset
+dataset = Dataset.load_dataset('boolq')
+
+# Run the Spacy pipeline
+from robustnessgym import Spacy
+spacy = Spacy()
+# .. on the 'question' column of the dataset
+dataset = spacy(batch_or_dataset=dataset, 
+                columns=['question'])
+
+
+# Run the Stanza pipeline
+from robustnessgym import Stanza
+stanza = Stanza()
+# .. on both the question and passage columns of a batch
+dataset = stanza(batch_or_dataset=dataset[:32], 
+                 columns=['question', 'passage'])
+
+# .. use any of the other built-in operations in Robustness Gym!
+
+
+# Or, create your own CachedOperation
+from robustnessgym import CachedOperation, Identifier
+from robustnessgym.core.decorators import singlecolumn
+
+# Write a silly function that operates on a single column of a batch
+@singlecolumn
+def silly_fn(batch, columns):
+    """
+    Capitalize text in the specified column of the batch.
+    """
+    column_name = columns[0]
+    assert type(batch[column_name]) == str, "Must apply to text column."
+    return [text.capitalize() for text in batch[column_name]] 
+
+# Wrap the silly function in a CachedOperation
+silly_op = CachedOperation(apply_fn=silly_fn,
+                           identifier=Identifier(_name='SillyOp'))
+
+# Apply it to a dataset
+dataset = silly_op(batch_or_dataset=dataset, 
+                   columns=['question'])
+```
+
+
+#### Retrieve cached information
+```python
+from robustnessgym import Spacy, Stanza, CachedOperation
+
+# Take a batch of data
+batch = dataset[:32]
+
+# Retrieve the (cached) results of the Spacy CachedOperation 
+spacy_information = Spacy.retrieve(batch, columns=['question'])
+
+# Retrieve the tokens returned by the Spacy CachedOperation
+tokens = Spacy.retrieve(batch, columns=['question'], proc_fns=Spacy.tokens)
+
+# Retrieve the entities found by the Stanza CachedOperation
+entities = Stanza.retrieve(batch, columns=['passage'], proc_fns=Stanza.entities)
+
+# Retrieve the capitalized output of the silly_op
+capitalizations = CachedOperation.retrieve(batch,
+                                           columns=['question'],
+                                           identifier=silly_op.identifier)
+
+# Retrieve it directly using the silly_op
+capitalizations = silly_op.retrieve(batch, columns=['question'])
+
+# Retrieve the capitalized output and lower-case it during retrieval
+capitalizations = silly_op.retrieve(
+    batch,
+    columns=['question'],
+    proc_fns=lambda decoded_batch: [x.lower() for x in decoded_batch]
+)
+```
+
+#### Create subpopulations
+```python
+from robustnessgym import Spacy, ScoreSubpopulation
+
+def length(batch, columns):
+    """
+    Length using cached Spacy tokenization.
+    """
+    column_name = columns[0]
+    # Take advantage of previously cached Spacy informations
+    tokens = Spacy.retrieve(batch, columns, proc_fns=Spacy.tokens)[column_name]
+    return [len(tokens_) for tokens_ in tokens]
+
+# Create a subpopulation that buckets examples based on length
+length_subpopulation = ScoreSubpopulation(intervals=[(0, 10), (10, 20)],
+                                          score_fn=length)
+
+dataset, slices, membership = length_subpopulation(dataset, columns=['question'])
+# dataset is updated with slice information
+# slices is a list of 2 Slice objects
+# membership is a matrix of shape (n x 2)
+```
+
