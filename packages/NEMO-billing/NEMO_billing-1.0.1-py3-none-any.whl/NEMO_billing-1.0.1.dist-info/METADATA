@@ -1,0 +1,114 @@
+Metadata-Version: 2.1
+Name: NEMO-billing
+Version: 1.0.1
+Summary: Install Billing plugin for NEMO
+Home-page: https://nemo.prometheuscomputing.com
+Author: Prometheus Computing LLC
+Author-email: nemo@prometheuscomputing.com
+License: MIT
+Keywords: NEMO
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: NEMO (>=3.9.0)
+Requires-Dist: django (<3.0.0,>=2.2)
+Requires-Dist: reportlab (==3.5.65)
+
+# NEMO billing
+
+This billing plugin for NEMO includes core facilities and custom charges/adjustments.
+It also includes sub-modules for adding rates and invoices.
+
+
+# Installation
+
+`pip install NEMO-billing`
+
+# Add core billing plugin
+
+in `settings.py` add to `INSTALLED_APPS`:
+
+```python
+INSTALLED_APPS = [
+    '...',
+    'NEMO_billing', # Add before NEMO to have new navbar menu items show up
+    'NEMO',
+    '...'
+]
+```
+
+### Usage
+
+This plugin will add core facilities and custom charges which can be added through django admin.
+
+Core Facility can be set on Custom Charges, Tools, Areas and Consumables
+
+There are 2 ways to set them up:
+1. In Detailed Administration -> Core Facilities, you can select each tool, area and consumable
+2. In Detailed Administration -> NEMO on each individual custom charge, tool, area or consumable
+
+Core Facility can be accessed on a tool, area or consumable using:
+`tool.core_facility`, `area.core_facility` or `consumable.core_facility`
+
+### Options
+By default, a Core Facility is not required for each custom charge, tool, area and consumable.
+
+That can be changed by updating the following default settings in settings.py:
+
+`TOOL_CORE_FACILITY_REQUIRED = False`
+`AREA_CORE_FACILITY_REQUIRED = False`
+`CONSUMABLE_CORE_FACILITY_REQUIRED = False`
+`CUSTOM_CHARGE_CORE_FACILITY_REQUIRED = False`
+
+
+# Add Rates plugin
+
+in `settings.py` add to `INSTALLED_APPS`:
+
+    'NEMO_billing.rates',
+
+### Rates module options
+The display rate currency is set to \$ by default and can be changed in `settings.py`:
+
+`RATE_CURRENCY = "CAD "`
+
+# Add Invoices plugin
+
+in `settings.py` add to `INSTALLED_APPS`:
+
+    'NEMO_billing.invoices',
+
+### Invoices module options
+Dates format and invoice email prefix can be changed by changing the following properties in `settings.py`:
+
+`INVOICE_DATETIME_FORMAT = "%m/%d/%Y %H:%M:%S"`
+`INVOICE_DATE_FORMAT = "%B %d, %Y"`
+`INVOICE_EMAIL_SUBJECT_PREFIX = "[NEMO Billing] "`
+
+### Email templates
+To change email templates, create a file in NEMO's media folder with the same name.<br>
+The following templates can be set:
+
+* `email_send_invoice_subject.txt`
+* `email_send_invoice_message.html`
+* `email_send_invoice_reminder_subject.txt`
+* `email_send_invoice_reminder_message.html`
+
+### Timed services/cron job to send reminder emails
+To send reminder emails, set a cron job daily with one of the 2 options:
+
+1. send an authenticated http request to `<nemo_url>/invoices/send_invoice_payment_reminder`
+2. run command `django-admin send_invoice_payment_reminder` or `python manage.py send_invoice_payment_reminder`
+
+
+# Post Installation
+
+run:
+
+`python manage.py migrate`
+
+

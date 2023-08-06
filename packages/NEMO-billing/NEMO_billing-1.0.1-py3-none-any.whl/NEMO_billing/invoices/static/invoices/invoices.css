@@ -1,0 +1,36 @@
+.invoice-summary-item .summary-item-name, .invoice-summary-sub_total .summary-item-name, .invoice-summary-facility_discount .summary-item-name
+{
+    padding-left: 25px;
+}
+
+.invoice-summary-category .summary-item-name, .invoice-summary-sub_total .summary-item-name, .invoice-summary-discount .summary-item-name, .invoice-summary-facility_discount .summary-item-name, .invoice-summary-tax .summary-item-name
+{
+    font-weight: bold;
+}
+
+.detail-item-amount, .summary-item-amount
+{
+    text-align: right;
+}
+
+ul.invoice-payment-list li
+{
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+table.invoice-details-table thead th, table.invoice-summary-table thead th
+{
+    background-color: #dbdbdb;
+}
+
+/* Temporary until added in NEMO */
+.spinner-full-page
+{
+	position: absolute;
+    opacity: 0.75;
+    width: 100%;
+    height: 100%;
+	z-index: 99999;
+}
+/* End of temporary code */

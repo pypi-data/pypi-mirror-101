@@ -1,0 +1,95 @@
+{% load custom_tags_and_filters %}
+{% if rate_type.category_specific and rate_categories %}
+	{% for category in rate_categories %}
+		<div class="form-group">
+			<div class="col-sm-6">
+				<h4 class="tool-rate-section">{{ rate_type }} ({{ category }})</h4>
+			</div>
+		</div>
+		{% with type_name=rate_type.get_type_form_name|add:'_'|add:category.name|lower %}
+			{% with rate_form=forms|get_item:type_name %}
+				{% if rate_form.instance.id %}<input type="hidden" name="{{ type_name }}_id" value="{{ rate_form.instance.id }}">{% endif %}
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="{{ type_name }}_amount"><strong>Amount</strong></label>
+					<div class="col-sm-4">
+						<input class="form-control" type="number" step=".01" id="{{ type_name }}_amount" name="{{ type_name }}_amount" value="{{ rate_form.amount.value }}" required>
+					</div>
+					{% if rate_form.amount.errors %}
+						<div class="col-sm-6 form-control-static danger-highlight">
+							{{ rate_form.amount.errors|striptags }}
+						</div>
+					{% endif %}
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4 col-sm-offset-2">
+						<div class="checkbox">
+							<label><input type="checkbox" id="{{ type_name }}_flat" name="{{ type_name }}_flat" {% if rate_form.flat.value %}checked{% endif %}> Flat</label>
+						</div>
+					</div>
+					{% if rate_form.flat.errors %}
+						<div class="col-sm-6 form-control-static danger-highlight">
+							{{ rate_form.flat.errors|striptags }}
+						</div>
+					{% endif %}
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="{{ type_name }}_minimum_charge">Minimum Charge</label>
+					<div class="col-sm-4">
+						<input class="form-control" type="number" step=".01" id="{{ type_name }}_minimum_charge" name="{{ type_name }}_minimum_charge" value="{{ rate_form.minimum_charge.value }}">
+					</div>
+					{% if rate_form.minimum_charge.errors %}
+						<div class="col-sm-6 form-control-static danger-highlight">
+							{{ rate_form.minimum_charge.errors|striptags }}
+						</div>
+					{% endif %}
+				</div>
+			{% endwith %}
+		{% endwith %}
+	{% endfor %}
+{% else %}
+	{# this is the exact copy of the previous html, but with a different rate_form name #}
+	<div class="form-group">
+		<div class="col-sm-6">
+			<h4 class="tool-rate-section">{{ rate_type }}</h4>
+		</div>
+	</div>
+	{% with type_name=rate_type.get_type_form_name %}
+		{% with rate_form=forms|get_item:type_name %}
+			{% if rate_form.instance.id %}<input type="hidden" name="{{ type_name }}_id" value="{{ rate_form.instance.id }}">{% endif %}
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="{{ type_name }}_amount"><strong>Amount</strong></label>
+				<div class="col-sm-4">
+					<input class="form-control" type="number" step=".01" id="{{ type_name }}_amount" name="{{ type_name }}_amount" value="{{ rate_form.amount.value }}" required>
+				</div>
+				{% if rate_form.amount.errors %}
+					<div class="col-sm-6 form-control-static danger-highlight">
+						{{ rate_form.amount.errors|striptags }}
+					</div>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<div class="col-sm-4 col-sm-offset-2">
+					<div class="checkbox">
+						<label><input type="checkbox" id="{{ type_name }}_flat" name="{{ type_name }}_flat" {% if rate_form.flat.value %}checked{% endif %}> Flat</label>
+					</div>
+				</div>
+				{% if rate_form.flat.errors %}
+					<div class="col-sm-6 form-control-static danger-highlight">
+						{{ rate_form.flat.errors|striptags }}
+					</div>
+				{% endif %}
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="{{ type_name }}_minimum_charge">Minimum Charge</label>
+				<div class="col-sm-4">
+					<input class="form-control" type="number" step=".01" id="{{ type_name }}_minimum_charge" name="{{ type_name }}_minimum_charge" value="{{ rate_form.minimum_charge.value }}">
+				</div>
+				{% if rate_form.minimum_charge.errors %}
+					<div class="col-sm-6 form-control-static danger-highlight">
+						{{ rate_form.minimum_charge.errors|striptags }}
+					</div>
+				{% endif %}
+			</div>
+		{% endwith %}
+	{% endwith %}
+{% endif %}
