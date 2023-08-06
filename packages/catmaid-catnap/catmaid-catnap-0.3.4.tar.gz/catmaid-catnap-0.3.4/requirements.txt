@@ -1,0 +1,22 @@
+catpy>=2020.9.3
+coordinates
+h5py
+napari[all]
+numpy
+pandas
+scipy
+scikit-image
+StrEnum
+tables
+tqdm
+zarr
+
+# dev
+
+pytest
+pipe2codeblock
+setuptools-scm==4.1.2
+black==20.8b1
+flake8==3.8.3
+mypy==0.782
+wheel
