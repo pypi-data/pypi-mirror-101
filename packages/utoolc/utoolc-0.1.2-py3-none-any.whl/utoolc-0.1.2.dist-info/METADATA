@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: utoolc
+Version: 0.1.2
+Summary: ❤PyJustToolc(utoolc) > Python Tools For U (You)❤
+Home-page: https://gitee.com/ahviplc/PyJustToolc
+Author: LC
+Author-email: ahlc@sina.cn
+Maintainer: LC
+License: LICENSE
+Download-URL: https://pypi.org/project/utoolc/#files
+Platform: win
+Platform: linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Topic :: Text Processing
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: twine (>=3.4.1)
+Requires-Dist: wheel (>=0.33.6)
+
+PyJustToolc
+===========
+
+    PyJustToolc(utoolc)
+
+PyJustToolc: ❤PyJustToolc(utoolc) > Python Tools For U (You)❤
+
+    https://github.com/ahviplc/PyJustToolc
+
+    https://gitee.com/ahviplc/PyJustToolc
+
+slogan
+------
+
+.. code:: markdown
+
+    ❤PyJustToolc(utoolc) > Python Tools For U (You)❤
+
+如何使用？
+----------
+
+    安装导入,即可使用.
+
+安装包
+~~~~~~
+
+1. Via pip(recommend):: > pip install utoolc
+2. Via easy\_install:: > easy\_install utoolc
+3. From source:: > python setup.py install
+
+使用包
+~~~~~~
+
+.. code:: python
+
+    import utoolc
+
+    if __name__ == '__main__':
+        utoolc.utils.print_a_line()
+        print(utoolc.__author__)
+        print(utoolc.get_random.get_random_str_with_counts(10))
+        utoolc.easy_say.say_hello_world('LC')
+        utoolc.utils.print_a_line()
+
+
+
