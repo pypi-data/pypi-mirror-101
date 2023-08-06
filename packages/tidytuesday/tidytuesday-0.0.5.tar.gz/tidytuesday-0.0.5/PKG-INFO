@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: tidytuesday
+Version: 0.0.5
+Summary: Download #TidyTuesday data
+Home-page: https://github.com/ilnaes/tidytuesdaypy
+Author: Sean Li
+Author-email: seanli646@gmail.com
+License: UNKNOWN
+Description: # tidytuesdayPy
+        
+        Download TidyTuesday data.  Inspired by [tidytuesdayR](https://github.com/thebioengineer/tidytuesdayR).
+        
+        ## Usage
+        
+        ```python
+        from tidytuesday import TidyTuesday
+        
+        tt = TidyTuesday("2021-04-06")
+        ```
+        
+        You can then access each data set from the data field.
+        
+        ```python
+        df = tt.data["forest"]
+        ```
+        
+        You can also access the readme.
+        
+        ```python
+        print(tt.readme)
+        ```
+        
+        ## TODO
+        
+        - Implement parsers for rds formats
+        - Documentation
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
