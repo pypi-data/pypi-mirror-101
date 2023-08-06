@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: mitol-django-authentication
+Version: 1.1.0
+Summary: MIT Open Learning django app extensions for social-auth
+Author: MIT Office of Open Learning
+Author-email: mitx-devops@mit.edu
+Requires-Python: >=3.6,<3.9
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Provides-Extra: dev
+Provides-Extra: test
+Requires-Dist: Django (>=2.2.12,<3.2)
+Requires-Dist: black (>=19.10b0,<20.0); extra == "test"
+Requires-Dist: codecov
+Requires-Dist: django-stubs (==1.6.0); extra == "test"
+Requires-Dist: djangorestframework (>=3.0.0,<4.0.0)
+Requires-Dist: factory_boy (>=2.12.0,<3.0.0); extra == "test"
+Requires-Dist: ipython (>=7.13.0,<8.0.0); extra == "dev"
+Requires-Dist: isort (>=4.3.21,<5.0.0); extra == "test"
+Requires-Dist: mitol-django-common (>=0.7.0,<0.8.0)
+Requires-Dist: mitol-django-mail (>=1.0.0,<2.0.0)
+Requires-Dist: mypy (>=0.782,<0.783); extra == "test"
+Requires-Dist: pylint (>=2.0,<3.0); extra == "test"
+Requires-Dist: pylint-django (>=2.0.2,<3.0.0); extra == "test"
+Requires-Dist: pytest (>=4.6,<5.0); extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: pytest-django (==3.4.8); extra == "test"
+Requires-Dist: pytest-mock (==1.10.1); extra == "test"
+Requires-Dist: python3-saml (>=1.10.1,<2.0.0)
+Requires-Dist: responses (>=0.10.14,<0.11.0); extra == "test"
+Requires-Dist: social-auth-app-django (>=3.1.0,<4.0.0)
+Requires-Dist: social-auth-core (>=3.3.3,<4.0.0)
