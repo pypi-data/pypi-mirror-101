@@ -1,0 +1,50 @@
+{
+  "allOf": [
+    {
+      "$ref": "../nr_common/nr-common-v1.0.0.json"
+    },
+    {
+      "id": "https://nusl.cz/schemas/nr_Nresults/nr-Nresults-v1.0.0.json",
+      "properties": {
+        "N_certifyingAuthority": {
+          "description": "certifikační orgán; nevyplňuje se pro mapy",
+          "$comment": "taxonomie unikátních hodnot",
+          "$ref": "../taxonomy-v2.0.0.json#/definitions/TermArray"
+        },
+        "N_dateCertified": {
+          "description": "datum certifikace/akreditace/schválení metodiky/postupu; nevyplňuje se pro mapy",
+          "type": "string"
+        },
+        "N_economicalParameters": {
+          "description": "ekonomické parametry výsledku typu N",
+          "type": "string",
+          "maxLength": 1024
+        },
+        "N_internalID": {
+          "description": "interní identifikátor výsledku přidělený tvůrcem",
+          "type": "string"
+        },
+        "N_referenceNumber": {
+          "description": "metodiky - uvádí se číslo osvědčení o certifikaci / akreditaci / schválení metodiky (číslo jednací nebo evidenční); léčebný postup - pro humánní medicínu číslo Věstníku Ministerstva zdravotnictví, ve kterém byl LP zveřejněn, pro veterinární medicínu číslo rozhodnutí o certifikaci LP orgánem Státní veterinární správy; památkový postup - uvádí se číslo udělené certifikace příslušným kompetentním orgánem (např. příslušným odborným odborem Ministerstva kultury či Státního památkového ústavu); mapy .- uvede se číslo jednací schvalujícího orgánu a v případě, že existuje i ISBN, doplní se do téhož pole za číslo jednací v závorce",
+          "type": "string"
+        },
+        "N_resultUsage": {
+          "description": "Uvede se kód z následujícího číselníku: A = výsledek využívá pouze poskytovatel; B = výsledek je využíván orgány státní nebo veřejné správy; C = výsledek je využíván bez omezení okruhu uživatelů",
+          "$ref": "../taxonomy-v2.0.0.json#/definitions/TermArray"
+        },
+        "N_technicalParameters": {
+          "description": "technické parametry výsledku typu N",
+          "type": "string",
+          "maxLength": 3000
+        },
+        "N_type": {
+          "description": " Pro druh výsledku N se uvede kód z následujícího číselníku: A = certifikovaná metodika (NmetC), B = léčebný postup (Nlec), C = památkový postup (Npam), D = specializovaná mapa s odborným obsahem (Nmap), E = schválená metodika (NmetS), F = akreditovaná metodika (NmetA)",
+          "$ref": "../taxonomy-v2.0.0.json#/definitions/TermArray"
+        },
+        "required": [
+          "N_type"
+        ]
+      }
+    }
+  ]
+}
