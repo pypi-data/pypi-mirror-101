@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: gokartcorelujobi
+Version: 0.0.27
+Summary: UNKNOWN
+Home-page: https://github.com/idsc-frazzoli/gokart-core
+Author: IDSC Frazzoli
+Author-email: idscgokart@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# gokart-core
+
+The python package created from python bindings of [gokart-core](https://github.com/idsc-frazzoli/gokart-core).
+
+https://pypi.org/project/gokartpy
+
+## Building
+
+**Be aware that building can (currently) only happen within `ade`.**
+
+If your build requirements aren't satisfied yet, run:
+
+```shell
+make install_dep
+```
+
+building the complete and upload a new version to pypi ist done with the command
+
+```shell
+make package_new
+```
+
+## Developing
+
+A rough summary on how to create new python bindings can be found in [HOW_TO_BINDINGS.md](./HOW_TO_BINDINGS.md).
+
+## License
+
+Pybind11 is provided under a BSD-style license that can be found in the LICENSE file. By using, distributing, or
+contributing to this project, you agree to the terms and conditions of this license.
+
+
