@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+packaging = "==20.9"
+idna = "==3.1"
+tqdm = "==4.60.0"
+pkginfo = "==1.7.0"
+urllib3 = "==1.26.4"
+keyring = "==23.0.1"
+docutils = "==0.17"
+pygments = "==2.8.1"
+setuptools = "==54.2.0"
+readme-renderer = "==29.0"
+twine = "==3.4.1"
+bleach = "==3.3.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
