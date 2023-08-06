@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: climanager
+Version: 0.0.1
+Summary: Assist in parsing cli options and parameters
+Home-page: https://github.com/haogooder666/cli_man
+Author: Haogooder
+Author-email: haogooder@163.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+
+# CliMan
+
+## 项目简介
+
+该项目用于解析CLI命令行参数，基于argparser，采用类似单例模式
+
+### 安装
+
+    pip install climan
+
+### 使用
+
+1. 初始化
+
+    CliMan.init("desc...")
+
+2. 添加选项或者参数
+
+    CliMan.add_flag("-f", "--flag")  
+    CliMan.add_arg("cmd")
+
+3. 解析
+
+    CliMan.parse()
+
+4. 取值
+
+    v1 = CliMan.get_str("cmd")
+    v2 = CliMan.get_float("flag")
+
+
