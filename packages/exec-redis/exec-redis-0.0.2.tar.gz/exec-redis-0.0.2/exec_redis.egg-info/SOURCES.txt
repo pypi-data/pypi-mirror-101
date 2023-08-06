@@ -1,0 +1,13 @@
+.gitignore
+LICENSE
+README.md
+setup.py
+.github/workflows/python-publish.yml
+exec_redis.egg-info/PKG-INFO
+exec_redis.egg-info/SOURCES.txt
+exec_redis.egg-info/dependency_links.txt
+exec_redis.egg-info/requires.txt
+exec_redis.egg-info/top_level.txt
+execredis/__init__.py
+execredis/connection.py
+execredis/handler.py
