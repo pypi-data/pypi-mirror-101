@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: mypythontools
+Version: 0.0.30
+Summary: Some tools/functions/snippets used across projects.ions.
+Home-page: https://github.com/Malachov/mypythontools
+Author: Daniel Malachov
+Author-email: malachovd@seznam.cz
+License: mit
+Platform: any
+Classifier: Programming Language :: Python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Natural Language :: English
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Description-Content-Type: text/markdown
+Requires-Dist: sphinx
+Requires-Dist: pyinstaller
+Requires-Dist: pytest
+Requires-Dist: setuptools
+Requires-Dist: wheel
+Requires-Dist: twine
+Requires-Dist: EelForkExcludeFiles
+Requires-Dist: mylogging
+Requires-Dist: GitPython
+Requires-Dist: pandas
+
+# mypythontools
+
+Some tools/functions/snippets used across projects.
+
+Official documentation - [readthedocs](https://mypythontools.readthedocs.io/)
+Official repo - [github](https://github.com/Malachov/mypythontools)
+
+Usually used from IDE. Used paths are infered and things like sphinx rst docs generation, building
+application with pyinstaller or deploying to Pypi is matter of calling one function,
+or clicking one button (e.g. Vs code task).
+
+Many projects - one codebase.
+
+If you are not sure whether structure of app that will work with this code, there is python starter repo
+on [github](https://github.com/Malachov/my-python-starter)
+
+Paths are infered, but if you have atypical structure or have more projects in cwd, use `mypythontools.misc.set_paths()`.
+
+Modules:
+
+- build
+- deploy
+- misc
+- pyvueeel (for applications build with eel and vue)
+- utils (various functions callable from one `push_pipeline` function)
+
+Check modules help with examples.
+
+
