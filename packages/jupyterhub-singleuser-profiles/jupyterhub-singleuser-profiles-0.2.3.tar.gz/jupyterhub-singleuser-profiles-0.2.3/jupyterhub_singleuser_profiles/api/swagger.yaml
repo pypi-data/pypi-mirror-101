@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  title: JupyterHub API
+  description: API for the Spawner UI of JupyterHub
+  version: 0.1.0
+servers:
+  - url: /services/jsp-api
+    description: Add URL prefix for JupyterHub service
+
+paths:
+  /api/whoami:
+    get:
+      operationId: jupyterhub_singleuser_profiles.api.api.whoami
+      summary: Get current user info
+      responses:
+        '200':
+          description: OK
+
+  /api/user/configmap:
+    get:
+      operationId: jupyterhub_singleuser_profiles.api.api.get_user_cm
+      summary: Get a user ConfigMap based on authenticated user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/configmap'
+        '404':
+          description: ConfigMap not found
+    post:
+      operationId: jupyterhub_singleuser_profiles.api.api.update_user_cm
+      summary: Updates user ConfigMap with json data and returns it as response
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/configmap'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/configmap'
+
+  /api/images:
+    get:
+      operationId: jupyterhub_singleuser_profiles.api.api.get_images
+      summary: Get an array of strings of image names (not capable of returning pure json)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: string
+  
+  /api/images/default:
+    get:
+      operationId: jupyterhub_singleuser_profiles.api.api.get_default_image
+      summary: Get the default image, (either one with label or first in list)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /api/sizes:
+    get:
+      operationId: jupyterhub_singleuser_profiles.api.api.get_sizes
+      summary: Get an array strings of size names or a pure json with all parameters
+      parameters:
+        - name: pure_json
+          in: query
+          required: false
+          description: Returns a full json if true
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: string
+  
+  /api/size/{size_name}:
+    get:
+      operationId: jupyterhub_singleuser_profiles.api.api.get_size_by_name
+      summary: Get a single size by name
+      parameters:
+        - name: size_name
+          in: path
+          required: true
+          description: Name of the size
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+        '404':
+          description: Size not found
+
+components:
+  schemas:
+    configmap:
+      type: object
+      properties:
+        env:
+          type: array
+        gpu:
+          type: integer
+        last_selected_image:
+          type: string
+        last_selected_size:
+          type: string
