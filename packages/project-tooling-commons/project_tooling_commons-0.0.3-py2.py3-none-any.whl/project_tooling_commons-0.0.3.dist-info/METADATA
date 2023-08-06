@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: project-tooling-commons
+Version: 0.0.3
+Summary: Add a short description here!
+Home-page: https://gitlab.com/projman-tooling/commons/
+Author: Juan David
+Author-email: jdayllon@gmail.com
+License: MIT
+Project-URL: Documentation, https://gitlab.com/projman-tooling/commons/
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Description-Content-Type: text/x-rst; charset=UTF-8
+Requires-Dist: loguru (==0.5.3)
+Requires-Dist: typer (==0.3.2)
+Requires-Dist: importlib-metadata ; python_version < "3.8"
+Provides-Extra: testing
+Requires-Dist: setuptools ; extra == 'testing'
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-cov ; extra == 'testing'
+
+=======
+commons
+=======
+
+Simple commons library miscellaneous tools
+
+Description
+===========
+
+Simple commons library miscellaneous tools like:
+* Remove accents from strings
+* Check Base64 encoding
+
+
+.. _pyscaffold-notes:
+
+Note
+====
+
+This project has been set up using PyScaffold 4.0.1. For details and usage
+information on PyScaffold see https://pyscaffold.org/.
+
+
