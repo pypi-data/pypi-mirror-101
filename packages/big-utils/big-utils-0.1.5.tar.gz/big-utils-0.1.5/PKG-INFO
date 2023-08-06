@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: big-utils
+Version: 0.1.5
+Summary:  A collection of utilities used across multiple BIG projects 
+Home-page: https://bitbucket.org/pgolec/big-utils
+Author: Patrick Golec
+Author-email: patrick.golec@bitsinglass.com
+License: MIT License
+Project-URL: Wiki, https://bitbucket.org/pgolec/big-utils/wiki
+Project-URL: Source, https://bitbucket.org/pgolec/big-utils/src
+Description: A collection of useful utilities shared a cross a number of [Bits In Glass](https://www.bitsinglass.com) projects.
+        
+        ### What is this repository for? ###
+        
+        This repository a collection of useful, common utilities used over and over again in a number of 
+        [BIG](https://www.bitsinglass.com) projects.
+        
+        This is a library to be included in other projects.
+        
+        ### How do I get set up? ###
+        
+        Dependencies should be installed automatically (they are listed in the `setup.py` file), but here is the `pip` 
+        command for those who like to do things manually:
+        
+            pip install --upgrade pyjwt wheel toml PyYAML dacite
+        
+        To run the unit tests, you will need additional dependencies:
+        
+            pip install --upgrade pytest pytest-mock
+        
+        Alternatively, run those commands from the project root directory:
+        
+            pip install --upgrade -r requirements.txt
+            pip install --upgrade -r test-requirements.txt
+        
+        To run unit tests (using `pytest`), execute the following command from the project root directory:
+        
+            pytest -v tests/*
+        
+Keywords: BIG common shared utilities helpers
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: System :: Systems Administration
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.9.1, <4
+Description-Content-Type: text/markdown
