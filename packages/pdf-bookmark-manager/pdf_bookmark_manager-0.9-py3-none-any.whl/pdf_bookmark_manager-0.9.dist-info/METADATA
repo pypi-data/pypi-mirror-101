@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: pdf-bookmark-manager
+Version: 0.9
+Summary: Simple GTK+ app for creating or editing pdf bookmarks/table of contents, with optional zathura integration'
+Home-page: https://github.com/mbrea-c/pdf-bookmark-manager
+Author: Manuel Brea Carreras
+Author-email: m.brea.carreras@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: dbus-python (>=1.2.16)
+Requires-Dist: PyGObject (>=3.40.1)
+
+# pdf-bookmark-manager
+A simple GTK+3 PDF bookmark (table of contents) manager, with optional zathura integration.
+
+## Dependencies
+ - Python 3
+ - pdftk
+ - GTK+3
+ - PyGObject
+ - dbus-python (for integrating with zathura)
+ - zathura
+
+*IMPORTANT: Note that pdftk, GTK+3 and zathura will not be installed from PyPI,
+as they are not Python packages.*
+
+
+
