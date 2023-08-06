@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: N2SNUserTools
+Version: 0.3.6
+Summary: User Manipulation Tools for Python
+Home-page: https://github.com/NSLS-II/N2SNUserTools
+Author: Brookhaven National Laboratory
+Author-email: swilkins@bnl.gov
+License: BSD (3-clause)
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.6
+Requires-Dist: ldap3
+Requires-Dist: prettytable
+Requires-Dist: gssapi
+Requires-Dist: pyyaml
+
+===============
+N2SN User Tools
+===============
+
+NSLS-II N2SN User Manipulation Tools for Python
+
+
+Reporting issues
+****************
+
+Please report issues to the NSLS-II internal issue tracker at
+https://jira.nsls2.bnl.gov/projects/N2SNUT.
+
+
