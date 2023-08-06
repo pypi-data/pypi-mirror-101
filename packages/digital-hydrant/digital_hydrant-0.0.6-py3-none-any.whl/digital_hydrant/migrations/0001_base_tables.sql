@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS collectors (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT, payload TEXT, timestamp TIMESTAMP, uploaded INTEGER DEFAULT 0);
+CREATE TABLE IF NOT EXISTS unique_ips (id INTEGER PRIMARY KEY AUTOINCREMENT, ip TEXT UNIQUE, ssh_last_tested TIMESTAMP, snmp_last_tested TIMESTAMP, last_nmap_scan TIMESTAMP, open_ports TEXT);
