@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: flarumpy
+Version: 1.0a1
+Summary: Python wrapper for the Flarum API.
+Home-page: https://github.com/nearata/flarumpy
+Author: Nearata
+Author-email: williamdicicco@protonmail.com
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Typing :: Typed
+Requires-Dist: httpx ==0.17.1
+Requires-Dist: black ==20.8b1 ; extra == "test"
+Requires-Dist: mypy ==0.812 ; extra == "test"
+Requires-Dist: isort ==5.8.0 ; extra == "test"
+Provides-Extra: test
+
+# FlarumPy
+
+> Python wrapper for the Flarum API.
+
+This package is still in development.
+
+## License
+
+Licensed under the MIT license. See [LICENSE](LICENSE) for details.
+
