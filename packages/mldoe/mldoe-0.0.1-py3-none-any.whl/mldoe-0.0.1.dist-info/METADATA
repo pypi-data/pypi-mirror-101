@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: mldoe
+Version: 0.0.1
+Summary: Tools to generate and enumerate mixed-level designs
+Home-page: https://github.com/ABohynDOE/mldoe
+Author: Alexandre Bohyn
+Author-email: alexandre.bohyn@kuleuven.be
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.19)
+Requires-Dist: OApackage (>=2.6)
+
+# MLDOE
+
+This package provides the tools to enumerate and characterize regular mixed-level designs (with four and two-level factors).
+
+## Installation
+
+Run the following to install:
+
+```python
+pip install mldoe
+```
+
+## Usage
+
+```python
+from mldoe import design
+
+# Generate a two-level design by columns
+D = TLdesign(16,[1,2,4,8,6])
+
+# Print the design matrix
+print(D.array)
+
+# Compute its word-length pattern
+print(D.wlp())
+
+```
+
+## Developing mldoe
+
+To install mldoe, along with the tools you need to develop and run tests, run the following in your virtualenv:
+
+```bash
+pip install -e .[dev]
+```
+
+
