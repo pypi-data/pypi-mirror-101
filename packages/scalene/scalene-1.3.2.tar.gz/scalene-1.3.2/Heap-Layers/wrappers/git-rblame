@@ -1,0 +1,16 @@
+#!/bin/bash
+
+revision="HEAD"
+
+while [ -n "${revision}" ]
+do
+    result=$(git blame "${revision}" "$@")
+    revision="${result%% *}"
+    if [[ "${revision}" != [a-z0-9]*[a-z0-9] ]]
+    then
+        revision=""
+    else
+        echo "${result}"
+        revision="${revision}~"
+    fi
+done
