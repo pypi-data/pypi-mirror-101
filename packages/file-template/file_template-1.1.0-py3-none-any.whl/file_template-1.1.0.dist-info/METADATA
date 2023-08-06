@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: file-template
+Version: 1.1.0
+Summary: 
+Home-page: https://github.com/LivinParadoX/file-template/
+License: AGPL-3.0-or-later
+Author: Alexandre Janvrin
+Author-email: alexandre.janvrin@reseau.eseo.fr
+Requires-Python: >=3.9,<4.0
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Project-URL: Repository, https://pypi.org/project/file-template/
+Description-Content-Type: text/markdown
+
+# file-template
+
+┌────────────────────────────────────────────────────┐
+│░█▀▀░▀█▀░█░░░█▀▀░░░░░▀█▀░█▀▀░█▄█░█▀█░█░░░█▀█░▀█▀░█▀▀│
+│░█▀▀░░█░░█░░░█▀▀░▄▄▄░░█░░█▀▀░█░█░█▀▀░█░░░█▀█░░█░░█▀▀│
+│░▀░░░▀▀▀░▀▀▀░▀▀▀░░░░░░▀░░▀▀▀░▀░▀░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀│
+└────────────────────────────────────────────────────┘
+
+Replaces keywords in a file with the contents of another file
+
+# Installation
+
+```
+pipx install file-template
+```
+
+# CLI Usage
+
+```
+Usage: file-template [OPTIONS] KEYWORD FILE1 FILE2
+
+  Replace KEYWORD in FILE1 with the contents of FILE2.
+
+Options:
+  -i, --inplace   Edit the file in place instead of outputting to stdout.
+  -n, --no-strip  Do not strip FILE2 of leading or trailing blank characters.
+  --help          Show this message and exit.
+```
+
+# Author
+
+* Alexandre Janvrin, penetration tester at Beijaflore (https://www.beijaflore.com/en/)
+
+# License
+
+AGPLv3+, see LICENSE.txt for more details.
+
+# URLs
+
+* https://pypi.org/project/file-template/
+* https://github.com/LivinParadoX/file-template/
+
