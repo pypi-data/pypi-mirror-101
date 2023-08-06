@@ -1,0 +1,17 @@
+name: fetch-data
+channels:
+  - conda-forge
+dependencies:
+  # Required for full project functionality (don't remove)
+  - pytest
+  # Examples (remove and add as needed)
+  - numpy
+  - pooch
+  - joblib
+  - pip:
+    - python-dotenv
+    - envyaml
+    - requests
+    - chardet==3.0.4
+    - aiohttp
+    - fsspec

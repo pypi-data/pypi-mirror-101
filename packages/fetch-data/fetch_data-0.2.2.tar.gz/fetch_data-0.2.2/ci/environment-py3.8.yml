@@ -1,0 +1,20 @@
+name: test_env_fetch-data
+channels:
+  - conda-forge
+dependencies:
+  - python=3.7
+  ############## These will have to be adjusted to your specific project
+  - numpy
+  - pooch
+  ##############
+  - pytest
+  - pip:
+    - codecov
+    - chardet==3.0.4
+    - pytest-cov
+    - coverage[toml]
+    - python-dotenv
+    - envyaml
+    - requests
+    - aiohttp
+    - fsspec
