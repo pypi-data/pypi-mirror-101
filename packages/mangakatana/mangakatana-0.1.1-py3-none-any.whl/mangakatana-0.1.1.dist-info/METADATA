@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: mangakatana
+Version: 0.1.1
+Summary: An API to query the mangatkatana.com site using BeautifulSoup
+Home-page: https://github.com/nixonjoshua98/mangakatana
+Author: Joshua Nixon
+Author-email: joshuanixonofficial@gmail.com
+License: MIT
+Download-URL: https://github.com/nixonjoshua98/mangakatana/archive/0.1.1.tar.gz
+Keywords: manga,manganelo,scrapper,web,mangakakalot,comic,manhwa,mangakatana
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: bs4
+Requires-Dist: requests
+
+[![Downloads](https://pepy.tech/badge/mangakatana)](https://pepy.tech/project/mangakatana) [![Downloads](https://pepy.tech/badge/mangakatana/month)](https://pepy.tech/project/mangakatana/month) [![Downloads](https://pepy.tech/badge/mangakatana/week)](https://pepy.tech/project/mangakatana/week)
+
+# Mangakatana
+
+```python
+import mangakatana as mankat
+
+result = mankat.search(title="Naruto")
+
+second = result[1]
+
+print(second.title, second.url, second.status)
+
+for chapter in second.chapter_list():
+	print(chapter.title, chapter.url)
+```
+
