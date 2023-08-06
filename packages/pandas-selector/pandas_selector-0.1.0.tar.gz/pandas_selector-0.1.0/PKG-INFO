@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: pandas-selector
+Version: 0.1.0
+Summary: Simple column selector for loc[], iloc[], assign and others.
+Author: Eike von Seggern
+Author-email: eike@vonseggern.space
+Requires-Python: >=3.6.1,<4.0.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: pandas (>=1,<2)
