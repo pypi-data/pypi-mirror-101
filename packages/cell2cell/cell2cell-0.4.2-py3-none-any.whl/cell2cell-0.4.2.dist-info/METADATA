@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: cell2cell
+Version: 0.4.2
+Summary: TBD
+Home-page: UNKNOWN
+Author: cell2cell development team
+Author-email: earmingol@eng.ucsd.edu
+Maintainer: cell2cell development team
+Maintainer-email: earmingol@eng.ucsd.edu
+License: BSD-3-Clause
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS :: MacOS X
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.16)
+Requires-Dist: pandas (>=1.0.0)
+Requires-Dist: xlrd (>=1.1)
+Requires-Dist: openpyxl (>=2.6.2)
+Requires-Dist: networkx (>=2.3)
+Requires-Dist: matplotlib (==3.1.2)
+Requires-Dist: seaborn (==0.10.0)
+Requires-Dist: goenrich (>=1.11)
+Requires-Dist: scikit-learn
+Requires-Dist: tqdm
+Requires-Dist: statsmodels
+Requires-Dist: tensorly
+
+# Inferring cell-cell interactions from transcriptomes with *cell2cell*
+[![PyPI Version][pb]][pypi]
+[![PyPI Downloads][db]][pypi]
+
+[pb]: https://badge.fury.io/py/cell2cell.svg
+[pypi]: https://pypi.org/project/cell2cell/
+[db]: https://img.shields.io/pypi/dm/cell2cell?label=pypi%20downloads
+
+## Installation
+Create a new conda environment:
+```
+conda create -n cell2cell -y python=3.7 jupyter
+```
+
+Activate that environment:
+
+```
+conda activate cell2cell
+```
+
+Then, install cell2cell:
+```
+pip install cell2cell
+```
+## Examples
+
+---
+![plot](https://github.com/earmingol/cell2cell/blob/master/Logo.png?raw=true)
+- A toy example containing main standard analyses is [available here](./examples/Toy-Example.ipynb)
+- An example of using *cell2cell* to infer cell-cell interactions across the whole
+body of *C. elegans* is [available here](https://github.com/LewisLabUCSD/Celegans-cell2cell)
+
+---
+
+![plot](https://github.com/earmingol/cell2cell/blob/master/LogoTensor.png?raw=true)
+- A capsule containing jupyter notebooks for running Tensor-cell2cell on datasets of COVID-19 an the embryonic development
+  of *C. elegans* is [available in codeocean.com]()
+
+---
+
