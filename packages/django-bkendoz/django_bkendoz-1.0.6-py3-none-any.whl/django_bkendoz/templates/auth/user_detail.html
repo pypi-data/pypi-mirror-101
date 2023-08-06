@@ -1,0 +1,18 @@
+{% extends 'django_bkendoz/history_global.html' %}
+
+{% block history_menu %}
+    {% include 'django_bkendoz/templates/detail-menu.html' with menu=list_menu title="Historique des actions" %}
+{% endblock history_menu %}
+
+{% block prev_content %}
+    <h2>{{ object }}</h2>
+    {% include 'django_bkendoz/templates/form.html' %}
+{% endblock prev_content %}
+
+<hr />
+
+{% block history_row %}
+{% for hist in history %}
+    {% include 'django_bkendoz/history_row.html' with user=hist.user date=hist.date type=hist.action object=hist.record.instance %}
+{% endfor %}
+{% endblock %}
