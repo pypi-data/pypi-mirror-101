@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: carte-cli
+Version: 0.3.3
+Summary: A static site generator for data catalogs
+Home-page: https://cartedata.com
+License: GPL-3.0-or-later
+Author: Balint Haller
+Author-email: balint@hey.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Provides-Extra: postgres
+Requires-Dist: Jinja2 (>=2.11.3,<3.0.0)
+Requires-Dist: SQLAlchemy (>=1.3.23,<2.0.0); extra == "postgres"
+Requires-Dist: amundsen-databuilder (>=4.1.0,<5.0.0)
+Requires-Dist: boto3 (>=1.17.2,<2.0.0)
+Requires-Dist: click-spinner (>=0.1.10,<0.2.0)
+Requires-Dist: psycopg2 (>=2.8.6,<3.0.0); extra == "postgres"
+Requires-Dist: ruamel.yaml (>=0.16.12,<0.17.0)
+Requires-Dist: typer (>=0.3.2,<0.4.0)
+Project-URL: Documentation, https://docs.cartedata.com
+Project-URL: Repository, https://github.com/carte-data/carte
+Description-Content-Type: text/markdown
+
+# Carte
+[![PyPI version](https://badge.fury.io/py/carte-cli.svg)](https://badge.fury.io/py/carte-cli)
+![PyPI - License](https://img.shields.io/pypi/l/carte-cli)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/carte_cli.svg)](https://pypi.org/project/carte-cli/)
+
+
+Carte is a Python library for extracting metadata from your data sources and generating structured Markdown files from it. It can also scaffold an MkDocs based static site that provides an easy to use, fully searchable UI that you can simply upload to any static site hosting provider. Carte currently supports the AWS Glue catalog, PostgreSQL, and JSON schemas (only basic support). More sources are coming soon. (You can also use sources from the [Amundsen Databuilder](https://github.com/amundsen-io/amundsendatabuilder) library with a bit of scripting, see [the docs](https://docs.cartedata.com/reference/databuilder/) for details)
+
+
+## Installation
+
+``` sh
+pip install carte-cli
+```
+
+If you plan to use PostgreSQL as a data source, you should also install the related optional dependencies using the following command instead of the first one:
+
+``` sh
+pip install carte-cli[postgres]
+```
+
+
+
+## Usage
+
+See [the docs](https://docs.cartedata.com)
+
