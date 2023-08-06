@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: ct_snippets
+Version: 0.1
+Summary: Code to manage common College Track data processes
+Home-page: https://github.com/college-track/ct_snippets
+Author: Baker Renneckar
+Author-email: brenneckar@collegetrack.org
+License: MIT
+Description: # CT Snippets
+        
+        A package for improving College Track's data workflow. This package has three primary functions: 
+        
+        - Streamline common task such as shortening site and region's names.
+        - Creating a smoother process for downloading data from Salesforce or Big Query
+        - Making uploading data to Salesforce a painfree process. 
+        
+        This package is currently designed to work in conjunction with [CT Cookie Cutter](https://github.com/College-Track/ct_cookie_cutter)
+        
+        
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
