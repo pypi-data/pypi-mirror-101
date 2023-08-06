@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: cw-celerytask-helpers
+Version: 0.9.2
+Summary: Worker side helpers for cubicweb-celerytask
+Home-page: UNKNOWN
+Author: LOGILAB S.A. (Paris, FRANCE)
+Author-email: contact@logilab.fr
+License: LGPL
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: celery (<5,>=4)
+Requires-Dist: redis
+Requires-Dist: six
+Provides-Extra: cloudwatch_logging_support
+Requires-Dist: watchtower ; extra == 'cloudwatch_logging_support'
+Provides-Extra: s3_logging_support
+Requires-Dist: boto3 ; extra == 's3_logging_support'
+
+UNKNOWN
+
+
