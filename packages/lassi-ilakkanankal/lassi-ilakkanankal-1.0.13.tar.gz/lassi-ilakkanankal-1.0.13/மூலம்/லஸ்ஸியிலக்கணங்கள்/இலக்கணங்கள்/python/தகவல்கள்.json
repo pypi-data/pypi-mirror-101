@@ -1,0 +1,32 @@
+{
+  "பெயர்": "python",
+  "நீட்சி": "py",
+  "இலக்கணம் ஆரம்பம்": "file_input",
+  "மொழி": "en",
+  "எண்ணுரு": "latin",
+  "உள்தள்ளல்": [
+    "INDENT",
+    "DEDENT"
+  ],
+  "இனங்காட்டி கிளைகள்": {
+    "var": 0,
+    "funcdef": 0,
+    "classdef": 0,
+    "getattr": 1,
+    "parameters": true
+  },
+  "பதிப்பு": {
+    "2.0.0": {
+      "இலக்கணம்": "python_2.lark"
+    },
+    "3.0.0": {
+      "இலக்கணம்": "python_3.lark"
+    }
+  },
+  "சோதனைகள்": [
+    {
+      "கிட்": "https://github.com/python/cpython.git",
+      "வழி": "cpython/Lib/test/**/*.py"
+    }
+  ]
+}
