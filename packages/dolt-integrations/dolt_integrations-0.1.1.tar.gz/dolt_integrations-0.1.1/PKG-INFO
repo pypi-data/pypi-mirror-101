@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: dolt-integrations
+Version: 0.1.1
+Summary: 
+Author: Max Hoffman
+Author-email: max@dolthub.com
+Requires-Python: >=3.6.1,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Provides-Extra: metaflow
+Requires-Dist: doltcli (>=0.1.4,<0.2.0)
+Requires-Dist: metaflow (>=2.2.6,<3.0.0); extra == "metaflow"
+Requires-Dist: pandas (>=0.25.2)
