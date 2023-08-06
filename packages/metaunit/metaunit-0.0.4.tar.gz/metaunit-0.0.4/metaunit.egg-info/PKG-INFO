@@ -1,0 +1,84 @@
+Metadata-Version: 1.1
+Name: metaunit
+Version: 0.0.4
+Summary: Metaunit is python package for unit conversion.
+Home-page: UNKNOWN
+Author: Bathiya Seneviratne
+Author-email: seneviratne.bathiya@gmail.com
+License: MIT
+Description: 
+        Metaunit is Python package for unit conversion.
+        ===============================================
+        
+        Install
+        =======
+        For installation 
+            pip install Metaunit
+        
+        How to use
+        ==========
+        
+            from metaunit import *
+        
+            cm_to_mm = centimeters_to_millimeters(1)
+            print(cm_to_mm)
+        
+            kg_to_g = kilograms_to_grams(20)
+            print(kg_to_g)
+        
+            l_to_ml = liters_to_milliliters(5)
+            print(l_to_ml)
+        
+        
+        Available metric conversions
+        ============================
+        
+            centimeters to millimeters
+            decimeters to entimeters
+            meters to centimeters
+            meters to decimeters
+            kilometers to meters
+            square centimeters to square millimeters
+            square meters to square centimeters
+            hectares to square meters
+            square Meters to hectares
+            square Kilometers to square Meters
+            cubic centimeters to cubic millimeters
+            cubic decimeters to cubic centimeters
+            cubic meters to cubic centimeters
+            cubic meters to cubic decimeters
+            grams to milligrams
+            decagrams to grams
+            kilograms to grams
+            tonnes to kilograms
+            gigagrams to megagrams
+            centiliters to milliliters
+            deciliters to centiliters
+            liters to milliliters
+            liters to deciliters
+            kiloliters to liters
+            bytes to bit
+            kilobyte to byte
+            megabyte to kilobytes
+            gigabyte to megabytes
+            terabytes to gigabyte
+            petabytes to terabyte
+            exabyte to petabytes
+            zettabyte to exabytes
+            yottabyte to zettabytes
+        
+        
+        
+        Change Log
+        ==========
+        
+        0.0.4 (10/04/2021)
+        ------------------
+        - Fourth Release
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
