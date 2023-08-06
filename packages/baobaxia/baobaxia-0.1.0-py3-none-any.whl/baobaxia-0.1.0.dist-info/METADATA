@@ -1,0 +1,131 @@
+Metadata-Version: 2.1
+Name: baobaxia
+Version: 0.1.0
+Summary: Baobáxia is an eventually connected data network
+Home-page: https://labmocambos.taina.net.br/npdd/baobaxia-mucua
+Author: NPDD/Rede Mocambos
+Author-email: npdd@mocambos.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: starlette
+Requires-Dist: pydantic[dotenv,email]
+Requires-Dist: uvicorn[standard]
+Requires-Dist: fastapi
+Requires-Dist: python-multipart
+Requires-Dist: aiofiles
+Requires-Dist: python-slugify
+Requires-Dist: datalad
+Requires-Dist: shortuuid
+Requires-Dist: nose
+
+# BAOBÁXIA
+
+__NA ROTA DOS BAOBÁS__
+
+<pre>
+                               .
+                              ,d              .   ,
+                             aA...             YF^
+                              *@@@b          d@P
+                                *@@@b,,,,,-d@@P   ,     ,
+                    ....a@@@@aa.. *@@V@`;;..,,  ,*,   ,*
+                     `V*'  ``*@@B`b b@((bb`@@P*q*@@*"'
+                               `*@`9@,(()))*'   `*.   
+                                `A@,`@@Y@(;'
+                                 (a`@,`@`&@
+                                ."@,@`.@(@@
+                               (@a.@",@^a.,
+                               ,.o..o@ (@o.`
+                               (*",.`*@@o`*@,         <i>"Vamos fazer um mundo digital</i>
+                              ,',@***@a,,`^*.,                       <i>mais do nosso jeito!"</i>
+                              ,&^,@@@@@a,`a.,
+                              &`@`,;aaaa @; )@        <a href="http://wiki.mocambos.net/wiki/NPDD">NPDD/Rede Mocambos</a>
+                              c@(.@".;'".@",@@"
+                              @@ @",@`.@*`,@@`,
+                              @P,@,*@a, ,a@*`,@
+                            , *(`*@@a.,*@*`,@*`
+                ,;a&*"` .;a@@ *;,'o,`*@@a;@@P`, oo..,,
+        ,.;a@@@*"`  ,;a@@*"` , *"`7`,"a,`"*",d) **oo..`""*oo.,
+    ,;@@@@@@*`  ,;d@@@@P` ,.@@b *@b`"@a,`"*@@@` ~*o..,`""*oo,."*@a,
+    @@@@@@@@b   `*@@@@@;, `'"*@, "*@@a`*@@&;,` ~*o.,, `"@a, `*@b,`*@a
+    `"*@@@@@@b.    `"*o@@@@a;,  `"*o,,`` `""*@@@b;.`"*, `@@   `@@;  `*,
+       `"*@@@@@@b.     ``*o@@@@@@;,   `"*ooo**'`  ,;o@*  `@    @@@; 
+          `"*@@@@@@@b.,     ``"***oo@@oo;,,,,,;;o@@*'` ,;o@    `@@@@,
+             `"*@@@@@@@@@b.,,                       ,;o@@@@     @@@@@ 
+                `"*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@P*    ,@@@@@
+                        ````````''''''''''''''''''''```  ,...;@@@@P*`
+                                                      ```'"""```
+</pre>
+
+Publicado sob [GNU/GPLv3](LICENSE).
+
+## Introdução
+
+>>>
+“A ideia nasce da referência do Baobá, árvore que vive milhares 
+de anos e representa simbolicamente a memória coletiva ligada ao 
+território. Baobáxia é a união de baobá com galáxia. Uma galáxia de 
+memórias coletivas locais ligadas ao território. A galáxia liga também 
+com as estrelas, que por sua vez são ligadas a Casa de Cultura Tainã, 
+que em tupi-guarani significa caminho das estrelas. Baobáxia vira bbx, 
+tirando as vocais, que remete ao acrônimo bbs que eram os nos de uma 
+antiga rede de computadores.”
+>>>
+
+Baobáxia é um sistema de gestão descentralizada de repositórios compartilhados
+dentro de uma rede denominada rota, a _Rota dos Baobás_. As instâncias que
+controlam os repositórios, denominadas _Mucuas_, que também é o nome do fruto
+do Baobá, gerenciam os repositórios a partir de uma API de metadados exposta
+como rest, atuando sobre repositórios sincronizados.
+
+São pontos de atenção do projeto a eficácia no compartilhamento de dados em redes
+instáveis e de baixa disponibilidade e a eficiência no uso do hardware local
+visando facilitar o acesso a equipamentos com potencial de serem Mucuas.
+
+## Características da versão
+
+
+# Instalar
+
+## Instalação com docker
+
+Criar a imagem com:
+
+```
+sudo docker build -t bbx-fastapi .
+```
+
+e iniciar com
+
+```
+sudo docker run --name xango1 -p 80:80 bbx-fastapi
+```
+
+
+# Instalação com virtualenv e pip
+
+Criar um virtualenv com 
+```
+virtualenv nomevirtualenv
+```
+
+Ativar o ambiente com
+```
+. /caminho/para/nomevirtualenv/bin/activate
+```
+
+E instalar com pip a partir da pasta do codigo digite:
+pip install -e .
+
+
+Agora pode rodar o comando *criar_mucua*, por exemplo:
+```
+criar_mucua --path='/tmp/baobaxia/' --balaio='Rede Mocambos Acervo' --mucua='Abdias Nascimento' --mocambo='Casa de Cultura Tainã' --mocambola='vince' --email='vince@mocambos.net' --password='livre' --smid_len=13 --slug_name_len=20 --slug_smid_len=5 --slug_sep ':'
+'''
+
+
