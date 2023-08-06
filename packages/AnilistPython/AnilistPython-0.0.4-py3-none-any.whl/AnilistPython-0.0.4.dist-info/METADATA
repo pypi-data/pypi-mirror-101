@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: AnilistPython
+Version: 0.0.4
+Summary: Anilist Python module that allows you to search up and retrieve anime/manga/characters/etc info. (No login required)
+Home-page: UNKNOWN
+Author: Kevin L. (ReZeroK)
+Author-email: <kevinliu@vt.edu>
+License: UNKNOWN
+Keywords: python,anime,anilist,manga,characters,alpha testing,Milim,ReZeroK
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+A Python lib that allows the users to directly search up anime/manga related contents through                     Anilist. No login is required (user's auth token needed in some cases). The current version of                     0.0.4 (alpha testing) is not very stable and certain corner cases have not been checked.                     Feel free to report any errors to the labeled email address. The code base can be found at                     https://github.com/ReZeroE/AnilistPython
+
+
