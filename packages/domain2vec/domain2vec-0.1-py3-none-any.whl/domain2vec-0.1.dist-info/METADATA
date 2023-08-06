@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: domain2vec
+Version: 0.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Kowsher
+Author-email: ga.kowsher@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Doain2Vect
+Tf-Idf represents the importance a word is to a document in a latent vector space whereas the model doesn’t consider any semantic representation. But in a specific domain classification, the effect of a particular plays a vital role. On the other hand, the semantic representation model like word2vec, fasttext, gelove, don’t care about the frequency of the important word, they are the same for all latent space. But the important is that they carry semantic information for also unknown words in a latent vector space. To carry the semantic representation with frequency for unknown word representation in a sub-vector space of a domain, we propose a mathematical model from the trained presentation of frequency and semantic both. This model attempts to represent an unknown word from a fixed frequency trained model from another vector semantic representation. The vector space of frequency and semantic are different. But to sustain the importance of an unknown word, we convert the semantic meaning from the semantic vector space to the vector space of frequency.
+
+## This is a reserach and development of Hishab.ltd
+
+## Installation:
+
+```
+pip install domain2vec
+```
+
+
+## Usage of doamin2vec:
+```python
+    from domain2vec import domain2vec
+	k = 20000 ## k is the number of cluster or feature that want to extract 
+	vec = domain2Vec(ft, k)
+	train=k.fit_transform(X_train)
+	text = k.transform(X_text)
+```
+
+
+
+
