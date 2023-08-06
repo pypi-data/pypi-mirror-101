@@ -1,0 +1,6 @@
+[console_scripts]
+covpipe = covpipe.ncov_minipipe:main
+create_bedpe = covpipe_tools.create_bedpe:main
+ncov_minipipe = covpipe.ncov_minipipe:main
+update_pangolin = covpipe_tools.update_pangolin:main
+

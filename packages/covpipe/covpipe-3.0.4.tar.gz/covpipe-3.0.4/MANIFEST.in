@@ -1,0 +1,7 @@
+recursive-include covpipe/data *
+include covpipe/ncov_minipipe.snake
+include covpipe/ncov_minipipe.Rmd
+include covpipe/ncov_minipipe.config
+include covpipe/rules/*.smk
+include covpipe/envs/*.yaml
+include covpipe/scripts/*
