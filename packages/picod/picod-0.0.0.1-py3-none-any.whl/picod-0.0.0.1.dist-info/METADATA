@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: picod
+Version: 0.0.0.1
+Summary: Raspberry Pi pico module
+Home-page: http://abyz.me.uk/picod/py_picod.html
+Author: joan
+Author-email: joan@abyz.me.uk
+Maintainer: joan
+Maintainer-email: joan@abyz.me.uk
+License: unlicense.org
+Download-URL: http://abyz.me.uk/picod/picod.zip
+Keywords: gpio,i2c,serial,spi,pwm,servo
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+# picod Package
+
+picod is a module which allows control of a Raspberry Pi Pico microcontroller.
+
+## Features
+
+* reading and writing GPIO singly and in groups
+* hardware PWM
+* callbacks on GPIO level change
+* I2C wrapper
+* SPI wrapper
+* serial link wrapper
+
+
