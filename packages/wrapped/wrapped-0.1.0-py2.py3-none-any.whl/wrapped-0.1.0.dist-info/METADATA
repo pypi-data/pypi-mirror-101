@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: wrapped
+Version: 0.1.0
+Summary: Python wrappers for useful R functions.
+Home-page: https://v715.github.io
+Author: Vivek Gopalakrishnan
+Author-email: vgopala4@jh.edu
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+
+# wrapped
+
+There are many useful R functions that aren't available in Python (particularly for hypothesis testing).
+
+This repo creates custom Python wrappers for these R functions using the `rpy2` module.
+
