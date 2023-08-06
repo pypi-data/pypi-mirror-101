@@ -1,0 +1,12 @@
+attrs>=20.1.0
+jsonschema
+particle
+python-constraint
+PyYAML
+tqdm>=4.24.0
+
+[:python_version < "3.8.0"]
+typing-extensions
+
+[viz]
+graphviz
