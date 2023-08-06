@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: rdfox-runner
+Version: 0.1.1
+Summary: 
+Author: Rick Lupton
+Author-email: mail@ricklupton.name
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: importlib-metadata (>=1.0,<2.0); python_version < "3.8"
+Requires-Dist: rdflib (>=5.0.0,<6.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
