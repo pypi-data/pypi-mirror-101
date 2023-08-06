@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: mela
+Version: 1.0.3
+Summary: Let's make microservice development fun again!
+Home-page: https://github.com/alem-research/mela
+Author: Daniyar Supiyev
+Author-email: undead.thunderbird@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: AsyncIO
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: 
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: aio-pika (==6.8.0)
+Requires-Dist: envyaml (==1.6.210210)
+
+# Alem Mela
+
+## Overview
+
+Asynchronous framework that makes it really simple to build RabbitMQ services.
+
+## Installation
+
+`pip install mela`
+
+## Usage
+
+Basic usage does look like this:
+
+`app.py`:
+```
+from mela import Mela
+
+app = Mela(__name__)
+app.read_config_yaml('application.yml')
+
+
+@app.service("printer")
+def printer(body, message):
+    print(body)
+    return body
+
+
+if __name__ == '__main__':
+    app.run()
+
+```
+
+
+
