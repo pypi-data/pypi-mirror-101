@@ -1,0 +1,11 @@
+{
+  "domain": "abode",
+  "name": "Abode",
+  "config_flow": true,
+  "documentation": "https://www.openpeerpower.io/integrations/abode",
+  "requirements": ["abodepy==1.2.0"],
+  "codeowners": [],
+  "homekit": {
+    "models": ["Abode", "Iota"]
+  }
+}

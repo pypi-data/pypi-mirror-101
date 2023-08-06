@@ -1,0 +1,13 @@
+{
+  "domain": "alexa",
+  "name": "Amazon Alexa",
+  "documentation": "https://www.openpeerpower.io/integrations/alexa",
+  "dependencies": [
+    "http"
+  ],
+  "after_dependencies": [
+    "camera"
+  ],
+  "codeowners": [
+  ]
+}

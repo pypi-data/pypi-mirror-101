@@ -1,0 +1,14 @@
+{
+  "domain": "synology_dsm",
+  "name": "Synology DSM",
+  "documentation": "https://www.openpeerpower.io/integrations/synology_dsm",
+  "requirements": ["synologydsm-api==1.0.1"],
+  "codeowners": [],
+  "config_flow": true,
+  "ssdp": [
+    {
+      "manufacturer": "Synology",
+      "deviceType": "urn:schemas-upnp-org:device:Basic:1"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "domain": "vizio",
+  "name": "VIZIO SmartCast",
+  "documentation": "https://www.openpeerpower.io/integrations/vizio",
+  "requirements": ["pyvizio==0.1.57"],
+  "codeowners": [],
+  "config_flow": true,
+  "zeroconf": ["_viziocast._tcp.local."],
+  "quality_scale": "platinum"
+}

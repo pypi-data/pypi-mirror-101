@@ -1,0 +1,13 @@
+{
+  "domain": "onvif",
+  "name": "ONVIF",
+  "documentation": "https://www.openpeerpower.io/integrations/onvif",
+  "requirements": [
+    "onvif-zeep-async==1.0.0",
+    "WSDiscovery==2.0.0",
+    "zeep[async]==4.0.0"
+  ],
+  "dependencies": ["ffmpeg"],
+  "codeowners": [],
+  "config_flow": true
+}
