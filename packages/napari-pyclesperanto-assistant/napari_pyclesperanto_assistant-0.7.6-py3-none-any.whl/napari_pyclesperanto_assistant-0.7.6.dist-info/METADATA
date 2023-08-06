@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: napari-pyclesperanto-assistant
+Version: 0.7.6
+Summary: OpenCL based GPU-accelerated image processing in napari
+Home-page: https://github.com/clesperanto/napari_pyclesperanto_assistant
+Author: Robert Haase
+Author-email: robert.haase@tu-dresden.de
+License: UNKNOWN
+Requires-Dist: napari-plugin-engine (>=0.1.4)
+Requires-Dist: pyopencl
+Requires-Dist: toolz
+Requires-Dist: scikit-image
+Requires-Dist: napari (==0.4.7)
+Requires-Dist: pyclesperanto-prototype (==0.7.6)
+Requires-Dist: magicgui
+Requires-Dist: numpy (!=1.19.4)
+Requires-Dist: pyperclip
+
+# napari-pyclesperanto-assistant
+
+
