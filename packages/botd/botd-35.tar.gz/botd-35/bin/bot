@@ -1,0 +1,23 @@
+#!/usr/bin/env python3 
+# This file is placed in the Public Domain.
+
+import os, sys ; sys.path.insert(0, os.getcwd())
+
+from botl.clt import run
+from botl.krn import Kernel, exec, op
+from botl.zzz import os, time
+from botd.tbl import tbl
+
+def main():
+    k = Kernel(tbl)
+    k.cfg.name = "bot"
+    k.parse()
+    k.banner()
+    k.scan(os.path.join(os.getcwd(), "mod"))
+    k.run()
+    k.start()
+    if k.cfg.mods:
+        k.init(k.cfg.mods)
+        k.wait()
+
+exec(main)

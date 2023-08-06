@@ -1,0 +1,25 @@
+#!/usr/bin/env python3 
+# This file is placed in the Public Domain.
+
+__version__ = 35
+
+from botd.tbl import tbl
+from botl.krn import Kernel, exec, op
+from botl.obj import Object
+from botl.zzz import os, time
+
+def main():
+    k = Kernel(tbl)
+    k.cfg.mods = "rss,irc"
+    k.cfg.name = "botd"
+    k.cfg.version = __version__
+    k.cfg.wd = "/var/lib/private/botd/"
+    k.parse()
+    k.scan("/var/lib/botd/private/mod")
+    k.banner()
+    k.run(check=True)
+    k.start()
+    k.init(k.cfg.mods)
+    k.wait()
+
+exec(main)
