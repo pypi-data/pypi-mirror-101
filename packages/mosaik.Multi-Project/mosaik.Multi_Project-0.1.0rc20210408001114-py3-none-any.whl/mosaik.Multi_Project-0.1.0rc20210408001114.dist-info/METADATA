@@ -1,0 +1,100 @@
+Metadata-Version: 2.1
+Name: mosaik.Multi-Project
+Version: 0.1.0rc20210408001114
+Summary: Manage multiple mosaik projects with using common tooling.
+Home-page: https://gitlab.com/offis.energy/mosaik/mosaik.multi-project
+Author: Bengt Lüers
+Author-email: bengt.lueers@gmail.com
+Maintainer: Bengt Lüers
+Maintainer-email: bengt.lueers@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: click (>=7.0)
+
+# mosaik.Multi-Project
+
+Tooling for setting up and maintaining multiple (mosaik) projects.
+
+## Motivation
+
+[mosaik](https://mosaik.offis.de/) scenarios often contain multiple simulators.
+Sometimes, additional packages need to be developed alongside of them.
+Managing such a set of loosely coupled *projects* becomes laborious easily.
+This project provides tooling for some common *operations* on projects.
+These operations range from cloning the repository to building a docker image. 
+Operations can be run in parallel on projects, enabling quite some automation.
+
+## Status
+
+[![pipeline status](https://gitlab.com/offis.energy/mosaik/mosaik.multi-project/badges/master/pipeline.svg)](https://gitlab.com/offis.energy/mosaik/mosaik.multi-project/pipelines)
+[![coverage report](https://gitlab.com/offis.energy/mosaik/mosaik.multi-project/badges/master/coverage.svg)](https://gitlab.com/offis.energy/mosaik/mosaik.multi-project/-/jobs)
+[![libraries status](https://img.shields.io/librariesio/release/pypi/mosaik.multi-project)](https://libraries.io/pypi/mosaik.multi-project)
+[![license badge](https://img.shields.io/pypi/l/mosaik.Multi-Project)](#)
+[![PyPI version](https://img.shields.io/pypi/v/mosaik.Multi-Project)](https://pypi.org/project/mosaik.Multi-Project/#history)
+[![Python Versions](https://img.shields.io/pypi/pyversions/mosaik.Multi-Project)](https://pypi.org/project/mosaik.Multi-Project)
+
+## Maturity
+
+The code of this project was largely in operation in the Designetz project.
+There, it was used to maintain and develop components of the AI-powered power 
+grid control room "System-Cockpit".
+The System-Cockpit consisted of about 12 mosaik simulators as well as about 18
+support and infrastructure projects.
+
+## One-line Execution
+
+mosaik.Multi-Project can be run as a container directly from GitLab.com:
+
+    docker run registry.gitlab.com/offis.energy/mosaik/mosaik.multi-project:latest --help
+
+## Prerequisites
+
+-   Python 3.6+
+-   git
+
+## Downloading
+
+    git clone git@gitlab.com:offis.energy/mosaik/mosaik.multi-project.git
+
+## Virtual Environment
+
+    python3 -m venv venv
+
+## Tox
+
+    venv/bin/python -m pip install -r requirements.d/venv.txt
+    venv/bin/python -m tox -e py39
+
+## Running
+
+    PYTHONPATH=. \
+    .tox_py38_bin_python mosaik_multi_project/multi_project/cli/main.py \
+    --help
+
+## Use Cases
+
+Setup all projects in the config and update their requirements in parallel:
+
+    PYTHONPATH=. \
+    .tox_py38_bin_python mosaik_multi_project/multi_project/cli/main.py
+
+Setup one project in the config and update its requirements:
+
+    PYTHONPATH=. \
+    .tox_py38_bin_python mosaik_multi_project/multi_project/cli/main.py \
+    --parallel False --project mosaik.EId --operation ALL
+
+
