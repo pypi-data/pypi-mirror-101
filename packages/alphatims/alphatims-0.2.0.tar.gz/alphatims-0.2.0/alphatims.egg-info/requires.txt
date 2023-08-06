@@ -1,0 +1,27 @@
+h5py==3.2.1
+numba==0.53.1
+pandas==1.2.3
+tqdm==4.59.0
+pyzstd==0.14.4
+psutil==5.8.0
+click==7.1.2
+
+[:sys_platform == "win32"]
+pywin32==225
+
+[development]
+jupyter==1.0.0
+jupyter_contrib_nbextensions==0.5.1
+pyinstaller==4.2
+autodocsumm==0.2.2
+sphinx-rtd-theme==0.5.1
+plotly==4.12.0
+seaborn==0.11.0
+twine==3.4.1
+bumpversion==0.6.0
+
+[plotting]
+bokeh==2.2.3
+datashader==0.12.1
+hvplot==0.7.1
+selenium==3.141.0
