@@ -1,0 +1,100 @@
+CHANGES
+=======
+
+1.2.0
+-----
+
+* Add console\_scripts entry point
+
+1.1.0
+-----
+
+* Changed minversion in tox to 3.18.0
+* Create tox environment to build pdf documentation
+* Cleanup py27 support
+* Switch to newer openstackdocstheme and reno versions
+* Fix hacking min version to 3.0.1
+* [ussuri][goal] Update contributor documentation
+* Add publish-openstack-docs-pti to .zuul.yaml
+* Update hacking for Python3
+
+1.0.0
+-----
+
+* [ussuri][goal] Drop python 2.7 support and testing
+* Update python 3 unit test job
+* Update home-page
+* Dropping the py35 testing
+* OpenDev Migration Patch
+* Change openstack-dev to openstack-discuss
+* Optimizing the safety of the http link site in HACKING.rst
+* fix tox python3 overrides
+* Removed older version of python3.4
+* fix tox python3 overrides
+* add python 3.6 unit test job
+* import zuul job settings from project-config
+
+0.4.0
+-----
+
+* Insert the right content at end of files
+
+0.3.0
+-----
+
+* support local.conf files with no [[local]] section yet
+* add set\_local\_raw\_multiline test
+
+0.2.1
+-----
+
+* Match version entry in \_\_init\_\_ with setup.cfg
+
+0.2.0
+-----
+
+* rename set\_local\_raw to set\_local
+* new localrc set strategy
+* update help for dsconf
+
+0.1.4
+-----
+
+* add tests for merging lines beyond a=b
+* add setlc\_raw to the cli
+* fix pep8 issue
+* add dsconf help to README
+
+0.1.3
+-----
+
+* add the ability for raw line insert during merge
+
+0.1.2
+-----
+
+* print when skipping merging lines
+
+0.1.1
+-----
+
+* fix dsconf for setting localrc name=value
+
+0.1.0
+-----
+
+* Fix merge of local.conf add tests
+* initial take at merging local.conf code
+* add more cli support
+* start adding parser, only support python3
+* fix pep8
+* support localconf set
+* add functions to set items in local.conf
+* add localrc extraction
+* tests for merging with existing ini files
+* make iniset work with files that do not yet exist
+* fix pep8 issue
+* add uncomment function
+* Add comment, set, has methods
+* add inifile add/remove code
+* Initial Cookiecutter Commit
