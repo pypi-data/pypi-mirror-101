@@ -1,0 +1,179 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block content_base %}
+    {% if not is_popup %}
+    {# Header #}
+
+    {# Main Menu - MOBILE BAR #}
+    <div id="offcanvas-nav" uk-offcanvas="overlay: true; mode: push">
+        <div class="uk-offcanvas-bar">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <ul class="uk-nav uk-nav-default">
+                {% for menu in custom_menu %}
+					{% if not menu.items %}
+						<li class="uk-nav-header"><a href="{{ menu.to }}">
+							{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+					{% else %}
+						<li class="uk-nav-header"><a href="{% if menu.to %}{{ menu.to }}{% else %}#{% endif %}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+						<div class="uk-padding-small">
+                        {% for submenu in menu.items %}
+							{% if submenu.type == 'divider' %}
+								<li class="uk-nav-divider"></li>
+							{% else %}
+								<li><a href="{{ submenu.to }}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ submenu.icon }}"></span> {% endif %} {{ submenu.name }}</a></li>
+							{% endif %}
+						{% endfor %}
+                        </div>
+					{% endif %}
+					
+				{% endfor %}
+                
+                <li class="uk-padding-small"></li>
+                
+				<li>
+				<ul uk-accordion>
+                <li>
+                    <a class="uk-accordion-title uk-link-text" href="">All Applications</a>
+                    <div class="uk-accordion-content">
+                        <ul>
+                            {% include 'admin/includes/nav_user_available_apps.html' %}
+                        </ul>
+                    </div>
+                </li>
+                </ul>
+				</li>
+
+                <li class="uk-nav-divider uk-padding-small"></li>
+                {% include 'admin/includes/nav_user_actions.html' %}
+            </ul>
+
+        </div>
+    </div>
+    {# MAIN NAVIGATION BAR #}
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+        
+        <nav class="uk-background-primary-top-header" uk-navbar>
+            <div class="uk-navbar-left">
+                {# bar left - toggle button #}
+                <a class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #offcanvas-nav">
+                    <span uk-navbar-toggle-icon></span>
+                </a>
+                <a href="{% url 'admin:index' %}" class="uk-navbar-item uk-logo uk-link-reset">
+                    {% block branding %}
+                        {% if admin.logo and admin.logo.header_logo %}
+                            <img src="{% static admin.logo.header_logo %}" alt="{{ site_header|default:_('Django administration') }}"/>
+                        {% else %}
+                            {{ site_header|default:_('Django administration') }}
+                        {% endif %}
+                    {% endblock %}
+                </a>
+                {# Main Menu #}
+                <ul class="uk-navbar-nav uk-visible@m uk-link-reset">
+                	{% for menu in custom_menu %}
+                        {% if not menu.items %}
+                            <li><a href="{{ menu.to }}">
+                                {% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+                        {% else %}
+                            <li>
+                                <a href="#">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        {% for submenu in menu.items %}
+                                            {% if submenu.type == 'divider' %}
+                                                <li class="uk-nav-divider"></li>
+                                            {% else %}
+                                                <li><a href="{{ submenu.to }}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ submenu.icon }}"></span> {% endif %} {{ submenu.name }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endif %}
+					{% endfor %}
+                </ul>
+            </div>
+
+            <div class="uk-navbar-right">
+                {# Add Search capability #}
+                {% comment %}
+                <div class="uk-navbar-item uk-visible@m">
+                    <form class="uk-search uk-search-default">
+                        <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+                        <input class="uk-search-input" type="search" placeholder="Search...">
+                    </form>
+                </div>
+                {% endcomment %}
+                <ul class="uk-navbar-nav uk-visible@m uk-link-reset">
+                    <li>
+                        <a href="#"><span uk-icon="menu" class="uk-margin-small-right"></span> {% trans 'All Apps' %}</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                {% include 'admin/includes/nav_user_available_apps.html' %}
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- <a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav"></a> -->
+                <ul class="uk-navbar-nav uk-visible@m uk-link-reset">
+                    {% block usertools %}
+                    {% if has_permission %}
+                    <li class='prl-username-item'>
+                        <a href="#"><span class="uk-margin-small-right uk-width-1-3" uk-icon="user"></span>
+                            {% firstof user.get_short_name user.get_username %}</a>
+                        <div uk-dropdown>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                {% include 'admin/includes/nav_user_actions.html' %} 
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% endblock %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="uk-background-muted uk-visible@s">
+        {% block breadcrumbs %}
+            <ul class="uk-breadcrumb uk-margin-remove">
+                <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+                {% if title %}
+                <li><span>{{ title }}</span></li>
+                {% endif %}
+            </ul>
+        {% endblock %}
+    </div>
+
+    {% block nav-global %}{% endblock %}
+    {# END Header #}
+    {% endif %}
+
+    {# -- Content -- #}
+    {% comment %}<div id="content" class="{% block coltype %}colM{% endblock %}">{% endcomment %}
+    <div class="prl-content">
+        {% comment %}
+        	{% block pretitle %}{% endblock %}
+        	{% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
+        {% endcomment %}
+        
+		{% block content %}
+            {% block object-tools %}{% endblock %}
+            	
+			{{ content }}
+        {% endblock %}
+       	
+		{% comment %} 
+        {% block sidebar %}{% endblock %}
+        {% endcomment %}
+    </div>
+    {% comment %}</div>{% endcomment %}
+    <!-- END Content -->
+
+    {% comment %}
+    {% block footer %}<div id="footer"></div>{% endblock %}
+    {% endcomment %}
+{% endblock %}

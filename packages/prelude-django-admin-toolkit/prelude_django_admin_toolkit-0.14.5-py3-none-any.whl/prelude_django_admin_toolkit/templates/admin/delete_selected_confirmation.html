@@ -1,0 +1,74 @@
+{% extends "admin/base_site.html" %}
+{% load i18n l10n admin_urls static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ media }}
+    <script type="text/javascript" src="{% static 'admin/js/cancel.js' %}"></script>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} delete-confirmation delete-selected-confirmation{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="uk-breadcrumb">
+    <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
+    <li><a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a></li>
+    <li><a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+    <li><span>{% trans 'Delete multiple objects' %}</span></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="uk-container uk-padding">
+<h3><span uk-icon="icon: warning; ratio: 2"></span></h3>
+
+{% if perms_lacking %}
+    <p>{% blocktrans %}Deleting the selected {{ objects_name }} would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</p>
+    <ul class="uk-list uk-list-disc uk-list-primary">
+    {% for obj in perms_lacking %}
+        <li>{{ obj }}</li>
+    {% endfor %}
+    </ul>
+{% elif protected %}
+    <p>{% blocktrans %}Deleting the selected {{ objects_name }} would require deleting the following protected related objects:{% endblocktrans %}</p>
+    <ul class="uk-list uk-list-disc uk-list-primary">
+    {% for obj in protected %}
+        <li>{{ obj }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>{% blocktrans %}Are you sure you want to delete the selected {{ objects_name }}? All of the following objects and their related items will be deleted:{% endblocktrans %}</p>
+    
+     <div class="uk-card uk-card-default uk-card-body uk-width-2-3@m uk-margin uk-margin-bottom">
+		<div class="uk-grid-large uk-grid uk-grid-divider" uk-grid>
+		
+		<div>
+		<h4>{% trans "Objects" %}</h4>
+		<div class="prl-scroll-list">
+			{% for deletable_object in deletable_objects %}
+			<ul class="uk-list uk-list-disc uk-list-primary">{{ deletable_object|unordered_list }}</ul>
+			{% endfor %}
+		</div>
+		
+		<form method="post">{% csrf_token %}
+		</div>
+		
+		{% include "admin/includes/object_delete_summary.html" %}
+
+		</div>
+    </div>
+    
+    <form method="post">{% csrf_token %}
+    <div>
+    {% for obj in queryset %}
+    <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}">
+    {% endfor %}
+    <input type="hidden" name="action" value="delete_selected">
+    <input type="hidden" name="post" value="yes">
+    <input class="uk-button uk-button-danger" type="submit" value="{% trans 'Yes, I’m sure' %}">
+    <a href="#" class="uk-button uk-button-default cancel-link">{% trans "No, take me back" %}</a>
+    </div>
+    </form>
+{% endif %}
+</div>
+{% endblock %}
