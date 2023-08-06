@@ -1,0 +1,72 @@
+Metadata-Version: 2.1
+Name: pd-helper
+Version: 0.1.1
+Summary: A helpful script to optimize a Pandas DataFrame.
+Home-page: https://github.com/justinhchae/pd-helper
+Author: Justin Chae
+Author-email: justin@chaemail.com
+License: UNKNOWN
+Project-URL: Download URL, https://github.com/justinhchae/pd-helper/archive/refs/tags/v0.1.1-beta.tar.gz
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: tqdm
+
+# pd-helper
+
+ A helpful package to streamline Pandas DataFrame optimization.
+
+ Save 50-75% on DataFrame memory usage by running the optimizer. 
+
+ Auto configure dtypes for appropriate data types in each column. 
+
+## Basic Usage to Iterate over DataFrame
+```python
+from pd_helper.helper import optimize
+
+if __name__ == "__main__":
+   # some DataFrame, df
+   df = optimize(df)
+```
+## Better Usage With Multiprocessing
+```python
+from pd_helper.helper import optimize
+
+if __name__ == "__main__":
+   # some DataFrame, df
+   df = optimize(df, enable_mp=True)
+```
+
+
+## Install
+ ```bash
+ pip install pd-helper
+ ```
+
+## Sample Results
+
+```bash
+Starting with 175.63 MB memory.
+
+After optmization. 
+
+Ending with 65.33 MB memory.
+```
+
+
+### TODO
+
+* Improve efficiency of iterating on DataFrame.
+
+* Allow user to toggle logging.
+
+* Provide tools for imputing missing data.
+
