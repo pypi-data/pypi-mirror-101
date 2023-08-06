@@ -1,0 +1,16 @@
+0.3.1
+ - tests: fix HDF5-related issue
+ - build: setup.py test is deprecated
+ - build: migrate from tracisCI to GH Actions
+ - docs: refurbish docs
+0.3.0
+ - ref: renamed `meta.DATA_KEYS` to `meta.DATA_KEYS_FL` and removed
+   keys that are not relevant for fluorescence imaging
+ - docs: initial documentation with code reference and example
+0.2.1
+ - maintenance release
+0.2.0
+ - feat: bleach correction and denoising of FLSeries (#2)
+ - tests: add them
+0.1.0
+ - initial working state
