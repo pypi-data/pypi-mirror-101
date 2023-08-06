@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: skill-sdk
+Version: 1.0.1
+Summary: Magenta Voice Skill SDK for Python
+Home-page: https://github.com/telekom/voice-skill-sdk/
+Author: Deutsche Telekom Voicification Suite
+Author-email: vineet.hingorani@telekom.de
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.7
+Requires-Dist: fastapi
+Requires-Dist: pydantic (<2.0.0,>=1.8)
+Requires-Dist: starlette-context
+Requires-Dist: python-dateutil
+Requires-Dist: babel
+Requires-Dist: uvicorn[standard]
+Requires-Dist: isodate
+Requires-Dist: orjson
+Requires-Dist: aiobreaker
+Requires-Dist: httpx (<1,>=0.16)
+Requires-Dist: pyyaml
+Requires-Dist: nest-asyncio
+Provides-Extra: all
+Requires-Dist: starlette-opentracing (>=0.1.0) ; extra == 'all'
+Requires-Dist: starlette-exporter (>=0.7.0) ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: starlette[full] (==0.13.6) ; extra == 'dev'
+Requires-Dist: mypy ; extra == 'dev'
+Requires-Dist: respx ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-mock ; extra == 'dev'
+Requires-Dist: pytest-asyncio ; extra == 'dev'
+Requires-Dist: questionary ; extra == 'dev'
+Requires-Dist: starlette-opentracing (>=0.1.0) ; extra == 'dev'
+Requires-Dist: starlette-exporter (>=0.7.0) ; extra == 'dev'
+
+UNKNOWN
+
+
