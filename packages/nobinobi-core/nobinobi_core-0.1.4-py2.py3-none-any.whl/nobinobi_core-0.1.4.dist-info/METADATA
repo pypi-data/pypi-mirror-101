@@ -1,0 +1,155 @@
+Metadata-Version: 2.1
+Name: nobinobi-core
+Version: 0.1.4
+Summary: Core for application Nobinobi
+Home-page: https://github.com/prolibre-ch/nobinobi-core
+Author: Florian Alu
+Author-email: alu@prolibre.com
+License: UNKNOWN
+Keywords: nobinobi-core
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django :: 3.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: django (==3.2)
+Requires-Dist: django-model-utils (==4.1.1)
+Requires-Dist: django-crispy-forms (==1.11.2)
+Requires-Dist: arrow (==1.0.3)
+Requires-Dist: django-bootstrap-datepicker-plus (==3.0.5)
+Requires-Dist: django-extensions (==3.1.2)
+
+=============================
+Nobinobi Core
+=============================
+
+.. image:: https://badge.fury.io/py/nobinobi-core.svg
+    :target: https://badge.fury.io/py/nobinobi-core
+
+.. image:: https://travis-ci.org/prolibre-ch/nobinobi-core.svg?branch=master
+    :target: https://travis-ci.org/prolibre-ch/nobinobi-core
+
+.. image:: https://codecov.io/gh/prolibre-ch/nobinobi-core/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/prolibre-ch/nobinobi-core
+
+.. image:: https://pyup.io/repos/github/prolibre-ch/nobinobi-core/shield.svg
+     :target: https://pyup.io/repos/github/prolibre-ch/nobinobi-core/
+     :alt: Updates
+
+.. image:: https://pyup.io/repos/github/prolibre-ch/nobinobi-core/python-3-shield.svg
+     :target: https://pyup.io/repos/github/prolibre-ch/nobinobi-core/
+     :alt: Python 3
+
+Core for application Nobinobi
+
+Documentation
+-------------
+
+The full documentation is at https://nobinobi-core.readthedocs.io.
+
+Quickstart
+----------
+
+Install Nobinobi Core::
+
+    pip install nobinobi-core
+
+Add it to your `INSTALLED_APPS`:
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'nobinobi_core.apps.NobinobiCoreConfig',
+        ...
+    )
+
+Add Nobinobi Core's URL patterns:
+
+.. code-block:: python
+
+    from nobinobi_core import urls as nobinobi_core_urls
+
+
+    urlpatterns = [
+        ...
+        path('', include(nobinobi_core_urls)),
+        ...
+    ]
+
+Features
+--------
+
+* TODO
+
+Running Tests
+-------------
+
+Does the code actually work?
+
+::
+
+    source <YOURVIRTUALENV>/bin/activate
+    (myenv) $ pip install tox
+    (myenv) $ tox
+
+
+Development commands
+---------------------
+
+::
+
+    pip install -r requirements_dev.txt
+    invoke -l
+
+
+Credits
+-------
+
+Tools used in rendering this package:
+
+*  Cookiecutter_
+*  `cookiecutter-djangopackage`_
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+
+
+
+
+History
+-------
+
+0.1.4 (2021-04-12)
+++++++++++++++++++
+
+* Update requirements
+
+0.1.3 (2020-10-12)
+++++++++++++++++++
+
+* Fix bug in migrate
+* Add traduction FR in package
+
+0.1.2 (2020-10-07)
+++++++++++++++++++
+
+* Fix test for use
+
+0.1.1 (2020-10-06)
+++++++++++++++++++
+
+* Add organisation & Organisation closure
+* Restruct package for better comprehension
+* Add tests
+
+0.1.0 (2020-10-06)
+++++++++++++++++++
+
+* First release on PyPI.
+
+
