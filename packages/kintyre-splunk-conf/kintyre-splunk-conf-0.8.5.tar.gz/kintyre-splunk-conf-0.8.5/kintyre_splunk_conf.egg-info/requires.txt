@@ -1,0 +1,15 @@
+entrypoints
+lxml
+
+[:python_version < "3.4"]
+pathlib
+backports.tempfile
+
+[:python_version < "3.6"]
+backports.shutil_which
+
+[bash]
+argcomplete
+
+[thirdparty]
+splunk-sdk
