@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: slaven92-QTvisualiser
+Version: 0.1.4
+Summary: Visualise cross section of a 3D image
+Home-page: https://github.com/slaven92/QTvisualiser
+Author: Slaven Tepsic
+Author-email: slaven.tepsic@icfo.eu
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Requires-Dist: PyQt5 (==5.15.4)
+Requires-Dist: pyqtgraph (==0.12.0)
+
+Simple visualiser of 4D data based on QT package.
+
+
+To install:
+pip install slaven92-QTvisualiser
+
+To run:
+visualise
+
+
+-or-
+
+
+python -m QTvisualiser
+
