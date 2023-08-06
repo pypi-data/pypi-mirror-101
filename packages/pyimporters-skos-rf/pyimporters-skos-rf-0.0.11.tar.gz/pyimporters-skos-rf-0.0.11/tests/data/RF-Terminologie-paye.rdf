@@ -1,0 +1,1630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dct="http://purl.org/dc/terms/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rfta="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#" xmlns:rfte="https://revuefiduciaire.grouperf.com/terminology/termino-paye#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" xmlns:srm="https://www.luaplab.com/resource/srm/2.0/terminology#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <skos:ConceptScheme 
+  rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye">
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-03-02</dct:created>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-03-02</dct:modified>
+    <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-03-02</dct:issued>
+    <dct:creator>EvePaul</dct:creator>
+    <dct:type>Controlled vocabulary</dct:type>
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#paye" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#homme" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme-homme" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-performance-collective" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-participation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche-apprenti" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprenti" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprentissage" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-travail" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classement-salarie" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-conventionnelle-emploi" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-et-qualification" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-action-sociale-et-familles" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-civil" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-construction-et-habitation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-defense" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-entree-et-sejour-etrangers-et-droit-asile" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-general-collectivites-territoriales" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-general-impots" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-penal" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-securite-interieure" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-securite-sociale" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-service-national" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-engagement-citoyen" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-epargne-temps" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-prevention-penibilite" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-activite" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-professionnel-prevention" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-apprentissage" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation-aides-et-exonerations-" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-travail" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#convention-collective" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation-transition-professionnelle" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#declassement-salarie" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#interdiction-discrimination" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#dissimulation-emploi-salarie" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#document" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration-femme-homme" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle-femme-homme" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-pour-egalite-professionnelle-femme-homme" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-salarie" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-contrat-a-duree-determinee" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-mission-interim" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#essai-professionnel" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-en-alternance" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-et-apprentissage" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-professionnelle" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#intermittent-spectacle" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#journal-officiel" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#jurisprudence" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-avenir-professionnel" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-habilitation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-pour-2020" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-pour-2021" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-droit-a-erreur" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-essoc" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2019" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2020" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2021" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mesures-urgence" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mesures-urgentes" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mobilites" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-pacte" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#ordonnance-dite-macron" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-pro-a" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#professionnalisation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-professionnalisation" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-entreprise" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-branche" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-etablissement" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-groupe" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-entreprise-sur-accord-collectif-branche" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-etablissement-sur-accord-collectif-branche" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-groupe-sur-accord-collectif-branche" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#qualification-professionnelle" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-assurance-chomage" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-obligation-emploi" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-code-travail" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-par-ordonnance" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#salarie-intermittent" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#sous-classement-salarie" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#statut" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#surclassement-salarie" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#travail-dissimule" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-rectificative" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#lettre-embauche" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#lettre-engagement" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-national-interprofessionnel" />
+    <skos:hasTopConcept rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#stagiaire" />
+  </skos:ConceptScheme>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#paye">
+    <skos:prefLabel xml:lang="fr">Paye</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>paye</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>paie</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>paies</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>payes</srm:syntacticVariantAllowed>
+    <skos:editorialNote>Mot outil non transformé en concept dans le Thesaurus</skos:editorialNote>
+    <skos:changeNote>13/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Payes particulieres</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme">
+    <skos:prefLabel xml:lang="fr">Femme</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>femme</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>femmes</srm:syntacticVariantAllowed>
+    <skos:changeNote>13/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#homme">
+    <skos:prefLabel xml:lang="fr">Homme</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>homme</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>hommes</srm:syntacticVariantAllowed>
+    <skos:changeNote>13/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme-homme">
+    <skos:prefLabel xml:lang="fr">Femme-Homme</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>femme-homme</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>entre les hommes et les femmes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>femme/homme</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>femmes-hommes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>femmes/hommes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>homme-femme</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>homme/femme</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>hommes-femmes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>hommes/femmes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>entre les femmes et les hommes</srm:syntacticVariantAllowed>
+    <skos:changeNote>22/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-performance-collective">
+    <skos:prefLabel xml:lang="fr">Accord de performance collective</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord performance collective</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-performance-collective" />
+    <srm:pattern>Accord de performance collective</srm:pattern>
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Durée et aménagement du temps de travail.- Définition, Entreprises en difficulté.- Définition, Rémunérations et salaires.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-participation">
+    <skos:prefLabel xml:lang="fr">Accord de participation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord participation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>accords de participation</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-participation" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Épargne salariale</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche-apprenti">
+    <skos:prefLabel xml:lang="fr">Aide à l'embauche d'un apprenti</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>aide embauche un apprenti</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#aide-embauche-apprenti" />
+    <skos:changeNote>06/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche">
+    <skos:prefLabel xml:lang="fr">Aide à l'embauche</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>aide embauche</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>aides à l 'embauche</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#aide-embauche" />
+    <skos:changeNote>06/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Contrats aidés</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprenti">
+    <skos:prefLabel xml:lang="fr">Apprenti</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>apprenti</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#apprenti" />
+    <srm:pattern>Apprentis</srm:pattern>
+    <skos:changeNote>06/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Contrats particuliers et contrats aidés.- Définition, Exonérations, aides à l'emploi et réductions de cotisations.- Définition, Rubrique de la Revue.- Contrat de travail, Rubrique de la Revue.- Apprentis, Rubrique de la Revue.- DSN, DSN.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprentissage">
+    <skos:prefLabel xml:lang="fr">Apprentissage</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>apprentissage</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#apprentissage" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Alternance, Rubrique de la Revue.- Apprentissage, Rubrique de la Revue.- Cotisations</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation">
+    <skos:prefLabel xml:lang="fr">Formation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>formation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:editorialNote>Concept de structuration</skos:editorialNote>
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Cotisations</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-travail">
+    <skos:prefLabel xml:lang="fr">Loi dite Travail</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="InProgress" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite travail</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi travail</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-travail" />
+    <skos:editorialNote>See Gaëlle pour le millésime 2018, 2016 …. ; ToDo : Uri</skos:editorialNote>
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Durée du travail, Rubrique de la Revue.- Inaptitude, Rubrique de la Revue.- loi travail</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classement-salarie">
+    <skos:prefLabel xml:lang="fr">Classement du salarié</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>classement salarié</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#classement-salarie" />
+    <srm:pattern>Classement du salarié</srm:pattern>
+    <skos:changeNote>04/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Classification et qualification.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-conventionnelle-emploi">
+    <skos:prefLabel xml:lang="fr">Classification conventionnelle des emplois</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>classification conventionnelle emploi</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>classification des emplois</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#classification-conventionnelle-emploi" />
+    <srm:pattern>Classification des emplois</srm:pattern>
+    <skos:changeNote>16/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Classification et qualification.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-et-qualification">
+    <skos:prefLabel xml:lang="fr">Classification et qualification</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>classification et qualification</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>08/01/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Thématique Dictionnaire Paye.- Partie</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-action-sociale-et-familles">
+    <skos:prefLabel xml:lang="fr">Code de l'action sociale et des familles</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code action sociale et famille</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>CASF</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-action-sociale-et-familles" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-civil">
+    <skos:prefLabel xml:lang="fr">Code civil</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code civil</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. civ.</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-civil" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-construction-et-habitation">
+    <skos:prefLabel xml:lang="fr">Code de la construction et de l'habitation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code construction et habitation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. constr. et hab.</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-construction-et-habitation" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-defense">
+    <skos:prefLabel xml:lang="fr">Code de la défense</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code défense</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. défense</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-defense" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-entree-et-sejour-etrangers-et-droit-asile">
+    <skos:prefLabel xml:lang="fr">Code de l'entrée et du séjour des étrangers et du droit d'asile</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code entrée et séjour étrangers et droit asile</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>CESEDA</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-entree-et-sejour-etrangers-et-droit-asile" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-general-collectivites-territoriales">
+    <skos:prefLabel xml:lang="fr">Code général des collectivités territoriales</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code général collectivités territoriales</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. gén. collect. terr.</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-general-collectivites-territoriales" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-general-impots">
+    <skos:prefLabel xml:lang="fr">Code général des impôts</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code général impôts</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>CGI</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-general-impots" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-penal">
+    <skos:prefLabel xml:lang="fr">Code pénal</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code pénal</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. pén.</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-penal" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-securite-interieure">
+    <skos:prefLabel xml:lang="fr">Code de la sécurité intérieure</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code sécurité intérieure</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. séc. int.</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-securite-interieure" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-securite-sociale">
+    <skos:prefLabel xml:lang="fr">Code de la sécurité sociale</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code sécurité sociale</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. séc. soc.</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-securite-sociale" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-service-national">
+    <skos:prefLabel xml:lang="fr">Code du service national</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>code service national</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>c. serv. nat.</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#code-service-national" />
+    <skos:changeNote>15/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-engagement-citoyen">
+    <skos:prefLabel xml:lang="fr">Compte d'engagement citoyen</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>compte engagement citoyen</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>CEC</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#compte-engagement-citoyen" />
+    <srm:pattern>Compte d’engagement citoyen</srm:pattern>
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Formation professionnelle.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-epargne-temps">
+    <skos:prefLabel xml:lang="fr">Compte épargne-temps</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>compte épargne-temps</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>CET</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#compte-epargne-temps" />
+    <srm:pattern>Compte épargne-temps</srm:pattern>
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Durée et aménagement du temps de travail.- Définition, Plans d’épargne, participation, intéressement et actionnariat.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-prevention-penibilite">
+    <skos:prefLabel xml:lang="fr">Compte personnel de prévention de la pénibilité</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Deprecated" />
+    <srm:lexicalUnitMain>compte personnel prévention pénibilité</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>C3P</srm:acronymAllowed>
+    <srm:acronymAllowed>CPPP</srm:acronymAllowed>
+    <srm:syntacticVariantAllowed>compte pénibilité</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>compte de prévention de la pénibilité</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#compte-personnel-prevention-penibilite" />
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel">
+    <skos:prefLabel xml:lang="fr">Compte personnel</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>compte personnel</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>09/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Formation professionnelle</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-activite">
+    <skos:prefLabel xml:lang="fr">Compte personnel d'activité</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>compte personnel activité</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>CPA</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#compte-personnel-activite" />
+    <srm:pattern>Compte personnel d’activité</srm:pattern>
+    <skos:changeNote>09/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Formation professionnelle.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation">
+    <skos:prefLabel xml:lang="fr">Compte personnel de formation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>compte personnel formation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>CPF</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#compte-personnel-formation" />
+    <srm:pattern>Compte personnel de formation | Compte personnel formation</srm:pattern>
+    <skos:changeNote>13/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Formation professionnelle.- Définition, DSN.- Définition &amp; Cible, Rubrique de la Revue.- Formation professionnelle ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-professionnel-prevention">
+    <skos:prefLabel xml:lang="fr">Compte professionnel de prévention</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>compte professionnel prévention</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>C2P</srm:acronymAllowed>
+    <srm:syntacticVariantAllowed>compte pénibilité</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#compte-professionnel-prevention" />
+    <srm:pattern>Compte professionnel de prévention</srm:pattern>
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Déclarations et registres.- Définition, Durée et aménagement du temps de travail.- Définition, Formation professionnelle.- Définition, Prévoyance, retraite et préretraite.- Définition, Rubrique de la Revue.- Cotisations ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-apprentissage">
+    <skos:prefLabel xml:lang="fr">Contrat d'apprentissage</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>contrat apprentissage</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#contrat-apprentissage" />
+    <srm:pattern>Contrat d’apprentissage</srm:pattern>
+    <skos:changeNote>05/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Contrats particuliers et contrats aidés.- Définition, Exonérations, aides à l'emploi et réductions de cotisations.- Définition, DSN.- Cible ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation">
+    <skos:prefLabel xml:lang="fr">Contrat de professionnalisation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>contrat professionnalisation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#contrat-professionnalisation" />
+    <srm:pattern>Contrat de professionnalisation</srm:pattern>
+    <skos:changeNote>19/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Contrats particuliers et contrats aidés.- Définition, Exonérations, aides à l'emploi et réductions de cotisations.- Définition, Formation professionnelle.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation-aides-et-exonerations-">
+    <skos:prefLabel xml:lang="fr">Contrat de professionnalisation (aides et exonérations)</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>contrat professionnalisation aides et exonérations</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:pattern>Contrat de professionnalisation (aides et exonérations)</srm:pattern>
+    <skos:changeNote>13/02/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Contrats particuliers et contrats aidés.- Définition, Exonérations, aides à l'emploi et réductions de cotisations.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-travail">
+    <skos:prefLabel xml:lang="fr">Contrat de travail</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>contrat travail</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#contrat-travail" />
+    <skos:changeNote>05/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Apprentissage, Rubrique de la Revue.- Contrat de travail, Rubrique de la Revue.- Gestion du personnel</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#convention-collective">
+    <skos:prefLabel xml:lang="fr">Convention collective</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="InProgress" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>convention collective</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>conv. coll.</srm:abbreviationAllowed>
+    <srm:pattern>Convention collective</srm:pattern>
+    <skos:editorialNote>ToDo : SyncDone Négociation ou Source juridique ?</skos:editorialNote>
+    <skos:changeNote>16/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Bulletin de paye et paiement du salaire.- Définition, Gestion administrative et juridique du personnel.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation-transition-professionnelle">
+    <skos:prefLabel xml:lang="fr">Compte personnel de formation de transition professionnelle</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>compte personnel formation transition professionnelle</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>CPF de transition</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>CPF de transition professionnelle</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>compte personnel de formation de transition</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#compte-personnel-formation-transition-professionnelle" />
+    <srm:pattern>CPF de transition professionnelle</srm:pattern>
+    <skos:changeNote>20/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Congés divers et absences.- Définition, Formation professionnelle.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#declassement-salarie">
+    <skos:prefLabel xml:lang="fr">Déclassement du salarié</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>déclassement salarié</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#declassement-salarie" />
+    <srm:pattern>Déclassement</srm:pattern>
+    <skos:changeNote>04/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Classification et qualification.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#interdiction-discrimination">
+    <skos:prefLabel xml:lang="fr">Interdiction de la discrimination</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>interdiction discrimination</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#discrimination-interdite" />
+    <srm:pattern>Discrimination (interdiction de)</srm:pattern>
+    <skos:changeNote>19/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Gestion administrative et juridique du personnel.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#dissimulation-emploi-salarie">
+    <skos:prefLabel xml:lang="fr">Dissimulation d'emploi salarié</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="InProgress" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>dissimulation emploi salarié</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:pattern>Dissimulation d’emploi salarié</srm:pattern>
+    <skos:editorialNote>ToDo : SyncDone</skos:editorialNote>
+    <skos:changeNote>19/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Gestion administrative et juridique du personnel.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#document">
+    <skos:prefLabel xml:lang="fr">Documents</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>document</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>documents</srm:syntacticVariantAllowed>
+    <skos:changeNote>19/02/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Rupture du contrat de travail</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration">
+    <skos:prefLabel xml:lang="fr">Égalité de rémunération</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>égalité rémunération</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>égalité des rémunérations</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#egalite-remuneration" />
+    <srm:pattern>Égalité des rémunérations</srm:pattern>
+    <skos:changeNote>13/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>--.- Définition, Rémunérations et salaires.- Définition, Rubrique de la Revue.- Égalité de rémunération, Rubrique de la Revue.- Loi Avenir professionnel ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration-femme-homme">
+    <skos:prefLabel xml:lang="fr">Égalité de rémunération femme-homme</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>égalité rémunération femme-homme</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>égalité de rémunération homme  femme</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>égalité des rémunérations femmes hommes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>égalité des rémunérations femmes-hommes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>égalité des rémunérations hommes femmes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>égalité des rémunérations hommes-femmes</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>égalité de rémunération homme- femme</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#egalite-remuneration-femme-homme" />
+    <srm:pattern>Égalité des rémunérations femmes-hommes</srm:pattern>
+    <skos:changeNote>13/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>--.- Définition, Rémunérations et salaires.- Définition, Rubrique de la Revue.- Égalité de rémunération homme-femme ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle">
+    <skos:prefLabel xml:lang="fr">Égalité professionnelle</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>égalité professionnelle</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#egalite-professionnelle" />
+    <skos:changeNote>16/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Rémunération</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle-femme-homme">
+    <skos:prefLabel xml:lang="fr">Égalité professionnelle femme-homme</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>égalité professionnelle femme-homme</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>égalité professionnelle homme-femme</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#egalite-professionnelle-femme-homme" />
+    <skos:changeNote>16/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Rémunération</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-pour-egalite-professionnelle-femme-homme">
+    <skos:prefLabel xml:lang="fr">Accord collectif pour l'égalité professionnelle femme-homme</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord collectif pour égalité professionnelle femme-homme</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>accord collectif pour l'égalité professionnelle</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>accord collectif pour l'égalité professionnelle homme-femme</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-collectif-pour-egalite-professionnelle-femme-homme" />
+    <srm:pattern>Égalité professionnelle (accord collectif ou plan d’action)</srm:pattern>
+    <skos:changeNote>25/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche">
+    <skos:prefLabel xml:lang="fr">Embauche</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>embauche</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:editorialNote>Thesaurus : concept de structuration</skos:editorialNote>
+    <skos:changeNote>06/02/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Aides à l'emploi,</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-salarie">
+    <skos:prefLabel xml:lang="fr">Embauche d'un salarié</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>embauche salarié</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>embauche du salarié</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#embauche-salarie" />
+    <skos:changeNote>05/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Thématique Dictionnaire Paye</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-contrat-a-duree-determinee">
+    <skos:prefLabel xml:lang="fr">Embauche en contrat à durée indéterminée après un contrat à durée déterminée</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>embauche contrat à durée indéterminée après contrat à durée déterminée</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>embauche en CDI après un CDD</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#embauche-contrat-a-duree-indeterminee-apres-contrat-a-duree-determinee" />
+    <skos:changeNote>05/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Point de droit</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-mission-interim">
+    <skos:prefLabel xml:lang="fr">Embauche en contrat à durée indéterminée après une mission d'intérim</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>embauche contrat à durée indéterminée après mission intérim</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>embauche en CDI après une mission d'intérim</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#embauche-contrat-a-duree-indeterminee-apres-mission-interim" />
+    <skos:changeNote>16/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Point de droit</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#essai-professionnel">
+    <skos:prefLabel xml:lang="fr">Essai professionnel</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>essai professionnel</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#essai-professionnel" />
+    <srm:pattern>Essai professionnel</srm:pattern>
+    <skos:changeNote>05/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Embauche du salarié.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-en-alternance">
+    <skos:prefLabel xml:lang="fr">Formation en alternance</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>formation en alternance</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#formation-en-alternance" />
+    <srm:pattern>Formation en alternance</srm:pattern>
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Formation professionnelle.- Renvoi, Rubrique de la Revue.- Contrats aidés ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-et-apprentissage">
+    <skos:prefLabel xml:lang="fr">Formation et apprentissage</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>formation et apprentissage</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>05/01/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Projet</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-professionnelle">
+    <skos:prefLabel xml:lang="fr">Formation professionnelle</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>formation professionnelle</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#formation-professionnelle" />
+    <skos:changeNote>08/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Thématique Dictionnaire Paye, Rubrique de la Revue.- Congé, Rubrique de la Revue.- Formation professionnelle, Rubrique de la Revue.- Loi avenir professionnel</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#intermittent-spectacle">
+    <skos:prefLabel xml:lang="fr">Intermittent du spectacle</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>intermittent spectacle</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>intermittents</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>intermittents du spectacle</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#intermittent-spectacle" />
+    <srm:pattern>Intermittents du spectacle</srm:pattern>
+    <skos:changeNote>22/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Cotisations et autres charges.- Définition, Payes spécifiques.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#journal-officiel">
+    <skos:prefLabel xml:lang="fr">Journal officiel</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>journal officiel</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>JO</srm:acronymAllowed>
+    <srm:acronymAllowed>JORF</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#journal-officiel" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Journal officiel</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#jurisprudence">
+    <skos:prefLabel xml:lang="fr">Jurisprudence</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>jurisprudence</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>jurisp.</srm:abbreviationAllowed>
+    <srm:abbreviationAllowed>JP</srm:abbreviationAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#jurisprudence" />
+    <skos:changeNote>16/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Jurisprudence ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-avenir-professionnel">
+    <skos:prefLabel xml:lang="fr">Loi dite Avenir professionnel</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite avenir professionnel</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi avenir professionnel</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-avenir-professionnel" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Égalité de rémunération,Rubrique de la Revue.- Handicapés, Rubrique de la Revue.- Congé et formation, Rubrique de la Revue.- Formation professionnelle, Rubrique de la Revue.- Loi avenir professionnel</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-habilitation">
+    <skos:prefLabel xml:lang="fr">Loi d'habilitation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi habilitation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#lois-habilitation" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Réforme du code du travail</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances">
+    <skos:prefLabel xml:lang="fr">Loi de finances</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi finances</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi de finances</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#lois-finances" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi de finances 2020</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-pour-2020">
+    <skos:prefLabel xml:lang="fr">Loi de finances pour 2020</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi finances pour 2020</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>LF 2020</srm:abbreviationAllowed>
+    <srm:syntacticVariantAllowed>loi de finances 2020</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-finances-pour-2020" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi de finances 2020</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-pour-2021">
+    <skos:prefLabel xml:lang="fr">Loi de finances pour 2021</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi finances pour 2021</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>LF 2021</srm:abbreviationAllowed>
+    <srm:syntacticVariantAllowed>loi de finances 2021</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-finances-pour-2021" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Projet</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-droit-a-erreur">
+    <skos:prefLabel xml:lang="fr">Loi dite Droit à l'erreur</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite droit à erreur</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi droit à l'erreur</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-essoc" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi droit à l'erreur</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-essoc">
+    <skos:prefLabel xml:lang="fr">Loi dite ESSOC</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite essoc</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi essoc</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-essoc" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:definition>Loi ESSOC : droit à l'erreur. La loi n° 2018-727 du 10 août 2018 pour un État au service d’une société de confiance dite loi ESSOC</skos:definition>
+    <skos:scopeNote>Rubrique de la Revue.- Loi droit à l'erreur</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale">
+    <skos:prefLabel xml:lang="fr">Loi de financement de la sécurité sociale</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi financement sécurité sociale</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>LFSS</srm:acronymAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#lois-financement-securite-sociale" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi financement de la sécurité sociale 2019</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2019">
+    <skos:prefLabel xml:lang="fr">Loi de financement de la sécurité sociale 2019</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi financement sécurité sociale 2019</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>LFSS 2019</srm:abbreviationAllowed>
+    <srm:syntacticVariantAllowed>loi financement de la sécurité sociale 2019</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-financement-securite-sociale-2019" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi financement de la sécurité sociale 2019</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2020">
+    <skos:prefLabel xml:lang="fr">Loi de financement de la sécurité sociale 2020</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi financement sécurité sociale 2020</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>LFSS 2020</srm:abbreviationAllowed>
+    <srm:syntacticVariantAllowed>loi financement de la sécurité sociale 2020</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-financement-securite-sociale-2020" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi financement de la sécurité sociale 2019</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2021">
+    <skos:prefLabel xml:lang="fr">Loi de financement de la sécurité sociale 2021</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi financement sécurité sociale 2021</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:abbreviationAllowed>LFSS 2021</srm:abbreviationAllowed>
+    <srm:syntacticVariantAllowed>loi financement de la sécurité sociale 2021</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-financement-securite-sociale-2021" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi financement de la sécurité sociale 2019</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mesures-urgence">
+    <skos:prefLabel xml:lang="fr">Loi dite Mesures d'urgence</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite mesures urgence</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi mesures d'urgence</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-mesure-urgence" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Rémunération - Exonérations</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mesures-urgentes">
+    <skos:prefLabel xml:lang="fr">Loi dite Mesures urgentes</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite mesures urgentes</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi mesures urgentes</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-mesure-urgente" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Loi mesures urgentes</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mobilites">
+    <skos:prefLabel xml:lang="fr">Loi dite Mobilités</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite mobilités</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>LOM</srm:acronymAllowed>
+    <srm:syntacticVariantAllowed>loi mobilités</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-mobilite" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:definition>Loi n° 2019-1428 du 24 décembre 2019 d'orientation des mobilités</skos:definition>
+    <skos:scopeNote>Rubrique de la Revue.- Transport domicile-lieu de travail</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-pacte">
+    <skos:prefLabel xml:lang="fr">Loi dite PACTE</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi dite pacte</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>loi pacte</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#loi-dite-pacte" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Effectifs, Rubrique de la Revue.- Épargne salariale, Rubrique de la Revue.- Loi PACTE</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#ordonnance-dite-macron">
+    <skos:prefLabel xml:lang="fr">Ordonnance dite Macron</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="InProgress" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>ordonnance dite macron</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>ordonnances Macron</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>ordonnances dites Macron</srm:syntacticVariantAllowed>
+    <srm:syntacticVariantAllowed>ordonnance Macron</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#ordonnance-dite-macron" />
+    <skos:editorialNote>See Gaëlle pour le millésime 2018, 2016 …. ; ToDo : Uri</skos:editorialNote>
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Ordonnances Macron ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-pro-a">
+    <skos:prefLabel xml:lang="fr">Période de Pro-A</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>période pro-a</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>période de « Pro-A »</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#periode-pro-a" />
+    <srm:pattern>Période de Pro-A</srm:pattern>
+    <skos:changeNote>09/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Formation professionnelle.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#professionnalisation">
+    <skos:prefLabel xml:lang="fr">Professionnalisation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>professionnalisation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#professionnalisation" />
+    <skos:changeNote>09/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-professionnalisation">
+    <skos:prefLabel xml:lang="fr">Période de professionnalisation</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <dct:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-12-31</dct:deprecated>
+    <srm:status rdf:resource="Deprecated" />
+    <srm:lexicalUnitMain>période professionnalisation</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#periode-professionnalisation" />
+    <srm:pattern>Période de professionnalisation</srm:pattern>
+    <skos:changeNote>09/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Formation professionnelle.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-entreprise">
+    <skos:prefLabel xml:lang="fr">Accord collectif d'entreprise</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord collectif entreprise</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>accord d'entreprise</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-collectif-entreprise" />
+    <skos:changeNote>25/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-branche">
+    <skos:prefLabel xml:lang="fr">Accord collectif de branche</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord collectif branche</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>accord de branche</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-collectif-branche" />
+    <skos:changeNote>25/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-etablissement">
+    <skos:prefLabel xml:lang="fr">Accord collectif d'établissement</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord collectif établissement</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>accord d'établissement</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-collectif-etablissement" />
+    <skos:changeNote>25/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-groupe">
+    <skos:prefLabel xml:lang="fr">Accord collectif de groupe</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord collectif groupe</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>accord de groupe</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-collectif-groupe" />
+    <skos:changeNote>25/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-entreprise-sur-accord-collectif-branche">
+    <skos:prefLabel xml:lang="fr">Primauté de l'accord collectif d'entreprise sur l'accord collectif de branche</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>primauté accord collectif entreprise sur accord collectif branche</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>primauté de l'accord d'entreprise sur l'accord de branche</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#primaute-accord-entreprise-ou-etablissement" />
+    <srm:pattern>Primauté de l’accord d’entreprise sur l’accord de branche</srm:pattern>
+    <skos:changeNote>16/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Gestion administrative et juridique du personnel.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-etablissement-sur-accord-collectif-branche">
+    <skos:prefLabel xml:lang="fr">Primauté de l'accord collectif d'établissement sur l'accord collectif de branche</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>primauté accord collectif établissement sur accord collectif branche</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>primauté de l'accord d'établissement sur l'accord de branche</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#primaute-accord-entreprise-ou-etablissement" />
+    <skos:changeNote>16/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-groupe-sur-accord-collectif-branche">
+    <skos:prefLabel xml:lang="fr">Primauté de l'accord collectif de groupe sur l'accord collectif de branche</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>primauté accord collectif groupe sur accord collectif branche</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>primauté de l'accord de groupe sur l'accord de branche</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#primaute-accord-entreprise-ou-etablissement" />
+    <skos:changeNote>16/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#qualification-professionnelle">
+    <skos:prefLabel xml:lang="fr">Qualification professionnelle</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>qualification professionnelle</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#qualification-professionnelle" />
+    <srm:pattern>Qualification professionnelle</srm:pattern>
+    <skos:changeNote>08/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Classification et qualification.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-assurance-chomage">
+    <skos:prefLabel xml:lang="fr">Réforme de l'assurance chômage</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>réforme assurance chômage</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>25/01/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Cotisations, Rubrique de la Revue.- Réforme de l'assurance chômage</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-obligation-emploi">
+    <skos:prefLabel xml:lang="fr">Réforme de l'obligation d'emploi</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>réforme obligation emploi</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>25/01/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Travailleurs handicapés</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-code-travail">
+    <skos:prefLabel xml:lang="fr">Réforme du code du travail</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>réforme code travail</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>23/01/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Réforme du code du travail</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-par-ordonnance">
+    <skos:prefLabel xml:lang="fr">Réforme par ordonnances</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>réforme par ordonnances</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>23/01/2021 - Suppression</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Code du travail, Rubrique de la Revue.- Réforme par ordonnances</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#salarie-intermittent">
+    <skos:prefLabel xml:lang="fr">Salarié intermittent</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>salarié intermittent</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:syntacticVariantAllowed>salariés intermittents</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#salarie-intermittent" />
+    <srm:pattern>Salariés intermittents</srm:pattern>
+    <skos:changeNote>06/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Payes spécifiques.- Renvoi ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#sous-classement-salarie">
+    <skos:prefLabel xml:lang="fr">Sous-classement du salarié</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>sous-classement salarié</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#sous-classement-salarie" />
+    <srm:pattern>Sous-classement du salarié</srm:pattern>
+    <skos:changeNote>04/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Classification et qualification.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#statut">
+    <skos:prefLabel xml:lang="fr">Statut</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>statut</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <skos:changeNote>04/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Rubrique de la Revue.- Statut</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#surclassement-salarie">
+    <skos:prefLabel xml:lang="fr">Surclassement du salarié</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>surclassement salarié</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#surclassement-salarie" />
+    <srm:pattern>Surclassement du salarié</srm:pattern>
+    <skos:changeNote>04/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Classification et qualification.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#travail-dissimule">
+    <skos:prefLabel xml:lang="fr">Travail dissimulé</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-19</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>travail dissimulé</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#travail-dissimule" />
+    <srm:pattern>Travail dissimulé</srm:pattern>
+    <skos:changeNote>10/01/2021 - Création</skos:changeNote>
+    <skos:scopeNote>Bulletin de paye et paiement du salaire.- Définition, Embauche du salarié.- Définition, Gestion administrative et juridique du personnel.- Définition ; Source &amp; Cible</skos:scopeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-rectificative">
+    <skos:prefLabel xml:lang="fr">Loi de finances rectificative</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>loi finances rectificative</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#lois-finances-rectificative" />
+    <skos:changeNote>23/01/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#lettre-embauche">
+    <skos:prefLabel xml:lang="fr">Lettre d'embauche</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>lettre embauche</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#lettre-embauche" />
+    <skos:changeNote>05/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#lettre-engagement">
+    <skos:prefLabel xml:lang="fr">Lettre d'engagement</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>lettre engagement</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#lettre-engagement" />
+    <skos:changeNote>05/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-national-interprofessionnel">
+    <skos:prefLabel xml:lang="fr">Accord national interprofessionnel</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="Done" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-20</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>accord national interprofessionnel</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:acronymAllowed>ANI</srm:acronymAllowed>
+    <srm:syntacticVariantAllowed>accord interprofessionnel</srm:syntacticVariantAllowed>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#accord-national-interprofessionnel" />
+    <skos:changeNote>07/02/2021 - Création</skos:changeNote>
+  </skos:Concept>
+  <skos:Concept rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#stagiaire">
+    <skos:prefLabel xml:lang="fr">Stagiaire</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <srm:workStatus rdf:resource="ToDo" />
+    <dct:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-02-22</dct:created>
+    <srm:status rdf:resource="Current" />
+    <srm:lexicalUnitMain>stagiaire</srm:lexicalUnitMain>
+    <srm:syntacticCategory>Nom</srm:syntacticCategory>
+    <srm:TerminoConcept rdf:resource="https://revuefiduciaire.grouperf.com/taxonomy/thesaurus-paye#stagiaire" />
+    <srm:pattern>Stagiaire</srm:pattern>
+    <skos:changeNote>08/02/2021 - Création</skos:changeNote>
+    <skos:scopeNote>DSN.- Définition</skos:scopeNote>
+  </skos:Concept>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-document">
+    <skos:prefLabel xml:lang="fr">Collection Document</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-notion">
+    <skos:prefLabel xml:lang="fr">Collection Notion</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-performance-collective" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-participation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche-apprenti" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprenti" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprentissage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-conventionnelle-emploi" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-engagement-citoyen" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-epargne-temps" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-prevention-penibilite" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-activite" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-professionnel-prevention" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-apprentissage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-travail" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation-transition-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#declassement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#interdiction-discrimination" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#dissimulation-emploi-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration-femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle-femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-pour-egalite-professionnelle-femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-contrat-a-duree-determinee" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-mission-interim" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#essai-professionnel" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-en-alternance" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-pro-a" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#professionnalisation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-professionnalisation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#qualification-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#sous-classement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#surclassement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#travail-dissimule" />
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-organisme">
+    <skos:prefLabel xml:lang="fr">Collection Organisme</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-personne-morale">
+    <skos:prefLabel xml:lang="fr">Collection Personne morale</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-personne-physique">
+    <skos:prefLabel xml:lang="fr">Collection Personne physique</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#intermittent-spectacle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#salarie-intermittent" />
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-territoire">
+    <skos:prefLabel xml:lang="fr">Collection Territoire</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>07/01/2021 - Création</skos:changeNote>
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-source-droit">
+    <skos:prefLabel xml:lang="fr">Collection Source du droit</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>08/01/2021 - Création</skos:changeNote>
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-liste-noire">
+    <skos:prefLabel xml:lang="fr">Collection Liste noire</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>11/01/2021 - Création</skos:changeNote>
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-et-qualification" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation-aides-et-exonerations-" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#document" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-et-apprentissage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-assurance-chomage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-obligation-emploi" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-code-travail" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-par-ordonnance" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#statut" />
+  </skos:Collection>
+  <skos:Collection rdf:about="https://revuefiduciaire.grouperf.com/terminology/termino-paye#collection-mot-outil">
+    <skos:prefLabel xml:lang="fr">Collection Mot outil</skos:prefLabel>
+    <skos:inScheme rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye" />
+    <dct:creator />
+    <srm:workstatus rdf:resource="Done" />
+    <srm:status rdf:resource="Current" />
+    <skos:changeNote>13/01/2021 - Création</skos:changeNote>
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-performance-collective" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-participation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche-apprenti" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#aide-embauche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprenti" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#apprentissage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-travail" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-conventionnelle-emploi" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#classification-et-qualification" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-action-sociale-et-familles" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-civil" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-construction-et-habitation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-defense" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-entree-et-sejour-etrangers-et-droit-asile" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-general-collectivites-territoriales" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-general-impots" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-penal" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-securite-interieure" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-securite-sociale" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#code-service-national" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-engagement-citoyen" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-epargne-temps" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-prevention-penibilite" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-activite" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-professionnel-prevention" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-apprentissage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-professionnalisation-aides-et-exonerations-" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#contrat-travail" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#convention-collective" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#compte-personnel-formation-transition-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#declassement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#interdiction-discrimination" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#dissimulation-emploi-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#document" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-remuneration-femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#égalite-professionnelle-femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-pour-egalite-professionnelle-femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-contrat-a-duree-determinee" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#embauche-contrat-a-duree-indeterminee-apres-mission-interim" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#essai-professionnel" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-en-alternance" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-et-apprentissage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#intermittent-spectacle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#journal-officiel" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#jurisprudence" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-avenir-professionnel" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-habilitation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-pour-2020" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-pour-2021" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-droit-a-erreur" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-essoc" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2019" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2020" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-financement-securite-sociale-2021" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mesures-urgence" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mesures-urgentes" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-mobilites" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-dite-pacte" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#ordonnance-dite-macron" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-pro-a" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#professionnalisation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#periode-professionnalisation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-entreprise" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-branche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-etablissement" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#accord-collectif-groupe" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-entreprise-sur-accord-collectif-branche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-etablissement-sur-accord-collectif-branche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#primaute-accord-collectif-groupe-sur-accord-collectif-branche" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#qualification-professionnelle" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-assurance-chomage" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-obligation-emploi" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-code-travail" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#reforme-par-ordonnance" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#salarie-intermittent" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#sous-classement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#statut" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#surclassement-salarie" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#travail-dissimule" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#loi-finances-rectificative" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#paye" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#paye" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#femme-homme" />
+    <skos:member rdf:resource="https://revuefiduciaire.grouperf.com/terminology/termino-paye#formation" />
+  </skos:Collection>
+</rdf:RDF>
+<!-- Terminology generated by the LuapLab tool "Semantic Resources Management". Export RDF, version 2.0 -->
