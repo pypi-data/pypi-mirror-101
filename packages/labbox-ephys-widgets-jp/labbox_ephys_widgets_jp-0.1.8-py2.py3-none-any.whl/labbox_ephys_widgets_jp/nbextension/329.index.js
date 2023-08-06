@@ -1,0 +1,1 @@
+(self.webpackChunklabbox_ephys_widgets_jp=self.webpackChunklabbox_ephys_widgets_jp||[]).push([[329],{329:(e,n,i)=>{"use strict";i.r(n),i.d(n,{activate:()=>s});var a=i(78356);function s(e){e.registerPlugin({type:"MainWindow",name:"MainWindow",label:"Main Window",component:a.Z})}}}]);
