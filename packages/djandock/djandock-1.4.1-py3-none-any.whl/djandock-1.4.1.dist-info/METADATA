@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: djandock
+Version: 1.4.1
+Summary: A simple utility to create Django projects with virtualenvironment, Git and Docker all set up
+Home-page: https://github.com/marxygen/djandock
+Author: marxygen
+Author-email: marxygen@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/marxygen/djandock/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# djandock
+
+A Python script to initialize a Django project with a setup virtual environment and docker and PostgreSQL
+
+# Usage
+
+```Shell
+$ djandock [name] -r [Git repo link]
+```
+
+1. Creates a virtual environment
+2. Creates a Django project
+3. Wraps the project in Docker
+4. Initializes the Git repository
+
+
