@@ -1,0 +1,16 @@
+SWIMLANE_Data__Mongo__HistoryConnectionString=mongodb://Swimlane:@sw_mongo:27017/SwimlaneHistory?ssl=true&sslVerifyCertificate=false
+SWIMLANE_Data__Mongo__SwimlaneConnectionString=mongodb://Swimlane:@sw_mongo:27017/Swimlane?ssl=true&sslVerifyCertificate=false
+SWIMLANE_EnableHA=false
+SWIMLANE_Logging__IncludeAudit=false
+SWIMLANE_Logging__Level=Info
+#SWIMLANE_PfxPassword=<password-placeholder>
+#REQUESTS_CA_BUNDLE=/etc/ssl/certs
+SWIMLANE_OpenSSL__MinProtocol=TLSv1.2
+SWIMLANE_OpenSSL__CipherString=DEFAULT@SECLEVEL=2
+WAIT_FOR=tcp://sw_mongo:27017
+SWIMLANE_FeatureManagement__DynamicOrchestration=false
+SWIMLANE_FeatureManagement__ScheduledReports=true
+SWIMLANE_FeatureManagement__ContentExchange=false
+SWIMLANE_OpenSSL__MinProtocol=TLSv1.2
+SWIMLANE_OpenSSL__CipherString=DEFAULT@SECLEVEL=2
+SWIMLANE_ReportsService__BaseUrl=http://sw-reports:4000/
