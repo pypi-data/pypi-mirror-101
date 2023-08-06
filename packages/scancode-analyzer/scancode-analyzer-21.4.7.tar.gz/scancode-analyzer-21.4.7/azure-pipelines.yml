@@ -1,0 +1,19 @@
+
+################################################################################
+# We use Azure to run the full tests suites on Python 3.6
+# on Linux
+################################################################################
+
+jobs:
+
+################################################################################
+# These jobs are using VMs and Azure-provided Python 3.6
+################################################################################
+
+    - template: etc/ci/azure-linux.yml
+      parameters:
+          job_name: ubuntu18_py36
+          image_name: ubuntu-18.04
+          python_versions: ['3.6']
+          test_suites:
+              all: tmp/bin/pytest -n 2 -vvs
