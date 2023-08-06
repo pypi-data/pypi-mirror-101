@@ -1,0 +1,25 @@
+{% include 'game/resource_editor.html' %}
+
+<script>
+//IP地址解析
+
+
+
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+
+var type_index = TH['奖励类型'] ? TH['奖励类型'] : TH['消耗类型'] || TH['赠送资源']
+
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		row[type_index] = reversal_prize(row[type_index])
+	}
+  	return data
+
+})     //输出处理
+
+</script>
+
+
+

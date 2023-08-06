@@ -1,0 +1,199 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{% block header %}
+    <title>{{ _('资源 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="row header">
+    <div class="col-sm-5">
+        <h1>{{ _('资源') }}
+            <small>{{ _('编辑') }}</small>
+        </h1>
+    </div>
+</div>
+
+<hr><br>
+
+<form action="/myadmin/resource/save?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}"
+          method="POST"
+          class="form-horizontal"
+          role="form">
+        <div class="row edit-container">
+            <div class="col-sm-12">
+                {{ csrf_input }}
+                
+
+
+        <div class="form-group" style="display:none">
+            <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                
+                {{ _('id') }} </label>
+
+            <div class="col-sm-8">
+                 <input type="number" id="id_id" name="id"
+                        class="form-control" value="{{ data.id  or ""}}"
+                        
+                        
+                >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_name">
+                <span class="text-danger">*</span>
+                {{ _('资源名') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_name" name="name"
+                        class="form-control" value="{{ data.name  or ""}}"
+                        maxlength=20
+                        required=true
+                 >
+
+                <span class="help-block">{{ _('资源简称,只允许字母') }}</span>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_role_id">
+                <span class="text-danger">*</span>
+                {{ _('角色id') }} </label>
+
+            <div class="col-sm-8">
+                 <input type="number" id="id_role_id" name="role_id"
+                        class="form-control" value="{{ data.role_id  or ""}}"
+                        required=true
+                        
+                >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_create_datetime">
+                
+                {{ _('创建时间') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_create_datetime" name="create_datetime"
+                           class="form-control datetime " value="{{ data.create_datetime   or "" }}"
+                           
+                    >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_update_datetime">
+                
+                {{ _('更新时间') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_update_datetime" name="update_datetime"
+                           class="form-control datetime " value="{{ data.update_datetime   or "" }}"
+                           
+                    >
+
+            </div>
+        </div>
+            </div>
+        </div>
+
+
+        <div class="row pane">
+            <div class="col-sm-offset-3 col-sm-3">
+                <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                <button id="save-btn" class="btn btn-primary " type="button">
+                    {{ _('保 存') }}
+                </button>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <button id="save-edit-btn" class="btn btn-info " type="button">
+                        {{ _('保存并继续编辑') }}
+                    </button>
+                    <button id="save-add-btn" class="btn btn-info " type="button">
+                        {{ _('保存并增加另一个') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+<script>
+    var $form = $('form')
+    $form.submit(function (e) {
+        stopEevent(e)
+        return false
+    })
+
+    function ajaxPostData(ele, callback) {
+        clearHelpText()
+        $(ele).attr("disabled", true);
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: $form.attr('action'),
+            dataType: 'json',
+            data: JSON.stringify($form.serializeToJSON()),
+            contentType: 'application/json',
+            success: function (rsp) {
+                if (rsp.code == 0) {
+                    $('[name="id"]').val(rsp.data.id)
+                    art.dialog(rsp.msg).time(1)
+                    clearHelpText()
+                    callback ? callback(rsp) : null
+                } else {
+                    rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                }
+            },
+            error: function (jqXHR, statusText, errorMsg) {
+                ajaxError(jqXHR, statusText, errorMsg)
+
+            },
+            complete: function (jqXHR, statusText) {
+                $(ele).removeAttr("disabled");
+            }
+
+        })
+    }
+
+    $('#save-add-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            if (rsp.code == 0) {
+                window.location.href = window.location.pathname
+            }
+        })
+    })
+
+    $('#save-edit-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            $form.attr('action', '/myadmin/resource/save?id=' + rsp.data.id)
+            refreshParentTable()
+
+        })
+    })
+
+    $('#save-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            refreshParentTable()
+            closeSelfDialog()
+        })
+    })
+
+</script>
+{% endblock %}

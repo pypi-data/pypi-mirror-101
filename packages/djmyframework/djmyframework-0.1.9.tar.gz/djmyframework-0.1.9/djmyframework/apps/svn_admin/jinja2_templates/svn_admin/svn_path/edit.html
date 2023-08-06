@@ -1,0 +1,286 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{% block header %}
+    <title>{{ _('SVN 路径 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="row header">
+        <div class="col-sm-5">
+            <h1>{{ _('SVN 路径') }}
+                <small>{{ _('编辑') }}</small>
+            </h1>
+        </div>
+    </div>
+
+    <hr><br>
+
+    <form action="{{ url('svn_admin.svn_path.save') }}?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}"
+          method="POST"
+          class="form-horizontal"
+          role="form">
+        <div class="row ">
+            <div class="col-sm-6">
+                {{ csrf_input }}
+
+
+                <div class="form-group" style="display:none">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_id">
+
+                        {{ _('id') }} </label>
+
+                    <div class="col-sm-8">
+
+
+                        <input type="number" id="id_id" name="id"
+                               class="form-control" value="{{ data.id  or "" }}">
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_alias">
+
+                        {{ _('路径别名') }} </label>
+
+                    <div class="col-sm-8">
+
+
+                        <input type="text" id="id_alias" name="alias"
+                               class="form-control" value="{{ data.alias  or "" }}"
+                               maxlength=200>
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_project_name">
+                        <span class="text-danger">*</span>
+                        {{ _('项目') }} </label>
+
+                    <div class="col-sm-8">
+
+                        <select class="form-control select2"
+                                id="id_project_name"
+                                data-placeholder="{{ _('项目') }}"
+                                name="project_name"
+                                data-url="{{ url('svn_admin.svn_path.svn_project_list') }}">
+                            <option value="{{ data.project_name }}" selected="selected">{{ data.project_name }}</option>
+                        </select>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_path">
+                        <span class="text-danger">*</span>
+                        {{ _('svn 路径') }} </label>
+
+                    <div class="col-sm-8">
+
+
+                        <input type="text" id="id_path" name="path"
+                               class="form-control" value="{{ data.path  or "" }}"
+                               maxlength=200
+                               required=true
+                        >
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_status">
+
+                        {{ _('状态') }} </label>
+
+                    <div class="col-sm-8">
+
+
+                        <select class="form-control col-lg-5 select2"
+                                id="id_status"
+                                data-placeholder="{{ _('状态') }}"
+                                name="status"
+                                svalue="{{ data.status }}">
+                            {% for o in data.serializer.instance.get_fields_map().status.choices %}
+                                <option value="{{ o.0 }}">{{ o.1 }}</option>
+                            {% endfor %}
+                        </select>
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_remark">
+
+                        {{ _('备注') }} </label>
+
+                    <div class="col-sm-8">
+
+
+                <textarea class="form-control limited" id="id_remark" name="remark"
+                          maxlength=500
+
+                >{{ data.remark or "" }}</textarea>
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_other_permission">
+
+                        {{ _('其他默认权限') }} </label>
+
+                    <div class="col-sm-8">
+                        <select class="form-control col-lg-5 select2"
+                                id="id_other_permission"
+                                data-placeholder="{{ _('其他访问权限') }}"
+                                name="other_permission"
+                                svalue="{{ data.other_permission }}">
+                            {% for o in data.serializer.instance.get_fields_map().other_permission.choices %}
+                                <option value="{{ o.0 }}">{{ o.1 }}</option>
+                            {% endfor %}
+                        </select>
+
+
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_create_datetime">
+
+                        {{ _('创建时间') }} </label>
+
+                    <div class="col-sm-8">
+
+
+                        <input type="text" id="id_create_datetime" name="create_datetime"
+                               class="form-control datetime " value="{{ data.create_datetime   or "" }}"
+
+                        >
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-sm-6">
+                    {% include 'svn_admin/widgets/svn_path_permission_select.html' %}
+            </div>
+        </div>
+
+
+        <div class="row pane edit-save-bar">
+            <div class="col-sm-offset-3 col-sm-3">
+                <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                <button id="save-btn" class="btn btn-primary " type="button">
+                    {{ _('保 存') }}
+                </button>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <button id="save-edit-btn" class="btn btn-info " type="button">
+                        {{ _('保存并继续编辑') }}
+                    </button>
+                    <button id="save-add-btn" class="btn btn-info " type="button">
+                        {{ _('保存并增加另一个') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+    <script>
+        var $form = $('form')
+        $form.submit(function (e) {
+            stopEevent(e)
+            return false
+        })
+
+        function ajaxPostData(ele, callback) {
+            clearHelpText()
+            $(ele).attr("disabled", true);
+            var post_data = $form.serializeToJSON()
+            post_data.read_member = JSON.stringify(post_data.read_member)
+            post_data.write_member = JSON.stringify(post_data.write_member)
+            $.ajax({
+                async: true,
+                type: "POST",
+                url: $form.attr('action'),
+                dataType: 'json',
+                data: JSON.stringify(post_data),
+                contentType: 'application/json',
+                success: function (rsp) {
+                    if (rsp.code == 0) {
+                        $('[name="id"]').val(rsp.data.id)
+                        art.dialog(rsp.msg).time(1)
+                        clearHelpText()
+                        callback ? callback(rsp) : null
+                    } else {
+                        rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                    }
+                },
+                error: function (jqXHR, statusText, errorMsg) {
+                    ajaxError(jqXHR, statusText, errorMsg)
+
+                },
+                complete: function (jqXHR, statusText) {
+                    $(ele).removeAttr("disabled");
+                }
+
+            })
+        }
+
+        $('#save-add-btn').click(function () {
+            ajaxPostData(this, function (rsp) {
+                if (rsp.code == 0) {
+                    window.location.href = window.location.pathname
+                }
+            })
+        })
+
+        $('#save-edit-btn').click(function () {
+            ajaxPostData(this, function (rsp) {
+                $form.attr('action', '{{ url('svn_admin.svn_path.save') }}?id=' + rsp.data.id)
+                refreshParentTable()
+
+            })
+        })
+
+        $('#save-btn').click(function () {
+            ajaxPostData(this, function (rsp) {
+                refreshParentTable()
+                closeSelfDialog()
+            })
+        })
+
+    $('[name="parent"]').change(function () {
+        if(this.value){
+            $.get('{{ url('svn_admin.svn_path.list') }}', {id__exact: this.value}, function (rsp) {
+                $('[name="project_name"]').val(rsp.data.results[0].project_name).trigger('change');
+
+            })
+        }
+
+    })
+
+
+    </script>
+{% endblock %}

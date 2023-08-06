@@ -1,0 +1,123 @@
+<script type="text/javascript">
+  $('#date_select_cont ul').html('')
+
+
+  var sdate_str = new Date().dateAdd('d',-(new Date().getDate()-1)).Format("yyyy-MM-dd")
+  var edate = new Date()
+  if (edate.getDate() != 1){
+    edate.dateAdd('d',-1)
+  }
+  edate_str = edate.Format("yyyy-MM-dd")
+  var one = $("<li>")
+
+
+  var close_12_month_btn = $('<a>',{"html":"今月","href":"javascript:void(0)",click:function(){
+	var sdate = new Date().dateAdd('d',-(new Date().getDate()-1))
+   sdate_str = sdate.Format("yyyy-MM-dd")
+   var edate = new Date()
+   if (edate.getDate() != 1){
+     edate.dateAdd('d',-1)
+   }
+   edate_str = edate.Format("yyyy-MM-dd")
+  	$('[name="sdate"]').val(sdate_str)
+  	$('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont ul').append(one)
+
+  var one = $("<li>")
+
+  var close_12_month_btn = $('<a>',{"html":"上月","href":"javascript:void(0)",click:function(){
+	
+  var sdate = new Date().dateAdd('m',-1)
+  sdate.setDate(1)
+  sdate_str = sdate.Format("yyyy-MM-dd")
+  var edate = new Date()
+  edate.setDate(0)
+  edate_str = edate.Format("yyyy-MM-dd")
+
+  	$('[name="sdate"]').val(sdate_str)
+  	$('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont  ul').append(one)
+  var one = $("<li>")
+
+  var close_12_month_btn = $('<a>',{"html":"近三月","href":"javascript:void(0)",click:function(){
+   var sdate = new Date().dateAdd('m',-3)
+  sdate.setDate(1)
+  sdate_str = sdate.Format("yyyy-MM-dd")
+  var edate = new Date()
+  edate.setDate(0)
+  edate_str = edate.Format("yyyy-MM-dd")
+
+	$('[name="sdate"]').val(sdate_str)
+  	$('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont ul').append(one)
+  var one = $("<li>")
+
+  var close_12_month_btn = $('<a>',{"html":"近半年","href":"javascript:void(0)",click:function(){
+   var sdate = new Date().dateAdd('m',-6)
+  sdate.setDate(1)
+  sdate_str = sdate.Format("yyyy-MM-dd")
+  var edate = new Date()
+  edate.setDate(0)
+  edate_str = edate.Format("yyyy-MM-dd")
+
+	$('[name="sdate"]').val(sdate_str)
+  	$('[name="edate"]').val(edate_str)
+
+  }})
+  one.append(close_12_month_btn)
+
+  $('#date_select_cont ul').append(one)
+
+  $('[name="sdate"]').val(sdate_str).width(100)
+  $('[name="edate"]').val(edate_str).width(100)
+
+</script>
+
+<script>
+
+  
+  $('[name="sdate"]').removeClass('Wdate')
+  $('[name="edate"]').removeClass('Wdate')
+
+
+
+  $('[name="sdate"]').focus(function(){
+		WdatePicker({
+		  dateFmt :  'yyyy-MM-dd'
+	})
+  })
+  $('[name="edate"]').focus(function(){
+		WdatePicker({
+		  dateFmt :  'yyyy-MM-dd'
+	})
+  })
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+dataTableOption.convertOutputDataFuncs = [function(data) {
+    listData = data.list_data;
+    for (var i in listData){
+	  if (listData[i][TH['投放地址']]){
+		listData[i][TH['投放地址']] = "<a href='/ad/page_refresh?id=" + listData[i][TH['ID']] + "' class='openDialog'>[刷新投放页]</a>" + "<a href='/ad/page_edit?id=" + listData[i][TH['ID']] + "' class='openDialog'>[修改投放]</a>" + "<a href='/static/tg/gamelist/html/" + listData[i][TH['模板路径']].split('/')[0] + "/" + listData[i][TH['投放地址']] + ".html' class='openDialog'>[投放预览]</a>" + "<a href='" + listData[i][TH['投放域名']] + "/tg/gamelist/html/" + listData[i][TH['模板路径']].split('/')[0] + "/" + listData[i][TH['投放地址']] + ".html' class='openDialog'>[投放地址]</a>"; 
+	  }
+    }
+
+
+    return data
+}]
+</script>
+
+
+
+
+
+
+
+
+
+
+

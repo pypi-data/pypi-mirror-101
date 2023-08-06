@@ -1,0 +1,351 @@
+{% extends "framework/base.html" %}
+
+{% block header %}
+    <title>{{ _('角色模型 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row header">
+        <div class="col-sm-5">
+            <h1>{{ _('角色模型') }}
+                <small>{{ _('编辑') }}</small>
+            </h1>
+        </div>
+        <div class="col-sm-6">
+
+        </div>
+    </div>
+
+    <hr>
+
+    <form action="/myadmin/role/save?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}"
+          method="POST"
+          class="form-horizontal"
+          role="form">
+        <div class="row edit-container">
+
+            <div class="col-sm-5 ">
+
+                <br>
+                {{ csrf_input }}
+                <div class="form-group" style="display:none">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                        {{ _('id') }} </label>
+
+                    <div class="col-sm-9">
+                        <input type="number" id="id_id" name="id"
+                               class="form-control" value="{{ data.id or "" }}"
+
+                        >
+
+                        <div id="help_text_id" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_alias">
+                        {{ _('角色名') }} <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-9">
+                        <input type="text" id="id_alias" name="alias"
+                               class="form-control" value="{{ data.alias  or "" }}"
+                               maxlength=50
+                               required=true
+                        >
+
+                        <div id="help_text_alias" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_name">
+                        {{ _('标识') }} <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-9">
+                        <input type="text" id="id_name" name="name"
+                               class="form-control" value="{{ data.name  or "" }}"
+                               maxlength=50
+                               required=true
+                        >
+
+                        <div id="help_text_name" class="middle text-danger help_text">{{ _('纯字母唯一') }}</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_parent">
+                        {{ _('上级') }} <span class="text-danger">*</span></label>
+
+                    <div class="col-sm-9">
+                        <select class="form-control select2-tree" id="id_parent"
+                                data-placeholder="{{ _('根') }}" name="parent"
+                                data-url="/myadmin/role/list?">
+                            <option value="{{ data.parent }}" selected="selected">{{ data.parent }}</option>
+                        </select>
+                        <div id="help_text_parent" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_type">
+                        {{ _('类型') }} </label>
+
+                    <div class="col-sm-9">
+                        <select class="form-control col-lg-5 select2" id="id_type"
+                                data-placeholder="{{ _('类型') }}" name="type" svalue="{{ data.type }}">
+                            {% for o in data.serializer.instance.fields_map.type.choices %}
+                                <option value="{{ o.0 }}">{{ o.1 }}</option>
+                            {% endfor %}
+
+                        </select>
+
+                        <div id="help_text_type" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_remark">
+                        {{ _('角色描述') }} </label>
+
+                    <div class="col-sm-9">
+                    <textarea class="form-control limited" id="form-field-9" id="id_remark" name="remark"
+                              maxlength=1000
+
+                    >{{ data.remark or "" }}</textarea>
+
+                        <div id="help_text_remark" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_home_index">
+                        {{ _('角色首页') }} </label>
+
+                    <div class="col-sm-9">
+                        <input type="text" id="id_home_index" name="home_index"
+                               class="form-control" value="{{ data.home_index  or "" }}"
+                               maxlength=500
+
+                        >
+
+                        <div id="help_text_home_index" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="">
+                    <label class="col-sm-3 control-label no-padding-right" for="id_create_datetime">
+                        {{ _('创建时间') }} </label>
+
+                    <div class="col-sm-9">
+
+                        <input type="text" id="id_create_datetime" name="create_datetime"
+                               class="form-control datetime "
+                               value="{{ data.create_datetime   or "" }}"
+
+                        >
+
+                        <div id="help_text_create_datetime" class="middle text-danger help_text"></div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-sm-7" style="height: 650px">
+                <div class="tabbable ">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tab-1" role="button">
+                                <i class="icon-dashboard bigger-110"></i>{{ _('模块权限') }}
+                            </a>
+
+                        </li>
+                        {% if request.user.is_manager %}
+                            <li class="">
+                                <a data-toggle="tab" href="#tab-2" role="button">
+                                    <i class="blue "></i> {{ _('可管理(下级)的角色') }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if request.user.is_root %}
+                            <li class="">
+                                <a data-toggle="tab" href="#tab-3" role="button">
+                                    <i class="icon-user"></i>{{ _('成员') }}
+                                </a>
+                            </li>
+                        {% endif %}
+
+
+                        {% for name,model_resource in request.user.resource.get_model_resource_map().items() %}
+                            {% if not model_resource.is_inner and model_resource.template %}
+                                <li class="">
+                                    <a data-toggle="tab" href="#tab-{{ model_resource.name }}">
+                                        <i class="icon-rocket"></i>{{ model_resource.label or model_resource.name }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                    </ul>
+                    <div class="tab-content ">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="alert alert-info">
+                                <i class="icon-remove close" data-dismiss="alert">&times;</i>
+                                {{ _('可见的模块权限.注意! 必须权限 要勾选,双击展开,使用右键勾选子项目.') }}
+                            </div>
+                            <div>
+                                {% set select_list=data.resource_map_ids.menu or []%}
+                                {% include 'myadmin/widgets/menu_tree_table_select.html' %}
+                            </div>
+                        </div>
+
+                        {% if request.user.is_manager %}
+                            <div id="tab-2" class="tab-pane ">
+
+                                <div>
+                                    {% set select_list=data.resource_map_ids.role or [] %}
+                                    {% include 'myadmin/widgets/role_table_select.html'  %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if request.user.is_root %}
+                            <div id="tab-3" class="tab-pane">
+
+                                <div class="">
+                                    {% set role_id = data.id%}
+                                    {% include 'myadmin/widgets/role_members_select.html' %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        {% for name,model_resource in request.user.resource.get_model_resource_map().items() %}
+                            {% if not model_resource.is_inner and model_resource.template %}
+
+                                <div id="tab-{{ model_resource.name }}" class="tab-pane">
+                                    {% if model_resource.help_text %}
+                                        <div class="alert alert-info">
+                                            <button type="button" class="close" data-dismiss="alert">
+                                                <i class="icon-remove"></i>
+                                            </button>
+                                            {{ model_resource.help_text }}
+                                            <br>
+                                        </div>
+                                    {% endif %}
+                                    <div class="">
+                                        {% with resource_map_ids=data.resource_map_ids,model_resource=model_resource,select_list=data.resource_map_ids.get(name,[]),resource_name=name %}
+                                        {% include model_resource.template  %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+
+
+                            {% endif %}
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="row pane edit-save-bar">
+            <div class="col-sm-offset-3 col-sm-3">
+
+                <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                <button id="save-btn" class="btn btn-primary " type="button">
+                    {{ _('保 存') }}
+                </button>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <button id="save-edit-btn" class="btn btn-info " type="button">
+                        {{ _('保存并继续编辑') }}
+                    </button>
+                    <button id="save-add-btn" class="btn btn-info " type="button">
+                        {{ _('保存并增加另一个') }}
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+    <script>
+        var $form = $('form')
+        $form.submit(function (e) {
+            stopEevent(e)
+            return false
+        })
+
+        function ajaxPostData(ele, callback) {
+            clearHelpText()
+            $(ele).attr("disabled", true);
+            $.ajax({
+                async: true,
+                type: "POST",
+                url: $form.attr('action'),
+                dataType: 'json',
+                data: JSON.stringify($form.serializeToJSON()),
+                contentType: 'application/json',
+                success: function (rsp) {
+                    if (rsp.code == 0) {
+                        $('[name="id"]').val(rsp.data.id)
+                        art.dialog(rsp.msg).time(1)
+                        clearHelpText()
+                        callback ? callback(rsp) : null
+                    } else {
+                        rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                    }
+                },
+                error: function (jqXHR, statusText, errorMsg) {
+                    ajaxError(jqXHR, statusText, errorMsg)
+
+                },
+                complete: function (jqXHR, statusText) {
+                    $(ele).removeAttr("disabled");
+                }
+
+            })
+        }
+
+        $('#save-add-btn').click(function () {
+            ajaxPostData(this, function (rsp) {
+                if (rsp.code == 0) {
+                    window.location.href = window.location.pathname
+                }
+            })
+        })
+
+        $('#save-edit-btn').click(function () {
+            ajaxPostData(this, function (rsp) {
+                $form.attr('action', '/myadmin/role/save?id=' + rsp.data.id)
+                refreshParentTable()
+
+            })
+        })
+
+        $('#save-btn').click(function () {
+            ajaxPostData(this, function (rsp) {
+                refreshParentTable()
+                closeSelfDialog()
+            })
+        })
+
+    </script>
+{% endblock %}

@@ -1,0 +1,146 @@
+<div id="svn-path-tree-container" v-cloak>
+
+    <a-card size="default" title="{{ _('项目') }}">
+
+        <a slot="extra" @click="createSvnrepo">
+            <a-icon type="folder-add"/>
+        </a>
+        <div>
+            <!-- 异步加载数据先判断又没,才会默认展开 -->
+            <a-directory-tree v-if="treeData.length>0" :block-node="true" :load-data="onLoadData"
+                              @select="treeSelect"
+                              :tree-data="treeData"
+                              :auto-expand-parent="autoExpandParent"
+
+            >
+
+                <template slot="custom" slot-scope="item">
+
+                    <span>(( item.title ))</span>
+                    <div class="hover">
+
+                    <span class="hover-container pull-right">
+                                <a @click.stop.prevent="addDir(item)" class="opendialog"><a-icon
+                                        type="edit"/></a>
+
+                            </span>
+                    </div>
+                </template>
+            </a-directory-tree>
+        </div>
+    </a-card>
+
+</div>
+
+
+<script>
+
+    var svn_path_tree_app = new Vue({
+        el: '#svn-path-tree-container',
+        delimiters: ['((', '))'],
+        data() {
+            return {
+                treeData: [],
+                searchValue: '',
+                expandedKeys: [],
+                autoExpandParent: true,
+                selectId: '',
+                selectCallback: null
+            };
+        },
+        computed: {},
+        methods: {
+            addDir(path) {
+
+            },
+            treeSelect(selectedKeys, e) {
+                console.dir(e)
+                let selectNode = e.selectedNodes[0]
+                if (e.selected && !selectNode.expanded) {
+
+                    this.onLoadData(selectNode)
+                    this.selectId = selectNode.dataRef.project
+
+                } else {
+                    this.selectId = ''
+                }
+                this.selectCallback ? this.selectCallback(selectNode.dataRef) : null
+
+            },
+            genrateTreeNode(projectName, path, title) {
+                return {
+                    title: title,
+                    key: projectName + path,
+                    scopedSlots: {title: 'custom'},
+                    children: [],
+                    project: projectName,
+                    path: path
+                }
+            },
+            onLoadData(treeNode) {
+
+                return new Promise(resolve => {
+
+
+                    var projectName = treeNode.dataRef.project
+                    var path = treeNode.dataRef.path
+                    $.getJSON('{{ url('svn_admin.svn_path.svn_project_dir') }}', {
+                        project_name: projectName,
+                        path: path
+                    }, (rsp) => {
+                        for (k in rsp.data) {
+                            var children = rsp.data[k].map((currentValue, index, arr) => {
+
+                                return this.genrateTreeNode(projectName, currentValue, currentValue.substr(path.length)  )
+                            })
+                            treeNode.dataRef.children = children
+                            this.treeData = [...this.treeData];
+
+                        }
+                        resolve();
+
+
+                    });
+                });
+
+
+            },
+
+            loadTreeData() {
+                this.roleTreeMap = {}
+                $.getJSON("{{ url('svn_admin.svn_path.svn_project_list') }}", {}, (rsp) => {
+                    if (rsp.code == 0) {
+                        console.dir(rsp)
+                        this.treeData = rsp.data.results.map((item) => {
+                            return this.genrateTreeNode(item.id, '/', item.alias)
+                        })
+                    } else {
+                        this.$message.error('{{ _("获取 SVN 项目路径") }} ');
+                    }
+                })
+            },
+            createSvnrepo: function () {
+                art.dialog.prompt('{{ _('请输入仓库代号,只能英文字符!')}}', (val) => {
+                    $.post('{{ url('svn_admin.svn_path.create_svnrepo') }}', {svnrepo_name: val}, (rsp) => {
+                        if (rsp.code == 0) {
+                            this.$message.success(rsp.msg)
+                            this.loadTreeData()
+                        } else {
+                            this.$message.error(rsp.msg)
+                        }
+                        ;
+
+                    }, 'json')
+
+                }, '');
+            }
+        },
+        mounted: function () {
+
+            this.loadTreeData()
+
+        }
+
+    })
+
+</script>

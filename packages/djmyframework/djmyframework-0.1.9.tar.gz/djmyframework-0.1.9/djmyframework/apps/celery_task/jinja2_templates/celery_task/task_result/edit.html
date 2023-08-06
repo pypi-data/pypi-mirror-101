@@ -1,0 +1,356 @@
+{% extends "framework/base.html" %}
+
+{% block header %}
+    <title>{{ _('TaskResult 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+    <div id="vue-container" v-cloak>
+        <div class="row header">
+            <div class="col-sm-5">
+                <h1>{{ _('TaskResult') }}
+                    <small>{{ _('编辑') }}</small>
+                </h1>
+            </div>
+        </div>
+
+        <hr>
+        <br>
+
+        <form class="form-horizontal"role="form">
+            <div class="row edit-form-container">
+                <div class="col-sm-12">
+                <br>
+                
+
+
+        <div class="form-group" style="display:none">
+            <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                
+                {{ _('ID') }} </label>
+
+            <div class="col-sm-8">
+                 <input type="number" id="id_id" name="id" v-model="model.id"
+                        class="form-control" value="{{ data.id or ""}}"
+                        
+                         >
+                <div id="help_text_id" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_task_id">
+                <span class="text-danger">*</span>
+                {{ _('Task ID') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_task_id" name="task_id" v-model="model.task_id"
+                        class="form-control" value="{{ data.task_id or ""}}"
+                        maxlength=255
+                        required=true >
+                <span class="help-block">{{ _('Celery ID for the Task that was run') }}</span>
+                <div id="help_text_task_id" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_task_name">
+                <span class="text-danger">*</span>
+                {{ _('Task Name') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_task_name" name="task_name" v-model="model.task_name"
+                        class="form-control" value="{{ data.task_name or ""}}"
+                        maxlength=255
+                        required=true >
+                <span class="help-block">{{ _('Name of the Task which was run') }}</span>
+                <div id="help_text_task_name" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_task_args">
+                <span class="text-danger">*</span>
+                {{ _('Task Positional Arguments') }} </label>
+
+            <div class="col-sm-8">
+                <textarea class="form-control limited"  id="id_task_args" name="task_args" v-model="model.task_args"
+                        
+                        required=true >{{ data.task_args or "" }}</textarea>
+                <span class="help-block">{{ _('JSON representation of the positional arguments used with the task') }}</span>
+                <div id="help_text_task_args" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_task_kwargs">
+                <span class="text-danger">*</span>
+                {{ _('Task Named Arguments') }} </label>
+
+            <div class="col-sm-8">
+                <textarea class="form-control limited"  id="id_task_kwargs" name="task_kwargs" v-model="model.task_kwargs"
+                        
+                        required=true >{{ data.task_kwargs or "" }}</textarea>
+                <span class="help-block">{{ _('JSON representation of the named arguments used with the task') }}</span>
+                <div id="help_text_task_kwargs" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_status">
+                
+                {{ _('Task State') }} </label>
+
+            <div class="col-sm-8">
+                <select v-select2 v-model="model.status" class="form-control col-lg-5 select2" id="id_status" data-placeholder="{{ _('Task State') }}" name="status" svalue="{{ data.status }}">
+                    {% for o in data.serializer.instance._meta._forward_fields_map.status.choices %}
+                        <option value="{{ o.0 }}">{{ o.1 }}</option>
+                    {% endfor %}
+                </select>
+
+                <span class="help-block">{{ _('Current state of the task being run') }}</span>
+                <div id="help_text_status" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_worker">
+                
+                {{ _('Worker') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_worker" name="worker" v-model="model.worker"
+                        class="form-control" value="{{ data.worker or ""}}"
+                        maxlength=100
+                         >
+                <span class="help-block">{{ _('Worker that executes the task') }}</span>
+                <div id="help_text_worker" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_content_type">
+                <span class="text-danger">*</span>
+                {{ _('Result Content Type') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_content_type" name="content_type" v-model="model.content_type"
+                        class="form-control" value="{{ data.content_type or ""}}"
+                        maxlength=128
+                        required=true >
+                <span class="help-block">{{ _('Content type of the result data') }}</span>
+                <div id="help_text_content_type" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_content_encoding">
+                <span class="text-danger">*</span>
+                {{ _('Result Encoding') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_content_encoding" name="content_encoding" v-model="model.content_encoding"
+                        class="form-control" value="{{ data.content_encoding or ""}}"
+                        maxlength=64
+                        required=true >
+                <span class="help-block">{{ _('The encoding used to save the task result data') }}</span>
+                <div id="help_text_content_encoding" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_result">
+                
+                {{ _('Result Data') }} </label>
+
+            <div class="col-sm-8">
+                <textarea class="form-control limited"  id="id_result" name="result" v-model="model.result"
+                        
+                         >{{ data.result or "" }}</textarea>
+                <span class="help-block">{{ _('The data returned by the task.  Use content_encoding and content_type fields to read.') }}</span>
+                <div id="help_text_result" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_date_created">
+                
+                {{ _('Created DateTime') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_date_created" name="date_created" v-model="model.date_created"
+                           class="form-control datetime " value="{{ data.date_created  or "" }}"
+                            >
+                <span class="help-block">{{ _('Datetime field when the task result was created in UTC') }}</span>
+                <div id="help_text_date_created" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_date_done">
+                
+                {{ _('Completed DateTime') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_date_done" name="date_done" v-model="model.date_done"
+                           class="form-control datetime " value="{{ data.date_done  or "" }}"
+                            >
+                <span class="help-block">{{ _('Datetime field when the task was completed in UTC') }}</span>
+                <div id="help_text_date_done" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_traceback">
+                
+                {{ _('Traceback') }} </label>
+
+            <div class="col-sm-8">
+                <textarea class="form-control limited"  id="id_traceback" name="traceback" v-model="model.traceback"
+                        
+                         >{{ data.traceback or "" }}</textarea>
+                <span class="help-block">{{ _('Text of the traceback if the task generated one') }}</span>
+                <div id="help_text_traceback" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_meta">
+                
+                {{ _('Task Meta Information') }} </label>
+
+            <div class="col-sm-8">
+                <textarea class="form-control limited"  id="id_meta" name="meta" v-model="model.meta"
+                        
+                         >{{ data.meta or "" }}</textarea>
+                <span class="help-block">{{ _('JSON meta information about the task, such as information on child tasks') }}</span>
+                <div id="help_text_meta" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                </div>
+            </div>
+
+
+            <div class="row pane edit-save-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                    <button @click="saveModel(true)" :disabled="isExecuting" class="btn btn-primary " type="button">
+                        {{ _('保 存') }}
+                    </button>
+
+                    <div class="pull-right">
+                        <button @click="saveModel(false)" :disabled="isExecuting" class="btn btn-info " type="button">
+                            {{ _('保存并继续编辑') }}
+                        </button>
+                        <button @click="saveModelAddOther" :disabled="isExecuting" class="btn btn-info " type="button">
+                            {{ _('保存并增加另一个') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <script>
+        var modelData = Object({{ data|json_dumps|safe }}) || Object({"id": 1, "task_id": "", "task_name": null, "task_args": null, "task_kwargs": null, "status": "PENDING", "worker": null, "content_type": "", "content_encoding": "", "result": null, "date_created": null, "date_done": null, "traceback": null, "meta": null})
+        
+        var modelShema = Object({{ data.serializer.to_schema()|json_dumps|safe }})
+
+
+        var vue_app = new Vue({
+            el: '#vue-container',
+            delimiters: ['((', '))'],
+            data() {
+                return {
+                    model: modelData,
+                    isExecuting: false,
+                };
+            },
+            watch: {},
+            methods: {
+                ajaxPostData: function (post_data, callback) {
+                    clearHelpText()
+                    this.isExecuting = true
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "{{ url('celery_task.task_result.save') }}?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}",
+                        dataType: 'json',
+                        data: JSON.stringify(post_data),
+                        contentType: 'application/json',
+                        success: (rsp) => {
+                            if (rsp.code == 0) {
+                                this.$message.success(rsp.msg, 1)
+                                clearHelpText()
+                                callback ? callback(rsp) : null
+
+                            } else {
+                                rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                            }
+                        },
+                        error: (jqXHR, statusText, errorMsg) => {
+                            ajaxError(jqXHR, statusText, errorMsg)
+
+                        },
+                        complete: (jqXHR, statusText) => {
+                            this.isExecuting = false
+                        }
+
+                    })
+                },
+                saveModel: function (isCloseDialog) {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            this.model = rsp.data
+                            refreshParentTable()
+                            customDispatchEvent('saveModel',this.model,true)
+                            if (isCloseDialog) closeSelfDialog()
+                        }
+                    })
+                },
+                saveModelAddOther: function () {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            window.location.href = window.location.pathname
+                        }
+                    })
+                },
+
+            },
+            mounted: function () {
+
+
+            }
+        })
+
+
+    </script>
+{% endblock %}

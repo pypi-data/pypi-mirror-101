@@ -1,0 +1,147 @@
+{#{% load i18n %}#}
+{#{% load mytags %} #}
+<!-- 菜单 树勾选 -->
+
+<div id="menu-tree-toolbar" class="">
+    <button id="expandAll-btn" class="btn btn-xs btn-default ">
+        {{ _('展开') }}
+    </button>
+    <button id="collapseAll-btn" class="btn btn-xs btn-default ">
+        {{ _('收缩') }}
+    </button>
+</div>
+
+<table
+       id="menu-tree-table"
+       data-toggle="table"
+       data-group-by="false"
+       data-group-by-field="type_alias"
+       data-url="/myadmin/menu/list?fields=id,parent_id,alias,name,url&page_size=10000">
+    <thead>
+    <tr>
+        <th data-checkbox="false" data-formatter="checkboxFormatter" data-width="40" >
+           <input name="btSelectAll" type="checkbox">
+        </th>
+
+        <th data-field="alias"  data-sortable="true">{{ _('菜单显示名称') }}</th>
+        <th data-field="name" data-sortable="true">{{ _('菜单标识') }}</th>
+        <th data-field="url" data-sortable="true">URL</th>
+    </tr>
+    </thead>
+    <tbody class="memu-body"></tbody>
+</table>
+<div id="menu-tree-contextMenu" class="contextMenu">
+    <ul>
+
+        <li id="c_expand_child" class="btn no-border btn-white ">
+            <button class="btn">{{ _('全选子项') }}</button>
+        </li>
+        <li id="c_collapse_child" class="btn no-border btn-white ">
+            <button class="btn">{{ _('取消子项') }}</button>
+        </li>
+    </ul>
+</div>
+
+<script>
+    var select_menu_list = {{ select_list |json_dumps|safe }} || []
+
+    function checkboxFormatter(value, row) {
+
+        var checked = select_menu_list.indexOf(row.name) > -1 ? 'checked' : ''
+
+        return '<label><input type="checkbox" value="' + row.name + '" name="menu[]" ' + checked + ' >    '  + '</label>'
+    }
+
+    $(function(){
+        disabledEditBtn();
+    }); // 沙箱前必须加;
+
+
+    (function () {
+
+        var $table = $('#menu-tree-table')
+        $table.bootstrapTable({
+            //multipleSelectRow: true,
+            height:450,
+            showRefresh: true, //是否显示刷新按钮
+            selectItemName: 'menu[]',//checkbox name
+            toolbar: '#menu-tree-toolbar',
+            uniqueId: 'id',
+            filterControl: false,
+            search: true,
+            showSearchClearButton: true,
+            pagination: false,
+            trimOnSearch: true,
+            showRefresh: true, //是否显示刷新按钮
+            clickToSelect: false,
+            ignoreClickToSelectOn: function ignoreClickToSelectOn(e) {
+                return ['SPAN', 'BUTTON', 'LABEL', 'INPUT', 'A'].indexOf(e.tagName) > -1
+            },
+            showExport:false,
+            totalField: 'count',
+            dataField: 'results',
+            responseHandler: function (res) {
+                return res.data
+            },
+            onDblClickRow: function (row, $element, field) {
+
+                $element.treegrid('toggle');
+            },
+            // 表格树设置
+            idField: 'id',
+            treeEnable: true,
+            treeShowField: 'alias',
+            parentIdField: 'parent_id',
+            onPostBody: function (data) {
+                var columns = $table.bootstrapTable('getOptions').columns
+                console.dir(columns)
+                enabledEditBtn()
+                if (columns && columns[0][1].visible) {
+                    $table.treegrid({
+                        initialState: 'collapsed',
+                        treeColumn: 1,
+                        onChange: function () {
+                            $table.bootstrapTable('resetWidth')
+                        }
+                    })
+                    $table.treegrid('getRootNodes').treegrid('expand');
+                }
+                // 右键菜单
+                $table.find('tr').contextMenu('menu-tree-contextMenu', {
+                    bindings:
+                        {
+                            'c_expand_child': function (t) {
+                                console.dir($(t).treegrid('getChildNodes'))
+                                $($(t).treegrid('getChildNodes')).find(":checkbox").prop({"checked": true})
+                                var row = $table.bootstrapTable('getRowByUniqueId', t.rowIndex)
+
+                            },
+                            'c_collapse_child': function (t) {
+                                $($(t).treegrid('getChildNodes')).find(":checkbox").prop({"checked": false})
+                                var row = $table.bootstrapTable('getRowByUniqueId', t.rowIndex)
+
+                            }
+                        }
+
+                });
+                // $('[data-toggle="tooltip"]').tooltip()
+                // 使用 checkboxFormatter
+                //$table.bootstrapTable('checkBy', {field: 'name', values: select_menu_list})
+
+            },
+        })
+
+
+        $('#expandAll-btn').click(function () {
+            $table.treegrid('expandAll');
+        })
+
+        $('#collapseAll-btn').click(function () {
+
+            $table.treegrid('collapseAll');
+        })
+
+    }());
+
+
+</script>

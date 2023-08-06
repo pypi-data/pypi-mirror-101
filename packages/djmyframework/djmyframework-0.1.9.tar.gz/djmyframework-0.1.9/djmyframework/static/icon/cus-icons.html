@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="/static/assets/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+	<link rel="stylesheet" href="./cus-icons.css" />
+		<style type="text/css">
+			body {
+			
+				font-family: arial;
+				color: #333;
+				/*overflow-x: hidden;*/
+			}
+			
+			.container {
+				background: transparent url() no-repeat center top;
+				padding:0 20px;
+				overflow:hidden;
+				-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+				-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+				box-sizing: border-box;         /* Opera/IE 8+ */
+			}
+			
+			h1, h2, h3, h4 {
+				font-family: 'Microsoft Yahei', STHeiTi, simsun, sans-serif;
+			}
+			
+			p {
+				margin:0 0 20px 0;
+			}
+			
+			span.icon, .glyphicon-class {
+				/*float:left;*/
+				display:inline-block;
+				margin:0px;
+				padding:0px;
+				color:#666;
+				border:1px solid transparent;
+				cursor: pointer;
+			}
+			
+			span.icon:hover {
+				text-decoration:none;
+				background:#fff;
+				border:1px solid #aaa;
+				color:#000;
+			}
+
+			.bs-glyphicons-list {
+				padding-left: 0;
+				list-style: none;
+			}
+
+			.bs-glyphicons li {
+				float: left;
+				width: 20%;
+
+				padding: 10px;
+				font-size: 14px;
+				line-height: 1.4;
+				text-align: center;
+				background-color: #f9f9f9;
+				border: 1px solid #fff;
+			}
+
+			.bs-glyphicons .glyphicon-class {
+				display: block;
+				text-align: center;
+				word-wrap: break-word;
+			}
+		</style>
+	</head>
+	<body>
+
+				<div class="span16">
+					<span class="icon"><i class="cus-application-view-list" title=" cus-application-view-list"></i></span>
+					<span class="icon"><i class="cus-database-go" title=" cus-database-go"></i></span>
+					<span class="icon"><i class="cus-tag-blue-delete" title=" cus-tag-blue-delete"></i></span>
+					<span class="icon"><i class="cus-application-view-columns" title=" cus-application-view-columns"></i></span>
+					<span class="icon"><i class="cus-calculator-delete" title=" cus-calculator-delete"></i></span>
+					<span class="icon"><i class="cus-wrench" title=" cus-wrench"></i></span>
+					<span class="icon"><i class="cus-page-key" title=" cus-page-key"></i></span>
+					<span class="icon"><i class="cus-date" title=" cus-date"></i></span>
+					<span class="icon"><i class="cus-bell-error" title=" cus-bell-error"></i></span>
+					<span class="icon"><i class="cus-building-edit" title=" cus-building-edit"></i></span>
+					<span class="icon"><i class="cus-table-row-insert" title=" cus-table-row-insert"></i></span>
+					<span class="icon"><i class="cus-palette" title=" cus-palette"></i></span>
+					<span class="icon"><i class="cus-application-tile-horizontal" title=" cus-application-tile-horizontal"></i></span>
+					<span class="icon"><i class="cus-emoticon-tongue" title=" cus-emoticon-tongue"></i></span>
+					<span class="icon"><i class="cus-database-lightning" title=" cus-database-lightning"></i></span>
+					<span class="icon"><i class="cus-picture" title=" cus-picture"></i></span>
+					<span class="icon"><i class="cus-application-view-icons" title=" cus-application-view-icons"></i></span>
+					<span class="icon"><i class="cus-folder-camera" title=" cus-folder-camera"></i></span>
+					<span class="icon"><i class="cus-text-padding-right" title=" cus-text-padding-right"></i></span>
+					<span class="icon"><i class="cus-image-link" title=" cus-image-link"></i></span>
+					<span class="icon"><i class="cus-error-add" title=" cus-error-add"></i></span>
+					<span class="icon"><i class="cus-tux" title=" cus-tux"></i></span>
+					<span class="icon"><i class="cus-page-attach" title=" cus-page-attach"></i></span>
+					<span class="icon"><i class="cus-group-delete" title=" cus-group-delete"></i></span>
+					<span class="icon"><i class="cus-plugin-disabled" title=" cus-plugin-disabled"></i></span>
+					<span class="icon"><i class="cus-application-view-tile" title=" cus-application-view-tile"></i></span>
+					<span class="icon"><i class="cus-chart-bar-add" title=" cus-chart-bar-add"></i></span>
+					<span class="icon"><i class="cus-chart-pie-add" title=" cus-chart-pie-add"></i></span>
+					<span class="icon"><i class="cus-chart-pie-link" title=" cus-chart-pie-link"></i></span>
+					<span class="icon"><i class="cus-database-save" title=" cus-database-save"></i></span>
+					<span class="icon"><i class="cus-bullet-orange" title=" cus-bullet-orange"></i></span>
+					<span class="icon"><i class="cus-layout-error" title=" cus-layout-error"></i></span>
+					<span class="icon"><i class="cus-control-play-blue" title=" cus-control-play-blue"></i></span>
+					<span class="icon"><i class="cus-transmit-blue" title=" cus-transmit-blue"></i></span>
+					<span class="icon"><i class="cus-cart-error" title=" cus-cart-error"></i></span>
+					<span class="icon"><i class="cus-control-repeat-blue" title=" cus-control-repeat-blue"></i></span>
+					<span class="icon"><i class="cus-page-lightning" title=" cus-page-lightning"></i></span>
+					<span class="icon"><i class="cus-folder-page" title=" cus-folder-page"></i></span>
+					<span class="icon"><i class="cus-application-form-delete" title=" cus-application-form-delete"></i></span>
+					<span class="icon"><i class="cus-map-add" title=" cus-map-add"></i></span>
+					<span class="icon"><i class="cus-bullet-red" title=" cus-bullet-red"></i></span>
+					<span class="icon"><i class="cus-bullet-black" title=" cus-bullet-black"></i></span>
+					<span class="icon"><i class="cus-calendar-view-day" title=" cus-calendar-view-day"></i></span>
+					<span class="icon"><i class="cus-add" title=" cus-add"></i></span>
+					<span class="icon"><i class="cus-error" title=" cus-error"></i></span>
+					<span class="icon"><i class="cus-group-go" title=" cus-group-go"></i></span>
+					<span class="icon"><i class="cus-page-white-key" title=" cus-page-white-key"></i></span>
+					<span class="icon"><i class="cus-user-add" title=" cus-user-add"></i></span>
+					<span class="icon"><i class="cus-page" title=" cus-page"></i></span>
+					<span class="icon"><i class="cus-cart-add" title=" cus-cart-add"></i></span>
+					<span class="icon"><i class="cus-chart-curve-link" title=" cus-chart-curve-link"></i></span>
+					<span class="icon"><i class="cus-pill-add" title=" cus-pill-add"></i></span>
+					<span class="icon"><i class="cus-comments-add" title=" cus-comments-add"></i></span>
+					<span class="icon"><i class="cus-page-white-find" title=" cus-page-white-find"></i></span>
+					<span class="icon"><i class="cus-page-find" title=" cus-page-find"></i></span>
+					<span class="icon"><i class="cus-database-refresh" title=" cus-database-refresh"></i></span>
+					<span class="icon"><i class="cus-book-error" title=" cus-book-error"></i></span>
+					<span class="icon"><i class="cus-application-osx-terminal" title=" cus-application-osx-terminal"></i></span>
+					<span class="icon"><i class="cus-bricks" title=" cus-bricks"></i></span>
+					<span class="icon"><i class="cus-page-white" title=" cus-page-white"></i></span>
+					<span class="icon"><i class="cus-pill" title=" cus-pill"></i></span>
+					<span class="icon"><i class="cus-user-orange" title=" cus-user-orange"></i></span>
+					<span class="icon"><i class="cus-overlays" title=" cus-overlays"></i></span>
+					<span class="icon"><i class="cus-application-get" title=" cus-application-get"></i></span>
+					<span class="icon"><i class="cus-arrow-redo" title=" cus-arrow-redo"></i></span>
+					<span class="icon"><i class="cus-vcard-delete" title=" cus-vcard-delete"></i></span>
+					<span class="icon"><i class="cus-comments" title=" cus-comments"></i></span>
+					<span class="icon"><i class="cus-database-table" title=" cus-database-table"></i></span>
+					<span class="icon"><i class="cus-page-white-ruby" title=" cus-page-white-ruby"></i></span>
+					<span class="icon"><i class="cus-calendar-link" title=" cus-calendar-link"></i></span>
+					<span class="icon"><i class="cus-table-multiple" title=" cus-table-multiple"></i></span>
+					<span class="icon"><i class="cus-email" title=" cus-email"></i></span>
+					<span class="icon"><i class="cus-application-add" title=" cus-application-add"></i></span>
+					<span class="icon"><i class="cus-application-delete" title=" cus-application-delete"></i></span>
+					<span class="icon"><i class="cus-resultset-previous" title=" cus-resultset-previous"></i></span>
+					<span class="icon"><i class="cus-bin-empty" title=" cus-bin-empty"></i></span>
+					<span class="icon"><i class="cus-report" title=" cus-report"></i></span>
+					<span class="icon"><i class="cus-building-go" title=" cus-building-go"></i></span>
+					<span class="icon"><i class="cus-picture-go" title=" cus-picture-go"></i></span>
+					<span class="icon"><i class="cus-application-form-magnify" title=" cus-application-form-magnify"></i></span>
+					<span class="icon"><i class="cus-status-online" title=" cus-status-online"></i></span>
+					<span class="icon"><i class="cus-chart-curve-delete" title=" cus-chart-curve-delete"></i></span>
+					<span class="icon"><i class="cus-book-delete" title=" cus-book-delete"></i></span>
+					<span class="icon"><i class="cus-page-white-wrench" title=" cus-page-white-wrench"></i></span>
+					<span class="icon"><i class="cus-feed-disk" title=" cus-feed-disk"></i></span>
+					<span class="icon"><i class="cus-report-add" title=" cus-report-add"></i></span>
+					<span class="icon"><i class="cus-user-gray" title=" cus-user-gray"></i></span>
+					<span class="icon"><i class="cus-book-next" title=" cus-book-next"></i></span>
+					<span class="icon"><i class="cus-building-link" title=" cus-building-link"></i></span>
+					<span class="icon"><i class="cus-date-delete" title=" cus-date-delete"></i></span>
+					<span class="icon"><i class="cus-accept" title=" cus-accept"></i></span>
+					<span class="icon"><i class="cus-female" title=" cus-female"></i></span>
+					<span class="icon"><i class="cus-link-delete" title=" cus-link-delete"></i></span>
+					<span class="icon"><i class="cus-world" title=" cus-world"></i></span>
+					<span class="icon"><i class="cus-map" title=" cus-map"></i></span>
+					<span class="icon"><i class="cus-arrow-up" title=" cus-arrow-up"></i></span>
+					<span class="icon"><i class="cus-table-go" title=" cus-table-go"></i></span>
+					<span class="icon"><i class="cus-arrow-turn-left" title=" cus-arrow-turn-left"></i></span>
+					<span class="icon"><i class="cus-email-attach" title=" cus-email-attach"></i></span>
+					<span class="icon"><i class="cus-lock-delete" title=" cus-lock-delete"></i></span>
+					<span class="icon"><i class="cus-database-add" title=" cus-database-add"></i></span>
+					<span class="icon"><i class="cus-group-key" title=" cus-group-key"></i></span>
+					<span class="icon"><i class="cus-folder-error" title=" cus-folder-error"></i></span>
+					<span class="icon"><i class="cus-image-edit" title=" cus-image-edit"></i></span>
+					<span class="icon"><i class="cus-arrow-branch" title=" cus-arrow-branch"></i></span>
+					<span class="icon"><i class="cus-exclamation" title=" cus-exclamation"></i></span>
+					<span class="icon"><i class="cus-database-gear" title=" cus-database-gear"></i></span>
+					<span class="icon"><i class="cus-creditcards" title=" cus-creditcards"></i></span>
+					<span class="icon"><i class="cus-chart-pie-edit" title=" cus-chart-pie-edit"></i></span>
+					<span class="icon"><i class="cus-picture-save" title=" cus-picture-save"></i></span>
+					<span class="icon"><i class="cus-feed-error" title=" cus-feed-error"></i></span>
+					<span class="icon"><i class="cus-asterisk-orange" title=" cus-asterisk-orange"></i></span>
+					<span class="icon"><i class="cus-bullet-star" title=" cus-bullet-star"></i></span>
+					<span class="icon"><i class="cus-textfield-key" title=" cus-textfield-key"></i></span>
+					<span class="icon"><i class="cus-building-delete" title=" cus-building-delete"></i></span>
+					<span class="icon"><i class="cus-folder-user" title=" cus-folder-user"></i></span>
+					<span class="icon"><i class="cus-help" title=" cus-help"></i></span>
+					<span class="icon"><i class="cus-picture-empty" title=" cus-picture-empty"></i></span>
+					<span class="icon"><i class="cus-page-white-picture" title=" cus-page-white-picture"></i></span>
+					<span class="icon"><i class="cus-lock-open" title=" cus-lock-open"></i></span>
+					<span class="icon"><i class="cus-cart-put" title=" cus-cart-put"></i></span>
+					<span class="icon"><i class="cus-time-go" title=" cus-time-go"></i></span>
+					<span class="icon"><i class="cus-page-paintbrush" title=" cus-page-paintbrush"></i></span>
+					<span class="icon"><i class="cus-user" title=" cus-user"></i></span>
+					<span class="icon"><i class="cus-time" title=" cus-time"></i></span>
+					<span class="icon"><i class="cus-pill-delete" title=" cus-pill-delete"></i></span>
+					<span class="icon"><i class="cus-cart-delete" title=" cus-cart-delete"></i></span>
+					<span class="icon"><i class="cus-date-add" title=" cus-date-add"></i></span>
+					<span class="icon"><i class="cus-pill-go" title=" cus-pill-go"></i></span>
+					<span class="icon"><i class="cus-calendar-view-month" title=" cus-calendar-view-month"></i></span>
+					<span class="icon"><i class="cus-application-form" title=" cus-application-form"></i></span>
+					<span class="icon"><i class="cus-chart-curve-edit" title=" cus-chart-curve-edit"></i></span>
+					<span class="icon"><i class="cus-sitemap" title=" cus-sitemap"></i></span>
+					<span class="icon"><i class="cus-book-key" title=" cus-book-key"></i></span>
+					<span class="icon"><i class="cus-calendar-edit" title=" cus-calendar-edit"></i></span>
+					<span class="icon"><i class="cus-chart-bar" title=" cus-chart-bar"></i></span>
+					<span class="icon"><i class="cus-chart-organisation-add" title=" cus-chart-organisation-add"></i></span>
+					<span class="icon"><i class="cus-application-cascade" title=" cus-application-cascade"></i></span>
+					<span class="icon"><i class="cus-database-connect" title=" cus-database-connect"></i></span>
+					<span class="icon"><i class="cus-emoticon-surprised" title=" cus-emoticon-surprised"></i></span>
+					<span class="icon"><i class="cus-application-side-contract" title=" cus-application-side-contract"></i></span>
+					<span class="icon"><i class="cus-arrow-rotate-clockwise" title=" cus-arrow-rotate-clockwise"></i></span>
+					<span class="icon"><i class="cus-door" title=" cus-door"></i></span>
+					<span class="icon"><i class="cus-plugin-add" title=" cus-plugin-add"></i></span>
+					<span class="icon"><i class="cus-cog" title=" cus-cog"></i></span>
+					<span class="icon"><i class="cus-page-white-magnify" title=" cus-page-white-magnify"></i></span>
+					<span class="icon"><i class="cus-male" title=" cus-male"></i></span>
+					<span class="icon"><i class="cus-printer" title=" cus-printer"></i></span>
+					<span class="icon"><i class="cus-control-repeat" title=" cus-control-repeat"></i></span>
+					<span class="icon"><i class="cus-compress" title=" cus-compress"></i></span>
+					<span class="icon"><i class="cus-bomb" title=" cus-bomb"></i></span>
+					<span class="icon"><i class="cus-disk" title=" cus-disk"></i></span>
+					<span class="icon"><i class="cus-lightbulb-delete" title=" cus-lightbulb-delete"></i></span>
+					<span class="icon"><i class="cus-lock" title=" cus-lock"></i></span>
+					<span class="icon"><i class="cus-application-put" title=" cus-application-put"></i></span>
+					<span class="icon"><i class="cus-page-white-c" title=" cus-page-white-c"></i></span>
+					<span class="icon"><i class="cus-page-white-php" title=" cus-page-white-php"></i></span>
+					<span class="icon"><i class="cus-feed-add" title=" cus-feed-add"></i></span>
+					<span class="icon"><i class="cus-link-break" title=" cus-link-break"></i></span>
+					<span class="icon"><i class="cus-lock-add" title=" cus-lock-add"></i></span>
+					<span class="icon"><i class="cus-film-go" title=" cus-film-go"></i></span>
+					<span class="icon"><i class="cus-report-edit" title=" cus-report-edit"></i></span>
+					<span class="icon"><i class="cus-cart-edit" title=" cus-cart-edit"></i></span>
+					<span class="icon"><i class="cus-tag-blue-edit" title=" cus-tag-blue-edit"></i></span>
+					<span class="icon"><i class="cus-chart-bar-error" title=" cus-chart-bar-error"></i></span>
+					<span class="icon"><i class="cus-report-delete" title=" cus-report-delete"></i></span>
+					<span class="icon"><i class="cus-picture-key" title=" cus-picture-key"></i></span>
+					<span class="icon"><i class="cus-find" title=" cus-find"></i></span>
+					<span class="icon"><i class="cus-folder-find" title=" cus-folder-find"></i></span>
+					<span class="icon"><i class="cus-pilcrow" title=" cus-pilcrow"></i></span>
+					<span class="icon"><i class="cus-chart-bar-delete" title=" cus-chart-bar-delete"></i></span>
+					<span class="icon"><i class="cus-bell-go" title=" cus-bell-go"></i></span>
+					<span class="icon"><i class="cus-printer-add" title=" cus-printer-add"></i></span>
+					<span class="icon"><i class="cus-arrow-undo" title=" cus-arrow-undo"></i></span>
+					<span class="icon"><i class="cus-layout-edit" title=" cus-layout-edit"></i></span>
+					<span class="icon"><i class="cus-error-go" title=" cus-error-go"></i></span>
+					<span class="icon"><i class="cus-building" title=" cus-building"></i></span>
+					<span class="icon"><i class="cus-chart-line" title=" cus-chart-line"></i></span>
+					<span class="icon"><i class="cus-house-go" title=" cus-house-go"></i></span>
+					<span class="icon"><i class="cus-page-white-horizontal" title=" cus-page-white-horizontal"></i></span>
+					<span class="icon"><i class="cus-email-open-image" title=" cus-email-open-image"></i></span>
+					<span class="icon"><i class="cus-bullet-feed" title=" cus-bullet-feed"></i></span>
+					<span class="icon"><i class="cus-film-add" title=" cus-film-add"></i></span>
+					<span class="icon"><i class="cus-text-linespacing" title=" cus-text-linespacing"></i></span>
+					<span class="icon"><i class="cus-map-go" title=" cus-map-go"></i></span>
+					<span class="icon"><i class="cus-application-side-tree" title=" cus-application-side-tree"></i></span>
+					<span class="icon"><i class="cus-heart-add" title=" cus-heart-add"></i></span>
+					<span class="icon"><i class="cus-new" title=" cus-new"></i></span>
+					<span class="icon"><i class="cus-email-link" title=" cus-email-link"></i></span>
+					<span class="icon"><i class="cus-pencil-add" title=" cus-pencil-add"></i></span>
+					<span class="icon"><i class="cus-bullet-arrow-top" title=" cus-bullet-arrow-top"></i></span>
+					<span class="icon"><i class="cus-book-edit" title=" cus-book-edit"></i></span>
+					<span class="icon"><i class="cus-plugin" title=" cus-plugin"></i></span>
+					<span class="icon"><i class="cus-cancel" title=" cus-cancel"></i></span>
+					<span class="icon"><i class="cus-application-edit" title=" cus-application-edit"></i></span>
+					<span class="icon"><i class="cus-page-white-stack" title=" cus-page-white-stack"></i></span>
+					<span class="icon"><i class="cus-map-magnify" title=" cus-map-magnify"></i></span>
+					<span class="icon"><i class="cus-plugin-link" title=" cus-plugin-link"></i></span>
+					<span class="icon"><i class="cus-printer-empty" title=" cus-printer-empty"></i></span>
+					<span class="icon"><i class="cus-paste-word" title=" cus-paste-word"></i></span>
+					<span class="icon"><i class="cus-lightning-delete" title=" cus-lightning-delete"></i></span>
+					<span class="icon"><i class="cus-link-edit" title=" cus-link-edit"></i></span>
+					<span class="icon"><i class="cus-arrow-divide" title=" cus-arrow-divide"></i></span>
+					<span class="icon"><i class="cus-email-add" title=" cus-email-add"></i></span>
+					<span class="icon"><i class="cus-database-delete" title=" cus-database-delete"></i></span>
+					<span class="icon"><i class="cus-bullet-white" title=" cus-bullet-white"></i></span>
+					<span class="icon"><i class="cus-bullet-arrow-down" title=" cus-bullet-arrow-down"></i></span>
+					<span class="icon"><i class="cus-calendar-view-week" title=" cus-calendar-view-week"></i></span>
+					<span class="icon"><i class="cus-application-home" title=" cus-application-home"></i></span>
+					<span class="icon"><i class="cus-color-swatch" title=" cus-color-swatch"></i></span>
+					<span class="icon"><i class="cus-bullet-arrow-up" title=" cus-bullet-arrow-up"></i></span>
+					<span class="icon"><i class="cus-feed-magnify" title=" cus-feed-magnify"></i></span>
+					<span class="icon"><i class="cus-table-sort" title=" cus-table-sort"></i></span>
+					<span class="icon"><i class="cus-page-delete" title=" cus-page-delete"></i></span>
+					<span class="icon"><i class="cus-control-end" title=" cus-control-end"></i></span>
+					<span class="icon"><i class="cus-page-white-width" title=" cus-page-white-width"></i></span>
+					<span class="icon"><i class="cus-page-white-csharp" title=" cus-page-white-csharp"></i></span>
+					<span class="icon"><i class="cus-database-edit" title=" cus-database-edit"></i></span>
+					<span class="icon"><i class="cus-building-error" title=" cus-building-error"></i></span>
+					<span class="icon"><i class="cus-picture-link" title=" cus-picture-link"></i></span>
+					<span class="icon"><i class="cus-text-padding-left" title=" cus-text-padding-left"></i></span>
+					<span class="icon"><i class="cus-arrow-right" title=" cus-arrow-right"></i></span>
+					<span class="icon"><i class="cus-cross" title=" cus-cross"></i></span>
+					<span class="icon"><i class="cus-time-delete" title=" cus-time-delete"></i></span>
+					<span class="icon"><i class="cus-page-refresh" title=" cus-page-refresh"></i></span>
+					<span class="icon"><i class="cus-emoticon-wink" title=" cus-emoticon-wink"></i></span>
+					<span class="icon"><i class="cus-application-view-detail" title=" cus-application-view-detail"></i></span>
+					<span class="icon"><i class="cus-bullet-pink" title=" cus-bullet-pink"></i></span>
+					<span class="icon"><i class="cus-pictures" title=" cus-pictures"></i></span>
+					<span class="icon"><i class="cus-report-word" title=" cus-report-word"></i></span>
+					<span class="icon"><i class="cus-application-xp-terminal" title=" cus-application-xp-terminal"></i></span>
+					<span class="icon"><i class="cus-chart-curve-error" title=" cus-chart-curve-error"></i></span>
+					<span class="icon"><i class="cus-date-error" title=" cus-date-error"></i></span>
+					<span class="icon"><i class="cus-report-link" title=" cus-report-link"></i></span>
+					<span class="icon"><i class="cus-heart-delete" title=" cus-heart-delete"></i></span>
+					<span class="icon"><i class="cus-table-key" title=" cus-table-key"></i></span>
+					<span class="icon"><i class="cus-chart-line-add" title=" cus-chart-line-add"></i></span>
+					<span class="icon"><i class="cus-building-key" title=" cus-building-key"></i></span>
+					<span class="icon"><i class="cus-folder-brick" title=" cus-folder-brick"></i></span>
+					<span class="icon"><i class="cus-bin-closed" title=" cus-bin-closed"></i></span>
+					<span class="icon"><i class="cus-chart-pie" title=" cus-chart-pie"></i></span>
+					<span class="icon"><i class="cus-timeline-marker" title=" cus-timeline-marker"></i></span>
+					<span class="icon"><i class="cus-bullet-delete" title=" cus-bullet-delete"></i></span>
+					<span class="icon"><i class="cus-comment-delete" title=" cus-comment-delete"></i></span>
+					<span class="icon"><i class="cus-bullet-key" title=" cus-bullet-key"></i></span>
+					<span class="icon"><i class="cus-page-white-powerpoint" title=" cus-page-white-powerpoint"></i></span>
+					<span class="icon"><i class="cus-magifier-zoom-out" title=" cus-magifier-zoom-out"></i></span>
+					<span class="icon"><i class="cus-layout-link" title=" cus-layout-link"></i></span>
+					<span class="icon"><i class="cus-group" title=" cus-group"></i></span>
+					<span class="icon"><i class="cus-textfield-rename" title=" cus-textfield-rename"></i></span>
+					<span class="icon"><i class="cus-cart-go" title=" cus-cart-go"></i></span>
+					<span class="icon"><i class="cus-page-white-swoosh" title=" cus-page-white-swoosh"></i></span>
+					<span class="icon"><i class="cus-folder-wrench" title=" cus-folder-wrench"></i></span>
+					<span class="icon"><i class="cus-paintcan" title=" cus-paintcan"></i></span>
+					<span class="icon"><i class="cus-page-white-compressed" title=" cus-page-white-compressed"></i></span>
+					<span class="icon"><i class="cus-folder-add" title=" cus-folder-add"></i></span>
+					<span class="icon"><i class="cus-control-equalizer-blue" title=" cus-control-equalizer-blue"></i></span>
+					<span class="icon"><i class="cus-hourglass" title=" cus-hourglass"></i></span>
+					<span class="icon"><i class="cus-book-link" title=" cus-book-link"></i></span>
+					<span class="icon"><i class="cus-application-side-list" title=" cus-application-side-list"></i></span>
+					<span class="icon"><i class="cus-email-edit" title=" cus-email-edit"></i></span>
+					<span class="icon"><i class="cus-page-white-cd" title=" cus-page-white-cd"></i></span>
+					<span class="icon"><i class="cus-hourglass-add" title=" cus-hourglass-add"></i></span>
+					<span class="icon"><i class="cus-user-delete" title=" cus-user-delete"></i></span>
+					<span class="icon"><i class="cus-application-tile-vertical" title=" cus-application-tile-vertical"></i></span>
+					<span class="icon"><i class="cus-world-go" title=" cus-world-go"></i></span>
+					<span class="icon"><i class="cus-newspaper" title=" cus-newspaper"></i></span>
+					<span class="icon"><i class="cus-arrow-refresh-small" title=" cus-arrow-refresh-small"></i></span>
+					<span class="icon"><i class="cus-key-go" title=" cus-key-go"></i></span>
+					<span class="icon"><i class="cus-plugin-edit" title=" cus-plugin-edit"></i></span>
+					<span class="icon"><i class="cus-tag-pink" title=" cus-tag-pink"></i></span>
+					<span class="icon"><i class="cus-table-error" title=" cus-table-error"></i></span>
+					<span class="icon"><i class="cus-chart-curve-add" title=" cus-chart-curve-add"></i></span>
+					<span class="icon"><i class="cus-flag-pink" title=" cus-flag-pink"></i></span>
+					<span class="icon"><i class="cus-tag-yellow" title=" cus-tag-yellow"></i></span>
+					<span class="icon"><i class="cus-application-link" title=" cus-application-link"></i></span>
+					<span class="icon"><i class="cus-page-white-camera" title=" cus-page-white-camera"></i></span>
+					<span class="icon"><i class="cus-arrow-merge" title=" cus-arrow-merge"></i></span>
+					<span class="icon"><i class="cus-email-delete" title=" cus-email-delete"></i></span>
+					<span class="icon"><i class="cus-book-previous" title=" cus-book-previous"></i></span>
+					<span class="icon"><i class="cus-tag-purple" title=" cus-tag-purple"></i></span>
+					<span class="icon"><i class="cus-page-red" title=" cus-page-red"></i></span>
+					<span class="icon"><i class="cus-cut-red" title=" cus-cut-red"></i></span>
+					<span class="icon"><i class="cus-page-white-lightning" title=" cus-page-white-lightning"></i></span>
+					<span class="icon"><i class="cus-application-split" title=" cus-application-split"></i></span>
+					<span class="icon"><i class="cus-text-columns" title=" cus-text-columns"></i></span>
+					<span class="icon"><i class="cus-flag-orange" title=" cus-flag-orange"></i></span>
+					<span class="icon"><i class="cus-chart-line-error" title=" cus-chart-line-error"></i></span>
+					<span class="icon"><i class="cus-cake" title=" cus-cake"></i></span>
+					<span class="icon"><i class="cus-control-eject-blue" title=" cus-control-eject-blue"></i></span>
+					<span class="icon"><i class="cus-chart-organisation-delete" title=" cus-chart-organisation-delete"></i></span>
+					<span class="icon"><i class="cus-folder" title=" cus-folder"></i></span>
+					<span class="icon"><i class="cus-bullet-picture" title=" cus-bullet-picture"></i></span>
+					<span class="icon"><i class="cus-report-go" title=" cus-report-go"></i></span>
+					<span class="icon"><i class="cus-database-link" title=" cus-database-link"></i></span>
+					<span class="icon"><i class="cus-picture-edit" title=" cus-picture-edit"></i></span>
+					<span class="icon"><i class="cus-flag-yellow" title=" cus-flag-yellow"></i></span>
+					<span class="icon"><i class="cus-table-add" title=" cus-table-add"></i></span>
+					<span class="icon"><i class="cus-image-delete" title=" cus-image-delete"></i></span>
+					<span class="icon"><i class="cus-calculator-error" title=" cus-calculator-error"></i></span>
+					<span class="icon"><i class="cus-tag-blue" title=" cus-tag-blue"></i></span>
+					<span class="icon"><i class="cus-cog-edit" title=" cus-cog-edit"></i></span>
+					<span class="icon"><i class="cus-folder-page-white" title=" cus-folder-page-white"></i></span>
+					<span class="icon"><i class="cus-emoticon-grin" title=" cus-emoticon-grin"></i></span>
+					<span class="icon"><i class="cus-vcard-edit" title=" cus-vcard-edit"></i></span>
+					<span class="icon"><i class="cus-bullet-error" title=" cus-bullet-error"></i></span>
+					<span class="icon"><i class="cus-flag-blue" title=" cus-flag-blue"></i></span>
+					<span class="icon"><i class="cus-page-green" title=" cus-page-green"></i></span>
+					<span class="icon"><i class="cus-building-add" title=" cus-building-add"></i></span>
+					<span class="icon"><i class="cus-folder-table" title=" cus-folder-table"></i></span>
+					<span class="icon"><i class="cus-page-excel" title=" cus-page-excel"></i></span>
+					<span class="icon"><i class="cus-map-delete" title=" cus-map-delete"></i></span>
+					<span class="icon"><i class="cus-table-link" title=" cus-table-link"></i></span>
+					<span class="icon"><i class="cus-images" title=" cus-images"></i></span>
+					<span class="icon"><i class="cus-page-white-text-width" title=" cus-page-white-text-width"></i></span>
+					<span class="icon"><i class="cus-comment-add" title=" cus-comment-add"></i></span>
+					<span class="icon"><i class="cus-book-open" title=" cus-book-open"></i></span>
+					<span class="icon"><i class="cus-folder-database" title=" cus-folder-database"></i></span>
+					<span class="icon"><i class="cus-group-edit" title=" cus-group-edit"></i></span>
+					<span class="icon"><i class="cus-comment-edit" title=" cus-comment-edit"></i></span>
+					<span class="icon"><i class="cus-rainbow" title=" cus-rainbow"></i></span>
+					<span class="icon"><i class="cus-arrow-switch" title=" cus-arrow-switch"></i></span>
+					<span class="icon"><i class="cus-control-start-blue" title=" cus-control-start-blue"></i></span>
+					<span class="icon"><i class="cus-text-padding-top" title=" cus-text-padding-top"></i></span>
+					<span class="icon"><i class="cus-calendar-add" title=" cus-calendar-add"></i></span>
+					<span class="icon"><i class="cus-folder-key" title=" cus-folder-key"></i></span>
+					<span class="icon"><i class="cus-book-addresses" title=" cus-book-addresses"></i></span>
+					<span class="icon"><i class="cus-lightning-add" title=" cus-lightning-add"></i></span>
+					<span class="icon"><i class="cus-feed-delete" title=" cus-feed-delete"></i></span>
+					<span class="icon"><i class="cus-film" title=" cus-film"></i></span>
+					<span class="icon"><i class="cus-page-white-medal" title=" cus-page-white-medal"></i></span>
+					<span class="icon"><i class="cus-page-white-h" title=" cus-page-white-h"></i></span>
+					<span class="icon"><i class="cus-tag-orange" title=" cus-tag-orange"></i></span>
+					<span class="icon"><i class="cus-table-lightning" title=" cus-table-lightning"></i></span>
+					<span class="icon"><i class="cus-folder-edit" title=" cus-folder-edit"></i></span>
+					<span class="icon"><i class="cus-user-red" title=" cus-user-red"></i></span>
+					<span class="icon"><i class="cus-comments-delete" title=" cus-comments-delete"></i></span>
+					<span class="icon"><i class="cus-world-delete" title=" cus-world-delete"></i></span>
+					<span class="icon"><i class="cus-flag-purple" title=" cus-flag-purple"></i></span>
+					<span class="icon"><i class="cus-feed-link" title=" cus-feed-link"></i></span>
+					<span class="icon"><i class="cus-page-save" title=" cus-page-save"></i></span>
+					<span class="icon"><i class="cus-bullet-add" title=" cus-bullet-add"></i></span>
+					<span class="icon"><i class="cus-layout-delete" title=" cus-layout-delete"></i></span>
+					<span class="icon"><i class="cus-page-white-office" title=" cus-page-white-office"></i></span>
+					<span class="icon"><i class="cus-control-fastforward-blue" title=" cus-control-fastforward-blue"></i></span>
+					<span class="icon"><i class="cus-bell" title=" cus-bell"></i></span>
+					<span class="icon"><i class="cus-bullet-toggle-minus" title=" cus-bullet-toggle-minus"></i></span>
+					<span class="icon"><i class="cus-user-edit" title=" cus-user-edit"></i></span>
+					<span class="icon"><i class="cus-layout-add" title=" cus-layout-add"></i></span>
+					<span class="icon"><i class="cus-folder-bell" title=" cus-folder-bell"></i></span>
+					<span class="icon"><i class="cus-chart-bar-link" title=" cus-chart-bar-link"></i></span>
+					<span class="icon"><i class="cus-feed-go" title=" cus-feed-go"></i></span>
+					<span class="icon"><i class="cus-page-white-database" title=" cus-page-white-database"></i></span>
+					<span class="icon"><i class="cus-email-go" title=" cus-email-go"></i></span>
+					<span class="icon"><i class="cus-chart-line-link" title=" cus-chart-line-link"></i></span>
+					<span class="icon"><i class="cus-application" title=" cus-application"></i></span>
+					<span class="icon"><i class="cus-flag-red" title=" cus-flag-red"></i></span>
+					<span class="icon"><i class="cus-flag-green" title=" cus-flag-green"></i></span>
+					<span class="icon"><i class="cus-zoom-out" title=" cus-zoom-out"></i></span>
+					<span class="icon"><i class="cus-cart" title=" cus-cart"></i></span>
+					<span class="icon"><i class="cus-date-previous" title=" cus-date-previous"></i></span>
+					<span class="icon"><i class="cus-lightbulb-add" title=" cus-lightbulb-add"></i></span>
+					<span class="icon"><i class="cus-cog-add" title=" cus-cog-add"></i></span>
+					<span class="icon"><i class="cus-key-add" title=" cus-key-add"></i></span>
+					<span class="icon"><i class="cus-page-white-visualstudio" title=" cus-page-white-visualstudio"></i></span>
+					<span class="icon"><i class="cus-application-view-gallery" title=" cus-application-view-gallery"></i></span>
+					<span class="icon"><i class="cus-arrow-left" title=" cus-arrow-left"></i></span>
+					<span class="icon"><i class="cus-magnifier" title=" cus-magnifier"></i></span>
+					<span class="icon"><i class="cus-picture-error" title=" cus-picture-error"></i></span>
+					<span class="icon"><i class="cus-user-comment" title=" cus-user-comment"></i></span>
+					<span class="icon"><i class="cus-film-link" title=" cus-film-link"></i></span>
+					<span class="icon"><i class="cus-image-add" title=" cus-image-add"></i></span>
+					<span class="icon"><i class="cus-page-white-zip" title=" cus-page-white-zip"></i></span>
+					<span class="icon"><i class="cus-zoom" title=" cus-zoom"></i></span>
+					<span class="icon"><i class="cus-vcard-add" title=" cus-vcard-add"></i></span>
+					<span class="icon"><i class="cus-layers" title=" cus-layers"></i></span>
+					<span class="icon"><i class="cus-page-white-error" title=" cus-page-white-error"></i></span>
+					<span class="icon"><i class="cus-chart-organisation" title=" cus-chart-organisation"></i></span>
+					<span class="icon"><i class="cus-picture-add" title=" cus-picture-add"></i></span>
+					<span class="icon"><i class="cus-folder-star" title=" cus-folder-star"></i></span>
+					<span class="icon"><i class="cus-tag-green" title=" cus-tag-green"></i></span>
+					<span class="icon"><i class="cus-layout-sidebar" title=" cus-layout-sidebar"></i></span>
+					<span class="icon"><i class="cus-page-white-vector" title=" cus-page-white-vector"></i></span>
+					<span class="icon"><i class="cus-music" title=" cus-music"></i></span>
+					<span class="icon"><i class="cus-thumb-up" title=" cus-thumb-up"></i></span>
+					<span class="icon"><i class="cus-email-error" title=" cus-email-error"></i></span>
+					<span class="icon"><i class="cus-control-stop-blue" title=" cus-control-stop-blue"></i></span>
+					<span class="icon"><i class="cus-user-green" title=" cus-user-green"></i></span>
+					<span class="icon"><i class="cus-chart-curve-go" title=" cus-chart-curve-go"></i></span>
+					<span class="icon"><i class="cus-date-next" title=" cus-date-next"></i></span>
+					<span class="icon"><i class="cus-group-error" title=" cus-group-error"></i></span>
+					<span class="icon"><i class="cus-star" title=" cus-star"></i></span>
+					<span class="icon"><i class="cus-lock-go" title=" cus-lock-go"></i></span>
+					<span class="icon"><i class="cus-page-copy" title=" cus-page-copy"></i></span>
+					<span class="icon"><i class="cus-resultset-first" title=" cus-resultset-first"></i></span>
+					<span class="icon"><i class="cus-email-open" title=" cus-email-open"></i></span>
+					<span class="icon"><i class="cus-page-paste" title=" cus-page-paste"></i></span>
+					<span class="icon"><i class="cus-door-in" title=" cus-door-in"></i></span>
+					<span class="icon"><i class="cus-page-white-cplusplus" title=" cus-page-white-cplusplus"></i></span>
+					<span class="icon"><i class="cus-group-link" title=" cus-group-link"></i></span>
+					<span class="icon"><i class="cus-page-white-copy" title=" cus-page-white-copy"></i></span>
+					<span class="icon"><i class="cus-lightbulb-off" title=" cus-lightbulb-off"></i></span>
+					<span class="icon"><i class="cus-text-align-justify" title=" cus-text-align-justify"></i></span>
+					<span class="icon"><i class="cus-chart-line-delete" title=" cus-chart-line-delete"></i></span>
+					<span class="icon"><i class="cus-table-edit" title=" cus-table-edit"></i></span>
+					<span class="icon"><i class="cus-application-double" title=" cus-application-double"></i></span>
+					<span class="icon"><i class="cus-film-key" title=" cus-film-key"></i></span>
+					<span class="icon"><i class="cus-page-white-gear" title=" cus-page-white-gear"></i></span>
+					<span class="icon"><i class="cus-application-form-edit" title=" cus-application-form-edit"></i></span>
+					<span class="icon"><i class="cus-bullet-blue" title=" cus-bullet-blue"></i></span>
+					<span class="icon"><i class="cus-arrow-turn-right" title=" cus-arrow-turn-right"></i></span>
+					<span class="icon"><i class="cus-chart-pie-error" title=" cus-chart-pie-error"></i></span>
+					<span class="icon"><i class="cus-page-white-world" title=" cus-page-white-world"></i></span>
+					<span class="icon"><i class="cus-page-gear" title=" cus-page-gear"></i></span>
+					<span class="icon"><i class="cus-table-row-delete" title=" cus-table-row-delete"></i></span>
+					<span class="icon"><i class="cus-link" title=" cus-link"></i></span>
+					<span class="icon"><i class="cus-bell-delete" title=" cus-bell-delete"></i></span>
+					<span class="icon"><i class="cus-feed-edit" title=" cus-feed-edit"></i></span>
+					<span class="icon"><i class="cus-textfield" title=" cus-textfield"></i></span>
+					<span class="icon"><i class="cus-clock" title=" cus-clock"></i></span>
+					<span class="icon"><i class="cus-application-osx" title=" cus-application-osx"></i></span>
+					<span class="icon"><i class="cus-bullet-arrow-bottom" title=" cus-bullet-arrow-bottom"></i></span>
+					<span class="icon"><i class="cus-text-padding-bottom" title=" cus-text-padding-bottom"></i></span>
+					<span class="icon"><i class="cus-folder-link" title=" cus-folder-link"></i></span>
+					<span class="icon"><i class="cus-key-delete" title=" cus-key-delete"></i></span>
+					<span class="icon"><i class="cus-calculator-add" title=" cus-calculator-add"></i></span>
+					<span class="icon"><i class="cus-delete" title=" cus-delete"></i></span>
+					<span class="icon"><i class="cus-application-side-expand" title=" cus-application-side-expand"></i></span>
+					<span class="icon"><i class="cus-chart-bar-edit" title=" cus-chart-bar-edit"></i></span>
+					<span class="icon"><i class="cus-bullet-disk" title=" cus-bullet-disk"></i></span>
+					<span class="icon"><i class="cus-time-add" title=" cus-time-add"></i></span>
+					<span class="icon"><i class="cus-tag" title=" cus-tag"></i></span>
+					<span class="icon"><i class="cus-bell-link" title=" cus-bell-link"></i></span>
+					<span class="icon"><i class="cus-page-white-delete" title=" cus-page-white-delete"></i></span>
+					<span class="icon"><i class="cus-arrow-down" title=" cus-arrow-down"></i></span>
+					<span class="icon"><i class="cus-control-pause-blue" title=" cus-control-pause-blue"></i></span>
+					<span class="icon"><i class="cus-control-rewind" title=" cus-control-rewind"></i></span>
+					<span class="icon"><i class="cus-page-white-freehand" title=" cus-page-white-freehand"></i></span>
+					<span class="icon"><i class="cus-database-error" title=" cus-database-error"></i></span>
+					<span class="icon"><i class="cus-magnifier-zoom-in" title=" cus-magnifier-zoom-in"></i></span>
+					<span class="icon"><i class="cus-plugin-go" title=" cus-plugin-go"></i></span>
+					<span class="icon"><i class="cus-chart-line-edit" title=" cus-chart-line-edit"></i></span>
+					<span class="icon"><i class="cus-door-out" title=" cus-door-out"></i></span>
+					<span class="icon"><i class="cus-page-white-flash" title=" cus-page-white-flash"></i></span>
+					<span class="icon"><i class="cus-calendar-delete" title=" cus-calendar-delete"></i></span>
+					<span class="icon"><i class="cus-table-relationship" title=" cus-table-relationship"></i></span>
+					<span class="icon"><i class="cus-bullet-toggle-plus" title=" cus-bullet-toggle-plus"></i></span>
+					<span class="icon"><i class="cus-folder-explore" title=" cus-folder-explore"></i></span>
+					<span class="icon"><i class="cus-page-white-text" title=" cus-page-white-text"></i></span>
+					<span class="icon"><i class="cus-control-fastforward" title=" cus-control-fastforward"></i></span>
+					<span class="icon"><i class="cus-table" title=" cus-table"></i></span>
+					<span class="icon"><i class="cus-picture-delete" title=" cus-picture-delete"></i></span>
+					<span class="icon"><i class="cus-control-rewind-blue" title=" cus-control-rewind-blue"></i></span>
+					<span class="icon"><i class="cus-film-edit" title=" cus-film-edit"></i></span>
+					<span class="icon"><i class="cus-lightning-go" title=" cus-lightning-go"></i></span>
+					<span class="icon"><i class="cus-link-go" title=" cus-link-go"></i></span>
+					<span class="icon"><i class="cus-cart-remove" title=" cus-cart-remove"></i></span>
+					<span class="icon"><i class="cus-transmit" title=" cus-transmit"></i></span>
+					<span class="icon"><i class="cus-feed" title=" cus-feed"></i></span>
+					<span class="icon"><i class="cus-status-offline" title=" cus-status-offline"></i></span>
+					<span class="icon"><i class="cus-emoticon-happy" title=" cus-emoticon-happy"></i></span>
+					<span class="icon"><i class="cus-table-delete" title=" cus-table-delete"></i></span>
+					<span class="icon"><i class="cus-tick" title=" cus-tick"></i></span>
+					<span class="icon"><i class="cus-page-white-word" title=" cus-page-white-word"></i></span>
+					<span class="icon"><i class="cus-vcard" title=" cus-vcard"></i></span>
+					<span class="icon"><i class="cus-arrow-inout" title=" cus-arrow-inout"></i></span>
+					<span class="icon"><i class="cus-link-error" title=" cus-link-error"></i></span>
+					<span class="icon"><i class="cus-application-lightning" title=" cus-application-lightning"></i></span>
+					<span class="icon"><i class="cus-folder-feed" title=" cus-folder-feed"></i></span>
+					<span class="icon"><i class="cus-page-word" title=" cus-page-word"></i></span>
+					<span class="icon"><i class="cus-folder-delete" title=" cus-folder-delete"></i></span>
+					<span class="icon"><i class="cus-zoom-in" title=" cus-zoom-in"></i></span>
+					<span class="icon"><i class="cus-page-white-code-red" title=" cus-page-white-code-red"></i></span>
+					<span class="icon"><i class="cus-application-error" title=" cus-application-error"></i></span>
+					<span class="icon"><i class="cus-bin" title=" cus-bin"></i></span>
+					<span class="icon"><i class="cus-plugin-delete" title=" cus-plugin-delete"></i></span>
+					<span class="icon"><i class="cus-application-form-add" title=" cus-application-form-add"></i></span>
+					<span class="icon"><i class="cus-calculator-edit" title=" cus-calculator-edit"></i></span>
+					<span class="icon"><i class="cus-report-key" title=" cus-report-key"></i></span>
+					<span class="icon"><i class="cus-control-end-blue" title=" cus-control-end-blue"></i></span>
+					<span class="icon"><i class="cus-bullet-wrench" title=" cus-bullet-wrench"></i></span>
+					<span class="icon"><i class="cus-page-white-actionscript" title=" cus-page-white-actionscript"></i></span>
+					<span class="icon"><i class="cus-heart" title=" cus-heart"></i></span>
+					<span class="icon"><i class="cus-folder-picture" title=" cus-folder-picture"></i></span>
+					<span class="icon"><i class="cus-folder-palette" title=" cus-folder-palette"></i></span>
+					<span class="icon"><i class="cus-film-error" title=" cus-film-error"></i></span>
+					<span class="icon"><i class="cus-eye" title=" cus-eye"></i></span>
+					<span class="icon"><i class="cus-cut" title=" cus-cut"></i></span>
+					<span class="icon"><i class="cus-textfield-add" title=" cus-textfield-add"></i></span>
+					<span class="icon"><i class="cus-paste-plain" title=" cus-paste-plain"></i></span>
+					<span class="icon"><i class="cus-folder-lightbulb" title=" cus-folder-lightbulb"></i></span>
+					<span class="icon"><i class="cus-cog-delete" title=" cus-cog-delete"></i></span>
+					<span class="icon"><i class="cus-hourglass-delete" title=" cus-hourglass-delete"></i></span>
+					<span class="icon"><i class="cus-error-delete" title=" cus-error-delete"></i></span>
+					<span class="icon"><i class="cus-folder-magnify" title=" cus-folder-magnify"></i></span>
+					<span class="icon"><i class="cus-cog-go" title=" cus-cog-go"></i></span>
+					<span class="icon"><i class="cus-page-error" title=" cus-page-error"></i></span>
+					<span class="icon"><i class="cus-database-key" title=" cus-database-key"></i></span>
+					<span class="icon"><i class="cus-information" title=" cus-information"></i></span>
+					<span class="icon"><i class="cus-group-add" title=" cus-group-add"></i></span>
+					<span class="icon"><i class="cus-bullet-green" title=" cus-bullet-green"></i></span>
+					<span class="icon"><i class="cus-page-white-cup" title=" cus-page-white-cup"></i></span>
+					<span class="icon"><i class="cus-page-white-dvd" title=" cus-page-white-dvd"></i></span>
+					<span class="icon"><i class="cus-pencil" title=" cus-pencil"></i></span>
+					<span class="icon"><i class="cus-control-equalizer" title=" cus-control-equalizer"></i></span>
+					<span class="icon"><i class="cus-resultset-last" title=" cus-resultset-last"></i></span>
+					<span class="icon"><i class="cus-date-edit" title=" cus-date-edit"></i></span>
+					<span class="icon"><i class="cus-arrow-rotate-anticlockwise" title=" cus-arrow-rotate-anticlockwise"></i></span>
+					<span class="icon"><i class="cus-table-gear" title=" cus-table-gear"></i></span>
+					<span class="icon"><i class="cus-folder-image" title=" cus-folder-image"></i></span>
+					<span class="icon"><i class="cus-book-add" title=" cus-book-add"></i></span>
+					<span class="icon"><i class="cus-page-white-put" title=" cus-page-white-put"></i></span>
+					<span class="icon"><i class="cus-layout-content" title=" cus-layout-content"></i></span>
+					<span class="icon"><i class="cus-status-busy" title=" cus-status-busy"></i></span>
+					<span class="icon"><i class="cus-link-add" title=" cus-link-add"></i></span>
+					<span class="icon"><i class="cus-lightbulb" title=" cus-lightbulb"></i></span>
+					<span class="icon"><i class="cus-connect" title=" cus-connect"></i></span>
+					<span class="icon"><i class="cus-layout-header" title=" cus-layout-header"></i></span>
+					<span class="icon"><i class="cus-pencil-go" title=" cus-pencil-go"></i></span>
+					<span class="icon"><i class="cus-color-wheel" title=" cus-color-wheel"></i></span>
+					<span class="icon"><i class="cus-emoticon-waii" title=" cus-emoticon-waii"></i></span>
+					<span class="icon"><i class="cus-asterisk-yellow" title=" cus-asterisk-yellow"></i></span>
+					<span class="icon"><i class="cus-table-refresh" title=" cus-table-refresh"></i></span>
+					<span class="icon"><i class="cus-page-white-excel" title=" cus-page-white-excel"></i></span>
+					<span class="icon"><i class="cus-door-open" title=" cus-door-open"></i></span>
+					<span class="icon"><i class="cus-bell-add" title=" cus-bell-add"></i></span>
+					<span class="icon"><i class="cus-page-white-go" title=" cus-page-white-go"></i></span>
+					<span class="icon"><i class="cus-disk-multiple" title=" cus-disk-multiple"></i></span>
+					<span class="icon"><i class="cus-book-go" title=" cus-book-go"></i></span>
+					<span class="icon"><i class="cus-feed-key" title=" cus-feed-key"></i></span>
+					<span class="icon"><i class="cus-control-eject" title=" cus-control-eject"></i></span>
+					<span class="icon"><i class="cus-sitemap-color" title=" cus-sitemap-color"></i></span>
+					<span class="icon"><i class="cus-world-edit" title=" cus-world-edit"></i></span>
+					<span class="icon"><i class="cus-application-xp" title=" cus-application-xp"></i></span>
+					<span class="icon"><i class="cus-application-side-boxes" title=" cus-application-side-boxes"></i></span>
+					<span class="icon"><i class="cus-page-edit" title=" cus-page-edit"></i></span>
+					<span class="icon"><i class="cus-comment" title=" cus-comment"></i></span>
+					<span class="icon"><i class="cus-folder-bug" title=" cus-folder-bug"></i></span>
+					<span class="icon"><i class="cus-page-white-edit" title=" cus-page-white-edit"></i></span>
+					<span class="icon"><i class="cus-rosette" title=" cus-rosette"></i></span>
+					<span class="icon"><i class="cus-date-magnify" title=" cus-date-magnify"></i></span>
+					<span class="icon"><i class="cus-page-white-coldfusion" title=" cus-page-white-coldfusion"></i></span>
+					<span class="icon"><i class="cus-box" title=" cus-box"></i></span>
+					<span class="icon"><i class="cus-control-play" title=" cus-control-play"></i></span>
+					<span class="icon"><i class="cus-arrow-refresh" title=" cus-arrow-refresh"></i></span>
+					<span class="icon"><i class="cus-folder-go" title=" cus-folder-go"></i></span>
+					<span class="icon"><i class="cus-lock-edit" title=" cus-lock-edit"></i></span>
+					<span class="icon"><i class="cus-stop" title=" cus-stop"></i></span>
+					<span class="icon"><i class="cus-bullet-go" title=" cus-bullet-go"></i></span>
+					<span class="icon"><i class="cus-page-white-paint" title=" cus-page-white-paint"></i></span>
+					<span class="icon"><i class="cus-database" title=" cus-database"></i></span>
+					<span class="icon"><i class="cus-house-link" title=" cus-house-link"></i></span>
+					<span class="icon"><i class="cus-map-edit" title=" cus-map-edit"></i></span>
+					<span class="icon"><i class="cus-page-add" title=" cus-page-add"></i></span>
+					<span class="icon"><i class="cus-calculator-link" title=" cus-calculator-link"></i></span>
+					<span class="icon"><i class="cus-control-pause" title=" cus-control-pause"></i></span>
+					<span class="icon"><i class="cus-lightning" title=" cus-lightning"></i></span>
+					<span class="icon"><i class="cus-arrow-join" title=" cus-arrow-join"></i></span>
+					<span class="icon"><i class="cus-hourglass-go" title=" cus-hourglass-go"></i></span>
+					<span class="icon"><i class="cus-arrow-out" title=" cus-arrow-out"></i></span>
+					<span class="icon"><i class="cus-briefcase" title=" cus-briefcase"></i></span>
+					<span class="icon"><i class="cus-image" title=" cus-image"></i></span>
+					<span class="icon"><i class="cus-printer-delete" title=" cus-printer-delete"></i></span>
+					<span class="icon"><i class="cus-arrow-in" title=" cus-arrow-in"></i></span>
+					<span class="icon"><i class="cus-application-go" title=" cus-application-go"></i></span>
+					<span class="icon"><i class="cus-wrench-orange" title=" cus-wrench-orange"></i></span>
+					<span class="icon"><i class="cus-film-save" title=" cus-film-save"></i></span>
+					<span class="icon"><i class="cus-page-white-tux" title=" cus-page-white-tux"></i></span>
+					<span class="icon"><i class="cus-world-add" title=" cus-world-add"></i></span>
+					<span class="icon"><i class="cus-user-suit" title=" cus-user-suit"></i></span>
+					<span class="icon"><i class="cus-calendar" title=" cus-calendar"></i></span>
+					<span class="icon"><i class="cus-chart-curve" title=" cus-chart-curve"></i></span>
+					<span class="icon"><i class="cus-paintbrush" title=" cus-paintbrush"></i></span>
+					<span class="icon"><i class="cus-pencil-delete" title=" cus-pencil-delete"></i></span>
+					<span class="icon"><i class="cus-layout" title=" cus-layout"></i></span>
+					<span class="icon"><i class="cus-plugin-error" title=" cus-plugin-error"></i></span>
+					<span class="icon"><i class="cus-date-go" title=" cus-date-go"></i></span>
+					<span class="icon"><i class="cus-control-stop" title=" cus-control-stop"></i></span>
+					<span class="icon"><i class="cus-group-gear" title=" cus-group-gear"></i></span>
+					<span class="icon"><i class="cus-cog-error" title=" cus-cog-error"></i></span>
+					<span class="icon"><i class="cus-report-disk" title=" cus-report-disk"></i></span>
+					<span class="icon"><i class="cus-page-white-star" title=" cus-page-white-star"></i></span>
+					<span class="icon"><i class="cus-tag-blue-add" title=" cus-tag-blue-add"></i></span>
+					<span class="icon"><i class="cus-page-go" title=" cus-page-go"></i></span>
+					<span class="icon"><i class="cus-date-link" title=" cus-date-link"></i></span>
+					<span class="icon"><i class="cus-hourglass-link" title=" cus-hourglass-link"></i></span>
+					<span class="icon"><i class="cus-tag-red" title=" cus-tag-red"></i></span>
+					<span class="icon"><i class="cus-report-magnify" title=" cus-report-magnify"></i></span>
+					<span class="icon"><i class="cus-key" title=" cus-key"></i></span>
+					<span class="icon"><i class="cus-page-white-get" title=" cus-page-white-get"></i></span>
+					<span class="icon"><i class="cus-table-save" title=" cus-table-save"></i></span>
+					<span class="icon"><i class="cus-disconnect" title=" cus-disconnect"></i></span>
+					<span class="icon"><i class="cus-book" title=" cus-book"></i></span>
+					<span class="icon"><i class="cus-bullet-yellow" title=" cus-bullet-yellow"></i></span>
+					<span class="icon"><i class="cus-chart-pie-delete" title=" cus-chart-pie-delete"></i></span>
+					<span class="icon"><i class="cus-page-white-add" title=" cus-page-white-add"></i></span>
+					<span class="icon"><i class="cus-resultset-next" title=" cus-resultset-next"></i></span>
+					<span class="icon"><i class="cus-page-white-paste" title=" cus-page-white-paste"></i></span>
+					<span class="icon"><i class="cus-cursor" title=" cus-cursor"></i></span>
+					<span class="icon"><i class="cus-report-picture" title=" cus-report-picture"></i></span>
+					<span class="icon"><i class="cus-page-world" title=" cus-page-world"></i></span>
+					<span class="icon"><i class="cus-page-white-code" title=" cus-page-white-code"></i></span>
+					<span class="icon"><i class="cus-anchor" title=" cus-anchor"></i></span>
+					<span class="icon"><i class="cus-thumb-down" title=" cus-thumb-down"></i></span>
+					<span class="icon"><i class="cus-page-code" title=" cus-page-code"></i></span>
+					<span class="icon"><i class="cus-bullet-purple" title=" cus-bullet-purple"></i></span>
+					<span class="icon"><i class="cus-lock-break" title=" cus-lock-break"></i></span>
+					<span class="icon"><i class="cus-printer-error" title=" cus-printer-error"></i></span>
+					<span class="icon"><i class="cus-emoticon-evilgrin" title=" cus-emoticon-evilgrin"></i></span>
+					<span class="icon"><i class="cus-status-away" title=" cus-status-away"></i></span>
+					<span class="icon"><i class="cus-calculator" title=" cus-calculator"></i></span>
+					<span class="icon"><i class="cus-report-user" title=" cus-report-user"></i></span>
+					<span class="icon"><i class="cus-page-white-acrobat" title=" cus-page-white-acrobat"></i></span>
+					<span class="icon"><i class="cus-house" title=" cus-house"></i></span>
+					<span class="icon"><i class="cus-emoticon-unhappy" title=" cus-emoticon-unhappy"></i></span>
+					<span class="icon"><i class="cus-page-white-link" title=" cus-page-white-link"></i></span>
+					<span class="icon"><i class="cus-film-delete" title=" cus-film-delete"></i></span>
+					<span class="icon"><i class="cus-control-start" title=" cus-control-start"></i></span>
+					<span class="icon"><i class="cus-user-female" title=" cus-user-female"></i></span>
+					<span class="icon"><i class="cus-page-white-paintbrush" title=" cus-page-white-paintbrush"></i></span>
+					<span class="icon"><i class="cus-application-key" title=" cus-application-key"></i></span>
+					<span class="icon"><i class="cus-world-link" title=" cus-world-link"></i></span>
+					<span class="icon"><i class="cus-folder-heart" title=" cus-folder-heart"></i></span>
+					<span class="icon"><i class="cus-page-link" title=" cus-page-link"></i></span>
+					<span class="icon"><i class="cus-attach" title=" cus-attach"></i></span>
+					<span class="icon"><i class="cus-emoticon-smile" title=" cus-emoticon-smile"></i></span>
+					<span class="icon"><i class="cus-user-go" title=" cus-user-go"></i></span>
+				</div>
+				<hr>
+				<div>
+					<div class="bs-glyphicons">
+						<ul class="bs-glyphicons-list">
+
+							<li>
+								<span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-asterisk</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-plus</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-euro" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-euro</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-eur" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-eur</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-minus</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-cloud" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-cloud</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-envelope</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-pencil</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-glass" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-glass</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-music</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-search</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-heart</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-star</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-star-empty</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-user</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-film</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-th-large</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-th</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-th-list</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-ok</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-remove</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-zoom-in</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-zoom-out</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-off</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-signal</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-cog</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-trash</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-home</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-file</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-time</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-road" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-road</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-download-alt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-download</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-upload</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-inbox</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-play-circle</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-repeat</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-refresh</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-list-alt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-lock</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-flag</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-headphones</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-volume-off</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-volume-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-volume-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-qrcode" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-qrcode</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-barcode</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tag</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tags</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-book</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-bookmark</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-print</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-camera</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-font</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-bold" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-bold</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-italic" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-italic</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-text-height" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-text-height</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-text-width" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-text-width</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-align-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-align-center" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-align-center</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-align-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-align-justify</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-list</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-indent-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-indent-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-indent-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-facetime-video</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-picture</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-map-marker</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-adjust</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tint</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-edit</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-share" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-share</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-check</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-move" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-move</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-step-backward</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-fast-backward</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-backward</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-play</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-pause</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-stop</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-forward</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-fast-forward</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-step-forward</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-eject" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-eject</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-chevron-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-chevron-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-plus-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-minus-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-remove-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-ok-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-question-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-info-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-screenshot</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-remove-circle</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-ok-circle</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-ban-circle</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-arrow-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-arrow-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-arrow-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-arrow-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-share-alt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-resize-full</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-resize-small</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-exclamation-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-gift" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-gift</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-leaf" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-leaf</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-fire</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-eye-open</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-eye-close</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-warning-sign</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-plane</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-calendar</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-random" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-random</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-comment</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-magnet" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-magnet</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-chevron-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-chevron-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-retweet</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-shopping-cart</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-folder-close</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-folder-open</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-resize-vertical</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-resize-horizontal</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-hdd</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-bullhorn</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-bell</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-certificate</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-thumbs-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-thumbs-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-hand-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-hand-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-hand-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-hand-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-circle-arrow-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-circle-arrow-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-circle-arrow-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-circle-arrow-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-globe</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-wrench</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tasks</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-filter</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-briefcase</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-fullscreen</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-dashboard</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-paperclip</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-heart-empty</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-link</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-phone</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-pushpin</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-usd</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-gbp" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-gbp</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sort</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sort-by-alphabet</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sort-by-alphabet-alt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sort-by-order</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sort-by-order-alt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sort-by-order-alt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sort-by-attributes</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sort-by-attributes-alt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-unchecked</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-expand</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-collapse-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-collapse-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-log-in</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-flash</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-log-out</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-new-window</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-record" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-record</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-save</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-open</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-saved" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-saved</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-import" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-import</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-export" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-export</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-send</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-floppy-disk</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-floppy-saved</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-floppy-remove</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-floppy-save</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-floppy-open</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-credit-card</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-transfer</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-cutlery</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-header" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-header</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-compressed" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-compressed</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-earphone</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-phone-alt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tower" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tower</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-stats</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sd-video" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sd-video</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-hd-video" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-hd-video</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-subtitles" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-subtitles</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sound-stereo" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sound-stereo</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sound-dolby" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sound-dolby</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sound-5-1" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sound-5-1</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sound-6-1" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sound-6-1</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sound-7-1" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sound-7-1</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-copyright-mark</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-registration-mark" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-registration-mark</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-cloud-download</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-cloud-upload</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tree-conifer</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tree-deciduous</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-cd" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-cd</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-save-file</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-open-file</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-level-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-level-up</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-copy</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-paste" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-paste</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-alert</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-equalizer</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-king" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-king</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-queen" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-queen</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-pawn" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-pawn</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-bishop" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-bishop</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-knight" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-knight</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-baby-formula" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-baby-formula</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-tent</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-blackboard</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-bed" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-bed</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-apple" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-apple</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-erase</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-hourglass</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-lamp" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-lamp</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-duplicate</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-piggy-bank</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-scissors</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-bitcoin</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-btc" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-btc</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-xbt" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-xbt</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-yen" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-yen</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-jpy" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-jpy</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-ruble" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-ruble</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-rub" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-rub</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-scale" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-scale</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-ice-lolly" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-ice-lolly</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-ice-lolly-tasted" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-ice-lolly-tasted</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-education</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-option-horizontal" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-option-horizontal</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-option-vertical</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-menu-hamburger</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-modal-window" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-modal-window</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-oil" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-oil</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-grain</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-sunglasses</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-text-size</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-text-color" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-text-color</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-text-background" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-text-background</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-object-align-top" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-object-align-top</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-object-align-bottom" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-object-align-bottom</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-object-align-horizontal" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-object-align-horizontal</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-object-align-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-object-align-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-object-align-vertical" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-object-align-vertical</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-object-align-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-object-align-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-triangle-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-triangle-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-triangle-bottom</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-triangle-top</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-console" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-console</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-superscript" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-superscript</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-subscript" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-subscript</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-menu-left</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-menu-right</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-menu-down</span>
+							</li>
+
+							<li>
+								<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+								<span class="glyphicon-class">glyphicon glyphicon-menu-up</span>
+							</li>
+
+						</ul>
+					</div>
+	</div>
+	</body>	
+<script type="text/javascript" src="./jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	var search_list = location.search.match(/eid=(\w+)[&]?/)
+	var parent_ele_id =  search_list&&search_list.length>=2?search_list[1]:null
+	var parent_ele_obj = parent_ele_id?window.opener.document.getElementById(parent_ele_id):null
+
+	$('.icon i,.glyphicon-class').click(function(){
+		if(parent_ele_obj){
+			var icon_class_name = $(this).text() || $(this).attr('title').trim()
+			parent_ele_obj.value = icon_class_name
+		}
+	})
+</script>
+</html>

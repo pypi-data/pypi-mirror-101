@@ -1,0 +1,29 @@
+{% extends "myadmin/base.html" %}
+
+{% block header %}
+    <title>禁止访问</title>
+{% endblock %}
+
+{% block content %}
+    <div id="vue-content" class="row" v-cloak>
+        <a-result status="warning" title="{{ _('试图访问未授权的页面') }}" sub-title="{{ request.path }}"  >
+            <template #extra>
+                <a-button key="console" type="primary" onclick="document.location=document.referrer">
+                    {{ _('返回') }}
+                </a-button>
+            </template>
+        </a-result>
+    </div>
+    <script>
+        ;(function () {
+            var role_user_set_app = new Vue({
+                el: '#vue-content',
+                delimiters: ['((', '))'],
+                methods: {}
+
+            })
+        })();
+    </script>
+
+
+{% endblock %}

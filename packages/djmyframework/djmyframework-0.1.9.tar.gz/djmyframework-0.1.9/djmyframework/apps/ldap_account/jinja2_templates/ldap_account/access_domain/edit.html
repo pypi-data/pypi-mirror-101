@@ -1,0 +1,296 @@
+{% extends "framework/base.html" %}
+
+{% block header %}
+    <title>{{ _('访问域 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        <div class="row header">
+            <div class="col-sm-6">
+                <h1>{{ _('访问域') }}
+                    <small>{{ _('编辑') }}</small>
+                </h1>
+            </div>
+            <div class="col-sm-4">
+                <h1>
+                    <small>{{ _('允许访问的角色') }}</small>
+                </h1>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <form class="form-horizontal" role="form">
+            <div class="row edit-form-container">
+                <div class="col-sm-6" id="vue-container" v-cloak>
+                    <br>
+
+                    <div class="form-group" style="display:none">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_id">
+
+                            {{ _('id') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="number" id="id_id" name="id" v-model="model.id"
+                                   class="form-control" value="{{ data.id or "" }}"
+
+                            >
+                            <div id="help_text_id" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_name">
+                            <span class="text-danger">*</span>
+                            {{ _('名称') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_name" name="name" v-model="model.name"
+                                   class="form-control" value="{{ data.name or "" }}"
+                                   maxlength=100
+                                   required=true>
+                            <div id="help_text_name" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_alias">
+
+                            {{ _('别名') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_alias" name="alias" v-model="model.alias"
+                                   class="form-control" value="{{ data.alias or "" }}"
+                                   maxlength=100
+                            >
+                            <div id="help_text_alias" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_bindpw">
+
+                            {{ _('访问密钥') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text" id="id_bindpw" name="bindpw" v-model="model.bindpw"
+                                   class="form-control" value="{{ data.bindpw or "" }}"
+                                   maxlength=30
+                            >
+                            <div id="help_text_bindpw" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_access_address">
+
+                            {{ _('访问地址') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   id="id_access_address"
+                                   name="access_address"
+                                   v-model="model.access_address"
+                                   class="form-control"
+                                   value="{{ data.access_address or "" }}"
+                                   maxlength=256
+                            >
+                            <div id="help_text_access_address" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_status">
+
+                            {{ _('状态') }} </label>
+
+                        <div class="col-sm-8">
+                            <select v-select2
+                                    v-model="model.status"
+                                    class="form-control col-lg-5 select2"
+                                    id="id_status"
+                                    data-placeholder="{{ _('状态') }}"
+                                    name="status"
+                                    svalue="{{ data.status }}">
+                                {% for o in data.serializer.instance.get_fields_map().status.choices %}
+                                    <option value="{{ o.0 }}">{{ o.1 }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <div id="help_text_status" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_create_datetime">
+
+                            {{ _('创建时间') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   id="id_create_datetime"
+                                   name="create_datetime"
+                                   v-model="model.create_datetime"
+                                   class="form-control datetime "
+                                   value="{{ data.create_datetime  or "" }}"
+                            >
+                            <div id="help_text_create_datetime" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" style="">
+                        <label class="col-sm-3 control-label no-padding-right" for="id_update_datetime">
+
+                            {{ _('更新时间') }} </label>
+
+                        <div class="col-sm-8">
+                            <input type="text"
+                                   id="id_update_datetime"
+                                   name="update_datetime"
+                                   v-model="model.update_datetime"
+                                   class="form-control datetime "
+                                   value="{{ data.update_datetime  or "" }}"
+                            >
+                            <div id="help_text_update_datetime" class="middle text-danger help_text"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="row pane edit-save-bar">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                            <button @click="saveModel(true)"
+                                    :disabled="isExecuting"
+                                    class="btn btn-primary "
+                                    type="button">
+                                {{ _('保 存') }}
+                            </button>
+
+                            <div class="pull-right">
+                                <button @click="saveModel(false)"
+                                        :disabled="isExecuting"
+                                        class="btn btn-info "
+                                        type="button">
+                                    {{ _('保存并继续编辑') }}
+                                </button>
+                                <button @click="saveModelAddOther"
+                                        :disabled="isExecuting"
+                                        class="btn btn-info "
+                                        type="button">
+                                    {{ _('保存并增加另一个') }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+
+              {% set select_list = data.role%}
+              {% include 'myadmin/widgets/role_table_select.html' %}
+
+            </div>
+
+            </div>
+
+
+        </form>
+
+    </div>
+    <script>
+        var modelData = Object({{ data|json_dumps|safe }}) || Object({
+            "id": 1,
+            "_version": 0,
+            "create_datetime": null,
+            "update_datetime": null,
+            "name": "",
+            "alias": "",
+            "bindpw": "",
+            "access_address": "",
+            "status": 0
+        })
+
+        var modelShema = Object({{ data.serializer.to_schema()|json_dumps|safe }})
+
+
+        var vue_app = new Vue({
+            el: '#vue-container',
+            delimiters: ['((', '))'],
+            data() {
+                return {
+                    model: modelData,
+                    isExecuting: false,
+                };
+            },
+            watch: {},
+            methods: {
+                ajaxPostData: function (post_data, callback) {
+                    clearHelpText()
+                    this.isExecuting = true
+                    post_data.role = $('form').serializeToJSON().role
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "{{ url('ldap_account.access_domain.save') }}?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}",
+                        dataType: 'json',
+                        data: JSON.stringify(post_data),
+                        contentType: 'application/json',
+                        success: (rsp) => {
+                            if (rsp.code == 0) {
+                                this.$message.success(rsp.msg, 1)
+                                clearHelpText()
+                                callback ? callback(rsp) : null
+
+                            } else {
+                                rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                            }
+                        },
+                        error: (jqXHR, statusText, errorMsg) => {
+                            ajaxError(jqXHR, statusText, errorMsg)
+
+                        },
+                        complete: (jqXHR, statusText) => {
+                            this.isExecuting = false
+                        }
+
+                    })
+                },
+                saveModel: function (isCloseDialog) {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            this.model = rsp.data
+                            refreshParentTable()
+                            customDispatchEvent('saveModel', this.model, true)
+                            if (isCloseDialog) closeSelfDialog()
+                        }
+                    })
+                },
+                saveModelAddOther: function () {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            window.location.href = window.location.pathname
+                        }
+                    })
+                },
+
+            },
+            mounted: function () {
+
+
+            }
+        })
+
+
+    </script>
+{% endblock %}

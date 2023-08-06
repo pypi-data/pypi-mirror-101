@@ -1,0 +1,36 @@
+<script type="text/javascript">
+  var url = "/query/view/滚服角色"
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+     listData = data.list_data;
+    for (var i in listData){
+          var row = listData[i];
+          var params_list = row[TH['操作']].split('|');
+          var game_alias = params_list[0]
+          var log_sdk_code = params_list[1]
+          var log_server = params_list[2]
+          var log_time = params_list[3]
+           
+		    params =  "log_sdk_code=" + log_sdk_code + "&" +
+                     "log_server=" + log_server + "&" +
+			  "game_alias=" + game_alias + "&sdate=" + log_time + "&edate=" + log_time + " 23:59:59"			
+          listData[i][TH['操作']] = "<a title='滚服充值' href='" + url + "?" + params + "' class='openDialog'>新增滚服充值明细</a>";
+    }
+
+    return data
+}]
+  $(function(){
+	$SEARCH.trigger('click');
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

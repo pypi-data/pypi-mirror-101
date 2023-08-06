@@ -1,0 +1,508 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{% block header %}
+    <title>{{ _('用户模型 列表') }}</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row header">
+        <div class="col-sm-12 ">
+            <ul id="nav-list" class="nav nav-tabs">
+                <li class="active">
+                    <a href="/myadmin/user/list"><b>{{ _('用户 列表') }} </b></a>
+                </li>
+                <li>
+                    <a href="/myadmin/role/list">{{ _('角色 列表') }}</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="row mT10">
+
+        <div class="col-sm-2">
+
+            {% include 'myadmin/widgets/role_tree_select.html' %}
+        </div>
+
+
+        <div class="col-sm-10">
+
+            <div class="row ">
+                <div class="col-sm-12">
+                    <form id="filter-form" class="form-inline pane">
+                        <input style="display:none" type="text">
+                        <script>
+                            // 过滤条件字段定义
+                            var filter_field_schemas = {
+                                id:
+                                    {
+                                        label: '{{ _('id') }}',
+                                        name: 'id',
+                                        type: 'number',
+                                        data_url: '',
+                                        choices: []
+                                    },
+                                role:
+                                    {
+                                        label: '{{ _('拥有的角色') }}',
+                                        name: 'role',
+                                        type: 'choice',
+                                        data_url: '/myadmin/role/list',
+                                        choices: []
+                                    },
+                                alias:
+                                    {
+                                        label: '{{ _('别名') }}',
+                                        name: 'alias',
+                                        type: 'char',
+                                        data_url: '',
+                                        choices: []
+                                    },
+                                username:
+                                    {
+                                        label: '{{ _('用户名') }}',
+                                        name: 'username',
+                                        type: 'char',
+                                        data_url: '',
+                                        choices: []
+                                    },
+
+                                last_ip:
+                                    {
+                                        label: '{{ _('最后登录ip') }}',
+                                        name: 'last_ip',
+                                        type: 'char',
+                                        data_url: '',
+                                        choices: []
+                                    },
+                                last_time:
+                                    {
+                                        label: '{{ _('最后登录时间') }}',
+                                        name: 'last_time',
+                                        type: 'date',
+                                        data_url: '',
+                                        choices: []
+                                    },
+                                login_count:
+                                    {
+                                        label: '{{ _('登录次数') }}',
+                                        name: 'login_count',
+                                        type: 'number',
+                                        data_url: '',
+                                        choices: []
+                                    },
+                                status:
+                                    {
+                                        label: '{{ _('状态') }}',
+                                        name: 'status',
+                                        type: 'choice',
+                                        data_url: '',
+                                        choices: [
+                                            {% for o in request.parser_context.view.model.fields_map.status.choices %}
+                                                ["{{ o.0 }}", '{{ o.1 }}'],{% endfor %}
+                                        ]
+                                    },
+                                create_datetime:
+                                    {
+                                        label: '{{ _('创建时间') }}',
+                                        name: 'create_datetime',
+                                        type: 'date',
+                                        data_url: '',
+                                        choices: []
+                                    },
+                                update_datetime:
+                                    {
+                                        label: '{{ _('更新时间') }}',
+                                        name: 'update_datetime',
+                                        type: 'date',
+                                        data_url: '',
+                                        choices: []
+                                    },
+                            }
+
+                            // 默认过滤条件
+                            var filter_conditions = [{
+                                name: 'username',
+                                operator: "contains",
+                                value: "",
+                                is_default: true
+                            }, {
+                                name: 'create_datetime',
+                                operator: "between",
+                                is_default: true
+                            }, {
+                                name: 'status',
+                                operator: "in",
+                                value: '0,3',
+                                is_default: true
+                            }
+                            ]
+                        </script>
+                        {% include "framework/widgets/filter.html" %}
+                    </form>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col-sm-12">
+                    <div class="table-container">
+                        <div id="toolbar" class=toolbar_app"" v-cloak>
+                            <a id="add-btn" class="btn btn-sm btn-primary openDialog"
+                               :href="'{{ url('myadmin.user.edit') }}?role='+selectRoleId">
+                                <span class="glyphicon glyphicon-plus-sign"></span> {{ _('添加') }}
+                            </a>
+
+                            <button @click.prevent="onDelete"
+                                    :disabled="selectIds.length==0"
+                                    class="btn btn-sm btn-danger ">
+                                <span class="glyphicon glyphicon-remove"></span> {{ _('删除') }}
+                                <span v-show="selectIds.length>0" class="badge">((selectIds.length))</span>
+                            </button>
+
+
+                            <button id="change-status-btn"
+                                    class="btn btn-sm btn-default "
+                                    data-toggle="modal"
+                                    data-target="#change-status-modal">
+                                <span class="glyphicon glyphicon-edit"></span> {{ _('修改状态') }}
+                            </button>
+
+                            <div class="modal fade"
+                                 id="change-status-modal"
+                                 tabindex="-1"
+                                 role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">修改状态</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <select class="form-control" v-model="status">
+                                                <option v-for="(item,i) in filter_field_schemas.status.choices"
+                                                        :value="item[0]">((item[1]))
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" @click="change_status">提交更改
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div>
+
+                            <a href="{{ url('myadmin.register') }}" target="_blank" class="btn btn-sm btn-default ">
+                                <span class="glyphicon glyphicon-link"></span> {{ _('注册页面') }}
+                            </a>
+                        </div>
+                        <table id="table" class="table "></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var $table = $('#table')
+
+        var bootstrapTableOption = {
+            height: Math.max(400, getWindowHeightWidth()[1] - Math.min($('html').height(), $('#table').offset().top))-50,
+            url: window.location.pathname,  //请求后台的URL（*）
+            locale: BootstrapTableLocale,
+            toolbar: '#toolbar',
+            method: "GET", //请求方式（*）
+            dataType: "json",
+            striped: true, //是否显示行间隔色
+            cache: false,  //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true, //是否显示分页（*）
+            sortable: true,  //是否启用排序
+            sortOrder: "asc", //排序方式
+            resizable: true,
+            queryParams: function (params) {
+                var paramsArray = $('#filter-form').serializeArray()
+                paramsArray.push({name: 'page_size', value: params.pageSize || 100})
+                paramsArray.push({name: 'page', value: params.pageNumber || 1})
+                paramsArray.push({name: 'keywords', value: params.searchText})
+                var orderPrefix = params.sortOrder == 'asc' ? '' : '-'
+                paramsArray.push({name: 'ordering', value: orderPrefix + (params.sortName || '')})
+                if (role_tree_app.selectRoleId > 0) {
+                    paramsArray.push({name: 'role__in', value: role_tree_app.selectRoleId})
+                }
+                return paramsArray;
+
+            },//传递参数（*）
+            showExport: true,
+            totalField: 'count',
+            dataField: 'results',
+            showJumpTo: "true",
+            responseHandler: function (res) {
+                if (res.code !== 0) {
+                    art.dialog.alert(res.msg)
+                }
+                return res.data
+            },
+            onLoadError: function (status, jqXHR) {
+                console.dir(status)
+                console.dir(jqXHR)
+                art.dialog.alert(jqXHR.responseJSON.msg)
+
+            },
+            sidePagination: "client", //分页方式：client 客户端分页，server 服务端分页（*）
+            queryParamsType: "",      //https://examples.bootstrap-table.com/index.html?bootstrap3#options/query-params-type.html
+            pageNumber: 1, //初始化加载第一页，默认第一页
+            pageSize: 10000, //每页的记录行数（*）
+            pageList: [100, 200, 600, 2400], //可供选择的每页的行数（*）
+            search: true, //是否显示表格搜索，客户端搜索，sidePagination: "server"进服务端
+            showSearchClearButton: true,
+            strictSearch: false, //严格查询
+            showFullscreen: false,
+            showColumnsToggleAll: true,
+            showColumns: true, //是否显示所有的列
+            showRefresh: true, //是否显示刷新按钮
+            minimumCountColumns: 2, //最少允许的列数
+            clickToSelect: true, //是否启用点击选中行
+            multipleSelectRow: true,
+            showToggle: false, //是否显示详细视图和列表视图的切换按钮
+            cardView: false,   //是否显示详细视图
+            detailView: false,//显示详情
+            fixedColumns: true,
+            fixedNumber: 1,
+            fixedRightNumber: 1,
+            uniqueId: 'id',
+            groupBy: false,//分组
+            groupByField: 'status_alias',
+            columns: [{
+                checkbox: true,
+                align: 'center',
+                valign: 'middle'
+            },
+                {
+                    field: 'id',
+                    title: "{{ _('id') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+
+                {
+                    field: 'alias',
+                    title: "{{ _('别名') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return '<a class="openDialog" href="/myadmin/user_info/edit?user_id=' + row.id + ' ">' + value + ' </a>'
+                    }
+                },
+                {
+                    field: 'username',
+                    title: "{{ _('用户名') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        return '<a class="openDialog" href="/myadmin/user/edit?id=' + row.id + ' ">' + value + ' </a>'
+                    }
+                },
+                {
+                    field: 'role_alias',
+                    title: "{{ _('拥有的角色') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                    formatter: function (value, row, index) {
+                        var role_label_list = []
+                        for (var i in row.role) {
+                            role_label_list.push('<a class="openDialog" href="{{ url('myadmin.role.edit') }}?id=' + row.role[i] + ' ">' + row.role_alias[i] + ' </a>')
+                        }
+                        return role_label_list.join(',');
+                    }
+                },
+                {
+                    field: 'last_ip',
+                    title: "{{ _('最后登录ip') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+                {
+                    field: 'last_time',
+                    title: "{{ _('最后登录时间') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+                {
+                    field: 'login_count',
+                    title: "{{ _('登录次数') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+                {
+                    field: 'status',
+                    title: "{{ _('状态') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                    visible: false,
+                    formatter: function (value, row, index) {
+                        return row.status_alias
+                    }
+                }, {
+                    field: 'status_alias',
+                    title: "{{ _('状态') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                    visible: true,
+                    formatter: function (value, row, index) {
+                        return value
+                    }
+                },
+                /**
+                 {
+                    field: 'session_key',
+                    title: "{{ _('会话key') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+                 **/
+                {
+                    field: 'create_datetime',
+                    title: "{{ _('创建时间') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+                /**
+                 {
+                    field: 'update_datetime',
+                    title: "{{ _('更新时间') }}",
+                    align: 'center',
+                    valign: 'middle',
+                    sortable: true,
+                },
+                 **/
+                {
+                    field: '_operate',
+                    title: '{{ _('操作') }}',
+                    align: 'center',
+                    valign: 'middle',
+                    formatter: function (value, row, index) {
+                        return [
+                            '<a class="openDialog btn btn-xs btn-default" href="/myadmin/user_info/edit?user_id=' + row.id + ' "> {{ _('其他资料') }} </a> ',
+                            '<a class="btn btn-xs btn-info openDialog" href="/myadmin/user/edit?id=' + row.id + '" >{{ _('编辑') }}</a> ',
+                            '<a class="btn btn-default btn-xs openDialog" href="/myadmin/user/edit?id=' + row.id + '&is_copy=1" >{{ _('复制') }}</a> ',
+                        ].join('');
+                    },
+                },
+            ]
+        }
+
+        // 刷新表格
+        function refreshTable() {
+            $table.bootstrapTable('refresh', {})
+            role_tree_app.loadTreeData()
+        }
+
+        window.addEventListener("refreshTable", (e) => {
+            refreshTable()
+        })
+        window.addEventListener("filterCondition", (e) => {
+            refreshTable()
+            console.dir(e.detail)
+        })
+
+        var toolbar_app = new Vue({
+            el: '#toolbar',
+            delimiters: ['((', '))'],
+            data() {
+                return {
+
+                    table: $table,
+                    selectIds: [],
+                    filter_field_schemas: filter_field_schemas,
+                    status: filter_field_schemas.status.choices[0][0]
+                };
+            },
+            computed: {
+                selectRoleId() {
+                    return role_tree_app.selectRoleId
+                }
+            },
+            methods: {
+                change_status: function () {
+                    var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
+                        return row.id
+                    })
+                    $.post("/myadmin/user/change_status", {
+                        id: ids,
+                        status: this.status
+                    }, function (data) {
+                        if (data.code == 0) {
+                            art.dialog(data.msg).time(1)
+                            refreshTable()
+                        } else {
+                            alertError(data.msg)
+
+                        }
+                    }, 'json')
+                },
+                getSelectIds: function () {
+                    this.selectIds = $.map($table.bootstrapTable('getSelections'), function (row) {
+                        return row.id
+                    })
+                    return this.selectIds
+                },
+                onExpandAll: function () {
+                    $table.treegrid('expandAll');
+                },
+                onCollapseAll: function () {
+                    $table.treegrid('collapseAll');
+                },
+                onDelete: function () {
+                    if (!confirmRandom('确认删除吗?')) {
+                        return false
+                    }
+                    var ids = this.getSelectIds()
+                    $.post("{{ url('myadmin.user.delete') }}", {id: ids}, (rsp) => {
+                        if (rsp.code == 0) {
+                            $table.bootstrapTable('remove', {
+                                field: 'id',
+                                values: ids
+                            })
+
+                            art.dialog(rsp.msg).time(1)
+                        } else {
+                            art.dialog.alert(rsp.msg)
+                        }
+                    }, 'json')
+                }
+
+            },
+            mounted: function () {
+                $table.bootstrapTable('destroy').bootstrapTable(bootstrapTableOption)
+                $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', () => {
+                    this.getSelectIds()
+                })
+
+
+            }
+
+        })
+
+
+    </script>
+{% endblock %}

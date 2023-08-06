@@ -1,0 +1,41 @@
+<script src="/static/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/static/js/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+<script src="/static/js/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+<link rel="stylesheet" href="/static/js/jQuery-File-Upload/css/jquery.fileupload.css">
+<span class="btn btn-success fileinput-button" style="
+    margin: 4px 0px;
+">
+</style>
+        <table id="table"></table>
+
+        <span>上传媒体数据文件</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="media_file" multiple="">
+    </span> 
+<a href="/log/media/media_edit" class=" openDialog">
+             手动增加
+        </a>
+<link rel="stylesheet" href="/static/css/bootstrap-table.min.css" />
+<script type="text/javascript" src="/static/js/bootstrap-table.js"></script>
+<script type="text/javascript">
+
+
+
+$("#fileupload").fileupload({  
+    url:"/log/media/media_update",//文件上传地址，当然也可以直接写在input的data-url属性内   
+    done:function(e,result){  
+        //done方法就是上传完毕的回调函数，其他回调函数可以自行查看api  
+        //注意result要和jquery的ajax的data参数区分，这个对象包含了整个请求信息  
+        //返回的数据在result.result中，假设我们服务器返回了一个json对象 
+      if (result.result == "OK"){
+         console.log(result.result); 
+         $.dialog({title:'媒体数据上传成功:',content:"媒体数据上传成功"})
+         $SEARCH.trigger('click');
+      }
+      else{
+        $.dialog({title:'媒体数据上传失败:',content:result.result})
+         console.log(result.result);
+      }
+    }  
+})  
+</script>

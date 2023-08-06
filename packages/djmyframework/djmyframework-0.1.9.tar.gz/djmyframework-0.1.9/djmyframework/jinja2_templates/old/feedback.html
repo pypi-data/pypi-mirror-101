@@ -1,0 +1,65 @@
+{% if request.is_ajax() %}{"msg":"{{ err_msg }}","code":0}
+{% else %}
+    <html>
+    <head>
+        {% include "old/header.html" %}
+    </head>
+
+    <body>
+    <div class="bar">
+        <div class="buttons">
+            <a class="btn btn-app btn-grey btn-xs radius-4 pull-right"
+               href="javascript:document.location=document.referrer">返回</a>
+        </div>
+    </div>
+
+    {% if err_msg %}
+        <div>
+            <div class="alert alert-danger err_msg pre-scrollable">
+                <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+                <p>    {{ err_msg|linebreaksbr }}
+                </p><br>
+            </div>
+        </div>
+    {% else %}
+        <div style="height:500px;max-width:600px">
+            <div class="alert alert-block alert-success feedback">
+                操作成功！<span id="second"></span> <span href="javascript:;"
+                                                     class="pointer"
+                                                     onclick="clearTimeout(reciprocal)">[停止]</span>
+            </div>
+        </div>
+    {% endif %}
+
+
+    </body>
+    <script type="text/javascript">
+        var reciprocal = null
+        var refLink = document.referrer;
+        var num = 5;
+
+        function refresh() {
+            document.getElementById("second").innerHTML = num + ' 秒后 返回.';
+            num--
+            if (num == 0) {
+                document.location = refLink;
+            } else {
+                reciprocal = setTimeout("refresh()", 1000);
+            }
+        }
+
+        if (-1 == document.location.href.indexOf('_t=')) {
+            if (refLink.indexOf('?') == -1)
+                refLink += "?_t=" + (new Date().getTime());
+            else
+                refLink += "&_t=" + (new Date().getTime());
+            {% if not err_msg %}
+                refresh()
+            {% endif %}
+        }
+    </script>
+    </html>
+    </div>
+
+
+{% endif %}

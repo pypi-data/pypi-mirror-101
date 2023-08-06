@@ -1,0 +1,65 @@
+<script type="text/javascript">
+ 
+
+function setSelectDate(sAddDayCount,eAddDayCount,is_edate)
+{
+    var sEle = $('[name="sdate"]')
+    var eEle = $('[name="edate"]')
+
+    sEle.attr('value',GetDateStr(sAddDayCount));
+    eEle.attr('value',GetDateStr(eAddDayCount,is_edate));
+
+}
+
+
+function GetDateStr(AddDayCount,is_edate) {
+    var dd = new Date();
+    var new_date = dd.dateAdd('d',AddDayCount)
+    if (is_edate) {
+        return new_date.Format("yyyy-MM-dd")
+    }
+    return new_date.Format("yyyy-MM-dd")
+}
+
+
+
+
+</script>
+
+<script>
+
+$('[name="sdate"]').val(new Date().Format("yyyy-MM-dd")).width(100)
+$('[name="edate"]').val(new Date().Format("yyyy-MM-dd")).width(100)
+$('[name="sdate"]').removeClass('Wdate')
+$('[name="edate"]').removeClass('Wdate')
+
+
+$('[name="sdate"]').focus(function(){
+WdatePicker({
+  dateFmt :  'yyyy-MM-dd'
+})
+})
+$('[name="edate"]').focus(function(){
+WdatePicker({
+  dateFmt :  'yyyy-MM-dd'
+})
+})
+
+dataTableOption.convertInputDataFuncs.push(function(data){
+  var new_data = []
+  for (var i in data){
+    var item = data[i]
+    if(item.name =='sdate'){
+    item.value += item.value.indexOf(':') == -1 ? ' 00:00:00'  : ''
+    }
+    if(item.name =='edate'){
+    item.value += item.value.indexOf(':') == -1 ? ' 23:59:59'  : ''
+    }
+    new_data.push(item)
+  }
+  console.dir(new_data)
+  return new_data
+  })//输入处理
+  
+</script>
+

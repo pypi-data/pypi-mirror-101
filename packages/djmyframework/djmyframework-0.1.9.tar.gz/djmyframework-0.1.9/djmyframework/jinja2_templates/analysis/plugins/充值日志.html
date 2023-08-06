@@ -1,0 +1,75 @@
+<p style="color:red;" class="Tips">Tips:CP充值不到账，请尝试点击订单最后的补单链接，如果点击后还是不到账，请右键复制链接地址，发送该链接给CP的技术人员。</p>
+
+<script type="text/javascript">
+dataTableOption.convertOutputDataFuncs = [function(data) {
+    listData = data.list_data;
+    for (var i in listData){
+	  if (listData[i][TH['操作']]){
+		listData[i][TH['操作']] = "<a href='" + listData[i][TH['操作']] + "' class='openDialog'>[补单]</a>"; 
+
+	  }
+    }
+
+
+    return data
+}]
+//获取指定参数名的参数值  
+function getQueryParameter(qs)  
+{  
+    var s = location.href;  
+    s = s.replace("?","?&").split("&");//这样可以保证第一个参数也能分出来  
+    var re = "";  
+    for(i=1;i<s.length;i++)  
+        if(s[i].indexOf(qs+"=")==0)  
+            re = s[i].replace(qs+"=","");//取代前面的参数名，只剩下参数值  
+              
+    return re;  
+}  
+$(".Tips").insertBefore($QUERY_TABLE)
+if (getQueryParameter("s_date") == ""){
+  $('[name="s_date"]').val(new Date().dateAdd('d',-720).Format("yyyy-MM-dd 00:00:00"))
+}
+if (getQueryParameter("e_date") == ""){
+  $('[name="e_date"]').val(new Date().dateAdd('d',0).Format("yyyy-MM-dd 23:59:59"))
+
+}
+  
+if (getQueryParameter("d_s_date") == ""){
+ $('[name="d_s_date"]').val(new Date().dateAdd('d',-720).Format("yyyy-MM-dd 00:00:00"))
+
+}
+if (getQueryParameter("d_e_date") == ""){
+  $('[name="d_e_date"]').val(new Date().dateAdd('d',0).Format("yyyy-MM-dd 23:59:59"))
+}
+
+if (getQueryParameter("r_s_date") == ""){
+    $('[name="r_s_date"]').val(new Date().dateAdd('d',-720).Format("yyyy-MM-dd 00:00:00"))
+}
+  
+if (getQueryParameter("r_e_date") == ""){
+	$('[name="r_e_date"]').val(new Date().dateAdd('d',0).Format("yyyy-MM-dd 23:59:59"))
+  
+}
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

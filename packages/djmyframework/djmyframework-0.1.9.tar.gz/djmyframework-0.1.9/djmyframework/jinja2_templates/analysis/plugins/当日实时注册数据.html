@@ -1,0 +1,186 @@
+<script>
+$('#date_select_cont').html('')
+
+var sdate_str = new Date().Format("yyyy-MM-dd")
+$('[name="sdate"]').removeClass('Wdate')
+$('[name="sdate"]').focus(function() {
+    WdatePicker({
+        dateFmt: 'yyyy-MM-dd'
+    })
+})
+$('[name="sdate"]').val(sdate_str)
+</script>
+<script>
+$QUERY_TABLE = $("<table>", {
+    'class': "hidden"
+})
+$("#query_table").parent().append($QUERY_TABLE)
+
+
+function drow_row(rows) {
+    var user_count = 0
+    var dev_count = 0
+    var open_count = 0
+    var first_tr = $("<tr>").append($("<td>", {
+        "html": rows[0][0] + ":00",
+        "rowspan": rows.length + 1
+    }))
+    first_tr.append($("<td>", {
+        "html": rows[0][1]
+    }))
+    first_tr.append($("<td>", {
+        "html": rows[0][2]
+    }))
+    open_count += parseInt(rows[0][3])
+    first_tr.append($("<td>", {
+        "html": rows[0][3]
+    }))
+    dev_count += parseInt(rows[0][4])
+    first_tr.append($("<td>", {
+        "html": rows[0][4]
+    }))
+    if (rows[0][3] != 0) {
+        first_tr.append($("<td>", {
+            "html": rows[0][5]
+        }))
+    } else {
+        first_tr.append($("<td>", {
+            "html": ""
+        }))
+    }
+    user_count += parseInt(rows[0][6])
+    first_tr.append($("<td>", {
+        "html": rows[0][6]
+    }))
+    var _row = [first_tr]
+    for (var i = 1; i < rows.length; i++) {
+        var _tr = $("<tr>")
+        _tr.append($("<td>", {
+            "html": rows[i][1]
+        }))
+        _tr.append($("<td>", {
+            "html": rows[i][2]
+        }))
+        open_count += parseInt(rows[i][3])
+        _tr.append($("<td>", {
+            "html": rows[i][3]
+        }))
+        dev_count += parseInt(rows[i][4])
+
+        _tr.append($("<td>", {
+            "html": rows[i][4]
+        }))
+        if (rows[i][3] != 0) {
+            _tr.append($("<td>", {
+                "html": rows[i][5]
+            }))
+        } else {
+            _tr.append($("<td>", {
+                "html": ""
+            }))
+        }
+        user_count += parseInt(rows[i][6])
+        _tr.append($("<td>", {
+            "html": rows[i][6]
+        }))
+        _row.push(_tr)
+    }
+    var _tr = $("<tr>")
+    _tr.append($("<td>", {
+        "html": "小计"
+    }))
+    _tr.append($("<td>", {
+        "html": ""
+    }))
+    _tr.append($("<td>", {
+        "html": open_count
+    }))
+    _tr.append($("<td>", {
+        "html": dev_count
+    }))
+    if (open_count != 0) {
+        zhuanghuanlv = dev_count / open_count * 100
+
+        _tr.append($("<td>", {
+            "html": zhuanghuanlv.toFixed(2)
+        }))
+    } else {
+        _tr.append($("<td>", {
+            "html": ""
+        }))
+    }
+    _tr.append($("<td>", {
+        "html": user_count
+    }))
+    _row.push(_tr)
+    return _row
+}
+if (window.dataTableOption) {
+    dataTableOption.page_size = 10000
+    dataTableOption.page_size_list = [10000]
+        //dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+    dataTableOption.convertOutputDataFuncs.push(function(data) {
+        $("#query_table tbody").html("")
+        $("#query_table tfoot").html("")
+
+        pre = 0
+
+        for (var i = 1; i < data.list_data.length; i++) {
+            if (data.list_data[i][0] != data.list_data[i - 1][0]) {
+                var rows = drow_row(data.list_data.slice(pre, i))
+                for (var t = 0; t < rows.length; t++) {
+                    $("#query_table tbody").append(rows[t])
+                }
+                pre = i
+            }
+        }
+        if (data.list_data.length == 0) {
+           return data
+        }
+        if (data.list_data.length == 1) {
+            var rows = drow_row(data.list_data)
+            for (var t = 0; t < rows.length; t++) {
+                $("#query_table tbody").append(rows[t])
+            }
+
+        } else {
+            var rows = drow_row(data.list_data.slice(pre, data.list_data.length))
+            for (var t = 0; t < rows.length; t++) {
+                $("#query_table tbody").append(rows[t])
+            }
+
+        }
+        if (data.tfoot_data.length == 1) {
+            var _tr = $("<tr>")
+            _tr.append($("<td>"))
+            _tr.append($("<td>", {
+                "html": "合计"
+            }))
+            _tr.append($("<td>", {
+                "html": ""
+            }))
+            _tr.append($("<td>", {
+                "html": data.tfoot_data[0][3]
+            }))
+            _tr.append($("<td>", {
+                "html": data.tfoot_data[0][4]
+            }))
+            if (data.tfoot_data[0][3] != 0) {
+                _tr.append($("<td>", {
+                    "html": data.tfoot_data[0][5]
+                }))
+            } else {
+                _tr.append($("<td>", {
+                    "html": ""
+                }))
+            }
+            _tr.append($("<td>", {
+                "html": data.tfoot_data[0][6]
+            }))
+            $("#query_table tfoot").append(_tr)
+        }
+
+        return data
+    })
+}
+</script>

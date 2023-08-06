@@ -1,0 +1,211 @@
+@charset "utf-8";
+/*=============reset for pc============*/
+html {
+}
+
+body {
+    min-height: 500px;
+    font-size: 13px;
+}
+
+/*pc端常设置字体大小及间距*/
+h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+h4, h5, h6 {
+    font-size: 100%;
+}
+
+address, cite, dfn, em, var {
+    font-style: normal;
+}
+
+/* 将斜体扶正 */
+code, kbd, pre, samp, tt {
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* 统一等宽字体 */
+small {
+    font-size: 12px;
+}
+
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li, pre, /*文本格式元素 */
+fieldset, lengend, button, input, textarea, /*表单元素 */
+th, td {
+    margin: 0;
+    padding: 0;
+}
+
+input, button, select, img {
+    margin: 0;
+
+}
+
+select {
+    padding: 1px;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+
+header, footer, section, aside, nav, hgroup, figure, figcaption {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: relative;
+}
+
+
+/*HTML5标签变块级*/
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/*重置链接下划线*/
+img {
+    border: none;
+}
+
+hr {
+
+    height: 1px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* 浮动及边常用边距  */
+.fL {
+    float: left;
+}
+
+.fR {
+    float: right;
+}
+
+.mT10 {
+    margin-top: 10px;
+}
+
+.mL10 {
+    margin-left: 10px;
+}
+
+.mB10 {
+    margin-bottom: 10px;
+}
+
+.pd0 {
+    padding: 0px !important;;
+}
+
+.pdt0 {
+    padding-top: 0px !important;;
+}
+
+.pdb0 {
+    padding-bottom: 0px !important;;
+}
+
+.pdl0 {
+    padding-left: 0px !important;;
+}
+
+.pdr0 {
+    padding-right: 0px !important;;
+}
+
+/*清除浮动*/
+.clear {
+    clear: both;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+/* Hides from IE-mac \*/
+.clearfix {
+    display: block;
+}
+
+/* End hide from IE-mac */
+
+
+.w100 {
+    width: 100%;
+}
+
+.w25 {
+    width: 25%;
+}
+
+.w33 {
+    width: 33%;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.text-align-center {
+    text-align: center;
+}
+.text-align-left {
+    text-align: left;
+}
+.text-align-right {
+    text-align: right;
+}
+.hover-container {
+    display: none;
+}
+
+.hover:hover .hover-container {
+    display: inline-block;
+}
+
+.relative {
+    position: relative;
+}
+
+/* Vue 模板渲染前隐藏 */
+[v-cloak] {
+    display: none !important;
+}
+
+/*==========global for header and footer===========*/

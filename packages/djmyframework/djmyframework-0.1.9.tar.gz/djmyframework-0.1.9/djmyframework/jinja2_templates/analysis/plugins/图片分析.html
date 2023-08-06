@@ -1,0 +1,76 @@
+<script id="img-tpl" type="template/text">
+<% for (var i in it.data){%>
+<%var url=it.data[i];%>
+<a href="<%=url%>" target="_blank"><img height=100 src="<%=url%>"></a>
+<%}%>
+</script>
+
+
+<script>
+function analyze_img_from_obj(obj){
+	var img_array = []
+	if (typeof(obj) == 'object'){
+		for (var k in obj){
+			v = obj[k]
+			img_array.push.apply(img_array,analyze_img_from_obj(v))
+		}
+
+	}else if(typeof(obj) == 'string'){
+
+		if (obj.match(/^http.*\.(png|jpg|gif)$/) != null ){
+			img_array.push(obj)
+		}
+	}
+	return img_array
+}
+  
+
+
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	var LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+
+	   var sdata = row[TH['源']]
+
+	   var img_array  = sdata.match(/http[^'"\s]*\.(jpg|png|gif)/g)
+	   var img_str = ''
+	   console.dir(sdata)
+	   console.dir(img_array)
+	   if (img_array && img_array.length >0){
+
+		img_str = get_views('img-tpl',img_array)
+	   }
+	 	row[TH['源']] = img_str
+	   
+	}
+
+  	return data
+
+})    
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

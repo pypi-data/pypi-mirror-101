@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% include "old/header.html" %}
+    {% block header %} {% endblock %}
+    {% block css %}{% endblock %}
+</head>
+<body style="min-width:600px;min-height:500px;height: 100%;">
+{% if err_msg %}
+    <div>
+        <div class="alert alert-danger err_msg pre-scrollable alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+            <p>    {{ err_msg|linebreaksbr }}
+            </p><br>
+        </div>
+    </div>
+{% endif %}
+{% if info_msg %}
+    <div>
+        <div class="alert alert-success err_msg pre-scrollable">
+            <button type="button" class="close" data-dismiss="alert"><i class="icon-remove"></i></button>
+            <p>    {{ info_msg|safe }}
+            </p><br>
+        </div>
+    </div>
+{% endif %}
+{% block content %}
+{% endblock %}
+<div id="tip_box" title="提示框"></div>
+{% include "old/shangxia.html" %}
+</body>
+{% block js %}
+
+{% endblock %}
+</html>

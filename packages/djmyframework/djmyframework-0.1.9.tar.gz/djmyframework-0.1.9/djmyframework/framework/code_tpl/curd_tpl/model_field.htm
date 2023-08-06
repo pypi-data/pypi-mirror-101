@@ -1,0 +1,62 @@
+<%!
+from django.db.models.fields import IntegerField,CharField,DateTimeField,BigAutoField,TextField,NOT_PROVIDED,BooleanField,FloatField,EmailField
+from django.db.models.fields.related import ManyToManyField,ForeignKey,OneToOneField
+from framework.models import BaseModelMixin
+%>
+<%page args="f"/>
+<% is_required = (not f.blank and f.default == NOT_PROVIDED ) %>
+        <div class="form-group" style="${ f.name=='id' and 'display:none' or '' }">
+            <label class="col-sm-3 control-label no-padding-right" for="id_${f.name}">
+                ${is_required and '<span class="text-danger">*</span>' or ''}
+                {{ _('${f.verbose_name}') }} </label>
+
+            <div class="col-sm-8">
+                % if f.choices:
+                <select v-select2 v-model="model.${f.name}" class="form-control col-lg-5 select2" id="id_${f.name}" data-placeholder="{{ _('${f.verbose_name}') }}" name="${f.name}" svalue="{{ data.${f.name} }}">
+                    {% for o in data.serializer.instance._meta._forward_fields_map.${f.name}.choices %}
+                        <option value="{{ o.0 }}">{{ o.1 }}</option>
+                    {% endfor %}
+                </select>
+
+                % elif isinstance(f,TextField) or (f.max_length and f.max_length>=300):
+                <textarea class="form-control limited"  id="id_${f.name}" name="${f.name}" v-model="model.${f.name}"
+                        ${f.max_length and 'maxlength=%s' % f.max_length or ''}
+                        ${ is_required and 'required=true' or ''} >{{ data.${f.name} or "" }}</textarea>
+                 % elif isinstance(f,(IntegerField,BigAutoField,FloatField)):
+                 <input type="number" id="id_${f.name}" name="${f.name}" v-model="model.${f.name}"
+                        class="form-control" value="{{ data.${f.name} or ""}}"
+                        ${ is_required and 'required=true' or ''}
+                        ${f.max_length and 'max=%s' % f.max_length or ''} >
+                % elif isinstance(f,DateTimeField):
+                    <input type="text" id="id_${f.name}" name="${f.name}" v-model="model.${f.name}"
+                           class="form-control datetime " value="{{ data.${f.name}  or "" }}"
+                           ${ is_required and 'required=true' or ''} >
+                % elif isinstance(f,ManyToManyField):
+                <select v-select2 v-model="model.${f.name}" class="form-control select2" id="id_${f.name}" data-placeholder="{{ _('${f.verbose_name}') }}" name="${f.name}" multiple="multiple"
+                        data-url="{{ url('${BaseModelMixin.get_list_view_name(f.related_model)}') }}" >
+                    {% for id in data.${f.name} %}
+                    <option value="{{id}}" selected="selected">{{ id }}</option>
+                    {% endfor %}
+                </select>
+                % elif isinstance(f,(ForeignKey,OneToOneField)):
+                <select v-select2 v-model="model.${f.name}" class="form-control select2" id="id_${f.name}" data-placeholder="{{ _('根') }}" name="${f.name}"
+                        data-url="{{ url('${BaseModelMixin.get_list_view_name(f.related_model)}') }}?" >
+                    <option value="{{ data.${f.name} or '' }}" >{{ data.${f.name} or _('无') }} </option>
+                </select>
+                % elif isinstance(f,BooleanField):
+                <input type="checkbox" class="input-sm " id="id_${f.name}" v-model="model.${f.name}"
+                        data-placeholder="{{ _('${f.verbose_name}') }}" name="${f.name}"
+                        {% if data.${f.name} %}checked="checked" value="true"{% endif %} >
+                </input>
+                % elif isinstance(f,CharField):
+                <input type="text" id="id_${f.name}" name="${f.name}" v-model="model.${f.name}"
+                        class="form-control" value="{{ data.${f.name} or ""}}"
+                        ${f.max_length and 'maxlength=%s' % f.max_length}
+                        ${ is_required and 'required=true' or ''} >
+                % endif
+                % if f.help_text:
+                <span class="help-block">{{ _('${f.help_text}') }}</span>
+                % endif
+                <div id="help_text_${f.name}" class="middle text-danger help_text"></div>
+            </div>
+        </div>

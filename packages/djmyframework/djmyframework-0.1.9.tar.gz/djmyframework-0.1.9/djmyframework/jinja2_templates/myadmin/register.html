@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+{% set URI='/static/' %}
+<head>
+    <meta charset="utf-8"/>
+    <title>{{ _('注册页面') }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- basic styles -->
+
+    <link href="{{ URI }}assets/ace/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ URI }}assets/ace/assets/css/font-awesome.min.css"/>
+
+
+    <!--[if lte IE 7]>
+		  <link rel="stylesheet" href="{{URI}}assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="{{ URI }}assets/ace/assets/css/ace.min.css"/>
+    <link rel="stylesheet" href="{{ URI }}assets/ace/assets/css/ace-rtl.min.css"/>
+
+
+    <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="{{URI}}assets/ace/assets/css/ace-ie.min.css" />
+		<![endif]-->
+    <script type="text/javascript" src="/static/assets/jquery/jquery-1.11.1.min.js"></script>
+
+    <!--[if lt IE 9]>
+		<script src="{{URI}}assets/ace/assets/js/html5shiv.js"></script>
+		<script src="{{URI}}assets/ace/assets/js/respond.min.js"></script>
+		<![endif]-->
+    <!-- dialog -->
+    <!-- <script type="text/javascript" src="/static/js/artDialog.min.js"></script>  -->
+    <script type="text/javascript" src="/static/assets/artDialog/artDialog.source.js"></script>
+    <script type="text/javascript" src="/static/assets/artDialog/iframeTools.source.js"></script>
+    <link rel="stylesheet" href="/static/assets/artDialog/artDialog.css"/>
+    <script type="text/javascript" src="/i18n/js?format=html&v={{ settings.VERSION }}"></script>
+    <script type="text/javascript" src="/static/framework/js/common.js?v={{ settings.VERSION }}"></script>
+    <script type="text/javascript" src="/static/framework/js/ui.js?v={{ settings.VERSION }}"></script>
+    <link rel="stylesheet" href="{{ URI }}icon/iconfont.css">
+    <style>
+        .widget-box {
+            top: 3em;
+        }
+
+
+    </style>
+</head>
+
+<body class="login-layout" style="min-height:600px">
+
+<div class="main-content">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="login-container">
+
+                <div class="position-relative">
+                    <div id="signup-box" class="signup-box visible widget-box no-border">
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <h4 class="header green lighter bigger">
+                                    <i class="icon-group blue"></i>
+                                    <span class="blue">{{ settings.TITLE }}</span>
+                                    <small>{{ settings.VERSION }}</small>
+                                    {{ _('注册账号') }}
+                                </h4>
+
+                                <div class="space-6"></div>
+
+                                <form id="register-form" action="" method="post">
+
+
+                                    <fieldset>
+
+                                        <label class="block clearfix">
+
+                                            <span class="block input-icon input-icon-right">
+															<input name="alias" type="text" class="form-control"
+                                                                   placeholder=" {{ _('姓名') }}"/>
+															<i class="icon-user"></i>
+														</span>
+                                        </label>
+
+                                        <label class="block clearfix">
+
+                                            <span class="block input-icon input-icon-right">
+															<input name="username" type="text" class="form-control"
+                                                                   placeholder=" {{ _('登录名') }}"/>
+                                                             <i class=" icon-user"></i>
+														</span>
+                                        </label>
+
+
+                                        <label class="block clearfix">
+
+                                                <span class="block input-icon input-icon-right">
+															<input name="password1" type="password" class="form-control"
+                                                                   placeholder=" {{ _('密码') }}"/>
+															<i class="icon-lock"></i>
+														</span>
+                                        </label>
+                                        <label class="block clearfix">
+
+                                                <span class="block input-icon input-icon-right">
+															<input name="password2" type="password" class="form-control"
+                                                                   placeholder=" {{ _('确认密码') }}"/>
+															<i class="icon-retweet"></i>
+														</span>
+                                        </label>
+
+                                        <label class="block clearfix">
+
+                                                <span class="block input-icon input-icon-right">
+															<input name="employee_id" type="text" class="form-control"
+                                                                   placeholder=" {{ _('工号') }}"/>
+                                                            <i class="icon-id"></i>
+														</span>
+                                        </label>
+
+
+                                        <label class="block clearfix">
+
+                                                <span class="block input-icon input-icon-right">
+															<input name="email" type="email" class="form-control"
+                                                                   placeholder=" {{ _('邮箱') }}" required/>
+                                                                <i class="icon-email"></i>
+														</span>
+                                        </label>
+                                        <label class="block clearfix">
+
+                                                <span class="block input-icon input-icon-right">
+															<input name="qq" type="text" class="form-control"
+                                                                   placeholder=" {{ _('QQ') }}"/>
+                                                        <i class="icon-qq"></i>
+														</span>
+                                        </label>
+                                        <label class="block clearfix">
+
+                                                <span class="block input-icon input-icon-right">
+															<input name="phone" type="text" class="form-control"
+                                                                   placeholder=" {{ _('手机') }}"/>
+                                                        <i class="icon-mobile-phone"></i>
+														</span>
+                                        </label>
+
+
+                                        {#                                                <label class="block">#}
+                                        {#                                                    <input type="checkbox" class="ace"/>#}
+                                        {#                                                    <span class="lbl">#}
+                                        {#															I accept the#}
+                                        {#															<a href="#">User Agreement</a>#}
+                                        {#														</span>#}
+                                        {#                                                </label>#}
+
+                                        <label class="block">
+														<span class="input-medium input-icon input-icon-left ">
+														  <input type="text"
+                                                                 class="form-control "
+                                                                 name="verify"
+                                                                 placeholder=" 验证码"/>
+														<i class="icon-barcode"></i>
+														</span>
+
+                                            <img class="pull-right"
+                                                 onclick="this.setAttribute('src','/get_verify_code_image/?nocache='+Math.random());"
+                                                 src="/get_verify_code_image/"
+                                                 alt="CheckCode"
+                                                 title="点我刷新"/>
+
+                                        </label>
+
+
+                                        <div class="clearfix">
+                                            <button type="reset" class="width-30 pull-left btn btn-sm">
+                                                <i class="icon-refresh"></i>
+                                                {{ _('重置') }}
+                                            </button>
+
+                                            <button type="submit"
+                                                    class="width-65 pull-right btn btn-sm btn-success">
+                                                {{ _('注册') }}
+                                                <i class="icon-arrow-right icon-on-right"></i>
+                                            </button>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+
+                            <div class="toolbar center">
+                                <a href="/myadmin/login" onclick="show_box('login-box'); return false;"
+                                   class="back-to-login-link">
+                                    <i class="icon-arrow-left"></i>
+                                    {{ _('返回登录') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="/static/assets/jquery/jquery.form.min.js"></script>
+<script>
+    $('form').ajaxForm({
+        beforeSubmit: function (formData, jqForm, options) {
+            clearHelpText()
+        },
+        error: function (jqXHR, statusText, errorMsg) {
+            ajaxError(jqXHR, statusText, errorMsg)
+        },
+        success: function (rsp) {
+            if (rsp.code == 0) {
+
+                art.dialog.confirm(rsp.msg + "  {{ _('是否进入系统?') }}", function () {
+                    var win = window.parent || window
+                    win.location.href = '/myadmin/index'
+                })
+
+            } else {
+                rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+            }
+
+        }
+    })
+</script>
+</html>
+
+
+
+
+
+
+
+
+

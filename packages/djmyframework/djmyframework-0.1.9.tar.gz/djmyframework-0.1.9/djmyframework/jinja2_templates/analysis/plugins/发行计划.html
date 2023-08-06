@@ -1,0 +1,512 @@
+   <script src="/static/js/clipboard.min.js"></script>  
+
+
+<div id="datatable_toolbar" class="row">
+	<div class="col-sm-12">
+
+		<label  class="fl">
+		  <a href="javascript:void(0)" id="make-plan-setting-btn" class="btn  btn-sm btn-default" >
+	    	 生成计划打包配置
+	    </a>
+		</label>
+
+		
+		<!-- label  class="fl">
+		  <button href="javascript:void(0)" id="refresh-cdn-btn" class="btn  btn-sm btn-danger" >
+	    	 刷新CDN缓存地址
+	    </button>
+		</label -->
+	
+	  	<label  class="fl">
+		  <a href="javascript:void(0)" id="batch-cdn-btn" class="btn  btn-sm btn-pink" >
+	    	 批量更新渠道包
+	      </a>
+		</label>
+	   {% if request.allow_menu.下载投放地址 %}
+   	    <label  class="fl">
+		  <a href="javascript:void(0)" id="make-plan-url-btn" class="btn  btn-sm btn-default" >
+	    	 下载推广地址
+	    </a>
+		</label>  
+	  {% endif %}
+		<label  class="fr">
+		  <a href="{{ url('sdk_center.package.plan_edit') }}" class="btn  btn-sm btn-primary openDialog" >
+	    	 增加发行商计划
+	    </a>
+		</label>
+	  
+
+	  
+	</div>
+</div>
+
+
+
+<script>
+  //生成计划打包配置
+function make_plan_setting(){
+	var checkboxs = $('[name="plan_id"]:checked')
+	if (checkboxs.length<0) {
+		alert('请勾选发行计划!')
+		return
+	}
+	$.post('{{ url('sdk_center.package.get_plan_setting') }}',checkboxs.serialize(),function(data){
+		if(data.code == 0){
+			window.open(data.content.redirect_url)
+		} else {
+			art.dialog(data.msg)
+		}
+	},'json')
+
+}
+$('#make-plan-setting-btn').click(function(event) {
+	make_plan_setting()
+});
+
+  //下载推广地址
+function make_plan_url(){
+	var checkboxs = $('[name="plan_id"]:checked')
+	if (checkboxs.length<0) {
+		alert('请勾选发行计划!')
+		return
+	}
+	$.post('/sdk_center/package/get_plan_url',checkboxs.serialize(),function(data){
+		if(data.code == 0){
+			window.open(data.content.redirect_url)
+		} else {
+			art.dialog(data.msg)
+		}
+	},'json')
+
+}
+$('#make-plan-url-btn').click(function(event) {
+	make_plan_url()
+});
+
+$('#refresh-cdn-btn').click(function(event) {
+	var checkboxs = $('[name="plan_id"]:checked')
+	var $This = $(this)
+	if (checkboxs.length<=0) {
+		alert('请勾选发行计划!')
+		return
+	}
+	$This.attr("disabled",true);
+	$.post('/package/refresh_cdn_url',checkboxs.serialize(),function(data){
+		if(data.code == 0){
+			alert(data.content.urls.join('\n') +'\n刷新成功!')
+		} else {
+			alert(data.msg)
+		}
+		$This.attr("disabled",false);
+	},'json')
+
+});
+</script>
+
+
+<script>
+  function get_query_data_btn(row){
+	var query_data_url = '{{ url('analysis.query.query_view') }}/投放明细'
+	var params_list = row[TH['操作']].split('|')  //操作这一列给的是  CONCAT(dp.game_alias,'|', dp.first_channel,'|', dp.second_channel)
+	var game_alias = params_list[0]
+	var c1 = params_list[1]
+	var c2 = params_list[2].split(',')
+	var start_time = params_list[3]
+	var end_time = params_list[4]
+	
+	var parmas = ''
+	parmas += 'sdate=' +  start_time
+	parmas += '&edate=' + 	 end_time
+	parmas += '&game_alias=' + game_alias    
+	for (var i in c2){
+		parmas += '&channel=' + c2[i]
+	}
+	parmas += '&template=table' 
+ 	query_data_url = query_data_url + '?' + parmas
+  	return '<a href="'+ query_data_url +'" class="openDialog"  title="' + row[TH['计划名']]  + ' 数据统计:">[查看数据]</a>'
+  }
+  
+  
+</script>
+
+
+<script id="ad-url-tpl" type="template/text">
+展示监控地址:<a  href="javascript:void(0)" class="copy-btn" data-clipboard-text="<%=it.data[0]%>">[复制]</a ><br><%=it.data[0]%>
+<br>
+点击监控地址:<a  href="javascript:void(0)" class="copy-btn" data-clipboard-text="<%=it.data[1]%>">[复制]</a ><br><%=it.data[1]%>
+</script>
+
+<script>
+
+new Clipboard('.copy1-btn', {
+    text: function(trigger) {
+
+        return trigger.getAttribute('data-clipboard-text');
+    }
+});
+
+dataTableOption.page_size=30
+dataTableOption.page_size_list=[30,30*2,30*3]
+delete dataTableOption.option.scrollY
+dataTableOption.option.fixedHeader=true
+
+
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var id  = row[TH['-']]
+	    var params = row[TH['操作']]
+		
+		var check_box_id = "check_box_" + id 
+		row[TH['-']] = '<input id="' + check_box_id + '" type="checkbox" name="plan_id" value="'+ id +'">'
+		
+
+		row[TH['二级产品']] = row[TH['二级产品']] + '<br>' + get_query_data_btn(row)
+
+		row[TH['计划名']] = '<label for="'+check_box_id+'">' + row[TH['计划名']] + '</label>'	
+		row[TH['图标']] = '<img height=50 width=50 src="'+row[TH['图标']]+'">'
+		row[TH['地址']] = '<table id="'+ id +'_url"></table>'
+		function callBackFun(htmlId){
+			return function(data){  
+				$(htmlId).replaceWith(data);
+			}
+		}
+
+		$.post('/package/get_url_table', {"plan_id": id}, callBackFun("#" + id + "_url"));
+
+		row[TH['操作']] = ''
+		{%if request.allow_menu.发行计划_编辑%}
+		//if (row[TH['状态']] !='开启' || '{{request.user.is_root}}' == 'True' ) {
+			row[TH['操作']] += '<a href="/package/plan_edit?id=' +id+ '" class="openDialog"  >[编辑]</a><br>'
+		//}
+		row[TH['操作']] += '<a href="{{ url('sdk_center.package.plan_edit') }}?is_copy=1&id=' +id+ '" class="openDialog"  >[复制]</a>'
+		{%endif%}
+		
+		{%if request.allow_menu.发行计划_删除%}
+		row[TH['操作']] += ' <a href="{{ url('sdk_center.package.plan_remove') }}?id=' +id+ '"  class="ajax del"  >[删除]</a>'
+		{%endif%}
+		
+		
+
+	}
+  	return data
+
+})     //输出处理
+
+
+</script>
+
+<script id="upload-list-table-tpl" type="template/text">
+<% if (it.data.length>0){ %>
+<table class="table  table-striped table-hover">
+	<thead>
+		<tr><th>文件名</th><th>上传时间</th><th>操作</th>
+		</tr>
+	<thead>
+	<tbody>
+	<% for (i in it.data){ %>
+		<%var file_obj=it.data[i];%>
+		<tr>
+			<td><%=file_obj.name%></td>
+			<td><%=it.w.timestamp_to_datetime_str(file_obj.lastModified)%></td>
+			<td><a data-file_path="<%=file_obj.file_path%>" href="javascript:void(0)" class="select-upload-file-btn btn btn-app btn-grey btn-xs radius-4" href="jvav">选择</a>
+				<a data-id="<%=i%>" class="del-upload-list-btn" href="javascript:void(0)">[x]</a>
+			</td>
+		</tr>
+	<%}%>
+	</tbody>
+</table>
+<% } else { %>
+		请上传打包完成的sdk母包,生成投放地址.
+<% } %>
+</script>
+
+
+<div id="upload-apk-dialog" >
+
+		<input id="apk-plan_id" type="hidden" name="plan_id" value="">
+		
+		<div id="upload-list-table-cont">
+
+		</div>
+		<hr>
+		<div class="">
+		<input id="multiple" type="file" class="apkUpload" accept=".apk" multiple>
+
+		<div class="file_list"></div>
+		</div>
+
+</div>
+
+
+<script>
+function toDecimal(x) {  
+        var f = parseFloat(x);  
+        if (isNaN(f)) {  
+            return;  
+        }  
+        f = Math.round(x*100)/100;  
+        return f;  
+}  
+function to_byte(value, dec) {
+	if (value == 0) 
+    	return '0';
+    var prefix_list = ['B', 'K', 'M', 'G', 'T'];
+	var t = 1;
+	
+	//for(;dec>0;t*=10,dec--);
+	
+	//for(;dec<0;t/=10,dec++); 
+		        
+    //value =  Math.round(value*t)/t;
+    value =  Math.round(value); 
+    var i = 0;
+    while (value >= 1000){
+		value /= 1000;
+        i = i+1;       	
+    }
+    // while (value >= 1024){
+		// value /= 1024
+        // i = i+1	        	
+    // }
+    //return Math.round(value*t)/t + prefix_list[i]
+    return Math.round(value) + prefix_list[i];
+}
+
+function refresh_upload_table(file_obj_list) {
+	var file_obj_list = file_obj_list ? file_obj_list : localJson.get('file_obj_list',[])
+	var html = get_views('upload-list-table-tpl',file_obj_list)
+	$('#upload-list-table-cont').html(html)
+
+}
+
+
+$(function() {
+
+
+	var fileTemplate = "<div id=\"{id}\">";
+	fileTemplate += "<div class=\"progress progress-striped active\"><div class=\"progress-bar bar\" style=\"width: 0%\"></div></div>";
+	fileTemplate += "</div>";
+	function slugify(text) {
+		text = encodeURIComponent(text);
+		text = text.replace(/[^-a-zA-Z0-9,&\s]+/ig, '');
+		text = text.replace(/-/gi, "_");
+		text = text.replace(/\s/gi, "-");
+		return text;
+	}
+
+	$(" .apkUpload").html5Uploader({
+		postUrl : "/upload/?format=json&&file_type=apk",
+		file_ext:['apk'],
+		upload_limit:1,
+		max_size:1000000000,
+		onClientLoadStart : function(e, file) {
+			$('.sign-tip').hide();
+			if (file.name.toLowerCase().indexOf('.apk') != -1) {
+			}
+			var upload = $(".file_list");
+			if (upload.is(":hidden")) {
+				upload.show();
+			}
+			upload.html(fileTemplate.replace(/{id}/g, slugify(file.name)));
+		},
+		onClientLoad : function(e, file) {
+			
+		},
+		onServerLoadStart : function(e, file) {
+			$("#" + slugify(file.name)).find(".bar").css('width', '0%').html('0%');
+		},
+		onServerProgress : function(e, file) {
+			if (e.lengthComputable) {
+				var percentComplete = (e.loaded / e.total) * 100;
+				$("#" + slugify(file.name)).find(".bar").css('width', percentComplete + '%').html(toDecimal(percentComplete) + '%');
+			}
+		},
+		onServerLoad : function(e, file) {
+
+			$("#" + slugify(file.name)).find(".bar").css('width', '100%').html('100%');
+		},
+		onSuccess : function(e, file, data) {
+        console.dir(this)
+        console.dir(e)
+        console.dir(file)
+        console.dir(data)
+        	var data = $.parseJSON(data);
+			if (data.code == 0) {
+				var plan_id = $('#apk-plan_id').val()
+				var file_path = data.file_url
+				var file_obj = {}
+				file_obj.file_path = file_path
+				file_obj.size = file.size
+				file_obj.name = file.name
+				file_obj.lastModified = file.lastModified / 1000
+				console.dir( JSON.stringify(file_obj) )
+				var file_obj_list = localJson.get('file_obj_list',[])
+				if (file_obj_list.length>4){
+					file_obj_list.shift()
+				}
+				file_obj_list.push(file_obj)
+				localJson.save('file_obj_list',file_obj_list)
+
+  				refresh_upload_table(file_obj_list)
+
+
+			}
+			else {
+				alert(data.msg);
+
+			}
+		}			
+		
+	});
+
+
+   //生成渠道包
+	 $(document).on('click','#batch-cdn-btn',function(){
+
+		 	$('#upload-apk-dialog').dialog({"title":'批量更新渠道包' + "  设置SDK平台母包"})
+		 	refresh_upload_table()
+		 	$('.file_list').html('')
+	}).on('click','.upload-apk-btn',function(){
+
+		 	var $this = $(this)
+		 	var plan_id = $this.attr('data-plan_id')
+
+		 	$(':checkbox[name="plan_id"]').prop('checked', false)
+		 	$(':checkbox[name="plan_id"][value="' + plan_id +'"]').prop('checked', true)
+
+		 	var plan_name = $('[for="check_box_'+plan_id+'"]').html()
+
+		 	$('#upload-apk-dialog').dialog({"title":plan_name + "  设置SDK平台母包"})
+		 	refresh_upload_table()
+		 	$('.file_list').html('')
+	}).on('click','.del-upload-list-btn',function(){
+
+	 	var index = parseInt($(this).attr('data-id'))
+	 	
+	 	file_obj_list = localJson.get('file_obj_list',[])
+	 	file_obj_list.splice(index,1)
+	 	refresh_upload_table(file_obj_list)
+	 	localJson.save('file_obj_list',file_obj_list)
+
+	 }).on('click','.select-upload-file-btn ',function(){
+
+	 		var plan_id_checkboxs = $('[name="plan_id"]:checked')
+
+	 		if (plan_id_checkboxs.length<=0) {
+				alert('请勾选发行计划!')
+				return
+			}
+	 		var file_path = $(this).attr('data-file_path')
+
+	 		var post_params = plan_id_checkboxs.serialize() + '&file_path=' + file_path
+
+	 	 	var _dialog = $.dialog({title:"广告下载链接",content:'生成地址中....'})
+
+			$('#upload-apk-dialog').dialog().close()
+
+			$.ajax({
+				url: '/package/add_ad_url',
+				type: 'POST',
+				dataType: 'json',
+				data: post_params,
+			})
+			.done(function(data) {
+
+				if (data.code ==0) {
+					$SEARCH.trigger('click');
+					_dialog.content("更新成功");
+				} else{
+					_dialog.content(data.msg)
+				}
+
+				
+			})
+			.fail(function(data,status,xhr) {
+				_dialog.content('设置失败 data: ' + data + "  |status: " + status + "  |xhr.readyState: " + xhr.readyState + "   |xhr.state: " + xhr.status)
+			})
+
+
+	 })
+
+	$('#upload-apk-dialog').hide()
+
+
+
+});
+
+</script>
+
+<script>
+
+$(function(){
+  	 $('[name="sdate"]').val('')
+	 $('[name="edate"]').val('') 
+	 $SEARCH.trigger('click');
+
+	 $SEARCH_FORM.find(':radio').click(function(event) {
+	 	$SEARCH.trigger('click');
+	 });
+
+
+	 $(document).on('click','.set-ad-btn',function(){
+	 		var btn_ele = $(this)
+	 		var short_url = btn_ele.attr('data-short_url')
+	 		if (short_url.length > 0 ) {
+	 			$.dialog({title:'广告链接监控地址:',content:short_url})
+	 			return 
+	 		}
+
+	 		var jump_url = prompt('请输入需要的跳转下载地址!')
+	 		var plan_id = btn_ele.attr('data-plan_id')
+	 		if (jump_url == null ){
+	 			return
+	 		}
+	 		if (jump_url == ''){
+	 			alert('未设置下载地址')
+	 			return
+	 		}
+	 		var _dialog = $.dialog({title:"下载监控地址",content:'生成地址中....'})
+	 		$.ajax({
+	 			url: '{{ url('sdk_center.package.add_ad_url') }}',
+	 			type: 'POST',
+	 			dataType: 'json',
+	 			data: {plan_id: plan_id,jump_url:jump_url},
+	 		})
+	 		.done(function(data) {
+	 			if (data.code ==0) {
+	 				var short_url = data.content.short_url
+	 				btn_ele.attr('data-short_url',short_url)
+	 				btn_ele.parents('td').html('<a href="'+short_url+'" target="_blank"> '+short_url+'</a>')
+	 				_dialog.content(short_url)
+	 			} else{
+	 				_dialog.content(data.msg)
+	 			}
+	 			
+	 		})
+	 		.fail(function() {
+	 			alert('设置失败')
+	 		})
+
+
+	 })
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

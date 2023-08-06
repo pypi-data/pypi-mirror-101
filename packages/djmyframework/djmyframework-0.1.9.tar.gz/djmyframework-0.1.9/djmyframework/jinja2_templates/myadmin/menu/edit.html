@@ -1,0 +1,318 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{% block header %}
+    <title>{{ _('菜单模型 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="row header">
+    <div class="col-sm-5">
+        <h1>{{ _('菜单模型') }}
+            <small>{{ _('编辑') }}</small>
+        </h1>
+    </div>
+</div>
+
+<hr><br>
+
+<form action="/myadmin/menu/save?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}"
+          method="POST"
+          class="form-horizontal"
+          role="form">
+        <div class="row edit-container">
+            <div class="col-sm-12">
+                {{ csrf_input }}
+                
+
+
+        <div class="form-group" style="display:none">
+            <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                
+                {{ _('id') }} </label>
+
+            <div class="col-sm-8">
+                 <input type="number" id="id_id" name="id"
+                        class="form-control" value="{{ data.id  or ""}}"
+                        
+                        
+                >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_parent_id">
+                {{ _('父节点') }} </label>
+            <div class="col-sm-8">
+
+                <select class="form-control select2" id="id_parent_id" data-parentKeyName="parent_id"
+                        data-placeholder="{{ _('根节点') }}" name="parent_id"
+                        data-url="/myadmin/menu/list?{% if data.id %}id__not_exact={{ data.id }}{% endif %}">
+                    <option value="0" >{{ _('根节点') }} </option>
+                    <option value="{{ data.parent_id }}" selected="selected">{{ data.parent_id }}</option>
+
+                </select>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_alias">
+                <span class="text-danger">*</span>
+                {{ _('菜单显示名') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_alias" name="alias"
+                        class="form-control" value="{{ data.alias  or ""}}"
+                        maxlength=100
+                        required=true
+                 >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_name">
+                <span class="text-danger">*</span>
+                {{ _('权限名') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_name" name="name"
+                        class="form-control" value="{{ data.name  or ""}}"
+                        maxlength=50
+                        
+                 >
+                <div id="help_text_name" class="middle text-danger help_text">{{ _('纯字母唯一') }}</div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_url">
+                
+                {{ _('访问地址带参数') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_url" name="url"
+                        class="form-control" value="{{ data.url  or ""}}"
+                        maxlength=400
+                        
+                 >
+
+            </div>
+        </div>
+                
+
+
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_icon">
+                {{ _('图标') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_icon" name="icon"
+                       class="form-control" value="{{ data.icon  or "" }}"
+                       maxlength=100
+
+                >
+                <a href="javascript:;"
+                   onclick="openwindow('/static/icon/cus-icons.html?eid=id_icon','menu_icon_select',0.3,0.3)">选择</a>
+                <div id="help_text_icon" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_css">
+                
+                {{ _('样式') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_css" name="css"
+                        class="form-control" value="{{ data.css  or ""}}"
+                        maxlength=100
+                        
+                 >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_order">
+                
+                {{ _('排序') }} </label>
+
+            <div class="col-sm-8">
+                 <input type="number" id="id_order" name="order"
+                        class="form-control" value="{{ data.order  or ""}}"
+                        
+                        
+                >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_is_show">
+                
+                {{ _('显示') }} </label>
+
+            <div class="col-sm-8">
+                <select class="form-control col-lg-5 select2" id="id_is_show" data-placeholder="{{ _('显示') }}" name="is_show" svalue="{{ data.is_show }}">
+                    <option value="1" {% if data.is_show == '1' %}selected="selected"{% endif %}>{{ _('是') }}</option>
+                    <option value="0" {% if data.is_show == '0' %}selected="selected"{% endif %}>{{ _('否') }}</option>
+                </select>
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_is_log">
+                
+                {{ _('记录日志') }} </label>
+
+            <div class="col-sm-8">
+                <select class="form-control col-lg-5 select2" id="id_is_log" data-placeholder="{{ _('记录日志') }}" name="is_log" svalue="{{ data.is_log }}">
+                    <option value="1" {% if data.is_log == '1' %}selected="selected"{% endif %}>{{ _('是') }}</option>
+                    <option value="0" {% if data.is_log == '0' %}selected="selected"{% endif %}>{{ _('否') }}</option>
+                </select>
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_create_datetime">
+                
+                {{ _('创建时间') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_create_datetime" name="create_datetime"
+                           class="form-control datetime " value="{{ data.create_datetime   or "" }}"
+                           
+                    >
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_update_datetime">
+                
+                {{ _('更新时间') }} </label>
+
+            <div class="col-sm-8">
+                    <input type="text" id="id_update_datetime" name="update_datetime"
+                           class="form-control datetime " value="{{ data.update_datetime   or "" }}"
+                           
+                    >
+
+            </div>
+        </div>
+            </div>
+        </div>
+
+
+        <div class="row pane edit-save-bar">
+            <div class="col-sm-offset-3 col-sm-3">
+                <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                <button id="save-btn" class="btn btn-primary " type="button">
+                    {{ _('保 存') }}
+                </button>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <button id="save-edit-btn" class="btn btn-info " type="button">
+                        {{ _('保存并继续编辑') }}
+                    </button>
+                    <button id="save-add-btn" class="btn btn-info " type="button">
+                        {{ _('保存并增加另一个') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+<script>
+    var $form = $('form')
+    $form.submit(function (e) {
+        stopEevent(e)
+        return false
+    })
+
+    function ajaxPostData(ele, callback) {
+        clearHelpText()
+        $(ele).attr("disabled", true);
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: $form.attr('action'),
+            dataType: 'json',
+            data: JSON.stringify($form.serializeToJSON()),
+            contentType: 'application/json',
+            success: function (rsp) {
+                if (rsp.code == 0) {
+                    $('[name="id"]').val(rsp.data.id)
+                    art.dialog(rsp.msg).time(1)
+                    clearHelpText()
+                    callback ? callback(rsp) : null
+                } else {
+                    rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                }
+            },
+            error: function (jqXHR, statusText, errorMsg) {
+                ajaxError(jqXHR, statusText, errorMsg)
+
+            },
+            complete: function (jqXHR, statusText) {
+                $(ele).removeAttr("disabled");
+            }
+
+        })
+    }
+
+    $('#save-add-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            if (rsp.code == 0) {
+                window.location.href = window.location.pathname
+            }
+        })
+    })
+
+    $('#save-edit-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            $form.attr('action', '/myadmin/menu/save?id=' + rsp.data.id)
+            refreshParentTable()
+
+        })
+    })
+
+    $('#save-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            refreshParentTable()
+            closeSelfDialog()
+        })
+    })
+
+</script>
+{% endblock %}

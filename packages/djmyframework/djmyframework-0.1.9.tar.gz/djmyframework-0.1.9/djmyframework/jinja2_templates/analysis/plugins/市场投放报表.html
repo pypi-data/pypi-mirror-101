@@ -1,0 +1,24 @@
+<script type="text/javascript">
+dataTableOption.convertOutputDataFuncs = [function(data) {
+    listData = data.list_data;
+    for (var i in listData){
+	  var params = listData[i][TH['操作']].split('|')
+	  var game_alias = params[0]
+	  var log_time = params[1]
+	  var log_channel = params[2]
+	  var sdk_code = params[3]
+	  
+	  if (listData[i][TH['日期']].length>0){
+	  	var dateStr = listData[i][TH['日期']]
+		listData[i][TH['日期']] = '<a href="/query/view/市场投放报表?template=table&hui_zong=,g_log_channel&sdate=' + dateStr+ ' 00:00:00' + '&edate='+ dateStr +' 23:59:59&game_alias='+ $('[name="game_alias"]').val() +'" class="openDialog">'+ dateStr+'</a>'
+	  
+	  }
+	 
+
+    return data
+}]
+
+</script>
+
+
+

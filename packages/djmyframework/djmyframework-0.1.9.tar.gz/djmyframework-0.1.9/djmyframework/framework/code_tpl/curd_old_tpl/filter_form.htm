@@ -1,0 +1,32 @@
+<%page args="filter_field_schemas"/>
+                    <script>
+                    // 过滤条件字段定义
+                    var filter_field_schemas = {
+                        % for f in filter_field_schemas:
+                         ${f.name} :
+                         {
+                            label: '{{ _('${f.label}') }}',
+                            name:'${f.name}',
+                            type:'${f.type}',
+                            data_url: '${f.data_url}',
+                            % if f.choices:
+                            choices:[{% for o in request.parser_context.view.model.fields_map.${f.name}.choices %}
+                             ["{{ o.0 }}", '{{ o.1 }}'],{% endfor %}
+                                    ]
+                            % endif
+                         },
+                        % endfor
+                    }
+
+                    // 默认过滤条件
+                    var filter_conditions = [{
+                        name: 'id',
+                        operator: "exact",
+                        value: "",
+                        type: "number",
+                        label: '{{ _('ID') }}',
+                        choices: [],
+                        is_default:true
+                    }]
+                    </script>
+                    {% include "framework/widgets/filter.html" %}

@@ -1,0 +1,37 @@
+<script type="text/javascript">
+ 
+ dataTableOption.convertOutputDataFuncs = [function(data) {
+    listData = data.list_data;
+    for (var i in listData){
+	  if (listData[i][TH['回调地址']]){
+		listData[i][TH['回调地址']] = "<a href='" + listData[i][TH['回调地址']] + "' class='openDialog'>[回调地址]</a>"; 
+
+	  }
+    }
+
+
+    return data
+}]  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

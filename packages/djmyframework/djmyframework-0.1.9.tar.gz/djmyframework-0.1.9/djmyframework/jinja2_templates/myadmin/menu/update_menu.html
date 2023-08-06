@@ -1,0 +1,70 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{% block header %}
+    <title>{{ _('待添加 APP菜单 列表') }}</title>
+{% endblock %}
+
+
+{% block content %}
+    <br>
+    <form action="" method="POST" class=" pane">
+        {{ csrf_input }}
+
+        {% if msg %}
+            <div class="alert alert-info err_msg ">
+                <a href="#" class="close" data-dismiss="alert">
+                    &times;
+                </a>
+                <p>{{ msg|linebreaksbr }}</p>
+            </div>
+        {% endif %}
+
+        <div id="update-menu-toolbar" class="">
+            <button type="submit" class="btn btn-primary">{{ _('保存菜单') }}</button>
+        </div>
+        <table
+                id="update-menu-tree-table"
+                data-toggle="table"
+                data-group-by="true"
+                data-group-by-field="app_alias"
+                data-id-field="name"
+                data-select-item-name="menu"
+                data-toolbar="#update-menu-toolbar"
+                data-multiple-select-row="true"
+                data-click-to-select="true"
+        >
+            <thead>
+            <tr>
+                <th data-checkbox="true" data-width="40">
+                    <input name="btSelectAll" type="checkbox">
+                </th>
+
+                <th data-field="alias" data-sortable="false">{{ _('菜单显示名称') }}</th>
+
+                <th data-field="name" data-sortable="false">{{ _('菜单标识') }}</th>
+                <th data-field="url" data-sortable="false">{{ _('Url') }}</th>
+                <th data-field="app_alias" data-visible="false" data-sortable="true">{{ _('app') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for mc in data.install_app_menu_config_list %}
+                {% if not mc.name in data.created_menu_name_list %}
+                <tr>
+                    <td>
+
+                    </td>
+                    <td> &nbsp; &nbsp; {{ mc.von }} - {{ mc.alias }}</td>
+                    <td>{{ mc.name }}</td>
+                    <td>{{ mc.url }}</td>
+                    <td>{{ mc.app_alias }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+<script>
+$(function(){
+  var sdate_str = new Date().Format("yyyy-MM-dd 00:00:00");
+  var url ="/query/view/充值日志-汇总?huizong=log_pay.log_mobile_key&d_s_date=" + sdate_str + "&sdate=" + sdate_str; 
+  $("#today_pay").attr('href', url);
+})
+
+
+$(document).on('click','.openDialog2,opendialog2',function(e){
+	var This = $(this)
+	var sdate_str = $('[name="sdate"]').val();
+   var edate_str = sdate_str.split(' ')[0] + " 23:59:59";
+   var url ="/query/view/充值日志-汇总?huizong=log_pay.log_mobile_key&d_s_date=" + sdate_str + "&sdate=" + sdate_str + "&d_e_date=" + edate_str + "&edate=" + edate_str; 
+	var width = This.attr('data-width') ? This.attr('data-width') : "";
+	var height = This.attr('data-height') ? This.attr('data-height') : "";
+
+	var title = This.attr('title') ?  This.attr('title') : This.text()
+	art.dialog.open(url,{title:title, width:width, height:height})
+	stopFunc(e)
+	return false
+})
+.on('click','.openDialog3,opendialog3',function(e){
+	var This = $(this)
+	var sdate_str = $('[name="sdate"]').val();
+   var edate_str = sdate_str.split(' ')[0] + " 23:59:59";
+   var url ="/query/view/充值日志-汇总?huizong=log_pay.log_user&sdate=" + sdate_str + "&edate=" + edate_str; 
+	var width = This.attr('data-width') ? This.attr('data-width') : "";
+	var height = This.attr('data-height') ? This.attr('data-height') : "";
+
+	var title = This.attr('title') ?  This.attr('title') : This.text()
+	art.dialog.open(url,{title:title, width:width, height:height})
+	stopFunc(e)
+	return false
+})
+.on('click','.openDialog4,opendialog4',function(e){
+	var This = $(this)
+	var sdate_str = $('[name="sdate"]').val();
+   var edate_str = sdate_str.split(' ')[0] + " 23:59:59";
+   var url ="/query/view/区服充值统计?&sdate=" + sdate_str + "&edate=" + edate_str; 
+	var width = This.attr('data-width') ? This.attr('data-width') : "";
+	var height = This.attr('data-height') ? This.attr('data-height') : "";
+
+	var title = This.attr('title') ?  This.attr('title') : This.text()
+	art.dialog.open(url,{title:title, width:width, height:height})
+	stopFunc(e)
+	return false
+})
+
+.on('click','.openDialog5,opendialog5',function(e){
+	var This = $(this)
+	var sdate_str = $('[name="sdate"]').val();
+   var game_alias = $('select[name=game_alias]').val();
+   var edate_str = sdate_str.split(' ')[0] + " 23:59:59";
+   var url ="/query/view/运营滚服数据?game_alias="+ game_alias +"&sdate=" + sdate_str + "&edate=" + edate_str; 
+	var width = This.attr('data-width') ? This.attr('data-width') : "";
+	var height = This.attr('data-height') ? This.attr('data-height') : "";
+
+	var title = This.attr('title') ?  This.attr('title') : This.text()
+	art.dialog.open(url,{title:title, width:width, height:height})
+	stopFunc(e)
+	return false
+})
+
+</script>
+
+
+
+
+
+<a href="/query/view/充值日志1?d_s_date=2013-07-01%2000:00:00" class="btn btn-success  openDialog2" id="today_pay"> 当日新增设备充值明细</a>
+
+
+<a href="/query/view/充值日志1?d_s_date=2013-07-01%2000:00:00" class="btn btn-success  openDialog3" id="today_pay"> 当日玩家充值明细</a>
+<a href="/query/view/区服充值统计" class="btn btn-success  openDialog4" id="today_pay" data-width="500" data-height="800"> 当日区服充值统计</a>
+<a href="/query/view/区服充值统计" class="btn btn-success  openDialog5" id="today_pay" data-width="1000" data-height="800"> 当日滚服数据</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

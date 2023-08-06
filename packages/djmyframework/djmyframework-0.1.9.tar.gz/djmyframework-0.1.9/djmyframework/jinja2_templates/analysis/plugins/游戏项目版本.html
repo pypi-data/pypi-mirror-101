@@ -1,0 +1,50 @@
+<div id="datatable_toolbar" class="row">
+	<div class="col-sm-12">
+		<label id="send_resouces" class="fr">
+		  <a href="/projects_version/edit?projects_id={{params.projects_id.0}}" class="btn  btn-xs btn-primary openDialog" >
+	    	 增加游戏版本
+	    </a>
+	</label>
+	</div>
+</div>
+
+
+
+
+
+<script>
+var projects_id = '{{params.projects_id.0}}'
+
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var id  = row[TH['操作']]
+		projects_name = row[TH['版本名称']]
+		
+		row[TH['图标']] = '<img height=50 width=50 src="'+row[TH['图标']]+'">'
+		
+		row[TH['已接入渠道数']] += ' <a href="/analysis/query/view/游戏项目版本SDK?project_version_id=' +id+ '"  class="add_tab"  tab_name="'+projects_name+' SDK接入">[查看接入SDK]</a>'
+
+		row[TH['操作']] = '<a href="/projects_version/edit?id=' +id+ '" class="openDialog"  >[编辑]</a>'
+		{%if request.user.is_root or request.allow_menu.游戏项目版本_删除%}
+		row[TH['操作']] += ' <a href="/projects_version/remove?id=' +id+ '" class="delete"  >[删除]</a> '
+		{%endif%}
+		row[TH['操作']] += '<a href="/projects_version/edit?is_copy=1&id=' +id+ '" class="openDialog"  >[复制]</a>'
+	}
+  	return data
+
+})     //输出处理
+
+$(function(){
+	 $SEARCH.trigger('click');
+})
+</script>
+
+
+
+
+

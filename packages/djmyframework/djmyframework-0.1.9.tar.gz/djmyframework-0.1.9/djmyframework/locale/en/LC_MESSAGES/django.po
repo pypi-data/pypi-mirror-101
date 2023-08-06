@@ -1,0 +1,4066 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-25 22:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/advertisement_brush_roboot/models.py:20 apps/svn_admin/models.py:19
+#: templates/advertisement_brush_roboot/brush_app/edit.html:158
+#: templates/advertisement_brush_roboot/brush_app/list.html:74
+#: templates/advertisement_brush_roboot/brush_app/list.html:254
+msgid "开启"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:21 apps/svn_admin/models.py:20
+#: templates/advertisement_brush_roboot/brush_app/edit.html:159
+#: templates/advertisement_brush_roboot/brush_app/list.html:75
+#: templates/advertisement_brush_roboot/brush_app/list.html:255
+msgid "关闭"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:22
+#: templates/advertisement_brush_roboot/brush_app/edit.html:160
+#: templates/advertisement_brush_roboot/brush_app/list.html:76
+#: templates/advertisement_brush_roboot/brush_app/list.html:256
+msgid "未审核"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:24
+msgid "app 简称"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:24
+msgid "纯英文唯一"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:26
+#: templates/advertisement_brush_roboot/brush_app/edit.html:83
+msgid "app 包名"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:26
+msgid "xxx.xxx.xxx 格式"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:27
+#: templates/advertisement_brush_roboot/brush_app/edit.html:67
+#: templates/advertisement_brush_roboot/brush_app/list.html:45
+#: templates/advertisement_brush_roboot/brush_app/list.html:218
+msgid "app 别名"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:28
+#: templates/advertisement_brush_roboot/brush_app/edit.html:121
+#: templates/advertisement_brush_roboot/brush_app/list.html:53
+#: templates/advertisement_brush_roboot/brush_app/list.html:231
+msgid "下载地址"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:29
+#: templates/advertisement_brush_roboot/brush_app/edit.html:138
+#: templates/advertisement_brush_roboot/brush_app/list.html:61
+#: templates/advertisement_brush_roboot/brush_app/list.html:238
+msgid "JSON配置"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:30
+#: apps/advertisement_brush_roboot/models.py:76
+#: apps/flink_platform/models/flink_job.py:355 apps/myadmin/models/user.py:234
+#: apps/svn_admin/models.py:36
+#: templates/advertisement_brush_roboot/activation_code/edit.html:131
+#: templates/advertisement_brush_roboot/activation_code/edit.html:134
+#: templates/advertisement_brush_roboot/activation_code/list.html:84
+#: templates/advertisement_brush_roboot/activation_code/list.html:271
+#: templates/advertisement_brush_roboot/brush_app/edit.html:154
+#: templates/advertisement_brush_roboot/brush_app/edit.html:157
+#: templates/advertisement_brush_roboot/brush_app/list.html:69
+#: templates/advertisement_brush_roboot/brush_app/list.html:248
+#: templates/myadmin/user/edit.html:140 templates/myadmin/user/edit.html:144
+#: templates/myadmin/user/list.html:97 templates/myadmin/user/list.html:377
+#: templates/myadmin/user/list.html:387
+#: templates/sdk_center/sdk_version/list.html:105
+#: templates/sdk_center/sdk_version/list.html:312
+#: templates/svn_admin/svn_path/edit.html:125
+#: templates/svn_admin/svn_path/edit.html:132
+#: templates/svn_admin/svn_path/list.html:64
+#: templates/svn_admin/svn_path/list.html:307
+msgid "状态"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:31
+msgid "app版本"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:32
+#: templates/advertisement_brush_roboot/brush_app/edit.html:109
+msgid "计划运行的总时间"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:67
+#: templates/advertisement_brush_roboot/activation_code/edit.html:135
+#: templates/advertisement_brush_roboot/activation_code/list.html:89
+#: templates/advertisement_brush_roboot/activation_code/list.html:277
+msgid "未绑定"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:68
+#: templates/advertisement_brush_roboot/activation_code/edit.html:136
+#: templates/advertisement_brush_roboot/activation_code/list.html:90
+#: templates/advertisement_brush_roboot/activation_code/list.html:278
+msgid "绑定"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:69
+#: templates/advertisement_brush_roboot/activation_code/edit.html:137
+#: templates/advertisement_brush_roboot/activation_code/list.html:91
+#: templates/advertisement_brush_roboot/activation_code/list.html:279
+msgid "已过期"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:71
+#: apps/advertisement_brush_roboot/models.py:103
+#: templates/advertisement_brush_roboot/activation_code/edit.html:48
+#: templates/advertisement_brush_roboot/activation_code/list.html:39
+#: templates/advertisement_brush_roboot/activation_code/list.html:120
+#: templates/advertisement_brush_roboot/activation_code/list.html:236
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:48
+#: templates/advertisement_brush_roboot/renewal_record/list.html:39
+#: templates/advertisement_brush_roboot/renewal_record/list.html:269
+msgid "激活码"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:72
+#: templates/advertisement_brush_roboot/activation_code/edit.html:65
+#: templates/advertisement_brush_roboot/activation_code/list.html:48
+#: templates/advertisement_brush_roboot/activation_code/list.html:243
+msgid "绑定设备号"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:73
+#: templates/advertisement_brush_roboot/activation_code/edit.html:82
+#: templates/advertisement_brush_roboot/activation_code/list.html:57
+#: templates/advertisement_brush_roboot/activation_code/list.html:250
+msgid "推广渠道"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:74
+#: templates/advertisement_brush_roboot/activation_code/edit.html:99
+#: templates/advertisement_brush_roboot/activation_code/list.html:66
+#: templates/advertisement_brush_roboot/activation_code/list.html:257
+msgid "到期时间"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:75
+#: templates/advertisement_brush_roboot/activation_code/edit.html:115
+#: templates/advertisement_brush_roboot/activation_code/list.html:75
+#: templates/advertisement_brush_roboot/activation_code/list.html:264
+msgid "绑定时间"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:77
+msgid "激活ip"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:99
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:157
+#: templates/advertisement_brush_roboot/renewal_record/list.html:107
+#: templates/advertisement_brush_roboot/renewal_record/list.html:324
+msgid "已提交,未支付"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:100
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:158
+#: templates/advertisement_brush_roboot/renewal_record/list.html:108
+#: templates/advertisement_brush_roboot/renewal_record/list.html:325
+msgid "支付错误"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:101
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:159
+#: templates/advertisement_brush_roboot/renewal_record/list.html:109
+#: templates/advertisement_brush_roboot/renewal_record/list.html:326
+msgid "支付成功"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:104
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:65
+#: templates/advertisement_brush_roboot/renewal_record/list.html:48
+#: templates/advertisement_brush_roboot/renewal_record/list.html:276
+msgid "支付渠道"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:105
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:82
+#: templates/advertisement_brush_roboot/renewal_record/list.html:57
+#: templates/advertisement_brush_roboot/renewal_record/list.html:283
+msgid "提交金额"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:106
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:93
+#: templates/advertisement_brush_roboot/renewal_record/list.html:66
+#: templates/advertisement_brush_roboot/renewal_record/list.html:290
+msgid "实际支付金额"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:108
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:104
+#: templates/advertisement_brush_roboot/renewal_record/list.html:75
+#: templates/advertisement_brush_roboot/renewal_record/list.html:297
+msgid "提交时间"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:109
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:120
+#: templates/advertisement_brush_roboot/renewal_record/list.html:84
+#: templates/advertisement_brush_roboot/renewal_record/list.html:304
+msgid "支付时间"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:111
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:136
+#: templates/advertisement_brush_roboot/renewal_record/list.html:93
+#: templates/advertisement_brush_roboot/renewal_record/list.html:311
+msgid "支付账号"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:113
+#: apps/advertisement_brush_roboot/models.py:117
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:187
+#: templates/advertisement_brush_roboot/renewal_record/list.html:123
+#: templates/advertisement_brush_roboot/renewal_record/list.html:340
+msgid "支付IP"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:114
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:153
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:156
+#: templates/advertisement_brush_roboot/renewal_record/list.html:102
+#: templates/advertisement_brush_roboot/renewal_record/list.html:318
+msgid "支付状态"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:116
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:170
+#: templates/advertisement_brush_roboot/renewal_record/list.html:114
+#: templates/advertisement_brush_roboot/renewal_record/list.html:333
+msgid "订单号"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/models.py:118
+#: apps/analysis/models/statistic.py:46 apps/log_def/models.py:144
+#: apps/svn_admin/models.py:38
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:204
+#: templates/advertisement_brush_roboot/renewal_record/list.html:132
+#: templates/advertisement_brush_roboot/renewal_record/list.html:347
+#: templates/analysis/query/list.html:335
+#: templates/log_def/dict_define/edit.html:96
+#: templates/log_def/dict_define/list.html:67
+#: templates/log_def/dict_define/list.html:271
+#: templates/log_def/log_define/edit.html:87
+#: templates/log_def/log_define/list.html:50
+#: templates/log_def/log_define/list.html:248
+#: templates/svn_admin/svn_path/edit.html:148
+#: templates/svn_admin/svn_path/list.html:74
+#: templates/svn_admin/svn_path/list.html:318
+msgid "备注"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/views/activation_code.py:71
+msgid "创建数量"
+msgstr ""
+
+#: apps/advertisement_brush_roboot/views/activation_code.py:72
+msgid "创建渠道标识"
+msgstr ""
+
+#: apps/analysis/models/query.py:309
+msgid "倒序"
+msgstr ""
+
+#: apps/analysis/models/query.py:310
+msgid "正序"
+msgstr ""
+
+#: apps/analysis/models/query.py:314 templates/analysis/query/list.html:267
+msgid "查询字段"
+msgstr ""
+
+#: apps/analysis/models/query.py:319 templates/analysis/query/list.html:311
+msgid "SQL"
+msgstr ""
+
+#: apps/analysis/models/query.py:320 templates/analysis/query/list.html:65
+#: templates/analysis/query/list.html:319
+msgid "其他SQL"
+msgstr ""
+
+#: apps/analysis/models/statistic.py:31
+msgid "统计标识"
+msgstr ""
+
+#: apps/analysis/models/statistic.py:32
+msgid "统计时间维护字段"
+msgstr ""
+
+#: apps/analysis/models/statistic.py:43
+msgid "自动执行"
+msgstr ""
+
+#: apps/analysis/models/statistic.py:45
+msgid "自动执行间隔"
+msgstr ""
+
+#: apps/celery_task_result/models.py:56
+msgid "celert 任务结果集"
+msgstr ""
+
+#: apps/celery_task_result/models.py:57
+msgid "关联作业标识"
+msgstr ""
+
+#: apps/celery_task_result/models.py:58
+msgid "关联作业类型"
+msgstr ""
+
+#: apps/celery_task_result/views.py:23
+msgid "是否都完成"
+msgstr ""
+
+#: apps/celery_task_result/views.py:24
+msgid "Celery任务ID"
+msgstr ""
+
+#: apps/celery_task_result/views.py:24
+msgid "celery task id 列表"
+msgstr ""
+
+#: apps/celery_task_result/views.py:32
+msgid "任务状态 Map,通过 task id 获取启动状态"
+msgstr ""
+
+#: apps/celery_task_result/views.py:41
+msgid "celery 任务ID列表"
+msgstr ""
+
+#: apps/celery_task_result/views.py:77 apps/celery_task_result/views.py:95
+msgid "任务关联ID"
+msgstr ""
+
+#: apps/celery_task_result/views.py:78 apps/celery_task_result/views.py:96
+msgid "任务类型名"
+msgstr ""
+
+#: apps/celery_task_result/views.py:79 apps/celery_task_result/views.py:97
+msgid "是否已经完成"
+msgstr ""
+
+#: apps/flink_platform/admin_resource.py:9
+msgid "Flink 项目"
+msgstr ""
+
+#: apps/flink_platform/models/connector.py:24
+msgid "连接器类型"
+msgstr ""
+
+#: apps/flink_platform/models/connector.py:25
+msgid "Kakfa 连接地址"
+msgstr ""
+
+#: apps/flink_platform/models/connector.py:42
+#: apps/flink_platform/models/flink_job.py:133
+#: apps/flink_platform/models/paragraph.py:43
+#: templates/flink_platform/code_paragraph/edit.html:45
+#: templates/flink_platform/code_paragraph/list.html:43
+#: templates/flink_platform/connector/edit.html:79
+#: templates/flink_platform/connector/list.html:52
+#: templates/flink_platform/connector/list.html:261
+#: templates/flink_platform/flink_job/edit.html:234
+#: templates/flink_platform/flink_job/list.html:36
+#: templates/flink_platform/flink_job/list.html:345
+msgid "所属项目"
+msgstr ""
+
+#: apps/flink_platform/models/connector.py:43 apps/myadmin/models/operate.py:20
+#: apps/myadmin/models/role.py:84 apps/myadmin/views/role.py:69
+#: templates/flink_platform/connector/edit.html:95
+#: templates/flink_platform/connector/edit.html:98
+#: templates/flink_platform/connector/list.html:59
+#: templates/flink_platform/connector/list.html:269
+#: templates/myadmin/operate_log/edit.html:65
+#: templates/myadmin/operate_log/list.html:48
+#: templates/myadmin/operate_log/list.html:239
+#: templates/myadmin/role/edit.html:97 templates/myadmin/role/edit.html:101
+msgid "类型"
+msgstr ""
+
+#: apps/flink_platform/models/connector.py:44 apps/log_def/models.py:146
+#: templates/flink_platform/connector/edit.html:113
+msgid "配置"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:74
+msgid "刷新时间"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:75
+#, python-format
+msgid ""
+"Used in `%flink.ssql` to specify frontend refresh interval for streaming "
+"data visualization."
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:77
+msgid "并行数"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:77
+#: apps/flink_platform/models/flink_job.py:80
+msgid "specify the flink sql job parallelism"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:79
+msgid "最大并行数"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:82
+msgid "记录点保存目录"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:83
+msgid ""
+"If you specify it, then when you cancel your flink job in Zeppelin, it would "
+"also do savepoint and store state in this directory. And when you resume "
+"your job, it would resume from this savepoint."
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:85
+msgid "是否从保存目录恢复"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:86
+msgid "Resume flink job from savepoint if you specify savepointDir."
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:88
+msgid "一个任务执行所有SQL"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:89
+msgid "All the insert into sql will run in a single flink job if this is true."
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:91
+msgid "是否从上次 CheckPonit 还原"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:92
+msgid "Resume flink job from latest checkpoint if you enable checkpoint."
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:94
+msgid "任务还原点路径"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:95
+msgid "execution.savepoint.path"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:101
+msgid "Flink Job 全局配置"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:102
+msgid "Flink Table 配置"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:103
+msgid "Flink 主要任务"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:121
+msgid "预备"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:122
+msgid "中止"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:123 apps/myadmin/models/user.py:218
+msgid "错误"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:124
+msgid "完成"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:125
+msgid "启动中"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:126
+msgid "运行中"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:129
+msgid "批模式"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:130
+msgid "流模式"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:132
+#: apps/flink_platform/models/flink_job.py:389
+#: templates/flink_platform/flink_job/edit.html:251
+#: templates/flink_platform/flink_job/list.html:43
+#: templates/flink_platform/flink_job/list.html:353
+msgid "作者"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:134
+#: templates/flink_platform/flink_job/edit.html:273
+#: templates/flink_platform/flink_job/list.html:50
+#: templates/flink_platform/flink_job/list.html:361
+msgid "任务名"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:137
+#: templates/flink_platform/flink_job/edit.html:287
+#: templates/flink_platform/flink_job/list.html:57
+#: templates/flink_platform/flink_job/list.html:369
+msgid "任务简称"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:138
+#: templates/flink_platform/flink_job/edit.html:70
+#: templates/flink_platform/flink_job/edit.html:73
+#: templates/flink_platform/flink_job/list.html:64
+#: templates/flink_platform/flink_job/list.html:377
+msgid "任务状态"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:140
+#: templates/flink_platform/flink_job/edit.html:309
+#: templates/flink_platform/flink_job/list.html:74
+#: templates/sdk_center/widgets/remote_sdk_list.html:114
+msgid "任务ID"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:142
+#: templates/flink_platform/flink_job/edit.html:322
+#: templates/flink_platform/flink_job/list.html:81
+msgid "Flink Job ID"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:143
+#: templates/flink_platform/flink_job/edit.html:337
+msgid "Flink Job Url"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:145
+#: templates/flink_platform/flink_job/list.html:88
+#: templates/flink_platform/flink_job/list.html:405
+msgid "任务模式"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:146
+#: templates/flink_platform/flink_job/edit.html:472
+#: templates/flink_platform/flink_job/list.html:98
+#: templates/flink_platform/flink_job/list.html:416
+msgid "cron 定时执行"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:147
+#: templates/flink_platform/flink_job/edit.html:351
+#: templates/flink_platform/flink_job/list.html:105
+#: templates/flink_platform/flink_job/list.html:424
+msgid "任务开始执行时间"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:148
+#: templates/flink_platform/flink_job/edit.html:365
+#: templates/flink_platform/flink_job/list.html:112
+#: templates/flink_platform/flink_job/list.html:432
+msgid "任务停止执行时间"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:149
+#: templates/flink_platform/flink_job/edit.html:299
+msgid "任务备注"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:151
+#: templates/flink_platform/flink_job/list.html:120
+msgid "引用代码段落"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:153
+#: templates/flink_platform/flink_job/list.html:127
+#: templates/flink_platform/flink_job/list.html:441
+msgid "任务 类型"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:155
+msgid "任务 内容"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:157
+msgid "flink config 配置"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:158
+msgid "flink table config 配置"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:161
+msgid "状态信息"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:164
+msgid "任务属性"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:167
+#: templates/flink_platform/flink_job/edit.html:560
+msgid "最后 savepoint 路径"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:168
+#: templates/flink_platform/flink_job/edit.html:529
+msgid "启动 savepoint 路径"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:354
+msgid "Task id"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:356
+msgid "错误信息"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:369
+#: templates/flink_platform/flink_job/edit.html:69
+msgid "任务引擎地址"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:374
+msgid "路径"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:375
+msgid "保存点类型"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:376
+#: templates/flink_platform/flink_job/edit.html:589
+msgid "所有者"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:377
+msgid "目录大小"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:378
+msgid "目录修改时间"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:387
+msgid "任务组名"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:390 apps/myadmin/models/role.py:82
+#: templates/myadmin/role/edit.html:82 templates/myadmin/role/list.html:58
+#: templates/myadmin/role/list.html:300
+#: templates/myadmin/widgets/role_table_select.html:87
+msgid "上级"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:391
+msgid "任务组描述"
+msgstr ""
+
+#: apps/flink_platform/models/flink_job.py:392
+msgid "任务"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:22
+msgid "原始数据层"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:23
+msgid "细粒度数据层"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:24
+msgid "轻度汇总数据层"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:25
+msgid "报表/宽表数据层"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:26
+msgid "维度数据层"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:27
+msgid "应用数据层"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:44
+#: templates/flink_platform/code_paragraph/edit.html:63
+#: templates/flink_platform/code_paragraph/list.html:36
+#: templates/flink_platform/code_paragraph/list.html:265
+msgid "段落名"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:45
+msgid "Source 一般为 table name"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:46
+#: templates/flink_platform/code_paragraph/edit.html:75
+#: templates/flink_platform/code_paragraph/list.html:50
+#: templates/flink_platform/code_paragraph/list.html:273
+msgid "段落显示名"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:47
+#: templates/flink_platform/code_paragraph/edit.html:151
+#: templates/flink_platform/code_paragraph/list.html:57
+#: templates/flink_platform/code_paragraph/list.html:281
+msgid "语言类型"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:48
+#: templates/flink_platform/code_paragraph/edit.html:116
+#: templates/flink_platform/code_paragraph/list.html:292
+msgid "段落类型标签"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:50
+#: templates/flink_platform/code_paragraph/edit.html:172
+#: templates/flink_platform/code_paragraph/list.html:68
+msgid "代码内容"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:52
+#: templates/flink_platform/code_paragraph/list.html:304
+msgid "所属连接器"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:55 apps/myadmin/models/role.py:74
+#: templates/flink_platform/code_paragraph/edit.html:91
+#: templates/flink_platform/code_paragraph/list.html:312
+#: templates/log_def/dict_define/edit.html:82
+#: templates/log_def/dict_define/list.html:50
+#: templates/log_def/dict_define/list.html:252
+msgid "组"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:56
+#: templates/flink_platform/code_paragraph/list.html:320
+msgid "可共享"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:57
+msgid "包含的表格信息"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:76
+msgid "关联"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:77
+msgid "数据类型"
+msgstr ""
+
+#: apps/flink_platform/models/paragraph.py:78
+msgid "数据类型定义"
+msgstr ""
+
+#: apps/flink_platform/models/project.py:19 apps/svn_admin/models.py:28
+#: templates/flink_platform/project/edit.html:46
+#: templates/flink_platform/project/list.html:37
+#: templates/flink_platform/project/list.html:237
+msgid "项目名"
+msgstr ""
+
+#: apps/flink_platform/models/project.py:22 apps/myadmin/models/user.py:226
+#: framework/models.py:487 templates/flink_platform/connector/edit.html:63
+#: templates/flink_platform/connector/list.html:45
+#: templates/flink_platform/connector/list.html:253
+#: templates/flink_platform/project/edit.html:61
+#: templates/flink_platform/project/list.html:44
+#: templates/flink_platform/project/list.html:245
+#: templates/myadmin/user/list.html:49 templates/myadmin/user/list.html:322
+msgid "别名"
+msgstr ""
+
+#: apps/flink_platform/models/project.py:24
+#: templates/flink_platform/project/edit.html:76
+#: templates/flink_platform/project/list.html:51
+#: templates/flink_platform/project/list.html:253
+msgid "秘钥"
+msgstr ""
+
+#: apps/flink_platform/views/code_paragraph.py:41
+msgid "标题"
+msgstr ""
+
+#: apps/flink_platform/views/code_paragraph.py:42
+msgid "值"
+msgstr ""
+
+#: apps/flink_platform/views/code_paragraph.py:43
+msgid "子项目"
+msgstr ""
+
+#: apps/flink_platform/views/code_paragraph.py:99
+msgid "是否项目独有"
+msgstr ""
+
+#: apps/flink_platform/views/flink_job.py:35 framework/models.py:273
+#: framework/serializer.py:180
+#: templates/advertisement_brush_roboot/activation_code/edit.html:148
+#: templates/advertisement_brush_roboot/activation_code/list.html:96
+#: templates/advertisement_brush_roboot/activation_code/list.html:286
+#: templates/advertisement_brush_roboot/brush_app/edit.html:171
+#: templates/advertisement_brush_roboot/brush_app/list.html:81
+#: templates/advertisement_brush_roboot/brush_app/list.html:263
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:221
+#: templates/advertisement_brush_roboot/renewal_record/list.html:141
+#: templates/advertisement_brush_roboot/renewal_record/list.html:354
+#: templates/analysis/query/list.html:79 templates/analysis/query/list.html:351
+#: templates/flink_platform/code_paragraph/list.html:75
+#: templates/flink_platform/code_paragraph/list.html:328
+#: templates/flink_platform/connector/edit.html:128
+#: templates/flink_platform/connector/list.html:69
+#: templates/flink_platform/connector/list.html:281
+#: templates/flink_platform/flink_job/edit.html:379
+#: templates/flink_platform/flink_job/list.html:146
+#: templates/flink_platform/flink_job/list.html:461
+#: templates/flink_platform/project/edit.html:91
+#: templates/flink_platform/project/list.html:58
+#: templates/flink_platform/project/list.html:261
+#: templates/log_def/dict_define/list.html:74
+#: templates/log_def/dict_define/list.html:279
+#: templates/log_def/log_define/edit.html:151
+#: templates/log_def/log_define/list.html:74
+#: templates/log_def/log_define/list.html:275
+#: templates/myadmin/menu/edit.html:203 templates/myadmin/menu/list.html:102
+#: templates/myadmin/menu/list.html:324
+#: templates/myadmin/operate_log/edit.html:159
+#: templates/myadmin/operate_log/list.html:102
+#: templates/myadmin/operate_log/list.html:281
+#: templates/myadmin/resource/edit.html:84
+#: templates/myadmin/resource/list.html:57
+#: templates/myadmin/resource/list.html:202
+#: templates/myadmin/role/edit.html:146 templates/myadmin/role/list.html:93
+#: templates/myadmin/role/list.html:340 templates/myadmin/user/edit.html:174
+#: templates/myadmin/user/list.html:115 templates/myadmin/user/list.html:407
+#: templates/myadmin/user_info/list.html:103
+#: templates/myadmin/user_info/list.html:295
+#: templates/sdk_center/sdk/list.html:75 templates/sdk_center/sdk/list.html:339
+#: templates/sdk_center/sdk_version/list.html:63
+#: templates/sdk_center/sdk_version/list.html:115
+#: templates/sdk_center/sdk_version/list.html:297
+#: templates/svn_admin/svn_path/edit.html:189
+#: templates/svn_admin/svn_path/list.html:106
+#: templates/svn_admin/svn_path/list.html:361
+msgid "创建时间"
+msgstr ""
+
+#: apps/flink_platform/views/flink_job.py:37 framework/models.py:274
+#: framework/serializer.py:182
+#: templates/advertisement_brush_roboot/activation_code/edit.html:164
+#: templates/advertisement_brush_roboot/activation_code/list.html:105
+#: templates/advertisement_brush_roboot/activation_code/list.html:293
+#: templates/advertisement_brush_roboot/brush_app/edit.html:187
+#: templates/advertisement_brush_roboot/brush_app/list.html:89
+#: templates/advertisement_brush_roboot/brush_app/list.html:270
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:237
+#: templates/advertisement_brush_roboot/renewal_record/list.html:150
+#: templates/advertisement_brush_roboot/renewal_record/list.html:361
+#: templates/analysis/query/list.html:86 templates/analysis/query/list.html:359
+#: templates/flink_platform/code_paragraph/list.html:82
+#: templates/flink_platform/code_paragraph/list.html:336
+#: templates/flink_platform/connector/edit.html:143
+#: templates/flink_platform/connector/list.html:76
+#: templates/flink_platform/connector/list.html:289
+#: templates/flink_platform/flink_job/edit.html:394
+#: templates/flink_platform/flink_job/list.html:153
+#: templates/flink_platform/flink_job/list.html:469
+#: templates/flink_platform/project/edit.html:105
+#: templates/flink_platform/project/list.html:65
+#: templates/flink_platform/project/list.html:269
+#: templates/log_def/dict_define/list.html:81
+#: templates/log_def/dict_define/list.html:287
+#: templates/log_def/log_define/edit.html:168
+#: templates/log_def/log_define/list.html:81
+#: templates/log_def/log_define/list.html:283
+#: templates/myadmin/menu/edit.html:219 templates/myadmin/menu/list.html:110
+#: templates/myadmin/operate_log/edit.html:175
+#: templates/myadmin/operate_log/list.html:111
+#: templates/myadmin/operate_log/list.html:288
+#: templates/myadmin/resource/edit.html:100
+#: templates/myadmin/resource/list.html:66
+#: templates/myadmin/resource/list.html:209
+#: templates/myadmin/role/list.html:101 templates/myadmin/role/list.html:347
+#: templates/myadmin/user/list.html:123 templates/myadmin/user/list.html:415
+#: templates/myadmin/user_info/list.html:111
+#: templates/myadmin/user_info/list.html:302
+#: templates/sdk_center/sdk/list.html:82 templates/sdk_center/sdk/list.html:347
+#: templates/sdk_center/sdk_version/list.html:122
+#: templates/sdk_center/sdk_version/list.html:362
+#: templates/svn_admin/svn_path/list.html:113
+#: templates/svn_admin/svn_path/list.html:369
+msgid "更新时间"
+msgstr ""
+
+#: apps/flink_platform/views/flink_job.py:126 framework/views.py:482
+msgid "ids empty"
+msgstr ""
+
+#: apps/flink_platform/views/flink_job.py:129
+msgid "是否强制执行"
+msgstr ""
+
+#: apps/flink_platform/views/flink_job.py:130
+msgid "是否 使用最后一次 Savepoint Path"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:17
+#: apps/game_api/serializers/client.py:32 apps/myadmin/models/user.py:228
+#: templates/myadmin/user/list.html:57 templates/myadmin/user/list.html:332
+msgid "用户名"
+msgstr "User"
+
+#: apps/game_api/serializers/client.py:18 apps/myadmin/views/__init__.py:189
+#: templates/myadmin/register.html:100 templates/myadmin/user/edit.html:76
+#: templates/myadmin/user/list.html:65
+msgid "密码"
+msgstr "password"
+
+#: apps/game_api/serializers/client.py:19
+#: apps/game_api/serializers/client.py:70
+msgid "渠道号"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:20
+#: apps/game_api/serializers/client.py:71
+msgid "设备号"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:24
+#: apps/game_api/serializers/client.py:56
+#: apps/game_api/serializers/client.py:87
+#: apps/game_api/serializers/client.py:102
+msgid "账号或密码不能为空"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:25
+msgid "账号不存在 或 密码错误"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:26
+msgid "账号已经被封号,请联系客服"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:27
+msgid "账号已被锁定!"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:31
+#: apps/game_api/serializers/client.py:95
+msgid "用户ID"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:33
+msgid "时间戳,秒"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:34
+msgid "签名"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:35
+msgid "用户状态"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:36 apps/myadmin/models/user.py:233
+#: templates/myadmin/user/edit.html:124 templates/myadmin/user/list.html:89
+#: templates/myadmin/user/list.html:370
+msgid "登录次数"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:57
+msgid "密码规则错误"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:58
+msgid "账号已存在"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:75
+#: apps/game_api/serializers/client.py:80
+msgid "游客密码"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:79
+msgid "游客用户名"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:81
+msgid "新用户名"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:82
+#: apps/game_api/serializers/client.py:97 apps/myadmin/views/user.py:87
+#: framework/tests/__init__.py:115
+#, fuzzy
+#| msgid "密码"
+msgid "新密码"
+msgstr "password"
+
+#: apps/game_api/serializers/client.py:88
+msgid "账号规则错误"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:89
+msgid "新账号已存在"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:90
+msgid "游客账号不存在"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:91
+msgid "游客密码错误"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:96 apps/myadmin/views/user.py:86
+#: framework/tests/__init__.py:114
+#, fuzzy
+#| msgid "密码"
+msgid "旧密码"
+msgstr "password"
+
+#: apps/game_api/serializers/client.py:103
+msgid "账号不存在"
+msgstr ""
+
+#: apps/game_api/serializers/client.py:104 apps/myadmin/views/user.py:116
+msgid "旧密码错误"
+msgstr ""
+
+#: apps/game_api/views/client.py:80 apps/game_api/views/client.py:103
+#, python-format
+msgid "账号已被锁定至: %s 解锁"
+msgstr ""
+
+#: apps/game_api/views/client.py:97
+#, python-format
+msgid "密码错误,还有%d次登陆机会后账号锁定。"
+msgstr ""
+
+#: apps/game_api/views/client.py:178 apps/game_api/views/client.py:214
+#: apps/myadmin/views/__init__.py:230
+msgid "注册成功"
+msgstr ""
+
+#: apps/game_api/views/client.py:242
+msgid "账号不能为中文"
+msgstr ""
+
+#: apps/game_api/views/client.py:261
+msgid "绑定成功"
+msgstr ""
+
+#: apps/game_api/views/client.py:300 apps/myadmin/views/user.py:114
+msgid "修改成功"
+msgstr ""
+
+#: apps/game_manage/admin_resource.py:13
+msgid "游戏服务器"
+msgstr ""
+
+#: apps/game_manage/admin_resource.py:18 apps/sdk_center/admin_resource.py:18
+msgid "勾选分区后,此角色将拥有这个分区下的所有服务器权限."
+msgstr ""
+
+#: apps/game_manage/admin_resource.py:38
+msgid "游戏渠道"
+msgstr ""
+
+#: apps/game_manage/admin_resource.py:43
+msgid "可管理的渠道,勾选平台后,此角色将拥有这个平台下的所有渠道权限."
+msgstr ""
+
+#: apps/log_def/models.py:136
+msgid "分服"
+msgstr ""
+
+#: apps/log_def/models.py:137
+msgid "中央服"
+msgstr ""
+
+#: apps/log_def/models.py:138
+msgid "跨服"
+msgstr ""
+
+#: apps/log_def/models.py:142 templates/log_def/log_define/edit.html:51
+#: templates/log_def/log_define/list.html:36
+#: templates/log_def/log_define/list.html:232
+msgid "日志名"
+msgstr ""
+
+#: apps/log_def/models.py:143 templates/log_def/log_define/list.html:240
+msgid "日志表标识"
+msgstr ""
+
+#: apps/log_def/models.py:145 templates/log_def/log_define/edit.html:106
+#: templates/log_def/log_define/list.html:57
+#: templates/log_def/log_define/list.html:94
+#: templates/log_def/log_define/list.html:256
+msgid "保存位置"
+msgstr ""
+
+#: apps/log_def/models.py:147 templates/log_def/log_define/edit.html:124
+#: templates/log_def/log_define/list.html:67
+#: templates/log_def/log_define/list.html:267
+msgid "触发器sql"
+msgstr ""
+
+#: apps/myadmin/apps.py:11
+msgid "MyAdmin 管理系统"
+msgstr ""
+
+#: apps/myadmin/middleware.py:76
+msgid "请重新登录"
+msgstr ""
+
+#: apps/myadmin/middleware.py:108
+msgid "没有权限"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:32 templates/myadmin/menu/list.html:38
+msgid "父节点id"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:33
+msgid "显示名"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:34 templates/myadmin/menu/edit.html:83
+#: templates/myadmin/menu/list.html:54 templates/myadmin/menu/list.html:270
+msgid "权限名"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:35
+msgid "开头非数字,数字加字母组合"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:36 templates/myadmin/menu/edit.html:100
+#: templates/myadmin/menu/list.html:62 templates/myadmin/menu/list.html:278
+msgid "访问地址带参数"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:37 apps/myadmin/models/operate.py:22
+#: templates/myadmin/menu/list.html:70
+#: templates/myadmin/operate_log/edit.html:93
+#: templates/myadmin/operate_log/list.html:66
+#: templates/myadmin/operate_log/list.html:253
+msgid "访问路径"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:39 templates/myadmin/menu/edit.html:118
+#: templates/myadmin/menu/list.html:286
+msgid "图标"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:40 templates/myadmin/menu/edit.html:137
+#: templates/myadmin/menu/list.html:296
+msgid "样式"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:41 templates/myadmin/menu/edit.html:154
+#: templates/myadmin/menu/list.html:78 templates/myadmin/menu/list.html:303
+msgid "排序"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:42 templates/myadmin/menu/edit.html:171
+#: templates/myadmin/menu/edit.html:174 templates/myadmin/menu/list.html:86
+#: templates/myadmin/menu/list.html:310
+msgid "显示"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:43 templates/myadmin/menu/edit.html:187
+#: templates/myadmin/menu/edit.html:190 templates/myadmin/menu/list.html:94
+#: templates/myadmin/menu/list.html:317
+msgid "记录日志"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:293
+msgid "所属管理员ID"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:294
+msgid "用户定义的菜单项"
+msgstr ""
+
+#: apps/myadmin/models/menu.py:295
+msgid "系统菜单的映射"
+msgstr ""
+
+#: apps/myadmin/models/operate.py:19 templates/myadmin/operate_log/edit.html:48
+#: templates/myadmin/operate_log/list.html:39
+#: templates/myadmin/operate_log/list.html:232
+msgid "管理员ID"
+msgstr ""
+
+#: apps/myadmin/models/operate.py:21 templates/myadmin/operate_log/edit.html:82
+#: templates/myadmin/operate_log/list.html:57
+#: templates/myadmin/operate_log/list.html:246
+msgid "IP"
+msgstr ""
+
+#: apps/myadmin/models/operate.py:23
+#: templates/myadmin/operate_log/edit.html:110
+#: templates/myadmin/operate_log/list.html:75
+#: templates/myadmin/operate_log/list.html:260
+msgid "提交参数"
+msgstr ""
+
+#: apps/myadmin/models/operate.py:24
+#: templates/myadmin/operate_log/edit.html:126
+#: templates/myadmin/operate_log/list.html:84
+#: templates/myadmin/operate_log/list.html:267
+msgid "其他消息"
+msgstr ""
+
+#: apps/myadmin/models/operate.py:25
+#: templates/myadmin/operate_log/edit.html:142
+#: templates/myadmin/operate_log/list.html:93
+#: templates/myadmin/operate_log/list.html:274
+msgid "User-Agent"
+msgstr ""
+
+#: apps/myadmin/models/resource.py:141 templates/myadmin/resource/edit.html:49
+#: templates/myadmin/resource/list.html:39
+#: templates/myadmin/resource/list.html:188
+msgid "资源名"
+msgstr ""
+
+#: apps/myadmin/models/resource.py:141 templates/myadmin/resource/edit.html:58
+msgid "资源简称,只允许字母"
+msgstr ""
+
+#: apps/myadmin/models/resource.py:142 templates/myadmin/resource/edit.html:67
+#: templates/myadmin/resource/list.html:48
+#: templates/myadmin/resource/list.html:195
+msgid "角色id"
+msgstr ""
+
+#: apps/myadmin/models/resource.py:143
+msgid "资源对象成员列表"
+msgstr ""
+
+#: apps/myadmin/models/role.py:73
+msgid "普通"
+msgstr ""
+
+#: apps/myadmin/models/role.py:75
+msgid "权限集合"
+msgstr ""
+
+#: apps/myadmin/models/role.py:80 framework/validators.py:15
+msgid "字母组合,符合^[a-z][\\d\\w_]+$"
+msgstr ""
+
+#: apps/myadmin/models/role.py:83
+msgid "资源对象"
+msgstr ""
+
+#: apps/myadmin/models/role.py:85 templates/sdk_center/sdk/list.html:48
+#: templates/sdk_center/sdk/list.html:285
+#: templates/sdk_center/sdk_version/list.html:56
+#: templates/sdk_center/sdk_version/list.html:289
+#: templates/sdk_center/widgets/remote_sdk_list.html:106
+msgid "描述"
+msgstr ""
+
+#: apps/myadmin/models/role.py:86 templates/myadmin/role/list.html:308
+msgid "创建者"
+msgstr ""
+
+#: apps/myadmin/models/role.py:88 templates/myadmin/role/edit.html:130
+#: templates/myadmin/role/list.html:85 templates/myadmin/role/list.html:333
+msgid "角色首页"
+msgstr ""
+
+#: apps/myadmin/models/user.py:214 apps/myadmin/models/user.py:222
+msgid "正常"
+msgstr ""
+
+#: apps/myadmin/models/user.py:215
+msgid "锁定"
+msgstr ""
+
+#: apps/myadmin/models/user.py:216
+#: templates/advertisement_brush_roboot/activation_code/list.html:147
+#: templates/advertisement_brush_roboot/brush_app/list.html:126
+#: templates/advertisement_brush_roboot/renewal_record/list.html:184
+#: templates/analysis/query/list.html:117
+#: templates/flink_platform/code_paragraph/list.html:119
+#: templates/flink_platform/connector/list.html:110
+#: templates/flink_platform/flink_job/list.html:186
+#: templates/flink_platform/project/list.html:100
+#: templates/log_def/dict_define/list.html:116
+#: templates/log_def/log_define/list.html:113
+#: templates/myadmin/menu/list.html:143
+#: templates/myadmin/operate_log/list.html:145
+#: templates/myadmin/resource/list.html:100
+#: templates/myadmin/role/list.html:136 templates/myadmin/user/list.html:162
+#: templates/myadmin/user_info/list.html:144
+#: templates/sdk_center/sdk/list.html:142
+#: templates/sdk_center/sdk_version/list.html:153
+#: templates/svn_admin/svn_path/list.html:145
+msgid "删除"
+msgstr ""
+
+#: apps/myadmin/models/user.py:217
+msgid "未激活"
+msgstr ""
+
+#: apps/myadmin/models/user.py:219
+msgid "离职"
+msgstr ""
+
+#: apps/myadmin/models/user.py:223 config/menu_sdk.py:35
+msgid "渠道"
+msgstr ""
+
+#: apps/myadmin/models/user.py:225 templates/myadmin/user/edit.html:197
+msgid "所属角色"
+msgstr ""
+
+#: apps/myadmin/models/user.py:230 templates/myadmin/user/edit.html:92
+#: templates/myadmin/user/list.html:73 templates/myadmin/user/list.html:356
+msgid "最后登录ip"
+msgstr "Last IP"
+
+#: apps/myadmin/models/user.py:232 templates/myadmin/user/edit.html:108
+#: templates/myadmin/user/list.html:81 templates/myadmin/user/list.html:363
+msgid "最后登录时间"
+msgstr "Last login time"
+
+#: apps/myadmin/models/user.py:235 templates/myadmin/user/edit.html:158
+#: templates/myadmin/user/list.html:107 templates/myadmin/user/list.html:399
+msgid "会话key"
+msgstr ""
+
+#: apps/myadmin/models/user.py:324
+#: templates/myadmin/user_info/edit_self.html:73
+msgid "未知"
+msgstr ""
+
+#: apps/myadmin/models/user.py:325
+#: templates/myadmin/user_info/edit_self.html:75
+msgid "女"
+msgstr ""
+
+#: apps/myadmin/models/user.py:326
+#: templates/myadmin/user_info/edit_self.html:77
+msgid "男"
+msgstr ""
+
+#: apps/myadmin/models/user.py:328 templates/myadmin/user_info/edit.html:44
+#: templates/myadmin/user_info/edit.html:47
+#: templates/myadmin/user_info/list.html:37
+#: templates/myadmin/user_info/list.html:232
+msgid "所属管理员"
+msgstr ""
+
+#: apps/myadmin/models/user.py:329 apps/myadmin/views/__init__.py:184
+#: templates/myadmin/register.html:117 templates/myadmin/user_info/edit.html:61
+#: templates/myadmin/user_info/edit_self.html:52
+#: templates/myadmin/user_info/list.html:45
+#: templates/myadmin/user_info/list.html:239
+msgid "工号"
+msgstr ""
+
+#: apps/myadmin/models/user.py:330 templates/myadmin/user_info/edit.html:79
+#: templates/myadmin/user_info/edit.html:82
+#: templates/myadmin/user_info/edit_self.html:67
+#: templates/myadmin/user_info/edit_self.html:70
+#: templates/myadmin/user_info/list.html:53
+#: templates/myadmin/user_info/list.html:246
+msgid "性别"
+msgstr ""
+
+#: apps/myadmin/models/user.py:331 templates/myadmin/user_info/edit.html:97
+#: templates/myadmin/user_info/edit_self.html:88
+#: templates/myadmin/user_info/list.html:63
+#: templates/myadmin/user_info/list.html:260
+msgid "邮件地址"
+msgstr ""
+
+#: apps/myadmin/models/user.py:332 templates/myadmin/user_info/edit.html:115
+#: templates/myadmin/user_info/edit.html:119
+#: templates/myadmin/user_info/list.html:71
+#: templates/myadmin/user_info/list.html:267
+msgid "是否激活邮箱"
+msgstr ""
+
+#: apps/myadmin/models/user.py:334 templates/myadmin/user_info/edit.html:149
+#: templates/myadmin/user_info/edit_self.html:122
+#: templates/myadmin/user_info/list.html:87
+#: templates/myadmin/user_info/list.html:281
+msgid "电话"
+msgstr ""
+
+#: apps/myadmin/models/user.py:335 templates/myadmin/user_info/edit.html:167
+#: templates/myadmin/user_info/edit.html:171
+#: templates/myadmin/user_info/list.html:95
+#: templates/myadmin/user_info/list.html:288
+msgid "是否绑定手机"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:43 framework/tests/__init__.py:42
+msgid "验证码错误"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:44 framework/tests/__init__.py:43
+msgid "登录次数过多"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:45
+msgid "账号密码错误"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:46
+msgid "请联系管理员修改密码!"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:48
+msgid "账户不存在!"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:49
+msgid "账户状态错误"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:53
+msgid "跳转地址"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:79
+msgid "登录用户名"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:80
+msgid "用户密码"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:81 apps/myadmin/views/__init__.py:191
+msgid "验证码"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:117
+#, python-format
+msgid "账户已 %s"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:183
+msgid "登录名称"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:185
+msgid "邮箱地址"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:186 templates/myadmin/register.html:135
+#: templates/myadmin/user_info/edit.html:131
+#: templates/myadmin/user_info/edit_self.html:105
+#: templates/myadmin/user_info/list.html:79
+#: templates/myadmin/user_info/list.html:274
+msgid "QQ"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:187
+msgid "手机号"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:188 templates/myadmin/register.html:81
+msgid "姓名"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:190 apps/myadmin/views/user.py:88
+#: framework/tests/__init__.py:116 templates/myadmin/register.html:108
+msgid "确认密码"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:212
+msgid "两次密码不一致"
+msgstr ""
+
+#: apps/myadmin/views/__init__.py:215
+#, python-format
+msgid "%s 已被注册"
+msgstr ""
+
+#: apps/myadmin/views/menu.py:19
+msgid "已翻译名"
+msgstr ""
+
+#: apps/myadmin/views/menu.py:67
+msgid "父节点ID"
+msgstr ""
+
+#: apps/myadmin/views/role.py:21
+msgid "角色资源列表"
+msgstr ""
+
+#: apps/myadmin/views/role.py:26
+msgid "菜单ID"
+msgstr ""
+
+#: apps/myadmin/views/role.py:27
+msgid "管理角色ID"
+msgstr ""
+
+#: apps/myadmin/views/role.py:29 templates/myadmin/role/edit.html:183
+#: templates/myadmin/widgets/role_members_select.html:14
+msgid "成员"
+msgstr ""
+
+#: apps/myadmin/views/role.py:91
+msgid "只有管理员才能添加角色!"
+msgstr ""
+
+#: apps/myadmin/views/user.py:20
+msgid "角色显示名"
+msgstr ""
+
+#: apps/myadmin/views/user.py:104
+msgid "密码都不能为空!"
+msgstr ""
+
+#: apps/myadmin/views/user.py:106
+msgid "新密码两次不一样!"
+msgstr ""
+
+#: apps/myadmin/views/user_info.py:54
+msgid "管理员id"
+msgstr ""
+
+#: apps/sdk_center/admin_resource.py:13
+msgid "发行项目"
+msgstr ""
+
+#: apps/sdk_center/admin_resource.py:38
+msgid "发行渠道"
+msgstr ""
+
+#: apps/sdk_center/admin_resource.py:43
+msgid "可管理的发行渠道,勾选平台后,此角色将拥有这个平台下的所有渠道权限."
+msgstr ""
+
+#: apps/sdk_center/admin_resource.py:57
+msgid "发行平台"
+msgstr ""
+
+#: apps/sdk_center/admin_resource.py:63
+msgid "广告媒体"
+msgstr ""
+
+#: apps/sdk_center/views/sdk_version.py:52
+msgid "SDK ID"
+msgstr ""
+
+#: apps/svn_admin/models.py:23
+msgid "只读"
+msgstr ""
+
+#: apps/svn_admin/models.py:24
+msgid "只写"
+msgstr ""
+
+#: apps/svn_admin/models.py:25
+msgid "可读写"
+msgstr ""
+
+#: apps/svn_admin/models.py:26
+msgid "禁止访问"
+msgstr ""
+
+#: apps/svn_admin/models.py:30
+msgid "项目别称"
+msgstr ""
+
+#: apps/svn_admin/models.py:32 templates/svn_admin/svn_path/edit.html:83
+#: templates/svn_admin/svn_path/list.html:50
+#: templates/svn_admin/svn_path/list.html:291
+msgid "svn 路径"
+msgstr ""
+
+#: apps/svn_admin/models.py:34 templates/svn_admin/svn_path/list.html:57
+#: templates/svn_admin/svn_path/list.html:299
+msgid "上级路径"
+msgstr ""
+
+#: apps/svn_admin/models.py:39 templates/svn_admin/svn_path/list.html:81
+#: templates/svn_admin/svn_path/list.html:326
+msgid "可读成员"
+msgstr ""
+
+#: apps/svn_admin/models.py:40 templates/svn_admin/svn_path/list.html:88
+#: templates/svn_admin/svn_path/list.html:338
+msgid "可写成员"
+msgstr ""
+
+#: apps/svn_admin/models.py:41 templates/svn_admin/svn_path/edit.html:173
+#: templates/svn_admin/svn_path/list.html:350
+msgid "其他访问权限"
+msgstr ""
+
+#: apps/svn_admin/views.py:25
+#, python-format
+msgid " 相同 [ %s ] 项目只能有一个 / 根"
+msgstr ""
+
+#: apps/sync_model/models.py:10 framework/models.py:484
+#: templates/flink_platform/connector/edit.html:47
+#: templates/flink_platform/connector/list.html:38
+#: templates/flink_platform/connector/list.html:245
+msgid "名称"
+msgstr ""
+
+#: apps/sync_model/models.py:11
+msgid "同步后台的地址"
+msgstr ""
+
+#: apps/ws_geteway/apps.py:10
+msgid "WebSocket 网关"
+msgstr ""
+
+#: config/menu_das.py:8
+msgid "都爱刷广告"
+msgstr ""
+
+#: config/menu_das.py:9
+msgid "App 管理"
+msgstr ""
+
+#: config/menu_das.py:10
+msgid "App 编辑"
+msgstr ""
+
+#: config/menu_das.py:11
+msgid "App 保存"
+msgstr ""
+
+#: config/menu_das.py:12
+msgid "App 删除"
+msgstr ""
+
+#: config/menu_das.py:13
+msgid "激活码 管理"
+msgstr ""
+
+#: config/menu_das.py:14
+msgid "激活码 编辑"
+msgstr ""
+
+#: config/menu_das.py:15
+msgid "激活码 保存"
+msgstr ""
+
+#: config/menu_das.py:16
+msgid "激活码 删除"
+msgstr ""
+
+#: config/menu_das.py:17
+msgid "续费记录"
+msgstr ""
+
+#: config/menu_das.py:18
+msgid "续费记录 编辑"
+msgstr ""
+
+#: config/menu_das.py:19
+msgid "续费记录 保存"
+msgstr ""
+
+#: config/menu_das.py:20
+msgid "续费记录 删除"
+msgstr ""
+
+#: config/menu_game.py:9
+msgid "充值统计"
+msgstr ""
+
+#: config/menu_game.py:10
+msgid "充值流水"
+msgstr ""
+
+#: config/menu_game.py:11
+msgid "直冲_界面"
+msgstr ""
+
+#: config/menu_game.py:12
+msgid "直冲_确定"
+msgstr ""
+
+#: config/menu_game.py:13
+msgid "补单"
+msgstr ""
+
+#: config/menu_game.py:14
+msgid "人工审核"
+msgstr ""
+
+#: config/menu_game.py:15
+msgid "审核发放"
+msgstr ""
+
+#: config/menu_game.py:16
+msgid "重发订单"
+msgstr ""
+
+#: config/menu_game.py:18
+msgid "玩家数据查询"
+msgstr ""
+
+#: config/menu_game.py:19
+msgid "玩家角色管理"
+msgstr ""
+
+#: config/menu_game.py:20
+msgid "角色信息"
+msgstr ""
+
+#: config/menu_game.py:22
+msgid "游戏管理操作"
+msgstr ""
+
+#: config/menu_game.py:23
+msgid "游戏活动列表"
+msgstr ""
+
+#: config/menu_game.py:24
+msgid "游戏活动_编辑"
+msgstr ""
+
+#: config/menu_game.py:25
+msgid "游戏活动_保存"
+msgstr ""
+
+#: config/menu_game.py:26
+msgid "游戏活动_查询"
+msgstr ""
+
+#: config/menu_game.py:27
+msgid "游戏活动_开启"
+msgstr ""
+
+#: config/menu_game.py:28
+msgid "游戏活动_关闭"
+msgstr ""
+
+#: config/menu_game.py:29
+msgid "游戏活动_活动状态"
+msgstr ""
+
+#: config/menu_game.py:30
+msgid "游戏活动_参数配置"
+msgstr ""
+
+#: config/menu_game.py:31
+msgid "游戏活动_参数历史"
+msgstr ""
+
+#: config/menu_game.py:32
+msgid "游戏活动_模版列表"
+msgstr ""
+
+#: config/menu_game.py:33
+msgid "游戏活动_模版保存"
+msgstr ""
+
+#: config/menu_game.py:34
+msgid "游戏活动_模版删除"
+msgstr ""
+
+#: config/menu_game.py:35
+msgid "游戏活动_删除"
+msgstr ""
+
+#: config/menu_game.py:36
+msgid "活动图片上传"
+msgstr ""
+
+#: config/menu_game.py:37
+msgid "游戏活动管理"
+msgstr ""
+
+#: config/menu_game.py:38
+msgid "活动修改记录"
+msgstr ""
+
+#: config/menu_game.py:40
+msgid "运营工具"
+msgstr ""
+
+#: config/menu_game.py:41
+msgid "公告管理"
+msgstr ""
+
+#: config/menu_game.py:42
+msgid "公告_编辑"
+msgstr ""
+
+#: config/menu_game.py:43
+msgid "公告_保存"
+msgstr ""
+
+#: config/menu_game.py:44
+msgid "公告_删除"
+msgstr ""
+
+#: config/menu_game.py:45
+msgid "公告_生成"
+msgstr ""
+
+#: config/menu_game.py:46
+msgid "图片_上传"
+msgstr ""
+
+#: config/menu_game.py:48
+msgid "游戏服管理"
+msgstr ""
+
+#: config/menu_game.py:49
+msgid "游戏服_编辑"
+msgstr ""
+
+#: config/menu_game.py:50
+msgid "游戏服_删除"
+msgstr ""
+
+#: config/menu_game.py:51
+msgid "游戏服_保存"
+msgstr ""
+
+#: config/menu_game.py:52
+msgid "服务器参数"
+msgstr ""
+
+#: config/menu_game.py:53
+msgid "滚动公告"
+msgstr ""
+
+#: config/menu_game.py:54
+msgid "同步表"
+msgstr ""
+
+#: config/menu_game.py:55
+msgid "修改服务器状态"
+msgstr ""
+
+#: config/menu_game.py:56
+msgid "修改版本号"
+msgstr ""
+
+#: config/menu_game.py:57
+msgid "聊天公告"
+msgstr ""
+
+#: config/menu_game.py:58
+msgid "生成服务器列表"
+msgstr ""
+
+#: config/menu_game.py:59
+msgid "显示服务器信息"
+msgstr ""
+
+#: config/menu_game.py:60 config/menu_sdk.py:48
+msgid "服分区管理"
+msgstr ""
+
+#: config/menu_game.py:61
+msgid "分区_编辑"
+msgstr ""
+
+#: config/menu_game.py:62
+msgid "分区_保存"
+msgstr ""
+
+#: config/menu_game.py:63
+msgid "分区_删除"
+msgstr ""
+
+#: config/menu_game.py:64
+msgid "分组_编辑"
+msgstr ""
+
+#: config/menu_game.py:65
+msgid "分组_删除"
+msgstr ""
+
+#: config/menu_game.py:66
+msgid "分组_保存"
+msgstr ""
+
+#: config/menu_game.py:67 config/menu_sdk.py:40
+msgid "渠道管理"
+msgstr ""
+
+#: config/menu_game.py:68
+msgid "渠道_编辑"
+msgstr ""
+
+#: config/menu_game.py:69
+msgid "渠道_保存"
+msgstr ""
+
+#: config/menu_game.py:70
+msgid "渠道_删除"
+msgstr ""
+
+#: config/menu_game.py:71
+msgid "平台_编辑"
+msgstr ""
+
+#: config/menu_game.py:72
+msgid "平台_保存"
+msgstr ""
+
+#: config/menu_game.py:73
+msgid "平台_删除"
+msgstr ""
+
+#: config/menu_game.py:74
+msgid "渠道信息_生成"
+msgstr ""
+
+#: config/menu_game.py:75
+msgid "版本更新管理"
+msgstr ""
+
+#: config/menu_game.py:76
+msgid "更新_编辑"
+msgstr ""
+
+#: config/menu_game.py:77
+msgid "更新_保存"
+msgstr ""
+
+#: config/menu_game.py:78
+msgid "更新_删除"
+msgstr ""
+
+#: config/menu_game.py:79
+msgid "更新_生成更新json文件"
+msgstr ""
+
+#: config/menu_game.py:80
+msgid "更新_清除旧文件"
+msgstr ""
+
+#: config/menu_game.py:81
+msgid "登录账号管理"
+msgstr ""
+
+#: config/menu_game.py:82
+msgid "封号"
+msgstr ""
+
+#: config/menu_game.py:83
+msgid "解封"
+msgstr ""
+
+#: config/menu_game.py:84
+#, fuzzy
+#| msgid "密码"
+msgid "改密码"
+msgstr "password"
+
+#: config/menu_game.py:85
+msgid "清密保"
+msgstr ""
+
+#: config/menu_game.py:86
+msgid "改密保"
+msgstr ""
+
+#: config/menu_game.py:87
+msgid "修改帐号状态"
+msgstr ""
+
+#: config/menu_game.py:88
+msgid "日历&事件"
+msgstr ""
+
+#: config/menu_game.py:90
+msgid "礼包卡管理"
+msgstr ""
+
+#: config/menu_game.py:91
+msgid "礼包卡记录_列表"
+msgstr ""
+
+#: config/menu_game.py:92
+msgid "礼包卡_编辑"
+msgstr ""
+
+#: config/menu_game.py:93
+msgid "礼包卡_保存"
+msgstr ""
+
+#: config/menu_game.py:94
+msgid "礼包卡_删除"
+msgstr ""
+
+#: config/menu_game.py:95
+msgid "礼包卡_生成"
+msgstr ""
+
+#: config/menu_game.py:96
+msgid "礼包卡_导出"
+msgstr ""
+
+#: config/menu_game.py:99
+msgid "推送管理"
+msgstr ""
+
+#: config/menu_game.py:100
+msgid "生成推送消息"
+msgstr ""
+
+#: config/menu_game.py:101
+#: templates/advertisement_brush_roboot/activation_code/list.html:144
+#: templates/advertisement_brush_roboot/activation_code/list.html:365
+#: templates/advertisement_brush_roboot/brush_app/list.html:123
+#: templates/advertisement_brush_roboot/renewal_record/list.html:181
+#: templates/analysis/query/list.html:114
+#: templates/flink_platform/code_paragraph/list.html:113
+#: templates/flink_platform/connector/list.html:106
+#: templates/flink_platform/flink_job/list.html:183
+#: templates/flink_platform/project/list.html:97
+#: templates/log_def/dict_define/list.html:113
+#: templates/log_def/log_define/list.html:110
+#: templates/myadmin/menu/list.html:139
+#: templates/myadmin/operate_log/list.html:142
+#: templates/myadmin/resource/list.html:97 templates/myadmin/role/list.html:133
+#: templates/myadmin/user/list.html:159
+#: templates/myadmin/user_info/list.html:141
+#: templates/sdk_center/sdk/list.html:138
+#: templates/sdk_center/sdk_version/list.html:150
+#: templates/svn_admin/svn_path/list.html:142
+msgid "添加"
+msgstr ""
+
+#: config/menu_game.py:102
+msgid "保存"
+msgstr ""
+
+#: config/menu_game.py:104
+msgid "用户类型管理"
+msgstr ""
+
+#: config/menu_game.py:105
+msgid "用户类型_编辑"
+msgstr ""
+
+#: config/menu_game.py:106
+msgid "用户类型_保存"
+msgstr ""
+
+#: config/menu_game.py:107
+msgid "用户类型_删除"
+msgstr ""
+
+#: config/menu_game.py:109
+msgid "充值通道管理"
+msgstr ""
+
+#: config/menu_game.py:110
+msgid "充值通道_编辑"
+msgstr ""
+
+#: config/menu_game.py:111
+msgid "充值通道_保存"
+msgstr ""
+
+#: config/menu_game.py:112
+msgid "充值通道_删除"
+msgstr ""
+
+#: config/menu_game.py:115
+msgid "客服"
+msgstr ""
+
+#: config/menu_game.py:116
+msgid "问题列表"
+msgstr ""
+
+#: config/menu_game.py:117
+msgid "问题回复"
+msgstr ""
+
+#: config/menu_game.py:118
+msgid "编辑问题分类"
+msgstr ""
+
+#: config/menu_game.py:119
+msgid "保存问题分类"
+msgstr ""
+
+#: config/menu_sdk.py:9
+msgid "聚合 SDK"
+msgstr ""
+
+#: config/menu_sdk.py:10
+msgid "我的游戏项目"
+msgstr ""
+
+#: config/menu_sdk.py:11
+msgid "游戏项目_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:12
+msgid "游戏项目_保存"
+msgstr ""
+
+#: config/menu_sdk.py:13
+msgid "游戏项目_删除"
+msgstr ""
+
+#: config/menu_sdk.py:14
+msgid "发行计划"
+msgstr ""
+
+#: config/menu_sdk.py:16
+msgid "游戏项目版本"
+msgstr ""
+
+#: config/menu_sdk.py:17
+msgid "游戏项目版本_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:18
+msgid "游戏项目版本_保存"
+msgstr ""
+
+#: config/menu_sdk.py:19
+msgid "游戏项目版本_删除"
+msgstr ""
+
+#: config/menu_sdk.py:20
+msgid "游戏项目版本SDK"
+msgstr ""
+
+#: config/menu_sdk.py:21
+msgid "游戏版本SDK_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:22
+msgid "游戏版本SDK_保存"
+msgstr ""
+
+#: config/menu_sdk.py:23
+msgid "增加SDK接入"
+msgstr ""
+
+#: config/menu_sdk.py:24
+msgid "取消SDK接入"
+msgstr ""
+
+#: config/menu_sdk.py:25
+msgid "更新SDK配置"
+msgstr ""
+
+#: config/menu_sdk.py:27
+msgid "SDK列表"
+msgstr ""
+
+#: config/menu_sdk.py:28
+msgid "SDK_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:29
+msgid "SDK_保存"
+msgstr ""
+
+#: config/menu_sdk.py:30
+msgid "SDK_删除"
+msgstr ""
+
+#: config/menu_sdk.py:31
+msgid "SDK版本列表"
+msgstr ""
+
+#: config/menu_sdk.py:32
+msgid "SDK版本_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:33
+msgid "SDK版本_保存"
+msgstr ""
+
+#: config/menu_sdk.py:34
+msgid "SDK版本_删除"
+msgstr ""
+
+#: config/menu_sdk.py:36
+msgid "渠道公司"
+msgstr ""
+
+#: config/menu_sdk.py:37
+msgid "渠道公司_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:38
+msgid "渠道公司_保存"
+msgstr ""
+
+#: config/menu_sdk.py:39
+msgid "渠道公司_删除"
+msgstr ""
+
+#: config/menu_sdk.py:41
+msgid "二级渠道_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:42
+msgid "二级渠道_保存"
+msgstr ""
+
+#: config/menu_sdk.py:43
+msgid "二级渠道_删除"
+msgstr ""
+
+#: config/menu_sdk.py:44
+msgid "一级渠道_编辑"
+msgstr ""
+
+#: config/menu_sdk.py:45
+msgid "一级渠道_保存"
+msgstr ""
+
+#: config/menu_sdk.py:46
+msgid "一级渠道_删除"
+msgstr ""
+
+#: config/menu_sdk.py:47
+msgid "服管理"
+msgstr ""
+
+#: config/menu_system.py:8
+msgid "系统管理"
+msgstr ""
+
+#: config/menu_system.py:9
+msgid "用户设置"
+msgstr ""
+
+#: config/menu_system.py:10
+msgid "用户_添加"
+msgstr ""
+
+#: config/menu_system.py:11
+msgid "用户_编辑"
+msgstr ""
+
+#: config/menu_system.py:12
+msgid "修改用户密码"
+msgstr ""
+
+#: config/menu_system.py:13
+msgid "用户_保存"
+msgstr ""
+
+#: config/menu_system.py:14
+msgid "用户资料"
+msgstr ""
+
+#: config/menu_system.py:15
+msgid "用户资料_编辑"
+msgstr ""
+
+#: config/menu_system.py:16
+msgid "用户资料_保存"
+msgstr ""
+
+#: config/menu_system.py:17
+msgid "操作日志"
+msgstr ""
+
+#: config/menu_system.py:18
+msgid "菜单管理"
+msgstr ""
+
+#: config/menu_system.py:19
+msgid "菜单_编辑"
+msgstr ""
+
+#: config/menu_system.py:20
+msgid "菜单_删除"
+msgstr ""
+
+#: config/menu_system.py:21
+msgid "菜单_保存"
+msgstr ""
+
+#: config/menu_system.py:23
+msgid "日志类管理"
+msgstr ""
+
+#: config/menu_system.py:24
+msgid "日志_编辑"
+msgstr ""
+
+#: config/menu_system.py:25
+msgid "日志_删除"
+msgstr ""
+
+#: config/menu_system.py:26
+msgid "日志_保存"
+msgstr ""
+
+#: config/menu_system.py:27
+msgid "字典管理"
+msgstr ""
+
+#: config/menu_system.py:28
+msgid "字典_编辑"
+msgstr ""
+
+#: config/menu_system.py:29
+msgid "字典_保存"
+msgstr ""
+
+#: config/menu_system.py:30
+msgid "字典_删除"
+msgstr ""
+
+#: config/menu_system.py:32
+msgid "查询管理"
+msgstr ""
+
+#: config/menu_system.py:33
+msgid "查询_编辑"
+msgstr ""
+
+#: config/menu_system.py:34
+msgid "查询_删除"
+msgstr ""
+
+#: config/menu_system.py:35
+msgid "查询_保存"
+msgstr ""
+
+#: config/menu_system.py:36
+msgid "查询_导出"
+msgstr ""
+
+#: config/menu_system.py:37
+msgid "清除缓存"
+msgstr ""
+
+#: config/menu_system.py:38
+msgid "查询权限"
+msgstr ""
+
+#: config/menu_system.py:40
+msgid "统计管理"
+msgstr ""
+
+#: config/menu_system.py:41
+msgid "统计_编辑"
+msgstr ""
+
+#: config/menu_system.py:42
+msgid "统计_保存"
+msgstr ""
+
+#: config/menu_system.py:43
+msgid "统计_删除"
+msgstr ""
+
+#: config/menu_system.py:44
+msgid "统计_执行"
+msgstr ""
+
+#: config/menu_system.py:46
+msgid "同步模型"
+msgstr ""
+
+#: config/menu_system.py:47
+msgid "同步模型_编辑"
+msgstr ""
+
+#: config/menu_system.py:48
+msgid "同步模型_保存"
+msgstr ""
+
+#: config/menu_system.py:49
+msgid "同步模型_删除"
+msgstr ""
+
+#: config/menu_system.py:50
+msgid "同步模型_推送"
+msgstr ""
+
+#: config/menu_system.py:52
+msgid "SVN 管理"
+msgstr ""
+
+#: config/menu_system.py:53
+msgid "SVN 路径_编辑"
+msgstr ""
+
+#: config/menu_system.py:54
+msgid "SVN 路径_保存"
+msgstr ""
+
+#: config/menu_system.py:55
+msgid "SVN 路径_删除"
+msgstr ""
+
+#: config/menu_system.py:56
+msgid "SVN db 文件预览"
+msgstr ""
+
+#: config/menu_system.py:58
+msgid "用户权限"
+msgstr ""
+
+#: config/menu_system.py:59
+msgid "主页"
+msgstr ""
+
+#: config/menu_system.py:60
+msgid "首页"
+msgstr ""
+
+#: config/menu_system.py:61
+msgid "修改自己密码"
+msgstr ""
+
+#: config/menu_system.py:62
+msgid "字典_接口"
+msgstr ""
+
+#: config/menu_system.py:63
+msgid "用户自定义菜单"
+msgstr ""
+
+#: config/menu_system.py:64
+msgid "消息列表"
+msgstr ""
+
+#: config/menu_system.py:65
+msgid "任务查询"
+msgstr ""
+
+#: config/role.py:14
+msgid "超级管理员"
+msgstr ""
+
+#: config/role.py:15
+msgid "分析用户"
+msgstr ""
+
+#: config/role.py:16
+msgid "项目运营"
+msgstr ""
+
+#: config/role.py:17
+msgid "渠道用户"
+msgstr ""
+
+#: config/role.py:18
+msgid "项目技术"
+msgstr ""
+
+#: config/role.py:19
+msgid "项目测试"
+msgstr ""
+
+#: config/role.py:20
+msgid "项目策划"
+msgstr ""
+
+#: config/role.py:21
+msgid "公共技术组"
+msgstr ""
+
+#: config/role.py:22
+msgid "sdk组"
+msgstr ""
+
+#: config/role.py:23
+msgid "服务端组"
+msgstr ""
+
+#: config/role.py:24
+msgid "客户端组"
+msgstr ""
+
+#: framework/enums.py:14 templates/flink_platform/flink_job/edit.html:37
+#: templates/myadmin/menu/edit.html:175 templates/myadmin/menu/edit.html:191
+msgid "是"
+msgstr ""
+
+#: framework/enums.py:15 templates/flink_platform/flink_job/edit.html:38
+#: templates/myadmin/menu/edit.html:176 templates/myadmin/menu/edit.html:192
+msgid "否"
+msgstr ""
+
+#: framework/filters.py:26
+msgid "排序字段 -xxx 为倒序 如:-id"
+msgstr ""
+
+#: framework/filters.py:111 framework/utils/myenum.py:123
+#: framework/utils/myenum.py:124
+msgid "等于"
+msgstr ""
+
+#: framework/filters.py:112
+msgid "不等于"
+msgstr ""
+
+#: framework/filters.py:116 framework/filters.py:176
+#: framework/utils/myenum.py:128
+msgid "有值"
+msgstr ""
+
+#: framework/filters.py:117 framework/filters.py:177
+#: framework/utils/myenum.py:129
+msgid "没值"
+msgstr ""
+
+#: framework/filters.py:121
+msgid "单选"
+msgstr ""
+
+#: framework/filters.py:122 framework/filters.py:201
+#: framework/utils/myenum.py:133
+msgid "多选"
+msgstr ""
+
+#: framework/filters.py:123 framework/utils/myenum.py:134
+msgid "反选"
+msgstr ""
+
+#: framework/filters.py:142 framework/utils/myenum.py:138
+msgid "包含"
+msgstr ""
+
+#: framework/filters.py:143 framework/utils/myenum.py:139
+msgid "不包含"
+msgstr ""
+
+#: framework/filters.py:144 framework/utils/myenum.py:140
+msgid "为空"
+msgstr ""
+
+#: framework/filters.py:145 framework/utils/myenum.py:141
+msgid "不为空"
+msgstr ""
+
+#: framework/filters.py:164
+msgid "大于"
+msgstr ""
+
+#: framework/filters.py:165
+msgid "小于"
+msgstr ""
+
+#: framework/filters.py:166
+msgid "区间"
+msgstr ""
+
+#: framework/filters.py:175
+msgid "时间范围"
+msgstr ""
+
+#: framework/filters.py:184
+msgid "为真"
+msgstr ""
+
+#: framework/filters.py:185
+msgid "为假"
+msgstr ""
+
+#: framework/filters.py:192
+msgid "与"
+msgstr ""
+
+#: framework/filters.py:193
+msgid "或"
+msgstr ""
+
+#: framework/filters.py:197
+msgid "字符类"
+msgstr ""
+
+#: framework/filters.py:198
+msgid "数值类"
+msgstr ""
+
+#: framework/filters.py:199
+msgid "布尔"
+msgstr ""
+
+#: framework/filters.py:200
+msgid "日期时间"
+msgstr ""
+
+#: framework/filters.py:241
+#, python-format
+msgid "%s 未被允许的筛选字段"
+msgstr ""
+
+#: framework/filters.py:244
+#, python-format
+msgid "%s 未定义操作类型"
+msgstr ""
+
+#: framework/models.py:271
+#: templates/advertisement_brush_roboot/brush_app/list.html:224
+msgid "版本"
+msgstr ""
+
+#: framework/response.py:26
+msgid "OK"
+msgstr ""
+
+#: framework/response.py:45
+msgid "业务错误代码"
+msgstr ""
+
+#: framework/response.py:46
+msgid "业务消息"
+msgstr ""
+
+#: framework/response.py:47
+msgid "业务数据"
+msgstr ""
+
+#: framework/response.py:116
+msgid "rsp error."
+msgstr ""
+
+#: framework/serializer.py:184
+msgid "内置版本号"
+msgstr ""
+
+#: framework/serializer.py:221
+msgid "对象ID"
+msgstr ""
+
+#: framework/serializer.py:235
+msgid "对象ID列表"
+msgstr ""
+
+#: framework/serializer.py:240
+msgid "查询的页码"
+msgstr ""
+
+#: framework/serializer.py:241
+msgid "显示条目数,默认100"
+msgstr ""
+
+#: framework/serializer.py:242
+msgid "需要查询的字段名,以,号分割"
+msgstr ""
+
+#: framework/serializer.py:243
+msgid "排序字段 -xxx 为倒序"
+msgstr ""
+
+#: framework/serializer.py:247 framework/tests/__init__.py:64
+msgid "总条目数"
+msgstr ""
+
+#: framework/serializer.py:248 framework/tests/__init__.py:65
+msgid "下一页地址"
+msgstr ""
+
+#: framework/serializer.py:249 framework/tests/__init__.py:66
+msgid "上一页地址"
+msgstr ""
+
+#: framework/serializer.py:250 framework/tests/__init__.py:67
+msgid "当前页数"
+msgstr ""
+
+#: framework/serializer.py:251 framework/tests/__init__.py:68
+msgid "每页显示数量"
+msgstr ""
+
+#: framework/serializer.py:252 framework/tests/__init__.py:69
+msgid "查询条件"
+msgstr ""
+
+#: framework/serializer.py:257
+msgid "是否复制"
+msgstr ""
+
+#: framework/static.py:49
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: framework/static.py:51
+#, python-format
+msgid "\"%(path)s\" does not exist"
+msgstr ""
+
+#: framework/tests/__init__.py:94
+msgid "f1"
+msgstr ""
+
+#: framework/tests/__init__.py:95
+msgid "f2"
+msgstr ""
+
+#: framework/utils/myenum.py:142
+msgid "正则匹配\t匹配判断"
+msgstr ""
+
+#: framework/utils/myenum.py:143
+msgid "正则不匹配 匹配判断"
+msgstr ""
+
+#: framework/utils/myenum.py:153
+msgid "红"
+msgstr ""
+
+#: framework/validators.py:18
+msgid "包名,符合xx.xx.xx"
+msgstr ""
+
+#: framework/validators.py:21
+msgid "由数字和字母组成，并且要同时含有数字和字母，且长度要在8-16位之间"
+msgstr ""
+
+#: framework/views.py:331
+msgid "页码,第几页"
+msgstr ""
+
+#: framework/views.py:332
+msgid "每页返回数量"
+msgstr ""
+
+#: framework/views.py:444
+msgid "保存成功"
+msgstr ""
+
+#: framework/views.py:452
+msgid "复制成功"
+msgstr ""
+
+#: framework/views.py:493
+msgid "跳转页面"
+msgstr ""
+
+#: framework/views.py:494
+msgid "语言代码"
+msgstr ""
+
+#: settings.py:43
+msgid "管理后台"
+msgstr ""
+
+#: settings.py:219
+msgid "German"
+msgstr ""
+
+#: settings.py:220
+msgid "English"
+msgstr ""
+
+#: settings.py:221
+msgid "简体"
+msgstr ""
+
+#: settings.py:222
+msgid "繁体"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:4
+#: templates/advertisement_brush_roboot/brush_app/edit.html:4
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:4
+#: templates/myadmin/operate_log/edit.html:4
+msgid " 编辑"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:11
+#: templates/advertisement_brush_roboot/activation_code/list.html:11
+#: templates/advertisement_brush_roboot/brush_app/edit.html:11
+#: templates/advertisement_brush_roboot/brush_app/list.html:11
+msgid "都爱刷"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:12
+#: templates/advertisement_brush_roboot/activation_code/list.html:305
+#: templates/advertisement_brush_roboot/brush_app/edit.html:12
+#: templates/advertisement_brush_roboot/brush_app/list.html:282
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:12
+#: templates/advertisement_brush_roboot/renewal_record/list.html:373
+#: templates/analysis/query/list.html:372
+#: templates/flink_platform/code_paragraph/edit.html:13
+#: templates/flink_platform/code_paragraph/list.html:349
+#: templates/flink_platform/connector/edit.html:13
+#: templates/flink_platform/connector/list.html:302
+#: templates/flink_platform/flink_job/edit.html:25
+#: templates/flink_platform/flink_job/list.html:493
+#: templates/flink_platform/project/edit.html:13
+#: templates/flink_platform/project/list.html:282
+#: templates/log_def/dict_define/edit.html:12
+#: templates/log_def/dict_define/list.html:300
+#: templates/log_def/log_define/edit.html:13
+#: templates/log_def/log_define/list.html:296
+#: templates/myadmin/menu/edit.html:12 templates/myadmin/menu/list.html:337
+#: templates/myadmin/operate_log/edit.html:12
+#: templates/myadmin/operate_log/list.html:300
+#: templates/myadmin/resource/edit.html:12
+#: templates/myadmin/resource/list.html:221 templates/myadmin/role/edit.html:13
+#: templates/myadmin/role/list.html:360 templates/myadmin/user/edit.html:13
+#: templates/myadmin/user/list.html:429
+#: templates/myadmin/user_info/edit.html:12
+#: templates/myadmin/user_info/edit_self.html:12
+#: templates/myadmin/user_info/list.html:314
+#: templates/sdk_center/sdk/list.html:362
+#: templates/sdk_center/sdk_version/list.html:375
+#: templates/svn_admin/svn_path/edit.html:12
+#: templates/svn_admin/svn_path/list.html:382
+msgid "编辑"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:31
+#: templates/advertisement_brush_roboot/activation_code/list.html:30
+#: templates/advertisement_brush_roboot/activation_code/list.html:229
+#: templates/advertisement_brush_roboot/brush_app/edit.html:31
+#: templates/advertisement_brush_roboot/brush_app/list.html:29
+#: templates/advertisement_brush_roboot/brush_app/list.html:204
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:31
+#: templates/advertisement_brush_roboot/renewal_record/list.html:30
+#: templates/advertisement_brush_roboot/renewal_record/list.html:262
+#: templates/analysis/query/list.html:29 templates/analysis/query/list.html:223
+#: templates/flink_platform/code_paragraph/edit.html:34
+#: templates/flink_platform/code_paragraph/list.html:29
+#: templates/flink_platform/code_paragraph/list.html:257
+#: templates/flink_platform/connector/edit.html:31
+#: templates/flink_platform/connector/list.html:31
+#: templates/flink_platform/connector/list.html:237
+#: templates/flink_platform/flink_job/edit.html:222
+#: templates/flink_platform/flink_job/list.html:29
+#: templates/flink_platform/flink_job/list.html:337
+#: templates/flink_platform/project/edit.html:31
+#: templates/flink_platform/project/list.html:30
+#: templates/flink_platform/project/list.html:229
+#: templates/log_def/dict_define/edit.html:31
+#: templates/log_def/dict_define/list.html:29
+#: templates/log_def/dict_define/list.html:222
+#: templates/log_def/log_define/edit.html:33
+#: templates/log_def/log_define/list.html:29
+#: templates/log_def/log_define/list.html:224
+#: templates/myadmin/menu/edit.html:32 templates/myadmin/menu/list.html:30
+#: templates/myadmin/menu/list.html:246
+#: templates/myadmin/operate_log/edit.html:31
+#: templates/myadmin/operate_log/list.html:30
+#: templates/myadmin/operate_log/list.html:225
+#: templates/myadmin/resource/edit.html:32
+#: templates/myadmin/resource/list.html:30
+#: templates/myadmin/resource/list.html:181 templates/myadmin/role/edit.html:34
+#: templates/myadmin/role/list.html:34 templates/myadmin/role/list.html:270
+#: templates/myadmin/user/edit.html:30 templates/myadmin/user/list.html:33
+#: templates/myadmin/user/list.html:314
+#: templates/myadmin/user_info/edit.html:31
+#: templates/myadmin/user_info/edit_self.html:30
+#: templates/myadmin/user_info/list.html:29
+#: templates/myadmin/user_info/list.html:225
+#: templates/sdk_center/sdk/list.html:27 templates/sdk_center/sdk/list.html:250
+#: templates/sdk_center/sdk_version/list.html:28
+#: templates/sdk_center/sdk_version/list.html:254
+#: templates/sdk_center/widgets/remote_sdk_list.html:71
+#: templates/svn_admin/svn_path/edit.html:31
+#: templates/svn_admin/svn_path/list.html:29
+#: templates/svn_admin/svn_path/list.html:267
+msgid "id"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:181
+#: templates/advertisement_brush_roboot/brush_app/edit.html:204
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:254
+#: templates/analysis/query/edit.html:252
+#: templates/flink_platform/code_paragraph/edit.html:202
+#: templates/flink_platform/connector/edit.html:158
+#: templates/flink_platform/flink_job/edit.html:667
+#: templates/flink_platform/project/edit.html:119
+#: templates/framework/widgets/filter.html:88
+#: templates/log_def/dict_define/edit.html:170
+#: templates/log_def/log_define/edit.html:219
+#: templates/myadmin/menu/edit.html:235
+#: templates/myadmin/operate_log/edit.html:192
+#: templates/myadmin/resource/edit.html:116
+#: templates/myadmin/role/edit.html:282 templates/myadmin/user/edit.html:259
+#: templates/myadmin/user_info/edit.html:186
+#: templates/myadmin/user_info/edit_self.html:142
+#: templates/sdk_center/sdk/edit.html:107
+#: templates/sdk_center/sdk_version/edit.html:164
+#: templates/svn_admin/svn_path/edit.html:234
+msgid "重 置"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:183
+#: templates/advertisement_brush_roboot/brush_app/edit.html:206
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:256
+#: templates/analysis/query/edit.html:254
+#: templates/flink_platform/code_paragraph/edit.html:204
+#: templates/flink_platform/connector/edit.html:160
+#: templates/flink_platform/flink_job/edit.html:672
+#: templates/flink_platform/project/edit.html:121
+#: templates/log_def/dict_define/edit.html:172
+#: templates/log_def/log_define/edit.html:221
+#: templates/myadmin/menu/edit.html:237
+#: templates/myadmin/operate_log/edit.html:194
+#: templates/myadmin/resource/edit.html:118
+#: templates/myadmin/role/edit.html:284 templates/myadmin/user/edit.html:261
+#: templates/myadmin/user_info/edit.html:188
+#: templates/myadmin/user_info/edit_self.html:144
+#: templates/sdk_center/sdk/edit.html:109
+#: templates/sdk_center/sdk_version/edit.html:166
+#: templates/svn_admin/svn_path/edit.html:236
+msgid "保 存"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:190
+#: templates/advertisement_brush_roboot/brush_app/edit.html:213
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:263
+#: templates/analysis/query/edit.html:261
+#: templates/flink_platform/code_paragraph/edit.html:214
+#: templates/flink_platform/connector/edit.html:166
+#: templates/flink_platform/flink_job/edit.html:682
+#: templates/flink_platform/project/edit.html:127
+#: templates/log_def/dict_define/edit.html:179
+#: templates/log_def/log_define/edit.html:228
+#: templates/myadmin/menu/edit.html:244
+#: templates/myadmin/operate_log/edit.html:201
+#: templates/myadmin/resource/edit.html:125
+#: templates/myadmin/role/edit.html:291 templates/myadmin/user/edit.html:268
+#: templates/myadmin/user_info/edit.html:195
+#: templates/myadmin/user_info/edit_self.html:151
+#: templates/sdk_center/sdk/edit.html:116
+#: templates/sdk_center/sdk_version/edit.html:173
+#: templates/svn_admin/svn_path/edit.html:243
+msgid "保存并继续编辑"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/edit.html:193
+#: templates/advertisement_brush_roboot/brush_app/edit.html:216
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:266
+#: templates/analysis/query/edit.html:264
+#: templates/flink_platform/code_paragraph/edit.html:220
+#: templates/flink_platform/connector/edit.html:169
+#: templates/flink_platform/flink_job/edit.html:688
+#: templates/flink_platform/project/edit.html:130
+#: templates/log_def/dict_define/edit.html:182
+#: templates/log_def/log_define/edit.html:231
+#: templates/myadmin/menu/edit.html:247
+#: templates/myadmin/operate_log/edit.html:204
+#: templates/myadmin/resource/edit.html:128
+#: templates/myadmin/role/edit.html:294 templates/myadmin/user/edit.html:271
+#: templates/myadmin/user_info/edit.html:198
+#: templates/myadmin/user_info/edit_self.html:154
+#: templates/sdk_center/sdk/edit.html:119
+#: templates/sdk_center/sdk_version/edit.html:176
+#: templates/svn_admin/svn_path/edit.html:246
+msgid "保存并增加另一个"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/list.html:4
+#: templates/advertisement_brush_roboot/brush_app/list.html:4
+#: templates/advertisement_brush_roboot/renewal_record/list.html:4
+#: templates/myadmin/operate_log/list.html:4
+msgid " 列表"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/list.html:12
+#: templates/advertisement_brush_roboot/brush_app/list.html:12
+#: templates/advertisement_brush_roboot/renewal_record/list.html:12
+#: templates/analysis/query/list.html:12
+#: templates/flink_platform/code_paragraph/list.html:12
+#: templates/flink_platform/connector/list.html:12
+#: templates/flink_platform/flink_job/list.html:12
+#: templates/flink_platform/project/list.html:12
+#: templates/log_def/dict_define/list.html:12
+#: templates/log_def/log_define/list.html:12
+#: templates/myadmin/operate_log/list.html:12
+#: templates/myadmin/resource/list.html:12
+#: templates/myadmin/user_info/list.html:12
+#: templates/sdk_center/sdk/list.html:12
+#: templates/sdk_center/sdk_version/list.html:12
+#: templates/svn_admin/svn_path/list.html:12
+msgid "列表"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/list.html:150
+#: templates/advertisement_brush_roboot/activation_code/list.html:355
+msgid "批量添加激活码"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/list.html:300
+#: templates/advertisement_brush_roboot/brush_app/list.html:277
+#: templates/advertisement_brush_roboot/renewal_record/list.html:368
+#: templates/analysis/query/list.html:367
+#: templates/flink_platform/code_paragraph/list.html:344
+#: templates/flink_platform/connector/list.html:297
+#: templates/flink_platform/flink_job/list.html:488
+#: templates/flink_platform/project/list.html:277
+#: templates/log_def/dict_define/list.html:295
+#: templates/log_def/log_define/list.html:291
+#: templates/myadmin/menu/list.html:332
+#: templates/myadmin/operate_log/list.html:295
+#: templates/myadmin/resource/list.html:216
+#: templates/myadmin/role/list.html:355 templates/myadmin/user/list.html:423
+#: templates/myadmin/user_info/list.html:309
+#: templates/sdk_center/sdk/list.html:355
+#: templates/sdk_center/sdk_version/list.html:370
+#: templates/svn_admin/svn_path/list.html:377
+msgid "操作"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/activation_code/list.html:306
+#: templates/advertisement_brush_roboot/brush_app/list.html:283
+#: templates/advertisement_brush_roboot/renewal_record/list.html:374
+#: templates/analysis/query/list.html:373
+#: templates/flink_platform/code_paragraph/list.html:350
+#: templates/flink_platform/connector/list.html:303
+#: templates/flink_platform/flink_job/list.html:494
+#: templates/flink_platform/project/list.html:283
+#: templates/log_def/dict_define/list.html:301
+#: templates/log_def/log_define/list.html:297
+#: templates/myadmin/menu/list.html:338
+#: templates/myadmin/operate_log/list.html:301
+#: templates/myadmin/resource/list.html:222
+#: templates/myadmin/role/list.html:361 templates/myadmin/user/list.html:430
+#: templates/myadmin/user_info/list.html:315
+#: templates/sdk_center/sdk/list.html:363
+#: templates/sdk_center/sdk_version/list.html:376
+#: templates/svn_admin/svn_path/list.html:383
+msgid "复制"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/brush_app/edit.html:49
+#: templates/advertisement_brush_roboot/brush_app/list.html:37
+#: templates/advertisement_brush_roboot/brush_app/list.html:211
+msgid "app 名称"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/brush_app/edit.html:89
+msgid "xxx.xx.xx 格式"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/brush_app/edit.html:96
+msgid "app 版本"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/renewal_record/edit.html:11
+#: templates/advertisement_brush_roboot/renewal_record/list.html:11
+msgid "续费"
+msgstr ""
+
+#: templates/advertisement_brush_roboot/renewal_record/list.html:165
+#: templates/flink_platform/code_paragraph/list.html:95
+#: templates/flink_platform/connector/list.html:89
+#: templates/flink_platform/flink_job/list.html:166
+#: templates/flink_platform/project/list.html:78
+#: templates/myadmin/operate_log/list.html:126
+#: templates/myadmin/resource/list.html:81
+#: templates/myadmin/user_info/list.html:125
+#: templates/sdk_center/sdk/list.html:95
+msgid "ID"
+msgstr ""
+
+#: templates/analysis/query/list.html:4
+msgid "查询 列表"
+msgstr ""
+
+#: templates/analysis/query/list.html:11
+msgid "查询"
+msgstr ""
+
+#: templates/analysis/query/list.html:36
+msgid "关联表标示"
+msgstr ""
+
+#: templates/analysis/query/list.html:44 templates/analysis/query/list.html:99
+#: templates/analysis/query/list.html:247
+msgid "查询名称"
+msgstr ""
+
+#: templates/analysis/query/list.html:51 templates/analysis/query/list.html:259
+msgid "查询标识"
+msgstr ""
+
+#: templates/analysis/query/list.html:58 templates/analysis/query/list.html:284
+msgid "用途分组"
+msgstr ""
+
+#: templates/analysis/query/list.html:72 templates/analysis/query/list.html:343
+msgid "模版名"
+msgstr ""
+
+#: templates/analysis/query/list.html:231
+msgid "关联表标识"
+msgstr ""
+
+#: templates/analysis/query/list.html:239
+msgid "log type"
+msgstr ""
+
+#: templates/analysis/query/list.html:276
+msgid "where"
+msgstr ""
+
+#: templates/analysis/query/list.html:292
+msgid "order"
+msgstr ""
+
+#: templates/analysis/query/list.html:300
+msgid "order type"
+msgstr ""
+
+#: templates/analysis/query/list.html:327
+msgid "缓存时间"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:4
+msgid "Flink 代码段 编辑"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:12
+#: templates/flink_platform/code_paragraph/list.html:11
+msgid "Flink 代码段"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:52
+#: templates/flink_platform/connector/edit.html:82
+#: templates/myadmin/role/edit.html:86
+msgid "根"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:104
+msgid "共享"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:105
+msgid "私有"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:135
+msgid "连接器"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:139
+msgid "未选择"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:177
+msgid "使用 Create Talbe"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:178
+msgid "语法"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/edit.html:181
+msgid "语法文档"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/list.html:4
+msgid "Flink 代码段 列表"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/list.html:133
+#: templates/flink_platform/connector/list.html:113
+#: templates/flink_platform/project/list.html:105
+#: templates/myadmin/menu/list.html:151 templates/myadmin/role/list.html:151
+#: templates/myadmin/widgets/menu_tree_table_select.html:7
+#: templates/svn_admin/svn_path/list.html:148
+msgid "展开"
+msgstr ""
+
+#: templates/flink_platform/code_paragraph/list.html:136
+#: templates/flink_platform/connector/list.html:116
+#: templates/flink_platform/project/list.html:108
+#: templates/myadmin/menu/list.html:154 templates/myadmin/role/list.html:154
+#: templates/myadmin/widgets/menu_tree_table_select.html:10
+#: templates/svn_admin/svn_path/list.html:151
+msgid "收缩"
+msgstr ""
+
+#: templates/flink_platform/connector/edit.html:4
+msgid "Flink 连接器 编辑"
+msgstr ""
+
+#: templates/flink_platform/connector/edit.html:12
+#: templates/flink_platform/connector/list.html:11
+msgid "Flink 连接器"
+msgstr ""
+
+#: templates/flink_platform/connector/list.html:4
+msgid "Flink 连接器 列表"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:4
+msgid "FlinkJob 编辑"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:24
+#: templates/flink_platform/flink_job/list.html:11
+msgid "FlinkJob"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:36
+msgid "是否停止命令"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:45
+msgid "执行命令"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:51
+msgid "执行日期"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:100
+msgid "数据集"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:110
+msgid "公共"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:113
+#: templates/flink_platform/project/edit.html:12
+#: templates/flink_platform/project/list.html:11
+#: templates/svn_admin/svn_path/edit.html:64
+#: templates/svn_admin/svn_path/edit.html:70
+#: templates/svn_admin/svn_path/list.html:43
+#: templates/svn_admin/svn_path/list.html:283
+msgid "项目"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:218
+msgid "基本信息"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:240
+#: templates/flink_platform/flink_job/edit.html:256
+msgid "无"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:407
+msgid "任务内容"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:422
+msgid "单任务执行所有SQL"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:438
+msgid "任务配置"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:456
+msgid "并行度"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:485
+msgid "Flink Config 配置"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:501
+msgid "Flink Table Config 配置"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:503
+msgid "Scala 语法 使用代码控制,参考:"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:524
+msgid "保存点"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:533
+msgid "清空启动路径则会以全新状态启动"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:541
+msgid "使用最后保存点启动"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:546
+msgid "全新执行"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:588
+msgid "选择保存点启动"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:592
+msgid "保存时间"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:609
+#: templates/flink_platform/flink_job/list.html:398
+msgid "FLINK JOB 地址"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:613
+msgid "运 行"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:619
+msgid "是否停止任务,强制 则会关闭 flink 进程"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:620
+#: templates/flink_platform/flink_job/edit.html:635
+msgid "确认"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:621
+#: templates/flink_platform/flink_job/edit.html:636
+msgid "强制"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:628
+#: templates/flink_platform/flink_job/list.html:200
+msgid "停 止"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:634
+msgid "是否重启任务"
+msgstr ""
+
+#: templates/flink_platform/flink_job/edit.html:642
+#: templates/flink_platform/flink_job/list.html:201
+msgid "重 启"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:4
+msgid "FlinkJob 列表"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:139
+#: templates/flink_platform/flink_job/list.html:453
+msgid "最后 lastsavepoint 路径"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:196
+msgid "任务操作"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:199
+msgid "启 动"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:203
+msgid "强制停止"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:204
+msgid "强制重启"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:214
+msgid "自动刷新状态"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:383
+msgid "点击查看其他任务状态"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:389
+msgid "Flink Job 信息"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:477
+#: templates/sdk_center/widgets/remote_sdk_list.html:123
+msgid "操作状态"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:660
+msgid "确定启动所选任务?"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:667
+msgid "确定停止所选任务?"
+msgstr ""
+
+#: templates/flink_platform/flink_job/list.html:673
+msgid "确定重启所选任务?"
+msgstr ""
+
+#: templates/flink_platform/project/edit.html:4
+msgid "项目 编辑"
+msgstr ""
+
+#: templates/flink_platform/project/list.html:4
+msgid "项目 列表"
+msgstr ""
+
+#: templates/framework/i18n_js.html:6
+msgid "应用"
+msgstr ""
+
+#: templates/framework/i18n_js.html:7
+msgid "取消"
+msgstr ""
+
+#: templates/framework/i18n_js.html:8 templates/myadmin/register.html:178
+msgid "重置"
+msgstr ""
+
+#: templates/framework/i18n_js.html:9
+msgid "自定义"
+msgstr ""
+
+#: templates/framework/i18n_js.html:10
+msgid "日"
+msgstr ""
+
+#: templates/framework/i18n_js.html:10
+msgid "二"
+msgstr ""
+
+#: templates/framework/i18n_js.html:10
+msgid "三"
+msgstr ""
+
+#: templates/framework/i18n_js.html:10
+msgid "四"
+msgstr ""
+
+#: templates/framework/i18n_js.html:10
+msgid "五"
+msgstr ""
+
+#: templates/framework/i18n_js.html:10
+msgid "六"
+msgstr ""
+
+#: templates/framework/i18n_js.html:11
+msgid "一月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:12
+msgid "二月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:13
+msgid "三月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:14
+msgid "四月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:15
+msgid "五月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:16
+msgid "六月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:17
+msgid "七月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:18
+msgid "八月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:19
+msgid "九月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:20
+msgid "十月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:21
+msgid "十一月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:22
+msgid "十二月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:25
+msgid "清空"
+msgstr ""
+
+#: templates/framework/i18n_js.html:26
+msgid "今天"
+msgstr ""
+
+#: templates/framework/i18n_js.html:27
+msgid "昨天"
+msgstr ""
+
+#: templates/framework/i18n_js.html:28
+msgid "前天"
+msgstr ""
+
+#: templates/framework/i18n_js.html:29
+msgid "最近7天"
+msgstr ""
+
+#: templates/framework/i18n_js.html:30
+msgid "最近30天"
+msgstr ""
+
+#: templates/framework/i18n_js.html:31
+msgid "本月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:32
+msgid "上月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:33
+msgid "最近3个月"
+msgstr ""
+
+#: templates/framework/i18n_js.html:34
+msgid "最近1年"
+msgstr ""
+
+#: templates/framework/i18n_js.html:35
+msgid "本年"
+msgstr ""
+
+#: templates/framework/widgets/filter.html:85
+msgid "搜 索"
+msgstr ""
+
+#: templates/framework/widgets/filter.html:94
+msgid "筛选条件"
+msgstr "Filter Condition"
+
+#: templates/log_def/dict_define/edit.html:4
+msgid "字典定义 编辑"
+msgstr ""
+
+#: templates/log_def/dict_define/edit.html:11
+#: templates/log_def/dict_define/list.html:11
+msgid "字典定义"
+msgstr ""
+
+#: templates/log_def/dict_define/edit.html:48
+#: templates/log_def/dict_define/list.html:36
+#: templates/log_def/dict_define/list.html:230
+msgid "字典名"
+msgstr ""
+
+#: templates/log_def/dict_define/edit.html:65
+#: templates/log_def/dict_define/list.html:43
+#: templates/log_def/dict_define/list.html:238
+msgid "标识名"
+msgstr ""
+
+#: templates/log_def/dict_define/edit.html:113
+#: templates/log_def/dict_define/edit.html:118
+#: templates/log_def/dict_define/list.html:57
+#: templates/log_def/dict_define/list.html:260
+msgid "字典的类型"
+msgstr ""
+
+#: templates/log_def/dict_define/edit.html:133
+msgid "键值"
+msgstr ""
+
+#: templates/log_def/dict_define/edit.html:149
+msgid "帮助"
+msgstr ""
+
+#: templates/log_def/dict_define/list.html:4
+msgid "字典定义 列表"
+msgstr ""
+
+#: templates/log_def/log_define/edit.html:5
+msgid "日志类定义 编辑"
+msgstr ""
+
+#: templates/log_def/log_define/edit.html:12
+#: templates/log_def/log_define/list.html:11
+msgid "日志类定义"
+msgstr ""
+
+#: templates/log_def/log_define/edit.html:69
+#: templates/log_def/log_define/list.html:43
+msgid "日志表标示"
+msgstr ""
+
+#: templates/log_def/log_define/list.html:4
+msgid "日志类定义 列表"
+msgstr ""
+
+#: templates/log_def/log_define/list.html:116
+msgid "同步中央表"
+msgstr ""
+
+#: templates/myadmin/i18n.html:11
+msgid "Languages"
+msgstr ""
+
+#: templates/myadmin/index.html:405
+msgid "账号未激活,请联系管理员"
+msgstr ""
+
+#: templates/myadmin/login.html:130
+msgid "其他登录"
+msgstr ""
+
+#: templates/myadmin/login.html:154
+msgid "注 册"
+msgstr ""
+
+#: templates/myadmin/menu/edit.html:4
+msgid "菜单模型 编辑"
+msgstr ""
+
+#: templates/myadmin/menu/edit.html:11 templates/myadmin/menu/list.html:11
+msgid "菜单模型"
+msgstr ""
+
+#: templates/myadmin/menu/edit.html:48
+msgid "父节点"
+msgstr ""
+
+#: templates/myadmin/menu/edit.html:52 templates/myadmin/menu/edit.html:54
+msgid "根节点"
+msgstr ""
+
+#: templates/myadmin/menu/edit.html:66 templates/myadmin/menu/list.html:46
+#: templates/myadmin/menu/list.html:124 templates/myadmin/menu/list.html:255
+msgid "菜单显示名"
+msgstr ""
+
+#: templates/myadmin/menu/edit.html:91 templates/myadmin/role/edit.html:75
+msgid "纯字母唯一"
+msgstr ""
+
+#: templates/myadmin/menu/list.html:4
+msgid "菜单模型 列表"
+msgstr ""
+
+#: templates/myadmin/menu/list.html:147
+msgid "更新菜单"
+msgstr ""
+
+#: templates/myadmin/menu/list.html:161
+msgid "添加子项"
+msgstr ""
+
+#: templates/myadmin/menu/update_menu.html:4
+msgid "APP菜单模型 列表"
+msgstr ""
+
+#: templates/myadmin/menu/update_menu.html:12
+msgid "选择APP"
+msgstr ""
+
+#: templates/myadmin/operate_log/edit.html:11
+#: templates/myadmin/operate_log/list.html:11
+msgid "操作记录"
+msgstr ""
+
+#: templates/myadmin/register.html:6 templates/myadmin/user/list.html:233
+msgid "注册页面"
+msgstr ""
+
+#: templates/myadmin/register.html:67
+msgid "注册账号"
+msgstr ""
+
+#: templates/myadmin/register.html:90
+msgid "登录名"
+msgstr ""
+
+#: templates/myadmin/register.html:127
+msgid "邮箱"
+msgstr ""
+
+#: templates/myadmin/register.html:143
+msgid "手机"
+msgstr ""
+
+#: templates/myadmin/register.html:183
+msgid "注册"
+msgstr ""
+
+#: templates/myadmin/register.html:195
+msgid "返回登录"
+msgstr ""
+
+#: templates/myadmin/register.html:222
+msgid "是否进入系统?"
+msgstr ""
+
+#: templates/myadmin/resource/edit.html:4
+msgid "资源 编辑"
+msgstr ""
+
+#: templates/myadmin/resource/edit.html:11
+#: templates/myadmin/resource/list.html:11
+msgid "资源"
+msgstr ""
+
+#: templates/myadmin/resource/list.html:4
+msgid "资源 列表"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:4
+msgid "角色模型 编辑"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:12
+msgid "角色模型"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:18
+msgid "资源管理"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:50 templates/myadmin/role/list.html:42
+#: templates/myadmin/role/list.html:278
+msgid "角色名"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:66 templates/myadmin/role/list.html:50
+#: templates/myadmin/role/list.html:112 templates/myadmin/role/list.html:285
+msgid "标识"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:115 templates/myadmin/role/list.html:77
+#: templates/myadmin/role/list.html:326
+msgid "角色描述"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:168
+msgid "模块权限"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:175
+msgid "管理角色"
+msgstr ""
+
+#: templates/myadmin/role/edit.html:207
+msgid "可见的模块权限.注意! 必须权限 要勾选,双击展开,使用右键勾选子项目."
+msgstr ""
+
+#: templates/myadmin/role/edit.html:219
+msgid "可管理(下级)的角色."
+msgstr ""
+
+#: templates/myadmin/role/edit.html:235
+msgid "成员列表"
+msgstr ""
+
+#: templates/myadmin/role/list.html:4
+msgid "角色模型 列表"
+msgstr ""
+
+#: templates/myadmin/role/list.html:13 templates/myadmin/user/list.html:14
+msgid "管理员 列表"
+msgstr "管理员 列表 en"
+
+#: templates/myadmin/role/list.html:16 templates/myadmin/user/list.html:17
+msgid "角色 列表"
+msgstr ""
+
+#: templates/myadmin/role/list.html:67 templates/myadmin/role/list.html:315
+msgid "角色类型"
+msgstr ""
+
+#: templates/myadmin/role/list.html:292
+msgid "上级id"
+msgstr ""
+
+#: templates/myadmin/user/change_password.html:5
+#: templates/myadmin/user/change_password.html:11
+msgid "修改密码"
+msgstr ""
+
+#: templates/myadmin/user/edit.html:4
+msgid "管理员模型 编辑"
+msgstr ""
+
+#: templates/myadmin/user/edit.html:12
+msgid "管理员模型"
+msgstr ""
+
+#: templates/myadmin/user/edit.html:44
+msgid "别名(姓名)"
+msgstr ""
+
+#: templates/myadmin/user/edit.html:60
+msgid "用户名(登录名)"
+msgstr ""
+
+#: templates/myadmin/user/edit.html:213
+msgid "角色选择 要勾选,可以重复角色,多个角色权限重叠."
+msgstr ""
+
+#: templates/myadmin/user/list.html:4
+msgid "管理员模型 列表"
+msgstr ""
+
+#: templates/myadmin/user/list.html:41 templates/myadmin/user/list.html:342
+msgid "拥有的角色"
+msgstr ""
+
+#: templates/myadmin/user/list.html:169
+msgid "修改状态"
+msgstr ""
+
+#: templates/myadmin/user/list.html:428
+msgid "其他资料"
+msgstr ""
+
+#: templates/myadmin/user_info/edit.html:4
+msgid "管理员信息 编辑"
+msgstr ""
+
+#: templates/myadmin/user_info/edit.html:11
+#: templates/myadmin/user_info/list.html:11
+msgid "管理员信息"
+msgstr ""
+
+#: templates/myadmin/user_info/edit_self.html:4
+msgid "个人信息 编辑"
+msgstr ""
+
+#: templates/myadmin/user_info/edit_self.html:11
+msgid "个人信息"
+msgstr ""
+
+#: templates/myadmin/user_info/list.html:4
+msgid "管理员信息 列表"
+msgstr ""
+
+#: templates/myadmin/widgets/menu_tree_table_select.html:27
+msgid "菜单显示名称"
+msgstr ""
+
+#: templates/myadmin/widgets/menu_tree_table_select.html:28
+msgid "菜单标识"
+msgstr ""
+
+#: templates/myadmin/widgets/menu_tree_table_select.html:38
+msgid "全选子项"
+msgstr ""
+
+#: templates/myadmin/widgets/menu_tree_table_select.html:41
+msgid "取消子项"
+msgstr ""
+
+#: templates/myadmin/widgets/role_members_select.html:7
+msgid "角色成员"
+msgstr ""
+
+#: templates/myadmin/widgets/role_members_select.html:46
+#: templates/svn_admin/widgets/svn_path_permission_select.html:67
+#, fuzzy
+#| msgid "用户名"
+msgid "用户"
+msgstr "User"
+
+#: templates/myadmin/widgets/role_table_select.html:80
+msgid "角色"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:4
+msgid "SDK 列表"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:11
+msgid "SDK"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:34 templates/sdk_center/sdk/list.html:258
+#: templates/sdk_center/widgets/remote_sdk_list.html:79
+msgid "SDK名"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:41 templates/sdk_center/sdk/list.html:266
+#: templates/sdk_center/widgets/remote_sdk_list.html:87
+msgid "简称"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:55 templates/sdk_center/sdk/list.html:293
+msgid "渠道用户类型"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:64 templates/sdk_center/sdk/list.html:274
+#: templates/sdk_center/widgets/remote_sdk_list.html:98
+msgid "客户端类型"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:301
+msgid "SDK配置"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:309
+msgid "当前sdk版本"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:317
+msgid "合作公司Id"
+msgstr ""
+
+#: templates/sdk_center/sdk/list.html:326
+msgid "图标路径"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:4
+msgid "SDK版本 列表"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:11
+msgid "SDK版本"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:35
+#: templates/sdk_center/sdk_version/list.html:262
+msgid "所属SDK"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:42
+#: templates/sdk_center/sdk_version/list.html:273
+msgid "版本号"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:49
+#: templates/sdk_center/sdk_version/list.html:281
+msgid "版本代号"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:70
+#: templates/sdk_center/sdk_version/list.html:305
+msgid "sdk接入时间"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:77
+#: templates/sdk_center/sdk_version/list.html:323
+msgid "SDK下载地址"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:84
+msgid "该版本的接入插件包下载地址"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:91
+#: templates/sdk_center/sdk_version/list.html:345
+msgid "SDK帮助地址"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:98
+#: templates/sdk_center/sdk_version/list.html:353
+msgid "样例参数配置"
+msgstr ""
+
+#: templates/sdk_center/sdk_version/list.html:334
+msgid "插件包下载地址"
+msgstr ""
+
+#: templates/sdk_center/widgets/remote_sdk_list.html:6
+msgid "查看远程SDK"
+msgstr ""
+
+#: templates/sdk_center/widgets/remote_sdk_list.html:19
+msgid "远程 SDK 列表"
+msgstr ""
+
+#: templates/sdk_center/widgets/remote_sdk_list.html:27
+msgid "下载"
+msgstr ""
+
+#: templates/svn_admin/svn_path/edit.html:4
+msgid "SVN 路径 编辑"
+msgstr ""
+
+#: templates/svn_admin/svn_path/edit.html:11
+#: templates/svn_admin/svn_path/list.html:11
+msgid "SVN 路径"
+msgstr ""
+
+#: templates/svn_admin/svn_path/edit.html:47
+#: templates/svn_admin/svn_path/list.html:36
+#: templates/svn_admin/svn_path/list.html:126
+#: templates/svn_admin/svn_path/list.html:275
+msgid "路径别名"
+msgstr ""
+
+#: templates/svn_admin/svn_path/edit.html:166
+#: templates/svn_admin/svn_path/list.html:95
+msgid "其他默认权限"
+msgstr ""
+
+#: templates/svn_admin/svn_path/edit.html:211
+msgid "权限分配"
+msgstr ""
+
+#: templates/svn_admin/svn_path/list.html:4
+msgid "SVN 路径 列表"
+msgstr ""
+
+#: templates/svn_admin/svn_path/list.html:157
+msgid "预览DB文件"
+msgstr ""
+
+#: templates/svn_admin/widgets/svn_path_permission_select.html:7
+msgid "可读"
+msgstr ""
+
+#: templates/svn_admin/widgets/svn_path_permission_select.html:26
+msgid "可写"
+msgstr ""
+
+#: templates/svn_admin/widgets/svn_path_permission_select.html:79
+#, fuzzy
+#| msgid "用户名"
+msgid "用户组"
+msgstr "User"
+
+#~ msgid "管理员设置"
+#~ msgstr "管理员设置 en"
+
+#~ msgid "文档"
+#~ msgstr "文档 en"

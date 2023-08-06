@@ -1,0 +1,171 @@
+<style>
+.tabBar {
+  width: 20px;
+  height: 40px;
+  background-color: #e6e6e6;
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.tabBar .active {
+  background-color: #5fb5f1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.channel-bar-num{
+	height: 32px;
+   display: inline-block;
+	margin-left: 3px;
+	vertical-align: bottom;
+}
+.channel-bar-cont .label{
+	width: 48px;
+	text-align: right;
+	float: right;
+	top:12px;
+	right:20%;
+	line-height: 17px;
+}
+  
+</style>
+
+<script id="channel-bar-tpl" type="template/text">
+ <div  class="channel-bar-cont">
+ 		<% var total_p=(it.data.t >0 ? (it.data.p / it.data.t * 100) : 0).toFixed(2);%>
+		<% var lost_p=(it.data.p >0 ? ( (it.data.p-it.data.n) / it.data.p * 100) : 0).toFixed(2);%>
+		
+		<span class="tabBar">
+			<div class="active" style="height:<%=total_p%>%"></div>
+		
+		</span>
+		<span class="channel-bar-num">
+    		<%=it.data.p%>
+			<p style="color: #3696d8;"><%=total_p%>%</p>
+		</span>
+		<%if (!it.data.is_last){%>
+		<a title="点击查看未激活设备详情" class="openDialog" target="_blank" href="<%=it.data.href || '#'%>">
+		<span class="label  arrowed-right" ><%=lost_p%>%</span>
+		</a>
+		<%}%>
+</div>
+</script>
+<script id="channel-foot-bar-tpl" type="template/text">
+ <div  class="channel-bar-cont">
+ 		<% var total_p=(it.data.t >0 ? (it.data.p / it.data.t * 100) : 0).toFixed(2);%>
+		<% var lost_p=(it.data.p >0 ? ( (it.data.p-it.data.n) / it.data.p * 100) : 0).toFixed(2);%>
+		
+		<span class="tabBar">
+			<div class="active" style="height:<%=total_p%>%"></div>
+		
+		</span>
+		<span class="channel-bar-num">
+    		<%=it.data.p%>
+			<p style="color: #3696d8;"><%=total_p%>%</p>
+		</span>
+		<%if (!it.data.is_last){%>
+		<span class="label label-xs  arrowed-right" ><%=lost_p%>%</span>
+		<%}%>
+</div>							
+</script>
+
+<script>
+ dataTableOption.convertOutputDataFuncs.push(function(data) {
+	var LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var row_data = row.concat()
+		
+		var href = '/query/view/渠道设备转化-未激活?sdate=' + row[TH['日期']] + ' 00:00:00&edate=' + row[TH['日期']] + ' 23:59:59' //$SEARCH_FORM.find('[name]').serialize()
+		
+		row[TH['激活设备数']] = get_views('channel-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['激活设备数']],n:row_data[TH['注册激活数']],href:href +'&null_type=s.log_mobile_key'})
+		row[TH['注册激活数']] = get_views('channel-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['注册激活数']],n:row_data[TH['注册完成数']],href:href +'&null_type=n.log_mobile_key'})
+		row[TH['注册完成数']] = get_views('channel-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['注册完成数']],n:row_data[TH['创角完成数']],href:href +'&null_type=r.log_mobile_key'})
+		row[TH['创角完成数']] = get_views('channel-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['创角完成数']],n:row_data[TH['付费']],is_last:1})
+		row[TH['付费']] = get_views('channel-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['付费']],n:row_data[TH['付费']],is_last:1})
+	}
+   var foot_data = data.tfoot_data
+   
+   	for (var i in foot_data) {
+		var row = foot_data[i]
+		var row_data = row.concat()
+		row[TH['激活设备数']] = get_views('channel-foot-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['激活设备数']],n:row_data[TH['注册激活数']]})
+		row[TH['注册激活数']] = get_views('channel-foot-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['注册激活数']],n:row_data[TH['注册完成数']]})
+		row[TH['注册完成数']] = get_views('channel-foot-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['注册完成数']],n:row_data[TH['创角完成数']]})
+		row[TH['创角完成数']] = get_views('channel-foot-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['创角完成数']],n:row_data[TH['付费']],is_last:1})
+		row[TH['付费']] = get_views('channel-foot-bar-tpl',{t:row_data[TH['激活设备数']],p: row_data[TH['付费']],n:row_data[TH['付费']],is_last:1})
+	}
+   
+  	return data
+
+})     //输出处理
+
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

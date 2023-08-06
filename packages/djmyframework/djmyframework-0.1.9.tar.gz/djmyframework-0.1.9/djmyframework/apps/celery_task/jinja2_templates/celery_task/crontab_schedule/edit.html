@@ -1,0 +1,244 @@
+{% extends "framework/base.html" %}
+
+{% block header %}
+    <title>{{ _('CrontabSchedule 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+    <div id="vue-container" v-cloak>
+        <div class="row header">
+            <div class="col-sm-5">
+                <h1>{{ _('CrontabSchedule') }}
+                    <small>{{ _('编辑') }}</small>
+                </h1>
+            </div>
+        </div>
+
+        <hr>
+        <br>
+
+        <form class="form-horizontal"role="form">
+            <div class="row edit-form-container">
+                <div class="col-sm-12">
+                <br>
+                
+
+
+        <div class="form-group" style="display:none">
+            <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                
+                {{ _('ID') }} </label>
+
+            <div class="col-sm-8">
+                 <input type="number" id="id_id" name="id" v-model="model.id"
+                        class="form-control" value="{{ data.id or ""}}"
+                        
+                         >
+                <div id="help_text_id" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_minute">
+                
+                {{ _('Minute(s)') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_minute" name="minute" v-model="model.minute"
+                        class="form-control" value="{{ data.minute or ""}}"
+                        maxlength=240
+                         >
+                <span class="help-block">{{ _('Cron Minutes to Run. Use "*" for "all". (Example: "0,30")') }}</span>
+                <div id="help_text_minute" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_hour">
+                
+                {{ _('Hour(s)') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_hour" name="hour" v-model="model.hour"
+                        class="form-control" value="{{ data.hour or ""}}"
+                        maxlength=96
+                         >
+                <span class="help-block">{{ _('Cron Hours to Run. Use "*" for "all". (Example: "8,20")') }}</span>
+                <div id="help_text_hour" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_day_of_week">
+                
+                {{ _('Day(s) Of The Week') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_day_of_week" name="day_of_week" v-model="model.day_of_week"
+                        class="form-control" value="{{ data.day_of_week or ""}}"
+                        maxlength=64
+                         >
+                <span class="help-block">{{ _('Cron Days Of The Week to Run. Use "*" for "all". (Example: "0,5")') }}</span>
+                <div id="help_text_day_of_week" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_day_of_month">
+                
+                {{ _('Day(s) Of The Month') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_day_of_month" name="day_of_month" v-model="model.day_of_month"
+                        class="form-control" value="{{ data.day_of_month or ""}}"
+                        maxlength=124
+                         >
+                <span class="help-block">{{ _('Cron Days Of The Month to Run. Use "*" for "all". (Example: "1,15")') }}</span>
+                <div id="help_text_day_of_month" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_month_of_year">
+                
+                {{ _('Month(s) Of The Year') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_month_of_year" name="month_of_year" v-model="model.month_of_year"
+                        class="form-control" value="{{ data.month_of_year or ""}}"
+                        maxlength=64
+                         >
+                <span class="help-block">{{ _('Cron Months Of The Year to Run. Use "*" for "all". (Example: "0,6")') }}</span>
+                <div id="help_text_month_of_year" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_timezone">
+                
+                {{ _('Cron Timezone') }} </label>
+
+            <div class="col-sm-8">
+                <select v-select2 v-model="model.timezone" class="form-control col-lg-5 select2" id="id_timezone" data-placeholder="{{ _('Cron Timezone') }}" name="timezone" svalue="{{ data.timezone }}">
+                    {% for o in data.serializer.instance._meta._forward_fields_map.timezone.choices %}
+                        <option value="{{ o.0 }}">{{ o.1 }}</option>
+                    {% endfor %}
+                </select>
+
+                <span class="help-block">{{ _('Timezone to Run the Cron Schedule on. Default is UTC.') }}</span>
+                <div id="help_text_timezone" class="middle text-danger help_text"></div>
+            </div>
+        </div>
+                </div>
+            </div>
+
+
+            <div class="row pane edit-save-bar">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                    <button @click="saveModel(true)" :disabled="isExecuting" class="btn btn-primary " type="button">
+                        {{ _('保 存') }}
+                    </button>
+
+                    <div class="pull-right">
+                        <button @click="saveModel(false)" :disabled="isExecuting" class="btn btn-info " type="button">
+                            {{ _('保存并继续编辑') }}
+                        </button>
+                        <button @click="saveModelAddOther" :disabled="isExecuting" class="btn btn-info " type="button">
+                            {{ _('保存并增加另一个') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <script>
+        var modelData = Object({{ data|json_dumps|safe }}) || Object({"id": 1, "minute": "*", "hour": "*", "day_of_week": "*", "day_of_month": "*", "month_of_year": "*", "timezone": "UTC"})
+        
+        var modelShema = Object({{ data.serializer.to_schema()|json_dumps|safe }})
+
+
+        var vue_app = new Vue({
+            el: '#vue-container',
+            delimiters: ['((', '))'],
+            data() {
+                return {
+                    model: modelData,
+                    isExecuting: false,
+                };
+            },
+            watch: {},
+            methods: {
+                ajaxPostData: function (post_data, callback) {
+                    clearHelpText()
+                    this.isExecuting = true
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "{{ url('celery_task.crontab_schedule.save') }}?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}",
+                        dataType: 'json',
+                        data: JSON.stringify(post_data),
+                        contentType: 'application/json',
+                        success: (rsp) => {
+                            if (rsp.code == 0) {
+                                this.$message.success(rsp.msg, 1)
+                                clearHelpText()
+                                callback ? callback(rsp) : null
+
+                            } else {
+                                rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                            }
+                        },
+                        error: (jqXHR, statusText, errorMsg) => {
+                            ajaxError(jqXHR, statusText, errorMsg)
+
+                        },
+                        complete: (jqXHR, statusText) => {
+                            this.isExecuting = false
+                        }
+
+                    })
+                },
+                saveModel: function (isCloseDialog) {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            this.model = rsp.data
+                            refreshParentTable()
+                            customDispatchEvent('saveModel',this.model,true)
+                            if (isCloseDialog) closeSelfDialog()
+                        }
+                    })
+                },
+                saveModelAddOther: function () {
+                    this.ajaxPostData(this.model, (rsp) => {
+                        if (rsp.code == 0) {
+                            window.location.href = window.location.pathname
+                        }
+                    })
+                },
+
+            },
+            mounted: function () {
+
+
+            }
+        })
+
+
+    </script>
+{% endblock %}

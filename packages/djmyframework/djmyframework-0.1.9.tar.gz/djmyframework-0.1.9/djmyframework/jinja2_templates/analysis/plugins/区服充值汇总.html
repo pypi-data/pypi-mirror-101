@@ -1,0 +1,181 @@
+<script id="header-tpl" type="template/text">
+
+<tr row="row">
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" ><%=it.data.title%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.a%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.b%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.c%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.d%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.e%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.f%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.g%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.h%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.i%></th>
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.j%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.k%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.l%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.m%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.n%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.o%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.p%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.q%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.r%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.s%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.t%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.u%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.v%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.w%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.x%></th>
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.y%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.z%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.aa%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.ab%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.ac%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.ad%></th>
+
+<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="日期" style="width: 64px;"><%=it.data.ae%></th>
+</tr>
+	
+</script>
+
+
+<script>
+
+
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+   index = 0
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		if (!row[TH['区服']]){
+		  index = i
+		  data.list_data.splice(i, 1)
+		  var data_obj = {}
+		  data_obj.title = "区服"
+		  data_obj.a = row[TH['0']]
+		  data_obj.b = row[TH['1']]
+		  data_obj.c = row[TH['2']]
+		  data_obj.d = row[TH['3']]
+		  data_obj.e = row[TH['4']]
+		  data_obj.f = row[TH['5']]
+		  data_obj.g = row[TH['6']]
+		  data_obj.h = row[TH['7']]
+		  data_obj.i = row[TH['8']]
+		  data_obj.j = row[TH['9']]
+		  data_obj.k = row[TH['10']]
+		  data_obj.l = row[TH['11']]
+		  data_obj.m = row[TH['12']]
+		  data_obj.n = row[TH['13']]
+		  data_obj.o = row[TH['14']]
+		  data_obj.p = row[TH['15']]
+		  data_obj.q = row[TH['16']]
+		  data_obj.r = row[TH['17']]
+		  data_obj.s = row[TH['18']]
+		  data_obj.t = row[TH['19']]
+		  data_obj.u = row[TH['20']]
+		  data_obj.v = row[TH['21']]
+		  data_obj.w = row[TH['22']]
+		  data_obj.x = row[TH['23']]
+		  data_obj.y = row[TH['24']]
+		  data_obj.z = row[TH['25']]
+		  data_obj.aa = row[TH['26']]
+		  data_obj.ab = row[TH['27']]
+		  data_obj.ac = row[TH['28']]
+		  data_obj.ad = row[TH['29']]
+		  data_obj.ae = row[TH['30']]
+		  
+		  var result = get_views('header-tpl', data_obj)
+		  //$("table.dataTable").find('thead tr').replaceWith(result)
+		}
+	  
+	}
+  	return data
+})
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

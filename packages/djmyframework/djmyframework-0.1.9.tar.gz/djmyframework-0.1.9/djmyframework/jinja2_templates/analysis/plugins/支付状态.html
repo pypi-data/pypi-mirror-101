@@ -1,0 +1,18 @@
+<script type="text/javascript">
+
+  dataTableOption.convertOutputDataFuncs = [function(data) {
+        listData = data.list_data;
+    for (var i in listData){
+   
+	  listData[i][TH['错误信息']] = "<pre>" + listData[i][TH['错误信息']] + "</pre>"
+			 
+			 
+    }
+
+
+    return data
+}]
+
+</script>
+
+

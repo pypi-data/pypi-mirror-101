@@ -1,0 +1,269 @@
+{% extends "framework/base.html" %}
+{#{% load i18n %}#}
+{% block header %}
+    <title>{{ _('管理员信息 编辑') }}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="row header">
+    <div class="col-sm-5">
+        <h1>{{ _('管理员信息') }}
+            <small>{{ _('编辑') }}</small>
+        </h1>
+    </div>
+</div>
+
+<hr><br>
+
+<form action="/myadmin/user_info/save?{% if data.id %}id={{ data.id }}{% endif %}{% if request.query_params.is_copy %}&is_copy=1{% endif %}"
+          method="POST"
+          class="form-horizontal"
+          role="form">
+        <div class="row edit-container">
+            <div class="col-sm-12">
+                {{ csrf_input }}
+                
+
+
+        <div class="form-group" style="display:none">
+            <label class="col-sm-3 control-label no-padding-right" for="id_id">
+                {{ _('id') }} </label>
+            <div class="col-sm-8">
+                 <input type="number" id="id_id" name="id"
+                        class="form-control" value="{{ data.id  or ""}}"
+                >
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_user">
+                <span class="text-danger">*</span>
+                {{ _('所属用户') }} </label>
+
+            <div class="col-sm-8">
+                <select class="form-control select2" id="id_admin" data-placeholder="{{ _('所属用户') }}"
+                        name="user" data-url="/myadmin/user/list"
+                    {% if data.user %}disabled="disabled"{% endif %}>
+                    <option value="{{ data.user }}" selected="selected">{{ data.user }}</option>
+                </select>
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_employee_id">
+                
+                {{ _('工号') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_employee_id" name="employee_id"
+                        class="form-control" value="{{ data.employee_id  or ""}}"
+                        maxlength=15
+                        
+                 >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_sex">
+                
+                {{ _('性别') }} </label>
+
+            <div class="col-sm-8">
+                <select class="form-control col-lg-5 select2" id="id_sex" data-placeholder="{{ _('性别') }}" name="sex" svalue="{{ data.sex }}">
+                    {% for o in data.serializer.instance.fields_map.sex.choices %}
+                        <option value="{{ o.0 }}">{{ o.1 }}</option>
+                    {% endfor %}
+                </select>
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_email">
+                
+                {{ _('邮件地址') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_email" name="email"
+                        class="form-control" value="{{ data.email  or ""}}"
+                        maxlength=254
+                        
+                 >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_email_active">
+                
+                {{ _('是否激活邮箱') }} </label>
+
+            <div class="col-sm-8">
+                <input type="checkbox" class="input-sm " id="id_email_active"
+                        data-placeholder="{{ _('是否激活邮箱') }}" name="email_active"
+                        {% if data.email_active %}checked="checked" value="true"{% endif %} >
+                </input>
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_qq">
+                
+                {{ _('QQ') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_qq" name="qq"
+                        class="form-control" value="{{ data.qq  or ""}}"
+                        maxlength=15
+                        
+                 >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_phone">
+                
+                {{ _('电话') }} </label>
+
+            <div class="col-sm-8">
+                <input type="text" id="id_phone" name="phone"
+                        class="form-control" value="{{ data.phone  or ""}}"
+                        maxlength=18
+                        
+                 >
+
+
+            </div>
+        </div>
+                
+
+
+        <div class="form-group" style="">
+            <label class="col-sm-3 control-label no-padding-right" for="id_phone_active">
+                
+                {{ _('是否绑定手机') }} </label>
+
+            <div class="col-sm-8">
+                <input type="checkbox" class="input-sm " id="id_phone_active"
+                        data-placeholder="{{ _('是否绑定手机') }}" name="phone_active"
+                        {% if data.phone_active %}checked="checked" value="true"{% endif %} >
+                </input>
+
+            </div>
+        </div>
+                
+
+
+            </div>
+        </div>
+
+
+        <div class="row pane edit-save-bar">
+            <div class="col-sm-offset-3 col-sm-3">
+                <input id="reset-btn" class="btn btn-default" type="reset" value="{{ _('重 置') }}">
+                <button id="save-btn" class="btn btn-primary " type="button">
+                    {{ _('保 存') }}
+                </button>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <button id="save-edit-btn" class="btn btn-info " type="button">
+                        {{ _('保存并继续编辑') }}
+                    </button>
+                    <button id="save-add-btn" class="btn btn-info " type="button">
+                        {{ _('保存并增加另一个') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+<script>
+    var $form = $('form')
+    $form.submit(function (e) {
+        stopEevent(e)
+        return false
+    })
+
+    function ajaxPostData(ele, callback) {
+        clearHelpText()
+        $(ele).attr("disabled", true);
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: $form.attr('action'),
+            dataType: 'json',
+            data: JSON.stringify($form.serializeToJSON()),
+            contentType: 'application/json',
+            success: function (rsp) {
+                if (rsp.code == 0) {
+                    $('[name="id"]').val(rsp.data.id)
+                    art.dialog(rsp.msg).time(1)
+                    clearHelpText()
+                    callback ? callback(rsp) : null
+                } else {
+                    rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                }
+            },
+            error: function (jqXHR, statusText, errorMsg) {
+                ajaxError(jqXHR, statusText, errorMsg)
+
+            },
+            complete: function (jqXHR, statusText) {
+                $(ele).removeAttr("disabled");
+            }
+
+        })
+    }
+
+    $('#save-add-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            if (rsp.code == 0) {
+                window.location.href = window.location.pathname
+            }
+        })
+    })
+
+    $('#save-edit-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            $form.attr('action', '/myadmin/user_info/save?id=' + rsp.data.id)
+            refreshParentTable()
+
+        })
+    })
+
+    $('#save-btn').click(function () {
+        ajaxPostData(this, function (rsp) {
+            refreshParentTable()
+            closeSelfDialog()
+        })
+    })
+
+</script>
+{% endblock %}

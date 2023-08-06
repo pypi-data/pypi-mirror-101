@@ -1,0 +1,266 @@
+{% extends "framework/base.html" %}
+
+{% block header %}
+    <title>{{ _('SVN 项目 管理') }}</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="row header">
+        <div class="col-sm-5">
+            <h1>{{ _('SVN 项目') }}
+                <small>{{ _('管理') }}</small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row mT10">
+
+        <div class="col-sm-3">
+            {% include 'svn_admin/widgets/svn_path_tree.html' %}
+        </div>
+
+        <div v-show='selectProject' id="svn-permission-container" class="col-sm-9" v-cloak>
+            <div class="col-sm-12 ">
+                <form class="form-inline pane ">
+                    <div class="form-group ">
+                        <label class="no-padding-right " for="id_other_permission">
+                            {{ _('其他默认权限') }}
+                        </label>
+                        <select v-select2 class="select2 form-control" v-model="svnPathModel.other_permission"
+                                id="id_other_permission"
+                                name="other_permission"
+                        >
+                            {% for o in request.parser_context.view.model.get_fields_map().other_permission.choices %}
+                                <option value="{{ o.0 }}">{{ o.1 }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+
+                    <button :disabled="!selectProject"
+                            @click="saveSvnpathModel"
+                            id="save-btn"
+                            class="btn btn-primary "
+                            type="button">
+                        <span> {{ _('保 存') }}</span>
+
+                    </button>
+                    <button v-if="svnPathModel.id"
+                            @click="deleteSvnpathModel"
+                            id="save-btn"
+                            class="btn btn-danger pull-right"
+                            type="button">
+                        <span v-if="svnPathModel.id"> {{ _('删 除') }}</span>
+
+                    </button>
+
+
+                </form>
+
+            </div>
+
+            <div class="col-sm-6">
+
+                <a-card size="small" title="{{ _('组 权限') }}">
+
+                    <a-table v-if='groupData.length>0'
+                             :columns="groupColumns"
+                             :data-source="groupData"
+                             :default-expand-all-rows="true">
+                        <template slot="readOperation" slot-scope="item">
+                            <input type="checkbox" :value="'@'+item.name" v-model="svnPathModel.readMember">
+
+                        </template>
+                        <template slot="writeOperation" slot-scope="item">
+                            <input type="checkbox" :value="'@'+item.name" v-model="svnPathModel.writeMember">
+                        </template>
+                    </a-table>
+                </a-card>
+
+            </div>
+
+            <div class="col-sm-6">
+
+                <a-card size="small" title="{{ _('用户 权限') }}">
+                    <a-table v-if='userData.length>0'
+                             :columns="groupColumns"
+                             :data-source="userData"
+                             :default-expand-all-rows="true">
+                        <template slot="readOperation" slot-scope="item">
+
+                            <input type="checkbox" :value="item.username" v-model="svnPathModel.readMember">
+
+                        </template>
+                        <template slot="writeOperation" slot-scope="item">
+                            <input type="checkbox" :value="item.username" v-model="svnPathModel.writeMember">
+                        </template>
+                    </a-table>
+                </a-card>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+
+        var defaultSvnPathModel = {readMember: [], writeMember: [], other_permission: 'no'}
+        var svn_path_tree_app = new Vue({
+            el: '#svn-permission-container',
+            delimiters: ['((', '))'],
+            data() {
+                return {
+                    groupColumns: [
+                        {
+                            title: '{{ _('名称') }}',
+                            dataIndex: 'alias',
+                            key: 'alias',
+                            width: '80%',
+                        },
+                        {
+                            title: '{{ _('读') }}',
+
+                            scopedSlots: {customRender: 'readOperation'},
+                        }, {
+                            title: '{{ _('写') }}',
+
+                            scopedSlots: {customRender: 'writeOperation'},
+                        }
+                    ],
+                    selectProject: null,
+                    groupData: [],
+                    userData: [],
+                    readMember: [],
+                    writeMember: [],
+                    groupExpandedRowKeys: [],
+
+                    svnPathModel: defaultSvnPathModel,
+                    isAddNew: false,
+
+                };
+            },
+            computed: {},
+            methods: {
+                loadGroupData() {
+                    $.getJSON('{{ url('myadmin.role.list') }}?type__exact=2&fields=id,name,alias,parent&page_size=10000', {}, (rsp) => {
+                        if (rsp.code != 0) {
+                            this.$message.error('{{ _("获取 角色数据错误") }} ');
+                            return
+                        }
+                        this.groupData = new ListTreeChildren(rsp.data.results, 'id', 'parent').toTree((item) => {
+                            item.scopedSlots = {title: 'custom'}
+                            item.key = item.id
+                            this.groupExpandedRowKeys.push(item.id)
+                            return item
+                        })
+                    })
+                },
+                loadUserData() {
+                    $.getJSON('{{ url('myadmin.user.list') }}?fields=username,alias,status,status_alias&page_size=10000&status__in=0', {}, (rsp) => {
+                        if (rsp.code != 0) {
+                            this.$message.error('{{ _("获取 用户数据错误") }} ');
+                            return
+                        }
+                        rsp.data.results.map((item) => {
+                            item.key = item.id
+                            return item
+                        })
+                        this.userData = new ListTreeChildren(rsp.data.results, 'id', 'parent').toTree((item) => {
+                            item.scopedSlots = {title: 'custom'}
+                            item.key = item.id
+                            this.groupExpandedRowKeys.push(item.id)
+                            return item
+                        })
+                    })
+                },
+                selectCallback(selectPathItem) {
+
+                    this.selectProject = selectPathItem.project
+                    this.loadSvnPathModel(selectPathItem.project, selectPathItem.path)
+                },
+                initSvnPahtModel(modelData) {
+                    var _svnPathModel = modelData
+                    _svnPathModel.readMember = JSON.parse(_svnPathModel.read_member)
+                    _svnPathModel.writeMember = JSON.parse(_svnPathModel.write_member)
+                    this.svnPathModel = _svnPathModel
+                },
+                loadSvnPathModel(project, path) {
+                    var path = path != '/' ? path.slice(path.indexOf('/') + 1, path.lastIndexOf('/')) : path
+                    //this.svnPathModel.project_name == project && path==this.svnPathModel.path
+                    $.getJSON('{{ url('svn_admin.svn_path.list') }}', {
+                        limit: 1,
+                        project_name__exact: project,
+                        path__exact: path
+                    }, (rsp) => {
+                        if (rsp.code != 0) {
+                            return
+                        }
+                        if (rsp.data.results.length > 0) {
+
+                            this.initSvnPahtModel(rsp.data.results[0])
+                            this.isAddNew = false
+                        } else {
+                            this.svnPathModel = Object.assign(defaultSvnPathModel, {project_name: project, path: path})
+                            this.isAddNew = true
+                        }
+
+                    })
+                },
+                deleteSvnpathModel() {
+                    if (!this.svnPathModel.id) {
+                        return
+                    }
+                    $.post("{{ url('svn_admin.svn_path.delete') }}", {id: this.svnPathModel.id}, (rsp) => {
+                        if (rsp.code == 0) {
+                            this.svnPathModel.id = 0
+                            this.$message.success(rsp.msg);
+                        } else {
+                            alertMsg(rsp.msg)
+                        }
+                    }, 'json')
+                },
+                saveSvnpathModel() {
+
+                    var post_data = Object.assign({}, this.svnPathModel)
+                    delete post_data.readMember
+                    delete post_data.writeMember
+                    post_data.read_member = JSON.stringify(this.svnPathModel.readMember)
+                    post_data.write_member = JSON.stringify(this.svnPathModel.writeMember)
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: '{{ url('svn_admin.svn_path.save') }}',
+                        dataType: 'json',
+                        data: JSON.stringify(post_data),
+                        contentType: 'application/json',
+                        success: (rsp) => {
+                            if (rsp.code == 0) {
+                                $('[name="id"]').val(rsp.data.id)
+                                this.$message.success(rsp.msg);
+                                this.initSvnPahtModel(rsp.data)
+                            } else {
+                                rsp.data ? addHelpText(rsp.data) : alertMsg(rsp.msg)
+                            }
+
+                        },
+                        error: function (jqXHR, statusText, errorMsg) {
+                            ajaxError(jqXHR, statusText, errorMsg)
+
+                        },
+                        complete: function (jqXHR, statusText) {
+
+                        }
+
+                    })
+                }
+            },
+            mounted: function () {
+                this.loadGroupData()
+                this.loadUserData()
+                svn_path_tree_app.selectCallback = this.selectCallback
+            }
+
+        })
+
+    </script>
+{% endblock %}

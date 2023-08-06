@@ -1,0 +1,56 @@
+<div id="datatable_toolbar" class="row">
+	<div class="col-sm-12">
+	  
+	{% if request.allow_menu.游戏项目_编辑%}
+		<label id="send_resouces" class="fr">
+		  <a href="/projects/edit" class="btn  btn-xs btn-primary openDialog" >
+	    	 增加游戏项目
+	    </a>
+	</label>
+	 {%endif %}
+	</div>
+</div>
+
+
+
+
+
+<script>
+dataTableOption.page_size=672
+dataTableOption.page_size_list=[672,672*2]
+dataTableOption.convertInputDataFuncs.push(function(data){return data})//输入处理
+dataTableOption.convertOutputDataFuncs.push(function(data) {
+	LIST_DATA = data.list_data
+	for (var i in LIST_DATA) {
+		var row = LIST_DATA[i]
+		var id  = row[TH['操作']]
+		var projects_name  = row[TH['项目名称']]
+		row[TH['操作']] = ''
+		row[TH['图标']] = '<img height=50 width=50 src="'+row[TH['图标']]+'">'
+		{% if request.allow_menu.游戏项目_编辑%}
+		row[TH['操作']] = '<a href="/projects/edit?id=' +id+ '" class="openDialog"  >[编辑]</a>'
+		{% if request.user.is_root or request.allow_menu.游戏项目_删除 %}
+		row[TH['操作']] += ' <a href="/projects/remove?id=' +id+ '" class="delete"  >[删除]</a> '
+		{%endif%}
+		{%endif%}
+		row[TH['已接入版本数']] += ' <a href="/analysis/query/view/游戏项目版本?projects_id=' +id+ '"  class="add_tab"  tab_name="'+projects_name+' 版本">[查看项目版本]</a>'
+
+	}
+  	return data
+
+})     //输出处理
+
+$(function(){
+   $SEARCH.trigger('click');
+})
+</script>
+
+
+
+
+
+
+
+
+
+
