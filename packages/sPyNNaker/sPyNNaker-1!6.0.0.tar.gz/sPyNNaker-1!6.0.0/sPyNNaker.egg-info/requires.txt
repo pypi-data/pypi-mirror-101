@@ -1,0 +1,24 @@
+SpiNNFrontEndCommon==1!6.0.0
+SpiNNMachine==1!6.0.0
+SpiNNMan==1!6.0.0
+SpiNNUtilities==1!6.0.0
+SpiNNaker_DataSpecification==1!6.0.0
+SpiNNaker_PACMAN==1!6.0.0
+appdirs<2.0.0,>=1.4.2
+csa
+lazyarray<=0.4.0,>=0.2.9
+lxml
+neo<0.10.0,>=0.5.2
+pynn<0.10.0,>=0.9.1
+quantities>=0.12.1
+scipy
+spalloc==1!6.0.0
+
+[:python_version == "3.6"]
+numpy<1.20,>1.13
+
+[:python_version == "3.7"]
+numpy<1.21,>1.13
+
+[:python_version >= "3.8"]
+numpy
