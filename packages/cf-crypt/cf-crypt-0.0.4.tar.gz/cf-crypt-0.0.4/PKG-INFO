@@ -1,0 +1,128 @@
+Metadata-Version: 2.1
+Name: cf-crypt
+Version: 0.0.4
+Summary: Encryption at rest made easy
+Home-page: https://gitlab.clayfox.co.nz/keir/cf-crypt
+Author: Keir Rice
+Author-email: keir@clayfox.co.nz
+License: UNKNOWN
+Project-URL: Quick Start Guide, https://cf-crypt.readthedocs.io/en/latest/quickstart.html
+Project-URL: Documentation, https://cf-crypt.readthedocs.io/en/latest
+Project-URL: GitLab, https://gitlab.clayfox.co.nz/keir/cf-crypt
+Project-URL: Bug Tracker, https://gitlab.clayfox.co.nz/keir/cf-crypt/-/issues
+Description: .. Project Links
+        
+             * `PYPI <https://https://pypi.org/project/cf-crypt/>`_
+             * `Documentation <https://cf-crypt.readthedocs.io/en/latest>`_
+             * `Gitlab <https://gitlab.clayfox.co.nz/keir/cf-crypt>`_
+             * `Bug Tracker <https://gitlab.clayfox.co.nz/keir/cf-crypt/-/issues>`_
+        
+        **Encryption at rest made easy**
+        
+        cf-crypt is a package to help you keep all you data resting on disk secure. It make encrypting your data at rest as easy as reading and writing from a file.
+        
+        .. code-block:: python
+        
+        	>>> from cfcrypt import CryptFileTextIO
+        	>>> with CryptFileTextIO('./my_file.crpt', 'w', encryption_key, identity_key) as fh:
+        	...	    fh.write('Super secret, secret squirrel plans.')
+        
+        
+        Install
+        #######
+        
+        Install the package from `pypi.org/project/cf-crypt <https://pypi.org/project/cf-crypt>`_ using ``pip``
+        
+        .. code-block:: console
+        
+            $ python -m pip install cf-crypt
+            [...]
+            Successfully installed cf-crypt
+        
+        Quick Start
+        ###########
+        
+        Generate Keys
+        -------------
+        
+        These keys are generated securely in memory.
+        
+        Like all in memory variables they will disappear when your script ends.
+        We really need our keys to stick around for as long as we want to decrypt our data.
+        
+        .. code-block:: python
+        
+        	>>> from cfcrypt.rsa.key_helpers import generate_private_key
+        	>>> encryption_key = generate_private_key()
+        	>>> identity_key = generate_private_key()
+        
+        
+        Save Keys
+        ---------
+        
+        Keys can be serialized to the PEM format and saved to disk.
+        
+        .. code-block:: python
+        
+        	>>> from cfcrypt.rsa.key_helpers import private_key_to_pem_file
+        	>>> private_key_to_pem_file('./my_encryption_key.pem', encryption_key)
+        	>>> private_key_to_pem_file('./my_identity_key.pem', identity_key)
+        
+        
+        These `PEM` files are quite literally the keys to your data.
+        
+        
+        Load Keys
+        ---------
+        
+        If you set a password on the `PEM` files you will need it to load them from disk.
+        
+        .. code-block:: python
+        
+        	>>> from cfcrypt.rsa.key_helpers import pem_file_to_private_key
+        	>>> encryption_key = pem_file_to_private_key('./my_encryption_key.pem')
+        	>>> identity_key = pem_file_to_private_key('./my_identity_key.pem')
+        
+        
+        Encrypt
+        -------
+        
+        Encryption is really easy, just use ``CryptFileTextIO`` like a regular file interface.
+        
+        .. code-block:: python
+        
+        	>>> from cfcrypt import CryptFileTextIO
+        	>>> with CryptFileTextIO('./my_file.crpt', 'w', encryption_key, identity_key) as fh:
+        	...	    fh.write('Super secret, secret squirrel plans.')
+        
+        Decrypt
+        -------
+        
+        Decryption is also really easy, just use ``CryptFileTextIO`` like a regular file interface.
+        
+        .. code-block:: python
+        
+        	>>> from cfcrypt import CryptFileTextIO
+        	>>> with CryptFileTextIO('./my_file.crpt', 'r', encryption_key, identity_key) as fh:
+        	... 	data = fh.read()
+        	>>> data
+        	'Super secret, secret squirrel plans.'
+        
+        More...
+        #######
+        
+        There are a bunch of other useful encryption related tools in the module. See the `documentation (cf-crypt.readthedocs.io/en/latest) <https://cf-crypt.readthedocs.io/en/latest>`_ for details.
+        
+         * String encryption
+         * Python object serialization + encryption
+         * RSA signing & verification
+         * File & folder encryption
+         * Key management.
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
