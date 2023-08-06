@@ -1,0 +1,53 @@
+[tool]
+[tool.poetry]
+name = "techlib-nr-Nresults"
+version = "1.0.0a13"
+description = "National repository Nresults metadata model"
+license = "MIT"
+keywords = ["National repository", "events"]
+classifiers = ["Environment :: Web Environment", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent", "Programming Language :: Python", "Topic :: Internet :: WWW/HTTP :: Dynamic Content", "Topic :: Software Development :: Libraries :: Python Modules", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.9", "Development Status :: 3 - Alpha"]
+authors = ["Daniel Kopecký <Daniel.Kopecky@techlib.cz>"]
+readme = "README.md"
+packages = [{ include = "nr_nresults" }]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+techlib-nr-common = "^3.0.0a44"
+
+[tool.poetry.dev-dependencies]
+oarepo-mapping-includes = "<=1.2.0"
+oarepo-invenio-model = "^2.0.1"
+oarepo-multilingual = "^2.2.0"
+oarepo-records-draft = "^5.0.0a7"
+oarepo-references = "^1.9.0"
+oarepo-taxonomies = "^3.0.0a1"
+oarepo-validate = "^1.2.8"
+pytest = "^5.0.0"
+pytest-cov = "^2.10.1"
+pytest-runner = "^5.2"
+oarepo = "^3.3.59"
+oarepo-fsm = "^1.5.0"
+oarepo-communities = "^1.4.0"
+
+[tool.poetry.plugins]
+[tool.poetry.plugins."invenio_base.apps"]
+'nr_nresults' = 'nr_nresults:NRNresults'
+
+[tool.poetry.plugins."invenio_base.api_apps"]
+'nr_nresults' = 'nr_nresults:NRNresults'
+
+[tool.poetry.plugins.'invenio_jsonschemas.schemas']
+'nr_nresults' = 'nr_nresults.jsonschemas'
+
+[tool.poetry.plugins.'invenio_search.mappings']
+'nr_nresults' = 'nr_nresults.mappings'
+
+[tool.poetry.plugins.'oarepo_mapping_includes']
+'nr_nresults' = 'nr_nresults.mapping_includes'
+
+[tool.poetry.plugins."invenio_pidstore.fetchers"]
+'nr_nresults' = 'nr_nresults.fetchers:nr_nresults_id_fetcher'
+
+[tool.poetry.plugins."invenio_pidstore.minters"]
+'nr_nresults' = 'nr_nresults.minters:nr_nresults_id_minter'
+
