@@ -1,0 +1,11 @@
+[shillelagh.adapter]
+csvfile = shillelagh.adapters.file.csvfile:CSVFile
+gsheetsapi = shillelagh.adapters.api.gsheets:GSheetsAPI
+weatherapi = shillelagh.adapters.api.weatherapi:WeatherAPI
+
+[sqlalchemy.dialects]
+gsheets = shillelagh.backends.apsw.dialect:APSWGSheetsDialect
+shillelagh = shillelagh.backends.apsw.dialect:APSWDialect
+shillelagh.apsw = shillelagh.backends.apsw.dialect:APSWDialect
+shillelagh.safe = shillelagh.backends.apsw.dialect:APSWSafeDialect
+
