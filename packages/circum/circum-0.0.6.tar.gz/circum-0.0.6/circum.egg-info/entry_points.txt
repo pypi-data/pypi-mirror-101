@@ -1,0 +1,7 @@
+[circum.sensors]
+simulator = circum.sensors.simulator:simulator
+
+[console_scripts]
+circum = circum.service:cli
+circum-endpoint = circum.endpoint:cli
+
