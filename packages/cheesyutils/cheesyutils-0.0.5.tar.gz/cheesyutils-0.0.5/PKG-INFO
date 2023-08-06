@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: cheesyutils
+Version: 0.0.5
+Summary: A python package of miscelanious utilities
+Home-page: https://github.com/CheesyGamer77/cheesyutils
+Author: CheesyGamer77
+License: UNKNOWN
+Description: # cheesyutils
+        
+        A number of miscelanious utilities, mostly for writing bots in discord.py
+        
+        ## Usage
+        
+        You can import the package for my Discord bot utilities by running the following command:
+        
+        ```sh
+        pip install -U cheesyutils
+        ```
+        
+        You can import the discord bot utilities by running the following code
+        
+        ```py
+        from cheesyutils.discord_bots import DiscordBot
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
