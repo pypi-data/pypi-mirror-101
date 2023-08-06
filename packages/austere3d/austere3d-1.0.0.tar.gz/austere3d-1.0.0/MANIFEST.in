@@ -1,0 +1,5 @@
+graft austere
+prune austere/output
+prune austere/__pycache__
+global-exclude *.pyc
+global-exclude *.~
