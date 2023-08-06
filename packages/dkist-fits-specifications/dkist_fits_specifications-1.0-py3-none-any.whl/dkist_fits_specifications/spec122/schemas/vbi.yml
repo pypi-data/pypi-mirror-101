@@ -1,0 +1,49 @@
+spec122:
+  section: vbi
+  expand: False
+---
+VBI__001:
+  required: false
+  comment: '[nm] InterferenceFilterFWHM'
+  type: float
+VBI__002:
+  required: false
+  comment: SpatialStepPattern
+  type: str
+VBI__003:
+  required: false
+  comment: NumberOfSpatialSteps
+  type: int
+VBI__004:
+  required: false
+  comment: CurrentSpatialStep
+  type: int
+VBI__005:
+  required: false
+  comment: Processed
+  type: str
+  values:
+    - 'None'
+    - 'FrameSelection'
+    - 'SpeckleImaging'
+    - 'FrameSelection&SpeckleImaging'
+VBI__006:
+  required: false
+  comment: SynchronizationMode
+  type: str
+  values:
+    - "None"
+    - "Loose"
+    - "Fixed"
+VBI__007:
+  required: false
+  comment: NumberOutputFrames
+  type: int
+VBI__008:
+  required: false
+  comment: CurrentOutputFrame
+  type: int
+VBI__009:
+  required: false
+  comment: '[cm] FriedParameter'
+  type: float
