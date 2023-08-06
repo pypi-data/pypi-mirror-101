@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "training_started.json",
+    "type": "object",
+    "required": [
+	"graph_spec",
+	"n_parameters",
+	"training_session_id"
+    ],    
+    "properties": {
+	"graph_spec": {"$ref": "file:graph_spec.json"},
+	"n_parameters": {"type": "number"},
+	"model_id": {"type": "number", "Description": "Model ID set by the frontend, generates a large random int in case nothing is sent from frontend"},		
+	"training_session_id": {"type": "string"}		
+    }    
+}

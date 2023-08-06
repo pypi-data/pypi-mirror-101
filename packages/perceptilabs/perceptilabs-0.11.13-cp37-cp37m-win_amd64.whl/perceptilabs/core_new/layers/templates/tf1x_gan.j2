@@ -1,0 +1,894 @@
+{% from 'tf1x_utils.j2' import session, check_input_vars, representative_dataset_gen %}
+
+{% macro train_normal(layer_spec, graph_spec ) %}
+        sess = self._sess
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}
+        self._checkpoint_save_path = '{{layer_spec.checkpoint_path}}'
+
+
+        def train_step(sess):
+            if not self._headless:
+                _, self._generator_loss_training, self._generator_layer_outputs,\
+                    self._generator_layer_weights, self._generator_layer_biases, \
+                    self._generator_layer_gradients, self._real_layer_outputs, \
+                _, self._discriminator_loss_training, self._random_discriminator_layer_outputs, self._real_discriminator_layer_outputs,\
+                    self._discriminator_layer_weights, self._discriminator_layer_biases, \
+                    self._discriminator_layer_gradients \
+                    = sess.run([
+                        self._gen_weight, self._gen_loss, self._gen_layer_output, \
+                        self._gen_layer_weight, self._gen_layer_bias, self._gen_layer_gradient, self._real_layer_output, \
+                        self._discriminator_weight, self._discriminator_loss, self._random_discriminator_layer_output, \
+                        self._real_discriminator_layer_output, self._discriminator_layer_weight, self._discriminator_layer_bias, self._discriminator_layer_gradient
+                    ])
+                
+            else:
+                _, self._generator_loss_training, \
+                    _, self.__discriminator_loss_training \
+                    = sess.run([
+                        self._gen_weight, self._gen_loss, \
+                            self._discriminator_weight, self._discriminator_loss
+                    ])
+
+        def validation_step(sess):
+            if not self._headless:
+                self._generator_loss_validation, self._generator_layer_outputs,\
+                    self._generator_layer_weights, self._generator_layer_biases, \
+                    self._generator_layer_gradients, self._real_layer_outputs, \
+                    self._discriminator_loss_validation, self._discriminator_layer_outputs,\
+                    self._discriminator_layer_weights, self._discriminator_layer_biases, \
+                    self._discriminator_layer_gradients \
+                    = sess.run([
+                        self._gen_loss, self._gen_layer_output, \
+                        self._gen_layer_weight, self._gen_layer_bias, self._gen_layer_gradient, self._real_layer_output, \
+                        self._discriminator_loss, self._random_discriminator_layer_output, \
+                        self._discriminator_layer_weight, self._discriminator_layer_bias, self._discriminator_layer_gradient
+                    ])
+
+            else:
+                self._generator_loss_validation, \
+                    self.__discriminator_loss_validation \
+                    = sess.run(
+                        self._gen_loss, \
+                        self._discriminator_loss
+                    )
+
+        log.info("Entering training loop")
+
+        # Training loop
+        self._epoch = 0
+        while self._epoch < self._n_epochs and not self._stopped:
+            t0 = time.perf_counter()
+            self._training_iteration = 0
+            self._validation_iteration = 0
+            self._status = 'training'
+            sess.run(self._trn_init)            
+            try:
+                while not self._stopped:
+                    train_step(sess)
+                    yield YieldLevel.SNAPSHOT
+                    self._training_iteration += 1
+            except tf.errors.OutOfRangeError:
+                pass
+
+            self._status = 'validation'
+            sess.run(self._val_init)            
+            try:
+                while not self._stopped:
+                    validation_step(sess)
+                    yield YieldLevel.SNAPSHOT                    
+                    self._validation_iteration += 1
+            except tf.errors.OutOfRangeError:
+                pass
+            log.info(
+                f"Finished epoch {self._epoch+1}/{self._n_epochs} - "
+                f"generator loss training, validation: {self.generator_loss_training:.6f}, {self.generator_loss_validation:.6f} - "
+                f"discriminator loss training, validation: {self.discriminator_loss_training:.6f}, {self.discriminator_loss_validation:.6f} - "
+            )
+            log.info(f"Epoch duration: {round(time.perf_counter() - t0, 3)} s")  
+            if self._stop_condition == "TargetAccuracy" and self._accuracy_training * 100 >= self._target_acc:
+                break          
+            self._epoch += 1
+
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}            
+        self._status = 'finished'
+        yield YieldLevel.SNAPSHOT
+        self.on_export(self._checkpoint_save_path, 'checkpoint')   
+        sess.close()
+{% endmacro %}
+
+{% macro test_normal(layer_spec, graph_spec) %}    
+        
+        sess = self._sess
+        self._epoch = 0
+
+        def test_step(sess):
+            self._generator_loss_testing, self._generator_layer_outputs,\
+                self._generator_layer_weights, self._generator_layer_gradients, self._real_layer_outputs, \
+                self._discriminator_loss_testing, self._discriminator_layer_outputs,\
+                self._discriminator_layer_weights, self._discriminator_layer_gradients \
+                = sess.run([
+                    self._gen_loss, self._gen_layer_output, \
+                    self._gen_layer_weight, self._gen_layer_gradient, self._real_layer_output, \
+                    self._discriminator_loss, self._random_discriminator_layer_output, \
+                    self._discriminator_layer_weight, self._discriminator_layer_gradient
+                ])
+
+        # Test loop
+        log.info("Entering testing loop")
+        self._status = 'testing'
+
+        self._testing_iteration = 0
+        sess.run(self._tst_init)                                
+        while not self._stopped:
+            try:
+                test_step(sess)
+                yield YieldLevel.SNAPSHOT
+                self._testing_iteration += 1
+            except tf.errors.OutOfRangeError:
+                self._testing_iteration = 0
+                sess.run(self._tst_init)
+                test_step(sess)   
+                yield YieldLevel.SNAPSHOT
+        
+        self._status = 'finished'
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}
+        yield YieldLevel.SNAPSHOT
+        sess.close()
+{% endmacro %}
+
+{% macro init_normal(mode) %}
+        self._status = 'initializing'
+
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.real_layer_name in graph_spec.nodes_by_name %}
+                real_data_layer_id = "{{graph_spec.nodes_by_name.get(layer_spec.real_layer_name).sanitized_name}}"
+            {% else %}
+                raise TypeError("Real layer with name '{{layer_spec.real_layer_name}}' not found!")
+            {% endif %}
+        {% endfilter %}
+
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.switch_layer_name in graph_spec.nodes_by_name %}
+                switch_layer_id = "{{graph_spec.nodes_by_name.get(layer_spec.switch_layer_name).sanitized_name}}"
+            {% else %}
+                raise TypeError("Switch layer with name '{{layer_spec.switch_layer_name}}' not found!")
+            {% endif %}
+        {% endfilter %}
+
+        for node in graph.data_nodes:
+            if node.layer_id != real_data_layer_id and not node.is_training_node:
+                random_data_node = node
+            elif node.layer_id == real_data_layer_id:
+                real_data_node = node
+
+        training_node = graph.nodes[-1]
+        switch_node = graph.get_node_by_id(switch_layer_id)
+        
+        output_node = [node for node in graph.get_input_nodes(training_node)][0]
+        output_layer_id = output_node.layer_id
+        self._switch_layer_id = switch_layer_id
+
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.switch_layer_name in graph_spec.nodes_by_name %}
+                self._selected_layer_id = "{{graph_spec.nodes_by_name.get(layer_spec.switch_layer_name).selected_layer_id}}"
+            {% else %}
+                raise TypeError("Switch layer with name '{{layer_spec.switch_layer_name}}' not found!")
+            {% endif %}
+        {% endfilter %}
+        
+        generator_nodes = graph.get_nodes_inbetween(random_data_node, switch_node)
+        discriminator_nodes = graph.get_nodes_inbetween(switch_node, output_node)
+        real_nodes = graph.get_nodes_inbetween(real_data_node, switch_node)
+
+        generator_layer_ids = [node.layer_id for node in generator_nodes]
+        discriminator_layer_ids = [node.layer_id for node in discriminator_nodes]
+
+        self._generator_layer_ids = generator_layer_ids
+
+        self._trn_sz_tot = real_data_node.layer.size_training
+        self._val_sz_tot = real_data_node.layer.size_validation
+        self._tst_sz_tot = real_data_node.layer.size_testing
+
+        real_data_sample = real_data_node.layer_instance.sample
+        random_data_sample = random_data_node.layer_instance.sample 
+        # Make training set
+        dataset_trn = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                real_data_node.layer_instance.make_generator_training,
+                output_shapes={k: v.shape for k, v in real_data_sample.items()},
+                output_types={k: v.dtype for k, v in real_data_sample.items()}                
+            ),
+            tf.data.Dataset.from_generator(
+                random_data_node.layer_instance.make_generator_training,
+                output_shapes={k: v.shape for k, v in random_data_sample.items()},
+                output_types={k: v.dtype for k, v in random_data_sample.items()}
+            )
+        ))
+
+        # Make validation set
+        dataset_val = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                real_data_node.layer_instance.make_generator_validation,
+                output_shapes={k: v.shape for k, v in real_data_sample.items()},
+                output_types={k: v.dtype for k, v in real_data_sample.items()}                
+            ),
+            tf.data.Dataset.from_generator(
+                random_data_node.layer_instance.make_generator_validation,
+                output_shapes={k: v.shape for k, v in random_data_sample.items()},
+                output_types={k: v.dtype for k, v in random_data_sample.items()}
+            )
+        ))
+
+        # Make testing set
+        dataset_tst = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                real_data_node.layer_instance.make_generator_testing,
+                output_shapes={k: v.shape for k, v in real_data_sample.items()},
+                output_types={k: v.dtype for k, v in real_data_sample.items()}             
+            ),
+            tf.data.Dataset.from_generator(
+                random_data_node.layer_instance.make_generator_testing,
+                output_shapes={k: v.shape for k, v in random_data_sample.items()},
+                output_types={k: v.dtype for k, v in random_data_sample.items()}
+            )
+        ))
+
+        self._export_random_data_gen = random_data_node.layer_instance.make_generator_training()
+        
+        dataset_trn = dataset_trn.batch(self._batch_size)
+        dataset_val = dataset_val.batch(self._batch_size)
+        dataset_tst = dataset_tst.batch(1)
+
+        # Make initializers
+        iterator = tf.data.Iterator.from_structure(dataset_trn.output_types, dataset_trn.output_shapes)
+        trn_init = iterator.make_initializer(dataset_trn)
+        val_init = iterator.make_initializer(dataset_val)
+        tst_init = iterator.make_initializer(dataset_tst)        
+        real_tensor , random_tensor = iterator.get_next()
+
+        
+
+        # Build the TensorFlow graph
+        def build_real_graph(real_tensor):
+            if len(real_nodes) > 1:
+                switch_node.layer._selected_layer_id = real_nodes[-2].layer_id
+                switch_node.layer._selected_var_name = [dst_var for src_node, src_var, dst_var in graph.get_input_connections(switch_node) if src_node.layer_id == switch_node.layer._selected_layer_id][0]
+            else:
+                switch_node.layer._selected_layer_id = real_data_node.layer_id
+                switch_node.layer._selected_var_name = [dst_var for src_node, src_var, dst_var in graph.get_input_connections(switch_node) if src_node.layer_id == switch_node.layer._selected_layer_id][0]
+
+            _random_data_node = random_data_node
+
+            layer_output_tensors = {real_data_node.layer_id: real_tensor}
+
+            for dst_node in real_nodes:
+                inputs = {
+                            dst_var: layer_output_tensors[src_node.layer_id][src_var]
+                            for src_node, src_var, dst_var in graph.get_input_connections(dst_node)
+                            if src_node not in generator_nodes + [_random_data_node]
+                        }
+                
+                y = dst_node.layer_instance(inputs)
+                layer_output_tensors[dst_node.layer_id] = y
+
+            return layer_output_tensors
+
+        def build_generator_graph(random_tensor):
+            switch_node.layer._selected_layer_id = generator_nodes[-2].layer_id
+            switch_node.layer._selected_var_name = [dst_var for src_node, src_var, dst_var in graph.get_input_connections(switch_node) if src_node.layer_id == switch_node.layer._selected_layer_id][0]
+            _real_data_node = real_data_node
+
+            layer_output_tensors = {random_data_node.layer_id: random_tensor}
+
+            for dst_node in generator_nodes:
+                inputs = {
+                            dst_var: layer_output_tensors[src_node.layer_id][src_var]
+                            for src_node, src_var, dst_var in graph.get_input_connections(dst_node) 
+                            if src_node not in real_nodes+[_real_data_node]
+                        }
+
+                y = dst_node.layer_instance(inputs)
+                layer_output_tensors[dst_node.layer_id] = y
+
+            return layer_output_tensors
+        
+        def build_discriminator_graph(input_tensor):
+            layer_output_tensors = {switch_node.layer_id: input_tensor}
+            for dst_node in discriminator_nodes:
+                inputs = {
+                            dst_var: layer_output_tensors[src_node.layer_id][src_var]
+                            for src_node, src_var, dst_var in graph.get_input_connections(dst_node)
+                        }
+
+                y = dst_node.layer_instance(inputs)
+                layer_output_tensors[dst_node.layer_id] = y
+
+            return layer_output_tensors
+
+        generator_layer_output_tensors = build_generator_graph(random_tensor)
+        real_layer_output_tensors = build_real_graph(real_tensor)
+        
+        real_output_tensor = real_layer_output_tensors[switch_layer_id]
+        generator_output_tensor = generator_layer_output_tensors[switch_layer_id]
+        
+        real_discriminator_layer_output_tensors = build_discriminator_graph(real_output_tensor)
+        random_discriminator_layer_output_tensors = build_discriminator_graph(generator_output_tensor)
+
+        self._random_input_tensor_export= {
+            key: tf.placeholder(shape=shape, dtype=type_)
+            for (key, shape), (_, type_) in zip(dataset_trn.output_shapes[1].items(), dataset_trn.output_types[1].items())            
+        }
+        self._generator_output_tensor_export = build_generator_graph(self._random_input_tensor_export)[switch_layer_id]
+        self._discriminator_random_output_tensor_export = build_discriminator_graph(self._generator_output_tensor_export)[output_layer_id]
+        
+        #loss function
+
+        def loss_func(logits_in,labels_in):
+            return tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=logits_in,labels=labels_in))
+
+        real_discriminator_output_tensor = None
+        random_discriminator_output_tensor = None
+        
+        for src_node, src_var, dst_var in graph.get_input_connections(graph.active_training_node):
+            if dst_var == 'input':
+                real_discriminator_output_tensor = real_discriminator_layer_output_tensors[output_layer_id][src_var]
+                random_discriminator_output_tensor = random_discriminator_layer_output_tensors[output_layer_id][src_var]
+        
+        discriminator_real_loss=loss_func(real_discriminator_output_tensor,tf.ones_like(real_discriminator_output_tensor)*0.9) 
+        discriminator_random_loss=loss_func(random_discriminator_output_tensor,tf.zeros_like(random_discriminator_output_tensor))
+        
+        discriminator_loss_tensor = discriminator_real_loss+discriminator_random_loss
+        generator_loss_tensor = loss_func(random_discriminator_output_tensor,tf.ones_like(random_discriminator_output_tensor))
+
+        global_step = None
+        {% filter remove_lspaces(8) %}        
+            {% if layer_spec.generator_optimizer == 'SGD' or layer_spec.discriminator_optimizer == 'tf.compat.v1.train.GradientDescentOptimizer' %}
+                generator_optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate={{layer_spec.learning_rate}})
+            {% elif layer_spec.generator_optimizer == 'Momentum' or layer_spec.generator_optimizer == 'tf.compat.v1.train.MomentumOptimizer' %}
+                global_step = tf.Variable(0)
+                learning_rate_momentum = tf.train.exponential_decay(
+                    learning_rate={{layer_spec.learning_rate}},
+                    global_step=global_step,
+                    decay_steps={{layer_spec.decay_steps}},
+                    decay_rate={{layer_spec.decay_rate}},
+                    staircase=True
+                )
+                generator_optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate_momentum, momentum={{layer_spec.momentum}})
+            {% elif layer_spec.generator_optimizer == 'ADAM' or layer_spec.generator_optimizer == 'tf.compat.v1.train.AdamOptimizer' %}
+                generator_optimizer = tf.train.AdamOptimizer(learning_rate={{layer_spec.learning_rate}}, beta1={{layer_spec.beta1}}, beta2={{layer_spec.beta2}})
+            {% elif layer_spec.generator_optimizer == 'ADAGrade' or layer_spec.generator_optimizer == 'tf.compat.v1.train.AdagradOptimizer' %}
+                generator_optimizer = tf.compat.v1.train.AdagradOptimizer(learning_rate={{layer_spec.learning_rate}})            
+            {% elif layer_spec.generator_optimizer == 'RMSProp' or layer_spec.generator_optimizer == 'tf.compat.v1.train.RmsPropOptimizer' %}
+                generator_optimizer = tf.compat.v1.train.RMSPropOptimizer(learning_rate={{layer_spec.learning_rate}})                        
+            {% else %}
+                raise NotImplementedError('Optimizer {{layer_spec.generator_optimizer}} not supported yet')
+            {% endif %}
+        {% endfilter %}
+
+        {% filter remove_lspaces(8) %}        
+            {% if layer_spec.discriminator_optimizer == 'SGD' or layer_spec.discriminator_optimizer == 'tf.compat.v1.train.GradientDescentOptimizer'  %}
+                discriminator_optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate={{layer_spec.learning_rate}})
+            {% elif layer_spec.generator_optimizer == 'Momentum' or layer_spec.discriminator_optimizer == 'tf.compat.v1.train.MomentumOptimizer' %}
+                global_step = tf.Variable(0)
+                learning_rate_momentum = tf.train.exponential_decay(
+                    learning_rate={{layer_spec.learning_rate}},
+                    global_step=global_step,
+                    decay_steps={{layer_spec.decay_steps}},
+                    decay_rate={{layer_spec.decay_rate}},
+                    staircase=True
+                )
+                discriminator_optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate_momentum, momentum={{layer_spec.momentum}})
+            {% elif layer_spec.generator_optimizer == 'ADAM' or layer_spec.discriminator_optimizer == 'tf.compat.v1.train.AdamOptimizer' %}
+                discriminator_optimizer = tf.train.AdamOptimizer(learning_rate={{layer_spec.learning_rate}}, beta1={{layer_spec.beta1}}, beta2={{layer_spec.beta2}})
+            {% elif layer_spec.generator_optimizer == 'ADAGrade' or layer_spec.discriminator_optimizer == 'tf.compat.v1.train.AdagradOptimizer' %}
+                discriminator_optimizer = tf.compat.v1.train.AdagradOptimizer(learning_rate={{layer_spec.learning_rate}})            
+            {% elif layer_spec.generator_optimizer == 'RMSProp' or layer_spec.discriminator_optimizer == 'tf.compat.v1.train.RmsPropOptimizer' %}
+                discriminator_optimizer = tf.compat.v1.train.RMSPropOptimizer(learning_rate={{layer_spec.learning_rate}})                        
+            {% else %}
+                raise NotImplementedError('Optimizer {{layer_spec.discriminator_optimizer}} not supported yet')
+            {% endif %}
+        {% endfilter %}
+
+        generator_layer_weight_tensors = {}
+        generator_layer_bias_tensors = {}        
+        generator_layer_gradient_tensors = {}
+
+        for node in generator_nodes+real_nodes:
+            if not isinstance(node.layer, Tf1xLayer): # In case of pure custom layers...
+                continue
+            
+            generator_layer_weight_tensors[node.layer_id] = node.layer.weights
+            generator_layer_bias_tensors[node.layer_id] = node.layer.biases
+            
+            if len(node.layer.trainable_variables) > 0:
+                gradients = {}
+                for name, tensor in node.layer.trainable_variables.items():
+                    grad_tensor = tf.gradients(generator_loss_tensor, tensor)
+                    if any(x is None for x in grad_tensor):
+                        grad_tensor = tf.constant(0)
+                    gradients[name] = grad_tensor
+                generator_layer_gradient_tensors[node.layer_id] = gradients
+
+        discriminator_layer_weight_tensors = {}
+        discriminator_layer_bias_tensors = {}        
+        discriminator_layer_gradient_tensors = {}
+
+        for node in discriminator_nodes:
+            if not isinstance(node.layer, Tf1xLayer): # In case of pure custom layers...
+                continue
+            
+            discriminator_layer_weight_tensors[node.layer_id] = node.layer.weights
+            discriminator_layer_bias_tensors[node.layer_id] = node.layer.biases
+            
+            if len(node.layer.trainable_variables) > 0:
+                gradients = {}
+                for name, tensor in node.layer.trainable_variables.items():
+                    grad_tensor = tf.gradients(discriminator_loss_tensor, tensor)
+                    if any(x is None for x in grad_tensor):
+                        grad_tensor = tf.constant(0)
+                    gradients[name] = grad_tensor
+                discriminator_layer_gradient_tensors[node.layer_id] = gradients
+
+        
+        trainable_vars = tf.trainable_variables()
+        
+        discriminator_vars=[]
+        for var in trainable_vars:
+            for discriminator_layer_id in discriminator_layer_ids:
+                if discriminator_layer_id in var.name:
+                    discriminator_vars.append(var)
+
+        discriminator_update_weights = discriminator_optimizer.minimize(discriminator_loss_tensor, var_list = discriminator_vars, global_step=global_step)
+
+        generator_vars=[]
+        for var in trainable_vars:
+            for generator_layer_id in generator_layer_ids:
+                if generator_layer_id in var.name:
+                    generator_vars.append(var)
+
+        generator_update_weights = generator_optimizer.minimize(generator_loss_tensor, var_list = generator_vars, global_step=global_step)
+            
+        sess = None
+        {{session(sess, use_gpu=not layer_spec.use_cpu) | indent(width=8)}}      
+        self._sess = sess
+        
+        trackable_variables = {}
+        trackable_variables.update({x.name: x for x in tf.trainable_variables() if isinstance(x, Trackable)})
+        trackable_variables.update({k: v for k, v in locals().items() if isinstance(v, Trackable) and not isinstance(v, tf.compat.v1.data.Iterator)})
+        self._checkpoint = tf.train.Checkpoint(**trackable_variables)
+        sess.run(tf.global_variables_initializer())
+        
+        checkpoint_directory = '{{layer_spec.checkpoint_path}}'
+        use_checkpoint = {{layer_spec.load_checkpoint}}
+        if use_checkpoint:
+            path = tf.train.latest_checkpoint(checkpoint_directory)
+            if path is not None:
+                status = self._checkpoint.restore(path)
+                status.run_restore_ops(session=self._sess)
+            elif path is None and self._mode == 'testing':
+                log.error('There are no saved checkpoint files for this model.')
+                self._sess.close()
+
+
+        self._discriminator_layer_gradient = discriminator_layer_gradient_tensors
+        self._discriminator_layer_bias = discriminator_layer_bias_tensors
+        self._discriminator_layer_weight = discriminator_layer_weight_tensors.copy()
+        self._real_discriminator_layer_output = real_discriminator_layer_output_tensors
+        self._random_discriminator_layer_output = random_discriminator_layer_output_tensors
+        self._discriminator_loss = discriminator_loss_tensor
+        self._discriminator_weight = discriminator_update_weights
+        self._real_layer_output = real_layer_output_tensors
+        self._gen_layer_gradient = generator_layer_gradient_tensors
+        self._gen_layer_bias = generator_layer_bias_tensors
+        self._gen_layer_weight = generator_layer_weight_tensors.copy()
+        self._gen_layer_output = generator_layer_output_tensors.copy()
+        self._gen_loss = generator_loss_tensor
+        self._gen_weight = generator_update_weights
+
+        self._trn_init = trn_init
+        self._val_init = val_init
+        self._tst_init = tst_init
+{% endmacro %}
+
+################################################### Main #####################################################
+{% macro layer_tf1x_gan(layer_spec, graph_spec) %}
+class {{layer_spec.sanitized_name}}(GANLayer):
+
+    def __init__(self):
+        {{ check_input_vars(layer_spec, ['input'])|indent(width=8)}}                
+        self._n_epochs = {{layer_spec.n_epochs}}
+        self._batch_size = {{layer_spec.batch_size}}
+
+        self._target_acc = {{layer_spec.target_acc}}
+        self._stop_condition = '{{layer_spec.stop_condition}}'
+        self._stopped = False
+        self._paused = False
+        self._headless = False
+        self._status = 'created'
+        
+        self._generator_loss_training = 0.0
+        self._generator_loss_validation = 0.0
+        self._generator_loss_testing = 0.0   
+
+        self._discriminator_loss_training = 0.0
+        self._discriminator_loss_validation = 0.0
+        self._discriminator_loss_testing = 0.0   
+
+        self._variables = {}
+        self._generator_variables = {}
+        self._discriminator_variables = {}
+
+        self._real_layer_outputs = {}
+        self._generator_layer_outputs = {}
+        self._generator_layer_weights = {}
+        self._generator_layer_biases = {}        
+        self._generator_layer_gradients = {}
+
+        self._random_discriminator_layer_outputs = {}
+        self._real_discriminator_layer_outputs = {}
+        self._discriminator_layer_outputs = {}
+        self._discriminator_layer_weights = {}
+        self._discriminator_layer_biases = {}        
+        self._discriminator_layer_gradients = {}
+
+        self._layer_outputs = {}
+        self._layer_weights = {}
+        self._layer_biases = {}        
+        self._layer_gradients = {}
+
+        self._training_iteration = 0
+        self._validation_iteration = 0
+        self._testing_iteration = 0
+
+        self._trn_sz_tot = 0
+        self._val_sz_tot = 0
+        self._tst_sz_tot = 0        
+        
+        self._random_means = []
+        self._random_stds = []
+        self._real_means = []
+        self._real_stds = []
+
+        self._checkpoint = None
+
+    def init_layer(self, graph: Graph, mode = 'initializing'):
+        """This is the function that makes the training layer runnable. We take all variable initializations for tensors and initializers and wrap them in dictionaries
+        to be called in run().
+        """
+        self._mode = mode
+        if tf.compat.v1.get_default_session() is not None:
+            tf.compat.v1.get_default_session().close() 
+            tf.reset_default_graph()
+        {% if not layer_spec.distributed -%}
+            {{ init_normal() }}
+        {% endif %}
+        
+    def train(self, graph:Graph):
+        """Training is done when this function is called. Once the training ends, checkpoint files are saved.
+        """
+    
+        {% if not layer_spec.distributed -%}
+            {{ train_normal(layer_spec, graph_spec) }}
+        {% endif %} 
+
+    def test(self, graph:Graph):
+        """Testing is done when this function is called. 
+        """
+
+        {% if not layer_spec.distributed -%}
+            {{ test_normal(layer_spec, graph_spec) }}
+        {% endif %} 
+
+    def run(self, graph: Graph, mode = 'initializing'):
+        """Called as the main entry point for training. Responsible for training the model.
+
+        Args:
+            graph: A PerceptiLabs Graph object containing references to all layers objects included in the model produced by this training layer.
+        """  
+        self.init_layer(graph, mode)
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)} 
+        
+        if mode == 'training':
+            yield from self.train(graph)
+        elif mode == 'testing':
+            yield from self.test(graph)
+
+    def on_export(self, path: str, mode: str) -> None:
+        """Called when the export button is clicked in the frontend.
+        It is up to the implementing layer to save the model to disk.
+        
+        Args:
+            path: the directory where the exported model will be stored.
+            mode: how to export the model. Made available to frontend via 'export_modes' property."""
+
+        log.debug(f"Export called. Project path = {path}, mode = {mode}")
+        
+        if mode in ['TFModel', 'TFLite', 'TFQuantized']:
+            pb_path = os.path.join(path, '1')
+            if os.path.exists(pb_path):
+                shutil.rmtree(pb_path)
+            
+            time.sleep(.0000000000000001) #Force your computer to do a clock cycle to avoid Windows permission exception
+
+            os.makedirs(pb_path, exist_ok=True)
+        
+        # Export non-compressed model
+        if mode in ['TFModel']:
+            tf.compat.v1.saved_model.simple_save(self._sess, pb_path, \
+                inputs={'random_input': self._random_input_tensor_export['output']}, \
+                outputs={'generator_output': self._generator_output_tensor_export['output'], 'discriminator_output':self._discriminator_random_output_tensor_export['output']})
+
+        # Export compressed model
+        if mode in ['TFLite']:
+            frozen_path = os.path.join(pb_path, 'frozen_model.pb')
+            converter = tf.lite.TFLiteConverter.from_session(self._sess, list(self._random_input_tensor_export.values()), [self._generator_output_tensor_export['output'], self._discriminator_random_output_tensor_export['output']])
+            converter.post_training_quantize = True
+            tflite_model = converter.convert()
+            with open(frozen_path, "wb") as f:
+                f.write(tflite_model)
+
+        if mode in ['TFQuantized']:
+            {{representative_dataset_gen('self._export_random_data_gen') | indent(width=12)}}
+            tflite_path = os.path.join(pb_path, 'tflite_model.tflite')
+            converter = tf.lite.TFLiteConverter.from_session(self._sess, list(self._random_input_tensor_export.values()), [self._generator_output_tensor_export['output'], self._discriminator_random_output_tensor_export['output']])
+            converter.optimizations = [tf.lite.Optimize.DEFAULT]
+            converter.representative_dataset = representative_dataset_gen
+            converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8, tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+            converter.inference_input_type = tf.uint8
+            converter.inference_output_type = tf.uint8
+            tflite_model = converter.convert()
+            with open(tflite_path, "wb") as f:
+                f.write(tflite_model)
+
+
+        # Export checkpoint
+        if mode in ['checkpoint']:
+            for fname in os.listdir(path):
+                if fname.endswith('.json'):
+                    pass
+                else:
+                    os.remove(os.path.join(path,fname))
+            {% filter remove_lspaces(8) %}
+                {% if layer_spec.distributed %}
+                    self._saver.save(self._sess, os.path.join(path, 'model.ckpt'), global_step=0)
+                {% else %}
+                    self._checkpoint.save(file_prefix=os.path.join(path, 'model.ckpt'), session=self._sess)
+                {% endif %}
+            {% endfilter %}
+                
+    def on_stop(self) -> None:
+        """Called when the save model button is clicked in the frontend. 
+        It is up to the implementing layer to save the model to disk."""
+        self.on_export(self._checkpoint_save_path, 'checkpoint')   
+        self._stopped = True
+
+    def on_headless_activate(self) -> None:
+        """"Called when the statistics shown in statistics window are not needed.
+        Purose is to speed up the iteration speed significantly."""
+        self._headless = True
+
+        self._layer_outputs = {} 
+        self._layer_weights = {}
+        self._layer_biases = {}
+        self._layer_gradients = {}
+
+    def on_headless_deactivate(self) -> None:
+        """"Called when the statistics shown in statistics window are needed.
+        May slow down the iteration speed of the training."""
+        import time
+        log.info(f"Set to headless_off at time {time.time()}")
+        self._headless = False
+
+    @property
+    def export_modes(self) -> List[str]:
+        """Returns the possible modes of exporting a model."""        
+        return [
+            'TFModel',
+            'TFLite',
+            'TFQuantized',
+            'checkpoint'            
+        ]
+        
+    @property
+    def is_paused(self) -> None:
+        """Returns true when the training is paused."""        
+        return self._paused
+
+    @property
+    def batch_size(self):
+        """ Size of the current training batch """        
+        return self._batch_size
+
+    @property
+    def status(self):
+        """Called when the pause button is clicked in the frontend. It is up to the implementing layer to pause its execution."""        
+        return self._status
+    
+    @property
+    def epoch(self):
+        """The current epoch"""        
+        return self._epoch
+
+    @property
+    def variables(self):
+        """Any variables belonging to this layer that should be rendered in the frontend.
+        
+        Returns:
+            A dictionary with tensor names for keys and picklable for values.
+        """
+        return self._variables.copy()        
+
+    @property
+    def sample(self) -> Dict[str, Dict[str, Picklable]]:
+        """Returns a single data sample"""       
+        sample = np.array([self._generator_loss_training])
+        return {'output': sample}
+
+    @property
+    def columns(self) -> List[str]: 
+        """Column names. Corresponds to each column in a sample """
+        return []
+    
+    @property
+    def size_training(self) -> int:
+        """Returns the size of the training dataset"""                                    
+        return self._trn_sz_tot
+
+    @property
+    def size_validation(self) -> int:
+        """Returns the size of the validation dataset"""                                            
+        return self._val_sz_tot
+
+    @property
+    def size_testing(self) -> int:
+        """Returns the size of the testing dataset"""
+        return self._tst_sz_tot
+
+    def make_generator_training(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of training data. In the case of a training layer, this typically yields the model output."""        
+        yield from []
+        
+    def make_generator_validation(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of validation data. In the case of a training layer, this typically yields the model output."""                
+        yield from []
+        
+    def make_generator_testing(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of testing data. In the case of a training layer, this typically yields the model output."""                        
+        yield from []
+
+
+    @property
+    def get_switch_layer_id(self):
+        """ Returns the layer name of the Switch layer"""
+        return self._switch_layer_id
+    
+    @property
+    def generator_loss_training(self) -> float:
+        """Returns the current loss of the generator training phase"""                
+        return self._generator_loss_training        
+
+    @property
+    def generator_loss_validation(self) -> float:
+        """Returns the current loss of the generator validation phase"""                        
+        return self._generator_loss_validation        
+
+    @property
+    def generator_loss_testing(self) -> float:
+        """Returns the current loss of the generator testing phase"""                
+        return self._generator_loss_testing
+    
+    @property
+    def discriminator_loss_validation(self) -> float:
+        """Returns the current loss of the discriminator validation phase"""                        
+        return self._discriminator_loss_validation        
+
+    @property
+    def discriminator_loss_training(self) -> float:
+        """Returns the current loss of the discriminator testing phase"""                
+        return self._discriminator_loss_training
+
+    @property
+    def discriminator_loss_testing(self) -> float:
+        """Returns the current loss of the discriminator testing phase"""                
+        return self._discriminator_loss_testing
+
+    @property
+    def layer_weights(self) -> Dict[str, Dict[str, Picklable]]:
+        """The weight values of each layer in the input Graph during the training.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain weight name and value pairs. The values must be picklable.
+        """      
+        self._layer_weights.update(self._generator_layer_weights)
+        self._layer_weights.update(self._discriminator_layer_weights)   
+        return self._layer_weights
+
+    @property
+    def layer_biases(self) -> Dict[str, Dict[str, Picklable]]:
+        """The bias values of each layer in the input Graph during the training.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain weight name and value pairs. The values must be picklable.
+        """       
+        self._layer_biases.update(self._generator_layer_biases)
+        self._layer_biases.update(self._discriminator_layer_biases) 
+        return self._layer_biases
+    
+    @property
+    def layer_gradients(self) -> Dict[str, Dict[str, Picklable]]:
+        """The gradients with respect to the loss of all trainable variables of each layer in the input Graph.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain gradient name and value pairs. The values must be picklable.
+        """
+        self._layer_gradients.update(self._generator_layer_gradients)
+        self._layer_gradients.update(self._discriminator_layer_gradients)       
+        return self._layer_gradients
+    
+    @property
+    def layer_outputs(self) -> Dict[str, Dict[str, Picklable]]:
+        """The output values of each layer in the input Graph during the training (e.g., tf.Tensors evaluated for each iteration)
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain variable name and value pairs. The values must be picklable.
+        """
+        if self._selected_layer_id in self._generator_layer_ids:
+            self._layer_outputs.update(self._real_layer_outputs)
+            self._layer_outputs.update(self._generator_layer_outputs)
+            self._layer_outputs.update(self._random_discriminator_layer_outputs)
+        else:
+            self._layer_outputs.update(self._generator_layer_outputs)
+            self._layer_outputs.update(self._real_layer_outputs)
+            self._layer_outputs.update(self._real_discriminator_layer_outputs)
+        return self._layer_outputs
+
+    @property
+    def generator_layer_outputs(self) -> Dict[str, Dict[str, Picklable]]:
+        """The output values of each layer in the input Graph during the training (e.g., tf.Tensors evaluated for each iteration)
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain variable name and value pairs. The values must be picklable.
+        """
+        return self._generator_layer_outputs
+    
+    @property
+    def real_layer_outputs(self) -> Dict[str, Dict[str, Picklable]]:
+        """The output values of each layer in the input Graph during the training (e.g., tf.Tensors evaluated for each iteration)
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain variable name and value pairs. The values must be picklable.
+        """
+        return self._real_layer_outputs
+
+    @property
+    def training_iteration(self) -> int:
+        """The current training iteration"""
+        return self._training_iteration
+
+    @property
+    def validation_iteration(self) -> int:
+        """The current validation iteration"""        
+        return self._validation_iteration
+
+    @property
+    def testing_iteration(self) -> int:
+        """The current testing iteration"""                
+        return self._testing_iteration
+    
+    @property
+    def progress(self) -> float:
+        """A number indicating the overall progress of the training
+        
+        Returns:
+            A floating point number between 0 and 1
+        """        
+        n_iterations_per_epoch = np.ceil(self.size_training / self.batch_size) + \
+                                 np.ceil(self.size_validation / self.batch_size)
+        n_iterations_total = self._n_epochs * n_iterations_per_epoch
+
+        iteration = self.epoch * n_iterations_per_epoch + \
+                    self.training_iteration + self.validation_iteration
+        
+        progress = min(iteration/(n_iterations_total - 1), 1.0)
+        return progress
+{% endmacro %}

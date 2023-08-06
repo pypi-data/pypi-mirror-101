@@ -1,0 +1,137 @@
+{% from 'file_utils.j2' import load_npy, load_csv, load_img_dir, load_npy_directory %}
+
+{% macro layer_datadata(layer_spec, graph_spec=None) %}
+class {{layer_spec.sanitized_name}}(DataSupervised):
+    """Class responsible for loading data from files (e.g., numpy, csv, etc)."""    
+    def __init__(self):
+        self._variables = {}
+        self._columns = []
+        self._stored_sample = None
+
+        columns = {}
+        trn_sz_tot, val_sz_tot, tst_sz_tot = 0, 0, 0        
+        trn_gens_args_{{layer_spec.sanitized_name}}, val_gens_args_{{layer_spec.sanitized_name}}, tst_gens_args_{{layer_spec.sanitized_name}} = [], [], []   
+        {% filter remove_lspaces(8) %}
+            {% if not layer_spec.sources %}   
+                raise Exception("No data has been loaded into the component")
+            {% endif %}    
+        {% endfilter %}  
+        {% filter remove_lspaces(8) %}
+            {% for idx, source in enumerate(layer_spec.sources): %}
+                {% set tag = str(layer_spec.sanitized_name) + '_' + str(idx) %}
+        
+                columns_{{tag}} = None
+                {# The following block highlights a quirk in Jinja2. The macro calls are indented by 24 spaces, #}
+                {# but only the first line of the macro will inherit that indent. #}
+                {# Solution: #}
+                {# Apply the 'indent' filter with 24 spaces. This will align the subsequent macro lines (it ignores the first #}
+                {# Now we can remove the spaces properly using the 'remove_lspaces' filter #}
+
+                {% filter remove_lspaces(8) %}
+                    {% if source.type_ == 'file' and source.ext in ['.npy', '.npz'] %}
+                        {{ load_npy(source.path, tag) | indent(width=24)}}
+                    {% elif source.type_ == 'file' and source.ext in ['.csv', '.txt'] %}
+                        {{ load_csv(source.path, tag, layer_spec.lazy, layer_spec.selected_columns) | indent(width=24)}}
+                    {% elif source.type_ == 'directory' and source.ext in ['.jpg', '.png', '.jpeg', '.tif', '.tiff'] %}
+                        {{ load_img_dir(source.path, tag, layer_spec.lazy) | indent(width=24)}}
+                    {% elif source.type_ == 'directory' and source.ext in ['.npy', '.npz'] %}
+                        {{ load_npy_directory(source.path, tag) | indent(width=24)}}
+                    {% elif source['ext'] == '' %}
+                        raise NotImplementedError("No loader for files without extensions! Make sure all hidden metadata files (like .DS_Store) are deleted.")
+                    {% else %}
+                        raise NotImplementedError("No loader for file with extension {{source.ext}}!")
+                    {% endif %}
+                {% endfilter %}
+        
+                if columns_{{tag}} is not None:
+                    columns["{{tag}}"] = columns_{{tag}}
+                    self._columns = columns_{{tag}}
+
+                trn_sz = int(round(0.01*{{source.split[0]}}*size_{{tag}}))
+                val_sz = int(round(0.01*{{source.split[1]}}*size_{{tag}}))
+                tst_sz = int(size_{{tag}} - trn_sz - val_sz)
+
+                if trn_sz <= 0:
+                    raise ValueError('Training dataset cannot be zero')
+                
+                if tst_sz <= 0:
+                    raise ValueError('Testing dataset cannot be zero')
+
+                trn_sz_tot += trn_sz
+                val_sz_tot += val_sz
+                tst_sz_tot += tst_sz
+                
+                trn_gens_args_{{layer_spec.sanitized_name}}.append((generator_{{tag}}, 0, trn_sz))
+                val_gens_args_{{layer_spec.sanitized_name}}.append((generator_{{tag}}, trn_sz, trn_sz+val_sz))
+                tst_gens_args_{{layer_spec.sanitized_name}}.append((generator_{{tag}}, trn_sz+val_sz, trn_sz+val_sz+tst_sz))
+            {% endfor %}
+        {% endfilter %}
+                    
+        self._trn_gens_args = trn_gens_args_{{layer_spec.sanitized_name}}
+        self._val_gens_args = val_gens_args_{{layer_spec.sanitized_name}}                                        
+        self._tst_gens_args = tst_gens_args_{{layer_spec.sanitized_name}}
+                    
+        self._trn_sz_tot = trn_sz_tot
+        self._val_sz_tot = val_sz_tot
+        self._tst_sz_tot = tst_sz_tot
+
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}
+
+    @property
+    def variables(self) -> Dict[str, Picklable]:
+        """Returns any variables that the layer should make available and that can be pickled."""
+        return self._variables
+
+    @property
+    def sample(self) -> np.ndarray:
+        """Returns a single data sample"""
+        if self._stored_sample is None:                    
+            self._stored_sample = next(self.make_generator_training())
+
+        return self._stored_sample
+
+    @property
+    def columns(self) -> List[str]:
+        """Column names. Corresponds to each column in a sample """
+        return self._columns.copy()
+
+    @property
+    def size_training(self) -> int:
+        """Returns the size of the training dataset"""                    
+        return self._trn_sz_tot
+
+    @property
+    def size_validation(self) -> int:
+        """Returns the size of the validation dataset"""
+        return self._val_sz_tot
+
+    @property
+    def size_testing(self) -> int:
+        """Returns the size of the testing dataset"""                    
+        return self._tst_sz_tot
+                    
+    def make_generator_training(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of training data."""                                        
+        def gen():
+            for fn, lo, hi in self._trn_gens_args:
+                for x in fn(lo, hi):
+                    yield {'output': x}
+        return gen()
+        
+    def make_generator_validation(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of validation data."""                    
+        def gen():
+            for fn, lo, hi in self._val_gens_args:
+                for x in fn(lo, hi):
+                    yield {'output': x}                    
+        return gen()
+
+    def make_generator_testing(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of testing data."""                            
+        def gen():
+            for fn, lo, hi in self._tst_gens_args:
+                for x in fn(lo, hi):
+                    yield {'output': x}                                        
+        return gen()
+{% endmacro %}
+
