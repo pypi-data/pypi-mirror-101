@@ -1,0 +1,10 @@
+requests<3.0,>=2.6
+pydantic<2.0,>=1.8
+
+[readthedocs]
+sphinx<4.0,>=3
+sphinx-autodoc-typehints<2.0,>=1.11
+
+[test]
+betamax<0.9,>=0.8
+pytest<7,>=6
