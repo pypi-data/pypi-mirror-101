@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: neutrino-engine
+Version: 5.0.1
+Summary: Deep neural network optimizer to make them faster, smaller, and energy-efficient from cloud to edge computing.
+Home-page: https://www.deeplite.ai
+Author: Deeplite Inc.
+Author-email: support@deeplite.ai
+License: Proprietary
+Keywords: optimizer deep_neural_network deep_learning neural_architecture_search
+Platform: Any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Natural Language :: English
+Classifier: License :: Other/Proprietary License
+Classifier: Environment :: Console
+Description-Content-Type: text/markdown
+Requires-Dist: scipy (==1.4.1)
+Requires-Dist: numpy (==1.18.5)
+Requires-Dist: tensorly (==0.4.5)
+Requires-Dist: pyyaml (==5.3.1)
+Requires-Dist: onnx (==1.7.0)
+Requires-Dist: ordered-set (==4.0.2)
+Requires-Dist: licensing (==0.26)
+Requires-Dist: grpcio (==1.29.0)
+Requires-Dist: google-cloud-logging (==1.15.1)
+Requires-Dist: pyAesCrypt (==0.4.3)
+Requires-Dist: cryptography (==3.4.6)
+Requires-Dist: deeplite-profiler (>=1.0.0)
+
+<p align="center">
+  <img src="https://github.com/Deeplite/neutrino-engine/raw/master/deeplite-logo-color.png" />
+</p>
+
+[![Build Status](https://travis-ci.com/Deeplite/neutrino-engine.svg?token=kodd5rKMpjxQDqRCxwiV&branch=master)](https://travis-ci.com/Deeplite/neutrino-engine)
+[![codecov](https://codecov.io/gh/Deeplite/neutrino-engine/branch/master/graph/badge.svg?token=93CymYJXNE)](https://codecov.io/gh/Deeplite/neutrino-engine)
+
+# Neutrino Engine
+
+Neutrino is a deep learning library for optimizing and accelerating deep neural networks to make them faster, smaller and more energy-efficient. Neural network designers can specify a variety of pre-trained models, datasets and target computation constraints and ask the engine to optimize the network. High-level APIs are provided to make the optimization process easy and transparent to the user. Neutrino can be biased to concentrate on compression (relative to disk size taken by the model) or latency (forward call’s execution time) optimization.
+
+<p align="center">
+  <img src="https://github.com/Deeplite/neutrino-engine/raw/master/engine_figure.png" />
+</p>
+
+# Community Release
+
+Our community edition, provides many important features to experience the usability and the optimization power of Neutrino. Community edition is primarily targetted to verify the smooth integration of Neutrino into the existing process and pipeline of various products. Feel `free` to use it! The aim of the community edition is multi-fold, as follows:
+
+- Users could hands-on experience the power and capacity of model architecture optimization achieved using `Deeplite Neutrino`
+- Users could compare the performance obtained using `Deeplite Neutrino` with other open-source and industry model architecture optimization frameworks
+- Users could export an optimized model to test integration with their end applications
+- Users could verify the integration of `Deeplite Neutrino` with their business-as-usual
+- Users could use `Deeplite Neutrino` to accelerate academic research and report results in research papers
+- Users could just play around with `Deeplite Neutrino` and enjoy the usability of model architecure optimization in various use-cases 
+
+For detailed comparison of features on our community and production editions, refer to the [documentation](https://docs.deeplite.ai/neutrino/features.html)
+
+# Installation
+
+Use ``pip`` to install `neutrino-engine` from PyPi repository. We recommend creating a new python virtualenv, then pip install using the following commands.
+
+```{.python}
+    pip install --upgrade pip
+    pip install neutrino-engine
+    pip install neutrino-torch
+```
+
+For other methods of installation and detailed instructions, refer to the [documentation](https://docs.deeplite.ai/neutrino/install.html)
+
+# Get Your Free Community License
+
+The community license key is completely free-to-obtain and free-to-use. [Fill out this simple form](<https://info.deeplite.ai/community>) to obtain the license key for the Community Version of Deeplite Neutrino™.
+
