@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: pytoolsjps
+Version: 0.0.7
+Summary: Collection of helper tools
+Home-page: https://github.com/jan-schueler/pytools
+Author: Jan Schüler
+Author-email: janpschueler@gmail.com
+License: UNKNOWN
+Description: # pytools
+        
+        Collection of helper tools
+        
+        ## Installation
+        
+        Run the following to install:
+        ```python
+        pip install toolsjps
+        ```
+        
+        # Developing
+        To install the package along with the tools you need to develop and run the tests,
+        run the following in your virtualenv:
+        
+        ```bash
+        $ pip install -e .[dev]
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 1 - Planning
+Description-Content-Type: text/markdown
+Provides-Extra: dev
