@@ -1,0 +1,51 @@
+{% load i18n static %}
+{% if result_hidden_fields %}
+<div class="hiddenfields">{# DIV for HTML validation #}
+{% for item in result_hidden_fields %}{{ item }}{% endfor %}
+</div>
+{% endif %}
+{% if results %}
+<div class="results">
+	<div class="uk-overflow-auto">
+	<table id="result_list" class="uk-table uk-table-hover uk-table-divider uk-table-small uk-table-justify">
+		<thead>
+			<tr>
+			{% for header in result_headers %}
+			<th class="uk-background-muted uk-link-reset{% if 'action-checkbox-column' in header.class_attrib %} uk-table-shrink{% endif %}">
+                <span class="text">
+                    {% if header.sortable %}
+                        <a href="{{ header.url_primary }}">{{ header.text|capfirst }}</a>
+                    {% else %}
+                        <span>{{ header.text|capfirst }}</span>
+                    {% endif %}</span>
+                {% if header.sortable %}
+				 {% if header.sort_priority > 0 %}
+                     {# Sorting #}
+                     <span class="sortoptions uk-label-muted uk-text-secondary">
+					 {% if num_sorted_fields > 1 %}<span class="sortpriority" title="{% blocktrans with priority_number=header.sort_priority %}Sorting priority: {{ priority_number }}{% endblocktrans %}">{{ header.sort_priority }}</span>{% endif %}
+                        <a href="{{ header.url_toggle }}" class="toggle {% if header.ascending %}ascending{% else %}descending{% endif %}" title="{% trans "Toggle sorting" %}">
+					 	{% if header.ascending %}
+					 		<span uk-icon="icon: triangle-up; ratio: 0.75"></span>
+					 	{% else %}
+					 		<span uk-icon="icon: triangle-down; ratio: 0.75"></span>
+					 	{% endif %}</a>
+                        <a class="sortremove uk-link-reset" href="{{ header.url_remove }}" title="{% trans "Remove from sorting" %}"><span uk-icon="icon: close; ratio: 0.5"></span></a>
+				   </span>
+				 {% endif %}
+			   {% endif %}
+			</th>
+			{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+		{% for result in results %}
+		{% if result.form and result.form.non_field_errors %}
+			<tr><td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td></tr>
+		{% endif %}
+		<tr>{% for item in result %}{{ item }}{% endfor %}</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	</div>
+</div>
+{% endif %}
