@@ -1,0 +1,21 @@
+[salt.loader]
+auth_dirs = spiro_network.loader:auth
+beacons_dirs = spiro_network.loader:beacons
+cache_dirs = spiro_network.loader:cache
+engines_dirs = spiro_network.loader:engines
+executor_dirs = spiro_network.loader:executor
+fileserver_dirs = spiro_network.loader:fileserver
+grains_dirs = spiro_network.loader:grains
+log_handlers_dirs = spiro_network.loader:log_handlers
+module_dirs = spiro_network.loader:module
+pillar_dirs = spiro_network.loader:pillar
+render_dirs = spiro_network.loader:render
+returner_dirs = spiro_network.loader:returner
+runner_dirs = spiro_network.loader:runner
+serializers_dirs = spiro_network.loader:serializers
+states_dirs = spiro_network.loader:states
+tokens_dirs = spiro_network.loader:tokens
+top_dirs = spiro_network.loader:top
+utils_dirs = spiro_network.loader:utils
+wheel_dirs = spiro_network.loader:wheel
+
