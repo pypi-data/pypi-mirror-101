@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: imbot
+Version: 0.0.1
+Summary: "imbot" for making a bot to control any website from json file.
+Home-page: UNKNOWN
+Author: Yasser BDJ (Ro0t96)
+Author-email: by.root96@gmail.com
+License: UNKNOWN
+Project-URL: Author Github, https://github.com/byRo0t96
+Project-URL: Source Code, https://github.com/byRo0t96/imbot
+Description: imbot
+        ==========================
+        "imbot" for making a bot to control any website from json file.
+        
+        Installation
+        ============
+        
+        .. code::
+        
+            pip install imbot
+        
+        Usage
+        =====
+        .. code:: python
+        
+            from imbot import imbot
+        
+            p1=imbot("<JSON_FILE_PATH>","<OPTION>",<TIME_EVERY_OPERATION>)
+            p1.run() # for run imbot
+            p1.end() # close
+        
+        
+        This is an example for login to github and go your profile:
+        .. code:: json
+        {
+            "login":{
+                "url":"https://github.com/",
+                "xpaths":[
+        	    {"xpath":"/html/body/div[1]/header/div/div[2]/div[2]/a[1]","opt":"click"},
+        	    {"xpath":"//input[@name=\"login\"]","opt":"put","data":"<YOUR_EMAIL>"},
+        	    {"xpath":"//input[@name=\"password\"]","opt":"put","data":"<YOUR_PASSWORD>"},
+        	    {"xpath":"//input[@type=\"submit\"]","opt":"click"},
+        	    {"xpath":"//*[@id=\"otp\"]","opt":"put"},
+        	    {"xpath":"//*[@id=\"login\"]/div[3]/form/button","opt":"click"},
+        	    {"xpath":"/html/body/div[1]/header/div[7]/details/summary/span[2]","opt":"click"},
+        	    {"xpath":"/html/body/div[1]/header/div[7]/details/details-menu/a[1]","opt":"click"}
+        	]
+            }
+        }
+        
+        
+        .. begin changelog
+        
+        Changelog
+        =========
+        
+        0.0.1
+        -----
+        - First public release.
+        
+        .. end changelog
+        
+Keywords: python,imbot
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
