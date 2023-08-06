@@ -1,0 +1,76 @@
+Metadata-Version: 2.1
+Name: MegafonAPI
+Version: 0.0.42
+Summary: Python API implementation to work with Megafon business services
+Home-page: https://github.com/robotkarl/MegafonAPI
+Author: Ilya Strukov
+Author-email: ilya@strukov.net
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: certifi (==2020.6.20)
+Requires-Dist: chardet (==3.0.4)
+Requires-Dist: pyquery (==1.4.1)
+Requires-Dist: pytz (==2020.1)
+Requires-Dist: requests (==2.24.0)
+Requires-Dist: urllib3 (==1.25.10)
+Requires-Dist: cssselect (==1.1.0) ; python_version >= "2.7" and python_version not in "3.0, 3.1, 3.2, 3.3"
+Requires-Dist: idna (==2.10) ; python_version >= "2.7" and python_version not in "3.0, 3.1, 3.2, 3.3"
+Requires-Dist: lxml (==4.5.2) ; python_version >= "2.7" and python_version not in "3.0, 3.1, 3.2, 3.3, 3.4"
+
+# MegafonAPI
+Работа с личным кабинетом для бизнеса и ВАТС через API
+
+> Этому проекту много чего не хватает:
+> * Тестов
+> * Проверок ответов бэкенда
+> * ...
+> 
+> Однако, даже в существующем виде, он работоспособен и используется в одном крупном проекте, для которого и дорабатывается время от времени
+
+
+## MagfonAPI.LK
+Класс для работы с личным кабинетом.
+Для инициализации необходимы: адрес (b2blk.megafon.ru), логин, пароль
+
+Позволяет:
+1. Получить список сим-карт
+1. Получить информацию по сим-картам (начисления, состояние, тариф, лимиты, услуги)
+1. Сменить тариф
+1. Установка/снятие добровольной блокировки
+1. Установка лимитов
+
+### Пример
+```python
+    from MegafonAPI import VATS
+    vats = VATS("address", "user", "password", "name"])
+    if vats.getSimCards():
+      print(vats.simcards)
+```
+
+
+## MagfonAPI.VATS
+Класс для работы с ВАТС.
+Для инициализации необходимы: адрес (vatsXXXX.megapbx.ru), логин, пароль
+
+Позволяет:
+1. Получить список сим-карт
+1. Получить список пользователей
+1. Добавить/удалить сим-карту в/из ВАТС
+1. Подключить(назначить) сим-карту свободному пользователю
+1. Отключить сим-карту
+
+### Пример
+```python
+    from MegafonAPI import LK
+    lk = LK("address", "user", "password", "name"])
+    if lk.getSimCards():
+      lk.getSimServicesInfo(lk.simcards)
+      print(lk.simcards)
+```
+
+
