@@ -1,0 +1,28 @@
+[bumpversion]
+tag = True
+commit = True
+current_version = {{ version }}
+{% if is_pypi_package %}
+
+[bumpversion:file:setup.cfg]
+search = version = {current_version}
+replace = version = {new_version}
+{% endif %}
+{% if is_npm_package or is_pursuit_package %}
+
+[bumpversion:file:package.json]
+search = "version": "{current_version}"
+replace = "version": "{new_version}"
+{% endif %}
+
+[bumpversion:file:.template.yml]
+search = version: {current_version}
+replace = version: {new_version}
+
+[bumpversion:file:.quickdocs.yml]
+search = version: {current_version}
+replace = version: {new_version}
+
+[bumpversion:file:docs/conf.py]
+search = version = "{current_version}"
+replace = version = "{new_version}"
