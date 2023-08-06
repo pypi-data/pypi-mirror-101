@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: piauthorizer
+Version: 0.3.1
+Summary: A package to create a uniform authorization and autorest standard for FastAPI
+License: Pandora Intelligence
+Author: David Berenstein
+Author-email: david.berenstein@pandoraintelligence.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyJWT (>=2.0.1,<3.0.0)
+Requires-Dist: aiohttp (>=3.7.4,<4.0.0)
+Requires-Dist: cryptography (>=3.4.7,<4.0.0)
+Requires-Dist: fastapi (==0.62.0)
