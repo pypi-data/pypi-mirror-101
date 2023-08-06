@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "yaramanager"
+version = "0.1.10"
+description = "CLI tool to manage your yara rules"
+authors = ["3c7 <3c7@posteo.de>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/3c7/yaramanager"
+repository = "https://github.com/3c7/yaramanager"
+keywords = ["yara", "rule", "manage"]
+classifiers = [
+    "Environment :: Console",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Security",
+    "Topic :: Utilities"
+]
+include = [
+    "LICENSE",
+    "alembic/*",
+    "alembic/versions/*",
+    "resources/*"
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+SQLAlchemy = "^1.4.2"
+plyara = "^2.1.1"
+yarabuilder = "^0.0.5"
+rich = "^10.0.0"
+alembic = "^1.5.8"
+click = "^7.1.2"
+toml = "^0.10.2"
+requests = "^2.25.1"
+yara-python = "^4.0.5"
+
+[tool.poetry.dev-dependencies]
+pyinstaller = "^4.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+yaramanager = "yaramanager.commands.cli:cli"
+ym = "yaramanager.commands.cli:cli"
