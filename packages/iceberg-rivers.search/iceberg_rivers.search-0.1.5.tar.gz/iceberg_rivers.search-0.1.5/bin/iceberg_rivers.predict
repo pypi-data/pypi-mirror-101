@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+"""
+Author: Ioannis Paraskevakos
+License: MIT
+Copyright: 2018-2019
+"""
+
+import argparse
+from iceberg_rivers.search.classification.predict_unet import predict_unet
+
+def args_parser():
+    parser = argparse.ArgumentParser(description="predicts tiles")
+    parser.add_argument('-i', '--input', type=str,
+                            help='Input image tiles folder')
+    parser.add_argument('-w', '--weights_path', type=str,
+                            help='Path to the weights')
+    parser.add_argument('-o', '--output_folder', type=str, default='./',
+                        help='Folder where output masks will be stored')			
+    return parser.parse_args()
+    
+if __name__ == '__main__':
+    args = args_parser()
+    input_folder = args.input + '/'
+    output_folder = args.output_folder + '/'
+    predict_unet(input_folder, args.weights_path, output_folder)

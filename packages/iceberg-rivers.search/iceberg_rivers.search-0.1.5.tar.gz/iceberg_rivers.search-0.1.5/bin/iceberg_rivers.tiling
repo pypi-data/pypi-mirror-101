@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+"""
+Author: Ioannis Paraskevakos
+License: MIT
+Copyright: 2018-2019
+"""
+
+import argparse
+from iceberg_rivers.search.tiling.tile_unet import tile_unet
+
+
+
+def args_parser():
+    parser = argparse.ArgumentParser(description="divides a WorldView image into tiles")
+    parser.add_argument('-i', '--input', type=str,
+                        help='Path and name of the WorldView image')
+    parser.add_argument('-t', '--tile_size', type=int, default=224,
+                        help='Tile size')
+    parser.add_argument('-s', '--step', type=int, default=112,
+                        help='Step size')
+    parser.add_argument('-o', '--output', type=str, 
+                        help='Folder where output tiles will be stored')			
+    return parser.parse_args()
+    
+if __name__ == '__main__':
+    args = args_parser()
+    output_path = args.output + '/'
+    tile_unet(image_path=args.input, output_path=output_path, step=args.step, tile_size=args.tile_size)
