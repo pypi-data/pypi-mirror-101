@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: bk_db_tools
+Version: 2.1.0
+Summary: bk_db_tools is a set of tools to very rapidly, and with a minimum of effort, work with a relational database.
+Home-page: https://github.com/SunnysideAaron/bk_db_tools
+Author: Aaron R. Short
+Author-email: FuzzyFonzy@yahoo.com
+License: UNKNOWN
+Project-URL: Wiki, https://github.com/SunnysideAaron/bk_db_tools/wiki
+Description: # bk_db_tools (Bam Kaplam's Database Tools)
+        bk_db_tools is a set of tools to very rapidly, and with a minimum of effort, work with a relational database.
+        
+        Built around:
+        * a relational database (sqlite, possibly others.)
+        * python
+        * .xlsx files (spreadsheets)
+        
+        bk_db_tools is a hack! That said, it is one of **the fastest** ways to setup a complete database solution. Including _repeatable_ imports and exports, table creation, table pre population, data editing, and reporting.
+        
+        Further documentation can be found on the [wiki](https://github.com/SunnysideAaron/bk_db_tools/wiki).
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
