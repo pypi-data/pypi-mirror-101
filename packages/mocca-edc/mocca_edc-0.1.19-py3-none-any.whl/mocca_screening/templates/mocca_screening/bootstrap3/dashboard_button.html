@@ -1,0 +1,31 @@
+{% load i18n %}
+<!-- start dashboard_button -->
+<script src="https://kit.fontawesome.com/a022b85977.js" crossorigin="anonymous"></script>
+<style>
+.button.add, input[type=submit].add, input.add {
+    float: left;
+    border: none;
+    font-weight: 400;
+    background: #f0ad4e;
+}
+.button.edit, input[type=submit].edit, input.edit {
+    float: left;
+    border: none;
+    font-weight: 400;
+    background: #5cb85c;
+}
+.button.go, input[type=submit].go, input.go {
+    float: left;
+    border: none;
+    font-weight: 400;
+    background: #337ab7;
+}
+</style>
+<div>
+    <a class="button {{ button_type }}" title="{{ title |default:"Go to subject's dashboard"}}"
+        href="{{ url }}">
+        {% if fa_icon_after %}{% else %}<i class="{{ fa_icon }}"></i>{% endif %} {{ label|default:"Dashboard" }} {% if fa_icon_after %}<i class="{{ fa_icon }}"></i>{% endif %}
+    </a>
+</div>
+<!-- end dashboard_button -->
+
