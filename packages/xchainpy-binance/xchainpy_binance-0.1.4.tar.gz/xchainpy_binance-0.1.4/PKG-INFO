@@ -1,0 +1,49 @@
+Metadata-Version: 2.1
+Name: xchainpy_binance
+Version: 0.1.4
+Summary: Custom Binance client and utilities used by XChainPY clients
+Home-page: https://github.com/xchainjs/xchainpy-lib/tree/main/xchainpy/xchainpy_binance
+Author: THORChain
+Author-email: 
+License: MIT
+Description: # `xchainpy/xchainpy_binance`
+        
+        Binance Module for XChainPy Clients
+        
+        ## Modules
+        
+        - `client` - Custom client for communicating with binance_chain
+        - `models` - model wrapper for binance_chain types
+        - `util` - Utitilies for using binance_chain
+        
+        Following dependencies have to be installed into your project
+        
+        ```
+        secp256k1 - py-binance-chain - pywallet - mnemonic
+        ```
+        
+        
+        ## Tests
+        
+        These packages needed to run tests:
+        
+        - pytest `pip install pytest`
+        - pytest-asyncio `pip install pytest-asyncio`
+        
+        How to run test ?
+        
+        ```bash
+        $ python -m pytest xchainpy/xchainpy_binance/test/test_binance_clients.py
+        ```
+        
+        
+Keywords: BNB,Binance,XChainpy_binance,THORChain
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python
+Description-Content-Type: text/markdown
