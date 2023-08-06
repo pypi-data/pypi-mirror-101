@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: CircuitSeeker
+Version: 0.1.2
+Summary: Tools for finding neural circuits
+Home-page: https://github.com/GFleishman/CircuitSeeker
+Author: Greg M. Fleishman
+Author-email: greg.nli10me@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: h5py
+Requires-Dist: dask
+Requires-Dist: dask[array]
+Requires-Dist: dask[bag]
+Requires-Dist: dask[delayed]
+Requires-Dist: dask[distributed]
+Requires-Dist: dask-jobqueue
+Requires-Dist: SimpleITK
+Requires-Dist: zarr
+Requires-Dist: numcodecs
+Requires-Dist: morphsnakes
+Requires-Dist: ClusterWrap
+Requires-Dist: pynrrd
+
+UNKNOWN
+
+
