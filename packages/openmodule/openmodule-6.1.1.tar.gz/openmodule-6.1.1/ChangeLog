@@ -1,0 +1,131 @@
+CHANGES
+=======
+
+v6.1.1
+------
+
+* interrupt test mixin rework
+
+v6.1.0
+------
+
+* docs [skip-ci]
+* relative path fix again
+* relative path fix
+* lazy config
+* openmodule config
+* docs [skip ci]
+
+v6.0.1
+------
+
+* allow import of checking module
+* documentation [skip ci]
+
+v6.0.0
+------
+
+* requirements
+* known issues
+* fixes an issue with .timestamp() and testing
+* name function which has no doc string in assertion
+* why did i do that?
+* recurrence allows empty strings again now, wait\_for\_reject raises an assertion instead of timeout error if the barrier actually opened
+* testcase for datetime-naive saves
+* git stash popMerge branch 'timezone\_checks' of gitlab.com:arivo-public/device-python/openmodule into timezone\_checks
+* why was this ignored?
+* developer error, test gate
+* check on migration/make\_migration if DateTime is used + testcase, custom types are now imported correctly
+* fix in timezone validator for optional fields
+* v6 breaking changes, added timezone / datetime checks
+* added database flush and a known issues list
+
+v5.0.1
+------
+
+* fixes a bug in the database code, which swallowed exceptions during commit()
+* api changes
+
+v5.0.0
+------
+
+* breaking changes in alert handler, see migration.md
+
+v4.0.0
+------
+
+* log message changes in backend, docs improvements for update/delete\_query
+* fixed test case
+* api saves response in excpetion if possible
+* migrations readme
+* migrations as markdown [skip-ci]
+* changed default database folder to /data/sqlite
+* 4.0 migration guide
+* breaking changes: changes Enums Category to AccessCategory, Medium to MediumType. All members are lowercase
+
+v3.1.0
+------
+
+* pinned sentry version, since the sentry-shipper only supports 0.7 style messages
+* some cleanup /refactor
+* fixes an issue which prevented a database from beeing migrated multiple times within one process
+* fixes a bug in the sqlite test mixin
+* make Database callable and expire on commit can be optionally passed, added testcase for this
+* fixed tags for schema
+* typos
+
+v3.0.5
+------
+
+* test case fix + readme
+* bug fix + tags for paths
+* sort components by name + index title
+* Schema file in interrupt test mixin + doc string bug
+* bug fix decorator
+* Rpc + message schemas
+* implemented simple, non-recurrent access checks
+* removed duplicate code from unittests
+* implemented a stricter recurrence check, removed logical errors from testcases
+
+v3.0.4
+------
+
+* schema creation
+* added missing \_\_init\_\_ file, and removed unnecessary dict key in a unittest [skip ci]
+
+v3.0.3
+------
+
+* always change the current vehicle, regardless of vehicle id change
+
+v3.0.2
+------
+
+* interrupts thread based
+* moved interrupt
+* InterruptMixin not inheriting TestCase
+* interrupt test mixin
+* readme coding standard
+* presence utils adaption to changed vehicle id
+* adapted docs for the public git
+* readme
+
+v3.0.1
+------
+
+* gateway is now optional for backedn access check and do not allow a recurrence with no start timestamp
+
+v3.0.0
+------
+
+* gateway in Access optional
+* BackendTestMixin user needs USER\_PREFIX
+* fixed test case
+* requests-mock in test requirements
+* requests in requirements
+* removed print
+* api mocker timeout + testcases
+* assert correct exceptions in test\_database
+* merge from feature/backend
+* test database get methods
+* access datetime are no converted to unix timestamp and an access with empty string recurrence is now valid
