@@ -1,0 +1,46 @@
+{% load i18n %}
+<div class="uk-padding uk-padding-remove-horizontal">
+	<div class="uk-grid-small" uk-grid>
+		<div class="uk-width-3-4">
+			<h1 class="uk-heading-bullet">{{ site_title|default:_('Django site admin') }}</h1>
+			<p>{% translate "Welcome" %}, {% if request.user.first_name %}{{ request.user.first_name}}{% else%}{{ request.user }}{% endif %}!</p>
+			
+			<h3>{{ title }}</h3>
+			
+			{% include 'admin/includes/available_apps_index.html' %}
+		</div>
+
+		<div class="uk-width-expand@m">
+
+		<h3>{% translate 'Recent actions' %}</h3>
+		<h4>{% translate 'My actions' %}</h4>
+								
+			{% load log %}
+			
+			{% get_admin_log 10 as admin_log for_user user %}
+			{% if not admin_log %}
+			<p>{% translate 'None available' %}</p>
+			{% else %}
+
+			<ul class="uk-list uk-list-divider">
+			{% for entry in admin_log %}
+			<li class="{% if entry.is_addition %}prl-text-success{% endif %}{% if entry.is_change %}prl-text-warning{% endif %}{% if entry.is_deletion %}prl-text-danger{% endif %}">
+				<span class="uk-margin-small-right uk-float-left" uk-icon="icon: {% if entry.is_addition %}plus{% endif %}{% if entry.is_change %}file-edit{% endif %}{% if entry.is_deletion %}trash{% endif %}; ratio: 2"></span>
+				{% if entry.is_deletion or not entry.get_admin_url %}
+					{{ entry.object_repr }}
+				{% else %}
+					<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+				{% endif %}
+				<br>
+				{% if entry.content_type %}
+					<span class="uk-text-muted">{% filter capfirst %}{{ entry.content_type.name }}{% endfilter %}</span>
+				{% else %}
+					<span class="uk-text-muted">{% translate 'Unknown content' %}</span>
+				{% endif %}
+			</li>
+			{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+	</div>
+</div>

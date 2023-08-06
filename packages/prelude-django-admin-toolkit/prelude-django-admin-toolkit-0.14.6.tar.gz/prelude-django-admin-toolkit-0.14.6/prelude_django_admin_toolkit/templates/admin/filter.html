@@ -1,0 +1,19 @@
+{% load i18n %} {# Filter screen responsible per kind of filter #}
+
+<div>
+    <div class="uk-panel">
+		<h4>{% blocktrans with filter_title=title %}By {{ filter_title }} {% endblocktrans %}</h4>
+ 
+        <div uk-form-custom="target: > * > span:first-child">
+            <select class="prl-filter-select">
+            {% for choice in choices %}
+                <option value="{{ choice.query_string|iriencode }}" {% if choice.selected %}selected{% endif %}>{{ choice.display }}</option> 
+            {% endfor %}
+            </select>
+            <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                <span></span>
+                <span uk-icon="icon: chevron-down"></span>
+            </button>
+        </div>
+    </div>
+</div>

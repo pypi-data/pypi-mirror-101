@@ -1,0 +1,14 @@
+{% load i18n admin_urls static admin_list %}
+
+<div class="uk-clearfix uk-background-muted uk-padding-remove">
+	<div class="uk-container" uk-height-match>
+		<div class="uk-float-left uk-padding-small uk-padding-remove-horizontal uk-flex uk-flex-middle">
+			<span class="uk-text-lead">{{ cl.opts.verbose_name_plural|capfirst }}</span>
+		</div>
+		{% block object-tools %}
+			{% block object-tools-items %}
+				{% change_list_object_tools %}
+			{% endblock %}
+		{% endblock %}
+	</div>
+</div>

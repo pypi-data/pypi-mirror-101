@@ -1,0 +1,46 @@
+{% load i18n %}
+
+{% if app_list %}
+{% for app in app_list %}
+
+    <h3><a href="{{ app.app_url }}"><span uk-icon="icon: home; ratio: 1.2"></span> {{ app.name }}</a></h3>
+
+<div class="uk-grid-small uk-child-width-expand" uk-grid>
+	{% for model in app.models %}
+		<div class="uk-width-1-2@m">
+			<div class="uk-card uk-card-default uk-card-small uk-card-body">
+				<h3 class="uk-card-title">
+					{% if model.admin_url %}
+						  <a href="{{ model.admin_url }}"{% if model.admin_url in request.path %} aria-current="page"{% endif %}>{{ model.name }}</a>
+					{% else %}
+						  {{ model.name }}
+					{% endif %}
+				</h3>
+
+                <div class="uk-flex uk-flex-right">
+                    <div>
+                        {% if model.add_url %}
+                            <a class="uk-button uk-button-default uk-button-small" href="{{ model.add_url }}"><span uk-icon="icon: plus; ratio: .75"></span></a>
+                        {% endif %}
+                    </div>
+                    <div>
+                    {% if model.admin_url %}
+                        {% if model.view_only %}
+                            <a class="uk-button uk-button-default uk-button-primary uk-button-small uk-width-expand" href="{{ model.admin_url }}"><span uk-icon="icon: list; ratio: .75"></span></a>
+                        {% else %}
+                            <a class="uk-button uk-button-default uk-button-primary uk-button-small uk-width-expand" href="{{ model.admin_url }}"><span uk-icon="icon: list; ratio: .75"></span></a>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+			</div>
+		</div>
+        {#  {% if forloop.counter|divisibleby:2 %}</div><div class="uk-padding-small uk-padding-remove-horizontal">{% endif %} #}
+	{% endfor %}
+</div>
+{% endfor %}
+
+{% else %}
+	<h3>{% translate 'Available apps' %}</h3>
+	<p>{% translate 'You don’t have permission to view or edit anything.' %}</p>
+{% endif %}
