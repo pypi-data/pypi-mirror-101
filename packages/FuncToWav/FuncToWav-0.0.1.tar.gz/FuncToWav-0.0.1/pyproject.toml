@@ -1,0 +1,6 @@
+[build-system]
+requires = [
+    "extended-int>=0.6",
+    "setuptools"
+]
+build-backend = "setuptools.build_meta"
