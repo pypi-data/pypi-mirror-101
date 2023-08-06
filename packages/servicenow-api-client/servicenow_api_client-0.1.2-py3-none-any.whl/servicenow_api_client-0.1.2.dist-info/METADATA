@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: servicenow-api-client
+Version: 0.1.2
+Summary: A python client to Service Now API.
+Home-page: UNKNOWN
+Author: Thiago Machado
+Author-email: thiagomachhado@gmail.com
+License: UNKNOWN
+Project-URL: Source Code, https://github.com/thiagomachado/service_now_client
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+A python client to Service Now API. This project is a fork of Parul Neeraj 
+project (https://pypi.org/project/servicenow-client/).
+
+# Examples of usage:  
+ ## Init client
+  ### Params: 
+  - String instance: if your instance is test.service-now.com use test 
+  - String user: user name 
+  - String password: password      
+    > **E.g.:**  service_now_client = ServiceNowClient(instance, user, password)
+
