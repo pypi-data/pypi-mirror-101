@@ -1,0 +1,404 @@
+- nlp:
+    __default__: exact
+  state: __default__
+  version: 2.0
+- bot: So, you need to write a personal essay for your college application, huh?
+  next_condition:
+    turn_id_01: Yup.
+  state: turn_id_00
+- bot: Do you know what you'd like to write?
+  next_condition:
+    turn_id_02: No.
+  state: turn_id_01
+- bot: Well, the people reading it want to understand you better. What do you want
+    them to know about you?
+  next_condition:
+    turn_id_03: "I don\u2019t know."
+  state: turn_id_02
+- bot: Are you applying to schools where you really want to get accepted?
+  next_condition:
+    turn_id_04: Yeah, a few.
+  state: turn_id_03
+- bot: Well, a lot of people are applying, so you need to differentiate yourself somehow.
+  next_condition:
+    turn_id_05: Okay.
+  state: turn_id_04
+- bot: "Picture yourself standing in a long line of people who look almost identical\
+    \ to you. That\u2019s what it\u2019s like when admissions officers are looking\
+    \ at applications. Your personal essay is your chance to step out of the line,\
+    \ wave your hand, and say, \u201CThis is what makes me different...\u201D"
+  next_condition:
+    turn_id_06: Okay.
+  state: turn_id_05
+- bot: So, what makes you different?
+  next_condition:
+    turn_id_07: "I don\u2019t know."
+  state: turn_id_06
+- bot: 'Let me approach this from a different angle: what are you passionate about?'
+  next_condition:
+    turn_id_08: I like soccer.
+  state: turn_id_07
+- bot: So, you are passionate about soccer?
+  next_condition:
+    turn_id_09: Yes.
+  state: turn_id_08
+- bot: Why?
+  next_condition:
+    turn_id_10: I like playing it.
+  state: turn_id_09
+- bot: So do a lot of people. What do you like most about soccer?
+  next_condition:
+    turn_id_11: "I don\u2019t know, just everything."
+  state: turn_id_10
+- bot: What would you miss most about it, if you stopped playing?
+  next_condition:
+    turn_id_12: Being part of the team.
+  state: turn_id_11
+- bot: "Okay, see, now we\u2019re making progress! What do you like about being part\
+    \ of the team?"
+  next_condition:
+    turn_id_13: "I don\u2019t know, it\u2019s just more fun than playing an individual\
+      \ sport because you get to share everything."
+  state: turn_id_12
+- bot: "So, it\u2019s more fun to celebrate victories?"
+  next_condition:
+    turn_id_14: Yeah, but it also helps when you lose because you can lean on each
+      other.
+  state: turn_id_13
+- bot: Good point. What makes a good teammate?
+  next_condition:
+    turn_id_15: "You have to put the team first. You can\u2019t be selfish. You need\
+      \ to support everyone else on the team."
+  state: turn_id_14
+- bot: How does a good teammate support his or her teammates?
+  next_condition:
+    turn_id_16: Well, in a game, it means understanding the responsibilities of your
+      position so that you can help the team execute. Off the field, it means having
+      a good attitude, working hard, and doing things together.
+  state: turn_id_15
+- bot: Are you a good teammate?
+  next_condition:
+    turn_id_17: Yeah, I think so.
+  state: turn_id_16
+- bot: "Good to hear. Have you learned anything about being a good soccer teammate\
+    \ that you\u2019ve applied to other aspects of your life?"
+  next_condition:
+    turn_id_18: Yeah, a lot.
+  state: turn_id_17
+- bot: Like what?
+  next_condition:
+    turn_id_19: Everything I mentioned.
+  state: turn_id_18
+- bot: So, you try to have a good attitude and work hard?
+  next_condition:
+    turn_id_20: Most of the time.
+  state: turn_id_19
+- bot: "Would you like someone reading your application to know that you like soccer,\
+    \ and that you\u2019ve learned things from being part of the team -- like having\
+    \ a good attitude and working hard -- that you now apply to other aspects of your\
+    \ life?"
+  next_condition:
+    turn_id_21: Yes.
+  state: turn_id_20
+- bot: "Then, let\u2019s make that the focus of your personal essay, okay?"
+  next_condition:
+    turn_id_22: Okay.
+  state: turn_id_21
+- bot: "So, let\u2019s create a statement that captures that idea. Give it a try."
+  next_condition:
+    turn_id_23: Soccer has taught me a lot of things that are useful in life.
+  state: turn_id_22
+- bot: "Okay, good start. What did you tell me about why you\u2019re passionate about\
+    \ soccer?"
+  next_condition:
+    turn_id_24: I like being part of the team.
+  state: turn_id_23
+- bot: "Right, so let\u2019s weave that into your statement. Try again."
+  next_condition:
+    turn_id_25: "Soccer has taught me to be a good teammate and I\u2019ve applied\
+      \ these lessons to other parts of my life."
+  state: turn_id_24
+- bot: "Excellent. Now that you\u2019ve established your main point, the rest of your\
+    \ essay should be all about supporting it with examples."
+  next_condition:
+    turn_id_26: Okay, I get it.
+  state: turn_id_25
+- bot: So, what lessons about being a good teammate do you want to focus on?
+  next_condition:
+    turn_id_27: Having a good attitude and working hard.
+  state: turn_id_26
+- bot: Great. So, give me an example of why having a good attitude in soccer is important.
+  next_condition:
+    turn_id_28: "Well, if you don\u2019t have a good attitude at practice, then other\
+      \ members of the team may start to have bad attitudes too. And if that happens,\
+      \ then the practice isn\u2019t going to go well, which means the team is probably\
+      \ not going to play well in the next game. Or, if it\u2019s just you with the\
+      \ bad attitude, then the coach probably isn\u2019t going to play you."
+  state: turn_id_27
+- bot: Got it. So, how has this lesson translated to your life?
+  next_condition:
+    turn_id_29: "Well, I try to bring a good attitude to my classes in school. Like,\
+      \ when kids are not paying attention and the teacher is getting annoyed, I\u2019\
+      ll sometimes say something."
+  state: turn_id_28
+- bot: Excellent. Do you see how these examples support your main statement?
+  next_condition:
+    turn_id_30: Yes.
+  state: turn_id_29
+- bot: "Good. So, now let\u2019s do the same thing for working hard. What\u2019s important\
+    \ about working hard in soccer?"
+  next_condition:
+    turn_id_31: "Well, if you don\u2019t work hard, you\u2019re not going to improve.\
+      \ Like, my ball skills weren\u2019t very good when I was in ninth grade, but\
+      \ I worked hard on them and, by senior year, I was very confident with my ability\
+      \ to control the ball in games."
+  state: turn_id_30
+- bot: Great. How has that translated to the rest of your life?
+  next_condition:
+    turn_id_32: "It\u2019s the same as my classes. Some subjects, like math, come\
+      \ pretty easily to me. But I\u2019m not very good at writing, so I have had\
+      \ to work at it to get better."
+  state: turn_id_31
+- bot: How have you worked harder?
+  next_condition:
+    turn_id_33: "In ninth grade, I wasn\u2019t a good writer at all. But, in tenth\
+      \ grade, I started submitting drafts to my teacher, who would give me feedback.\
+      \ That helped a lot, so I have continued to do that."
+  state: turn_id_32
+- bot: Excellent. Do you feel like this example does a good job of supporting your
+    main point?
+  next_condition:
+    turn_id_34: Yes.
+  state: turn_id_33
+- bot: "Good. So, now you have your two supporting examples. Anything else you\u2019\
+    d like the admissions officers to know about you?"
+  next_condition:
+    turn_id_35: Well, we went to the conference championship senior year.
+  state: turn_id_34
+- bot: Great, so maybe you could add that in to show that sometimes having a good
+    attitude and working hard can pay off. Do you think it would make a good conclusion?
+  next_condition:
+    turn_id_36: Probably.
+  state: turn_id_35
+- bot: What would be the equivalent in your classes of winning the championship in
+    soccer?
+  next_condition:
+    turn_id_37: Maybe getting into college.
+  state: turn_id_36
+- bot: I like it. Do you want to end your essay with that?
+  next_condition:
+    turn_id_38: Yes.
+  state: turn_id_37
+- bot: "So, you\u2019ve established your main point, provided some examples to support\
+    \ it, and come up with a good conclusion. Any idea how you\u2019d like to start\
+    \ your essay?"
+  next_condition:
+    turn_id_39: "I\u2019m not sure."
+  state: turn_id_38
+- bot: "Remember where we started: you said soccer is something you\u2019re passionate\
+    \ about. So, maybe start there."
+  next_condition:
+    turn_id_40: Okay.
+  state: turn_id_39
+- nlp:
+    __default__: exact
+  state: __default__
+  version: 2.0
+- bot: So, you need to write a personal essay for your college application, huh?
+  next_condition:
+    turn_id_01: Yup.
+  state: turn_id_00
+- bot: "Do you know what you\u2019d like to write?"
+  next_condition:
+    turn_id_02: No.
+  state: turn_id_01
+- bot: Well, the people reading it want to understand you better. What do you want
+    them to know about you?
+  next_condition:
+    turn_id_03: "I don\u2019t know."
+  state: turn_id_02
+- bot: Are you applying to schools where you really want to get accepted?
+  next_condition:
+    turn_id_04: Yeah, a few.
+  state: turn_id_03
+- bot: Well, a lot of people are applying, so you need to differentiate yourself somehow.
+  next_condition:
+    turn_id_05: Okay.
+  state: turn_id_04
+- bot: "Picture yourself standing in a long line of people who look almost identical\
+    \ to you. That\u2019s what it\u2019s like when admissions officers are looking\
+    \ at applications. Your personal essay is your chance to step out of the line,\
+    \ wave your hand, and say, \u201CThis is what makes me different...\u201D"
+  next_condition:
+    turn_id_06: Okay.
+  state: turn_id_05
+- bot: So, what makes you different?
+  next_condition:
+    turn_id_07: "I don\u2019t know."
+  state: turn_id_06
+- bot: 'Let me approach this from a different angle: what are you passionate about?'
+  next_condition:
+    turn_id_08: I like soccer.
+  state: turn_id_07
+- bot: So, you are passionate about soccer?
+  next_condition:
+    turn_id_09: Yes.
+  state: turn_id_08
+- bot: Why?
+  next_condition:
+    turn_id_10: I like playing it.
+  state: turn_id_09
+- bot: So do a lot of people. What do you like most about soccer?
+  next_condition:
+    turn_id_11: "I don\u2019t know, just everything."
+  state: turn_id_10
+- bot: What would you miss most about it, if you stopped playing?
+  next_condition:
+    turn_id_12: Being part of the team.
+  state: turn_id_11
+- bot: "Okay, see, now we\u2019re making progress! What do you like about being part\
+    \ of the team?"
+  next_condition:
+    turn_id_13: "I don\u2019t know, it\u2019s just more fun than playing an individual\
+      \ sport because you get to share everything."
+  state: turn_id_12
+- bot: "So, it\u2019s more fun to celebrate victories?"
+  next_condition:
+    turn_id_14: Yeah, but it also helps when you lose because you can lean on each
+      other.
+  state: turn_id_13
+- bot: Good point. What makes a good teammate?
+  next_condition:
+    turn_id_15: "You have to put the team first. You can\u2019t be selfish. You need\
+      \ to support everyone else on the team."
+  state: turn_id_14
+- bot: How does a good teammate support his or her teammates?
+  next_condition:
+    turn_id_16: Well, in a game, it means understanding the responsibilities of your
+      position so that you can help the team execute. Off the field, it means having
+      a good attitude, working hard, and doing things together.
+  state: turn_id_15
+- bot: Are you a good teammate?
+  next_condition:
+    turn_id_17: Yeah, I think so.
+  state: turn_id_16
+- bot: "Good to hear. Have you learned anything about being a good soccer teammate\
+    \ that you\u2019ve applied to other aspects of your life?"
+  next_condition:
+    turn_id_18: Yeah, a lot.
+  state: turn_id_17
+- bot: Like what?
+  next_condition:
+    turn_id_19: Everything I mentioned.
+  state: turn_id_18
+- bot: So, you try to have a good attitude and work hard?
+  next_condition:
+    turn_id_20: Most of the time.
+  state: turn_id_19
+- bot: "Would you like someone reading your application to know that you like soccer,\
+    \ and that you\u2019ve learned things from being part of the team -- like having\
+    \ a good attitude and working hard -- that you now apply to other aspects of your\
+    \ life?"
+  next_condition:
+    turn_id_21: Yes.
+  state: turn_id_20
+- bot: "Then, let\u2019s make that the focus of your personal essay, okay?"
+  next_condition:
+    turn_id_22: Okay.
+  state: turn_id_21
+- bot: "So, let\u2019s create a statement that captures that idea. Give it a try."
+  next_condition:
+    turn_id_23: Soccer has taught me a lot of things that are useful in life.
+  state: turn_id_22
+- bot: "Okay, good start. What did you tell me about why you\u2019re passionate about\
+    \ soccer?"
+  next_condition:
+    turn_id_24: I like being part of the team.
+  state: turn_id_23
+- bot: "Right, so let\u2019s weave that into your statement. Try again."
+  next_condition:
+    turn_id_25: "Soccer has taught me to be a good teammate and I\u2019ve applied\
+      \ these lessons to other parts of my life."
+  state: turn_id_24
+- bot: "Excellent. Now that you\u2019ve established your main point, the rest of your\
+    \ essay should be all about supporting it with examples."
+  next_condition:
+    turn_id_26: Okay, I get it.
+  state: turn_id_25
+- bot: So, what lessons about being a good teammate do you want to focus on?
+  next_condition:
+    turn_id_27: Having a good attitude and working hard.
+  state: turn_id_26
+- bot: Great. So, give me an example of why having a good attitude in soccer is important.
+  next_condition:
+    turn_id_28: "Well, if you don\u2019t have a good attitude at practice, then other\
+      \ members of the team may start to have bad attitudes too. And if that happens,\
+      \ then the practice isn\u2019t going to go well, which means the team is probably\
+      \ not going to play well in the next game. Or, if it\u2019s just you with the\
+      \ bad attitude, then the coach probably isn\u2019t going to play you."
+  state: turn_id_27
+- bot: Got it. So, how has this lesson translated to your life?
+  next_condition:
+    turn_id_29: "Well, I try to bring a good attitude to my classes in school. Like,\
+      \ when kids are not paying attention and the teacher is getting annoyed, I\u2019\
+      ll sometimes say something."
+  state: turn_id_28
+- bot: Excellent. Do you see how these examples support your main statement?
+  next_condition:
+    turn_id_30: Yes.
+  state: turn_id_29
+- bot: "Good. So, now let\u2019s do the same thing for working hard. What\u2019s important\
+    \ about working hard in soccer?"
+  next_condition:
+    turn_id_31: "Well, if you don\u2019t work hard, you\u2019re not going to improve.\
+      \ Like, my ball skills weren\u2019t very good when I was in ninth grade, but\
+      \ I worked hard on them and, by senior year, I was very confident with my ability\
+      \ to control the ball in games."
+  state: turn_id_30
+- bot: Great. How has that translated to the rest of your life?
+  next_condition:
+    turn_id_32: "It\u2019s the same as my classes. Some subjects, like math, come\
+      \ pretty easily to me. But I\u2019m not very good at writing, so I have had\
+      \ to work at it to get better."
+  state: turn_id_31
+- bot: How have you worked harder?
+  next_condition:
+    turn_id_33: "In ninth grade, I wasn\u2019t a good writer at all. But, in tenth\
+      \ grade, I started submitting drafts to my teacher, who would give me feedback.\
+      \ That helped a lot, so I have continued to do that."
+  state: turn_id_32
+- bot: Excellent. Do you feel like this example does a good job of supporting your
+    main point?
+  next_condition:
+    turn_id_34: Yes.
+  state: turn_id_33
+- bot: "Good. So, now you have your two supporting examples. Anything else you\u2019\
+    d like the admissions officers to know about you?"
+  next_condition:
+    turn_id_35: Well, we went to the conference championship senior year.
+  state: turn_id_34
+- bot: Great, so maybe you could add that in to show that sometimes having a good
+    attitude and working hard can pay off. Do you think it would make a good conclusion?
+  next_condition:
+    turn_id_36: Probably.
+  state: turn_id_35
+- bot: What would be the equivalent in your classes of winning the championship in
+    soccer?
+  next_condition:
+    turn_id_37: Maybe getting into college.
+  state: turn_id_36
+- bot: I like it. Do you want to end your essay with that?
+  next_condition:
+    turn_id_38: Yes.
+  state: turn_id_37
+- bot: "So, you\u2019ve established your main point, provided some examples to support\
+    \ it, and come up with a good conclusion. Any idea how you\u2019d like to start\
+    \ your essay?"
+  next_condition:
+    turn_id_39: "I\u2019m not sure."
+  state: turn_id_38
+- bot: "Remember where we started: you said soccer is something you\u2019re passionate\
+    \ about. So, maybe start there."
+  next_condition:
+    turn_id_40: Okay.
+  state: turn_id_39
