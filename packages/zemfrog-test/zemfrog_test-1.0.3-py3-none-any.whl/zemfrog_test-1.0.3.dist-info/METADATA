@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: zemfrog-test
+Version: 1.0.3
+Summary: Zemfrog unit testing tools
+License: MIT
+Keywords: zemfrog
+Author: aprilahijriyan
+Author-email: hijriyan23@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: pytest (>=6.2.2,<7.0.0)
+Requires-Dist: zemfrog (>=5.0.1,<6.0.0)
+Project-URL: Donation, https://www.patreon.com/aprilahijriyan
+Project-URL: Github, https://github.com/zemfrog/zemfrog-test
+Project-URL: Issue Tracker, https://github.com/zemfrog/zemfrog-test/issues
+Description-Content-Type: text/markdown
+
+# zemfrog-test
+Zemfrog unit testing tools
+
+# Features
+
+* Support automatically create unit tests for API / blueprints
+* Available fixtures:
+    - client
+        > This is to access the Client class to interact with the API
+    - app_ctx
+        > This is to enable the flask context application
+    - req_ctx
+        > This is to activate the flask request context application
+    - user
+        > This is to generate confirmed random users
+
+
+# Warning
+
+zemfrog test is available a finalizer to delete all users when the test session ends. so you need to create a special database for testing.
+
+
+# Usage
+
+Install this
+
+```sh
+pip install zemfrog-test
+```
+
+And add it to the `COMMANDS` configuration in the zemfrog application.
+
+```python
+COMMANDS = ["zemfrog_test"]
+```
+
+Now that you have the `test` command, here is a list of supported commands:
+
+* `init` - Initialize the tests directory in the project directory.
+* `new` - Create unit tests for the API or blueprint. (The names entered must match `APIS` and `BLUEPRINTS` configurations. For example `zemfrog_auth.jwt`)
+* `run` - To run unit tests. **It doesn't work with the `pytest` command, don't know why. :/**
+
