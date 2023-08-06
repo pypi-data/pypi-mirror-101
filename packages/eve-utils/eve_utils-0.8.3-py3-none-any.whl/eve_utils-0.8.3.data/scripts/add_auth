@@ -1,0 +1,243 @@
+#!python
+
+import os
+import subprocess
+import sys
+import argparse
+from distutils.dir_util import copy_tree, remove_tree
+import itertools
+from libcst import *
+import importlib
+import eve_utils
+
+import subprocess
+import sys
+
+# TODO: script getting default values (e.g. client keys)
+# TODO: provide non Auth0
+
+class EveServiceInserter(CSTTransformer):
+    def __init__(self):
+        pass
+
+    def leave_Module(self, original_node, updated_node):
+        addition = SimpleStatementLine(
+            body=[
+                ImportFrom(
+                    module=Attribute(
+                        value=Name(
+                            value='auth',
+                            lpar=[],
+                            rpar=[],
+                        ),
+                        attr=Name(
+                            value='es_auth',
+                            lpar=[],
+                            rpar=[],
+                        ),
+                        dot=Dot(
+                            whitespace_before=SimpleWhitespace(
+                                value='',
+                            ),
+                            whitespace_after=SimpleWhitespace(
+                                value='',
+                            ),
+                        ),
+                        lpar=[],
+                        rpar=[],
+                    ),
+                    names=[
+                        ImportAlias(
+                            name=Name(
+                                value='EveServiceAuth',
+                                lpar=[],
+                                rpar=[],
+                            ),
+                            asname=None,
+                            comma=MaybeSentinel.DEFAULT,
+                        ),
+                    ],
+                    relative=[],
+                    lpar=None,
+                    rpar=None,
+                    semicolon=MaybeSentinel.DEFAULT,
+                    whitespace_after_from=SimpleWhitespace(
+                        value=' ',
+                    ),
+                    whitespace_before_import=SimpleWhitespace(
+                        value=' ',
+                    ),
+                    whitespace_after_import=SimpleWhitespace(
+                        value=' ',
+                    ),
+                ),
+            ])
+
+        new_body = eve_utils.insert_import(updated_node.body, addition)
+
+        return updated_node.with_changes(
+            body = new_body
+        )
+
+    def visit_SimpleStatementLine(self, node):
+        if not isinstance(node.body[0], Assign):
+            return False
+            
+        target = node.body[0].targets[0].target
+        
+        if not isinstance(target, Attribute):
+            return False
+            
+        if not (target.value.value == 'self' and target.attr.value == '_app'):
+            return False
+            
+        return True
+        
+    def leave_Assign(self, original_node, updated_node):
+        addition = Arg(
+            value=Name(
+                value='EveServiceAuth',
+                lpar=[],
+                rpar=[],
+            ),
+            keyword=Name(
+                value='auth',
+                lpar=[],
+                rpar=[],
+            ),
+            equal=AssignEqual(
+                whitespace_before=SimpleWhitespace(
+                    value='',
+                ),
+                whitespace_after=SimpleWhitespace(
+                    value='',
+                ),
+            ),
+            comma=MaybeSentinel.DEFAULT,
+            star='',
+            whitespace_after_star=SimpleWhitespace(
+                value='',
+            ),
+            whitespace_after_arg=SimpleWhitespace(
+                value='',
+            ),
+        )
+        
+        comma = Comma(
+            whitespace_before=SimpleWhitespace(
+                value='',
+            ),
+            whitespace_after=SimpleWhitespace(
+                value=' ',
+            ),
+        )       
+
+        new_args = []
+        last_arg = updated_node.value.args[-1].with_changes(comma=comma)
+
+        for item in itertools.chain(updated_node.value.args[0:-1], [last_arg, addition]):
+            new_args.append(item)
+
+        new_value = updated_node.value.with_changes(args=new_args)
+
+        return updated_node.with_changes(
+            value = new_value
+        )
+
+
+def wire_up_service():
+    with open('eve_service.py', 'r') as source:
+        tree = parse_module(source.read())
+    
+    inserter = EveServiceInserter()
+    new_tree = tree.visit(inserter)
+    
+    with open('eve_service.py', 'w') as source:
+        source.write(new_tree.code)
+
+
+
+
+
+
+def install(package):
+    trigger = 'Successfully installed '
+
+    out = subprocess.check_output([sys.executable, "-m", "pip", "install", package]).decode('utf-8')
+    for line in out.split('\n'):
+        if line.startswith(trigger):
+            packages = line[len(trigger):].split(' ')
+            with open('requirements.txt', 'a') as f:
+                f.write('\n# start: added by add_auth\n')
+                
+                for installed_package in packages:
+                    hyphen = installed_package.rfind('-')
+                    f.write(f'{installed_package[:hyphen]}=={installed_package[hyphen+1:]}\n')
+
+                f.write('# end: added by add_auth\n')
+
+
+def import_path(path):
+    module_name = os.path.basename(path).replace('-', '_')
+    spec = importlib.util.spec_from_loader(
+        module_name,
+        importlib.machinery.SourceFileLoader(module_name, path)
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    sys.modules[module_name] = module
+    return module
+
+
+def remove_if_exists(folder):
+    if os.path.exists(folder):
+        remove_tree(folder)
+
+
+def add_auth(project_name):
+    print(f'Adding auth to {project_name} api')
+
+    skel = os.path.join(os.path.dirname(eve_utils.__file__), 'skel/auth')
+
+    os.mkdir('auth')  # TODO: ensure doesn't already exist, etc
+    copy_tree(skel, 'auth')
+
+    # TODO: can the following remove_tree calls be obviated if skel is packaged differently?
+    remove_if_exists(os.path.join('auth', '__pycache__'))
+
+    for dname, dirs, files in os.walk('auth'):
+        for fname in files:
+            fpath = os.path.join(dname, fname)
+            with open(fpath) as f:
+                s = f.read()
+            s = s.replace("{$project_name}", project_name)
+            with open(fpath, "w") as f:
+                f.write(s)
+
+
+def main():
+    if not os.path.exists('./requirements.txt'):
+        print('requirements.txt missing - must be run in the API folder')
+        quit(1)
+        
+    if not os.path.exists('./domain'):
+        print('domain folder missing - must be run in the API folder')
+        quit(2)
+        
+    if os.path.exists('./auth'):
+        print('auth folder already exists')
+        quit(3)
+        
+    project_name = os.path.basename(os.getcwd())
+    add_auth(project_name)
+    # TODO: assert pip install -r requirements.txt
+    install('eve_negotiable_auth')  # also installs authparser and pyparsing
+    install('jwt') # also installs cffi, cryptography, pycparser
+    
+    wire_up_service()
+    
+    print('auth modules added')
+
+
+if __name__ == '__main__':
+    main()
