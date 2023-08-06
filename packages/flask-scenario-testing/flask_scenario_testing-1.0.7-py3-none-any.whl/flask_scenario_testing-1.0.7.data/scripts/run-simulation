@@ -1,0 +1,40 @@
+#!python
+
+import argparse
+
+from flask_scenario_testing.simulation.Api import Api
+from flask_scenario_testing.simulation.Host import Host
+from flask_scenario_testing.simulation.ScenariosConfig import ScenariosConfig
+from flask_scenario_testing.simulation.Simulation import Simulation
+import os
+from datetime import datetime
+
+
+# Turns an input such as /home/ubuntu/a/b/c/my-scenarios.json into my-scenarios-1608914213.json
+def make_output_file_name(config_path):
+    return config_path.split('.')[0].split('/')[-1] + '-' + (str)(int(datetime.now().timestamp())) + '.json'
+
+
+parser = argparse.ArgumentParser(description='Run a simulation')
+parser.add_argument('--hostname', default='127.0.0.01', metavar='hostname', type=str,
+                    help='Hostname of the server (e.g. \'example.com\')', required=True)
+parser.add_argument('--port', metavar='port', type=str, help='Port of the API', required=True)
+parser.add_argument('--config', metavar='config', type=str, help='Configuration file', required=True)
+parser.add_argument('--output-dir', default='./outputs', metavar='output_dir', type=str, help='Output directory')
+parser.add_argument('--locust-file', metavar='locust_file', type=str, help='Locust file', required=True)
+
+args = parser.parse_args()
+
+absolute_output_dir = os.path.abspath(args.output_dir)
+absolute_config_file_path = os.path.abspath(args.config)
+absolute_locust_path = os.path.abspath(args.locust_file)
+config = ScenariosConfig.from_json(absolute_config_file_path)
+
+host = Host(args.hostname, args.port)
+api = Api(host)
+simulation = Simulation(api, config, absolute_locust_path)
+
+output_file_name = make_output_file_name(args.config)
+
+output_path = os.path.join(absolute_output_dir, output_file_name)
+simulation.run(output_path)
