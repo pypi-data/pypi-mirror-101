@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: kt-osc
+Version: 0.2.1
+Summary: Calcula oscilacao de preco
+Home-page: https://github.com/vfranca/kt-osc
+License: GPL-2.0-only
+Keywords: cli,trading
+Author: Valmir Franca
+Author-email: vfranca3@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Adaptive Technologies
+Classifier: Topic :: Office/Business :: Financial :: Investment
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Project-URL: Repository, https://github.com/vfranca/kt-osc
+Description-Content-Type: text/markdown
+
+# kt-osc
+Calcula oscilação percentual do preço.  
+
+## Pré-requisitos
+Python instalado e disponível no terminal de comandos.  
+
+## Instalação
+```cmd
+> pip install kt-osc
+```
+
+## Uso
+```cmd
+> osc <PRECO-FINAL> <PRECO-INICIAL>
+```
+Onde:  
+PRECO-FINAL é o preço final da oscilação.  
+PRECO-INICIAL é o preço inicial da oscilação.  
+Exemplo:  
+```cmd
+> osc 99.81 94.89
+5.2%
+```
+A oscilação percentual entre 94.89 e 99.81 é 5.2%.  
+
+
