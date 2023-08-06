@@ -1,0 +1,63 @@
+Metadata-Version: 2.1
+Name: wktplot
+Version: 0.1.0
+Summary: Python wrapper for visualiation of shapely geometries.
+Home-page: https://github.com/FuzzFoundation/WKTPlot
+Author: Michael Simpson, Gerald Sornsen
+Author-email: mikeysimpson4@gmail.com, gerald@sornsen.io
+License: MIT
+Keywords: shapely matplotlib GeoDataframes geometries
+Platform: Posix; MacOS X; Windows
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: descartes (>=1.1.0)
+Requires-Dist: Shapely (>=1.7.1)
+
+# WKTPlot
+
+Utility for plotting shapely geometries and WKTs
+
+## Badges
+
+[![CircleCI](https://circleci.com/gh/FuzzFoundation/WKTPlot.svg?style=shield)](https://circleci.com/gh/FuzzFoundation/WKTPlot)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/19fe4574645d492e8677c4b06152dd9d)](https://www.codacy.com/gh/FuzzFoundation/WKTPlot/dashboard?utm_source=github.com;utm_content=FuzzFoundation/WKTPlot&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/19fe4574645d492e8677c4b06152dd9d)](https://www.codacy.com/gh/FuzzFoundation/WKTPlot/dashboard?utm_source=github.com&utm_medium=referral&utm_content=FuzzFoundation/WKTPlot&utm_campaign=Badge_Coverage)
+
+## Usage
+
+Example:
+
+```python
+from wkt_plot import WKTPLOT
+
+a = Polygon(...)
+b = MultiPolygon(...)
+c = LineString(...)
+d = MultiLineString(...)
+e = "LINESTRING (30 10, 10 30, 40 40)"
+
+plot = WKTPLOT("path/to/save/directory")
+plot.add_shape(a, fill_color="crimson", name="A Poly")
+plot.add_shape(c, stroke_color="dimgray")
+plot.add_shape(e, "cornflowerblue")
+plot.save(plot_name="A with C with E")
+plot.clear()
+
+plot.add_shapes([
+    (b, "magenta"),
+    (c, "turquoise"),
+    (d, "forestgreen")
+]).save("BCD").clear()
+```
+
+
