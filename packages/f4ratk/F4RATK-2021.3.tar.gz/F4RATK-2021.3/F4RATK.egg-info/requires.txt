@@ -1,0 +1,17 @@
+appdirs
+pandas
+pandas-datareader
+requests-cache
+statsmodels
+click
+xlrd
+PyYaml
+
+[build]
+flake8
+flake8-isort
+flake8-black
+black
+
+[server]
+flask
