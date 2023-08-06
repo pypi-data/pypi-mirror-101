@@ -1,0 +1,574 @@
+{
+    "datasets": {
+        "atlas_of_dermoscopy": {
+            "info": {
+                "availability": "private",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "http://www.dermoscopy.org/atlas/order_cd.asp"
+                ],
+                "download": null
+            },
+            "labels": {
+                "unknown": 2000
+            }
+        },
+        "bcn_20000": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 6141,
+                "references": [
+                    "https://arxiv.org/abs/1908.02288",
+                    "https://challenge2019.isic-archive.com/data.html",
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "actinic keratosis": 737,
+                "basal cell carcinoma": 2809,
+                "dermatofibroma": 124,
+                "melanoma": 2857,
+                "melanocytic nevi": 4206,
+                "seborrheic keratosis": 929,
+                "solar lentigo": 209,
+                "squamous cell carcinoma": 431,
+                "vascular lesion": 111
+            }
+        },
+        "bcn_2020_challenge": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 4061,
+                "references": [
+                    "https://arxiv.org/abs/1908.02288",
+                    "https://challenge2019.isic-archive.com/data.html",
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unknown": 7132,
+                "melanoma": 179
+            }
+        },
+        "brisbane_isic_challenge_2020": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unknown": 8449
+            }
+        },
+        "dermofit": {
+            "info": {
+                "availability": "private",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://licensing.edinburgh-innovations.ed.ac.uk/i/software/dermofit-image-library.html"
+                ],
+                "download": null
+            },
+            "labels": {
+                "actinic keratosis": 45,
+                "basal cell carcinoma": 239,
+                "nevi": 331,
+                "seborrhoeic keratosis": 257,
+                "squamous cell carcinoma": 88,
+                "intraepithelial carcinoma": 78,
+                "pyogenic granuloma": 78,
+                "haemangioma": 97,
+                "dermatofibroma": 65,
+                "melanoma": 76
+            }
+        },
+        "dermoscopedia_cc_by": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unknown": 5
+            }
+        },
+        "dermis": {
+            "info": {
+                "availability": "public",
+                "capture_method": "camera",
+                "size": 2.55,
+                "references": [
+                    "https://www.dermis.net/dermisroot/en/home/index.htm",
+                    "https://uwaterloo.ca/vision-image-processing-lab/research-demos/skin-cancer-detection"
+                ],
+                "download": [
+                    "https://uwaterloo.ca/vision-image-processing-lab/sites/ca.vision-image-processing-lab/files/uploads/files/skin_image_data_set-1.zip",
+                    "https://uwaterloo.ca/vision-image-processing-lab/sites/ca.vision-image-processing-lab/files/uploads/files/skin_image_data_set-2.zip"
+                ]
+            },
+            "labels": {
+                "melanoma": 43,
+                "non-melanoma": 26
+            }
+        },
+        "dermquest": {
+            "info": {
+                "availability": "public",
+                "capture_method": "camera",
+                "size": 28.2,
+                "references": [
+                    "https://www.emailmeform.com/builder/form/Ne0j8da9bb7U4h6t1f",
+                    "https://uwaterloo.ca/vision-image-processing-lab/research-demos/skin-cancer-detection"
+                ],
+                "download": [
+                    "https://uwaterloo.ca/vision-image-processing-lab/sites/ca.vision-image-processing-lab/files/uploads/files/skin_image_data_set-1.zip",
+                    "https://uwaterloo.ca/vision-image-processing-lab/sites/ca.vision-image-processing-lab/files/uploads/files/skin_image_data_set-2.zip"
+                ]
+            },
+            "labels": {
+                "melanoma": 76,
+                "non-melanoma": 62
+            }
+        },
+        "ham10000": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 2662,
+                "references": [
+                    "https://www.nature.com/articles/sdata2018161",
+                    "https://challenge2019.isic-archive.com/data.html",
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "actinic keratosis": 130,
+                "basal cell carcinoma": 514,
+                "dermatofibroma": 115,
+                "melanoma": 1113,
+                "melanocytic nevi": 6705,
+                "pigmented benign keratosis": 1099,
+                "squamous cell carcinoma": 197,
+                "vascular lesion": 142
+            }
+        },
+        "isic_2020_challenge_mskcc_contribution": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unknown": 10111,
+                "lentigo NOS": 34,
+                "lichenoid keratosis": 28,
+                "melanoma": 216,
+                "melanocytic nevi": 614,
+                "seborrheic keratosis": 105
+            }
+        },
+        "isic_2020_vienna_part_1": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "melanoma": 17,
+                "melanocytic nevi": 2214
+            }
+        },
+        "isic_2020_vienna_part_2": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "melanoma": 26,
+                "melanocytic nevi": 2117
+            }
+        },
+        "jid_editorial_images_2018": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 92.4,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "basal cell carcinoma": 40,
+                "melanoma": 37,
+                "squamous cell carcinoma": 23
+            }
+        },
+        "mclass_d": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 61.8,
+                "references": [
+                    "https://www.ejcancer.com/article/S0959-8049(18)31562-4/fulltext",
+                    "https://skinclass.de/mclass/"
+                ],
+                "download": [
+                    "https://skinclass.de/MClass/MClass-D.zip"
+                ]
+            },
+            "labels": {
+                "melanoma": 20,
+                "melanocytic nevi": 80
+            }
+        },
+        "mclass_nd": {
+            "info": {
+                "availability": "public",
+                "capture_method": "camera",
+                "size": 10.1,
+                "references": [
+                    "https://www.ejcancer.com/article/S0959-8049(18)31562-4/fulltext",
+                    "https://skinclass.de/mclass/"
+                ],
+                "download": [
+                    "https://skinclass.de/MClass/MClass-ND"
+                ]
+            },
+            "labels": {
+                "melanoma": 20,
+                "melanocytic nevi": 80
+            }
+        },
+        "mednode": {
+            "info": {
+                "availability": "public",
+                "capture_method": "camera",
+                "size": 25.5,
+                "references": [
+                    "http://www.cs.rug.nl/~imaging/databases/melanoma_naevi/"
+                ],
+                "download": [
+                    "http://www.cs.rug.nl/~imaging/databases/melanoma_naevi/complete_mednode_dataset.zip"
+                ]
+            },
+            "labels": {
+                "melanoma": 70,
+                "melanocytic nevi": 100
+            }
+        },
+        "msk_1": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 17358,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://challenge2019.isic-archive.com/data.html"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unkwown": 191,
+                "angiofibroma or fibrous papule": 1,
+                "angioma": 11,
+                "atypical melanocytic proliferation": 2,
+                "basal cell carcinoma": 27,
+                "dermatofibroma": 5,
+                "lentigo simplex": 15,
+                "melanoma": 258,
+                "melanocytic nevi": 532,
+                "other": 10,
+                "scar": 1,
+                "seborrheic keratosis": 29,
+                "solar lentigo": 13,
+                "squamous cell carcinoma": 5
+            }
+        },
+        "msk_2": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 246,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://challenge2019.isic-archive.com/data.html"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unknown": 51,
+                "actinic keratosis": 2,
+                "atypical melanocytic proliferation": 11,
+                "basal cell carcinoma": 3,
+                "lentigo NOS": 71,
+                "lentigo simplex": 12,
+                "melanoma": 334,
+                "melanocytic nevi": 1004,
+                "seborrheic keratosis": 3,
+                "solar lentigo": 44
+            }
+        },
+        "msk_3": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 755,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://challenge2019.isic-archive.com/data.html"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "melanoma": 19,
+                "melanocytic nevi": 123,
+                "seborrheic keratosis": 83
+            }
+        },
+        "msk_4": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 3420,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://challenge2019.isic-archive.com/data.html"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "melanoma": 215,
+                "melanocytic nevi": 543,
+                "seborrheic keratosis": 189
+            }
+        },
+        "msk_5": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 106,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://challenge2019.isic-archive.com/data.html"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "angioma": 2,
+                "seborrheic keratosis": 109
+            }
+        },
+        "pad_ufes_20": {
+            "info": {
+                "availability": "public",
+                "capture_method": "camera",
+                "size": 3427,
+                "references": [
+                    "https://www.sciencedirect.com/science/article/pii/S235234092031115X"
+                ],
+                "download": [
+                    "https://md-datasets-cache-zipfiles-prod.s3.eu-west-1.amazonaws.com/zr7vgbcyr2-1.zip"
+                ]
+            },
+            "labels": {
+                "actinic keratosis": 730,
+                "basal cell carcinoma": 845,
+                "melanoma": 52,
+                "melanocytic nevi": 244,
+                "squamous cell carcinoma": 192,
+                "seborrheic keratosis": 235
+            }
+        },
+        "ph2": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 11,
+                "references": [
+                    "https://www.fc.up.pt/addi/ph2%20database.html"
+                ],
+                "download": [
+                    "https://www.dropbox.com/s/k88qukc20ljnbuo/PH2Dataset.rar?dl=1"
+                ]
+            },
+            "labels": {
+                "melanoma": 40,
+                "melanocytic nevi": 160
+            }
+        },
+        "sonic": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "melanocytic nevi": 9251
+            }
+        },
+        "sydney_mia_smdc_2020_isic_challenge_contribution": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": -1,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unknown": 1563,
+                "atypical melanocytic proliferation": 1,
+                "cafe-au-lait macule": 1,
+                "lentigo NOS": 6,
+                "lichenoid keratosis": 3,
+                "melanoma": 134,
+                "melanocytic nevi": 161,
+                "seborrheic keratosis": 11,
+                "solar lentigo": 4
+            }
+        },
+        "uda_1": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 223,
+                "references": [
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive",
+                    "https://isic-archive.com"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "unknown": 2,
+                "melanoma": 159,
+                "melanocytic nevi": 396
+            }
+        },
+        "uda_2": {
+            "info": {
+                "availability": "public",
+                "capture_method": "dermoscopy",
+                "size": 37.7,
+                "references": [
+                    "https://isic-archive.com",
+                    "https://www.isic-archive.com/#!/topWithHeader/tightContentTop/about/isicArchive"
+                ],
+                "download": [
+                    "https://isic-archive.com/api/v1"
+                ]
+            },
+            "labels": {
+                "angioma": 2,
+                "basal cell carcinoma": 3,
+                "dermatofibroma": 2,
+                "lichenoid keratosis": 1,
+                "melanoma": 34,
+                "melanocytic nevi": 12,
+                "seborrheic keratosis": 6
+            }
+        }
+    },
+    "abbrev": {
+        "actinic keratosis": "AKIEC",
+        "angiofibroma or fibrous papule": "AFP",
+        "angioma": "ANG",
+        "atypical melanocytic proliferation": "AMP",
+        "basal cell carcinoma": "BCC",
+        "cafe-au-lait macule": "CALM",
+        "dermatofibroma": "DF",
+        "haemangioma": "HAE",
+        "intraepithelial carcinoma": "IC",
+        "lentigo NOS": "LNOS",
+        "lentigo simplex": "LS",
+        "lichenoid keratosis": "LK",
+        "melanoma": "MEL",
+        "melanocytic nevi": "NV",
+        "other": "OTH",
+        "pyogenic granuloma": "PG",
+        "scar": "SCR",
+        "solar lentigo": "SL",
+        "seborrheic keratosis": "SK",
+        "squamous cell carcinoma": "SCC",
+        "vascular lesion": "VL",
+        "unknown": "UNK"
+    }
+}
