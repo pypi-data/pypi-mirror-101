@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: dcore
+Version: 3.0.0b1
+Summary: DMFT software for CORrelated Electrons
+Home-page: https://github.com/issp-center-dev/DCore.git
+Author: H. Shinaoka, J. Otsuki, K. Yoshimi, M. Kawamura, N. Takemori, Y. Motoyama
+Author-email: h.shinaoka@gmail.com
+License: UNKNOWN
+Keywords: condensed-matter dmft
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3, <4
+Requires-Dist: h5py
+Requires-Dist: numpy
+Requires-Dist: scipy
+Provides-Extra: dev
+Requires-Dist: matplotlib ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: sphinx ; extra == 'dev'
+Requires-Dist: wild-sphinx-theme ; extra == 'dev'
+
+UNKNOWN
+
+
