@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: intersection.py
+Version: 1.1.0
+Summary: A simple API Wrapper for IC
+Home-page: https://github.com/Feeeeddmmmeee/intersection.py
+Author: Feeeeddmmmeee
+Author-email: 
+License: MIT
+Description: # intersection.py
+        
+        A not so easy to use API wrapper for IC's API with a few features.
+        
+        ## Key Features
+        
+        - User and Map classes with all the features that IC maps or users have
+        - Several functions related to these classes
+        - It's not really optimized but should work just fine
+        
+        ## Installing
+        
+        **Python is required**. You can either download the version from github or use pip
+        
+        pip (replace "version" with the version you want to download):
+        ```sh
+        pip install intersection.py==version
+        ```
+        github (the newest possible version but it's not what you want to downlaod usually):
+        ```sh
+        $ git clone https://github/Feeeeddmmmeee/intersection.py
+        ```
+        
+        The requests library is also required.
+        
+        For a more detailed download tutorial and the documentation check the [wiki page](https://github.com/Feeeeddmmmeee/intersection.py/wiki) on github.
+        
+        # Code Examples
+        
+        ## User class
+        ```py
+        # Importing the library
+        import intersection
+        
+        # Creating a variable "example_user" that will store the User object created with the get_user() function
+        example_user = intersection.user.get_user(2452411)
+        
+        # Printing the user's name
+        print(example_user.name)
+        ```
+        
+        ## Map class
+        ```py
+        # Importing the library
+        import intersection
+        
+        # Creating a variable called "example_maps" with the get_maps() function. 
+        example_maps = intersection.map.get_maps(2452411, 1, 0) 
+        
+        # Printing the author's name
+        print(example_maps[0].authorName)
+        ```
+        
+        ## Error exceptions
+        ```py
+        # Importing the library
+        import intersection
+        from intersection.ext import errors
+        
+        # Creating a Map object
+        example_map = intersection.map.get_maps(2452411, 50, 0)
+        
+        # Trying to get the trending position but if there's an error doing something else
+        try:
+            position = example_map.trending_position("day", 1)
+            print(f"This map's trending position is: {position}")
+        except errors.mapNotInTrendingError:
+            print("This map is not in trending")
+        ```
+        
+        ## External links
+        
+        - [PYPI Page (pip installation)](https://pypi.org/project/intersection.py/)
+        - [JavaScript version](https://github.com/RanggaGultom/ic-api) made by [RanggaGultom](https://github.com/RanggaGultom)
+        - [Github Repository](https://github.com/Feeeeddmmmeee/intersection.py)
+        
+Keywords: api
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
