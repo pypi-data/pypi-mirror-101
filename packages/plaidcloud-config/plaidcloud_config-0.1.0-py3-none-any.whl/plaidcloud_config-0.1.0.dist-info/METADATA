@@ -1,0 +1,22 @@
+Metadata-Version: 2.0
+Name: plaidcloud-config
+Version: 0.1.0
+Summary: Basic utility to parse a configuration for PlaidCloud application stack.
+Home-page: UNKNOWN
+Author: Garrett Bates
+Author-email: garrett.bates@tartansolutions.com
+License: MIT
+Keywords: plaid plaidcloud
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pyyaml
+
+# Plaidcloud Config Module
+
+Provides a module to parse a plaidcloud configuration file for consumption by various services in our kubernetes application stack.
+
+
