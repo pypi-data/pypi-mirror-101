@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "soccerbars"
+version = "0.1.0"
+description = "Word-sized tallies of association football results using multivariate sparklines based on Gestalt theory (gestaltlines)."
+authors = ["M. Eren Akbiyik <erenakbiyik@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/meakbiyik/soccerbars"
+repository = "https://github.com/meakbiyik/soccerbars"
+keywords = ["soccer", "sparklines", "football", "association-football"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+matplotlib = "^3.3.3"
+numpy = "1.19.3"
+click = { version = "^7.1.2", optional = true }
+colorama = { version = "^0.4.4", optional = true }
+click-help-colors = { version = "^0.8", optional = true }
+pandas = { version = "^1.1.5", optional = true }
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+data-science-types = "^0.2.20"
+ipykernel = "^5.3.4"
+pytest = "^6.1.2"
+coverage = "^5.3.1"
+mock = "^4.0.3"
+
+[tool.poetry.extras]
+cli = ["click", "colorama", "click-help-colors", "pandas"]
+
+[tool.poetry.scripts]
+soccerbars = "soccerbars.__main__:cli"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
