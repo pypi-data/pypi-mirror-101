@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "techlib-nr-all"
+version = "1.0.0a7"
+description = "Czech National Repository index that store all records from all metadata models"
+authors = ["Daniel Kopecký <Daniel.Kopecky@techlib.cz>"]
+packages = [{include='nr_all'}]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+techlib-nr-common = {version = "^3.0.0a44", allow-prereleases = true}
+techlib-nr-theses = {version = "^1.0.0a3", allow-prereleases = true}
+techlib-nr-Nresults = {version = "^1.0.0a13", allow-prereleases = true}
+techlib-nr-events = {version = "^1.0.0a14", allow-prereleases = true}
+techlib-nr-generic = {version = "^1.0.0a2", allow-prereleases = true}
+
+
+[tool.poetry.dev-dependencies]
+# TODO: change to pypi packages
+oarepo-ui = "^2.3.0"
+oarepo = "^3.3.59"
+pytest = "^5.0.0"
+pytest-cov = "^2.10.1"
+oarepo-micro-api = "^3.3.53"
+oarepo-validate = "^1.0.0"
+oarepo-references = "^1.11.1"
+oarepo-mapping-includes = "^1.4.0"
+oarepo-records-draft = "^5.5.0"
+oarepo-iiif = "^1.1.4"
+oarepo-taxonomies = {version = "^3.0.0-alpha.1", allow-prereleases = true}
+oarepo-invenio-model = "^2.1.2"
+oarepo-multilingual = ">=2.4.3"
+oarepo-communities = "^2.0.0"
+
+
+
+[tool.poetry.plugins."invenio_config.module"]
+nr_all = "nr_all.config"
+
+
+[tool.poetry.plugins."invenio_base.apps"]
+nr_all = "nr_all.ext:NRAll"
+
+
+[tool.poetry.plugins."invenio_base.api_apps"]
+nr_all = "nr_all.ext:NRAll"
+
+
+[tool.poetry.plugins."invenio_pidstore.minters"]
+nr_all = 'nr_all.minters:nr_all_id_minter'
+
+
+[tool.poetry.plugins."invenio_pidstore.fetchers"]
+nr_all = 'nr_all.fetchers:nr_all_id_fetcher'
+
+
+[tool.poetry.plugins."invenio_i18n.translations"]
+nr_all = "nr_all"
