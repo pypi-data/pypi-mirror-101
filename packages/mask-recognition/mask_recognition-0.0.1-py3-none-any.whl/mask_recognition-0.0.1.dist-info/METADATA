@@ -1,0 +1,62 @@
+Metadata-Version: 2.1
+Name: mask-recognition
+Version: 0.0.1
+Summary: It recognize the face mask on human on the image
+Home-page: https://github.com/Rayyan-Akhtar/mask_recognition
+Author: Rayyan Akhtar
+Author-email: akhtar.rayyan@live.com
+License: MIT
+Keywords: Recognition,Face Mask,Neural Network,Pytorch
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: facenet-pytorch
+Requires-Dist: opencv-python (>=3.4.2)
+Requires-Dist: numpy (>=1.18.1)
+
+### Project Description
+
+    Face Mask Recognition using PyTorch.
+
+    It creates a bounding box around the face of the person present in the image and put a text
+    at the top of the bounding box shows probability of mask on the face.
+
+#
+
+
+### Install:
+
+    pip install mask_recognition
+
+#
+
+### Requirements:
+
+pytorch >= 1.2.0
+
+torchvision >= 0.3.0
+
+#
+
+### Usage:
+
+    from mask_recognition import MaskRecognition
+
+    import cv2 as cv
+
+    mr = MaskRecognition(device=0)  # -1 for cpu, 0 for gpu
+
+    frame = mr.recognize(frame, color="rgb")    # color="bgr" for BGR color scheme. frame is the RGB image.
+
+    ########################## To use webcam ##########################
+
+    mr.cam_capture(device_id=0)     # 0 for default or 1, 2, 3, if more than one webcam
+
+    ## press esc to stop    
+#
+
+
