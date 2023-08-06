@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: tap-hubspot-meister
+Version: 0.1.0
+Summary: 
+Author: Juan Sebastian Suarez Valencia
+Author-email: juan.valencia@meisterlabs.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: hubspot-api-client (>=3.7.2,<4.0.0)
+Requires-Dist: pydash (>=5.0.0,<6.0.0)
+Requires-Dist: rich (>=10.1.0,<11.0.0)
+Requires-Dist: singer (>=0.1.1,<0.2.0)
+Requires-Dist: singer-python (>=5.12.1,<6.0.0)

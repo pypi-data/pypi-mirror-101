@@ -1,0 +1,77 @@
+{
+ "type": "object",
+ "properties": {
+  "amount": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "closedate": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "createdate": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "deal_currency_code": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "dealname": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "dealstage": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "hs_lastmodifieddate": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "hs_object_id": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "hubspot_owner_id": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "pipeline": {
+   "type": [
+    "null",
+    "string"
+   ]
+  },
+  "associated_companies": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "associated_contacts": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ }
+}
