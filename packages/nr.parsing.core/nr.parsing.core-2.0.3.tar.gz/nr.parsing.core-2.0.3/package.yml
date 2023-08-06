@@ -1,0 +1,10 @@
+name: nr.parsing.core
+version: 2.0.3
+description: A simple API to scan and tokenize text for the purpose of structured language processing.
+requirements:
+- python ^3.6
+test-requirements:
+- pytest
+test-driver:
+  type: pytest
+typed: true
