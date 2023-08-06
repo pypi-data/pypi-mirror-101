@@ -1,0 +1,12 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "icedtools"
+author = "Ivica Ceraj"
+author-email = "iceraj@gmail.com"
+home-page = "https://github.com/iceraj/icedtools"
+classifiers = [ "License :: OSI Approved :: MIT License",]
+description-file = "README.md"
+
