@@ -1,0 +1,26 @@
+#!python
+# -*- coding: utf-8 -*-
+
+import sys,importlib
+import database2text.tool as dbtt
+
+class main(object):
+	def __init__(self):
+		self.readconfig()
+		if "db" not in dbtt.cfgdata:
+			dbtt.quit("配置文件中必须设置db=")
+		dbt=importlib.import_module('database2text.%s' %(dbtt.cfgdata["db"]))
+#		dbtt.quit(f'未找到名为{dbtt.cfgdata["db"]}的模块，请检查配置文件中的db=')
+		dbt.run()
+	def readconfig(self):
+		f=open("dbt.txt")
+		dbtt.cfgdata={}
+		for s in f.readlines():
+			if s.find("=")<0:continue
+			name=s[:s.find("=")].strip()
+			value=s[s.find("=")+1:].strip()
+			dbtt.cfgdata[name]=value
+
+if __name__ == "__main__":
+	main()
+
