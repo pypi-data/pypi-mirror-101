@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "Configuration for join.",
+  "definitions": {
+    "hook": {
+      "description": "Hook function.",
+      "properties": {
+        "schema": {
+          "description": "Schema of function.",
+          "title": "Schema",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of function.",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "title": "Hook",
+      "type": "object"
+    },
+    "table": {
+      "description": "Table",
+      "allOf": [
+        {
+          "properties": {
+            "dep": {
+              "default": null,
+              "description": "ID of dependency table.",
+              "title": "Dependency",
+              "type": ["string", "null"]
+            },
+            "depJoin": {
+              "default": null,
+              "description": "SQL expression to join to dependency.",
+              "title": "Dependency join",
+              "type": ["string", "null"]
+            },
+            "depMode": {
+              "default": "sync",
+              "description": "Mode of dependency join.",
+              "enum": ["async", "sync"],
+              "title": "Dependency mode",
+              "type": "string"
+            },
+            "lockId": {
+              "default": null,
+              "description": "Advisory lock space to use for queueing. If null, it is generated from the ID and table ID.",
+              "maximum": 32677,
+              "minimum": -32678,
+              "title": "Lock ID",
+              "type": ["integer", "null"]
+            },
+            "key": {
+              "default": null,
+              "description": "Unique key.",
+              "items": {
+                "type": "string"
+              },
+              "title": "key",
+              "type": "array"
+            },
+            "name": {
+              "description": "Name of table",
+              "title": "Name",
+              "type": "string"
+            },
+            "refreshMode": {
+              "default": null,
+              "description": "Refresh mode.",
+              "enum": ["async", "sync", null],
+              "title": "Refresh mode",
+              "type": ["string", "null"]
+            },
+            "targetKey": {
+              "default": null,
+              "description": "SQL expressions for target key values.",
+              "items": {
+                "type": "string"
+              },
+              "title": "key",
+              "type": ["array", "null"]
+            }
+          },
+          "required": ["name"],
+          "type": "object"
+        },
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "dep": {
+                  "type": "string"
+                },
+                "depJoin": {
+                  "type": "string"
+                }
+              },
+              "required": ["dep", "depJoin"],
+              "type": "object"
+            },
+            {
+              "properties": {
+                "targetKey": {
+                  "type": "array"
+                }
+              },
+              "required": ["targetKey"],
+              "type": "object"
+            }
+          ]
+        }
+      ],
+      "title": "Table"
+    },
+    "target": {
+      "properties": {
+        "columns": {
+          "default": null,
+          "description": "Columns",
+          "items": {
+            "type": "string"
+          },
+          "title": "Columns",
+          "type": ["array", "null"]
+        },
+        "key": {
+          "description": "Key columns",
+          "items": {
+            "type": "string"
+          },
+          "title": "Key",
+          "type": "array"
+        },
+        "refreshMode": {
+          "default": null,
+          "description": "Refresh mode.",
+          "enum": ["async", "sync", null],
+          "title": "Refresh mode",
+          "type": ["string", "null"]
+        },
+        "schema": {
+          "default": null,
+          "description": "Schema of table. If null, the table is not schema-qualified.",
+          "title": "Schema",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of table",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": ["key", "name"]
+    }
+  },
+  "properties": {
+    "consistency": {
+      "default": "immedidate",
+      "description": "Consistency level",
+      "enum": ["deferred", "immediate"],
+      "title": "Consistency",
+      "type": "string"
+    },
+    "id": {
+      "description": "ID for name mangling created objects.",
+      "title": "ID",
+      "type": "string"
+    },
+    "query": {
+      "description": "Query to populate the target table.",
+      "title": "Query",
+      "type": "string"
+    },
+    "setup": {
+      "$ref": "#/definitions/hook",
+      "default": null,
+      "description": "Setup function.",
+      "title": "Setup"
+    },
+    "schema": {
+      "default": null,
+      "description": "Schema for created objects. If not set, the default schema is used.",
+      "title": "Schema",
+      "type": "string"
+    },
+    "sync": {
+      "default": "full",
+      "description": "Synchronization mode. Full upserts and deletes records. Upsert only upserts records.",
+      "enum": ["full", "upsert"],
+      "title": "Synchronization",
+      "type": "string"
+    },
+    "tables": {
+      "additionalProperties": {
+        "$ref": "#/definitions/table"
+      },
+      "description": "Map from ID to table.",
+      "title": "Tables",
+      "type": "object"
+    },
+    "target": {
+      "$ref": "#/definitions/target"
+    }
+  },
+  "required": ["id", "tables", "target"],
+  "title": "Join config",
+  "type": "object"
+}
