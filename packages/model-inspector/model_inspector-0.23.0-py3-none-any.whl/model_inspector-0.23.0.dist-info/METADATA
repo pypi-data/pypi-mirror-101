@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: model-inspector
+Version: 0.23.0
+Summary: Inspect machine learning models
+Home-page: https://github.com/gsganden/model_inspector/tree/main/
+Author: Greg Gandenberger
+Author-email: gsganden@gmail.com
+License: Apache Software License 2.0
+Keywords: machine-learning
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: fastcore
+Requires-Dist: IPython (>7)
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scikit-learn (>=0.23)
+Requires-Dist: seaborn
+Requires-Dist: waterfallcharts
+Provides-Extra: dev
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: ipdb ; extra == 'dev'
+Requires-Dist: nbdev ; extra == 'dev'
+Requires-Dist: nbqa ; extra == 'dev'
+
+# Model Inspector
+> Inspect machine learning models
+
+
+I developed this library primarily for generating model visualizations that I can use in teaching machine learning. I'd love for it to grow into a deeper library that is useful for practitioners as well.
+
+See the [docs](https://gsganden.github.io/model_inspector/), especially for the [inspect module](https://gsganden.github.io/model_inspector/inspect.html), for API details and examples.
+
+## Install
+
+`pip install model_inspector`
+
+
