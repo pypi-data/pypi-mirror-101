@@ -1,0 +1,259 @@
+spec122:
+  section: dlnirsp
+  expand: False
+---
+DLN__001:
+  required: false
+  comment: ArmID
+  type: str
+  values:
+    - 'VIS'
+    - 'JBand'
+    - 'HBand'
+DLN__002:
+  required: false
+  comment: '[deg] ArmPosition'
+  type: float
+DLN__003:
+  required: false
+  comment: '[mm] ArmFocus'
+  type: float
+DLN__004:
+  required: false
+  comment: FilterID
+  type: str
+DLN__005:
+  required: false
+  comment: '[nm] FilterWavelength'
+  type: float
+DLN__006:
+  required: false
+  comment: '[nm] FilterFWHM'
+  type: float
+DLN__007:
+  required: false
+  comment: '[nm] FilterPosition'
+  type: float
+DLN__008:
+  required: false
+  comment: PolarimeterMode
+  type: str
+  values:
+    - 'Full Stokes'
+    - 'Stokes-I'
+    - 'Other'
+DLN__009:
+  required: false
+  comment: ModulatorID
+  type: str
+DLN__010:
+  required: false
+  comment: ModulationType
+  type: str
+  values:
+    - 'discrete'
+    - 'continuous'
+DLN__011:
+  required: false
+  comment: '[Hz] ModulationRate'
+  type: float
+DLN__012:
+  required: false
+  comment: ModulationStateNumAtT0
+  type: int
+DLN__013:
+  required: false
+  comment: '[deg] ModulationStateAngAtT0'
+  type: int
+DLN__014:
+  required: false
+  comment: NumberOfStates
+  type: int
+DLN__015:
+  required: false
+  comment: CurrentStateNumber
+  type: int
+DLN__016:
+  required: false
+  comment: GratingID
+  type: str
+DLN__017:
+  required: false
+  comment: '[1/mm] GratingConstant'
+  type: float
+DLN__018:
+  required: false
+  comment: '[deg] GratingBlazeAngle'
+  type: float
+DLN__019:
+  required: false
+  comment: '[deg] GratingAngle'
+  type: float
+DLN__020:
+  required: false
+  comment: NumberOfDataCycles
+  type: int
+DLN__021:
+  required: false
+  comment: CurrentDataCycle
+  type: int
+DLN__022:
+  required: false
+  comment: CoAddMode
+  type: str
+  values:
+    - 'Sequence'
+    - 'Half-rotation'
+    - 'None'
+DLN__023:
+  required: false
+  comment: FeedOpticsFRatio
+  type: str
+  values:
+    - 'F/24'
+    - 'F/62'
+DLN__024:
+  required: false
+  comment: FeedFM4Position
+  type: float
+DLN__025:
+  required: false
+  comment: FeedMF62Position
+  type: float
+DLN__026:
+  required: false
+  comment: IFUID
+  type: str
+  values:
+    - 'IFU-36'
+    - 'IFU-72'
+DLN__027:
+  required: false
+  comment: '[mm] IFUPosition'
+  type: float
+DLN__028:
+  required: false
+  comment: SlitMode
+  type: str
+  values:
+    - 'single'
+    - 'all'
+DLN__029:
+  required: false
+  comment: SlitSelection
+  type: int
+  values:
+    - 1
+    - 2
+    - 3
+    - 4
+DLN__030:
+  required: false
+  comment: '[mm] SlitPosition'
+  type: float
+DLN__031:
+  required: false
+  comment: 'MosaicNumRepeat'
+  type: int
+DLN__032:
+  required: false
+  comment: 'CurrentMosaicRepeat'
+  type: int
+DLN__033:
+  required: false
+  comment: 'MosaicScanPattern'
+  type: str
+DLN__034:
+  required: false
+  comment: NumberOfSpatialStepsX
+  type: int
+DLN__035:
+  required: false
+  comment: '[deg] StepCenterPositionX'
+  type: float
+DLN__036:
+  required: false
+  comment: '[deg] StepSizeX'
+  type: float
+DLN__037:
+  required: false
+  comment: CurrentSpatialStepX
+  type: int
+DLN__038:
+  required: false
+  comment: NumberOfSpatialStepsY
+  type: int
+DLN__039:
+  required: false
+  comment: '[deg] StepCenterPositionY'
+  type: float
+DLN__040:
+  required: false
+  comment: '[deg] StepSizeY'
+  type: float
+DLN__041:
+  required: false
+  comment: CurrentSpatialStepY
+  type: int
+DLN__042:
+  required: false
+  comment: DitherMode
+  type: bool
+  values:
+    - False
+    - True
+DLN__043:
+  required: false
+  comment: '[deg] DitherOffsetX'
+  type: float
+DLN__044:
+  required: false
+  comment: '[deg] DitherOffsetY'
+  type: float
+DLN__045:
+  required: false
+  comment: DitherCurrentStep
+  type: bool
+DLN__046:
+  required: false
+  comment: CameraSamplingMode
+  type: str
+  values:
+    - 'subframe'
+    - 'full frame'
+DLN__047:
+  required: false
+  comment: CameraSamplingSequence
+  type: str
+DLN__048:
+  required: false
+  comment: CameraNumScienceFrames
+  type: int
+DLN__049:
+  required: false
+  comment: CameraNumSamples
+  type: int
+DLN__050:
+  required: false
+  comment: CameraCurrentSample
+  type: int
+DLN__051:
+  required: false
+  comment: CameraSampleOffset
+  type: float
+DLN__052:
+  required: false
+  comment: CameraSampleTime
+  type: float
+DLN__053:
+  required: false
+  comment: '[K] ArrayTemp'
+  type: float
+DLN__054:
+  required: false
+  comment: CameraFilterID
+  type: str
+
+
+
+

@@ -1,0 +1,42 @@
+spec214:
+  section_122: vbi
+  copy: True
+  required: false
+  units: null
+  expand: False
+---
+VBIFWHM:
+  rename: "VBI__001"
+  description: "Full Width at Half Maximum spectral transmission."
+  units: nm
+VBISTPAT:
+  rename: "VBI__002"
+  description: "List of numbered field positions, ordered according to the (temporal) sequence that is used to sample the full field.
+                Default:
+                “5,6,3,2,1,4,7,8,9” (VBI blue) “1,2,4,3” (VBI red)"
+VBINSTP:
+  rename: "VBI__003"
+  description: "Number of images belonging to the scanned FieldOfView.
+                Keyword not present, if not used"
+VBISTP:
+  rename: "VBI__004"
+  description: "Current image position belonging to the scanned FieldOfView.
+                1 ≤ CUR_STEP ≤ NSTEPS
+                Keyword not present, if not used"
+VBIPROCD:
+  rename: "VBI__005"
+  description: "Value indicating by what algorithms the image has been processed.
+                None, FrameSelection, SpeckleImaging, FrameSelection&SpeckleImaging"
+VBISYNCM:
+  rename: "VBI__006"
+  description: "Synchronization mode between VBI blue and red channel.
+                None, Loose, Fixed"
+VBINFRAM:
+  rename: "VBI__007"
+  description: "Value indicating number of (potentially) processed output frames in the current field."
+VBICFRAM:
+  rename: "VBI__008"
+  description: "Value indicating the current (potentially) processed output frame in the current field. 1 ≤ VBICFRAM ≤ VBINFRAM"
+VBIFRIED:
+  rename: "VBI__009"
+  description: "Value indicating the Fried parameter per field. Value equals -1 if speckle reconstruction is not enabled, or if speckle reconstruction is enabled but no r0 is available."
