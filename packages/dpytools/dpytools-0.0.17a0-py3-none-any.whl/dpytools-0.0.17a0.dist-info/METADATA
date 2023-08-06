@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: dpytools
+Version: 0.0.17a0
+Summary: Simple tools to build discord bots using discord.py
+Home-page: https://github.com/chrisdewa/dpytools
+License: MIT
+Keywords: discord,discord.py,discord bot
+Author: chrisdewa
+Author-email: alexdewa@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Project-URL: Repository, https://github.com/chrisdewa/dpytools
+Description-Content-Type: text/markdown
+
+
+[![PyPI status](https://img.shields.io/pypi/status/dpytools.svg)](https://pypi.python.org/pypi/dpytools/)
+[![PyPI version fury.io](https://badge.fury.io/py/dpytools.svg)](https://pypi.python.org/pypi/dpytools/)
+[![PyPI license](https://img.shields.io/pypi/l/dpytools.svg)](https://pypi.python.org/pypi/dpytools/)
+
+
+# dpytools
+Toolset to speed up developing discord bots using discord.py
+
+<hr>
+
+## Status of the project
+
+Early development. As such it's expected to be unstable and unsuited for production.
+
+All the presented tools have stringdocs.
+<hr>
+
+# Instalation
+Install the latest version of the library with pip.
+```
+pip install -U dpytools
+```
+
+# Contributing
+Feel free to make a pull request.
