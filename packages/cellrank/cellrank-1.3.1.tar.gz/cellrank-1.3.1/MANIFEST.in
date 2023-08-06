@@ -1,0 +1,8 @@
+prune tests/_ground_truth_*
+prune docs
+prune resources
+prune .scripts
+prune .github
+include requirements.txt
+include docs/requirements.txt
+include LICENSE
