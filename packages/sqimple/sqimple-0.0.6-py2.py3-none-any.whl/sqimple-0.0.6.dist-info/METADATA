@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: sqimple
+Version: 0.0.6
+Summary: Simple SQL Web Interface
+Author: Zach Gulde
+Author-email: zachgulde@gmail.com
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Requires-Dist: Flask==1.1
+Requires-Dist: waitress==2.0
+
+# Sqimple
+
+A simple web interface for SQLite database
+
+## Usage
+
+```
+sqimple mydb.sqlite
+```
+
+and then visit http://localhost:5000 in your browser.
+
