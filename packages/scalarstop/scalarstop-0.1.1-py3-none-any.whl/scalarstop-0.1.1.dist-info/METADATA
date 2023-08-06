@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: scalarstop
+Version: 0.1.1
+Summary: A framework for managing machine learning experiments.
+Home-page: https://www.scalarstop.com
+License: MIT
+Author: Neocrym Records Inc
+Author-email: engineering@neocrym.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: SQLAlchemy (>=1.4.5,<2.0.0)
+Requires-Dist: cloudpickle (>=1.6.0,<2.0.0)
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: psycopg2-binary (>=2.8.6,<3.0.0)
+Requires-Dist: tensorflow (>=2.3.0)
+Project-URL: Repository, https://github.com/scalarstop/scalarstop
+Description-Content-Type: text/x-rst
+
+Organize your machine learning experiments with ScalarStop
+==========================================================
+
+ScalarStop is a framework written in Python that helps you keep track of datasets, models, hyperparameters, and training metrics in machine learning experiments.
+
+Installation
+------------
+
+ScalarStop is available on PyPI. You can install by running the command ``pip3 install scalarstop``.
+
+Usage
+-----
+
+Read the `ScalarStop Tutorial <https://github.com/scalarstop/scalarstop/blob/main/notebooks/tutorial.ipynb>`_ to learn the core concepts behind ScalarStop and how to structure your datasets and models.
+
+Afterwards, you might want to dig deeper into the `ScalarStop Documentation <https://docs.scalarstop.com>`_. In general, a typical ScalarStop workflow involves four steps:
+
+1. Organize your datasets with `scalarstop.datablob <https://www.scalarstop.com/en/latest/autoapi/scalarstop/datablob/#module-scalarstop.datablob>`_.
+2. Describe your machine learning model architectures using `scalarstop.model_template <https://www.scalarstop.com/en/latest/autoapi/scalarstop/model_template/#module-scalarstop.model_template>`_.
+3. Load, train, and save machine learning models with `scalarstop.model <https://www.scalarstop.com/en/latest/autoapi/scalarstop/model/#module-scalarstop.model>`_.
+4. Save hyperparameters and training metrics to a SQLite or PostgreSQL database using `scalarstop.train_store <https://www.scalarstop.com/en/latest/autoapi/scalarstop/train_store/#module-scalarstop.train_store>`_.
+
