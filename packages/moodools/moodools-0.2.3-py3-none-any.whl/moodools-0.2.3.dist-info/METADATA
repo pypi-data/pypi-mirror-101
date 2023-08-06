@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: moodools
+Version: 0.2.3
+Summary: Moodools: tools for Odoo modules development
+Home-page: https://github.com/LibrERP/Pylibs/
+License: UNKNOWN
+Author: Marco Tosato
+Author-email: marco.tosato@didotech.com
+Requires-Python: >= 3.6
+Description-Content-Type: text/markdown
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Framework :: Odoo
+Requires-Dist: graphviz >=0.13
+Requires-Dist: pytest >=2.7.3 ; extra == "test"
+Requires-Dist: pytest-cov ; extra == "test"
+Requires-Dist: python-dateutil ; extra == "test"
+Provides-Extra: dev
+Provides-Extra: doc
+Provides-Extra: test
+
+# Moodools package
+
+A package containing small utilities useful for Odoo modules development.
+
+## List of utilities
+
+### deps
+
+Create a directed graph of modules dependencies.
+This tool only takes into account packages inside
+one directory (and it's subdirs) to avoid bloated
+diagrams, this means that dependencies thoward packages
+in other directories are intentionally **NOT** included in the diagram.
+
+Use the *-h* option to obtain the usage help:
+
+```bash
+python -m moodles.deps -h
+```
