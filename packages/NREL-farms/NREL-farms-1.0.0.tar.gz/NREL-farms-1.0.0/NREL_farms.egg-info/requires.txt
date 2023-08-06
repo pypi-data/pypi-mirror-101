@@ -1,0 +1,11 @@
+numpy>=1.17
+pandas>=0.25
+
+[dev]
+pytest>=5.2
+flake8
+pre-commit
+pylint
+
+[test]
+pytest>=5.2
