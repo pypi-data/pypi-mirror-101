@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: metaphor-connectors
+Version: 0.1.1
+Summary: 
+Author: Metaphor
+Author-email: dev@metaphor.io
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Provides-Extra: all
+Provides-Extra: dbt
+Provides-Extra: google
+Provides-Extra: postgresql
+Provides-Extra: snowflake
+Requires-Dist: asyncpg (>=0.22.0,<0.23.0); extra == "all" or extra == "postgresql"
+Requires-Dist: boto3 (>=1.17.40,<1.18.0)
+Requires-Dist: botocore (>=1.20.40,<1.21.0)
+Requires-Dist: fastjsonschema (>=2.15.0,<2.16.0)
+Requires-Dist: google-api-python-client (>=2.1.0,<2.2.0); extra == "all" or extra == "google"
+Requires-Dist: google-auth-oauthlib (>=0.4.4,<0.5.0); extra == "all" or extra == "google"
+Requires-Dist: python-dateutil (>=2.8.1,<2.9.0)
+Requires-Dist: smart-open (>=5.0.0,<6.0.0)
+Requires-Dist: snowflake-connector-python (>=2.4.1,<2.5.0); extra == "all" or extra == "snowflake"
