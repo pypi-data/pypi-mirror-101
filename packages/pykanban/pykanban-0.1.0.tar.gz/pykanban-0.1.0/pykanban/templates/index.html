@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/form.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+    <title>Kanban</title>
+</head>
+<body>
+    {% from "_formhelpers.html" import render_field %}
+    {% include '_header.html' %}
+
+    {% if current_user.is_authenticated %}
+        <h1>Hi, {{ current_user.username }}!</h1>
+    {% endif %}
+    <div id="form">
+        <h2 class="header">Create New Task</h2>
+        <div>
+            <form action="/create" method="post">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.title, placeholder="Title") }}<br/>
+                {{ render_field(form.description, placeholder="Description") }}<br/>
+                <label>Status:</label><br/>
+                <input type="radio" name="status" value="todo" checked>
+                <label for="todo">Todo</label>
+                <input type="radio" name="status" value="doing">
+                <label for="doing">Doing</label>
+                <input type="radio" name="status" value="done">
+                <label for="done">Done</label>
+                <input type="submit" value="Create Task"/><br/>
+            </form>
+        </div>
+    </div>
+
+    <div id="todo" class="column">
+        <h1>To do</h1>
+        <div class="table">
+            {% for task in todo_tasks %}
+                <div class="card">
+                    <h2>{{ task.title }}</h2>
+                    <p>
+                        {{ task.description }}
+                    </p>
+                    <div class="row">
+                        <div class="column-task">
+                            <form action="/send_doing" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Send to doing"/><br/>
+                            </form>
+                        </div>
+                        <div class="column-task">
+                            <form action="/send_done" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Send to done"/><br/>
+                            </form>
+                        </div>
+                        <div class="column-task">
+                            <form action="/delete_task" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Delete task"/><br/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="doing" class="column">
+        <h1>Doing</h1>
+        <div class="table">
+            {% for task in doing_tasks %}
+                <div class="card">
+                    <h2>{{ task.title }}</h2>
+                    <p>
+                        {{ task.description }}
+                    </p>
+
+                    <div class="row">
+                        <div class="column-task">
+                            <form action="/send_todo" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Send to to do"/><br/>
+                            </form>
+                        </div>
+                        <div class="column-task">
+                            <form action="/send_done" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Send to done"/><br/>
+                            </form>
+                        </div>
+                        <div class="column-task">
+                            <form action="/delete_task" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Delete task"/><br/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="done" class="column">
+        <h1>Done</h1>
+        <div class="table">
+            {% for task in done_tasks %}
+                <div class="card">
+                    <h2>{{ task.title }}</h2>
+                    <p>
+                        {{ task.description }}
+                    </p>
+                    <div class="row">
+                        <div class="column-task">
+                            <form action="/send_todo" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Send to to do"/><br/>
+                            </form>
+                        </div>
+                        <div class="column-task">
+                            <form action="/send_doing" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Send to doing"/><br/>
+                            </form>
+                        </div>
+                        <div class="column-task">
+                            <form action="/delete_task" method="post">
+                                {{ form.hidden_tag() }}
+                                <input type="text" hidden name="id" value={{task.id}}>
+                                <input type="submit" value="Delete task"/><br/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+        
+
+</body>
+</html>

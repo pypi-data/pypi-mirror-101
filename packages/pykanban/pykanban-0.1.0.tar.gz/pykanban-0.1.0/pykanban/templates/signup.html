@@ -1,0 +1,16 @@
+{% include '_header.html' %}
+{% from "_formhelpers.html" import render_field %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/form.css') }}">
+<div id="form">
+  <h2 class="header">Sign up</h2>
+  <div>
+    <form style="text-align: center" method=post>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.username, placeholder="Username") }}
+        {{ render_field(form.email, placeholder="Email") }}
+        {{ render_field(form.password, placeholder="Password") }}
+        {{ render_field(form.password2, placeholder="Repeat password") }}
+      <input type=submit value="Sign up"/>
+    </form>
+  </div>
+</div>

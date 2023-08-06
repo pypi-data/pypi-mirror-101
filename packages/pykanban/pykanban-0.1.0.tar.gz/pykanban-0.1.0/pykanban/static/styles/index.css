@@ -1,0 +1,55 @@
+#todo { 
+    background-color: lightblue;
+}
+
+#doing { 
+    background-color: lightgreen;
+}
+
+#done { 
+    background-color: lightcoral;
+}
+
+h1, h2, form, .info {
+    text-align: center;
+}
+
+.info h3, .info a {
+    display: inline;
+    vertical-align: top;
+    font-size: 16px;
+    line-height: 28px;
+    color: #007bff;
+    margin-inline: 50px;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    min-height: 250px;
+}
+
+.column-task{
+    float: left;
+    width: 33.33%;
+}
+
+.table {
+    margin:0 auto;
+    width: 90%;
+    border:1px solid black;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    min-height: 400px;
+}
+
+.row{
+    overflow: auto;
+}
+
+.card {
+    margin:0 auto;
+    width: 90%;
+    padding-bottom: 10px;
+    background-color: lightgrey;
+}

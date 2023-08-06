@@ -1,0 +1,12 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "pykanban"
+author = "Lucca Bertoncini"
+author-email = "luccabazzo@gmail.com"
+home-page = "https://github.com/luccabb/flask_kanban"
+classifiers = [ "License :: OSI Approved :: MIT License",]
+description-file = "README.md"
+
