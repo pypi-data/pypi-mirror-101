@@ -1,0 +1,9 @@
+---
+# Test file
+
+BootstrapServers: broker.cluster.internal
+Topics:
+  - Name: new-topic-01
+    PartitionsCount: 4
+  - Name: new-topic-02
+    PartitionsCount: 2
