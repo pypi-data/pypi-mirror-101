@@ -1,0 +1,667 @@
+{% from 'tf1x_utils.j2' import session, check_input_vars, representative_dataset_gen %}
+
+{% macro train_normal(layer_spec, graph_spec) %}
+        
+        self._checkpoint_save_path = '{{layer_spec.checkpoint_path}}'
+        sess = self._sess
+        def epsilon(episode):
+            eps = 1/np.sqrt(self._initial_exploration + episode)
+            eps = self._final_exploration**(episode/self._final_exploration_frame)
+            eps = max(0.1, eps)
+            return eps
+        
+
+        def copy_weights(sess):
+            update_ops = []
+            online_variables = [var for var in tf.trainable_variables() if 'copy' not in var.name]
+            online_variables = sorted(online_variables, key=lambda v: v.name)
+            target_variables = [var for var in tf.trainable_variables() if 'copy' in var.name]
+            target_variables = sorted(target_variables, key=lambda v: v.name)
+            for v1, v2 in zip(target_variables, online_variables):
+                op = v1.assign(v2)
+                update_ops.append(op)
+            sess.run(update_ops)
+
+        # Training loop
+        log.info("Entering training loop")
+        self._replay_memory = []
+        self._episode = 0
+        iterations = 0
+        generator = self._gen
+        input_data_node = self._input_data
+        state_tensor = self._state
+        a_tensor = self._a
+        y_tensor = self._y
+        Q_online = self._Q_online
+        Q_target = self._Q_target
+
+        if self._replay_memory_size > 0:
+            log.warning(f"Populating replay memory. The ViewBox will be unavailable until the first {self._replay_start_size} iterations have been completed.\nNote: The viewbox will reflect what is used in backpropagation while the top statistics show what goes into the replay memory.")
+        
+        while self._episode < self._n_episodes and not self._stopped:
+            t0 = time.perf_counter()
+            self._status = 'training'
+            state_ = input_data_node.layer_instance.reset_environment(generator)
+            state_seq = [state_['output']]*self._history_length
+            self._step_counter = 0
+            done = False
+            self._reward = 0
+            try:
+                while (not self._stopped) and (self._step_counter < self._n_steps_max) and not done:
+
+                    explore = np.random.random() < epsilon(self._episode) or iterations < self._replay_start_size
+                    if explore:
+                        action = np.random.randint(0, self._n_actions)
+                        probs = [1/self._n_actions for i in range(self._n_actions)]
+                    else:
+                        Q = Q_online.eval(session=sess, feed_dict={state_tensor: [np.concatenate(state_seq,-1)]}).squeeze()
+                        action = np.argmax(Q)
+                        probs = [i/np.sum(Q) for i in Q]
+                    state_info = input_data_node.layer_instance.take_action(generator, action)
+                    new_state, reward, done, info = state_info['output'], state_info['reward'], state_info['done'], state_info['info']
+                    new_state_seq = state_seq[1:] + [new_state]
+                    self._reward = reward
+
+                    transition = {
+                        'state_seq': np.array(state_seq),
+                        'new_state_seq': np.array(new_state_seq),
+                        'action': action,
+                        'reward': reward,
+                        'done': done,
+                        'probs':probs
+                        }
+                    self._replay_memory.append(transition)
+                                        
+                    if len(self._replay_memory) > self._replay_memory_size:
+                        self._replay_memory.pop(0)
+
+                    state_seq = new_state_seq
+                    
+                    if iterations % 4 == 0 and iterations > self._replay_start_size:
+                        
+                        batch_transitions = np.random.choice(self._replay_memory, self._batch_size)
+                        y_batch = np.zeros((self._batch_size, 1))
+                        a_batch = np.zeros((self._batch_size, 1))
+                        X_batch = np.zeros((self._batch_size,) + tuple(self._input_shape))
+
+                        for i, t in enumerate(batch_transitions):
+                            y_batch[i] = t['reward']
+                            if not t['done']:
+                                feed_dict = {state_tensor: [np.concatenate(t['new_state_seq'],-1)]}
+                                Q = Q_target.eval(feed_dict=feed_dict, session=sess).squeeze()
+                                y_batch[i] += self._gamma*np.amax(Q)
+                            a_batch[i] = t['action']
+                            X_batch[i] = np.concatenate(t['state_seq'],-1)
+                        
+                        feed_dict = {
+                         state_tensor: np.atleast_2d(X_batch),
+                         a_tensor: np.atleast_2d(a_batch),
+                         y_tensor: np.atleast_2d(y_batch),
+                        }
+                        
+                        # update this line
+                        _, self._loss_training, self._online_layer_outputs,\
+                        self._online_layer_weights, self._online_layer_biases, self._online_layer_gradients \
+                        = sess.run([self._online_weights, self._loss,
+                            self._online_layer_output, self._online_layer_weight, self._online_layer_bias, self._online_layer_gradient
+                        ], feed_dict=feed_dict)
+                    # Copy weights
+                    if iterations % 100 == 0:
+                        copy_weights(sess)
+                    state_ = new_state
+
+                    yield YieldLevel.SNAPSHOT
+                    self._step_counter += 1
+
+                    
+                    iterations += 1
+
+            except tf.errors.OutOfRangeError:
+                pass
+            
+            log.info(f"Episode duration: {round(time.perf_counter() - t0, 3)} s")            
+            self._episode += 1
+
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}            
+        self._status = 'finished'
+        yield YieldLevel.SNAPSHOT
+        self.on_export(self._checkpoint_save_path, 'checkpoint')   
+        sess.close()       
+        
+{% endmacro %}
+
+{% macro init_normal(mode) %}
+        {{ check_input_vars(layer_spec, ['action'])|indent(width=8)}}
+        self._status = 'initializing'
+        copied_graph = graph.clone()
+        target_nodes = copied_graph.inner_nodes
+        online_nodes = graph.inner_nodes
+
+
+        trn_node = graph.active_training_node
+        output_nodes = graph.get_input_nodes(trn_node)
+        for node in output_nodes:
+            output_layer_id = node.layer_id
+        online_output_layer_id = output_layer_id
+        target_output_layer_id = output_layer_id
+
+        input_data_node = graph.data_nodes[0]
+        generator = input_data_node.layer_instance.make_generator()
+        generator.send(None)
+        state_ = input_data_node.layer_instance.reset_environment(generator)
+
+        self._export_data_node = input_data_node.layer_instance
+        
+        self._actions = input_data_node.layer_instance.action_space
+        self._n_actions = len(self._actions)
+        # create state tensor
+        state_tensor = tf.placeholder(tf.float32, shape=(None,) + state_['output'].shape[:-1] + (state_['output'].shape[-1]*self._history_length, ))
+
+        # Make initializers
+        with tf.variable_scope('{{layer_spec.sanitized_name}}/train', reuse=tf.AUTO_REUSE):
+            is_training = tf.get_variable(name="is_train", dtype=tf.bool, initializer=False)
+        
+        # Build the TensorFlow graph
+        def build_graph(state_tensor, graph):
+            layer_output_tensors = {
+                input_data_node.layer_id: {'output': state_tensor},
+            }
+
+            for dst_node in graph.inner_nodes:
+                inputs = {
+                    dst_var: layer_output_tensors[src_node.layer_id][src_var]
+                    for src_node, src_var, dst_var in graph.get_input_connections(dst_node)
+                }
+                y = dst_node.layer_instance(
+                    inputs,
+                    is_training=is_training
+                )
+                layer_output_tensors[dst_node.layer_id] = y
+
+            return layer_output_tensors
+
+        online_layer_output_tensors = build_graph(state_tensor, graph)
+        target_layer_output_tensors = build_graph(state_tensor, copied_graph)
+
+
+        Q_online_tensor = None
+        Q_target_tensor = None
+        
+        for src_node, src_var, dst_var in graph.get_input_connections(graph.active_training_node):
+            if dst_var == 'action':
+                Q_online_tensor = online_layer_output_tensors[online_output_layer_id][src_var]
+                Q_target_tensor = target_layer_output_tensors[target_output_layer_id][src_var]
+                src_var_name = src_var
+                
+        if Q_online_tensor is None or Q_target_tensor is None:
+            raise RuntimeError("Failed finding input layer!")
+
+        
+        # Exploration/exploitation tradeoff
+        
+        
+        input_shape = state_tensor.get_shape().as_list()[1:]
+        y_tensor = tf.placeholder(tf.float32, [None, 1])
+        a_tensor = tf.placeholder(tf.uint8, [None, 1])
+        a_one_hot = tf.one_hot(a_tensor, self._n_actions, dtype=tf.float32)
+        a_one_hot = a_one_hot[:, -1, :]
+        q_performed = tf.reduce_sum(tf.multiply(Q_online_tensor , a_one_hot), axis=1, keep_dims=True)
+        loss_tensor = tf.reduce_mean(tf.square(y_tensor - q_performed))
+         
+
+        # Create an exportable version of the TensorFlow graph
+        self._input_tensor_export = tf.placeholder(shape=state_tensor.get_shape(), dtype=tf.float32)
+        self._output_tensor_export = build_graph(
+            self._input_tensor_export, graph)[online_output_layer_id]
+
+        global_step = None
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.optimizer == 'SGD' %}
+                optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate={{layer_spec.learning_rate}})
+            {% elif layer_spec.optimizer == 'ADAM' %}
+                optimizer = tf.train.AdamOptimizer(learning_rate={{layer_spec.learning_rate}}, beta1={{layer_spec.beta1}}, beta2={{layer_spec.beta2}})
+            {% elif layer_spec.optimizer == 'adagrad' %}
+                optimizer = tf.compat.v1.train.AdagradOptimizer(learning_rate={{layer_spec.learning_rate}})            
+            {% elif layer_spec.optimizer == 'RMSprop' %}
+                optimizer = tf.compat.v1.train.RMSPropOptimizer(learning_rate={{layer_spec.learning_rate}})                        
+                raise NotImplementedError('Optimizer {{layer_spec.optimizer}} not supported yet')
+            {% endif %}
+        {% endfilter %}
+
+        online_layer_weight_tensors = {}
+        online_layer_bias_tensors = {}        
+        online_layer_gradient_tensors = {}
+
+        target_layer_weight_tensors = {}
+        target_layer_bias_tensors = {}        
+        target_layer_gradient_tensors = {}
+
+        for node in graph.inner_nodes:
+            if not isinstance(node.layer, Tf1xLayer): 
+                continue
+            online_layer_weight_tensors[node.layer_id] = node.layer.weights
+            online_layer_bias_tensors[node.layer_id] = node.layer.biases            
+            
+            if len(node.layer.trainable_variables) > 0:
+                gradients = {}
+                for name, tensor in node.layer.trainable_variables.items():
+                    grad_tensor = tf.gradients(loss_tensor, tensor)
+                    if any(x is None for x in grad_tensor):
+                        grad_tensor = tf.constant(0)
+                    gradients[name] = grad_tensor
+                online_layer_gradient_tensors[node.layer_id] = gradients
+                
+        for node in copied_graph.inner_nodes:
+            if not isinstance(node.layer, Tf1xLayer): 
+                continue
+            target_layer_weight_tensors[node.layer_id] = node.layer.weights
+            target_layer_bias_tensors[node.layer_id] = node.layer.biases            
+            
+            if len(node.layer.trainable_variables) > 0:
+                gradients = {}
+                for name, tensor in node.layer.trainable_variables.items():
+                    grad_tensor = tf.gradients(loss_tensor, tensor)
+                    if any(x is None for x in grad_tensor):
+                        grad_tensor = tf.constant(0)
+                    gradients[name] = grad_tensor
+                target_layer_gradient_tensors[node.layer_id] = gradients
+
+        
+        grads_and_vars = optimizer.compute_gradients(loss_tensor)
+        update_online_weights = optimizer.apply_gradients(grads_and_vars, global_step=global_step)
+        
+        sess = None
+        {{session(sess, use_gpu=not layer_spec.use_cpu) | indent(width=8)}}        
+        self._sess = sess
+
+        trackable_variables = {}
+        trackable_variables.update({x.name: x for x in tf.trainable_variables() if isinstance(x, Trackable)})
+        trackable_variables.update({k: v for k, v in locals().items() if isinstance(v, Trackable) and not isinstance(v, tf.compat.v1.data.Iterator)})
+        self._checkpoint = tf.train.Checkpoint(**trackable_variables)
+        sess.run(tf.global_variables_initializer())
+        
+        checkpoint_directory = '{{layer_spec.checkpoint_path}}'
+        use_checkpoint = {{layer_spec.load_checkpoint}}
+        if use_checkpoint:
+            path = tf.train.latest_checkpoint(checkpoint_directory)
+            if path is not None:
+                status = self._checkpoint.restore(path)
+                status.run_restore_ops(session=self._sess)
+            elif path is None and self._mode == 'testing':
+                log.error('There are no saved checkpoint files for this model.')
+                self._sess.close()
+
+
+        self._Q_online = Q_online_tensor
+        self._Q_target = Q_target_tensor
+        self._state = state_tensor
+        self._a = a_tensor
+        self._y = y_tensor
+        self._online_weights = update_online_weights
+        self._loss = loss_tensor
+        self._online_layer_output = online_layer_output_tensors
+        self._online_layer_weight = online_layer_weight_tensors
+        self._online_layer_gradient = online_layer_gradient_tensors
+        self._online_layer_bias = online_layer_bias_tensors
+        self._reward = 0
+
+        self._input_data = input_data_node
+        self._input_shape = input_shape
+        self._gen = generator
+{% endmacro %}
+
+################################################### Main #####################################################
+{% macro layer_tf1x_rl(layer_spec, graph_spec) %}
+class {{layer_spec.sanitized_name}}(RLLayer):
+
+    def __init__(self):
+
+        self._batch_size = {{layer_spec.batch_size}}
+        self._n_episodes = {{layer_spec.n_episodes}}
+        self._history_length = {{layer_spec.history_length}}
+        self._gamma = {{layer_spec.discount_factor}}
+
+        self._replay_start_size = 2*self._batch_size
+        self._replay_memory_size = {{layer_spec.replay_memory_size}}
+
+        self._initial_exploration = {{layer_spec.initial_exploration}}
+        self._final_exploration = {{layer_spec.final_exploration}}
+        self._final_exploration_frame = {{layer_spec.final_exploration_frame}}
+
+        self._update_frequency = {{layer_spec.update_frequency}}
+        self._copy_weights_frequency = {{layer_spec.target_network_update_frequency}}
+        self._n_steps_max = {{layer_spec.n_steps_max}}
+
+        self._stopped = False
+        self._paused = False
+        self._headless = False
+        self._status = 'created'
+        
+        self._loss_training = 0.0
+        self._loss_validation = 0.0
+        self._loss_testing = 0.0 
+
+        self._variables = {}
+        self._layer_outputs = {}
+        self._layer_weights = {}
+        self._layer_biases = {}        
+        self._layer_gradients = {}
+
+        self._online_layer_outputs = {}
+        self._online_layer_weights = {}
+        self._online_layer_biases = {}        
+        self._online_layer_gradients = {}
+
+        self._target_layer_outputs = {}
+        self._target_layer_weights = {}
+        self._target_layer_biases = {}        
+        self._target_layer_gradients = {}
+
+
+        self._checkpoint = None
+
+    def init_layer(self, graph: Graph, mode = 'initializing'):
+        self._mode = mode
+        {% if not layer_spec.distributed -%}
+            {{ init_normal() }}
+        {% endif %}
+
+    def train(self, graph:Graph):
+        """
+        Training is done when this function is called. Once the training ends, checkpoint files are saved.
+        """
+    
+        {% if not layer_spec.distributed -%}
+            {{train_normal(layer_spec, graph_spec) }}
+        {% endif %} 
+
+    def run(self, graph: Graph, mode = 'initializing'):
+        """
+        Called as the main entry point for training. Responsible for training the model.
+
+        Args:
+            graph: A PerceptiLabs Graph object containing references to all layers objects included in the model produced by this training layer.
+            mode: Different modes in which graph can be run in. Modes: training, testing, initializing
+        """
+        self.init_layer(graph, mode)
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)} 
+        
+        if mode == 'training':
+            yield from self.train(graph)
+
+    def on_export(self, path: str, mode: str) -> None:
+        """Called when the export button is clicked in the frontend.
+        It is up to the implementing layer to save the model to disk.
+        
+        Args:
+            path: the directory where the exported model will be stored.
+            mode: how to export the model. Made available to frontend via 'export_modes' property."""
+
+        log.debug(f"Export called. Project path = {path}, mode = {mode}")
+        
+        if mode in ['TFModel', 'TFLite']:
+            import shutil
+            pb_path = os.path.join(path, '1')
+            if os.path.exists(pb_path):
+                shutil.rmtree(pb_path)
+            
+            time.sleep(.0000000000000001) #Force your computer to do a clock cycle to avoid Windows permission exception
+
+            os.makedirs(pb_path, exist_ok=True)
+        
+        # Export non-compressed model
+        if mode in ['TFModel']:
+            tf.compat.v1.saved_model.simple_save(self._sess, pb_path, inputs=self._input_tensor_export, outputs=self._output_tensor_export)
+
+        # Export compressed model
+        if mode in ['TFLite']:
+            frozen_path = os.path.join(pb_path, 'frozen_model.pb')
+            converter = tf.lite.TFLiteConverter.from_session(self._sess, list(self._input_tensor_export.values()), [self._output_tensor_export['output']])
+            converter.post_training_quantize = True
+            tflite_model = converter.convert()
+            with open(frozen_path, "wb") as f:
+                f.write(tflite_model)
+
+        if mode in ['TFQuantized']:
+            raise Exception("Quantization not supported for Reinforcement Learning models.")
+            {# try:
+                def representative_dataset_gen():
+                    export_data_gen = self._export_data_node.make_generator()
+                    for i in range(10):
+                        export_data_gen.send(None)
+                        data = [next(export_data_gen)['output']]
+                        image = np.expand_dims(data[-1], axis=0)
+                        image = image*self._history_length
+                        image = np.concatenate(image,-1).squeeze()
+                        print(image.shape)
+                        yield [image]
+                
+                tflite_path = os.path.join(pb_path, 'tflite_model.tflite')
+                converter = tf.lite.TFLiteConverter.from_session(self._sess, [self._input_tensor_export], [self._output_tensor_export['output']])
+                converter.optimizations = [tf.lite.Optimize.DEFAULT]
+                converter.representative_dataset = representative_dataset_gen
+                converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8, tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+                converter.inference_input_type = tf.uint8
+                converter.inference_output_type = tf.uint8
+                tflite_model = converter.convert()
+                with open(tflite_path, "wb") as f:
+                    f.write(tflite_model)
+            except Exception as e:
+                raise #}
+            
+        # Export checkpoint
+        if mode in ['checkpoint']:
+            for fname in os.listdir(path):
+                if fname.endswith('.json'):
+                    pass
+                else:
+                    os.remove(os.path.join(path,fname))
+            {% filter remove_lspaces(8) %}
+                {% if layer_spec.distributed %}
+                    self._saver.save(self._sess, os.path.join(path, 'model.ckpt'), global_step=0)
+                {% else %}
+                    self._checkpoint.save(file_prefix=os.path.join(path, 'model.ckpt'), session=self._sess)
+                {% endif %}
+            {% endfilter %}
+                
+    def on_stop(self) -> None:
+        """Called when the save model button is clicked in the frontend. 
+        It is up to the implementing layer to save the model to disk."""
+        self.on_export(self._checkpoint_save_path, 'checkpoint') 
+        self._stopped = True
+
+    def on_headless_activate(self) -> None:
+        """"Called when the statistics shown in statistics window are not needed.
+        Purose is to speed up the iteration speed significantly."""
+        self._headless = True
+
+        self._layer_outputs = {} 
+        self._layer_weights = {}
+        self._layer_biases = {}
+        self._layer_gradients = {}
+
+    def on_headless_deactivate(self) -> None:
+        """"Called when the statistics shown in statistics window are needed.
+        May slow down the iteration speed of the training."""
+        import time
+        log.info(f"Set to headless_off at time {time.time()}")
+        self._headless = False
+
+    @property
+    def export_modes(self) -> List[str]:
+        """Returns the possible modes of exporting a model."""        
+        return [
+            'TFModel',
+            'TFLite'
+            'checkpoint',
+            'TFQuantized'            
+        ]
+        
+    @property
+    def is_paused(self) -> None:
+        """Returns true when the training is paused."""        
+        return self._paused
+
+    @property
+    def batch_size(self) -> int:
+        """ Size of the current training batch """        
+        return self._batch_size
+
+    @property
+    def status(self):
+        """Called when the pause button is clicked in the frontend. It is up to the implementing layer to pause its execution."""        
+        return self._status
+    
+    @property
+    def episode(self) -> int:
+        """The current epoch"""        
+        return self._episode
+
+    @property
+    def n_episodes(self) -> int:
+        """The current epoch"""        
+        return self._n_episodes
+
+    @property
+    def gamma(self) -> float:
+        """ gamma """
+        return self._gamma
+
+    @property
+    def replay_memory_size(self) -> int:
+        """ replay memory size """
+        return self._replay_memory_size
+
+    @property
+    def transition(self) -> Dict[str, Picklable]:
+        """ replay memory """
+        return self._replay_memory[-1]
+
+    @property
+    def n_steps_max(self) -> int:
+        """ _n_steps_max """
+        return self._n_steps_max
+
+    @property
+    def step_counter(self) -> int:
+        """ _step_counter """
+        return self._step_counter
+
+    @property
+    def history_length(self) -> int:
+        """ history length"""
+        return self._history_length
+
+    @property
+    def variables(self):
+        """Any variables belonging to this layer that should be rendered in the frontend.
+        
+        Returns:
+            A dictionary with tensor names for keys and picklable for values.
+        """
+        return self._variables.copy()        
+
+    @property
+    def sample(self) -> Dict[str, Dict[str, Picklable]]:
+        """Returns a single data sample"""        
+        return {'output': np.array(self.reward)}
+
+    @property
+    def action_space(self) -> List[int]:
+        """ Returns the action space of the environment used for training the model"""
+        return self._actions
+
+    @property
+    def n_actions(self) -> float:
+        """ returns reward during one iteration"""
+        return self._n_actions
+
+    @property
+    def reward(self) -> float:
+        """ returns reward during one iteration"""
+        return self._reward
+
+    @property
+    def loss_training(self) -> float:
+        """Returns the current loss of the training phase"""                
+        return self._loss_training        
+
+    @property
+    def loss_validation(self) -> float:
+        """Returns the current loss of the validation phase"""                        
+        return self._loss_validation        
+
+    @property
+    def loss_testing(self) -> float:
+        """Returns the current loss of the testing phase"""                
+        return self._loss_testing
+
+
+    def make_generator(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of training data. In the case of a training layer, this typically yields the model output."""        
+        yield from []
+
+    def reset_environment(self, generator) -> np.ndarray:
+        """  Returns the state of the environment after being reset"""
+        return generator.send('reset')
+
+    def take_action(self, generator, action) -> List:
+        """ Takes the given action in the environment and returns the new state info. """
+        return generator.send(action)
+
+    @property
+    def layer_weights(self) -> Dict[str, Dict[str, Picklable]]:
+        """The weight values of each layer in the input Graph during the training.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain weight name and value pairs. The values must be picklable.
+        """        
+        self._layer_weights.update(self._online_layer_weights)  
+        return self._layer_weights
+
+    @property
+    def layer_biases(self) -> Dict[str, Dict[str, Picklable]]:
+        """The bias values of each layer in the input Graph during the training.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain weight name and value pairs. The values must be picklable.
+        """      
+        self._layer_biases.update(self._online_layer_biases)  
+        return self._layer_biases
+    
+    @property
+    def layer_gradients(self) -> Dict[str, Dict[str, Picklable]]:
+        """The gradients with respect to the loss of all trainable variables of each layer in the input Graph.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain gradient name and value pairs. The values must be picklable.
+        """        
+        self._layer_gradients.update(self._online_layer_gradients)
+        return self._layer_gradients
+    
+    @property
+    def layer_outputs(self) -> Dict[str, Dict[str, Picklable]]:
+        """The output values of each layer in the input Graph during the training (e.g., tf.Tensors evaluated for each iteration)
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain variable name and value pairs. The values must be picklable.
+        """
+        self._layer_outputs.update(self._online_layer_outputs)
+        return self._layer_outputs
+
+    @property
+    def progress(self) -> float:
+        """A number indicating the overall progress of the training
+        
+        Returns:
+            A floating point number between 0 and 1
+        """        
+        n_steps_episode = self._n_steps_max
+        n_iterations_total = self._n_episodes * n_steps_episode
+
+        iteration = self.episode * n_steps_episode + self.step_counter
+        
+        progress = min(iteration/(n_iterations_total - 1), 1.0) 
+        return progress
+        
+{% endmacro %}

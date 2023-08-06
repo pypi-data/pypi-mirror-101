@@ -1,0 +1,55 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "training_ended.json",
+    "type": "object",
+    "required": [
+	"graph_spec",
+	"n_parameters",
+	"training_session_id",
+	"time_total",
+	"data_meta",
+	"cycle_state_initial",
+	"cycle_state_final",
+	"cycle_time_process_messages",
+	"cycle_time_send_snapshot",
+	"cycle_time_total",
+	"mem_phys_total",
+	"cycle_mem_phys_available",
+	"mem_swap_total",
+	"cycle_mem_swap_free"
+    ],    
+    "properties": {
+	"graph_spec": {"$ref": "file:graph_spec.json"},
+	"n_parameters": {"type": "number"},
+	"model_id": {"type": "number", "Description": "Model ID set by the frontend, generates a large random int in case nothing is sent from frontend"},	
+	"training_session_id": {"type": "string"},
+	"end_state": {"type": "string", "description": "The final state of the training session"},	
+	"time_total": {"type": "number", "description": "Duration of the training session"},
+	"cycle_state_initial": {"type": "array", "items": {"type": "string"}, "description": "Name of the state at the beginning of a cycle"},
+	"cycle_state_final": {"type": "array", "items": {"type": "string"}, "description": "Name of the state at the end of a cycle"},	
+	"cycle_time_process_messages": {"type": "array", "items": {"type": "number"}, "description": "Time spent processing requests [s]"},		    
+	"cycle_time_training_step": {"type": "array", "items": {"type": "number"}, "description": "Time spent in userland between yields [s]"},
+	"cycle_time_send_snapshot": {"type": "array", "items": {"type": "number"}, "description": "Time spent sending a snapshot [s]"},
+	"cycle_time_total": {"type": "array", "items": {"type": "number"}, "description": "Total time spent in the iteration cycle [s]"},
+	"mem_phys_total": {"type": "number", "description": "From 'psutil.virtual_memory().total'. Sampled at the end of the cycle"},
+	"cycle_mem_phys_available": {"type": "array", "items": {"type": "number"}, "description": "From 'psutil.virtual_memory().available'. Sampled at the end of the cycle"},
+	"mem_swap_total": {"type": "number", "description": "From 'psutil.swap_memory().total'. Sampled at the end of the cycle"},		
+	"cycle_mem_swap_free": {"type": "array", "items": {"type": "number"}, "description": "From 'psutil.swap_memory().free'. Sampled at the end of the cycle"},
+	"data_meta": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"required": [
+		    "layer_id"
+		],		
+		"properties": {
+		    "layer_id": {"type": "string"},
+		    "training_set_size": {"type": "number"},
+		    "validation_set_size": {"type": "number"},
+		    "testing_set_size": {"type": "number"},
+		    "sample_shape": {"type": "array", "items": {"type": "number"}}
+		}
+	    }	    
+	}
+    }    
+}

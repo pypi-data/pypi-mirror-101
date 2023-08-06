@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "graph_spec.json",
+    "type": "object",
+    "required": [
+	"nodes",
+	"edges"
+    ],    
+    "properties": {
+	"nodes": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"required": ["id", "type"],
+		"properties": {
+		    "type": {"type": "string"},
+		    "id": {"type": "string"},
+		    "namespace": {"type": "object"}
+		}
+	    }
+	},
+	"edges": {
+	    "description": "An array of nested arrays. The nested arrays must contain two strings of layer ids",
+	    "type": "array",
+	    "items": {
+		"type": "array",
+		"items": {"type": "string"},
+		"minItems": 2,
+		"maxItems": 2		
+	    }
+	}	
+    }
+}
