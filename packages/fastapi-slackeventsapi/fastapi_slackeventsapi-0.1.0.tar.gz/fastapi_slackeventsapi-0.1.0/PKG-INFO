@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: fastapi-slackeventsapi
+Version: 0.1.0
+Summary: FastAPI Implementation of slackeventsapi
+Home-page: https://github.com/und3v3l0p3d/fastapi_slackeventsapi
+License: MIT
+Keywords: fastapi,slack,slackeventsapi
+Author: Phygitalism
+Requires-Python: >=3.7,<4
+Classifier: Framework :: AsyncIO
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Communications :: Chat
+Classifier: Topic :: Office/Business
+Classifier: Topic :: System :: Networking
+Requires-Dist: aiojobs (>=0.3.0,<0.4.0)
+Requires-Dist: async-timeout (>=3.0.1,<4.0.0)
+Requires-Dist: fastapi (>=0.63.0,<0.64.0)
+Project-URL: Repository, https://github.com/und3v3l0p3d/fastapi_slackeventsapi
+Description-Content-Type: text/markdown
+
+# Slack Events API adapter for Python with FastAPI  
+
+SlackEventManager is a Python-based solution to recieve and parse events from Slack's Events API
+
+This is simple add to fastapi server SLack Events API  
+
+## Installation
+```bash
+pip install fastapi-slackeventsapi
+```
+
+## Work Setup 
+* [App Setup](https://github.com/slackapi/python-slack-events-api/blob/main/README.rst#--app-setup)
+* [Development Workflow](https://github.com/slackapi/python-slack-events-api/blob/main/README.rst#--development-workflow)  
+
+## Usage  
+
+Create simple FastAPI app and add SlackEventManager event handler
+
+```python
+import os
+
+import uvicorn
+from fastapi import FastAPI
+from fastapi_slackeventsapi import SlackEventManager
+
+signing_secret = os.environ.get('SLACK_BOT_SIGNING_SECRET')
+
+app = FastAPI()
+
+slack_event_manger = SlackEventManager(singing_secret=signing_secret,
+                                       endpoint='/slack/events/',
+                                       app=app)
+
+
+@slack_event_manger.on('reaction_added')
+async def reaction_added(event_data):
+    emoji = event_data['event']['reaction']
+    print(emoji)
+
+
+uvicorn.run(app, host='0.0.0.0')
+
+```
+
+
