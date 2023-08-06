@@ -1,0 +1,203 @@
+###########################################
+#           Version
+###########################################
+version: 0.1
+###########################################
+#           Email configuration
+###########################################
+receiver_emails:
+    - "yuanjie@xiaomi.com"
+    - "jiangbowen@xiaomi.com"
+cc_emails:
+    - "yuanjie@xiaomi.com,jiangbowen@xiaomi.com"
+
+business_type: "[MIVIDEO PUSH MODEL BY YUANJIE v0]"
+
+###########################################
+#           model configuration
+###########################################
+# model type: [dnn|nfm]
+model_type: "dnn"
+
+loss_type: "sigmoid_cross_entropy"  # [sigmoid_cross_entropy|huber_loss]
+# embeddings
+embedding:
+    min_embed_size: 2
+    # group order
+    group_name:
+        - "0"
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+        - "6"
+        - "7"
+        - "8"
+        - "9"
+        - "10"
+        - "11"
+        - "12"
+        - "13"
+        - "14"
+        - "15"
+        - "16"
+        - "17"
+        - "18"
+        - "19"
+        - "20"
+        - "21"
+        - "22"
+        - "23"
+        - "24"
+        - "25"
+        - "26"
+        - "27"
+
+    embedded_size:
+        "0": 5
+        "1": 13
+        "2": 12
+        "3": 9
+        "4": 23
+        "5": 9
+        "6": 8
+        "7": 7
+        "8": 8
+        "9": 5
+        "10": 7
+        "11": 11
+        "12": 21
+        "13": 12
+        "14": 15
+        "15": 15
+        "16": 11
+        "17": 11
+        "18": 12
+        "19": 22
+        "20": 21
+        "21": 9
+        "22": 16
+        "23": 16
+        "24": 9
+        "25": 11
+        "26": 16
+        "27": 17
+
+hidden_layers:
+    - 96
+    - 48
+    - 16
+# feature admittance probability
+feature_admit_probability: 1
+# feature cleaning period (days)
+feature_cleaning_period: 7
+# feature cleaning number(updated times)
+feature_cleaning_num: 10
+
+###########################################
+#           storage configuration
+###########################################
+dataset_type: "news_ctr"
+# Input path
+train_data_path: "hdfs://zjyprc-hadoop/user/h_data_platform/platform/push/mipush/data/mitvpush/v0"
+eval_data_path: "hdfs://zjyprc-hadoop/user/h_data_platform/platform/push/mipush/data/mitvpush/v0"
+model_ckpt_path: "hdfs://zjyprc-hadoop/user/h_data_platform/platform/push/mipush/data/mitvpush/v0_requirements/model/checkpoint_batch"
+
+# same with `model_ckpt_path` for 'auto_train', different for 'daily_train'
+model_export_path: "hdfs://zjyprc-hadoop/user/h_data_platform/platform/push/mipush/data/mitvpush/v0_requirements/export"
+model_eval_ckpt_path: "hdfs://zjyprc-hadoop/user/h_data_platform/platform/push/mipush/data/mitvpush/v0_requirements/model/checkpoint_batch_eval"
+model_log_path: "hdfs://zjyprc-hadoop/user/h_data_platform/platform/push/mipush/data/mitvpush/v0_requirements/log"
+
+# embedding file path
+parameter_file_path: "hdfs://zjyprc-hadoop/user/h_data_platform/platform/push/mipush/data/mitvpush/v0_requirements/param"
+# realtime sample data path
+#realtime_train_data_path: "hdfs://zjyprc-hadoop/path/to/realtime/train/data"
+#train_data_archive_path: "hdfs://zjyprc-hadoop/path/to/train/data/archive_path"
+#base_model_ckpt_path: "hdfs://zjyprc-hadoop/path/to/base/model/ckpt_path"
+
+###########################################
+#           training configuration
+###########################################
+## learning rate
+optimization:
+    default:
+        ### [poly | exp | constant] poly for polynomial_decay, exp for exponential_decay
+        learning_policy: "constant"
+        base_learning_rate: 0.001
+        end_learning_rate: 0.0001
+        training_steps: 50000
+        learning_power: 0.9
+        slow_start_step: 10000
+        slow_start_learning_rate: 0.03
+        ## training parameters
+        optimizer: "sgd"  # [sgd|adaea] supported
+        min_scaled_lr: 0.01  # used for clipping scaled lr
+        initial_accumulator_value: 1.0  # used for AdaEA/AdaGrad optimizer
+num_epochs: 1
+batch_size: 1024
+## validation
+dataset_random_seed: 1001
+num_steps_to_valid: 5000
+num_batches_to_valid: 10
+num_shard_of_validation: 3200
+# test
+eval_batch_size: 1024
+num_shard_of_eval: 200
+# export
+num_shard_of_export: 200
+metrics:
+    - "AUC"
+    - "GAUC"
+## losses
+loss:
+    type: "sigmoid_cross_entropy"
+## logging
+num_steps_to_save: 10000  # save checkpoint
+num_steps_to_summary: 3000  # save summary info in tensorboard
+num_steps_to_log: 500  # print log info in worker
+
+###########################################
+#          timeout configuration
+###########################################
+train_timeout: -1 # seconds, negative number means unlimited
+export_timeout: 3000  # second
+export_embedding_type: "text"  # [text|binary]
+
+###########################################
+#           performance configuration
+###########################################
+hash_table_segments: 8
+hash_table_cache_size: 20000
+export_cache_size: 200000
+
+###########################################
+#           cloudml jobs configuration
+###########################################
+train_job_name: "yuanjie-mitv-base-online-train-v0"
+evaluation_job_name: "yuanjie-mitv-base-online-evaluation-v0"
+export_job_name: "yuanjie-mitv-base-online-export-v0"
+import_job_name: "yuanjie-mitv-base-online-import-v0"
+
+fds_bucket_name: "distributed-tf"
+fds_package_path: "wangxuntao/models/mitv"
+fds_package_name: "feeds-dl-model"
+
+# "feeds_qipeng" or "c4"
+cluster_name: "feeds_qipeng"
+
+###########################################
+#         train scripts configuration
+###########################################
+
+train_mode: "batch" # [batch|increment]
+
+auto_train:
+    log_filename: "auto_train_v0.log"
+    start_day: "20200728"
+    num_days: 21
+    valid_day: "20200804"
+daily_train:
+    log_filename: "daily_train_v0.log"
+    export_embed_file_count: 16
+    export_file_count: 16
