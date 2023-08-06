@@ -1,0 +1,12 @@
+I: 257                  # A             Magnet current
+T: 4.2                  # K             Magnet temperature
+type: solenoid          # -             Magnet winding type
+flagIron: 0             # -             1 - iron yoke or shielding, 0 - no iron
+flagSelfField: 0        # -             1 - correction for self-field, 0 - no correction
+blocks:                 # -             block (or coils) of magnet 
+  GunSol2:              # -             block (or coil) name
+    A1: 0.07600        # m             smaller radial dimension of solenoid
+    A2: 0.09805        # m             larger radial dimension of solenoid
+    B1: 0.0             # m             smaller axial dimension of solenoid
+    B2: 0.29040          # m             larger axial dimension of solenoid
+    wire: W1            # -             wire name - name must coresponds existing wire.name.yaml

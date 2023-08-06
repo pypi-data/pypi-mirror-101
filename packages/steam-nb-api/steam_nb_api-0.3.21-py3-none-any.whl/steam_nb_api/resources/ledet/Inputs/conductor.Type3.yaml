@@ -1,0 +1,28 @@
+type: rectangular                                   # conductor type, other types to add: cable [-]
+strand:
+  ds_inGroup: 1                                     # strand diameter [m]
+  wBare_inGroup: 2                                  # bare cable width [m]
+  hBare_inGroup: 3                                  # bare average cable height [m]    
+  wIns_inGroup: 4                                   # insulation thickness in the width direction [m]
+  hIns_inGroup: 5                                   # insulation thickness in the height direction [m]
+  Lp_f_inGroup: 6                                   # Filament twist-pitch [m]
+  T_Ref_RRR: 293
+  RRR_Cu_inGroup: 120                               # RRR of the conductor in each group of cables
+  f_SC_strand_inGroup: 0.357142857                  # fraction of superconductor in the strands
+  f_ro_eff_inGroup: 2                               # Effective transverse resistivity parameter (default=1)
+  STtype_inGroup: Cu                                # type of stabilizer (Cu, Ag)
+  insulation_type: Kapton                           # insulation type / material [-]
+  SC_type:
+    Nb-Ti:                                          # superconductor type / material [-] 'Nb-Ti', "Nb3Sn(Summer's fit)", "BSCCO2212", "Nb3Sn(Bordini's fit)"
+        Tc0_NbTi_ht_inGroup: 9.2                    # Tc0_NbTi_ht_inGroup [K]
+        Bc2_NbTi_ht_inGroup: 14.5                   # Bc2_NbTi_ht_inGroup [T]
+        c1_Ic_NbTi_inGroup: 34404.9                 # c1_Ic_NbTi_inGroup [A]
+        c2_Ic_NbTi_inGroup: -2566.9                 # c2_Ic_NbTi_inGroup [A/T]
+cable:
+  insulationType_inGroup: 2                         # Type of cable insulation (G10, kapton)
+  internalVoidsType_inGroup: Helium                 # Type of filler of voids between adjacent strands (G10, kapton, helium, void)
+  externalVoidsType_inGroup: Kapton                 # Type of filler of voids between strands and insulation layers (G10, kapton, helium, void) 
+  Lp_s_inGroup: 0.074                               # Strand twist-pitch [m]
+  insulationBetweenLayers: 500E-6
+  insulationAroundCables: 150E-6    
+  R_c_inGroup: 100E-6                               # Cross-contact resistance [Ohm]

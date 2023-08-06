@@ -1,0 +1,28 @@
+type: rectangular         # -         conductor type, other types to add: cable
+strand:
+  Ic: 750                   # A         critical current
+  Ic_B: 5.0                 # T         field for critical current measurement
+  Ic_T: 4.2                 # K         temperature for critical current measurement
+  si_h: 0.00002             # m         strand insulation height (radial)
+  si_w: 0.00002             # m         strand insulation width (axial)
+  sh_i: 0.00105             # m         strand height insulated (radial)
+  sw_i: 0.00165             # m         strand width insulated (axial)
+  scr_i: 0.0003             # m         strand corner radius insulated
+  stp: 0.050                # m         strand twist pitch lenght
+  RRR: 100                  # -         strand twist pitch lenght
+  Cu_SC: 4                  # -         strand twist pitch lenght
+  Ro_eff: 1                 # -         normalized, default 1
+  stabilizer: Cu            # -         stabilizer material
+  insulation_type: kapton   # -         insulation type / material
+  SC_type:
+    Nb-Ti:            # -         superconductor type / material
+      Tc0: 9.2             # K
+      Bc2: 14.5            # T
+      c1_Ic: 3336.363785   # A
+      c2_Ic: -248.917389   # A/T
+cable:
+  fil_adj_str: kapton       # -         filler material between adjacent strands 
+  fil_btw_str_ins_l: kapton # -         filler material between strands in isulat adjacent strands 
+  li_h: 0                   # m         layer insulation height (radial)
+  Lp_s: 0
+  R_c: 0

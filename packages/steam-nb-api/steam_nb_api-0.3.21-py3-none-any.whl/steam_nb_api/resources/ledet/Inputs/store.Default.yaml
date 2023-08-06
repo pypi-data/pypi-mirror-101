@@ -1,0 +1,54 @@
+# Define the values of all Variables variables
+variableToSaveTxt:
+    - 'time_vector'
+    - 'Ia'
+    - 'Ib'
+    - 'T_ht'
+    - 'dT_dt_ht'
+    - 'flagQ_ht'
+    - 'IifX'
+    - 'IifY'
+    - 'Iis'
+    - 'dIifXDt'
+    - 'dIifYDt'
+    - 'dIisDt'
+    - 'Uc'
+    - 'U_QH'
+    - 'T_s_QH'
+    - 'time_vector'
+    - 'R_CoilSections'
+    - 'I_CoilSections'
+typeVariableToSaveTxt:
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 1
+    - 2
+    - 1
+    - 1
+    - 1
+variableToInitialize:
+    - 'Ia'
+    - 'Ib'
+    - 'T_ht'
+    - 'dT_dt_ht'
+    - 'flagQ_ht'
+    - 'IifX'
+    - 'IifY'
+    - 'Iis'
+    - 'dIifXDt'
+    - 'dIifYDt'
+    - 'dIisDt'
+    - 'Uc'
+    - 'U_QH'
+    - 'T_s_QH'
