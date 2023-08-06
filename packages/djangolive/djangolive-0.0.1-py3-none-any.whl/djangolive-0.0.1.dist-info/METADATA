@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: djangolive
+Version: 0.0.1
+Summary: Track Django users alive
+Home-page: https://github.com/tomvictor/djangolive
+Author: Tom Victor
+Author-email: vjtomvictor@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: django
+Provides-Extra: dev
+Requires-Dist: bumpversion (<1,>=0.5.3) ; extra == 'dev'
+Requires-Dist: pytest-watch ; extra == 'dev'
+Requires-Dist: wheel ; extra == 'dev'
+Requires-Dist: twine ; extra == 'dev'
+Requires-Dist: ipython ; extra == 'dev'
+Requires-Dist: cryptography ; extra == 'dev'
+Requires-Dist: pytest-cov ; extra == 'dev'
+Requires-Dist: pytest-django ; extra == 'dev'
+Requires-Dist: pytest-xdist ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: pep8 ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: Sphinx (<2,>=1.6.5) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme (>=0.1.9) ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: Sphinx (<2,>=1.6.5) ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme (>=0.1.9) ; extra == 'doc'
+Provides-Extra: lint
+Requires-Dist: flake8 ; extra == 'lint'
+Requires-Dist: pep8 ; extra == 'lint'
+Requires-Dist: isort ; extra == 'lint'
+Provides-Extra: test
+Requires-Dist: cryptography ; extra == 'test'
+Requires-Dist: pytest-cov ; extra == 'test'
+Requires-Dist: pytest-django ; extra == 'test'
+Requires-Dist: pytest-xdist ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: tox ; extra == 'test'
+
+djangolive (Under development)
+==============================
+
+.. image:: https://readthedocs.org/projects/djangoiot/badge/?version=latest
+    :target: https://djangolive.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+.. image:: https://travis-ci.org/Tomvictor/djangolive.svg?branch=master
+    :target: https://travis-ci.org/Tomvictor/djangolive
+
+
+Djangolive helps the Django to keep track of users.
+
+For full documentation, visit `djangolive.readthedocs.io
+<https://djangolive.readthedocs.io/en/latest/>`__.
+
+Features
+--------
+
+- User activity tracking
+- Track users in djnago admin
+
+Installation
+------------
+
+Install djangolive by running::
+
+    pip install djangolive
+
+
+Contribute
+----------
+
+- Issue Tracker: github.com/tomvictor/djangolive/issues
+- Source Code: github.com/tomvictor/djangolive
+
+Support
+-------
+
+If you are having issues, please let raise issue on github.
+
+License
+-------
+
+The project is licensed under the MIT license.
+
+
