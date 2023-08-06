@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="jumbotron" style="margin-bottom:0">
+        <div class="fa-pull-right text-right">
+            <a href="{{ url_for('project.export_as_excel', project_id=project['id']) }}" class="btn btn-success btn-lg mb-1"><i class="fas fa-file-excel"></i> Export</a><br/>
+            <a href="{{ url_for('project.awareness_dashboard', project_id=project['id']) }}" class="btn btn-info btn-lg"><i class="fas fa-chart-line"></i> Zum Awareness Dashboard</a>
+        </div>
+        <h1 class="display-3">{% block title %}Projektdetails{% endblock %}</h1>
+
+          <div class=" lead text-left">
+              <strong>Name: </strong>{{ project["name"] }}<br/>
+              <strong>Beschreibung: </strong>{{ project["description"] }}<br/>
+              {% if project["start_date"] is defined %}
+                <strong>Startdatum: </strong>{{ project["start_date"].strftime('%d.%m.%Y') }}<br/>
+              {% endif %}
+              {% if project["end_date"] is defined and project["end_date"] is not none %}
+                <strong>Enddatum: </strong>{{ project["end_date"].strftime('%d.%m.%Y') }}
+              {% endif %}
+          </div>
+
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <canvas id="project_fulfilment_chart" width="1024px"></canvas>
+
+            <script>
+                var ctx = document.getElementById('project_fulfilment_chart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bubble',
+                    // The data for our dataset
+                        data: {
+                            datasets: [
+                                {% for cd in chart_data %}
+                                    {
+                                        label: '{{ cd['label'] }}',
+                                        backgroundColor: '{{ cd['bgColor'] }}',
+                                        borderColor: '#fff',
+                                        data: [{x: {{ cd['x'] }}, y: {{ cd['y'] }}, r: {{ cd['r'] }}}],
+                                    },
+                                {% endfor %}
+                                ]
+
+                            //#63ace5
+                        },
+
+                        // Configuration options go here
+                        options: {
+                          scales: {
+                            yAxes: [{
+                                type: 'linear',
+                                ticks: {
+                                    beginAtZero: true,
+                                    max:100,
+                                    min: 0
+                                },
+                                offset: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Tech/Org Gegenmaßnahmen (%)",
+                                    fontSize: 20
+                                },
+                            }],
+                            xAxes: [{
+                                type: 'linear',
+                                ticks: {
+                                    beginAtZero: true,
+                                    max:100,
+                                    min: 0
+                                },
+                                offset: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Awarenessmaßnahmen (%)",
+                                    fontSize: 20
+                                },
+                            }]
+                          },
+                          legend: {
+                            display: true,
+                          },
+                            tooltips: {
+                              callbacks: {
+                                    label: function(tooltipItem, data) {
+                                        return data.datasets[tooltipItem.datasetIndex].label + ':';
+                                    },
+                                    afterLabel: function(tooltipItem, data) {
+                                        var label = [];
+                                        label.push('    Awarenessmaßnahmen (%): ' + tooltipItem.xLabel);
+                                        label.push('    Gegenmaßnahmen (%): ' + tooltipItem.yLabel);
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    });
+            </script>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Bedrohungs-ID</th>
+              <th scope="col">Priorität</th>
+              <th scope="col">Bedrohung</th>
+              <th scope="col">tech./org. Gegenmaßnahmen</th>
+              <th scope="col">betroffene MA-Gruppe</th>
+              <th scope="col">Awarenessmaßnahmen</th>
+              <th scope="col">Rechtliche Abklärung</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for threat in calculated_threats %}
+              <tr>
+                  <td>{{ threat['id'] if threat is defined and threat['id'] is defined }}</td>
+                  <td>{{ threat['priority'] if threat is defined and threat['priority'] is defined }}</td>
+                  <td>{{ threat['name'] }}</td>
+                  <td>{{ threat['countermeasures_names']|join(', ') if threat is defined and threat['countermeasures'] is defined  }}</td>
+                  <td>{{ threat['affected_employees']|join(', ') if threat is defined and threat['affected_employees'] is defined  }}</td>
+                  <td>{{ threat['awarenessmeasures_names']|join(', ') if threat is defined and threat['awarenessmeasures_names'] is defined  }}</td>
+                  <td>{{ threat['awarenessmeasures_legal_descriptions']|join(', ') if threat is defined and threat['awarenessmeasures_legal_descriptions'] is defined }}</td>
+              </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="display-4">Technisch offene Themen</h2>
+            <br>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Beschreibung</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for cm in countermeasures_open %}
+                  <tr>
+                      <td>{{ cm['name'] if cm is defined and cm['name'] is defined }}</td>
+                      <td>{{ cm['description'][:50] + " ..." if cm['description']|length > 50 else cm['description']  }}</td>
+                  </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

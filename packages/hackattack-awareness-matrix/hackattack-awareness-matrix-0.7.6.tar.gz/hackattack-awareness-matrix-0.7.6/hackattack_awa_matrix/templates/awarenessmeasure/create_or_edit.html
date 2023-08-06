@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Awarenessmaßnahmen{% endblock %}
+
+{% block header %}
+    {% if awarenessmeasure is defined %}
+        <h1>Awarenessmaßnahme bearbeiten</h1>
+    {% else %}
+        <h1>Neue Awarenessmaßnahme erstellen</h1>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="label-name">Name:</span>
+          </div>
+          <input type="text" class="form-control" name="name" id="name" placeholder="Name" aria-label="Name" aria-describedby="label-name" required value="{{ awarenessmeasure['name'] if awarenessmeasure is defined and awarenessmeasure['name'] is defined }}">
+      </div>
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Beschreibung:</span>
+          </div>
+          <textarea class="form-control" id="description" name="description" aria-label="Beschreibung">{{ awarenessmeasure['description'] if awarenessmeasure is defined and awarenessmeasure['description'] is defined }}</textarea>
+      </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-percentage-executed">% umgesetzt:</span>
+      </div>
+        <input type="number" min="0" max="100" class="form-control" placeholder="% umgesetzt" aria-label="% umgesetzt" name="percentage_executed" id="percentage_executed" aria-describedby="label-percentage-executed" required value="{{ awarenessmeasure['percentage_executed'] if awarenessmeasure is defined and awarenessmeasure['percentage_executed'] is defined else 0}}">
+    </div>
+      <div class="form-check mb-3">
+        <input name="needs_legal_attention" id="needs_legal_attention" type="checkbox" value="1" {{ 'checked' if awarenessmeasure is defined and awarenessmeasure['needs_legal_attention'] is defined and awarenessmeasure['needs_legal_attention'] == 1 }}>
+        <label for="needs_legal_attention">Rechtliche Klärung erforderlich</label><br/>
+      </div>
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Rechtliche Beschreibung:</span>
+          </div>
+          <textarea class="form-control" id="legal_description" name="legal_description" aria-label="Rechtliche Beschreibung">{{ awarenessmeasure['legal_description'] if awarenessmeasure is defined and awarenessmeasure['legal_description'] is defined }}</textarea>
+      </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-due_date"><i class="far fa-question-circle mr-1" data-toggle="tooltip" data-placement="top" title="Das Fälligkeits-Datum ist optional"></i> Fälligkeits-Datum: </span>
+      </div>
+      <input type="date" class="form-control" aria-label="Fälligkeits-Datum" aria-describedby="label-due_date"  name="due_date" id="due_date" value="{{ awarenessmeasure['due_date'].strftime("%Y-%m-%d") if awarenessmeasure is defined and awarenessmeasure['due_date'] is defined and awarenessmeasure['due_date'] is not none}}">
+    </div>
+    <div class="input-group mb-3">
+      {% if awarenessmeasure is defined %}
+        <input type="submit" class="btn btn-secondary" value="Speichern">
+        {% else %}
+        <input type="submit" class="btn btn-secondary" value="Erstellen">
+      {% endif %}
+        &nbsp;<input type="button" class="btn btn-secondary" value="Zurück" onclick="history.back()">
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Fehler{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Die HTTP-Anfrage hat ein Problem auf dem Server verursacht.</h3>
+        <h5>Haben Sie zufällig mit den Parametern herumgespielt? ;-)</h5>
+
+    </div>
+</div>
+
+{% endblock %}

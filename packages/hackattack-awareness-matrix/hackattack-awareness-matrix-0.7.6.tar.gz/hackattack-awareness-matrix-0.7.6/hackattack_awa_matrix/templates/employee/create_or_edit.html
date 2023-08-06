@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Mitarbeitergruppen{% endblock %}
+
+{% block header %}
+    {% if employee is defined %}
+        <h1>Mitarbeitergruppe bearbeiten</h1>
+    {% else %}
+        <h1>Neue Mitarbeitergruppe erstellen</h1>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="label-name">Name:</span>
+          </div>
+          <input type="text" class="form-control" name="name" id="name" placeholder="Name" aria-label="Name" aria-describedby="label-name" required value="{{ employee['name'] if employee is defined and employee['name'] is defined }}">
+        </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Beschreibung:</span>
+      </div>
+      <textarea class="form-control" id="description" name="description" aria-label="Beschreibung">{{ employee['description'] if employee is defined and employee['description'] is defined }}</textarea>
+    </div>
+
+    <div class="input-group mb-3">
+    {% if employee is defined %}
+        <input type="submit" class="btn btn-secondary" value="Bearbeiten">
+    {% else %}
+        <input type="submit" class="btn btn-secondary" value="Erstellen">
+    {% endif %}
+    </div>
+</form>
+{% endblock %}

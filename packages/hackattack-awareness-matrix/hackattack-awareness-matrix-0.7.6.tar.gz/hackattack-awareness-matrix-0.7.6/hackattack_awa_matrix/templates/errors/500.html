@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Interner Fehler{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Es kam zu einem internen Fehler während der Verarbeitung!</h3>
+        <h5>Bitte überprüfen Sie das Log-File welcher Fehler genau ausgelöst wurde!</h5>
+
+    </div>
+</div>
+
+{% endblock %}

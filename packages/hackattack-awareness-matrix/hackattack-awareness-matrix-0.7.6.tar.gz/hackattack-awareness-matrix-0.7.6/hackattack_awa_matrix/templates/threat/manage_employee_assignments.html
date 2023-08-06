@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Bedrohungen{% endblock %}
+
+{% block header %}
+    <h1>Mitarbeitergruppen der Bedrohung &quot;{{ threat['name'] }}&quot; zuweisen</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 alert alert-secondary" role="alert">
+            <p>Bitte verwenden Sie <a href="#" class="alert-link">Drag & Drop</a> um die Mitarbeitergruppen zuzuweisen!</p>
+        </div>
+        <div class="col-6">
+            <h3>Zugewiesene Mitarbeitergruppen</h3>
+            <ul class="list-group bg-success p-1 m-h-1 content-drop" id="already_assigned_employee_groups">
+                {% for cm in assigned_employee_groups %}
+                    <li class="list-group-item" data-employeegroup-id="{{ cm['id'] }}">{{ cm['name'] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-6">
+            <h3>Nicht zugewiesene Mitarbeitergruppen</h3>
+            <ul class="list-group bg-secondary p-1 m-h-1 content-drop" id="still_available_employee_groups">
+                {% for cm in still_available_employee_groups %}
+                    <li class="list-group-item" data-employeegroup-id="{{ cm['id'] }}">{{ cm['name'] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-12">
+            <div class="float-right">
+                <button type="button" class="btn" id="btn_back">Zurück!</button>
+                <button type="button" class="btn" id="btn_save_threat_employee_groups">Speichern!</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var already_assigned_employee_groups = document.getElementById('already_assigned_employee_groups');
+            var still_available_employee_groups = document.getElementById('still_available_employee_groups');
+
+            Sortable.create(already_assigned_employee_groups, {
+              animation: 100,
+              group: 'assigned_employee_groups',
+              draggable: '.list-group-item',
+              handle: '.list-group-item',
+              filter: '.sortable-disabled',
+              chosenClass: 'active'
+            });
+
+            Sortable.create(still_available_employee_groups, {
+              group: 'assigned_employee_groups',
+              handle: '.list-group-item',
+              chosenClass: 'active'
+            });
+
+
+            $('#btn_back').click(function() {
+                window.location = document.referrer;
+            });
+
+            $('#btn_save_threat_employee_groups').click(function() {
+                var elements_to_save = $('#already_assigned_employee_groups li');
+
+                var employee_group_ids_to_save = [];
+
+                for(var i = 0; i < elements_to_save.length; i++) {
+                    var elem = $(elements_to_save[i]);
+                    employee_group_ids_to_save.push(elem.data('employeegroup-id'));
+                }
+
+                $.ajax({
+                    url: "{{ url_for('threat.save_employee_groups', project_id=project['id'], threat_id=threat['id']) }}",
+                    method: "POST",
+                    data: { employee_group_ids_to_save: employee_group_ids_to_save }
+                }).done(function(data, textStatus, jqXHR) {
+                    if(data === "success") {
+                        window.location = document.referrer;
+                    }
+                });
+            });
+        });
+
+    </script>
+
+{% endblock %}

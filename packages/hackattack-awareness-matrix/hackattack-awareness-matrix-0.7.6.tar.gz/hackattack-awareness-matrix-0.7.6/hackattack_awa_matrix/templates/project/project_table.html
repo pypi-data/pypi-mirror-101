@@ -1,0 +1,30 @@
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Beschreibung</th>
+      <th scope="col">Start-Datum</th>
+      <th scope="col">End-Datum</th>
+      <th scope="col">Auswählen</th>
+      <th scope="col">Bearbeiten</th>
+      <th scope="col">Löschen</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for project in projects %}
+      <tr>
+          <td>{{ project['name'] }}&nbsp;</td>
+          <td>{{ project['description'][:50] + " ..." if project['description']|length > 50 else project['description']  }}</td>
+          <td>{{ project['start_date'].strftime("%d.%m.%Y") if project['start_date'] is defined }}</td>
+          <td>{{ project['end_date'].strftime("%d.%m.%Y") if project['end_date'] is defined and project['end_date'] is not none }}</td>
+          <td><a href="{{ url_for('project.details', project_id=project['id']) }}"><button class="btn btn-sm btn-primary"><i class="fas fa-mouse-pointer"></i> Auswählen</button></a></td>
+          <td><a href="{{ url_for('project.edit', project_id=project['id']) }}"><button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Bearbeiten</button></a></td>
+          <td><button class="btn btn-sm btn-danger open-delete-dialog" data-form-delete-action="{{ url_for('project.delete') }}" data-id="{{ project['id'] }}" data-name="{{ project['name'] }}" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash"></i> Löschen</button></td>
+      </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+
+
+    {% include 'helper/delete-dialog.html' %}

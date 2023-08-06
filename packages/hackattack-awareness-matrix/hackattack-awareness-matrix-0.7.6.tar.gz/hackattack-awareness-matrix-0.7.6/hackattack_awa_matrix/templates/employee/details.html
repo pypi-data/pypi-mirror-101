@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="jumbotron text-center" style="margin-bottom:0">
+      <h1>{% block title %}Projektdetails{% endblock %}</h1>
+      <div class="row">
+          <div class="col-4 text-left">
+              <strong>Name: </strong>{{ employee["name"] }}<br/>
+              <strong>Beschreibung: </strong>{{ employee["description"] }}<br/>
+          </div>
+
+      </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <h3>Bedrohungen</h3>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Beschreibung</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Bearbeiten</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for t in assigned_threats %}
+                  <tr>
+                      <td>{{ t['name'] }}</td>
+                      <td>{{ t['description'][:50] + " ..." if t['description']|length > 50 else t['description']  }}</td>
+                      <td><a href="{{ url_for('threat.details', project_id=t['project_id'], threat_id=t['id']) }}">Details</a></td>
+                      <td><a href="{{ url_for('threat.edit', project_id=t['project_id'], threat_id=t['id']) }}">Bearbeiten</a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

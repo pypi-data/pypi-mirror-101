@@ -1,0 +1,36 @@
+<form method="post">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-name">Name:</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Projekt Name" name="name" aria-label="Name" aria-describedby="label-name" required value="{{ project['name'] if project is defined and project['name'] is defined }}">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Beschreibung:</span>
+      </div>
+      <textarea class="form-control" id="description" name="description" aria-label="Beschreibung">{{ project['description'] if project is defined and project['description'] is defined }}</textarea>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-startdate">Start-Datum:</span>
+      </div>
+      <input type="date" required class="form-control" aria-label="Start-Datum" aria-describedby="label-startdate"  name="start_date" id="start_date" value="{{ project['start_date'].strftime("%Y-%m-%d") if project is defined and project['start_date'] is defined }}">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-enddate"><i class="far fa-question-circle mr-1" data-toggle="tooltip" data-placement="top" title="Das Enddatum ist optional"></i> End-Datum: </span>
+      </div>
+      <input type="date" class="form-control" aria-label="End-Datum" aria-describedby="label-enddate"  name="end_date" id="end_date" value="{{ project['end_date'].strftime("%Y-%m-%d") if project is defined and project['end_date'] is defined  and project['end_date'] is not none}}">
+    </div>
+
+    <div class="input-group mb-3">
+
+    {% if project is defined %}
+        <input type="submit" class="btn btn-secondary" value="Speichern">
+    {% else %}
+        <input type="submit" class="btn btn-secondary" value="Erstellen">
+    {% endif %}
+        &nbsp;<input type="button" class="btn btn-secondary" value="Zurück" onclick="history.back()">
+    </div>
+</form>

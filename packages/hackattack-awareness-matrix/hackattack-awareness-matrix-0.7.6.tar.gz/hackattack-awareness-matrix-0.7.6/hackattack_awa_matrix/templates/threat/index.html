@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Bedrohungen für Projekt "{{ project['name'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="float-right mb-3">
+        <a href="{{ url_for('threat.create', project_id=project['id']) }}">
+            <button class="btn btn-sm btn-info"><i class="fas fa-plus-circle"></i> Neue Bedrohung hinzufügen</button>
+        </a>
+    </div>
+
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Priorität</th>
+          <th scope="col">Name</th>
+          <th scope="col">Beschreibung</th>
+          <th scope="col">tech./org. Gegenmaßnahmen</th>
+          <th scope="col">Betroffene Mitarbeiter</th>
+          <th scope="col">Awarenessmaßnahmen</th>
+          <th scope="col">Details</th>
+          <th scope="col">Bearbeiten</th>
+          <th scope="col">Löschen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for threat in threats %}
+          <tr>
+              <td>{{ threat['id'] if threat['id'] is defined and threat['id'] is not none else '' }}&nbsp;</td>
+              <td>{{ threat['priority'] if threat['priority'] is defined and threat['priority'] is not none else '' }}&nbsp;</td>
+              <td>{{ threat['name'] }}</td>
+              {% if threat['description']|length > 50 %}
+                <td data-toggle=tooltip title="{{threat['description']}}">{{ threat['description'][:50] + " ..." }}</td>
+              {% else %}
+                  <td>{{ threat['description']  }}</td>
+              {% endif %}
+              <td>{{ threat['countermeasure_names']|join(', ') }}<br/><a href="{{ url_for('threat.manage_countermeasures', project_id=threat['project_id'], threat_id=threat['id']) }}">Zuordnen</a></td>
+              <td>{{ threat['employee_names']|join(', ') }}<br/><a href="{{ url_for('threat.manage_employee_groups', project_id=threat['project_id'], threat_id=threat['id']) }}">Zuordnen</a></td>
+              <td>{{ threat['awarenessmeasure_names']|join(', ') }}<br/><a href="{{ url_for('threat.manage_awarenessmeasures', project_id=threat['project_id'], threat_id=threat['id']) }}">Zuordnen</a></td>
+              <td><a href="{{ url_for('threat.details', project_id=threat['project_id'], threat_id=threat['id']) }}"><button class="btn btn-sm btn-primary"><i class="fas fa-info"></i> Details</button></a></td>
+              <td><a href="{{ url_for('threat.edit', project_id=threat['project_id'], threat_id=threat['id']) }}"><button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Bearbeiten</button></a></td>
+              <td><button class="btn btn-sm btn-danger open-delete-dialog" data-form-delete-action="{{ url_for('threat.delete', project_id=threat['project_id']) }}" data-id="{{ threat['id'] }}" data-name="{{ threat['name'] }}" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash"></i> Löschen</button></td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+
+    {% include 'helper/delete-dialog.html' %}
+{% endblock %}

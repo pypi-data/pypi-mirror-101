@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}tech./org. Gegenmaßnahmen für Projekt "{{ project['name'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="float-right mb-3">
+        <a href="{{ url_for('countermeasure.create', project_id=project['id']) }}">
+            <button class="btn btn-sm btn-info"><i class="fas fa-plus-circle"></i> Neue tech./org. Gegenmaßnahme hinzufügen</button>
+        </a>
+    </div>
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Beschreibung</th>
+          <th scope="col">Bereits durchgeführt</th>
+          <th scope="col">Due-Date</th>
+          <th scope="col">Details</th>
+          <th scope="col">Bearbeiten</th>
+          <th scope="col">Löschen</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cm in countermeasures %}
+            {% if cm['due_date'] is defined and cm['due_date'] is not none and session["current_day"] > cm['due_date'] %}
+          <tr class="table-danger">
+            {% else %}
+          <tr>
+            {% endif %}
+              <td>{{ cm['name'] }}</td>
+              {% if cm['description']|length > 50 %}
+                <td data-toggle=tooltip title="{{cm['description']}}">{{ cm['description'][:50] + " ..." }}</td>
+              {% else %}
+                  <td>{{ cm['description']  }}</td>
+              {% endif %}
+              <td><span>{{ cm["percentage_executed"] if cm["percentage_executed"] is defined }}%</span></td>
+              <td>{{ cm['due_date'].strftime("%d.%m.%Y") if cm['due_date'] is defined and cm['due_date'] is not none }}</td>
+              <td><a href="{{ url_for('countermeasure.details', project_id=cm['project_id'], countermeasure_id=cm['id']) }}"><button class="btn btn-sm btn-primary"><i class="fas fa-info"></i> Details</button></a></td>
+              <td><a href="{{ url_for('countermeasure.edit', project_id=cm['project_id'], countermeasure_id=cm['id']) }}"><button class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Bearbeiten</button></a></td>
+              <td><button class="btn btn-sm btn-danger open-delete-dialog" data-form-delete-action="{{ url_for('countermeasure.delete', project_id=cm['project_id']) }}" data-id="{{ cm['id'] }}" data-name="{{ cm['name'] }}" data-toggle="modal" data-target="#deleteDialog"><i class="fas fa-trash"></i> Löschen</button></td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+
+    {% include 'helper/delete-dialog.html' %}
+
+{% endblock %}
