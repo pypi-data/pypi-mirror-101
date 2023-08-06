@@ -1,0 +1,22 @@
+# Example
+```python
+from univoucher import models, local
+from getpass import getpass
+import math
+
+netloc = input("Netloc: ") # <host>:<port>
+username = input("Username: ")
+password = getpass("Password: ")
+
+client:models.Client = local.Client(netloc, username, password)
+client.verify = False
+
+# Create one voucher
+# A guest can use it for 1000 minutes when redeemed
+# The voucher can be redeemed an unlimited amount of times
+vouchers = client.fetch(amount=1, duration=1000, uses=math.inf)
+
+unlimited_uses_voucher:models.Voucher = vouchers[0]
+
+print(unlimited_uses_voucher.code)
+```
