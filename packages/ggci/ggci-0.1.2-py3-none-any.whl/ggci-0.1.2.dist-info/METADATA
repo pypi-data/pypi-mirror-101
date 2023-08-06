@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: ggci
+Version: 0.1.2
+Summary: GitLab Google Chat Integration
+Author: Jan Lukány
+Author-email: lukany.jan@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: flask (>=1.1.2,<2.0.0)
+Requires-Dist: pyyaml (>=5.4.1,<6.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
