@@ -1,0 +1,141 @@
+add_package()
+
+py_library(
+  NAME
+    parser
+  DEPS
+    ._ast_parser
+    .classdef
+    .conditions
+    .definitions
+    .function
+    .modules
+    .types
+    .visitor
+)
+
+py_library(
+  NAME
+    _ast_parser
+  SRCS
+    parser.py
+  DEPS
+    .classdef
+    .conditions
+    .definitions
+    .function
+    .modules
+    .types
+    .visitor
+    pytype.utils
+    pytype.ast.ast
+    pytype.pytd.pytd_for_parser
+)
+
+py_library(
+  NAME
+    classdef
+  SRCS
+    classdef.py
+  DEPS
+    .types
+    pytype.pytd.pytd_for_parser
+    pytype.pytd.parse.parse
+)
+
+py_library(
+  NAME
+    conditions
+  SRCS
+    conditions.py
+  DEPS
+    .types
+    pytype.utils
+    pytype.ast.ast
+    pytype.pytd.pytd_for_parser
+)
+
+py_library(
+  NAME
+    definitions
+  SRCS
+    definitions.py
+  DEPS
+    .classdef
+    .types
+    pytype.pytd.pytd_for_parser
+    pytype.pytd.parse.parse
+)
+
+py_library(
+  NAME
+    function
+  SRCS
+    function.py
+  DEPS
+    .types
+    pytype.utils
+    pytype.pytd.pytd_for_parser
+    pytype.pytd.parse.parse
+)
+
+py_library(
+  NAME
+    modules
+  SRCS
+    modules.py
+  DEPS
+    .types
+    pytype.utils
+    pytype.pytd.pytd_for_parser
+    pytype.pytd.parse.parse
+)
+
+py_library(
+  NAME
+    types
+  SRCS
+    types.py
+  DEPS
+    pytype.utils
+    pytype.pytd.pytd_for_parser
+    pytype.pytd.parse.parse
+)
+
+py_library(
+  NAME
+    visitor
+  SRCS
+    visitor.py
+  DEPS
+    .types
+    pytype.ast.ast
+)
+
+toplevel_py_binary(
+  NAME
+    parse_pyi
+  SRCS
+    parse_pyi.py
+  MAIN
+    parse_pyi.py
+  DEPS
+    ._ast_parser
+    .types
+    pytype.utils
+    pytype.pyi.parser
+    pytype.pytd.pytd_for_parser
+)
+
+py_test(
+  NAME
+    parser_test
+  SRCS
+    parser_test.py
+  DEPS
+    .parser
+    pytype.utils
+    pytype.pytd.pytd_for_parser
+    pytype.stubs.stubs
+    pytype.tests.test_base
+)
