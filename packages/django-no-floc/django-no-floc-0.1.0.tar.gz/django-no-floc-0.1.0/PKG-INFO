@@ -1,0 +1,103 @@
+Metadata-Version: 1.1
+Name: django-no-floc
+Version: 0.1.0
+Summary: Middleware to opt out of Google's FLoC cohort tracking.
+Home-page: https://github.com/ph00lt0/django-no-floc
+Author: ph00lt0
+Author-email: you@example.com
+License: MIT
+Description: =============================
+        django-no-floc
+        =============================
+        
+        .. image:: https://badge.fury.io/py/django-no-floc.svg
+            :target: https://badge.fury.io/py/django-no-floc
+        
+        .. image:: https://travis-ci.org/ph00lt0/django-no-floc.svg?branch=master
+            :target: https://travis-ci.org/ph00lt0/django-no-floc
+        
+        .. image:: https://codecov.io/gh/ph00lt0/django-no-floc/branch/master/graph/badge.svg
+            :target: https://codecov.io/gh/ph00lt0/django-no-floc
+        
+        Middleware to opt out of Google's FLoC cohort tracking.
+        
+        Documentation
+        -------------
+        
+        The full documentation is at https://django-no-floc.readthedocs.io.
+        
+        Quickstart
+        ----------
+        
+        Install django-no-floc::
+        
+            pip install django-no-floc
+        
+        Add it to your `INSTALLED_APPS`:
+        
+        .. code-block:: python
+        
+            MIDDLEWARE = (
+                ...
+                'no_floc.middleware.NoFLoCMiddleware',
+                ...
+            )
+        
+        
+        
+        Running Tests
+        -------------
+        
+        Does the code actually work?
+        
+        ::
+        
+            source <YOURVIRTUALENV>/bin/activate
+            (myenv) $ pip install tox
+            (myenv) $ tox
+        
+        
+        Development commands
+        ---------------------
+        
+        ::
+        
+            pip install -r requirements_dev.txt
+            invoke -l
+        
+        
+        Credits
+        -------
+        
+        Tools used in rendering this package:
+        
+        *  Cookiecutter_
+        *  `cookiecutter-djangopackage`_
+        
+        .. _Cookiecutter: https://github.com/audreyr/cookiecutter
+        .. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+        
+        
+        
+        
+        History
+        -------
+        
+        0.1.0 (2021-04-09)
+        ++++++++++++++++++
+        
+        * First release on PyPI.
+        
+Keywords: django-no-floc
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
