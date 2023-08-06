@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table {
+    position: relative;
+}
+
+table tr {
+    @apply border-b;
+}
+
+table td {
+    @apply border-l;
+}
+
+table td, table th {
+    @apply px-3 py-1;
+}
+
+table th {
+    background: white;
+    position: sticky;
+    top: 0;
+}
