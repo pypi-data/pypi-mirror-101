@@ -1,0 +1,54 @@
+Metadata-Version: 2.1
+Name: pysen-ls
+Version: 0.1.0
+Summary: A language server implementation for pysen
+Home-page: https://github.com/bonprosoft/pysen-ls
+Author: Yuki Igarashi
+Author-email: me@bonprosoft.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Unix
+Description-Content-Type: text/markdown
+Requires-Dist: pygls (<0.11.0,>=0.10.0)
+Requires-Dist: pysen (<0.10.0,>=0.9.1)
+Requires-Dist: dataclasses (<1.0,>=0.6) ; python_version < "3.7"
+
+# pysen-ls: A language server implementation for pysen
+
+pysen-ls is a language server implementation for [pysen](https://github.com/pfnet/pysen).
+
+```sh
+$ pip install pysen-ls
+```
+
+## Supported Features
+
+- Diagnostics
+  - Triggers `pysen run lint` on save
+- Code action
+  - Supports incremental document updates
+
+## Editor setups
+
+### VSCode
+
+- [pysen-vscode](https://github.com/bonprosoft/pysen-vscode)
+
+
+## Provided Custom Commands
+
+- `pysen.callLintDocument`
+- `pysen.callFormatDocument`
+- `pysen.callLintWorkspace`
+- `pysen.callFormatWorkspace`
+- `pysen.reloadServerConfiguration`
+
+
