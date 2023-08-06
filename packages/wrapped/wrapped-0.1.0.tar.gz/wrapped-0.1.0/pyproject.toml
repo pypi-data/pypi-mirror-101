@@ -1,0 +1,12 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "wrapped"
+author = "Vivek Gopalakrishnan"
+author-email = "vgopala4@jh.edu"
+home-page = "https://v715.github.io"
+classifiers = [ "License :: OSI Approved :: MIT License",]
+description-file = "README.md"
+
