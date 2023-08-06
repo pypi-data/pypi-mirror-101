@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: ruia-pyppeteer
+Version: 0.0.7
+Summary: ruia_pyppeteer - A Ruia plugin for loading javascript - pyppeteer.
+Home-page: https://github.com/ruia-plugins/ruia-pyppeteer
+Author: Howie Hu
+Author-email: xiaozizayang@gmail.com
+License: MIT
+Project-URL: Documentation, https://github.com/python-ruia/ruia-pyppeteer
+Project-URL: Source, https://github.com/python-ruia/ruia-pyppeteer
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: ruia (>=0.6.7)
+Requires-Dist: pyppeteer
+
+## ruia-pyppeteer
+
+A [Ruia](https://github.com/howie6879/ruia) plugin for loading javascript
+
+> Notice:  Works on ruia >= 0.6.7
+
+### Installation
+
+```shell
+pip install ruia_pyppeteer
+# New features
+pip install git+https://github.com/ruia-plugins/ruia-pyppeteer
+```
+
+### Usage
+
+`ruia_pyppeteer` will load js by using pyppeteer.
+
+ You need to pay attention when you use load_js, it will download a recent version of Chromium (~100MB). This only happens once.
+
+**Load JavaScript**
+
+```python
+import asyncio
+
+from ruia_pyppeteer import PyppeteerRequest as Request
+
+request = Request("https://www.jianshu.com/", load_js=True)
+response = asyncio.get_event_loop().run_until_complete(request.fetch())
+print(response)
+```
+
+**Complete example**
+
+```python
+from ruia import AttrField, TextField, Item
+
+from ruia_pyppeteer import PyppeteerSpider as Spider
+
+
+class JianshuItem(Item):
+    target_item = TextField(css_select='ul.list>li')
+    author_name = TextField(css_select='a.name')
+    author_url = AttrField(attr='href', css_select='a.name')
+
+    async def clean_author_url(self, author_url):
+        return f"https://www.jianshu.com{author_url}"
+
+
+class JianshuSpider(Spider):
+    start_urls = ['https://www.jianshu.com/']
+    concurrency = 10
+
+    async def parse(self, response):
+        async for item in JianshuItem.get_items(html=response.html):
+            # Loading js by using PyppeteerRequest
+            print(item)
+
+
+if __name__ == '__main__':
+    JianshuSpider.start()
+```
+
+Enjoy it :)
+
+
