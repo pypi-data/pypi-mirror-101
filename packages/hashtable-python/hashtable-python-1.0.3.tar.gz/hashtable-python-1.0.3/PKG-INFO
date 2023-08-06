@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: hashtable-python
+Version: 1.0.3
+Summary: HashTable implementation in python
+Home-page: https://github.com/gvrosun/hashtable
+Author: Rosun GV
+Author-email: gvrosun@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/gvrosun/hashtable/issues
+Description: # HashTable
+        
+        HashTable is a python library (Data Structure) it has almost all functionality of dictionary in python.
+        
+        ## Installation
+        
+        Use the package manager [pip](https://pip.pypa.io/en/stable/) to install HashTable.
+        
+        ```bash
+        pip install hashtable-python
+        ```
+        
+        ## Usage
+        
+        ```python
+        from hashtable import HashTable
+        
+        my_hashtable = HashTable(5)  # Create instance of hashtable with fixed sized 5
+        my_hashtable['mango'] = 100  # Creating key='mango' and value=100
+        my_hashtable.items()         # Returns list of tuples of key and value [(kay, value),...)
+        my_hashtable.keys()          # Returns list of keys
+        my_hashtable.values()        # Returns list of values
+        my_hashtable['mango']        # Returns value of specified key
+        my_hashtable.delete('mango') # Deletes item in the specified key
+        ```
+        
+        
+        ## License
+        [MIT License](https://choosealicense.com/licenses/mit/)
+        
+        Copyright (c) 2021 Rosun GV
+Keywords: HashTable,Data Stuctures,development
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6, <4
+Description-Content-Type: text/markdown
