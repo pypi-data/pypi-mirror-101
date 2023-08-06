@@ -1,0 +1,132 @@
+Metadata-Version: 2.1
+Name: chin-dict
+Version: 0.1.4
+Summary: Mandarin dictionary
+Home-page: UNKNOWN
+Author: Me
+License: MIT
+Description: ## Project Description
+        
+        Python library for manipulating Wikimedia Commons Character Info and CEDICT.
+        
+        ## Main features
+        
+        * Decompose Chinese characters into sub-components with tree-like structure
+        * Character data such as radical, stroke number and traditional/simplified form
+        * Word lookup for meaning and pronunciation
+        
+        ## Installation
+        
+        chin-dict is available on PyPI at https://pypi.org/project/chin-dict/
+        
+        	pip install chin-dict
+        	
+        ### Command line tools
+        
+        To make sure chin-dict is working properly, try looking up a word using the command line
+        
+        	chindict 漏
+        	---------------------------------------------
+        	Character: 漏
+        	Pinyin: ['lou4']
+        	Meaning: ['to leak', 'to divulge', 'to leave out by mistake', 'waterclock or hourglass (old)']
+        
+        
+        To see the tree structure, use -t flag
+        
+        	chindict 漏 -t
+         	-----------------------------
+        	漏
+        	├── 屚 (2)
+        	│   ├── 尸 (3)
+        	│   └── 雨 (4)
+        	└── 氵 (1)
+        
+        To see the meaning of a component, pass its corresponding number to the -tm flag
+        
+        	chindict 漏 -tm 4
+        	-----------------------------
+        	雨 meaning(s):
+        	['rain', 'CL:陣|阵[zhen4],場|场[chang2]', 'to rain', '(of rain, snow etc) to fall', 'to precipitate', 'to wet']
+        
+        
+        To lookup as a word instead of a character, use -w flag
+        
+        	chindict 钱 -w
+        	-----------------------------
+        	Simplified: 钱
+        	Traditional: 錢
+        	Pinyin: Qian2
+        	Meaning: ['surname Qian']
+        
+        	Simplified: 钱
+        	Traditional: 錢
+        	Pinyin: qian2
+        	Meaning: ['coin', 'money', 'CL:筆|笔[bi3]', 'unit of weight, one tenth of a tael 兩|两[liang3]']
+        
+        	
+        To see the character's radical, use -r flag
+        
+        	chindict 钱 -r
+        	-----------------------------
+        	金
+        
+        To see the meaning of a character's radical, use -rm flag
+        
+        	chindict 钱 -rm
+        	-----------------------------
+        	['money', 'golden', 'highly respected', 'one of the eight categories of ancient musical instruments 八音[ba1 yin1]']
+        
+        
+        To see meanings of character's or characters' components, use -cm
+        
+        	chindict 你好 -cm
+        	-----------------------------
+        	你 meaning(s):
+        	['you (informal, as opposed to courteous 您[nin2])']
+        
+        	好 meaning(s):
+        	['good', 'well', 'proper', 'good to', 'easy to', 'very', 'so', '(suffix indicating completion or readiness)', '(of two people) close', 'on intimate terms', '(after a personal pronoun) hello', 'to be fond of', 'to have a tendency to', 'to be prone to']
+        
+        
+        ### Python demo
+        
+        	from chin_dict.chindict import ChinDict
+        
+        	cd = ChinDict()
+        
+        	char_result = cd.lookup_char("泪")
+        
+        	print()
+        	print("泪 components:")
+        	print()
+        
+        	for component in char_result.components:
+        		print(component.character + ":", component.meaning)
+        
+        	# 氵: ['"water" radical in Chinese characters (Kangxi radical 85), occurring in 没, 法, 流 etc', 'see also 三點水|三点水[san1 dian3 shui3]']
+        	# 目: ['eye', 'item', 'section', 'list', 'catalogue', 'table of contents', 'order (taxonomy)', 'goal', 'name', 'title']
+        
+        	print()
+        
+        	word_result = cd.lookup_word("发")
+        
+        	print("Translations for 发:")
+        	print()
+        	for word in word_result:
+        		print(word)
+        	
+        	# Simplified: 发
+        	# Traditional: 發
+        	# Pinyin: fa1
+        	# Meaning: ['to send out', "to show (one's feeling)", 'to issue', 'to develop', 'to make a bundle of money', 'classifier for gunshots (rounds)']
+        
+        	# Simplified: 发
+        	# Traditional: 髮
+        	# Pinyin: fa4
+        	# Meaning: ['hair', 'Taiwan pr. [fa3]']
+        
+        
+        
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
