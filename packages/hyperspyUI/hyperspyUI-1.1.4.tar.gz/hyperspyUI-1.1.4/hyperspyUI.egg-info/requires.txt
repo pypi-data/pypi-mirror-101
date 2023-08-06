@@ -1,0 +1,24 @@
+hyperspy>=1.6.1
+hyperspy-gui-traitsui>=1.3.1
+matplotlib>=3.0.3
+pyqode.python>=2.6.0
+pyface>=6.0.0
+autopep8
+traits
+traitsui>=5.2.0
+qtconsole
+ipykernel>=5.2.0
+qtpy
+
+[:sys_platform == "win32"]
+pywin32
+
+[build-doc]
+sphinx>=1.7
+sphinx_rtd_theme
+sphinx-toggleprompt
+
+[tests]
+pytest-qt
+pytest-cov
+pytest-timeout
