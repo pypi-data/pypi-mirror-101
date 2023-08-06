@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: cytohmm
+Version: 0.1.1
+Summary: Cytogenetics hidden Markov model
+Home-page: https://github.com/harry-zuzan/CytoHMM
+Author: Harry Zuzan
+License: MIT
+Description: # CytoHMM
+        
+        A hidden Markov model for cytogenetic microarrays.
+        
+        ## Getting started
+        
+        Python 3
+        
+        
+        ## Installing
+        
+        Using the source code from github.  First install numpy and cython
+        ```
+        git clone https://github.com/harry-zuzan/cytohmm.git
+        cd cytohmm
+        python setup.py install
+        
+        ```
+        
+        Using pip
+        ```
+        pip install numpy
+        pip install cython
+        pip install cytohmm
+        
+        ```
+        
+        
+Keywords: hidden Markov model,cytogenetics
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Cython
+Requires-Python: <4,>=3.6
+Description-Content-Type: text/markdown
