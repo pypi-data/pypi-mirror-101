@@ -1,0 +1,63 @@
+ARG BASE
+FROM ${BASE}
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Heavyweight: package installation
+# This list of packages was seeded from kernelci's base image
+# https://github.com/kernelci/kernelci-core/blob/master/jenkins/dockerfiles/build-base/Dockerfile
+# docutils-common, python3-docutils and dwarves are only needed for
+# building BPF kselftests.
+RUN apt-get update \
+    && apt-get install auto-apt-proxy --assume-yes \
+    && apt-get install --assume-yes --no-install-recommends --option=debug::pkgProblemResolver=yes \
+        procps \
+        apt-transport-https \
+        ca-certificates \
+        bash \
+        bc \
+        bison \
+        bsdmainutils \
+        bzip2 \
+        ccache \
+        cpio \
+        dpkg-dev \
+        docutils-common \
+        dwarves \
+        flex \
+        gettext \
+        git \
+        gzip \
+        iproute2 \
+        jq \
+        kmod \
+        libssl-dev \
+        libelf-dev \
+        lz4 \
+        lzop \
+        make \
+        pkg-config \
+        python3 \
+        python3-docutils \
+        rsync \
+        socat \
+        tar \
+        u-boot-tools \
+        wget \
+        zstd \
+        xz-utils
+
+# Lightweight: base container customizations
+RUN true \
+    && useradd --create-home tuxmake \
+    && ln -s /usr/bin/python3 /usr/local/bin/python \
+    && if grep -q '^deb .* testing main' /etc/apt/sources.list; then \
+        echo "APT::Default-Release \"testing\";" > /etc/apt/apt.conf.d/00release; \
+        sed -e  '/^deb .* testing main/ !d; s/testing/unstable/' /etc/apt/sources.list \
+        > /etc/apt/sources.list.d/unstable.list; fi \
+    && if grep -q '^deb .* \(testing\|sid\|unstable\) main' /etc/apt/sources.list; then \
+        sed -e  '/^deb .* \(testing\|sid\|unstable\) main/ !d; s/\(testing\|sid\|unstable\)/experimental/' /etc/apt/sources.list \
+        > /etc/apt/sources.list.d/experimental.list; fi \
+    && true
+
+# vim: ft=dockerfile
