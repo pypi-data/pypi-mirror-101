@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: biased-memory-toolbox
+Version: 1.1.0
+Summary: Mixture modeling for working-memory experiments
+Home-page: https://github.com/smathot/biased_memory_toolbox
+Author: Sebastiaan Mathot
+Author-email: s.mathot@cogsci.nl
+License: GNU GPL Version 3
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: scipy
+
+# Biased Memory Toolbox
+
+*A Python toolbox for mixture modeling of data from visual-working-memory experiments*
+
+Cherie Zhou (@cherieai) and Sebastiaan Mathôt (@smathot) <br />
+Copyright 2020 - 2021
+
+
+## Usage
+
+See `example.py` and `example.html` for an example use case.
+
+
+## Installation
+
+```
+pip install biased_memory_toolbox
+```
+
+
+## License
+
+`biased_memory_toolbox` is licensed under the [GNU General Public License
+v3](http://www.gnu.org/licenses/gpl-3.0.en.html).
+
+
