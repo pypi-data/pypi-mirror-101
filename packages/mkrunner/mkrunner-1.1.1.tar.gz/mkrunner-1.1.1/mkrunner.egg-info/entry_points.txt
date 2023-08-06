@@ -1,0 +1,7 @@
+[console_scripts]
+har2case = mkrunner.cli:main_har2case_alias
+hmake = mkrunner.cli:main_make_alias
+locusts = mkrunner.ext.locust:main_locusts
+mkrun = mkrunner.cli:main_hrun_alias
+mkrunner = mkrunner.cli:main
+
