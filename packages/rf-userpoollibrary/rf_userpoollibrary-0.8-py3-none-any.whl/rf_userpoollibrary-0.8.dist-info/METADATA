@@ -1,0 +1,89 @@
+Metadata-Version: 2.1
+Name: rf-userpoollibrary
+Version: 0.8
+Summary: Test Library for userpool support.
+Home-page: https://github.com/MainSystemDev/UserpoolLibrary
+Author: Shiela Buitizon
+Author-email: shiela.buitizon@mnltechnology.com
+License: Type license() to see the full license text
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development :: Testing
+Classifier: Framework :: Robot Framework
+Classifier: Framework :: Robot Framework :: Library
+Description-Content-Type: text/markdown
+Requires-Dist: requests (>=2.22.0)
+Requires-Dist: robotframework (>=4.0)
+Requires-Dist: robotlibcore-temp (==1.0.2)
+
+UserpoolLibrary
+================
+
+Library Scope: __GLOBAL__  
+Created: __09/10/2019 15:58 UTC-8__  
+
+
+Author: __Shiela Buitizon | email:shiela.buitizon@mnltechnology.com__
+
+Company: [__Spiralworks Technologies Inc.__](http://www.spiralwrks.com/)
+
+
+##### Contents:
+- [UserpoolLibrary](#userpoollibrary)
+    - [Contents](#contents)
+    - [Introduction](#introduction)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Generating Documentation](#generating-documentation)
+
+
+### Introduction
+**UserpoolLibrary** is a [Robotframework](https://www.robotframework.org) test Library for userpool support.  
+![PyPI](https://img.shields.io/pypi/v/rf-userpoollibrary?style=for-the-badge)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/rf-userpoollibrary?style=for-the-badge)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rf-userpoollibrary?style=for-the-badge)
+
+View the latest keyword [Documentation here.](https://mainsystemdev.github.io/UserpoolLibrary/)  
+
+### Installation
+**Option 1**  
+Install using pypi, run:
+```bash
+pip install rf-userpoollibrary
+```
+**Option 2**  
+With recent version of `pip`, it is possible to install directly from GitHub repository. To Install latest source
+from the master branch, use this command:
+```bash
+pip install git+https://github.com/MainSystemDev/rf-userpoollibrary.git
+```
+Please note that installation will take some time, because ``pip`` will
+clone the [UserpoolLibrary](https://github.com/MainSystemDev/UserpoolLibrary.git) project to a temporary directory and then
+perform the installation.
+
+### Usage
+To use UserpoolLibrary in Robot Framework tests, the library needs to
+first be imported using the `Library` setting as any other library.  
+
+```robotframework
+*** Settings ***
+Library                 UserpoolLibrary      http://myhost.com/userpoolapi/129
+
+*** Test Cases ***
+Borrow User
+    ${user}             Borrow User
+    Log To Console      ${user}
+
+```
+
+### Generating Documentation
+To Generate the keyword Documentation, simple run:
+```bash
+python -m robot.libdoc UserpoolLibrary documentation.html
+```
+Note that the library must first be installed before generating a documentation.
+
+
