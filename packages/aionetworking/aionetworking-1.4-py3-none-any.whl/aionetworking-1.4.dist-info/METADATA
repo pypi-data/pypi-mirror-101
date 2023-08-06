@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: aionetworking
+Version: 1.4
+Summary: Various utilities for asyncio networking
+Home-page: https://github.com/primal100/aionetworking
+Author: Unknown
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Framework :: AsyncIO
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: wheel (>=0.36.2)
+Requires-Dist: aiofiles (>=0.6.0)
+Requires-Dist: inflect (>=5.3.0)
+Requires-Dist: dataclasses (>=0.8) ; python_version < "3.7"
+Requires-Dist: pep562 (>=1.0) ; python_version < "3.7"
+Requires-Dist: typing-extensions (>=3.7.4.3) ; python_version < "3.8"
+Requires-Dist: cached-property (>=1.5.2) ; python_version < "3.8"
+Provides-Extra: all
+Requires-Dist: asyncssh (>=2.5.0) ; extra == 'all'
+Requires-Dist: psutil (>=5.8.0) ; extra == 'all'
+Requires-Dist: pyyaml (>=5.4.1) ; extra == 'all'
+Requires-Dist: pywin32 (>=300) ; (os_name == "nt") and extra == 'all'
+Requires-Dist: pamela (>=1.0.0) ; (os_name == "posix") and extra == 'all'
+Requires-Dist: uvloop (==0.14.0) ; (os_name == "posix" and python_version < "3.7") and extra == 'all'
+Requires-Dist: uvloop (>=0.15.2) ; (os_name == "posix" and python_version >= "3.7") and extra == 'all'
+Provides-Extra: optional
+Requires-Dist: psutil (>=5.8.0) ; extra == 'optional'
+Requires-Dist: pyyaml (>=5.4.1) ; extra == 'optional'
+Requires-Dist: uvloop (==0.14.0) ; (os_name == "posix" and python_version < "3.7") and extra == 'optional'
+Requires-Dist: uvloop (>=0.15.2) ; (os_name == "posix" and python_version >= "3.7") and extra == 'optional'
+Provides-Extra: sftp
+Requires-Dist: asyncssh (>=2.5.0) ; extra == 'sftp'
+Requires-Dist: pywin32 (>=300) ; (os_name == "nt") and extra == 'sftp'
+Requires-Dist: pamela (>=1.0.0) ; (os_name == "posix") and extra == 'sftp'
+
+Various utilities for networking with asyncio
+
+
