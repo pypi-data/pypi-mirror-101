@@ -1,0 +1,46 @@
+Metadata-Version: 2.1
+Name: django-sql-dashboard
+Version: 0.7a0
+Summary: Django app for building dashboards using raw SQL queries
+Home-page: https://github.com/simonw/django-sql-dashboard
+Author: Simon Willison
+License: Apache License, Version 2.0
+Project-URL: Documentation, https://django-sql-dashboard.readthedocs.io/
+Project-URL: Issues, https://github.com/simonw/django-sql-dashboard/issues
+Project-URL: CI, https://github.com/simonw/django-sql-dashboard/actions
+Project-URL: Changelog, https://github.com/simonw/django-sql-dashboard/releases
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: Django
+Requires-Dist: markdown
+Requires-Dist: bleach
+Provides-Extra: test
+Requires-Dist: psycopg2 ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-django ; extra == 'test'
+Requires-Dist: pytest-pythonpath ; extra == 'test'
+Requires-Dist: dj-database-url ; extra == 'test'
+Requires-Dist: testing.postgresql ; extra == 'test'
+Requires-Dist: beautifulsoup4 ; extra == 'test'
+Requires-Dist: html5lib ; extra == 'test'
+
+# django-sql-dashboard
+
+Django app for building dashboards using raw SQL queries
+
+Brings a useful subset of [Datasette](https://datasette.io/) to Django.
+
+Currently only works with PostgreSQL.
+
+This is **very early alpha**. You should not yet trust this code, especially with regards to security. Do not run this in production (yet)!
+
+## Documentation
+
+Full documentation is at [django-sql-dashboard.readthedocs.io](https://django-sql-dashboard.readthedocs.io/)
+
+## Screenshot
+
+![Django_SQL_Dashboard screenshot](https://user-images.githubusercontent.com/9599/111020900-da352a00-837d-11eb-8991-73ec6e6608ef.png)
+
+
