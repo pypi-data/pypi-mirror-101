@@ -1,0 +1,37 @@
+name: Publish Python distribution to PyPI and TestPyPI
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build-and-publish:
+    name: Publish Python distribution to PyPI and TestPyPI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: Setup Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+        
+    - name: Install dependencies
+      run: >-
+        python -m pip --no-cache-dir install --upgrade  pip flit
+
+    - name: Build a binary wheel and a source tarball
+      run: >-
+        python -m flit build
+
+    - name: Publish distribution to TestPyPI
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: ${{ secrets.TESTPYPI_ACCESS_USERNAME }}
+        password: ${{ secrets.TESTPYPI_ACCESS_TOKEN }}
+        repository_url: https://test.pypi.org/legacy/
+
+    - name: Publish distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: ${{ secrets.PYPI_ACCESS_USERNAME }}
+        password: ${{ secrets.PYPI_ACCESS_TOKEN }}
