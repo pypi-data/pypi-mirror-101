@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: news-2-pdf
+Version: 0.0.34
+Summary: Generate international news in pdf.
+Home-page: https://github.com/gaoyunzhi/news_2_pdf
+Author: Yunzhi Gao
+Author-email: gaoyunzhi@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Description-Content-Type: text/markdown
+Requires-Dist: bs4
+Requires-Dist: telegram-util
+Requires-Dist: pyyaml
+Requires-Dist: readee
+Requires-Dist: export-to-telegraph
+Requires-Dist: link-extractor
+Requires-Dist: cached-url
+
+# news_2_pdf
+
+Generate international news in pdf. For people with limited access to internet.
+
+## usage
+
+```
+import news_2_pdf
+new_2_pdf.gen('bbc英文')
+new_2_pdf.gen('nyt英文')
+new_2_pdf.gen('bbc')
+new_2_pdf.gen('nyt')
+```
+
+## how to install
+
+`sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin` 
+`pip3 install news_2_pdf`
+
