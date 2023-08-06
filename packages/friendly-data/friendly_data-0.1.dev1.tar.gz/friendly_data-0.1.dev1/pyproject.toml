@@ -1,0 +1,65 @@
+[project]
+name = "friendly_data"
+version = "0.1.dev1"
+description = "A frictionless datapackage (https://frictionlessdata.io/specs/data-package/) implementation for energy system data."
+maintainers = "The SENTINEL collaboration"
+repository = "https://github.com/sentinel-energy/friendly_data"
+keywords = ["datapackage", "SENTINEL", "energy", "data", "frictionless", "archive"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
+
+[dependencies]
+
+[dev-dependencies]
+
+[build-system]
+requires = ["setuptools>=42", "setuptools_scm[toml]>=3.4" ]
+build-backend = "setuptools.build_meta"
+
+# [tool.setuptools_scm]
+# write_to = "friendly_data/version.py"
+
+[tool.pytest.ini_options]
+# used for pytest>=6.0, see: https://github.com/pytest-dev/pytest/pull/7247
+addopts = "-ra -q"
+#  --cov=friendly_data # disable coverage by default locally
+# --doctest-modules --doctest-continue-on-failure
+
+[tool.coverage.run]
+# omit = ["friendly_data/cli.py"]
+
+# [tool.mypy]
+# ignore_missing_imports = "True"
+
+[tool.black]
+# line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.github
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.vscode
+  | _build
+  | build
+  | dist
+  | .*\.egg-info
+
+  # directories without python source files
+  | testing/data
+  | tmp
+  | htmlcov
+  | dsts
+)/
+'''
