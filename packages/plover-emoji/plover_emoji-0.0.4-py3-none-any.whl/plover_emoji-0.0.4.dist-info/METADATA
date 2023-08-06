@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: plover-emoji
+Version: 0.0.4
+Summary: Convert text to emoji with a stroke.
+Home-page: https://github.com/morinted/plover_emoji
+Author: Ted Morin
+Author-email: morinted@gmail.com
+License: GNU General Public License v3 or later (GPLv3+)
+Keywords: plover plover_plugin
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Plugins
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: plover (>=4.0.0.dev7)
+Requires-Dist: simplefuzzyset (>=0.0.12)
+
+Plover Emoji
+============
+
+Convert written text to an emoji with a stroke.
+
+Usage
+-----
+
+Create a dictionary entry to trigger emoji conversion:
+
+.. code:: json
+
+    {
+        "PHOEPBLG": "{:emoji}"
+    }
+
+Then write your favorite emoji's name, hit your stroke, and 💥!
+
+Write the word then hit your stroke for emoji to convert:
+
+-  boom → 💥
+-  coffee → ☕
+-  kiss man man → 👨‍❤️‍💋‍👨
+-  point up → ☝️
+-  kissing heart → 😘
+-  heart eyes cat → 😻
+-  tone 3 ok hand → 👌🏽
+
+The plugin can read your recent words to guess which words are the emoji:
+
+-  My family is family woman woman boy → My family is 👩‍👩‍👦
+-  wanna play baseball → wanna play ⚾
+-  Wow!! → Wow‼️
+-  Say what?! → Say what⁉️
+
+Emoji names can be found on https://emojipedia.org/
+
+
