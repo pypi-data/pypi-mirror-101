@@ -1,0 +1,11 @@
+libcoveocds>=0.8.0
+libcove>=0.18.0
+
+[perf]
+orjson>=3
+
+[test]
+coveralls
+pytest
+pytest-cov
+isort
