@@ -1,0 +1,71 @@
+Metadata-Version: 2.1
+Name: pyogpclient
+Version: 0.0.1
+Summary: Open Game Protocol Client for Python 3
+Home-page: https://github.com/JanHolger/pyogpclient
+Author: Jan Bebendorf
+Author-email: jan@bebendorf.eu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# pyogpclient
+Open Game Protocol Client for Python 3
+
+## Usage
+```python
+from pyogpclient import OGPClient
+
+client = OGPClient("example.com", 7776)
+status = client.query()
+
+print("Current Players: " + str(status["info"]["player_count"]) + " / " + str(status["info"]["slot_max"]))
+```
+
+## Response
+- game_id
+- info
+    - game_name
+    - type
+    - type_name
+    - password
+    - proxy
+    - os
+    - os_name
+    - host_name
+    - host_name_color
+    - connect_port
+    - mod
+        - name
+        - id
+        - size
+        - version
+        - url
+        - author
+    - game_type
+    - game_mode
+    - map
+        - name
+        - file_name
+        - file_size
+        - file_md5
+        - version
+        - url
+        - author
+    - next_map (see map)
+    - player_count
+    - slot_max
+    - bot_count
+    - reserved_slots
+
+### Missing Fields (TODO)
+- teams
+- players
+- rules
+- addons
+- limits
+
