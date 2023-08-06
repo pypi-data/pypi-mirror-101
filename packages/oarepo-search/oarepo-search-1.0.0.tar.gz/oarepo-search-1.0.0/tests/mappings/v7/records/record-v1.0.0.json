@@ -1,0 +1,20 @@
+{
+  "aliases": {
+    "test-records-record": {}
+  },
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "object",
+        "properties": {
+          "cs": {
+            "type": "text"
+          },
+          "en": {
+            "type": "text"
+          }
+        }
+      }
+    }
+  }
+}
