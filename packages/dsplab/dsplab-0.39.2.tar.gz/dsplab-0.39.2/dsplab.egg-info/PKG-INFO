@@ -1,0 +1,29 @@
+Metadata-Version: 1.1
+Name: dsplab
+Version: 0.39.2
+Summary:  Dsplab is the package for building generalized signal processing schemes.
+Home-page: https://github.com/aleneus/dsplab
+Author: Aleksandr Popov, Kirill Butin
+Author-email: aleneus@gmail.com
+License: LGPLv3
+Description: In a different subject areas, data analysis tasks exist in which a
+        certain general structure is distinguished, while the number of
+        possible methods for implementing subtasks increases. The question
+        arises: which combination of methods is better? Dsplab allows you to
+        describe the overall scheme of the task (plan) and assign the
+        so-called "workers" to perform the subtasks. So the main field of
+        application of dsplab is the investigation of variety of methods
+        solving the same signal processing task.
+        
+        
+Keywords: digital signal processing
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
