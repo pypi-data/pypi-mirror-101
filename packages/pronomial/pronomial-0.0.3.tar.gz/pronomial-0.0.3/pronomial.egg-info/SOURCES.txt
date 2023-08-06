@@ -1,0 +1,17 @@
+MANIFEST.in
+setup.py
+pronomial/__init__.py
+pronomial/utils.py
+pronomial.egg-info/PKG-INFO
+pronomial.egg-info/SOURCES.txt
+pronomial.egg-info/dependency_links.txt
+pronomial.egg-info/requires.txt
+pronomial.egg-info/top_level.txt
+pronomial/lang/en.py
+pronomial/lang/pt.py
+pronomial/res/name_gender.pkl
+pronomial/res/names.csv
+pronomial/res/pt_tagger.pkl
+test/test_en.py
+test/test_gender.py
+test/test_pt.py
