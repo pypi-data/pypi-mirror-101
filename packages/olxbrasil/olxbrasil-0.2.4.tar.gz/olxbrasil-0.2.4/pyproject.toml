@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "olxbrasil"
+version = "0.2.4"
+description = "Biblioteca para scrapping da Olx Brasil (olx.com.br)"
+license = "MIT"
+authors = ["Marcelo Lino <mdslino@gmail.com>"]
+maintainers = ["Marcelo Lino <mdslino@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/Mdslino/olxbrasil"
+keywords = ["scrapping", "olx"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries",
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+beautifulsoup4 = "^4.9.3"
+httpx = "^0.17.0"
+fake-useragent = "^0.1.11"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
+ipython = "^7.21.0"
+respx = "^0.16.3"
+black = {version = "^20.8b1", allow-prereleases = true}
+pytest-asyncio = "^0.14.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+target-version = ['py38']
+include = '\.pyi?$'

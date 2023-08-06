@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: olxbrasil
+Version: 0.2.4
+Summary: Biblioteca para scrapping da Olx Brasil (olx.com.br)
+Home-page: https://github.com/Mdslino/olxbrasil
+License: MIT
+Keywords: scrapping,olx
+Author: Marcelo Lino
+Author-email: mdslino@gmail.com
+Maintainer: Marcelo Lino
+Maintainer-email: mdslino@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: AsyncIO
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: beautifulsoup4 (>=4.9.3,<5.0.0)
+Requires-Dist: fake-useragent (>=0.1.11,<0.2.0)
+Requires-Dist: httpx (>=0.17.0,<0.18.0)
+Project-URL: Repository, https://github.com/Mdslino/olxbrasil
+Description-Content-Type: text/markdown
+
+# OLX Brasil Scrapping
+
+[![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/olxbrasil.svg)](https://pypi.python.org/pypi/olxbrasil)
+[![PyPI](https://img.shields.io/pypi/pyversions/olxbrasil.svg)]()
+![PyPI - Downloads](https://img.shields.io/pypi/dm/olxbrasil.svg?label=pip%20installs&logo=python)
+[![codecov](https://codecov.io/gh/mdslino/olxbrasil/branch/main/graph/badge.svg)](https://codecov.io/gh/mdslino/olxbrasil)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/54968a88b27647f1b47154f942905a5d)](https://www.codacy.com/gh/Mdslino/olxbrasil/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Mdslino/olxbrasil&amp;utm_campaign=Badge_Grade)
+![GitHub issues](https://img.shields.io/github/issues/mdslino/olxbrasil.svg)
+![GitHub stars](https://img.shields.io/github/stars/mdslino/olxbrasil.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/mdslino/olxbrasil.svg)
+[![Code Style Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black/)
+
