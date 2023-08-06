@@ -1,0 +1,34 @@
+Metadata-Version: 2.1
+Name: pxapi
+Version: 0.2.0
+Summary: The python client for the Pixie API
+Home-page: https://github.com/pixie-labs/pixie
+Author: Pixie Labs
+Author-email: help@pixielabs.ai
+License: Apache-2.0
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Typing :: Typed
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: gogo-python (==0.0.1)
+Requires-Dist: grpcio-tools (==1.34.1)
+Requires-Dist: grpcio (==1.34.1)
+Requires-Dist: protobuf (==3.14.0)
+Requires-Dist: six (==1.15.0)
+
+# Pixie Python Client
+pxapi is a client for interacting with [Pixie](https://pixielabs.ai/), a no-instrumentation Kubernetes observability platform.
+
+```
+pip install pxapi
+```
+
+* Python API Quick Start Documentation: https://docs.pixielabs.ai/using-pixie/api-quick-start/
+* Python API Reference Docs: https://docs.pixielabs.ai/reference/api/py/
+* Pixie Labs: https://pixielabs.ai/
+
+
