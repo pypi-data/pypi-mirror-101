@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pysml
+Version: 0.0.4
+Summary: Library for EDL21 smart meters using Smart Message Language (SML)
+Home-page: https://github.com/mtdcr/pysml
+Author: Andreas Oberritter
+Author-email: obi@saftware.de
+License: MIT
+Download-URL: https://github.com/mtdcr/pysml
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Home Automation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: async-timeout (>=3.0.1)
+Requires-Dist: bitstring (>=3.1.5)
+Requires-Dist: pyserial-asyncio (>=0.4)
+
+# pysml
+Python library for EDL21 smart meters using Smart Message Language (SML)
+
+
