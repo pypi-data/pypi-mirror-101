@@ -1,0 +1,31 @@
+---
+#
+#############################################
+#
+# fqdn of the relay to which the client must send mail
+#
+postfix_client_relayhost: "{{ groups['postfix-service-group'][0] }}.{{ domain }}"
+#
+#############################################
+#
+# fqdn of the postfix client
+#
+postfix_client_fqdn: "{{ inventory_hostname }}.{{ domain }}"
+#
+#############################################
+#
+# /etc/mailname of the postfix client
+#
+postfix_client_mailname: '{{ domain }}'
+#
+#############################################
+#
+# fqdn of the postfix relay host
+#
+postfix_fqdn: "{{ inventory_hostname }}.{{ domain }}"
+#
+#############################################
+#
+# /etc/mailname of the postfix relay
+#
+postfix_mailname: '{{ domain }}'
