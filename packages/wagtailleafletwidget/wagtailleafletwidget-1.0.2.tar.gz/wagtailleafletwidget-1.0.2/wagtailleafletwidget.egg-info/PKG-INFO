@@ -1,0 +1,57 @@
+Metadata-Version: 2.1
+Name: wagtailleafletwidget
+Version: 1.0.2
+Summary: Leaflet JS based wagtail geo-location widget.
+Home-page: https://github.com/icpac-igad/wagtail-leaflet-widget
+Author: Erick Otenyo
+Author-email: eotenyo@icpac.net
+License: MIT License
+Description: 
+        # Wagtail-Leaflet-Widget
+        
+        This is a [Leaflet JS](https://leafletjs.com) based wagtail panel for picking geo location on a map, inspired by [wagtail-geo-widget](https://github.com/Frojd/wagtail-geo-widget).
+        
+        The map uses [Open Street Map](https://www.openstreetmap.org) which is open source, thus no API Key is required.
+        
+        ![Screenshot](screenshot.png)
+        
+        
+        ## Features
+        
+        - Real spatial support (with GeoDjango and PointField)
+        - Storing coordinates as strings (for no-GeoDjango setups)
+        - StreamField integration
+        - Inline panel support
+        
+        
+        ## Documentation
+        
+        - [Getting started](./docs/getting-started.md)
+        - [Settings](./docs/settings.md)
+        - [Adding the widget to a Page](./docs/adding-to-a-page.md)
+        - [Integrating with GeoDjango](./docs/integrating-with-geodjango.md)
+        - [Adding to a StreamField](./docs/adding-to-a-streamfield.md)
+        - [FAQ](./docs/faq.md)
+        
+        
+        ## Contributing
+        
+        Want to contribute? Awesome. Just send a pull request.
+        
+        
+        ## License
+        
+        Wagtail-Leaflet-Widget is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Wagtail
+Classifier: Framework :: Wagtail :: 2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Description-Content-Type: text/markdown
