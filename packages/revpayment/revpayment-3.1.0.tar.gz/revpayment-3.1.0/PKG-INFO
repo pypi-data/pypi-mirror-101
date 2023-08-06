@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: revpayment
+Version: 3.1.0
+Summary: 
+Author: Chien
+Author-email: a0186163@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: Django (>=3.1.7,<4.0.0)
+Requires-Dist: cryptography (>=3.4.7,<4.0.0)
+Requires-Dist: djangorestframework (>=3.12.4,<4.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
