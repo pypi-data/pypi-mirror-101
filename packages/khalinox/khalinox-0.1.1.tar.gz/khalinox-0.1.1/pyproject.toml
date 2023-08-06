@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "khalinox"
+version = "0.1.1"
+description = ""
+authors = ["Khalid <khalid.chakhmoun@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+cryptography = "^3.4.7"
+toolz = "^0.11.1"
+requests = "^2.25.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = {version = "^20.8b1", allow-prereleases = true}
+tox = "^3.23.0"
+mypy = "^0.812"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
