@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: hrl-pybullet-envs
+Version: 0.0.15
+Summary: Locomotion HRL envs in pybullet
+Home-page: https://github.com/sash-a/hrl_pybullet_envs
+Author: Sasha Abramowitz
+Author-email: reallysasha@gmail.com
+License: UNKNOWN
+Description: ## Hierarchical Reinforcement envs in pybullet
+        
+        This package was created because all of the HRL locomotion envs are only available in mujoco. This is an implementation of as many as possible in pybullet. 
+        
+        ### Install
+        `pip install hrl_pybullet_envs`  
+        This project requires [pybullet-gym](https://github.com/benelot/pybullet-gym/) which must be installed separately.
+        
+        
+        ### Envs:
+        * AntGatherBulletEnv-v0
+        * AntMazeBulletEnv-v0
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
