@@ -1,0 +1,52 @@
+Metadata-Version: 2.1
+Name: odsgenerator
+Version: 1.4.2
+Summary: odsgenerator generates an ODF .ods file from json or yaml file
+Home-page: https://github.com/jdum/odsgenerator
+Author: Jérôme Dumonteil
+Author-email: jerome.dumonteil@gmail.com
+License: MIT
+Description: ## odsgenerator
+        
+        odsgenerator generates an OpenDocument Format .ods file from json or yaml file.
+        
+        The script parses a JSON or YAML description of tables and generates an
+        ODF document using the odfdo library.
+        
+          * description can be minimalist: a list of lists of lists,
+          * description can be complex, allowing styles at row or cell level.
+        
+        **principle:**
+        
+          * a document is a list of tabs,
+          * a tab is a list of rows,
+          * a row is a list of cells.
+        
+        **usage:**
+        
+            odsgenerator [-h] [--version] input_file output_file
+        
+        **arguments:**
+        
+          `input_file`:   input file containing data in json or yaml format
+        
+          `output_file`:  output file, .ods file generated from input
+        
+        
+        Use `odsgenerator --help` for more details about input file parameters and
+        look at examples in the tests folder.
+        
+Keywords: text json openDocument ODF ods generator
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Text Processing
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
