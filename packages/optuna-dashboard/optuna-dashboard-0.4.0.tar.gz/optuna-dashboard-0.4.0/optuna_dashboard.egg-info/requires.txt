@@ -1,0 +1,6 @@
+optuna>=2.4
+bottle
+scikit-learn
+
+[:python_version < "3.8"]
+typing-extensions
