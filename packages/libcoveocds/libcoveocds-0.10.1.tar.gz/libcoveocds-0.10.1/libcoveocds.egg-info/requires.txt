@@ -1,0 +1,14 @@
+libcove>=0.22.0
+bleach
+CommonMark
+Django
+json-merge-patch
+jsonschema
+requests
+click
+
+[test]
+coveralls
+pytest
+pytest-cov
+isort
