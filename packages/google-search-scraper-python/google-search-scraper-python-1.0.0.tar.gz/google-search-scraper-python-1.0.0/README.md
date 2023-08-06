@@ -1,0 +1,81 @@
+Google-Search-Scraper-Python is a python library to search keyword on google and fetch search results using browser automation. 
+It currently runs only on windows.
+
+### Example 1
+In this example we first import library, then we search a keyword and fetched results.
+```sh
+from google_search_scraper_python import *
+google.search(keyword="shoes")
+for i in range(0,5):
+	response=google.search_results()
+	data=response["body"]
+	google.click_next() #click on next page to get next page's results
+#data=[{"Title": "Buy Shoes for Men, Women & Kids online in India - Myntra", "Link": "https://www.myntra.com/shoes", "Desc": "Shoes Online- Shop shoes online for Men, Women & Kids at 40% Discount .Sh..."}]
+```
+
+### Example 2
+In this example we first import library, then we search a keyword in images and fetched results.
+```sh
+from google_search_scraper_python import *
+google.search_images(keyword="shoes")
+for i in range(0,5):
+	response=google.search_image_results()
+	data=response["body"]
+	google.scroll()
+#data=[{"Title": "Buy Black Casual Shoes fo", "Link": "https://www.google.com/imgres?imgurl=https%3A%2F%2Fassets.ajio.com%2Fmedias%2Fsys_master%2Froot%2Fajio%2Fcatalog%2F5ef38fcbf997dd433b43d714%2F-473Wx593H-461205998-black-MODEL.jpg&imgrefurl=https%3A%2F%2Fwww.ajio.com%2Fblacktown-textured-flat-slip-on-shoes%2Fp%2F461205998_black&tbnid=lWWwbMTML4XPQM&vet=12ahUKEwjzjNiH7uvuAhXBnksFHa3WCzUQMygAegUIARDQAg..i&docid=jgk8GUwyM_PM0M&w=473&h=593&q=shoes&ved=2ahUKEwjzjNiH7uvuAhXBnksFHa3WCzUQMygAegUIARDQAg","ImageLink":""}]
+```
+
+This module depends on the following python modules
+* [requests](https://pypi.org/project/requests/)
+* [bot_studio](https://pypi.org/project/bot_studio/)
+
+#### BotStudio
+[bot_studio](https://pypi.org/project/bot_studio/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up in which search will be done.
+
+Complete documentation for Google Automation available [here](https://google-api.datakund.com/en/latest/)
+
+### Installation
+
+```sh
+pip install google-search-scraper-python
+```
+
+### Import
+```sh
+from google_search_scraper_python import *
+```
+
+### Search a keyword
+```sh
+google.search(keyword="shoes")
+```
+
+### Search a keyword on images
+```sh
+google.search_images(keyword="shoes")
+```
+
+### Get search results
+```sh
+response=google.search_results()
+```
+
+### Get search image results
+```sh
+response=google.search_image_results()
+```
+
+### Click on next page
+```sh
+google.click_next()
+```
+
+### Send Feedback to Developers
+```sh
+bot_studio.send_feedback(feedback="Need help with this ......")
+```
+
+### Contact Us
+* [Telegram](https://t.me/datakund)
+* [Website](https://datakund.com)
+
