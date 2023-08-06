@@ -1,0 +1,6 @@
+[console_scripts]
+dolph_convert_raw_jpg = dolphins_recognition_challenge.convert_raw_jpg:convert_files_with_darktable
+dolph_get_suffixes = dolphins_recognition_challenge.convert_raw_jpg:get_suffixes
+dolph_image_resize = dolphins_recognition_challenge.image_resize:resize_dataset
+fix_readme = dolphins_recognition_challenge.helpers:fix_readme
+
