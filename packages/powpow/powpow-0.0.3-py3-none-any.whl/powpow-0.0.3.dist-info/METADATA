@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: powpow
+Version: 0.0.3
+Summary: Unix-style utilities for Python shell
+Home-page: UNKNOWN
+Author: Blazej Michalik
+Author-email: code.mrmino@gmail.com
+License: UNKNOWN
+Project-URL: Source, https://github.com/MrMino/powpow
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: POSIX :: BSD
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+<p align=center>
+✨███████████████████  ░█▀▀█ █▀▀█ █░░░█ </br>
+█▄─▄▄─█─▄▄─█▄─█▀▀▀█─▄▒█▄▄█ █✨ █ █▄█▄█ </br>
+██─▄▄▄█─██─██─█─█─█─█▒█░░░ ▀▀▀▀ ░▀░▀░ </br>
+▀▄▄▄▀▀▀▄▄▄▄✨▄▄▄▀▄▄▄▀✨░░░░░🐍░░░░░✨</br>
+</p>
+
+<p align=center>
+<sub>ᴘᴏᴡ! ᴘᴏᴡ!</sub>
+
+Give any Python interpretter UNIX-like shell capabilities.
+
+I don't have the time to flesh out a full README yet (I spent most of what was
+available on the ASCII art above 🙃), so here's an example of how to grep large
+dicts using PowPow:
+
+```py
+from powpow import grep
+
+# locals() is used as an example of a dict you might want to grep. You can
+# pass any other object instead - grep() will pretty-format it and try to find
+# a match.
+locals() | grep ("powpow")
+```
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/6691643/113652843-dd79b800-9694-11eb-8ea1-1481f723f1d4.png" align="center"/>
+</p>
+
+</p>
+
+
