@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: spatula
+Version: 0.6.0
+Summary: lightweight structured scraping toolkit
+Home-page: https://github.com/jamesturk/spatula/
+License: MIT
+Author: James Turk
+Author-email: dev@jamesturk.net
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: Sphinx[docs] (>=3.4.3,<4.0.0)
+Requires-Dist: attrs[attrs] (>=20.3.0,<21.0.0)
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: cssselect (>=1.1.0,<2.0.0)
+Requires-Dist: ipython[shell] (>=7.19.0,<8.0.0)
+Requires-Dist: lxml (>=4.6.2,<5.0.0)
+Requires-Dist: openpyxl (>=3.0.6,<4.0.0)
+Requires-Dist: scrapelib (>=2.0.2,<3.0.0)
+Requires-Dist: sphinx-click[docs] (>=2.5.0,<3.0.0)
+Requires-Dist: sphinx-rtd-theme[docs] (>=0.5.1,<0.6.0)
+Project-URL: Repository, https://github.com/jamesturk/spatula/
+Description-Content-Type: text/markdown
+
+# spatula
+
+**spatula** is a lightweight scraping framework, designed to encourage best practices and ease development and testing of scrapers.
+
+[![PyPI version](https://badge.fury.io/py/spatula.svg)](https://badge.fury.io/py/spatula)
+
+[![Test & Lint](https://github.com/jamesturk/spatula/workflows/Test%20&%20Lint/badge.svg)](https://github.com/jamesturk/spatula/actions?query=workflow%3A%22Test+%26+Lint%22)
+
+[![](https://readthedocs.org/projects/spatula/badge/?version=latest&style=flat)](https://spatula.readthedocs.org)
+
