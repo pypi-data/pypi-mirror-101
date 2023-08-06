@@ -1,0 +1,8 @@
+{% extends "no_index_base.html" %}
+{% block content %}
+    <form method="post" action="{% url 'mcmailer:send_test_email' %}">
+        {% csrf_token %}
+        {{ send_test_email_form.as_p }}
+        <input type="submit">
+    </form>
+{% endblock %}
