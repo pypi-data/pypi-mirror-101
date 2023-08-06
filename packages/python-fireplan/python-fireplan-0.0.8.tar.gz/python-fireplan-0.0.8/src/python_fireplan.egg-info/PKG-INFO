@@ -1,0 +1,73 @@
+Metadata-Version: 2.1
+Name: python-fireplan
+Version: 0.0.8
+Summary: python wrapper for fireplan API
+Home-page: https://github.com/bouni/python-fireplan
+Author: bouni
+Author-email: bouni@owee.de
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/bouni/python-fireplan/issues
+Description: # fireplan
+        
+        ![Status](https://github.com/Bouni/python-fireplan/actions/workflows/run-tests.yml/badge.svg)
+        
+        A python package around the public [fireplan](https://www.fireplan.de/) API.
+        
+        ## Installation
+        
+        `pip install python-fireplan`
+        
+        ## Usage
+        
+        ### Alarm
+        
+        ```python
+        import fireplan
+        
+        token = "ABCDEF...."
+        
+        fp = fireplan.Fireplan(token)
+        
+        alarmdata =  {
+            "alarmtext": "",
+            "einsatznrlst": "",
+            "strasse": "",
+            "hausnummer": "",
+            "ort": "",
+            "ortsteil": "",
+            "objektname": "",
+            "koordinaten": "",
+            "einsatzstichwort": "",
+            "zusatzinfo": "",
+            "sonstiges1": "",
+            "sonstiges2": "",
+            "RIC": "",
+            "SubRIC": ""
+        }
+        
+        fp.alarm(alarmdata)
+        ```
+        
+        ### Status
+        
+        ```python
+        import fireplan
+        
+        token = "ABCDEF...."
+        
+        fp = fireplan.Fireplan(token)
+        
+        statusdata = {
+            "FZKennung": "40225588996", 
+            "Status": "3"
+        }
+        
+        fp.status(statusdata)
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
