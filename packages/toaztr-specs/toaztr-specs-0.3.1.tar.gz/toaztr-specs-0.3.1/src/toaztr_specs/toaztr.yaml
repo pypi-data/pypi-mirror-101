@@ -1,0 +1,6345 @@
+openapi: 3.0.3
+info:
+  contact:
+    name: API Support
+  description: This is the documentation for the Toaztr API.
+  title: Toaztr API
+  version: 1.0.0
+  x-logo:
+    altText: Toaztr logo
+    url: 'https://www.toaztr.com/assets/toaztr_logo.png'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: X-API-Key
+      type: apiKey
+  schemas:
+    ResponseMessage:
+      title: ResponseMessage
+      type: object
+      properties:
+        code:
+          type: number
+        title:
+          type: string
+        details:
+          type: string
+      required:
+        - code
+        - title
+    SuccessResponse:
+      title: SuccessResponse
+      type: object
+      properties:
+        data:
+          type: object
+        warnings:
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        infos:
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - data
+    IncomeTax:
+      properties:
+        fiscal_reference_revenue_Nminus1:
+          default: null
+          description: Revenu fiscal de référence de l'année N-1.
+          minimum: 0
+          nullable: true
+          type: number
+        fiscal_reference_revenue_Nminus2:
+          default: null
+          description: Revenu fiscal de référence de l'année N-2.
+          minimum: 0
+          nullable: true
+          type: number
+        income_tax_Nminus1:
+          default: null
+          description: Impots de l'année N-1.
+          minimum: 0
+          nullable: true
+          type: number
+        income_tax_Nminus2:
+          default: null
+          description: Impots de l'année N-2.
+          minimum: 0
+          nullable: true
+          type: number
+      type: object
+      title: IncomeTax
+      description: Informations fiscales.
+    WeightedPositiveFigure:
+      properties:
+        figure:
+          default: null
+          description: Chiffre.
+          minimum: 0
+          nullable: true
+          type: number
+        weight:
+          default: 100
+          description: >-
+            Pondération en pourcentage: 30 pour 30%. C'est à dire qu'un
+            coefficient de 0.3 sera applicqué à ce chiffre.
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: number
+      type: object
+      title: WeightedPositiveFigure
+      description: Valeur monétaire positive et sa pondération.
+    RevenueItem:
+      type: object
+      title: RevenueItem
+      description: >-
+        Revenu mensuel, ainsi que sa pondération pour le calcul de
+        l'endettement.
+      properties:
+        type:
+          default: OTHER
+          description: Type de revenu.
+          type: string
+          enum:
+            - SALARY
+            - DIVIDENDS
+            - BONUS
+            - FRENCH_PARTICIPATION
+            - PROFESSIONAL_PROFITS_BIC_BNC_BA
+            - RENTAL_INCOMES
+            - MAINTENANCE
+            - FAMILY_ALLOWANCE
+            - OTHER_ALLOWANCES_LIKE_AEH_AAH_AEEH
+            - APL_AL
+            - SOCIAL
+            - RETIREMENT_PENSION
+            - ANNUITY
+            - OTHER
+        monthly_amount:
+          $ref: '#/components/schemas/WeightedPositiveFigure'
+        comment:
+          default: null
+          description: Commentaire éventuel.
+          nullable: true
+          type: string
+      required:
+        - type
+        - monthly_amount
+    ChargeItem:
+      type: object
+      title: ChargeItem
+      description: >-
+        Charge mensuelle, ainsi que sa pondération pour le calcul de
+        l'endettement.
+      properties:
+        type:
+          default: OTHER
+          description: Type de charge.
+          type: string
+          enum:
+            - RENT
+            - MAINTENANCE
+            - CONDOMINIUM_FEES
+            - SCHEDULED_SAVING
+            - LOA
+            - TAX
+            - OTHER
+        monthly_amount:
+          $ref: '#/components/schemas/WeightedPositiveFigure'
+        comment:
+          default: null
+          description: 'Nom de la charge: désignation, type, etc...'
+          nullable: true
+          type: string
+      required:
+        - type
+        - monthly_amount
+    CurrentLoan:
+      type: object
+      title: CurrentLoan
+      description: >-
+        Crédit en cours au moment de la constitution du dossier. Seul les
+        crédits de type CONTINUE_AFTER_PROJECT sont considérés dans la capacité
+        de remboursement.
+      properties:
+        type:
+          default: OTHER
+          description: Type de crédit.
+          type: string
+          enum:
+            - MORTGAGE
+            - PERSONAL_LOAN
+            - SPECIFIC_LOAN
+            - REVOLVING_LOAN
+            - OTHER
+        future:
+          default: null
+          description: Futur du crédit.
+          type: string
+          enum:
+            - REIMBURSED_BEFORE_PROJECT
+            - CONTINUE_AFTER_PROJECT
+            - REIMBURSED_DURING_PROJECT
+            - CONSOLIDATED_DURING_PROJECT
+            - null
+          nullable: true
+        monthly_payment:
+          $ref: '#/components/schemas/WeightedPositiveFigure'
+        remaining_capital:
+          default: null
+          description: Capital restant dû.
+          nullable: true
+          type: number
+        start_date:
+          default: null
+          description: Date de début du prêt.
+          format: date-time
+          nullable: true
+          type: string
+        end_date:
+          default: null
+          description: Date de fin du prêt.
+          format: date-time
+          nullable: true
+          type: string
+        lender:
+          default: null
+          description: Organisme prêteur.
+          nullable: true
+          type: string
+      required:
+        - type
+    Breakup:
+      title: Breakup
+      type: object
+      description: Structure du démembrement.
+      properties:
+        type:
+          default: PLEINE_PROPRIETE
+          description: Type de démembrement.
+          type: string
+          enum:
+            - PLEINE_PROPRIETE
+            - NUE_PROPRIETE
+            - USUFRUIT
+        portion:
+          type: number
+          description: Pourcentage du bien possédé.
+          minimum: 0
+          nullable: true
+          default: 100
+          maximum: 100
+    ProjectDates:
+      type: object
+      title: ProjectDates
+      properties:
+        sales_agreement_date:
+          default: null
+          description: Date de signature du compromis.
+          format: date-time
+          nullable: true
+          type: string
+        conditions_precedent_end_date:
+          default: null
+          description: Date de levée des conditions suspensives.
+          format: date-time
+          nullable: true
+          type: string
+        signature_date:
+          default: null
+          description: Date de signature de l'acte.
+          format: date-time
+          nullable: true
+          type: string
+      description: Dates légales du projet.
+    PartnerType:
+      type: string
+      title: PartnerType
+      enum:
+        - NOTARY
+        - ESTATE_AGENT
+        - BANK
+        - BROKER
+        - COLLECTOR_ONE_PERCENT_EMPLOYER
+        - HOUSE_BUILDER
+        - DPE_CHECKER
+        - LAND_SURVEYOR
+        - BUSINESS_PROVIDER
+        - ARCHITECT
+        - LAWYER
+        - OTHER
+        - 'null'
+      description: Type de partenaire ou d'intervenant sur un dossier.
+      x-examples: {}
+    Address:
+      type: object
+      title: Address
+      description: >-
+        Adresse complète. Pour obtenir le code INSEE, utilisez
+        https://geo.api.gouv.fr/adresse.
+      properties:
+        address:
+          default: null
+          description: Numéro et rue.
+          nullable: true
+          type: string
+        postal_code:
+          default: null
+          description: Code postal.
+          nullable: true
+          type: string
+        city:
+          default: null
+          description: Ville.
+          nullable: true
+          type: string
+        country:
+          default: null
+          description: Pays.
+          nullable: true
+          type: string
+        insee_code:
+          default: null
+          type: string
+          description: Code INSEE de la commune.
+          nullable: true
+    Contact:
+      properties:
+        contact_courtesy:
+          default: null
+          description: Civilité du contact.
+          type: string
+          enum:
+            - MR
+            - MRS
+            - null
+          nullable: true
+        contact_first_name:
+          default: null
+          description: Prénom du contact.
+          nullable: true
+          type: string
+        contact_last_name:
+          default: null
+          description: Nom de famille du contact.
+          nullable: true
+          type: string
+        contact_email:
+          default: null
+          description: Email du contact.
+          nullable: true
+          type: string
+        contact_phone_number:
+          default: null
+          description: Numéro de téléphone du contact.
+          nullable: true
+          type: string
+        comment:
+          default: null
+          description: Commentaire.
+          nullable: true
+          type: string
+      type: object
+      title: Contact
+      description: Contact.
+    ActivePartner:
+      type: object
+      title: ActivePartner
+      description: >-
+        Partenaire bancaire actif: il s'agit d'un partenaire issue de la base de
+        partenaires, ayant un role sur le dossier courant.
+      properties:
+        type:
+          $ref: '#/components/schemas/PartnerType'
+        name:
+          default: null
+          description: Nom du partenaire.
+          nullable: true
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        contact:
+          $ref: '#/components/schemas/Contact'
+        email:
+          default: null
+          description: Email du partenaire.
+          nullable: true
+          type: string
+        phone_number:
+          default: null
+          description: Numéro de téléphone du partenaire.
+          nullable: true
+          type: string
+        role:
+          default: null
+          description: >-
+            Role de ce partenaire: côté acheteur, coté vendeur, ou leader si
+            plusieurs partenaires d'un même type existent.
+          type: string
+          enum:
+            - BUYER_SIDE
+            - SELLER_SIDE
+            - LEADER
+            - null
+          nullable: true
+        sub_entity:
+          default: null
+          description: 'Sous-entité: agence, etc....'
+          nullable: true
+          type: string
+        agreement_number:
+          default: null
+          description: 'Agrément ORIAS, ou n''importe quelle référence légale.'
+          nullable: true
+          type: string
+        comment:
+          default: null
+          description: Commentaire.
+          nullable: true
+          type: string
+    ForSale:
+      type: object
+      title: ForSale
+      description: Détails relatifs à la mise en vente d'un bien immobilier.
+      properties:
+        price:
+          type: number
+          default: null
+          description: Prix public de mise en vente.
+          nullable: true
+          minimum: 0
+        agency_fees:
+          type: number
+          default: null
+          description: >-
+            Frais d'agence à la charge du vendeur, et venant donc se retrancher
+            au prix public de mise en vente.
+          nullable: true
+          minimum: 0
+        taxes:
+          type: number
+          default: null
+          description: >-
+            Montant de l'impot éventuel sur le prix de vente, et venant donc se
+            retrancher au prix public de mise en vente.
+          nullable: true
+          minimum: 0
+        since:
+          default: null
+          description: Depuis quelle date le bien est-il à vendre.
+          format: date-time
+          nullable: true
+          type: string
+        dates:
+          $ref: '#/components/schemas/ProjectDates'
+        agencies:
+          description: Agence(s) en charge de la vente.
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ActivePartner'
+        notaries:
+          description: Notaire(s) en charge de la vente.
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ActivePartner'
+    PatrimonyItem:
+      type: object
+      title: PatrimonyItem
+      description: Élément de patrimoine de l'emprunteur.
+      properties:
+        type:
+          default: OTHER
+          description: Type de patrimoine.
+          type: string
+          enum:
+            - LIVRET_A
+            - LDDS
+            - LEP
+            - LIVRET_JEUNE
+            - LIFE_INSURANCE
+            - PEL
+            - CEL
+            - PEE
+            - PEA
+            - PER
+            - CURRENT_ACCOUNT
+            - FAMILY_DONATION
+            - SHARES
+            - SCI_SHARES
+            - SOCIAL_SHARES
+            - JEWELRY
+            - ART_WORK
+            - COLLECTION
+            - REAL_ESTATE_MAIN_PROPERTY
+            - REAL_ESTATE_SECONDARY_PROPERTY
+            - REAL_ESTATE_RENTING_PROPERTY
+            - LAND
+            - PARKING
+            - COMMERCIAL_PREMISES
+            - BUILDING
+            - PROFESSIONAL_REAL_ESTATE
+            - CAPITAL_GOODS
+            - OTHER
+        breakup:
+          $ref: '#/components/schemas/Breakup'
+        value:
+          description: >-
+            Valeur: estimée (bien immobilier par exemple) ou de rachat
+            (assurance vie par exemple).
+          minimum: 0
+          type: number
+        remaining_capital:
+          default: null
+          description: 'Capital restant dû, si un crédit est toujours en cours.'
+          minimum: 0
+          nullable: true
+          type: number
+        buying_or_opening_date:
+          default: null
+          description: >-
+            Date d'achat (du bien immobilier, des actions...) ou date
+            d'ouverture (de l'assurance vie, du PEE...).
+          format: date-time
+          nullable: true
+          type: string
+        for_sale:
+          $ref: '#/components/schemas/ForSale'
+        comment:
+          default: null
+          description: Commentaire.
+          nullable: true
+          type: string
+      required:
+        - type
+        - value
+    FinanceDetails:
+      type: object
+      title: FinanceDetails
+      description: >-
+        Détails sur les finances de l'emprunteur.
+
+
+        La capacité de remboursement est calculée comme: Somme(revenu *
+        pondération) - Somme(charge * pondération) - Somme(CréditsPersistants *
+        pondération).
+      properties:
+        personal_funding:
+          default: null
+          description: Apport personnel consacré au financement du projet.
+          minimum: 0
+          nullable: true
+          type: number
+        acquisition_percentage:
+          type: number
+          default: null
+          minimum: 0
+          nullable: true
+          description: 'Pourcentage d''acquisition, dans le cas d''un achat en indivision.'
+        income_tax:
+          $ref: '#/components/schemas/IncomeTax'
+        revenues:
+          default: null
+          description: >-
+            Liste des revenus persistants après le projet. Le reste à vivre est
+            calculé comme: sum(revenu * pondération) - sum(charge *
+            pondération).
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RevenueItem'
+        charges:
+          default: null
+          description: Liste des charges persistantes après le projet.
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargeItem'
+        current_loans:
+          description: 'Prêt(s) existant(s): immobilier, consommation ou autres'
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/CurrentLoan'
+        patrimony:
+          description: Patrimoine.
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/PatrimonyItem'
+    SocioProfessionalGroupAgriculateursExploitants:
+      type: object
+      title: SocioProfessionalGroupAgriculateursExploitants
+      properties:
+        type:
+          type: string
+          default: AGRICULTEURS_EXPLOITANTS
+          enum:
+            - AGRICULTEURS_EXPLOITANTS
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - AGRICULTEURS_PETITE_EXPLOITATION
+            - AGRICULTEURS_MOYENNE_EXPLOITATION
+            - AGRICULTEURS_GRANDE_EXPLOITATION
+            - null
+          nullable: true
+      required:
+        - type
+      description: Catégorie socioprofessionnelle des agriculteurs exploitants.
+    SocioProfessionalGroupArtisansCommercantsChefsEntreprise:
+      type: object
+      title: SocioProfessionalGroupArtisansCommercantsChefsEntreprise
+      description: >-
+        Catégorie socioprofessionnelle des artisants, commerçants et chefs
+        d'entreprise.
+      properties:
+        type:
+          type: string
+          default: ARTISANS_COMMERCANTS_CHEFS_DENTREPRISE
+          enum:
+            - ARTISANS_COMMERCANTS_CHEFS_DENTREPRISE
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - ARTISANS
+            - COMMERCANTS_ET_ASSIMILES
+            - CHEFS_ENTREPRISE_10_SALARIES_OU_PLUS
+            - null
+          nullable: true
+      required:
+        - type
+    SocioProfessionalGroupCadresProfessionsIntellectuellesSuperieures:
+      type: object
+      title: SocioProfessionalGroupCadresProfessionsIntellectuellesSuperieures
+      description: >-
+        Catégorie socioprofessionnelle des cadres et professions intellectuelles
+        supérieures.
+      properties:
+        type:
+          type: string
+          default: CADRES_PROFESSIONS_INTELLECTUELLES_SUPERIEURES
+          enum:
+            - CADRES_PROFESSIONS_INTELLECTUELLES_SUPERIEURES
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - PROFESSIONS_LIBERALES
+            - CADRES_FONCTION_PUBLIQUE
+            - PROFESSEURS_PROFESSIONS_SCIENTIFIQUES
+            - PROFESSIONS_INFORMATION_ARTS_SPECTACLES
+            - CADRES_ADMINISTRATIFS_COMMERCIAUX_ENTREPRISE
+            - INGENIEURS_CADRES_TECHNIQUES_ENTREPRISE
+            - null
+          nullable: true
+      required:
+        - type
+    SocioProfessionalGroupProfessionsIntermediaires:
+      type: object
+      title: SocioProfessionalGroupProfessionsIntermediaires
+      description: Catégorie socioprofessionnelle des professions intermédiaires.
+      properties:
+        type:
+          type: string
+          default: PROFESSIONS_INTERMEDIAIRES
+          enum:
+            - PROFESSIONS_INTERMEDIAIRES
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - PROFESSEURS_DES_ECOLES_INSTITUTEUR_ET_ASSIMILE
+            - PROFESSIONS_INTERMEDIAIRES_DE_LA_SANTE_ET_DU_TRAVAIL_SOCIAL
+            - CLERGE_RELIGIEUX
+            - PROFESSIONS_INTERMEDIAIRES_ADMINISTRATIVES_DE_LA_FONCTION_PUBLIQUE
+            - >-
+              PROFESSIONS_INTERMEDIAIRES_ADMINISTRATIVES_COMMERCIALES_ENTREPRISES
+            - TECHNICIENS
+            - CONTREMAITRES_AGENTS_DE_MAITRISE
+            - null
+          nullable: true
+      required:
+        - type
+    SocioProfessionalGroupEmployes:
+      type: object
+      title: SocioProfessionalGroupEmployes
+      description: Catégorie socioprofessionnelle des employés.
+      properties:
+        type:
+          type: string
+          default: EMPLOYES
+          enum:
+            - EMPLOYES
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - EMPLOYES_CIVIL_AGENTS_DE_SERVICE_FONCTION_PUBLIQUE
+            - POLICIERS_MILITAIRES
+            - EMPLOYES_ADMINISTRATIFS_ENTREPRISE
+            - EMPLOYES_DE_COMMERCE
+            - PERSONNELS_DES_SERVICES_DIRECTS_AUX_PARTICULIERS
+            - null
+          nullable: true
+      required:
+        - type
+    SocioProfessionalGroupOuvriers:
+      type: object
+      title: SocioProfessionalGroupOuvriers
+      description: Catégorie socioprofessionnelle des ouvriers.
+      properties:
+        type:
+          type: string
+          default: OUVRIERS
+          enum:
+            - OUVRIERS
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - OUVRIERS_QUALIFIES_DE_TYPE_INDUSTRIEL
+            - OUVRIERS_QUALIFIES_DE_TYPE_ARTISANAL
+            - CHAUFFEURS
+            - OUVRIERS_QUALIFIERS_MANUTENTION_MAGASINAGE_TRANSPORT
+            - OUVRIERS_NON_QUALIFIES_DE_TYPE_INDUSTRIEL
+            - OUVRIERS_NON_QUALIFIES_DE_TYPE_ARTISANAL
+            - OUVRIERS_AGRICOLES
+            - null
+          nullable: true
+      required:
+        - type
+    SocioProfessionalGroupRetraites:
+      type: object
+      title: SocioProfessionalGroupRetraites
+      description: Catégorie socioprofessionnelle des retraités.
+      properties:
+        type:
+          type: string
+          default: RETRAITES
+          enum:
+            - RETRAITES
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - ANCIENS_AGRICULTEURS_EXPLOITANTS
+            - ANCIENS_ARTISANTS_COMMERCANTS_CHEFS_DENTREPRISE
+            - ANCIENS_CADRES
+            - ANCIENNES_PROFESSIONS_INTERMEDIAIRES
+            - ANCIENS_EMPLOYES
+            - ANCIENS_OUVRIERS
+            - null
+          nullable: true
+      required:
+        - type
+    SocioProfessionalGroupAutresPersonnesSansActiviteProfessionnelle:
+      type: object
+      title: SocioProfessionalGroupAutresPersonnesSansActiviteProfessionnelle
+      description: >-
+        Catégorie socioprofessionnelle des autres personnes sans activité
+        professionnelle.
+      properties:
+        type:
+          type: string
+          default: AUTRES_PERSONNES_SANS_ACTIVITE_PROFESSIONNELLE
+          enum:
+            - AUTRES_PERSONNES_SANS_ACTIVITE_PROFESSIONNELLE
+        category:
+          default: null
+          description: Catégorie socio-profesionnelle.
+          type: string
+          enum:
+            - CHOMEURS_AYANT_JAMAIS_TRAVAILLE
+            - MILITAIRES_DU_CONTINGENT
+            - ELEVES_ETUDIANTS
+            - SANS_ACTIVITE_MOINS_60
+            - SANS_ACTIVITE_PLUS_60
+            - null
+          nullable: true
+      required:
+        - type
+    ProfessionStatus:
+      type: string
+      title: ProfessionStatus
+      enum:
+        - EMPLOYEE
+        - INDEPENDENT
+        - STUDENT
+        - RETIRED
+        - UNEMPLOYED
+        - ANNUITANT
+        - 'null'
+      nullable: true
+      description: Status professionnel
+    Employee:
+      type: object
+      title: Employee
+      description: Details professionnels d'un emprunteur employée.
+      properties:
+        type:
+          type: string
+          enum:
+            - EMPLOYEE
+          description: Type de travailleur.
+        contract_type:
+          type: string
+          default: null
+          description: Type de contrat.
+          enum:
+            - CDD
+            - CDI
+            - CIVIL_SERVANT
+            - OTHER
+            - 'null'
+          nullable: true
+        sub_contract_type:
+          type: string
+          default: null
+          description: Particularité du contrat.
+          enum:
+            - TRIAL_PERIOD
+            - TITULAR_CIVIL_SERVANT
+            - CONTRACTUAL_CIVIL_SERVANT
+            - VACATAIRE_CIVIL_SERVANT
+            - INTERIM
+            - INTERN
+            - 'null'
+          nullable: true
+        profession:
+          default: null
+          description: Profession.
+          nullable: true
+          type: string
+        employer:
+          default: null
+          description: Nom de l'employeur actuel.
+          nullable: true
+          type: string
+        employer_address:
+          $ref: '#/components/schemas/Address'
+        hiring_date:
+          default: null
+          description: Date d'embauche.
+          format: date-time
+          nullable: true
+          type: string
+        employees_number:
+          type: integer
+          default: null
+          description: Nombre d'employés dans l'entreprise employeuse.
+          nullable: true
+          minimum: 0
+        end_contract_date:
+          default: null
+          description: 'Date de fin contrat, pour les CDD.'
+          format: date-time
+          nullable: true
+          type: string
+        end_trial_date:
+          default: null
+          description: Date de fin de la période d'essai.
+          format: date-time
+          nullable: true
+          type: string
+      required:
+        - type
+    Independant:
+      type: object
+      title: Independant
+      description: Details professionnels d'un emprunteur indépendant.
+      properties:
+        type:
+          type: string
+          description: Type de travailleur.
+          enum:
+            - INDEPENDANT
+        activity_nature:
+          default: null
+          description: Nature de l'activité.
+          nullable: true
+          type: string
+        activity_start_date:
+          default: null
+          description: Date de début d'activité.
+          format: date-time
+          nullable: true
+          type: string
+        ape_code:
+          default: null
+          description: Code APE.
+          nullable: true
+          type: string
+        business_assets_owner:
+          default: null
+          description: 'Propriétaire du fond: oui/non.'
+          nullable: true
+          type: boolean
+        business_assets_value:
+          default: null
+          description: Valeur du fond.
+          minimum: 0
+          nullable: true
+          type: number
+        collateral:
+          default: null
+          description: 'Existance d''un nantissement: oui/non.'
+          nullable: true
+          type: boolean
+        commercial_lease_start_date:
+          default: null
+          description: Date de début du bail.
+          format: date-time
+          nullable: true
+          type: string
+        commercial_lease_end_date:
+          default: null
+          description: Date de fin du bail.
+          format: date-time
+          nullable: true
+          type: string
+        company_name:
+          default: null
+          description: Nom de l'entreprise.
+          nullable: true
+          type: string
+        employees_number:
+          default: null
+          description: Nombre d'employés.
+          minimum: 0
+          nullable: true
+          type: integer
+        identification:
+          default: null
+          description: >-
+            Numéro d'identification au Registre du Commerce et des Sociétés
+            (RCS).
+          nullable: true
+          type: string
+        legal_status:
+          default: null
+          description: Forme juridique.
+          nullable: true
+          type: string
+        remaining_capital:
+          default: null
+          description: CRD si le fond est acquis via un crédit.
+          minimum: 0
+          nullable: true
+          type: number
+        rent_amount:
+          default: null
+          description: Loyer annuel.
+          minimum: 0
+          nullable: true
+          type: number
+        workplace_address:
+          $ref: '#/components/schemas/Address'
+      required:
+        - type
+    ProfessionDetails:
+      type: object
+      title: ProfessionDetails
+      description: Informations professionnelles relatives à l'emprunteur.
+      properties:
+        socio_professional_group:
+          default: null
+          description: Groupe socio-profesionnel.
+          nullable: true
+          oneOf:
+            - $ref: >-
+                #/components/schemas/SocioProfessionalGroupAgriculateursExploitants
+            - $ref: >-
+                #/components/schemas/SocioProfessionalGroupArtisansCommercantsChefsEntreprise
+            - $ref: >-
+                #/components/schemas/SocioProfessionalGroupCadresProfessionsIntellectuellesSuperieures
+            - $ref: >-
+                #/components/schemas/SocioProfessionalGroupProfessionsIntermediaires
+            - $ref: '#/components/schemas/SocioProfessionalGroupEmployes'
+            - $ref: '#/components/schemas/SocioProfessionalGroupOuvriers'
+            - $ref: '#/components/schemas/SocioProfessionalGroupRetraites'
+            - $ref: >-
+                #/components/schemas/SocioProfessionalGroupAutresPersonnesSansActiviteProfessionnelle
+        status:
+          $ref: '#/components/schemas/ProfessionStatus'
+        worker:
+          default: null
+          description: 'Travailleur: salarié ou indépendant.'
+          nullable: true
+          oneOf:
+            - $ref: '#/components/schemas/Employee'
+            - $ref: '#/components/schemas/Independant'
+    MaritalStatus:
+      type: string
+      title: MaritalStatus
+      enum:
+        - MARRIED
+        - SINGLE
+        - SEPARATED
+        - WIDOWER
+        - DIVORCED
+        - DIVORCE_ONGOING
+        - PACSED
+        - LIVING_TOGETHER
+        - 'null'
+      description: Statut marital
+    FamilySituation:
+      type: object
+      title: FamilySituation
+      description: Situation familiale.
+      properties:
+        marital_status:
+          $ref: '#/components/schemas/MaritalStatus'
+        marital_status_since:
+          type: string
+          format: date-time
+          description: Date du dernier changement de statut marital.
+        is_in_relation_with:
+          default: null
+          nullable: true
+          type: string
+          description: >-
+            A compléter si cette personne est en relation avec un autre
+            emprunteur.
+        matrimony_regime:
+          default: null
+          description: Régime matrimonial.
+          type: string
+          enum:
+            - NOT_APPLICABLE
+            - COMMUNAUTE_REDUITE_AUX_ACQUETS
+            - COMMUNAUTE_DE_MEUBLES_ET_ACQUETS
+            - COMMUNAUTE_UNIVERSELLE
+            - PARTICIPATION_AUX_ACQUETS
+            - SEPARATION_DE_BIEN
+            - null
+          nullable: true
+        divorce_procedure:
+          default: null
+          description: 'Type de procédure de divorce, si la procédure est en cours.'
+          type: string
+          enum:
+            - MUTUAL_CONSENT
+            - JUDICIAL_MUTUAL_CONSENT
+            - null
+          nullable: true
+        marital_country:
+          default: null
+          description: Pays dans lequel le mariage a eu lieu.
+          nullable: true
+          type: string
+    Housing:
+      properties:
+        housing_status:
+          default: null
+          description: Status d'habitation.
+          type: string
+          enum:
+            - HOMEOWNER
+            - TENANT
+            - FREE_OF_CHARGE_TENANT
+            - STAFF_HOUSING
+            - OTHER
+            - null
+          nullable: true
+        housing_status_since:
+          default: null
+          description: Date du dernier changement de status d'habitation.
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+      title: Housing
+      description: Status d'habitation de l'emprunteur.
+    BankInfo:
+      type: object
+      title: BankInfo
+      description: Informations bancaires d'un emprunteur.
+      properties:
+        bic:
+          default: null
+          description: Code BIC.
+          nullable: true
+          type: string
+        current_agency:
+          default: null
+          description: Nom de l'agence.
+          nullable: true
+          type: string
+        current_bank:
+          default: null
+          description: Nom de la banque actuelle.
+          nullable: true
+          type: string
+        customer_since:
+          default: null
+          description: Date depuis laquelle l'emprunteur est client de sa banque actuelle.
+          format: date-time
+          nullable: true
+          type: string
+        departement:
+          default: null
+          description: 'Département (75, 13, ...) de la banque actuelle.'
+          nullable: true
+          type: string
+        iban:
+          default: null
+          description: IBAN.
+          nullable: true
+          type: string
+    ResidencePermit:
+      properties:
+        number:
+          default: null
+          description: Numéro de titre de séjour.
+          nullable: true
+          type: string
+        delivery_date:
+          default: null
+          description: Date de delivrance du titre de séjour.
+          format: date-time
+          nullable: true
+          type: string
+        expiry_date:
+          default: null
+          description: Date d'expiration du titre de séjour.
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+      title: ResidencePermit
+      description: Informations sur le titre de séjour.
+    Individual:
+      type: object
+      title: Individual
+      description: Informations relatives à l'emprunteur personne physique.
+      properties:
+        courtesy:
+          default: null
+          description: Civilité.
+          type: string
+          enum:
+            - MR
+            - MRS
+            - null
+          nullable: true
+        first_name:
+          default: null
+          description: Prénom.
+          nullable: true
+          type: string
+        last_name:
+          default: null
+          description: Nom de famille.
+          nullable: true
+          type: string
+        birth_name:
+          default: null
+          description: Nom de naissance.
+          nullable: true
+          type: string
+        birth_date:
+          default: null
+          description: Date de naissance.
+          format: date-time
+          nullable: true
+          type: string
+        birth_place:
+          default: null
+          description: Pays de naissance.
+          nullable: true
+          type: string
+        email:
+          default: null
+          description: Email.
+          nullable: true
+          type: string
+        phone_number:
+          default: null
+          description: Numéro de téléphone.
+          nullable: true
+          type: string
+        residency_address:
+          $ref: '#/components/schemas/Address'
+        contact_address:
+          $ref: '#/components/schemas/Address'
+        family_situation:
+          $ref: '#/components/schemas/FamilySituation'
+        housing:
+          $ref: '#/components/schemas/Housing'
+        bank_info:
+          $ref: '#/components/schemas/BankInfo'
+        nationality:
+          default: null
+          description: Nationalité.
+          nullable: true
+          type: string
+        residence_permit:
+          $ref: '#/components/schemas/ResidencePermit'
+    Person:
+      type: object
+      title: Person
+      description: Informations générales sur l'emprunteur.
+      properties:
+        is_borrower:
+          type: boolean
+          nullable: true
+          default: true
+          description: >-
+            Cette personne est-elle un emprunteur, ou est-elle renseignée pour
+            information seulement.
+        finance:
+          $ref: '#/components/schemas/FinanceDetails'
+        profession:
+          $ref: '#/components/schemas/ProfessionDetails'
+        civil:
+          $ref: '#/components/schemas/Individual'
+    Child:
+      type: object
+      title: Child
+      description: Enfant.
+      properties:
+        birth_date:
+          default: null
+          description: Date de naissance de l'enfant.
+          format: date-time
+          nullable: true
+          type: string
+        shared_custody:
+          default: null
+          description: 'Garde alternée: oui/non.'
+          nullable: true
+          type: boolean
+    DependentPerson:
+      title: DependentPerson
+      type: object
+      description: 'Personne à charge, différente des enfants mineurs.'
+      properties:
+        type:
+          type: string
+          enum:
+            - MOTHER
+            - FATHER
+            - OTHER
+          description: Type de personne à charge.
+        comment:
+          type: string
+          description: Commentaire.
+          default: null
+          nullable: true
+      required:
+        - type
+    HouseholdDetails:
+      type: object
+      title: HouseholdDetails
+      description: >-
+        Détail relatifs au ménage. En cas de déclaration fiscale commune des
+        différents emprunteurs, l'information est à insérer dans cet objet.
+      properties:
+        type:
+          type: string
+          enum:
+            - HOUSEHOLD
+        persons:
+          description: Liste des persones du ménage (emprunteurs ou non).
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Person'
+        children:
+          description: Details relatifs aux enfants.
+          default: null
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Child'
+        dependent_persons:
+          description: Details relatifs aux personnes à charge.
+          default: null
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/DependentPerson'
+        first_time_buyer:
+          default: null
+          description: >-
+            Primo-accédant(s), ou assimilés (non-propriétaires de résidence
+            principale depuis plus de 2 ans): oui/non.
+          nullable: true
+          type: boolean
+        people_count:
+          type: integer
+          default: null
+          description: Nombre de personnes au total dans le ménage.
+          nullable: true
+          minimum: 1
+        children_count:
+          type: integer
+          default: null
+          nullable: true
+          minimum: 0
+          description: >-
+            Nombre d'enfants dans le ménage: correspond à la taille de la liste
+            d'enfant.
+        dependent_persons_count:
+          type: integer
+          default: null
+          nullable: true
+          minimum: 0
+          description: >-
+            Nombre de personnes dépendantes dans le ménage (hors enfants):
+            correspond à la taille de la liste de personnes dépendantes.
+        finance:
+          $ref: '#/components/schemas/FinanceDetails'
+        bank_info:
+          $ref: '#/components/schemas/BankInfo'
+      required:
+        - type
+    WeightedFigure:
+      properties:
+        figure:
+          default: null
+          description: Chiffre.
+          nullable: true
+          type: number
+        weight:
+          default: 100
+          description: >-
+            Pondération en pourcentage: 30 pour 30%. C'est à dire qu'un
+            coefficient de 0.3 sera appliqué à ce chiffre.
+          maximum: 100
+          minimum: 0
+          nullable: true
+          type: number
+      type: object
+      title: WeightedFigure
+      description: Valeur monétaire et sa pondération.
+    FinancialResults:
+      type: object
+      title: FinancialResults
+      properties:
+        Profits_Nminus1:
+          $ref: '#/components/schemas/WeightedFigure'
+        Profits_Nminus2:
+          $ref: '#/components/schemas/WeightedFigure'
+        Profits_Nminus3:
+          $ref: '#/components/schemas/WeightedFigure'
+        Turnover_Nminus1:
+          $ref: '#/components/schemas/WeightedFigure'
+        Turnover_Nminus2:
+          $ref: '#/components/schemas/WeightedFigure'
+        Turnover_Nminus3:
+          $ref: '#/components/schemas/WeightedFigure'
+      description: >-
+        Résultats financiers d'une personne morale, sur les trois dernières
+        années.
+    LegalPerson:
+      type: object
+      title: LegalPerson
+      description: Informations relatives à l'emprunteur personne morale.
+      properties:
+        type:
+          type: string
+          description: 'Type d''emprunteur: personne personne morale.'
+          enum:
+            - LEGAL_PERSON
+          nullable: true
+        name:
+          default: null
+          description: Dénomination.
+          nullable: true
+          type: string
+        email:
+          default: null
+          description: Email.
+          nullable: true
+          type: string
+        phone_number:
+          default: null
+          description: Numéro de téléphone.
+          nullable: true
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        contact_address:
+          $ref: '#/components/schemas/Address'
+        bank_info:
+          $ref: '#/components/schemas/BankInfo'
+        structure_type:
+          default: null
+          description: Type de structure.
+          type: string
+          enum:
+            - SCI
+            - COMPANY
+            - ASSOCIATION
+            - POLITICAL_PARTY
+            - LOCAL_AUTHORITIES
+            - null
+          nullable: true
+        legal_status:
+          default: null
+          description: 'Forme juridique (SARL, SA, EURL, auto-entrepreneur, ...).'
+          nullable: true
+          type: string
+        persons:
+          type: array
+          default: null
+          nullable: true
+          description: Associés de la personne morale.
+          items:
+            $ref: '#/components/schemas/Person'
+        financial_results:
+          $ref: '#/components/schemas/FinancialResults'
+      required:
+        - type
+    AcquisitionNature:
+      type: string
+      title: AcquisitionNature
+      enum:
+        - FLAT
+        - HOUSE
+        - LAND
+        - LAND_AND_CONSTRUCTION_PROJECT
+        - CONSTRUCTION_PROJECT
+        - PARKING
+        - COMMERCIAL_PREMISES
+        - OFFICES
+        - SCPI
+        - BALANCING_ADJUSTMENT
+        - 'null'
+      nullable: true
+      description: Nature de l'acquisition.
+    AcquisitionState:
+      type: string
+      title: AcquisitionState
+      enum:
+        - VEFA
+        - SOCIAL
+        - UNDER_CONSTRUCTION
+        - RAW_LAND
+        - NEW
+        - OLD_WITH_WORKS
+        - OLD
+        - WORKS
+        - 'null'
+      nullable: true
+      description: État de l'acquisition.
+    AcquisitionDestination:
+      type: string
+      title: AcquisitionDestination
+      enum:
+        - MAIN_PROPERTY
+        - SECONDARY_PROPERTY
+        - RENTAL_PROPERTY
+        - PROFESSIONAL_PROPERTY
+        - VIAGER
+        - INVESTMENT
+        - 'null'
+      nullable: true
+      description: Destination de l'acquisition.
+    AdministrativeInformation:
+      title: AdministrativeInformation
+      type: object
+      description: 'Informations diverses, dont administratives, relatives au projet.'
+      properties:
+        nature:
+          $ref: '#/components/schemas/AcquisitionNature'
+        state:
+          $ref: '#/components/schemas/AcquisitionState'
+        destination:
+          $ref: '#/components/schemas/AcquisitionDestination'
+        address:
+          $ref: '#/components/schemas/Address'
+        project_dates:
+          $ref: '#/components/schemas/ProjectDates'
+        land_register_reference:
+          default: null
+          description: Parcelle cadastrale.
+          nullable: true
+          type: string
+        description:
+          default: null
+          description: Description du bien.
+          nullable: true
+          type: string
+    DpeRate:
+      type: string
+      title: DpeRate
+      enum:
+        - A
+        - B
+        - C
+        - D
+        - E
+        - F
+        - G
+        - VIERGE
+        - 'null'
+      nullable: true
+      description: Note du diagnostique de performance énergétique (DPE).
+    Budget:
+      title: Budget
+      type: object
+      description: >-
+        Projet de type budget, lorsque l'emprunteur est encore en phase de
+        recherche, avant qu'un bien soit identifié.
+      properties:
+        type:
+          type: string
+          enum:
+            - BUDGET
+        administrative_information:
+          $ref: '#/components/schemas/AdministrativeInformation'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        expenses:
+          type: object
+          properties:
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+        comment:
+          default: null
+          description: Commentaires relatif au projet.
+          nullable: true
+          type: string
+      required:
+        - type
+    ProjectState:
+      description: État du projet.
+      type: string
+      enum:
+        - BEFORE_COMPROMIS
+        - COMPROMIS_SIGNED
+        - SIGNED
+        - CANCELLED
+        - null
+      nullable: true
+      title: Etat du projet
+    Surfaces:
+      type: object
+      title: Surfaces
+      properties:
+        surface:
+          default: null
+          description: >-
+            Surface du bien (nouvelle surface dans le cas de travaux
+            d'agrandissement).
+          minimum: 0
+          nullable: true
+          type: number
+        additional_surface:
+          default: null
+          description: Surface des annexes.
+          minimum: 0
+          nullable: true
+          type: number
+        land_surface:
+          default: null
+          description: Surface du terrain.
+          minimum: 0
+          nullable: true
+          type: number
+      description: 'Surfaces: du bien, des annexes et du terrain.'
+    HouseConstruction:
+      title: HouseConstruction
+      description: Project de construction de maison individuelle.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - HOUSE_CONSTRUCTION
+        project_state:
+          $ref: '#/components/schemas/ProjectState'
+        administrative_information:
+          $ref: '#/components/schemas/AdministrativeInformation'
+        surfaces:
+          $ref: '#/components/schemas/Surfaces'
+        delivery_date:
+          default: null
+          description: Date de livraison.
+          format: date-time
+          nullable: true
+          type: string
+        seller:
+          $ref: '#/components/schemas/Contact'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        construction_norm:
+          default: null
+          description: Norme de construction.
+          nullable: true
+          type: string
+        lot_number:
+          default: null
+          description: Numéro de lot.
+          nullable: true
+          type: string
+        rooms_count:
+          default: null
+          description: Nombre de pièces.
+          minimum: 0
+          nullable: true
+          type: integer
+        expenses:
+          type: object
+          properties:
+            land_price:
+              default: null
+              description: Prix du terrain.
+              minimum: 0
+              nullable: true
+              type: number
+            construction_price:
+              default: null
+              description: Prix de la construction.
+              minimum: 0
+              nullable: true
+              type: number
+            infrastructure_price:
+              default: null
+              description: 'Prix de la viabilisation, dans le cas d''une construction.'
+              minimum: 0
+              nullable: true
+              type: number
+            building_insurance:
+              default: null
+              description: Assurance dommage ouvrage.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            vat:
+              default: null
+              description: 'Montant de la TVA, si celle-ci est comptées séparément.'
+              minimum: 0
+              nullable: true
+              type: number
+            other_taxes:
+              default: null
+              description: 'Montant des éventuelles autres taxes (RAP, aménagement, ...).'
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+      required:
+        - type
+    OldProperty:
+      title: OldProperty
+      description: Projet d'acquisition d'un logement ancien.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - OLD_PROPERTY
+        project_state:
+          $ref: '#/components/schemas/ProjectState'
+        administrative_information:
+          $ref: '#/components/schemas/AdministrativeInformation'
+        project_dates:
+          $ref: '#/components/schemas/ProjectDates'
+        surfaces:
+          $ref: '#/components/schemas/Surfaces'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        construction_date:
+          default: null
+          description: 'Date de construction, pour les logements achevés.'
+          nullable: true
+          type: string
+        construction_norm:
+          default: null
+          description: Norme de construction.
+          nullable: true
+          type: string
+        lot_number:
+          default: null
+          description: Numéro de lot.
+          nullable: true
+          type: string
+        rooms_count:
+          default: null
+          description: Nombre de pièces.
+          minimum: 0
+          nullable: true
+          type: integer
+        seller:
+          $ref: '#/components/schemas/Contact'
+        expenses:
+          type: object
+          properties:
+            price:
+              default: null
+              description: Prix du bien à acquérir.
+              minimum: 0
+              nullable: true
+              type: number
+            works_price:
+              default: null
+              description: Prix des travaux éventuels.
+              minimum: 0
+              nullable: true
+              type: number
+            furnitures_price:
+              default: null
+              description: Coût du mobilier.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: 0
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: 0
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+      required:
+        - type
+    NewProperty:
+      title: NewProperty
+      description: Projet d'acquisition d'un logement neuf.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - NEW_PROPERTY
+        administrative_information:
+          $ref: '#/components/schemas/AdministrativeInformation'
+        surfaces:
+          $ref: '#/components/schemas/Surfaces'
+        delivery_date:
+          default: null
+          description: 'Date de livraison, dans le cas d''une construction ou d''une VEFA.'
+          format: date-time
+          nullable: true
+          type: string
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        construction_norm:
+          default: null
+          description: Norme de construction.
+          nullable: true
+          type: string
+        lot_number:
+          default: null
+          description: Numéro de lot.
+          nullable: true
+          type: string
+        rooms_count:
+          default: null
+          description: Nombre de pièces.
+          minimum: 0
+          nullable: true
+          type: integer
+        program:
+          type: string
+          description: Nom du programme neuf.
+        expenses:
+          type: object
+          properties:
+            price:
+              default: null
+              description: >-
+                Prix du bien à acquérir. Ou prix du terrain dans le cadre d'une
+                construction.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            vat:
+              default: null
+              description: 'Montant de la TVA, si celle-ci est comptées séparément.'
+              minimum: 0
+              nullable: true
+              type: number
+            other_taxes:
+              default: null
+              description: 'Montant des éventuelles autres taxes (RAP, aménagement, ...).'
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: 0
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: 0
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+      required:
+        - type
+    Works:
+      title: Works
+      description: Projet de travaux
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - WORKS
+        administrative_information:
+          $ref: '#/components/schemas/AdministrativeInformation'
+        surfaces:
+          $ref: '#/components/schemas/Surfaces'
+        construction_date:
+          default: null
+          description: 'Date de construction, pour les logements achevés.'
+          format: date-time
+          nullable: true
+          type: string
+        construction_norm:
+          default: null
+          description: Norme de construction.
+          nullable: true
+          type: string
+        delivery_date:
+          default: null
+          description: Date de livraison.
+          format: date-time
+          nullable: true
+          type: string
+        lot_number:
+          default: null
+          description: Numéro de lot.
+          nullable: true
+          type: string
+        rooms_count:
+          default: null
+          description: Nombre de pièces.
+          minimum: 0
+          nullable: true
+          type: integer
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        expenses:
+          type: object
+          properties:
+            price:
+              type: number
+              description: Prix des travaux.
+              minimum: 0
+            other_expenses:
+              type: number
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+            fees:
+              type: object
+              properties:
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+          required:
+            - price
+      required:
+        - type
+    Land:
+      title: Land
+      description: Projet d'achat de terrain.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - LAND
+        project_state:
+          $ref: '#/components/schemas/ProjectState'
+        administrative_information:
+          $ref: '#/components/schemas/AdministrativeInformation'
+        project_dates:
+          $ref: '#/components/schemas/ProjectDates'
+        surface:
+          default: null
+          description: Surface du terrain.
+          minimum: 0
+          nullable: true
+          type: number
+        seller:
+          $ref: '#/components/schemas/Contact'
+        expenses:
+          type: object
+          properties:
+            price:
+              default: null
+              description: Prix du bien à acquérir.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+    Insurance:
+      type: object
+      title: Insurance
+      properties:
+        type:
+          description: >-
+            Type d'assurance: sur le capital initial, ou sur le capital restant
+            dû.
+          type: string
+          enum:
+            - INITIAL_CAPITAL
+            - REMAINING_CAPITAL
+        rate:
+          description: >-
+            Taux annuel, en %, de l'assurance, avant multiplication par la
+            quotité. Mettre 0.3 pour 0.3% par exemple.
+          maximum: 100
+          minimum: 0
+          type: number
+        quota:
+          default: 100
+          description: 'Quotité assurée, en %. Mettre 50 pour 50% par exemple.'
+          maximum: 100
+          minimum: 0
+          type: number
+        mandatory:
+          default: true
+          description: >-
+            Assurance optionnelle ou obligatoire (de cette information dépend
+            son inclusion ou non dans le calcul TAEG).
+
+
+            Mettre à true si l'assurance est obligatoire.
+          type: boolean
+        risks_covered:
+          description: Liste des garanties de l'assurance emprunteur.
+          type: array
+          items:
+            type: string
+            enum:
+              - ITT
+              - IPP
+              - IPT
+              - PTIA
+              - DC
+              - PE
+              - null
+            nullable: true
+        comment:
+          default: null
+          description: Commentaire.
+          nullable: true
+          type: string
+      required:
+        - type
+        - rate
+      description: Assurance
+    Ira:
+      properties:
+        type:
+          description: >-
+            Type d'indemnités de remboursement anticipé (IRA): calcul légal, ou
+            valeur spécifique (négociée par exemple).
+          type: string
+          enum:
+            - LEGAL
+            - NEGOCIATED
+        value:
+          default: null
+          nullable: true
+          description: Montant des indemnités de remboursement anticipé (IRA).
+          minimum: 0
+          type: number
+      required:
+        - type
+      type: object
+      title: Ira
+      description: >-
+        Indemnités de remboursement anticipé. Si le type est LEGAL, le calcul
+        est fait automatiquement.
+    LoanToConsolidate:
+      type: object
+      title: LoanToConsolidate
+      description: Prêt à racheter ou à regrouper.
+      properties:
+        yearly_rate:
+          description: Taux annuel.
+          minimum: 0
+          type: number
+        duration_months:
+          description: Durée du prêt en mois.
+          minimum: 0
+          type: integer
+        initial_capital:
+          description: Capital initial.
+          minimum: 0
+          type: number
+        monthly_payment:
+          description: Mensualité du prêt assurance incluse.
+          minimum: 0
+          type: number
+        insurances:
+          description: Assurance(s) emprunteur(s).
+          default: null
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Insurance'
+        first_monthly_payment_date:
+          description: Date de la première mensualité.
+          format: date-time
+          type: string
+        ira:
+          $ref: '#/components/schemas/Ira'
+      required:
+        - yearly_rate
+        - duration_months
+        - initial_capital
+        - monthly_payment
+        - first_monthly_payment_date
+        - ira
+    DebtConsolidation:
+      title: DebtConsolidation
+      type: object
+      description: Projet de rachat ou de regroupement de crédits.
+      properties:
+        type:
+          type: string
+          enum:
+            - DEBT_CONSOLIDATION
+        loans_to_consolidate:
+          description: Liste du ou des prêts à racheter.
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanToConsolidate'
+        expenses:
+          type: object
+          properties:
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+      required:
+        - type
+    Pinel:
+      title: Pinel
+      description: Projet d'investissement dans le cadre du dispositif Pinel.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - PINEL
+        pinel_duration:
+          description: 'Durée du dispositif Pinel: 6, 9 ou 12 ans.'
+          type: number
+          enum:
+            - 6
+            - 9
+            - 12
+        monthly_rent_value:
+          description: Loyer mensuel.
+          minimum: 0
+          type: number
+        monthly_rent_value_yearly_evolution_rate:
+          nullable: true
+          default: 0
+          description: >-
+            Prévision de l'évolution annuelle du loyer (en pourcentage: mettre
+            0.5 pour 0.5%, -10 pour -10%, ...).
+          maximum: 100
+          minimum: -100
+          type: number
+        price_yearly_evolution_rate:
+          nullable: true
+          default: 0
+          description: >-
+            Prévision de l'évolution annuelle du prix du bien (en pourcentage:
+            mettre 0.5 pour 0.5%, -10 pour -10%, ...).
+          maximum: 100
+          minimum: -100
+          type: number
+        renting_charges_rate:
+          nullable: true
+          default: 0
+          description: >-
+            Charges locatives (en pourcentage du loyer: mettre 13 pour 13% par
+            exemple).
+          maximum: 100
+          minimum: 0
+          type: number
+        property:
+          $ref: '#/components/schemas/NewProperty'
+      required:
+        - type
+        - pinel_duration
+        - monthly_rent_value
+    CaseMetaData:
+      type: object
+      title: CaseMetaData
+      description: Meta données du dossier.
+      properties:
+        name:
+          default: null
+          description: 'Nom permettant d''identifier le dossier, ou nom de l''affaire.'
+          nullable: true
+          type: string
+        state:
+          default: null
+          description: État du dossier.
+          type: string
+          enum:
+            - NEW
+            - INSTRUCTION
+            - SENT_TO_BANK
+            - ACCEPTED_BY_BANK
+            - REFUSED_BY_BANK
+            - ACCEPTED_BY_BORROWER
+            - REFUSED_BY_BORROWER
+            - FUNDS_DELIVERED
+            - BILLED
+            - CLOSED
+            - CANCELLED
+            - null
+          nullable: true
+        creation_date:
+          default: null
+          description: >-
+            Date de création du dossier (cette date est déterminée par le
+            système automatiquement).
+          format: date-time
+          nullable: true
+          type: string
+        last_update_date:
+          default: null
+          description: >-
+            Date de la dernière mise à jour du dossier (cette date est
+            déterminée par le système automatiquement).
+          format: date-time
+          nullable: true
+          type: string
+    Case:
+      type: object
+      title: Case
+      description: Dossier emprunteur complet.
+      properties:
+        id:
+          default: null
+          description: ID unique du case.
+          nullable: true
+          type: string
+        actor:
+          oneOf:
+            - $ref: '#/components/schemas/HouseholdDetails'
+            - $ref: '#/components/schemas/LegalPerson'
+        partners:
+          description: >-
+            Liste des intervenants sur le dossier: notaire, courtier, conseiller
+            clientèle banque, agent immobilier, etc...
+          type: array
+          items:
+            $ref: '#/components/schemas/ActivePartner'
+        project:
+          oneOf:
+            - $ref: '#/components/schemas/Budget'
+            - $ref: '#/components/schemas/HouseConstruction'
+            - $ref: '#/components/schemas/OldProperty'
+            - $ref: '#/components/schemas/NewProperty'
+            - $ref: '#/components/schemas/Works'
+            - $ref: '#/components/schemas/Land'
+            - $ref: '#/components/schemas/DebtConsolidation'
+            - $ref: '#/components/schemas/Pinel'
+          description: Projet.
+        metadata:
+          $ref: '#/components/schemas/CaseMetaData'
+    CaseResponse:
+      title: CaseResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Case'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+      required:
+        - errors
+    DeleteResponse:
+      title: DeleteResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: string
+    CasesResponse:
+      title: CasesResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Case'
+    SimulationMetadata:
+      type: object
+      title: SimulationMetadata
+      description: Metadate de la simulation.
+      properties:
+        id:
+          description: ID unique de la simulation
+          type: string
+        case_id:
+          default: null
+          description: ID du dossier lié à cette simulation
+          nullable: true
+          type: string
+      required:
+        - id
+    GuarantyType:
+      type: string
+      title: GuarantyType
+      enum:
+        - HYPOTHEQUE
+        - IPPD
+        - CASDEN
+        - CREDIT_LOGEMENT_CLASSIC
+        - CREDIT_LOGEMENT_INITIO
+        - MGEN
+        - 'null'
+      nullable: true
+      description: Type de garantie du prêt.
+    GracePeriod:
+      properties:
+        type:
+          description: >-
+            Type de différé: partiel (différé d'amortissement uniquement) ou
+            total (différé d'amortissement et d'intérets).
+          type: string
+          enum:
+            - PARTIAL
+            - TOTAL
+        length:
+          description: Durée du différé en mois.
+          minimum: 0
+          type: integer
+      required:
+        - length
+        - type
+      type: object
+      title: GracePeriod
+      description: Différé d'amortissement ou de remboursement.
+    FreeLoan:
+      type: object
+      title: FreeLoan
+      description: >-
+        Prêt libre: prêt bancaire classique à amortissement. 
+
+
+        Inutile de préciser le montant: le moteur de calcul le déterminera de
+        façon optimale en fonction des postes de dépense du projet. 
+
+
+        En plus des caractéristiques habituelles (taux, durée, assurance et
+        garantie), des caractéristiques d'amortissement, ou de montant peuvent
+        être précisées si nécessaire.
+      properties:
+        type:
+          type: string
+          description: 'Type de prêt: prêt libre.'
+          enum:
+            - FREE_LOAN
+        yearly_rate:
+          description: Taux d'intérêt annuel en %. Mettre 2.1 pour 2.1% par exemple.
+          maximum: 100
+          minimum: 0
+          type: number
+        max_duration_months:
+          description: 'Durée maximale du prêt, en mois.'
+          minimum: 0
+          type: integer
+        insurances:
+          description: Assurance(s) emprunteur(s).
+          default: null
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Insurance'
+        guaranty_type:
+          $ref: '#/components/schemas/GuarantyType'
+        grace_period:
+          $ref: '#/components/schemas/GracePeriod'
+        max_amortization:
+          default: null
+          description: >-
+            Amortissement mensuel maximal du prêt, (pour un prêt d'amortissement
+            mensuel constant, min_amortization = max_amortization).
+          minimum: 0
+          nullable: true
+          type: number
+        max_amount:
+          default: null
+          description: >-
+            Montant maximal du prêt, (pour un prêt de montant fixé, min_amount =
+            max_amount).
+          minimum: 0
+          nullable: true
+          type: number
+        min_amortization:
+          default: null
+          description: >-
+            Amortissement mensuel minimal du prêt, (pour un prêt d'amortissement
+            mensuel constant, min_amortization = max_amortization).
+          minimum: 0
+          nullable: true
+          type: number
+        min_amount:
+          default: null
+          description: >-
+            Montant minimal du prêt, (pour un prêt de montant fixé, min_amount =
+            max_amount).
+          minimum: 0
+          nullable: true
+          type: number
+        loan_name:
+          type: string
+          description: >-
+            Nom du prêt: tout type d'identification (appellation marketing,
+            etc...)
+      required:
+        - type
+        - yearly_rate
+        - max_duration_months
+    PtzLoan:
+      type: object
+      title: PtzLoan
+      description: >-
+        Prêt à taux zéro du gouvernement, ainsi que sa ou ses assurance(s) et sa
+        garantie. 
+
+
+        L'inclusion de ce prêt dans le plan de financement dépendra au final du
+        résultat de calcul d'élligibilité et donc des caractéristiques du
+        dossier.
+      properties:
+        type:
+          type: string
+          enum:
+            - PTZ_LOAN
+          description: 'Type de prêt: PTZ.'
+        insurances:
+          description: Assurance(s) emprunteur(s).
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Insurance'
+        guaranty_type:
+          $ref: '#/components/schemas/GuarantyType'
+      required:
+        - type
+    BossLoan:
+      type: object
+      title: BossLoan
+      description: >-
+        Prêt 1% employeur, ainsi que sa ou ses assurance(s) et sa garantie. 
+
+
+        L'inclusion de ce prêt dans le plan de financement dépendra au final du
+        résultat de calcul d'élligibilité et donc des caractéristiques du
+        dossier.
+      properties:
+        type:
+          type: string
+          enum:
+            - BOSS_LOAN
+          description: 'Type de prêt: prêt 1% employeur.'
+        insurances:
+          description: Assurance(s) emprunteur(s).
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Insurance'
+        guaranty_type:
+          $ref: '#/components/schemas/GuarantyType'
+      required:
+        - type
+    BridgeLoan:
+      type: object
+      title: BridgeLoan
+      description: >-
+        Prêt relais. 
+
+
+        Il est à noter que cet objet peut matérialiser un prêt relais ou un prêt
+        in-fine, ces 2 prêts étants définis de manière identique au sein d'un
+        plan de financement. Les caractéristiques de ces 2 prêts (période de
+        différé partiel et remboursement du capital en une seule fois à la fin
+        du prêt) sont en effet identiques. Seuls changent l'objet du prêt, et ce
+        à quoi le prêt est adossé (un bien immobilier, le nantissement d'un
+        plancement financier...).
+      properties:
+        type:
+          type: string
+          description: 'Type de prêt: prêt relais.'
+          enum:
+            - BRIDGE_LOAN
+        amount:
+          description: >-
+            Montant maximal du prêt, (pour un prêt de montant fixé, min_amount =
+            max_amount).
+          minimum: 0
+          type: number
+        yearly_rate:
+          description: Taux d'intérêt annuel en %. Mettre 2.1 pour 2.1% par exemple.
+          maximum: 100
+          minimum: 0
+          type: number
+        duration_months:
+          description: 'Durée maximale du prêt, en mois.'
+          minimum: 0
+          type: integer
+        insurances:
+          description: Assurance(s) emprunteur(s).
+          type: array
+          items:
+            $ref: '#/components/schemas/Insurance'
+        guaranty_type:
+          $ref: '#/components/schemas/GuarantyType'
+        loan_name:
+          type: string
+          description: >-
+            Nom du prêt: tout type d'identification (appellation marketing,
+            etc...)
+      required:
+        - type
+        - amount
+        - yearly_rate
+        - duration_months
+    SmoothableCharge:
+      type: object
+      title: SmoothableCharge
+      description: 'Charge persistante lissable, matérialisée dans le plan de financement.'
+      properties:
+        type:
+          type: string
+          description: Type.
+          enum:
+            - SMOOTHABLE_CHARGE
+        start_month:
+          description: >-
+            Mois de départ du paiement de la charge lissable, dans le plan de
+            financement.
+          minimum: 0
+          type: integer
+        end_month:
+          description: >-
+            Mois de fin du paiement de la charge lissable, dans le plan de
+            financement.
+          minimum: 0
+          type: integer
+        monthly_payment:
+          description: Montant du paiement mensuel de la charge.
+          minimum: 0
+          type: number
+        charge_name:
+          type: string
+      required:
+        - type
+        - start_month
+        - end_month
+        - monthly_payment
+    AvailableLoan:
+      title: AvailableLoan
+      oneOf:
+        - $ref: '#/components/schemas/FreeLoan'
+        - $ref: '#/components/schemas/PtzLoan'
+        - $ref: '#/components/schemas/BossLoan'
+        - $ref: '#/components/schemas/BridgeLoan'
+        - $ref: '#/components/schemas/SmoothableCharge'
+      description: >-
+        Prêt à inclure dans le plan de financement.
+
+
+        L'inclusion d'un prêt le plan de financement dépendra de son utilité, ou
+        du résultat de calcul d'élligibilité dans le cas de prêts réglementés.
+    Modulation:
+      type: object
+      title: Modulation
+      description: Modulation d'échéance à appliquer sur le plan de financement.
+      properties:
+        monthly_payment:
+          description: Montant de la mensualité globale.
+          minimum: 0
+          type: number
+        period_start:
+          description: >-
+            Date (mois) de départ de la modulation d'échéance (l'indice du
+            premier mois est 1).
+          minimum: 1
+          type: integer
+        period_end:
+          description: Date (mois) de fin de la modulation d'échéance.
+          minimum: 1
+          type: integer
+      required:
+        - monthly_payment
+        - period_start
+        - period_end
+    BudgetPlanParameters:
+      title: BudgetPlanParameters
+      type: object
+      description: Paramètres du plan de financement d'un calcul de budget
+      properties:
+        maximal_monthly_payment:
+          type: number
+          description: 'Mensualité maximale, à ne pas dépasser.'
+          minimum: 0
+          nullable: true
+          default: null
+        maximal_debt_ratio:
+          type: number
+          minimum: 0
+          maximum: 100
+          nullable: true
+          default: null
+          description: >-
+            Pourcentage d'endettement à ne pas dépasser. En général égal à 33%
+            des revenus de l'emprunteur.
+        loans:
+          description: >-
+            Type(s) de prêt à considérer pour la simulation. L'ajout d'un
+            élément dans cette liste ne garanti pas qu'il sera utilisé dans le
+            plan de financement final, si le plan peut être satisfait avec un
+            sous ensemble des lignes, ou si l'emprunteur n'est pas elligible à
+            certain de ces prêts (PTZ...).
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableLoan'
+        modulations:
+          description: >-
+            Profil de modulation de remboursement, pour créer des plans de
+            financement à paliers.
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Modulation'
+        bank:
+          $ref: '#/components/schemas/ActivePartner'
+      required:
+        - loans
+    LightAddress:
+      type: object
+      title: LightAddress
+      description: >-
+        Adresse, contenant le code INSEE, nécessaires au calcul de zonage. Pour
+        obtenir le code INSEE, utilisez https://geo.api.gouv.fr/adresse.
+      properties:
+        insee_code:
+          default: null
+          description: Code INSEE de la commune.
+          nullable: true
+          type: string
+    LightAdministrativeInformation:
+      title: LightAdministrativeInformation
+      type: object
+      description: 'Informations diverses, dont administratives, relatives au projet.'
+      properties:
+        nature:
+          $ref: '#/components/schemas/AcquisitionNature'
+        state:
+          $ref: '#/components/schemas/AcquisitionState'
+        destination:
+          $ref: '#/components/schemas/AcquisitionDestination'
+        address:
+          $ref: '#/components/schemas/LightAddress'
+    LightBudget:
+      title: LightBudget
+      type: object
+      description: >-
+        Projet de type budget, lorsque l'emprunteur est encore en phase de
+        recherche, avant qu'un bien soit identifié.
+      properties:
+        type:
+          type: string
+          enum:
+            - BUDGET
+        administrative_information:
+          $ref: '#/components/schemas/LightAdministrativeInformation'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        expenses:
+          type: object
+          properties:
+            other_expenses:
+              default: null
+              description: >-
+                Montant des éventuelles autres dépenses à diminuer du budget.
+                Ces dépenses seront exclus du calcul des frais de noataire.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+    LightIncomeTax:
+      type: object
+      title: LightIncomeTax
+      properties:
+        fiscal_reference_revenue_Nminus1:
+          default: null
+          description: Revenu fiscal de référence de l'année N-1.
+          minimum: 0
+          nullable: true
+          type: number
+        fiscal_reference_revenue_Nminus2:
+          default: null
+          description: Revenu fiscal de référence de l'année N-2.
+          minimum: 0
+          nullable: true
+          type: number
+      description: Informations fiscales.
+    LightFinanceDetails:
+      type: object
+      title: LightFinanceDetails
+      description: >-
+        Détails sur les finances de l'emprunteur.
+
+
+        La capacité de remboursement est calculée comme: Somme(revenu *
+        pondération) - Somme(charge * pondération) - Somme(CréditsPersistants *
+        pondération).
+      properties:
+        personal_funding:
+          default: null
+          description: Apport personnel consacré au financement du projet.
+          minimum: 0
+          nullable: true
+          type: number
+        income_tax:
+          $ref: '#/components/schemas/LightIncomeTax'
+        revenues:
+          default: null
+          description: >-
+            Liste des revenus persistants après le projet. Le reste à vivre est
+            calculé comme: sum(revenu * pondération) - sum(charge *
+            pondération).
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RevenueItem'
+        charges:
+          default: null
+          description: >-
+            Liste des charges persistantes après le projet. Le reste à vivre est
+            calculé comme: sum(revenu * pondération) - sum(charge *
+            pondération).
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargeItem'
+        current_loans:
+          description: 'Prêt(s) existant(s): immobilier, consommation ou autres'
+          type: array
+          items:
+            $ref: '#/components/schemas/CurrentLoan'
+    LightProfessionDetails:
+      type: object
+      title: LightProfessionDetails
+      properties:
+        status:
+          $ref: '#/components/schemas/ProfessionStatus'
+        employees_number:
+          type: number
+          minimum: 0
+      description: Informations professionnelles relatives à l'emprunteur.
+    LightFamilySituation:
+      type: object
+      title: LightFamilySituation
+      properties:
+        marital_status:
+          $ref: '#/components/schemas/MaritalStatus'
+      description: Situation familiale.
+    LightIndividual:
+      type: object
+      title: LightIndividual
+      description: Informations relatives à l'emprunteur personne physique.
+      properties:
+        birth_date:
+          default: null
+          description: Date de naissance.
+          format: date-time
+          nullable: true
+          type: string
+        family_situation:
+          $ref: '#/components/schemas/LightFamilySituation'
+    LightPerson:
+      type: object
+      title: LightPerson
+      description: Informations générales sur l'emprunteur.
+      properties:
+        is_borrower:
+          type: boolean
+          nullable: true
+          default: true
+          description: >-
+            Cette personne est-elle un emprunteur, ou est-elle renseignée pour
+            information seulement.
+        finance:
+          $ref: '#/components/schemas/LightFinanceDetails'
+        profession:
+          $ref: '#/components/schemas/LightProfessionDetails'
+        civil:
+          $ref: '#/components/schemas/LightIndividual'
+    LightHouseholdDetails:
+      type: object
+      title: LightHouseholdDetails
+      description: >-
+        Détail relatifs au ménage. En cas de déclaration fiscale commune des
+        différents emprunteurs, l'information est à insérer ici.
+      properties:
+        type:
+          type: string
+          enum:
+            - HOUSEHOLD
+        persons:
+          type: array
+          nullable: true
+          default: null
+          items:
+            $ref: '#/components/schemas/LightPerson'
+        first_time_buyer:
+          default: null
+          description: 'Primo-accédant(s): oui/non.'
+          nullable: true
+          type: boolean
+        people_count:
+          type: integer
+          default: null
+          description: Nombre de personnes au total dans le ménage.
+          nullable: true
+          minimum: 1
+        children_count:
+          default: null
+          nullable: true
+          type: number
+          description: Nombre d'enfants dans le ménage.
+          minimum: 0
+        dependent_persons_count:
+          default: null
+          nullable: true
+          type: number
+          description: 'Nombre de personnes à charge dans le ménage, hors enfants.'
+          minimum: 0
+        finance:
+          $ref: '#/components/schemas/LightFinanceDetails'
+      required:
+        - type
+    LightLegalPerson:
+      title: LightLegalPerson
+      type: object
+      description: Informations relatives à l'emprunteur personne morale.
+      properties:
+        type:
+          type: string
+          enum:
+            - LEGAL_PERSON
+        structure_type:
+          default: null
+          description: Type de structure.
+          type: string
+          enum:
+            - SCI
+            - COMPANY
+            - ASSOCIATION
+            - POLITICAL_PARTY
+            - LOCAL_AUTHORITIES
+            - null
+          nullable: true
+        persons:
+          type: array
+          default: null
+          nullable: true
+          description: Associés de la persone morale.
+          items:
+            $ref: '#/components/schemas/LightPerson'
+        financial_results:
+          $ref: '#/components/schemas/FinancialResults'
+      required:
+        - type
+    LightCaseBudget:
+      type: object
+      title: LightCaseBudget
+      description: >-
+        Dossier emprunteur limité aux informations impactant le plan de
+        financement, pour un calcul de budget.
+      properties:
+        project:
+          $ref: '#/components/schemas/LightBudget'
+        actor:
+          oneOf:
+            - $ref: '#/components/schemas/LightHouseholdDetails'
+            - $ref: '#/components/schemas/LightLegalPerson'
+    BudgetParameters:
+      title: BudgetParameters
+      description: Paramètres d'un calcul de budget.
+      allOf:
+        - $ref: '#/components/schemas/BudgetPlanParameters'
+        - $ref: '#/components/schemas/LightCaseBudget'
+    BudgetAmounts:
+      type: object
+      title: BudgetAmounts
+      description: >-
+        Montants maximums des différents postes de dépense. Le budget total
+        étant égal à la sommes de tous les autres postes de dépense.
+      properties:
+        broker_fees:
+          type: number
+          description: Part du budget dédiée aux frais de courtage.
+          minimum: 0
+        file_management_fees:
+          type: number
+          description: Part du budget dédiée aux frais de dossier.
+          minimum: 0
+        guaranties_fees:
+          type: number
+          description: ¨Part du budget dédiée aux frais de garantie des prêts.
+          minimum: 0
+        maximal_price:
+          type: number
+          description: >-
+            Part du budget dédiée à l'achat du bien, frais d'agence inclus mais
+            frais de notaire exclus.
+          minimum: 0
+        notary_fees:
+          type: number
+          description: Part du budget dédiée aux frais de notaire.
+          minimum: 0
+        total_budget:
+          type: number
+          description: >-
+            Budget total, incluant le prix bien ainsi tous les frais, à
+            l'exception des frais de garantie.
+          minimum: 0
+      required:
+        - broker_fees
+        - file_management_fees
+        - guaranties_fees
+        - maximal_price
+        - notary_fees
+        - total_budget
+    Guaranty:
+      type: object
+      title: Guaranty
+      description: Garantie calculée du prêt.
+      properties:
+        type:
+          $ref: '#/components/schemas/GuarantyType'
+        guaranty_commission:
+          type: number
+          default: 0
+          description: >-
+            Montant de la commission de la garantie: frais de dossier en
+            général, à fond perdu.
+          minimum: 0
+        mutualized_guaranty_contribution:
+          type: number
+          default: 0
+          description: >-
+            Montant de la contribution au fond mutuel de garantie. Dans le cas
+            d'une Hypothèque ou IPPD par exemple, ce montant n'a pas de sens.
+          minimum: 0
+      required:
+        - type
+    ComputedInsurance:
+      type: object
+      title: ComputedInsurance
+      properties:
+        insurance:
+          $ref: '#/components/schemas/Insurance'
+        monthly_values:
+          description: Représente les primes d'assurance mensuelles.
+          type: array
+          items:
+            type: number
+      required:
+        - monthly_values
+      description: Assurance et primes calculées.
+    Loan:
+      type: object
+      title: Loan
+      description: >-
+        Caractéristiques de la ligne de crédit incluse dans le plan de
+        financement.
+      properties:
+        type:
+          type: string
+          description: 'Type de prêt: libre, prêt à taux zéro, relais...'
+          enum:
+            - FREE_LOAN
+            - PTZ_LOAN
+            - BOSS_LOAN
+            - BRIDGE_LOAN
+            - SMOOTHABLE_CHARGE
+        yearly_rate:
+          description: Taux d'intérêt annuel.
+          minimum: 0
+          type: number
+        duration_months:
+          description: Durée du prêt en mois.
+          type: integer
+        amount:
+          description: Montant du prêt.
+          type: number
+        guaranty:
+          $ref: '#/components/schemas/Guaranty'
+        grace_period:
+          $ref: '#/components/schemas/GracePeriod'
+        amortizations:
+          description: Représente les amortissements au cours du temps.
+          type: array
+          items:
+            type: number
+        interests:
+          description: Représente les intérêts au cours du temps.
+          type: array
+          items:
+            type: number
+        insurances:
+          description: >-
+            Représente les détails des assurances, ainsi que les primes
+            mensuelles.
+          type: array
+          items:
+            $ref: '#/components/schemas/ComputedInsurance'
+        released_amounts:
+          description: >-
+            Représente les tranches de déblocage, depuis la première tranche
+            jusqu'au déblocage complet du prêt.
+          type: array
+          items:
+            type: number
+        remaining_capital:
+          description: Représente le capital restant dû au cours du temps.
+          type: array
+          items:
+            type: number
+        preamortizations:
+          description: >-
+            Compteur de pré-amortissement: représente les remboursements des
+            intérêts capitalisés au cours du temps, dans le cas d'un différé
+            partiel supérieur à 12 mois.
+          type: array
+          items:
+            type: number
+        interests_cost:
+          description: Coût total des intérêts du prêt.
+          minimum: 0
+          type: number
+        insurance_cost:
+          description: Coût total des primes d'assurance du prêt.
+          minimum: 0
+          type: number
+        preamortization_cost:
+          description: Montant du compteur de pré-amortissement.
+          minimum: 0
+          type: number
+        loan_name:
+          type: string
+          description: >-
+            Nom du prêt: tout type d'identification (appellation marketing,
+            etc...)
+      required:
+        - type
+        - yearly_rate
+        - duration_months
+        - amount
+        - amortizations
+        - interests
+        - insurances
+        - released_amounts
+        - remaining_capital
+        - preamortizations
+        - interests_cost
+        - insurance_cost
+        - preamortization_cost
+    Taeg:
+      properties:
+        free_taeg:
+          description: 'TAEG, à l''exclusion du ou des prêt(s) relais.'
+          minimum: 0
+          type: number
+        free_taeg_above_wear_rate:
+          description: Comparaison du TAEG avec le taux d'usure en vigueur.
+          type: boolean
+        bridge_taeg:
+          description: TAEG du ou des prêts relais.
+          minimum: 0
+          type: number
+        bridge_taeg_above_wear_rate:
+          description: >-
+            Comparaison du TAEG du ou des prêt(s) relais avec le taux d'usure en
+            vigueur.
+          type: boolean
+      required:
+        - bridge_taeg
+        - bridge_taeg_above_wear_rate
+        - free_taeg
+        - free_taeg_above_wear_rate
+      type: object
+      title: Taeg
+      description: Taux Annuel Effectif Global (TAEG) et confrontation au taux d'usure.
+    Zone:
+      type: string
+      title: Zone
+      default: null
+      enum:
+        - A
+        - A bis
+        - B1
+        - B2
+        - C
+        - DROM
+        - 'null'
+      description: Zonage.
+    FundingResultsSummary:
+      title: FundingResultsSummary
+      type: object
+      description: >-
+        Résumé du plan de financement: valeurs, montants globaux et zone
+        utilisée pour le calcul.
+      properties:
+        effective_maximal_monthly_payment:
+          type: number
+          minimum: 0
+          nullable: true
+          default: null
+          description: >-
+            Montant maximal des mensualités, sur toute la durée du plan de
+            financement.
+        duration_months:
+          type: integer
+          minimum: 0
+          nullable: true
+          default: null
+          description: Durée totale du plan de financement.
+        total_interests:
+          type: number
+          minimum: 0
+          nullable: true
+          default: null
+          description: Coût total des intérêts.
+        total_insurances:
+          type: number
+          minimum: 0
+          nullable: true
+          default: null
+          description: Coût total des assurances.
+        total_guaranty:
+          type: number
+          minimum: 0
+          nullable: true
+          default: null
+          description: Coût totals des garanties.
+        total_preamortizations:
+          type: number
+          minimum: 0
+          nullable: true
+          default: null
+          description: Coût total du pré-amortissement.
+        final_debt_ratio:
+          type: number
+          minimum: 0
+          nullable: true
+          default: null
+          description: >-
+            Taux d'endettement final de l'emprunteur, calculé en considérant
+            l'ensemble de ses revenus, de ses charges, et du plan de
+            financement. Une valeur a null signifie que le calcul est impossible
+            (revenus non renseignés par exemple).
+        zone:
+          $ref: '#/components/schemas/Zone'
+    FundingResults:
+      type: object
+      title: FundingResults
+      description: Résultats d'un calcul de financement.
+      properties:
+        status:
+          description: >-
+            Status de la simulation: optimal (c'est à dire qu'un plan de
+            financement a été trouvé) ou infaisable (la plupart du temps,
+            enraison d'une mensualité maximale trop basse).
+          type: string
+          enum:
+            - OPTIMAL
+            - INFEASIBLE
+        loans:
+          description: Ligne(s) de crédit incluses dans le plan de financement.
+          type: array
+          default: null
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Loan'
+        taegs:
+          $ref: '#/components/schemas/Taeg'
+        summary:
+          $ref: '#/components/schemas/FundingResultsSummary'
+      required:
+        - status
+    BudgetResults:
+      type: object
+      title: BudgetResults
+      description: Résultats d'un calcul de budget.
+      properties:
+        budgets:
+          $ref: '#/components/schemas/BudgetAmounts'
+        funding_plan:
+          $ref: '#/components/schemas/FundingResults'
+    BudgetSimulation:
+      title: BudgetSimulation
+      description: Réponse d'un calcul de budget.
+      allOf:
+        - $ref: '#/components/schemas/SimulationMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              default: BUDGET
+              description: Type de simulation.
+              enum:
+                - BUDGET
+            parameters:
+              $ref: '#/components/schemas/BudgetParameters'
+            results:
+              $ref: '#/components/schemas/BudgetResults'
+          required:
+            - type
+            - parameters
+    SimulationObjective:
+      type: string
+      title: SimulationObjective
+      enum:
+        - MINIMIZE_COST
+        - MINIMIZE_INSTALMENT
+      description: >-
+        Objectif de la simulation:
+
+
+        - Minimiser le coût global du plan de financement, et donc saturer la
+        capacitée de remboursementde l'emprunteur. C'est à dire que la
+        mensualité maximale donnée en entrée est systématiquement utilisée.
+
+
+        - Maximiser le reste à vivre (et donc minimiser la mensualitée): le plan
+        de financement obtenu est plus long et plus coûteux, mais la mensualité
+        est la plus basse possible, et donc le reste à vivre le meilleur
+        possible.
+    CallForFunds:
+      properties:
+        amount:
+          description: Montant débloqué.
+          minimum: 0
+          type: number
+        date:
+          description: Date (mois) de déblocage.
+          minimum: 0
+          type: integer
+        reason:
+          default: null
+          description: Finalité du déblocage.
+          type: string
+      required:
+        - amount
+        - date
+      type: object
+      title: CallForFunds
+      description: 'Appel de fonds, dans le cadre d''un contract CCMI par exemple.'
+    CallsForFunds:
+      type: object
+      title: CallsForFunds
+      description: >-
+        Calendrier d'appels de fonds, dans le cadre d'un contrat CCMI par
+        exemple.
+      properties:
+        type:
+          description: >-
+            Type de déblocage. Minimisation des coûts: les fonds sont puisées
+            dans les prêts les moins chers en premier (dans la mesure du
+            possible). Proportionnellement: les fonds sont puisés dans chacun
+            des prêts, proportionnellement aux montants des prêts.
+          type: string
+          enum:
+            - PROPORTIONAL
+            - INCREASING_RATE
+        calls:
+          description: 'Dates (mois), montants et finalités des tranches de déblocage.'
+          type: array
+          items:
+            $ref: '#/components/schemas/CallForFunds'
+      required:
+        - type
+        - calls
+    FundingPlanParameters:
+      title: FundingPlanParameters
+      type: object
+      description: Paramètres du plan de financement.
+      properties:
+        objective:
+          $ref: '#/components/schemas/SimulationObjective'
+        maximal_monthly_payment:
+          type: number
+          description: 'Mensualité maximale, à ne pas dépasser.'
+          minimum: 0
+          nullable: true
+          default: null
+        maximal_debt_ratio:
+          type: number
+          minimum: 0
+          maximum: 100
+          nullable: true
+          default: null
+          description: >-
+            Pourcentage d'endettement à ne pas dépasser. En général égale à 33%
+            des revenus de l'emprunteur.
+        loans:
+          description: >-
+            Ligne(s) de prêt à considérer pour la simulation. L'ajout d'un
+            élément dans cette liste ne garantit pas qu'il sera utilisé dans le
+            plan de financement final, si le plan peut être satisfait et
+            optimisé avec un sous ensemble des lignes.
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableLoan'
+        calls_for_funds:
+          $ref: '#/components/schemas/CallsForFunds'
+        modulations:
+          description: >-
+            Profil de modulation d'échéance: permet de proposer un plan de
+            financement avec une mensualité variable au court du temps.
+          type: array
+          items:
+            $ref: '#/components/schemas/Modulation'
+        bank:
+          $ref: '#/components/schemas/ActivePartner'
+      required:
+        - loans
+    LightHouseConstruction:
+      title: LightHouseConstruction
+      description: ''
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - HOUSE_CONSTRUCTION
+        administrative_information:
+          $ref: '#/components/schemas/LightAdministrativeInformation'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        expenses:
+          type: object
+          properties:
+            land_price:
+              default: null
+              description: Prix du terrain.
+              minimum: 0
+              nullable: true
+              type: number
+            construction_price:
+              default: null
+              description: Prix de la construction.
+              minimum: 0
+              nullable: true
+              type: number
+            infrastructure_price:
+              default: null
+              description: 'Prix de la viabilisation, dans le cas d''une construction.'
+              minimum: 0
+              nullable: true
+              type: number
+            building_insurance:
+              default: null
+              description: Assurance dommage ouvrage.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            vat:
+              default: null
+              description: 'Montant de la TVA, si celle-ci est comptées séparément.'
+              minimum: 0
+              nullable: true
+              type: number
+            other_taxes:
+              default: null
+              description: 'Montant des éventuelles autres taxes (RAP, aménagement, ...).'
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+      required:
+        - type
+    LightOldProperty:
+      title: LightOldProperty
+      description: Projet d'acquisition d'un logement ancien.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - OLD_PROPERTY
+        administrative_information:
+          $ref: '#/components/schemas/LightAdministrativeInformation'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        expenses:
+          type: object
+          properties:
+            price:
+              default: null
+              description: Prix du bien à acquérir.
+              minimum: 0
+              nullable: true
+              type: number
+            furnitures_price:
+              default: null
+              description: Coût du mobilier.
+              minimum: 0
+              nullable: true
+              type: number
+            works_price:
+              default: null
+              description: Prix des travaux éventuels.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+      required:
+        - type
+    LightNewProperty:
+      title: LightNewProperty
+      description: Projet d'acquisition d'un logement neuf.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - NEW_PROPERTY
+        administrative_information:
+          $ref: '#/components/schemas/LightAdministrativeInformation'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        expenses:
+          type: object
+          properties:
+            price:
+              default: null
+              description: >-
+                Prix du bien à acquérir. Ou prix du terrain dans le cadre d'une
+                construction.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            vat:
+              default: null
+              description: 'Montant de la TVA, si celle-ci est comptées séparément.'
+              minimum: 0
+              nullable: true
+              type: number
+            other_taxes:
+              default: null
+              description: 'Montant des éventuelles autres taxes (RAP, aménagement, ...).'
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+      required:
+        - type
+    LightWorks:
+      title: LightWorks
+      description: Projet de travaux
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - WORKS
+        administrative_information:
+          $ref: '#/components/schemas/LightAdministrativeInformation'
+        dpe_rate:
+          $ref: '#/components/schemas/DpeRate'
+        expenses:
+          type: object
+          properties:
+            works_price:
+              default: null
+              description: Prix des travaux.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+      required:
+        - type
+    LightLand:
+      title: LightLand
+      description: Projet d'achat de terrain.
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - LAND
+        administrative_information:
+          $ref: '#/components/schemas/LightAdministrativeInformation'
+        expenses:
+          type: object
+          properties:
+            land_price:
+              default: null
+              description: Prix du bien à acquérir.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+      required:
+        - type
+    LightCaseFunding:
+      type: object
+      title: LightCaseFunding
+      description: >-
+        Dossier emprunteur limité aux informations impactant le plan de
+        financement, pour un financement.
+      properties:
+        project:
+          oneOf:
+            - $ref: '#/components/schemas/LightHouseConstruction'
+            - $ref: '#/components/schemas/LightOldProperty'
+            - $ref: '#/components/schemas/LightNewProperty'
+            - $ref: '#/components/schemas/LightWorks'
+            - $ref: '#/components/schemas/LightLand'
+        actor:
+          oneOf:
+            - $ref: '#/components/schemas/LightHouseholdDetails'
+            - $ref: '#/components/schemas/LightLegalPerson'
+    FundingParameters:
+      title: FundingParameters
+      description: Paramètres d'un calcul de financement.
+      allOf:
+        - $ref: '#/components/schemas/FundingPlanParameters'
+        - $ref: '#/components/schemas/LightCaseFunding'
+    FundingSimulation:
+      title: FundingSimulation
+      description: Réponse d'un calcul de financement.
+      allOf:
+        - $ref: '#/components/schemas/SimulationMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              default: FUNDING
+              description: Type de simulation.
+              enum:
+                - FUNDING
+            parameters:
+              $ref: '#/components/schemas/FundingParameters'
+            results:
+              $ref: '#/components/schemas/FundingResults'
+          required:
+            - type
+            - parameters
+    DebtConsolidationPlanParameters:
+      title: DebtConsolidationPlanParameters
+      type: object
+      description: >-
+        Paramètres du plan de financement d'un rachat ou regroupement de
+        crédits.
+      properties:
+        objective:
+          $ref: '#/components/schemas/SimulationObjective'
+        maximal_monthly_payment:
+          type: number
+          description: 'Mensualité maximale, à ne pas dépasser.'
+          minimum: 0
+          nullable: true
+          default: null
+        maximal_debt_ratio:
+          type: number
+          minimum: 0
+          maximum: 100
+          nullable: true
+          default: null
+          description: >-
+            Pourcentage d'endettement à ne pas dépasser. En général égale à 33%
+            des revenus de l'emprunteur.
+        loans:
+          description: >-
+            Ligne(s) de prêt à considérer pour la simulation. L'ajout d'un
+            élément dans cette liste ne garantit pas qu'il sera utilisé dans le
+            plan de financement final, si le plan peut être satisfait et
+            optimisé avec un sous ensemble des lignes.
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableLoan'
+        modulations:
+          description: Profil de modulation d'échéance.
+          type: array
+          items:
+            $ref: '#/components/schemas/Modulation'
+        bank:
+          $ref: '#/components/schemas/ActivePartner'
+      required:
+        - loans
+    BaseFinanceDetails:
+      type: object
+      title: BaseFinanceDetails
+      description: Informations relatives aux finance de l'emprunteur.
+      properties:
+        personal_funding:
+          default: 0
+          description: Apport personnel consacré au financement du projet.
+          minimum: 0
+          nullable: true
+          type: number
+        revenues:
+          default: null
+          nullable: true
+          description: >-
+            Liste des revenus persistants après le projet. Le reste à vivre est
+            calculé comme: sum(revenu * pondération) - sum(charge *
+            pondération).
+          type: array
+          items:
+            $ref: '#/components/schemas/RevenueItem'
+        charges:
+          default: null
+          nullable: true
+          description: >-
+            Liste des charges persistantes après le projet. Le reste à vivre est
+            calculé comme: sum(revenu * pondération) - sum(charge *
+            pondération).
+          type: array
+          items:
+            $ref: '#/components/schemas/ChargeItem'
+        current_loans:
+          default: null
+          nullable: true
+          description: 'Prêt(s) existant(s): immobilier, consommation ou autres'
+          type: array
+          items:
+            $ref: '#/components/schemas/CurrentLoan'
+    BaseIndividual:
+      type: object
+      title: BaseIndividual
+      description: Informations relatives à l'emprunteur personne physique.
+      properties:
+        birth_date:
+          default: null
+          description: Date de naissance.
+          format: date-time
+          nullable: true
+          type: string
+    BasePerson:
+      title: BasePerson
+      type: object
+      description: Informations générales sur l'emprunteur.
+      properties:
+        is_borrower:
+          type: boolean
+          nullable: true
+          default: true
+          description: >-
+            Cette personne est-elle un emprunteur, ou est-elle renseignée pour
+            information seulement.
+        finance:
+          $ref: '#/components/schemas/BaseFinanceDetails'
+        civil:
+          $ref: '#/components/schemas/BaseIndividual'
+    BaseHouseholdDetails:
+      title: BaseHouseholdDetails
+      type: object
+      description: Informations relatives au ménage.
+      properties:
+        type:
+          type: string
+          enum:
+            - HOUSEHOLD
+        persons:
+          type: array
+          nullable: true
+          default: null
+          items:
+            $ref: '#/components/schemas/BasePerson'
+        finance:
+          $ref: '#/components/schemas/LightFinanceDetails'
+      required:
+        - type
+    LightCaseDebtConsolidation:
+      type: object
+      title: LightCaseDebtConsolidation
+      description: >-
+        Dossier emprunteur limité aux informations impactant le plan de
+        financement, pour un rachat ou un regroupement de crédits.
+      properties:
+        project:
+          $ref: '#/components/schemas/DebtConsolidation'
+        actor:
+          oneOf:
+            - $ref: '#/components/schemas/BaseHouseholdDetails'
+            - $ref: '#/components/schemas/LightLegalPerson'
+    DebtConsolidationParameters:
+      title: DebtConsolidationParameters
+      description: Paramètres d'un rachat ou regroupement de crédits.
+      allOf:
+        - $ref: '#/components/schemas/DebtConsolidationPlanParameters'
+        - $ref: '#/components/schemas/LightCaseDebtConsolidation'
+    LoanRemainingCosts:
+      type: object
+      title: LoanRemainingCosts
+      properties:
+        capital:
+          description: Montant du capital restant dû.
+          minimum: 0
+          type: number
+        insurance_cost:
+          description: Montant de l'assurance restant à payer.
+          minimum: 0
+          type: number
+        interest_cost:
+          description: Montant des intérets restant à payer.
+          minimum: 0
+          type: number
+        ira:
+          $ref: '#/components/schemas/Ira'
+      required:
+        - capital
+        - insurance_cost
+        - interest_cost
+        - ira
+      description: >-
+        Dépenses résiduelles liées au prêt, dans le cadre d'un rachat ou d'un
+        regroupement de crédits.
+    DebtConsolidationResults:
+      type: object
+      title: DebtConsolidationResults
+      description: Résultats d'un rachat ou regroupement de crédits.
+      properties:
+        funding_plan:
+          $ref: '#/components/schemas/FundingResults'
+        loans_remaining_costs:
+          description: >-
+            Liste des montants restant à payer, des prêts à racheters (capital,
+            assurance, intérets, IRA).
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanRemainingCosts'
+        insurance_gain:
+          description: >-
+            Différence entre l'assurance restant à payer sur le ou les crédits
+            rachetés et l'assurance du nouveau crédit (une valeur positive
+            représente un gain financier).
+          type: number
+        interests_gain:
+          description: >-
+            Différence entre les intérêts restants à payer sur le ou les crédits
+            rachetés et les intérets du nouveau crédit (une valeur positive
+            représente un gain financier).
+          type: number
+        total_gain:
+          description: >-
+            Différence ente l'ensemble des coûts restants à payer sur le ou les
+            crédits rachetés (intérets et assurance) et l'ensemble des coût du
+            nouveau crédit (intérêts, assurance, ira, frais de dossier et de
+            courtage, frais de garantie). Une valeur positive représente un gain
+            financier.
+          type: number
+    DebtConsolidationSimulation:
+      title: DebtConsolidationSimulation
+      description: Réponse d'un rachat ou regroupement de crédits.
+      allOf:
+        - $ref: '#/components/schemas/SimulationMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              default: DEBT_CONSOLIDATION
+              description: Type de simulation.
+              enum:
+                - DEBT_CONSOLIDATION
+            parameters:
+              $ref: '#/components/schemas/DebtConsolidationParameters'
+            results:
+              $ref: '#/components/schemas/DebtConsolidationResults'
+          required:
+            - type
+            - parameters
+    PinelPlanParameters:
+      title: PinelPlanParameters
+      type: object
+      properties:
+        objective:
+          $ref: '#/components/schemas/SimulationObjective'
+        maximal_monthly_payment:
+          type: number
+          description: 'Mensualité maximale, à ne pas dépasser.'
+          minimum: 0
+          nullable: true
+          default: null
+        maximal_debt_ratio:
+          type: number
+          minimum: 0
+          maximum: 100
+          nullable: true
+          default: null
+          description: >-
+            Pourcentage d'endettement à ne pas dépasser. En général égale à 33%
+            des revenus de l'emprunteur.
+        loans:
+          description: >-
+            Ligne(s) de prêt à considérer pour la simulation. L'ajout d'un
+            élément dans cette liste ne garantit pas qu'il sera utilisé dans le
+            plan de financement final, si le plan peut être satisfait et
+            optimisé avec un sous ensemble des lignes.
+          type: array
+          items:
+            $ref: '#/components/schemas/AvailableLoan'
+        bank:
+          $ref: '#/components/schemas/ActivePartner'
+      required:
+        - loans
+    PinelAdministrativeInformation:
+      title: PinelAdministrativeInformation
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/LightAddress'
+      description: 'Informations diverses, dont administratives, relatives au projet.'
+    PinelNewProperty:
+      title: PinelNewProperty
+      type: object
+      description: Projet d'acquisition d'un logement neuf.
+      properties:
+        administrative_information:
+          $ref: '#/components/schemas/PinelAdministrativeInformation'
+        expenses:
+          type: object
+          properties:
+            price:
+              default: null
+              description: >-
+                Prix du bien à acquérir. Ou prix du terrain dans le cadre d'une
+                construction.
+              minimum: 0
+              nullable: true
+              type: number
+            other_expenses:
+              default: null
+              description: Montant des éventuelles autres dépenses non catégorisées.
+              minimum: 0
+              nullable: true
+              type: number
+            vat:
+              default: null
+              description: 'Montant de la TVA, si celle-ci est comptées séparément.'
+              minimum: 0
+              nullable: true
+              type: number
+            other_taxes:
+              default: null
+              description: 'Montant des éventuelles autres taxes (RAP, aménagement, ...).'
+              minimum: 0
+              nullable: true
+              type: number
+            fees:
+              type: object
+              properties:
+                agency_fees:
+                  default: null
+                  description: Frais d'agence.
+                  minimum: 0
+                  nullable: true
+                  type: number
+                broker_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de courtage.
+                  minimum: 0
+                  type: number
+                file_management_fees:
+                  default: null
+                  nullable: true
+                  description: Frais de dossier.
+                  minimum: 0
+                  type: number
+                notary_fees:
+                  default: null
+                  description: Frais de notaire.
+                  minimum: 0
+                  nullable: true
+                  type: number
+    LightPinel:
+      title: LightPinel
+      description: Projet d'investissement dans le cadre du dispositif Pinel.
+      type: object
+      properties:
+        pinel_duration:
+          description: 'Durée du dispositif Pinel: 6, 9 ou 12 ans.'
+          type: integer
+          enum:
+            - 6
+            - 9
+            - 12
+        monthly_rent_value:
+          description: Loyer mensuel.
+          minimum: 0
+          type: number
+        monthly_rent_value_yearly_evolution_rate:
+          default: null
+          nullable: true
+          description: >-
+            Prévision de l'évolution annuelle du loyer (en pourcentage: mettre
+            0.5 pour 0.5%, -10 pour -10%, ...).
+          maximum: 100
+          minimum: -100
+          type: number
+        price_yearly_evolution_rate:
+          default: null
+          nullable: true
+          description: >-
+            Prévision de l'évolution annuelle du prix du bien (en pourcentage:
+            mettre 0.5 pour 0.5%, -10 pour -10%, ...).
+          maximum: 100
+          minimum: -100
+          type: number
+        renting_charges_rate:
+          default: null
+          nullable: true
+          description: >-
+            Charges locatives (en pourcentage du loyer: mettre 13 pour 13% par
+            exemple).
+          maximum: 100
+          minimum: 0
+          type: number
+        surface:
+          description: >-
+            Surface du bien (nouvelle surface dans le cas de travaux
+            d'agrandissement).
+          minimum: 0
+          type: number
+        additional_surface:
+          default: null
+          description: Surface des annexes.
+          minimum: 0
+          nullable: true
+          type: number
+        property:
+          $ref: '#/components/schemas/PinelNewProperty'
+      required:
+        - pinel_duration
+        - monthly_rent_value
+        - surface
+    PinelPerson:
+      type: object
+      title: PinelPerson
+      description: Informations générales sur l'emprunteur.
+      properties:
+        is_borrower:
+          type: boolean
+          nullable: true
+          default: true
+          description: >-
+            Cette personne est-elle un emprunteur, ou est-elle renseignée pour
+            information seulement.
+        finance:
+          $ref: '#/components/schemas/BaseFinanceDetails'
+        civil:
+          $ref: '#/components/schemas/LightIndividual'
+    PinelHouseholdDetails:
+      title: PinelHouseholdDetails
+      type: object
+      description: Détail relatifs au ménage.
+      properties:
+        type:
+          type: string
+          enum:
+            - HOUSEHOLD
+        people_count:
+          type: integer
+          default: null
+          description: Nombre de personnes au total dans le ménage.
+          nullable: true
+          minimum: 1
+        children_count:
+          type: integer
+          default: null
+          nullable: true
+          description: Nombre d'enfants dans le ménage.
+          minimum: 0
+        dependent_persons_count:
+          type: integer
+          default: null
+          nullable: true
+          description: 'Nombre de personnes à charge dans le ménage, hors enfants.'
+          minimum: 0
+        persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/PinelPerson'
+        finance:
+          $ref: '#/components/schemas/LightFinanceDetails'
+      required:
+        - type
+    LightCasePinel:
+      type: object
+      title: LightCasePinel
+      description: >-
+        Dossier emprunteur limité aux informations impactant le plan de
+        financement, pour un dispositif Pinel.
+      properties:
+        project:
+          $ref: '#/components/schemas/LightPinel'
+        actor:
+          oneOf:
+            - $ref: '#/components/schemas/PinelHouseholdDetails'
+            - $ref: '#/components/schemas/LightLegalPerson'
+    PinelParameters:
+      title: PinelParameters
+      description: Paramètres de la simulation d'un dispositif Pinel.
+      allOf:
+        - $ref: '#/components/schemas/PinelPlanParameters'
+        - $ref: '#/components/schemas/LightCasePinel'
+    FrenchIncomeTaxResults:
+      properties:
+        income_tax:
+          description: Montant de l'impôt.
+          minimum: 0
+          type: number
+        slice_number:
+          description: Numéro de la tranche marginale d'imposition.
+          maximum: 5
+          minimum: 1
+          type: integer
+        average_rate:
+          description: Taux moyen d'imposition.
+          minimum: 0
+          type: number
+        cehr:
+          description: Contribution exceptionelle sur les hauts revenus.
+          minimum: 0
+          type: number
+        family_coefficient:
+          description: Coefficient familial.
+          minimum: 0
+          type: number
+        remaining_capacity_in_slice:
+          description: >-
+            Montant résiduel dans la tranche marginal, c'est à dire montant
+            avant de changer de tranche.
+          minimum: 0
+          type: number
+      required:
+        - average_rate
+        - cehr
+        - family_coefficient
+        - income_tax
+        - remaining_capacity_in_slice
+        - slice_number
+      type: object
+      title: FrenchIncomeTaxResults
+      description: Résultat de calcul de l'impôt sur le revenu.
+    PinelResults:
+      type: object
+      title: PinelResults
+      description: Résultats de la simulation d'un dispositif Pinel.
+      properties:
+        funding_plan:
+          $ref: '#/components/schemas/FundingResults'
+        income_information:
+          $ref: '#/components/schemas/FrenchIncomeTaxResults'
+        maximum_rent:
+          default: null
+          nullable: true
+          description: Plafond de loyer légal.
+          minimum: 0
+          type: number
+        notary_fees:
+          default: null
+          nullable: true
+          type: number
+          minimum: 0
+        pinel_table:
+          type: object
+          properties:
+            price_evolution:
+              default: null
+              nullable: true
+              type: array
+              description: Évolution du prix du logement.
+              items:
+                type: number
+            renting_evolution:
+              default: null
+              nullable: true
+              type: array
+              description: Évolution du loyer.
+              items:
+                type: number
+            renting_received:
+              default: null
+              nullable: true
+              type: array
+              description: Somme des loyers perçus.
+              items:
+                type: number
+            interests:
+              default: null
+              nullable: true
+              type: array
+              description: Somme des intérêts d'emprunt.
+              items:
+                type: number
+            insurances:
+              default: null
+              nullable: true
+              type: array
+              description: Somme des intérêts d'emprunt.
+              items:
+                type: number
+            deductible_charges:
+              default: null
+              nullable: true
+              type: array
+              description: Charges déductibles.
+              items:
+                type: number
+            renting_result:
+              default: null
+              nullable: true
+              type: array
+              description: 'Résultats locatif: loyer - charges.'
+              items:
+                type: number
+            tax_on_renting_result:
+              default: null
+              nullable: true
+              type: array
+              description: Impôt sur le résultat locatif.
+              items:
+                type: number
+            tax_reduction:
+              default: null
+              nullable: true
+              type: array
+              description: Réduction d'impôt Pinel.
+              items:
+                type: number
+            resulting_tax_impact:
+              default: null
+              nullable: true
+              type: array
+              description: 'Impact final sur l''impôt, incluant loyers et réduction Pinel.'
+              items:
+                type: number
+            treasury:
+              default: null
+              nullable: true
+              type: array
+              description: Besoin de trésorerie.
+              items:
+                type: number
+    PinelSimulation:
+      title: PinelSimulation
+      description: Réponse de la simulation d'un dispositif Pinel.
+      allOf:
+        - $ref: '#/components/schemas/SimulationMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              default: PINEL
+              description: Type de simulation.
+              enum:
+                - PINEL
+            parameters:
+              $ref: '#/components/schemas/PinelParameters'
+            results:
+              $ref: '#/components/schemas/PinelResults'
+          required:
+            - type
+            - parameters
+    Simulation:
+      title: Simulation
+      description: Objet simulation générique.
+      oneOf:
+        - $ref: '#/components/schemas/BudgetSimulation'
+        - $ref: '#/components/schemas/FundingSimulation'
+        - $ref: '#/components/schemas/DebtConsolidationSimulation'
+        - $ref: '#/components/schemas/PinelSimulation'
+    SimulationResponse:
+      title: SimulationResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Simulation'
+    SimulationsResponse:
+      title: SimulationsResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Simulation'
+    RatePerDuration:
+      properties:
+        duration:
+          description: Durée du crédit en mois.
+          minimum: 0
+          type: integer
+        rate:
+          description: Estimation du taux annuel.
+          minimum: 0
+          type: number
+      required:
+        - duration
+        - rate
+      type: object
+      title: RatePerDuration
+      description: Estimation des taux par durée de crédit
+    ScoreDetails:
+      type: object
+      title: ScoreDetails
+      description: 'Résultat d''un scoring de dossier, permettant d''estimer le taux.'
+      properties:
+        rates:
+          default: null
+          nullable: true
+          description: List de taux estimés pour chaque durée de crédit.
+          type: array
+          items:
+            $ref: '#/components/schemas/RatePerDuration'
+        score:
+          description: Score du dossier.
+          type: number
+    Score:
+      type: object
+      title: Score
+      description: Réponse d'un score de dossier.
+      properties:
+        case:
+          $ref: '#/components/schemas/Case'
+        results:
+          $ref: '#/components/schemas/ScoreDetails'
+      required:
+        - case
+    ScoreResponse:
+      title: ScoreResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Score'
+    Partner:
+      type: object
+      title: Partner
+      description: 'Partenaire, et sa liste de contacts.'
+      properties:
+        id:
+          description: ID unique du partner.
+          type: string
+        type:
+          $ref: '#/components/schemas/PartnerType'
+        name:
+          default: null
+          description: Nom du partenaire.
+          nullable: true
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        contacts:
+          default: null
+          description: Liste des contacts au sein du partenaire.
+          nullable: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        email:
+          default: null
+          description: Email du contact.
+          nullable: true
+          type: string
+        phone_number:
+          default: null
+          description: Numéro de téléphone.
+          nullable: true
+          type: string
+        sub_entity:
+          default: null
+          description: 'Sous-entité: agence, etc....'
+          nullable: true
+          type: string
+        agreement_number:
+          default: null
+          description: 'Agrément ORIAS, ou n''importe quelle référence légale'
+          nullable: true
+          type: string
+        comment:
+          default: null
+          description: Commentaire.
+          nullable: true
+          type: string
+    PartnerResponse:
+      title: PartnerResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Partner'
+    PartnersResponse:
+      title: PartnersResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Partner'
+    Account:
+      type: object
+      title: Account
+      description: Type de compte utilisateur Toaztr.
+      properties:
+        type:
+          type: string
+          enum:
+            - GOD
+            - AGENT
+            - PARTNER
+            - CLIENT
+          description: Type de compte utilisateur Toaztr.
+      required:
+        - type
+    User:
+      type: object
+      title: User
+      description: Utilisateur de l'application.
+      properties:
+        id:
+          default: null
+          description: ID unique de l'utilisateur.
+          nullable: true
+          type: string
+        accounts:
+          default: null
+          nullable: true
+          type: array
+          description: Comptes de l'utilisateur.
+          items:
+            $ref: '#/components/schemas/Account'
+        displayName:
+          default: null
+          description: Nom d'affichage de l'utilisateur.
+          nullable: true
+          type: string
+        email:
+          default: null
+          description: Adresse email de l'utilisateur.
+          nullable: true
+          type: string
+        joined_at:
+          default: null
+          description: Date de création de l'utilisateur.
+          format: date-time
+          nullable: true
+          type: string
+    SearchQuery:
+      properties:
+        facets:
+          default: null
+          items:
+            type: string
+          nullable: true
+          type: array
+        filter:
+          default: null
+          nullable: true
+          type: string
+        highlight_fields:
+          default: null
+          nullable: true
+          type: string
+        highlight_post_tag:
+          default: null
+          nullable: true
+          type: string
+        highlight_pre_tag:
+          default: null
+          nullable: true
+          type: string
+        include_total_result_count:
+          default: null
+          nullable: true
+          type: boolean
+        minimum_coverage:
+          default: null
+          nullable: true
+          type: number
+        order_by:
+          default: null
+          nullable: true
+          type: string
+        query_type:
+          default: null
+          description: Mode de query
+          type: string
+          enum:
+            - full
+            - simple
+            - null
+          nullable: true
+        scoring_parameters:
+          default: null
+          items:
+            type: string
+          nullable: true
+          type: array
+        scoring_profile:
+          default: null
+          nullable: true
+          type: string
+        search_fields:
+          default: null
+          nullable: true
+          type: string
+        search_mode:
+          default: null
+          description: Mode de recherche
+          type: string
+          enum:
+            - any
+            - all
+            - null
+          nullable: true
+        search_text:
+          default: null
+          nullable: true
+          type: string
+          writeOnly: true
+        select:
+          default: null
+          nullable: true
+          type: string
+        skip:
+          default: null
+          nullable: true
+          type: integer
+        top:
+          default: null
+          nullable: true
+          type: integer
+      type: object
+      title: SearchQuery
+    AutocompleteQuery:
+      properties:
+        autocomplete_mode:
+          default: oneTerm
+          description: Mode d'autocompletion
+          type: string
+          enum:
+            - oneTerm
+            - twoTerms
+            - oneTermWithContext
+        filter:
+          default: null
+          nullable: true
+          type: string
+        highlight_post_tag:
+          default: null
+          nullable: true
+          type: string
+        highlight_pre_tag:
+          default: null
+          nullable: true
+          type: string
+        minimum_coverage:
+          default: null
+          nullable: true
+          type: number
+        search_fields:
+          default: null
+          items:
+            type: string
+          nullable: true
+          type: array
+        search_text:
+          type: string
+          writeOnly: true
+        suggester_name:
+          type: string
+          writeOnly: true
+        top:
+          default: null
+          nullable: true
+          type: integer
+        use_fuzzy_matching:
+          default: null
+          nullable: true
+          type: boolean
+      required:
+        - search_text
+        - suggester_name
+      type: object
+      title: AutocompleteQuery
+    SuggestQuery:
+      properties:
+        filter:
+          default: null
+          nullable: true
+          type: string
+        highlight_post_tag:
+          default: null
+          nullable: true
+          type: string
+        highlight_pre_tag:
+          default: null
+          nullable: true
+          type: string
+        minimum_coverage:
+          default: null
+          nullable: true
+          type: number
+        order_by:
+          default: null
+          nullable: true
+          type: string
+        search_fields:
+          default: null
+          nullable: true
+          type: string
+        search_text:
+          type: string
+          writeOnly: true
+        select:
+          default: null
+          nullable: true
+          type: string
+        suggester_name:
+          type: string
+          writeOnly: true
+        top:
+          default: null
+          nullable: true
+          type: integer
+        use_fuzzy_matching:
+          default: null
+          nullable: true
+          type: boolean
+      required:
+        - search_text
+        - suggester_name
+      type: object
+      title: SuggestQuery
+    NotaryFeesState:
+      type: string
+      title: NotaryFeesState
+      enum:
+        - OLD
+        - NEW
+        - LAND
+      description: 'Etat de l''acquisition, au sens des frais de noataire.'
+    NotaryFeesParameters:
+      type: object
+      title: NotaryFeesParameters
+      description: Paramètres de calcul des frais de notaire
+      properties:
+        state:
+          $ref: '#/components/schemas/NotaryFeesState'
+        department:
+          default: null
+          nullable: true
+          description: >-
+            Département de l'acquisition (laisser vide si le département est
+            inconnu).
+          type: string
+        price:
+          description: Prix du bien à acquérir.
+          minimum: 0
+          type: number
+      required:
+        - state
+        - price
+    NotaryFees:
+      type: object
+      title: NotaryFees
+      properties:
+        fees:
+          description: Frais de notaire.
+          minimum: 0
+          type: number
+        parameters:
+          $ref: '#/components/schemas/NotaryFeesParameters'
+      required:
+        - fees
+        - parameters
+      description: Résultat d'un calcul de frais de notaire.
+    FrenchIncomeTaxParameters:
+      type: object
+      title: FrenchIncomeTaxParameters
+      description: Paramètres de calcul de l'impôt sur le revenu.
+      properties:
+        fiscal_reference_revenue:
+          default: null
+          description: >-
+            Revenue fiscal de référence (fiscal_reference_revenue et
+            net_monthly_revenue sont exclusifs).
+          minimum: 0
+          nullable: true
+          type: number
+        net_monthly_revenue:
+          default: null
+          description: >-
+            Revenue mensuel net (fiscal_reference_revenue et net_monthly_revenue
+            sont exclusifs).
+          minimum: 0
+          nullable: true
+          type: number
+        children_in_charge:
+          description: Nombre d'enfant(s) à charge.
+          minimum: 0
+          default: 0
+          type: integer
+        marital_status:
+          $ref: '#/components/schemas/MaritalStatus'
+        apply_ten_percent_discount:
+          default: false
+          description: >-
+            Application (ou pas) des 10% de déduction forfaitaire pour frais
+            réels.
+          type: boolean
+    FrenchIncomeTax:
+      type: object
+      title: FrenchIncomeTax
+      properties:
+        parameters:
+          $ref: '#/components/schemas/FrenchIncomeTaxParameters'
+        results:
+          $ref: '#/components/schemas/FrenchIncomeTaxResults'
+      required:
+        - parameters
+      description: Réponse de calcul de l'impôt sur le revenu.
+    PlanParametersMetadata:
+      title: PlanParametersMetadata
+      description: Métadata du plan de financement.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifiant du jeu de paramètres du plan de financement.
+        case_id:
+          type: string
+          description: >-
+            Identifiant du dossier attaché à ce jeu de paramètres de plan de
+            financement.
+        name:
+          type: string
+          description: Nom du jeu de paramètres.
+      required:
+        - id
+        - case_id
+    StandaloneBudgetPlanParameters:
+      title: StandaloneBudgetPlanParameters
+      allOf:
+        - $ref: '#/components/schemas/PlanParametersMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - BUDGET_PLAN_PARAMETERS
+              description: Type du jeu de paramètres.
+            parameters:
+              $ref: '#/components/schemas/BudgetPlanParameters'
+          required:
+            - type
+      description: 'Paramètres d''un calcul de budget, conservés isolément.'
+    StandaloneFundingPlanParameters:
+      title: StandaloneFundingPlanParameters
+      description: 'Paramètres d''un financement, conservés isolément.'
+      allOf:
+        - $ref: '#/components/schemas/PlanParametersMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - FUNDING_PLAN_PARAMETERS
+              description: Type du jeu de paramètres.
+            parameters:
+              $ref: '#/components/schemas/FundingPlanParameters'
+          required:
+            - type
+    StandaloneDebtConsolidationPlanParameters:
+      title: StandaloneDebtConsolidationPlanParameters
+      allOf:
+        - $ref: '#/components/schemas/PlanParametersMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - DEBT_CONSOLIDATION_PLAN_PARAMETERS
+              description: Type du jeu de paramètres.
+            parameters:
+              $ref: '#/components/schemas/DebtConsolidationPlanParameters'
+          required:
+            - type
+      description: 'Paramètres d''un rachat ou regroupement de crédits, conservés isolément.'
+    StandalonePinelParameters:
+      title: StandalonePinelParameters
+      allOf:
+        - $ref: '#/components/schemas/PlanParametersMetadata'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - PINEL_PLAN_PARAMETERS
+              description: Type du jeu de paramètres.
+            parameters:
+              $ref: '#/components/schemas/PinelPlanParameters'
+          required:
+            - type
+      description: 'Paramètres d''un calcul Pinel, conservés isolément.'
+    PlanParameters:
+      title: PlanParameters
+      oneOf:
+        - $ref: '#/components/schemas/StandaloneBudgetPlanParameters'
+        - $ref: '#/components/schemas/StandaloneFundingPlanParameters'
+        - $ref: '#/components/schemas/StandaloneDebtConsolidationPlanParameters'
+        - $ref: '#/components/schemas/StandalonePinelParameters'
+      description: Paramètres conservés isolément.
+    PlanParametersResponse:
+      title: PlanParametersResponse
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/PlanParameters'
+paths:
+  '/v1/cases/{id}':
+    delete:
+      tags:
+        - Cases
+      description: '/cases/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict error while trying to update the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Deletes cases based on ID
+    get:
+      tags:
+        - Cases
+      description: '/cases/{id}'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Returns cases by ID
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    put:
+      tags:
+        - Cases
+      description: '/cases/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Case'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict error while trying to update the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Updates cases based on ID
+  /v1/cases:
+    get:
+      tags:
+        - Cases
+      description: /cases
+      parameters:
+        - description: >-
+            The number of items to skip before starting to collect the result
+            set
+          in: query
+          name: offset
+          schema:
+            type: integer
+        - description: The numbers of items to return
+          in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CasesResponse'
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: List cases
+    post:
+      tags:
+        - Cases
+      description: /cases
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Case'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Creates cases
+    parameters: []
+  '/v1/simulations/{id}':
+    delete:
+      tags:
+        - Simulations
+      description: '/simulations/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict error while trying to update the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Deletes simulations based on ID
+    get:
+      tags:
+        - Simulations
+      description: '/simulations/{id}'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Returns simulations by ID
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+  /v1/simulations:
+    get:
+      tags:
+        - Simulations
+      description: /simulations
+      parameters:
+        - description: >-
+            The number of items to skip before starting to collect the result
+            set
+          in: query
+          name: offset
+          schema:
+            type: integer
+        - description: The numbers of items to return
+          in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationsResponse'
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: List simulations
+    parameters: []
+  /v1/simulations/budget:
+    post:
+      tags:
+        - Simulations
+      description: /simulations/budget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BudgetParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Creates budget simulations
+    parameters: []
+  /v1/simulations/funding:
+    post:
+      tags:
+        - Simulations
+      description: /simulations/funding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FundingParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Creates funding simulations
+    parameters: []
+  /v1/simulations/rental_investment:
+    post:
+      tags:
+        - Simulations
+      description: /simulations/rental_investment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PinelParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Creates rental investment simulations
+    parameters: []
+  /v1/simulations/debt_consolidation:
+    post:
+      tags:
+        - Simulations
+      description: /simulations/debt_consolidation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DebtConsolidationParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Creates debt consolidation simulations
+    parameters: []
+  /v1/score:
+    post:
+      tags:
+        - Score
+      description: /score
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Case'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreResponse'
+          description: OK
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Compute score and rate on a case
+    parameters: []
+  '/v1/partners/{id}':
+    delete:
+      tags:
+        - Partners
+      description: '/partners/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict error while trying to update the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Deletes partners based on ID
+    get:
+      tags:
+        - Partners
+      description: '/partners/{id}'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Returns partners by ID
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    put:
+      tags:
+        - Partners
+      description: '/partners/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Partner'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict error while trying to update the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Updates partners based on ID
+  /v1/partners:
+    get:
+      tags:
+        - Partners
+      description: /partners
+      parameters:
+        - description: >-
+            The number of items to skip before starting to collect the result
+            set
+          in: query
+          name: offset
+          schema:
+            type: integer
+        - description: The numbers of items to return
+          in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnersResponse'
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: List partners
+    post:
+      tags:
+        - Partners
+      description: /partners
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Partner'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Creates partners
+    parameters: []
+  '/v1/users/{id}':
+    delete:
+      tags:
+        - Users
+      description: '/users/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Not authorized to access this endpoint
+        '404':
+          description: Resource not found
+        '409':
+          description: Conflict error while trying to update the resource
+        '500':
+          description: Internal server error
+      summary: Deletes users based on ID
+    get:
+      tags:
+        - Users
+      description: '/users/{id}'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                accounts:
+                  - type: AGENT
+                displayName: John
+                email: john.doe@mail.com
+                id: XXXX-XXXX-XXXX-XXXX
+                joined_at: '2020-01-01T00:00:00.000Z'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '403':
+          description: Not authorized to access this endpoint
+        '404':
+          description: Resource not found
+        '500':
+          description: Internal server error
+      summary: Returns users by ID
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    put:
+      tags:
+        - Users
+      description: '/users/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                accounts:
+                  - type: AGENT
+                displayName: John
+                email: john.doe@mail.com
+                id: XXXX-XXXX-XXXX-XXXX
+                joined_at: '2020-01-01T00:00:00.000Z'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+        '403':
+          description: Not authorized to access this endpoint
+        '404':
+          description: Resource not found
+        '409':
+          description: Conflict error while trying to update the resource
+        '500':
+          description: Internal server error
+      summary: Updates users based on ID
+  /v1/users:
+    get:
+      tags:
+        - Users
+      description: /users
+      parameters:
+        - description: >-
+            The number of items to skip before starting to collect the result
+            set
+          in: query
+          name: offset
+          schema:
+            type: integer
+        - description: The numbers of items to return
+          in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: OK
+        '403':
+          description: Not authorized to access this endpoint
+        '500':
+          description: Internal server error
+      summary: List users
+    post:
+      tags:
+        - Users
+      description: /users
+      requestBody:
+        content:
+          application/json:
+            example:
+              accounts:
+                - type: AGENT
+              displayName: John
+              email: john.doe@mail.com
+              joined_at: '2020-01-01T00:00:00.000Z'
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                accounts:
+                  - type: AGENT
+                displayName: John
+                email: john.doe@mail.com
+                id: XXXX-XXXX-XXXX-XXXX
+                joined_at: '2020-01-01T00:00:00.000Z'
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+        '403':
+          description: Not authorized to access this endpoint
+        '500':
+          description: Internal server error
+      summary: Creates users
+    parameters: []
+  /v1/simulations/search:
+    post:
+      tags:
+        - Simulations
+      description: /simulations/search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Searches through simulations
+    parameters: []
+  /v1/simulations/autocomplete:
+    post:
+      tags:
+        - Simulations
+      description: /simulations/autocomplete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutocompleteQuery'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Autocompletes for simulations
+    parameters: []
+  /v1/simulations/suggest:
+    post:
+      tags:
+        - Simulations
+      description: /simulations/suggest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestQuery'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Autosuggest for simulations
+    parameters: []
+  /v1/compute/notary_fees:
+    post:
+      tags:
+        - Compute
+      description: /compute/notary_fees
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotaryFeesParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotaryFees'
+          description: OK
+        '400':
+          description: Bad request
+        '403':
+          description: Not authorized to access this endpoint
+        '500':
+          description: Internal server error
+      summary: Compute notary fees
+    parameters: []
+  /compute/income_tax:
+    post:
+      tags:
+        - Compute
+      description: /compute/income_tax
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FrenchIncomeTaxParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FrenchIncomeTax'
+          description: OK
+        '400':
+          description: Bad request
+        '403':
+          description: Not authorized to access this endpoint
+        '500':
+          description: Internal server error
+      summary: Computes income taxes
+  /v1/zones/search:
+    post:
+      tags:
+        - Zones
+      description: /zones/search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Searches through zones
+    parameters: []
+  /v1/zones/autocomplete:
+    post:
+      tags:
+        - Zones
+      description: /zones/autocomplete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutocompleteQuery'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Autocomplete for zones
+    parameters: []
+  /v1/zones/suggest:
+    post:
+      tags:
+        - Zones
+      description: /zones/suggest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestQuery'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Autosuggest for zones
+    parameters: []
+  '/v1/cases/{case_id}/plan-parameters/{id}':
+    delete:
+      tags:
+        - PlanParameters
+      description: '/cases/{case_id}/plan-parameters/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict error while trying to update the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Deletes plan-parameters based on ID
+    get:
+      tags:
+        - PlanParameters
+      description: '/cases/{case_id}/plan-parameters/{id}'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanParametersResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Returns plan-parameters by ID
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: case_id
+        required: true
+        schema:
+          type: string
+    put:
+      tags:
+        - PlanParameters
+      description: '/cases/{case_id}/plan-parameters/{id}'
+      parameters:
+        - description: Entity tag of the resource that is being updated
+          in: header
+          name: If-Match
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanParametersResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict error while trying to update the resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Updates plan-parameters based on ID
+  '/v1/cases/{case_id}/plan-parameters':
+    parameters:
+      - in: path
+        name: case_id
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - PlanParameters
+      description: '/v1/cases/{case_id}/plan-parameters'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanParameters'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanParametersResponse'
+          description: OK
+          headers:
+            ETag:
+              description: Entity tag of the user resource
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Not authorized to access this endpoint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Creates plan-parameters
+servers:
+  - description: Production server
+    url: 'https://api.toaztr.com'
