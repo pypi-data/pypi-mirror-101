@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "typed-undefined"
+version = "0.1.0"
+description = "typed undefined"
+authors = ["Yurii Karabas <1998uriyyo@gmail.com>"]
+license = "MIT"
+
+readme = "README.md"
+repository = "https://github.com/uriyyo/typed-undefined"
+
+packages = [
+    { include = "undefined" },
+]
+
+classifiers = [
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3 :: Only',
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+typing-extensions = "^3.7.4"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.812"
+pytest = "^6.2.3"
+pytest-cov = "^2.11.1"
+pre-commit = "^2.12.0"
+pytest-mypy-plugins = "^1.6.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py37', 'py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+)/
+'''
