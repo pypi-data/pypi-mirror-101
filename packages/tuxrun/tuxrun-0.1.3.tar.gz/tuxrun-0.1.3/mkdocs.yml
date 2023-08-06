@@ -1,0 +1,19 @@
+strict: true
+site_name: TuxRun
+site_author: TuxSuite Team
+site_dir: public
+site_description: |
+  TuxRun, by Linaro, is a command line tool for testing Linux on QEMU, using
+  curated test suites.  TuxRun is a part of TuxSuite, a suite of tools and
+  services to help with Linux kernel development.
+repo_url: https://gitlab.com/Linaro/tuxrun/
+
+theme:
+  name: material
+  logo: tuxrun.svg
+  favicon: tuxrun_icon.svg
+extra_css:
+  - style.css
+
+nav:
+  - Welcome to TuxRun: index.md
