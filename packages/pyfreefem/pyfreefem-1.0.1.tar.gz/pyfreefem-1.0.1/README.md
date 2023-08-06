@@ -1,0 +1,137 @@
+# PyFreeFEM
+`PyFreeFEM` is a package which allows to interface FreeFEM scripts with python.
+`PyFreeFEM` parses special instructions added to a FreeFEM script and converts
+it into a proper `.edp` file executable by FreeFEM, which itself can be run from
+python. It also includes functions to read and write FreeFEM arrays or sparse matrices
+in the numpy format.
+
+Please cite the following references when using this source:
+
+FEPPON, Florian. *Shape and topology optimization of multiphysics systems.*
+2019.  Université Paris-Saclay. Thèse préparée à l'École polytechnique.
+
+## Installation
+
+### With pip
+
+```bash
+pip install pyfreefem
+```
+
+### Installation from local folder 
+```bash
+pip install -e /path/to/pyfreefem
+```
+where `/path/to/pyfreefem` is the directory where `pyfreefem` has been cloned.
+
+## Running examples
+Examples are available in the folder `examples` and can be run from the command
+line with
+```bash
+python -m pyfreefem.examples.hello_world
+python -m pyfreefem.examples.ex0
+``` 
+
+You can run all the examples at once with
+```bash
+python -m pyfreefem.examples.test_all
+```
+
+## Requirements
+Runs with python 3.6 and the following libraries:
+* numpy (>=1.12.1)
+* scipy (>=0.19.1)
+* cvxopt (>=1.2.1)
+
+Optional dependencies:
+* colored (>=1.3.93)   *(for colored output)*
+
+Furthermore, a recent version of `FreeFEM` (>=4.0) should be available from the
+command line.
+
+## Quick documentation
+
+`PyFreeFEM` operates through a meta-language which preprocesses special
+instructions added to a FreeFEM code 
+or `.edp` source files. The instructions currently supported are listed in the
+table below.
+
+| Instruction          | Example | Action                                                    |
+| -------------------- | --------| ----------------------------------------------------------
+| `$`                | real Re=$Re; | Dollar prefixed "magic" variables will be replaced textually in the executable `.edp` file.  |
+| `DEFAULT`            | DEFAULT (Re,"100") | Specify a default value for a dollar prefixed magic variable. |
+| `SET`                | SET (Re,"100")     | Assign a value to a magic variable.|
+| `SET_TEXTVAR`        | SET_TEXTVAR text<br>Multiple line<br>variable<br>END_TEXTVAR` | Assign a multiple line text as the value of a magic variable. |
+| `IF`/`ELSE`/`ENDIF`  | IF DISPLAY_MESSAGE<br>cout << "Hello world" << endl;<br>ELSE <br> //Do nothing <br> ENDIF | Include a portion of FreeFEM code if a magic variable is not zero. |
+| `OR`                 | IFEQ (Re,["30","50"]) <br> cout << "Re==30 or Re==50" << endl; <br> ENDIF <br> <br> IFEQ (Re,"30") OR (Re,"50")<br> cout << "Re==30 or Re==50" << endl; <br> ENDIF  | Usage of conditional or statements |
+| `IFEQ`/`ELSE`/`ENDIF`| IFEQ (Re,"100")<br>cout << "Re=100!!" <<  endl;<br>ELSE<br>cout << "Re!=100" << endl;<br>ENDIF | Include a portion of FreeFEM code if a magic variable has a specified value.|
+| `FOR`/`ENDFOR`       | FOR (I,0,3) <br> cout << "Message $I !" << endl;<br>ENDFOR | Include several times the same portion of code using a "magic" increment. |
+| `INCLUDE`            | INCLUDE "lib.edp" | Include and parse a portion of code from an external file. |
+| `\\`                 | real result = int2d(Th)(x<br>IF ADD_Y<br>+y<br>ENDIF<br>\\\\); | Remove the last line break from the executable `.edp` file. |
+| `//**`               | //** This comment will not appear in the final .edp file | "Magic" comment: the comment will be removed from the executable `.edp` file.  |
+
+
+`PyFreeFEM` generates a `.edp` file (by default, the file `run/run.edp`) executable by FreeFEM according to these instructions and
+the values of dollar prefixed "magic" variables. The magic variables can be set either in FreeFEM scripts through the above meta-language or
+while executing it from the python interface.  See [DOC.md](DOC.md) and the docstrings of `pyfreefem/preprocessor.py` and 
+`pyfreefem/freefemrunner.py` for a more exhaustive documentation.
+
+> The package includes a syntax file [edp.vim](syntax/edp.vim) (based on [this
+> source](https://github.com/FreeFem/FreeFem-parser-vim/blob/master/edp.vim))
+> which provides 
+> the coloration of PyFreeFEM instructions in the 
+> [vim](https://www.vim.org) text editor.
+
+## Quick example 
+
+**File `pyfreefem/examples/hello_world.py`:**
+```python
+from pyfreefem import FreeFemRunner
+
+code = """
+mesh Th=square(30,30);
+fespace Fh(Th,P1);
+Fh u,v;
+
+DEFAULT (SOLVE_LAPLACE,0)
+cout << "The value of SOLVE_LAPLACE is $SOLVE_LAPLACE." << endl;
+IF SOLVE_LAPLACE
+solve laplace(u,v)=
+    int2d(Th)(dx(u)*dx(v)+dy(u)*dy(v))
+        -int2d(Th)(v)
+        +on(1,2,3,4,u=0);
+plot(u,cmm="$message");
+ENDIF
+"""
+
+FreeFemRunner(code).execute({'message':'Hello world','SOLVE_LAPLACE':1},verbosity=1,plot=True)
+```
+The dollar prefixed variable `$message` allows to interact with a `python` source
+code.  Running this code with python (version >=3.6) should display something like:
+```
+$ python -m pyfreefem.examples.hello_world
+-- FreeFem++ v  4.100000 (date samedi 27 avril 2019, 20:25:42 (UTC+0200) git v4-beta-352-gc62e139d)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue 
+    1 : 
+    2 : mesh Th=square(30,30);
+    3 : fespace Fh(Th,P1);
+    4 : Fh u,v;
+    5 : 
+    6 : cout << "The value of SOLVE_LAPLACE is 1." << endl;
+    7 : solve laplace(u,v)=
+    8 :     int2d(Th)(dx(u)*dx(v)+dy(u)*dy(v))
+    9 :         -int2d(Th)(v)
+   10 :         +on(1,2,3,4,u=0);
+   11 : plot(u,cmm="Hello world");
+   12 :  sizestack + 1024 =1576  ( 552 )
+
+  -- Square mesh : nb vertices  =961 ,  nb triangles = 1800 ,  nb boundary edges 120
+The value of SOLVE_LAPLACE is 1.
+  -- Solve : 
+          min 2.20333e-63  max 0.0736069
+times: compile 0.050628s, execution 0.379778s,  mpirank:0
+```
+
+<img src="https://gitlab.com/florian.feppon/pyfreefem/-/raw/master/FIGS/hello_world.png" align="center" alt="Hello world with pyfreefem" width="60%">
+
+
