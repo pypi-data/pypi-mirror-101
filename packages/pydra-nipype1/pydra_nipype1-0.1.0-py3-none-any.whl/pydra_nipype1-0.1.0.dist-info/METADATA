@@ -1,0 +1,96 @@
+Metadata-Version: 2.1
+Name: pydra-nipype1
+Version: 0.1.0
+Summary: Tools for importing nipype 1.x interfaces into Pydra
+Home-page: UNKNOWN
+Author: Chris Markiewicz
+Author-email: markiewicz@stanford.edu
+License: Apache License, 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown; variant=CommonMark
+Requires-Dist: pydra (>=0.6.2)
+Requires-Dist: nipype
+Provides-Extra: all
+Requires-Dist: packaging ; extra == 'all'
+Requires-Dist: sphinx (>=2.1.2) ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme ; extra == 'all'
+Requires-Dist: sphinxcontrib-apidoc (~=0.3.0) ; extra == 'all'
+Requires-Dist: sphinxcontrib-napoleon ; extra == 'all'
+Requires-Dist: sphinxcontrib-versioning ; extra == 'all'
+Requires-Dist: pytest (>=4.4.0) ; extra == 'all'
+Requires-Dist: black ; extra == 'all'
+Requires-Dist: pre-commit ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: pytest (>=4.4.0) ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: packaging ; extra == 'doc'
+Requires-Dist: sphinx (>=2.1.2) ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Requires-Dist: sphinxcontrib-apidoc (~=0.3.0) ; extra == 'doc'
+Requires-Dist: sphinxcontrib-napoleon ; extra == 'doc'
+Requires-Dist: sphinxcontrib-versioning ; extra == 'doc'
+Provides-Extra: docs
+Requires-Dist: packaging ; extra == 'docs'
+Requires-Dist: sphinx (>=2.1.2) ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: sphinxcontrib-apidoc (~=0.3.0) ; extra == 'docs'
+Requires-Dist: sphinxcontrib-napoleon ; extra == 'docs'
+Requires-Dist: sphinxcontrib-versioning ; extra == 'docs'
+Provides-Extra: subpackage
+Requires-Dist: nipype1 ; extra == 'subpackage'
+Provides-Extra: test
+Requires-Dist: pytest (>=4.4.0) ; extra == 'test'
+Provides-Extra: tests
+Requires-Dist: pytest (>=4.4.0) ; extra == 'tests'
+
+# Nipype 1 Tasks for Pydra
+
+[Pydra](https://nipype.github.io/pydra/) is a redesign of the Nipype dataflow
+engine, and the core of the emerging
+[Nipype 2 ecosystem](https://github.com/nipype).
+
+This is a task package, a set of Pydra Tasks that inhabits the
+`pydra.tasks.*` namespace, to ease wrapping Nipype 1 Interfaces.
+
+Additional tools for migrating from Nipype 1 to Pydra may find their home here.
+
+## Installation
+
+```
+pip install pydra-nipype1
+```
+
+## Usage
+
+```
+from pydra.tasks.nipype1.utils import Nipype1Task
+from nipype.interfaces import fsl
+
+thresh = Nipype1Task(fsl.Threshold())
+res = thresh(in_file=fname, thresh=0.5)
+```
+
+## For developers
+
+Install repo in developer mode from the source directory. It is also useful to
+install pre-commit to take care of styling via black:
+
+```
+pip install -e .[dev]
+pre-commit install
+```
+
+
