@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: rundeckpy
+Version: 0.2.3
+Summary: Base class, template and plugins for Rundeck python plugin
+Home-page: https://labitup.atlassian.net/wiki/spaces/RUNPY/overview
+License: Proprietary
+Keywords: rundeck,python,plugin
+Author: Thiago Takayama
+Author-email: thiago@takayama.co.uk
+Requires-Python: >=3.6,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Project-URL: Documentation, https://labitup.atlassian.net/wiki/spaces/RUNPY/overview
+Project-URL: Repository, https://gitlab.com/labitup/rundeck/rundeckpy
+Description-Content-Type: text/x-rst
+
+=========
+rundeckpy
+=========
+Python based Rundeck plugins.
+
+The package contains:
+
+* a command line tool
+* a series of plugins
+* squleton for new plugins
+* Base classes
+
+command line tool
+#################
+
+
+plugins
+#######
+
+
+squeleton
+#########
+
+
+base class
+##########

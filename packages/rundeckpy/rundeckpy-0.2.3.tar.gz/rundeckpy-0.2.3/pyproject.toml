@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "rundeckpy"
+version = "0.2.3"
+description = "Base class, template and plugins for Rundeck python plugin"
+authors = ["Thiago Takayama <thiago@takayama.co.uk>"]
+license = "Proprietary"
+readme = "README.rst"
+homepage = "https://labitup.atlassian.net/wiki/spaces/RUNPY/overview"
+repository = "https://gitlab.com/labitup/rundeck/rundeckpy"
+documentation = "https://labitup.atlassian.net/wiki/spaces/RUNPY/overview"
+keywords = ["rundeck", "python", "plugin"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+pylint = "^2.7.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
