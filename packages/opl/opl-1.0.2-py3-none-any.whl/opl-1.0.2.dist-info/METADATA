@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: opl
+Version: 1.0.2
+Summary: Open-MBEE Python Library
+Home-page: https://github.com/Open-MBEE/opl
+Author: Blake Regalia
+Author-email: blake.d.regalia@jpl.nasa.gov
+License: Apache 2.0
+Keywords: OPL
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: atlassian-python-api (~=3.8.0)
+Requires-Dist: incqueryserver-api-python-client (~=0.19.0.dev2)
+Requires-Dist: SPARQLWrapper (~=1.8.5)
+Requires-Dist: lxml (~=4.6.2)
+Requires-Dist: rdflib (~=5.0.0)
+Provides-Extra: docs
+Requires-Dist: sphinx (<4) ; extra == 'docs'
+Requires-Dist: sphinxcontrib-apidoc ; extra == 'docs'
+Requires-Dist: sphinx-autodoc-typehints ; extra == 'docs'
+
+# OpenMBEE Python Library
+
+This python module providers client wrappers and utilities for interacting with the following OpenMBEE tools/technologies:
+ - Confluence
+ - IncQuery
+ - SPARQL
+
+## [See the full API documentation here](https://opl.readthedocs.io/en/latest/apidocs/opl.html#module-opl)
+
+
+
