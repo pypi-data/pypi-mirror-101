@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: dynamical_networks
+Version: 0.1.0
+Summary: A package for dynamical networks simulations and analysis.
+Home-page: https://github.com/myersau3/Dynamical_Networks
+Author: Audun Myers
+Author-email: myersau3@msu.edu
+License: UNKNOWN
+Description: # Complex Network Representations for Coupled Dynamical Systems: Dynamical Networks
+        
+        This repository holds the Python code for analyzing and creating complex network representations of coupled dynamical systems.
+        
+        <p align="center">
+          <img src="sphinx/source/MS_network_gif.gif" width="400">
+        </p> <em>Example coupled dynamical system represented using a complex network with each node as a state variable's dynamics and edges weighted between coupled variables.</em>
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
