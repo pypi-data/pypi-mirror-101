@@ -1,0 +1,324 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "http://halo-framework.serverlessdjango.com/schemas/settings.json#",
+	"title": "Schema for halo settings",
+	"description": "Halo framework settings with all app components and elements",
+	"type": "object",
+	"required": [
+			"cli","swagger","bian_api","application_name","mservices"
+		],
+	"properties": {
+		"cli": {
+			"type": "string",
+			"enum": [
+				"0.2.2",
+				"0.2.3",
+				"0.2.4"
+			]
+		},
+		"swagger": {
+			"type": "string",
+			"enum": [
+				"2.0",
+				"3.0",
+				"3.0.1"
+			]
+		},
+		"bian_api": {
+			"type": "string",
+			"enum": [
+				"8.0",
+				"9.0",
+				"9.1"
+			]
+		},
+		"application_name": {
+			"type": "string",
+			"maxLength": 128
+		},
+		"plugins": {
+			"type": "array",
+			"items": {
+				"type": "string",
+				"maxLength": 128
+			}
+		},
+		"dictionary": {
+
+		},
+		"mservices": {
+			"type": "object",
+			"patternProperties": {
+				"^.*$": {
+					"type": "object",
+					"properties": {
+						"type": {
+							"enum": [
+								"front",
+								"back",
+								"north",
+								"south",
+								"rpc"
+							],
+							"description": "front=http+html, back=http+json, north=api+html, south=api+json,rpc=http+thrift"
+						},
+						"comment": {
+							"type": "string"
+						},
+						"url": {
+							"type": "string",
+							"format": "uri"
+						},
+						"urls": {
+							"type": "string"
+						},
+						"record": {
+							"type": "object",
+							"properties": {
+								"path": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"id": {
+									"type": "integer",
+									"minimum": 1
+								},
+								"exclude": {
+									"type": "boolean",
+									"default": false
+								},
+								"methods": {
+									"type": "object",
+									"patternProperties": {
+										"^.*$": {
+											"type": "object",
+											"properties": {
+												"added_fields": {
+													"type": "object",
+													"patternProperties": {
+														"^.*$": {
+															"type": "object",
+																"patternProperties": {
+																	"^.*$": {
+																		"type": "object",
+																		"properties": {
+																			"type": {
+																				"enum": [
+																					"string",
+																					"number",
+																					"integer",
+																					"boolean",
+																					"object",
+																					"array"
+																				]
+																			},
+																			"description": {
+																				"type": "string",
+																				"maxLength": 350,
+																				"format": "[a-zA-Z0-9_]"
+																			},
+																			"example": {
+																				"type": "string",
+																				"maxLength": 115,
+																				"format": "[a-zA-Z0-9_]"
+																			},
+																			"format": {
+																				"enum": [
+																					"",
+																					"int32",
+																					"int64",
+																					"float",
+																					"double",
+																					"byte",
+																					"binary",
+																					"date",
+																					"date-time",
+																					"password"
+																				]
+																			},
+																			"pattern": {
+																				"type": "string",
+																				"maxLength": 115
+																			},
+																			"minLength": {
+																				"type": "integer"
+																			},
+																			"maxLength": {
+																				"type": "integer"
+																			}
+																		}
+																	}
+																}
+
+														}
+													}
+												},
+												"field_mappings": {
+													"type": "object",
+													"patternProperties": {
+														"^.*$": {
+															"type": "object",
+															"patternProperties": {
+																"^.*$": {
+																	"type": "object",
+																	"properties": {
+																		"from": {
+																			"type": "array",
+																			"items": {
+																				"type": "object",
+																				"patternProperties": {
+																					"^.*$": {
+																						"enum": [
+																							"string",
+																							"number",
+																							"integer",
+																							"boolean"
+																						]
+																					}
+																				}
+																			}
+																		},
+																		"to": {
+																			"type": "object",
+																			"patternProperties": {
+																				"^.*$": {
+																					"enum": [
+																						"string",
+																						"number",
+																						"integer",
+																						"boolean"
+																					]
+																				}
+																			}
+																		},
+																		"instructions": {
+																			"type": "string"
+																		}
+																	}
+																}
+															}
+														}
+														}
+													},
+												"collection-filter": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"patternProperties": {
+															"^.*$": {
+																"enum": [
+																	"=",
+																	">",
+																	"<",
+																	"!="
+																],
+																"type": "string"
+															}
+														}
+													}
+												},
+												"refactor": {
+													"type": "array",
+													"items": {
+														"type": "object",
+														"properties": {
+															"field": {
+																"type": "string",
+																"maxLength": 128
+															},
+															"type": {
+																"enum": [
+																	"object",
+																	"string",
+																	"number",
+																	"integer",
+																	"boolean",
+																	"array"
+																]
+															},
+															"properties": {
+																"type": "object"
+															},
+															"format": {
+																"enum": [
+																	"int32",
+																	"int64",
+																	"float",
+																	"double",
+																	"byte",
+																	"binary",
+																	"date",
+																	"date-time",
+																	"password"
+																]
+															},
+															"pattern": {
+																"type": "string",
+																"maxLength": 115
+															},
+															"minLength": {
+																"type": "integer"
+															},
+															"maxLength": {
+																"type": "integer"
+															}
+														}
+													}
+												},
+												"headers": {},
+												"errors": {},
+												"version": {"type": "string"}
+												}
+											}
+										}
+									},
+								"sbq": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"base_method": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"name": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"values": {
+												"type": "array",
+												"items": {
+													"type": "string",
+													"maxLength": 128
+												}
+											}
+										}
+									}
+								},
+								"endpoints": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"properties": {
+											"base_method": {
+												"type": "string",
+												"maxLength": 128
+											},
+											"name": {
+												"type": "string",
+												"maxLength": 128
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
