@@ -1,0 +1,4 @@
+[console_scripts]
+bonetex = bonetex.bonetex_command:main
+bonetex-server = bonetex.server.server:app.run
+
