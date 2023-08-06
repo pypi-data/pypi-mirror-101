@@ -1,0 +1,61 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
+
+[tool.black]
+target-version = ["py36"]
+
+[tool.isort]
+profile = "black"
+py_version = "36"
+skip_gitignore = true
+
+[tool.pylint.master]
+fail-under = 5
+ignore-patterns = [
+    # Keep this list in sync with the contents of .gitignore
+    '.*\.egg-info',
+    '\.cache',
+    '\.out',
+    '\.pytest_cache',
+    '\.venv',
+    '__pycache__',
+    'build',
+]
+jobs = 0
+
+[tool.pylint.format]
+max-line-length = "88"
+
+[tool.pylint.messages_control]
+disable = [
+    # docstrings are checked by pydocstyle separately
+    "C0112", "C0114", "C0115", "C0116", "C0402", "C0403",
+    # black compatibility (noop in recent pylint versions)
+    "C0326", "C0330",
+    # import order is checked by isort
+    "C0411",
+    # allow "to do"/"fix me" comments without penalty
+    "W0511",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--cov=aside",
+    "--import-mode=importlib",
+    "--junitxml=.out/pytest.xml",
+    "--verbose",
+]
+required_plugins = ["pytest-cov"]
+
+[tool.coverage.run]
+data_file = ".out/coverage.data"
+
+[tool.coverage.report]
+fail_under = 50
+show_missing = true
+skip_covered = true
+skip_empty = true
+
+[tool.coverage.xml]
+output = ".out/coverage.xml"
