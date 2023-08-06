@@ -1,0 +1,10 @@
+torch
+tqdm
+numpy>=1.16.5
+scikit-learn
+pandas
+
+[test]
+pytest>=4
+pytest-cov>=2.6.0
+pytest-flake8
