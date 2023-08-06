@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: nfetl
+Version: 0.1.1
+Summary: A package for creating a database containing NFL stats.
+Home-page: UNKNOWN
+Author: Dan Eschman
+Author-email: deschman007@gmail.com
+License: GNU AGPLv3
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Classifier: Natural Language :: English
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Database
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Internet
+Classifier: Topic :: Text Processing
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pytest
+Requires-Dist: bs4
+Requires-Dist: pandas
+Requires-Dist: dask
+
+# [nfetl] (https://github.com/deschman/nfetl)
+## Short Description
+A python package for creation and maintenance of an NFL statistics database.
+
+## Long Description
+**nfetl** provides users with a straight-forward API for creating and
+maintaining their own sqlite database of NFL statistics. Statistics are sourced
+from [PRO FOOTBALL REFERENCE] (https://www.pro-football-reference.com/) using
+webscraping scripts
+
+## Disclaimer
+During development of this package, consideration was taken to prevent users
+of this package from overwhelming the source web server. However, It is
+recommended users read the liscense before developing using this package and
+carefully consider how the planned implementation may impact source
+availability.
+
+## Example
+```python
+# TODO: add example
+```
+
+
