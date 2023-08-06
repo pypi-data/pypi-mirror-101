@@ -1,0 +1,22 @@
+{
+  "items": [
+    "sdk-reference/soil/api",
+    "sdk-reference/soil/data",
+    "sdk-reference/soil/configuration",
+    "sdk-reference/soil/types",
+    "sdk-reference/soil/modulify",
+    "sdk-reference/soil/pipeline",
+    "sdk-reference/soil/finder",
+    "sdk-reference/soil/alias",
+    "sdk-reference/soil/data_structure",
+    {
+      "items": [
+        "sdk-reference/soil/connectors/elastic_search"
+      ],
+      "label": "soil.connectors",
+      "type": "category"
+    }
+  ],
+  "label": "soil",
+  "type": "category"
+}
