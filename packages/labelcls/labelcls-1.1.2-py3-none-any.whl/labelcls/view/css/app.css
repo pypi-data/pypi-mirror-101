@@ -1,0 +1,87 @@
+body {
+    background-color: gainsboro;
+}
+
+.content-area {
+    margin: 30px;
+}
+
+/* Image */
+.image-canvas {
+    overflow: auto;
+    height: 500px;
+    width: 100%;
+}
+
+/* Toolbox */
+.toolbox {
+    margin: 0.5rem 0 1rem 0;
+     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%)
+}
+
+.toolbox-tile {
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    text-align: center;
+    border-top: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+}
+.toolbox-tile:hover {
+    background-color: #F4F4F4;
+}
+
+.btn-area {
+    cursor: pointer;
+}
+
+.toolbox-title {
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
+/* Labels */
+.label-box {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.selected-label {
+    padding-right: 8px;
+    background-color: #388e3c;
+    color: white;
+}
+
+.unselected-label {
+    padding-right: 8px;
+    background-color: gainsboro;
+}
+
+.unselected-label:hover {
+    background-color: #388e3c;
+    color: white;
+}
+
+/* File list */
+.filename-row {
+    height: 40px;
+    padding: 5px;
+    cursor: pointer;
+    border-top: 1px solid gainsboro;
+}
+.filename-row:hover {
+    background-color: gainsboro;
+}
+
+.selected-filename-row {
+    background-color: gainsboro;
+}
+
+.filelist-box {
+    height: 350px;
+    overflow-y: scroll;
+}
