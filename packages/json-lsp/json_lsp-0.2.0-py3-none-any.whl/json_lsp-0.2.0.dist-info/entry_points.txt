@@ -1,0 +1,6 @@
+[console_scripts]
+json-lsp = json_lsp.main:main
+
+[jupyter_lsp_spec_v1]
+jupyter-json-language-server = json_lsp.main:load
+
