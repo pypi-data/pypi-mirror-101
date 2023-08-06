@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: elvia-vault
+Version: 0.1.11
+Summary: elvia-vault Python package
+Home-page: UNKNOWN
+Author: Elvia
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Dist: cryptography
+Requires-Dist: hvac (==0.10.4)
+Requires-Dist: kubernetes (==11.0.0)
+Requires-Dist: pyjwt (==2.0.1)
+Provides-Extra: dev
+Requires-Dist: jupyterlab ; extra == 'dev'
+
+UNKNOWN
+
+
