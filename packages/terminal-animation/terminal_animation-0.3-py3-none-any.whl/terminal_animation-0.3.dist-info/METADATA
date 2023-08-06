@@ -1,0 +1,138 @@
+Metadata-Version: 2.1
+Name: terminal-animation
+Version: 0.3
+Summary: Decorators for terminal-based wait animations.
+Home-page: https://github.com/SilasNiewierra/terminal_animation
+Author: Silas Niewierra
+Author-email: niewierra.silas@gmail.com
+License: MIT
+Keywords: terminal,animation,wait,waiting,status
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apple Public Source License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: colorama (==0.4.4)
+Requires-Dist: commonmark (==0.9.1)
+Requires-Dist: cursor (==1.3.4)
+Requires-Dist: pychalk (==2.0.1)
+Requires-Dist: Pygments (==2.8.1)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: typing-extensions (==3.7.4.3)
+
+# terminal_animation
+
+A simple package to make beautiful terminal wait animations
+
+## Install
+
+```bash
+pip install terminal_animation
+```
+
+## How to use
+
+```python
+import animations
+import time
+
+# 1 use as class
+wait_animation = animations.Wait()
+wait_animation.start()
+do_something()
+wait_animation.end()
+
+#2 use as decorator
+@animations.wait()
+def do_something_else():
+    # long function
+    time.sleep(5)
+```
+
+## Customization
+
+The package uses a default animation with dots.
+It allows uses to customize the the animation with different parameters.
+
+The default settings are:
+
+```python
+color: white
+speed: 0.2
+animation = ['    ','.   ','..  ','... ','....']
+```
+
+### Color
+
+The color of the characters. Available options are:
+
+- black <span style="color:black"><b>...</b></span>
+- red <span style="color:red"><b>...</b></span>
+- green <span style="color:green"><b>...</b></span>
+- yellow <span style="color:yellow"><b>...</b></span>
+- blue <span style="color:blue"><b>...</b></span>
+- magenta <span style="color:magenta"><b>...</b></span>
+- cyan <span style="color:cyan"><b>...</b></span>
+- white <span style="color:white"><b>...</b></span>
+
+### Speed
+
+The speed between, the animation states.
+
+```python
+0 < speed < 1
+```
+
+### Animation
+
+To use a custom animation, you have to pass a string array containing the seperate steps of the animation.
+For example, a simple clock animation would look like this
+
+```python
+clock = ['-','\\','|','/']
+
+@animation.wait(clock)
+def do_something():
+    # long function
+```
+
+## Examples
+
+```python
+# default animation (white, dots, default speed)
+@animation.wait()
+def default():
+    time.sleep(10)
+
+# clock animation (white, default speed)
+clock = ['-','\\','|','/']
+
+@animation.wait(clock)
+def do_something():
+    time.sleep(10)
+
+
+# horizontal line animation (blue, default speed)
+lines = ['   ','-  ','-- ','---']
+
+@animation.wait(lines, color="blue")
+def do_something_else():
+    time.sleep(10)
+
+
+# hashtag animation (cyan, slow)
+tags = ["#   ", "##  ", "### ", "####"]
+
+animation = animations.Wait(tags, color="blue", speed=0.5)
+animation.start()
+time.sleep(4)
+animation.stop()
+```
+
+
