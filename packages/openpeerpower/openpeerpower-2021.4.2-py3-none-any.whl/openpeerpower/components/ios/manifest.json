@@ -1,0 +1,8 @@
+{
+  "domain": "ios",
+  "name": "Open Peer Power iOS",
+  "config_flow": true,
+  "documentation": "https://www.openpeerpower.io/integrations/ios",
+  "dependencies": ["device_tracker", "http", "zeroconf"],
+  "codeowners": ["@robbiet480"]
+}

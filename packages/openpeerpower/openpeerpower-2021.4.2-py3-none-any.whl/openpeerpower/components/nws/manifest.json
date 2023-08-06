@@ -1,0 +1,9 @@
+{
+  "domain": "nws",
+  "name": "National Weather Service (NWS)",
+  "documentation": "https://www.openpeerpower.io/integrations/nws",
+  "codeowners": [],
+  "requirements": ["pynws==1.3.0"],
+  "quality_scale": "platinum",
+  "config_flow": true
+}

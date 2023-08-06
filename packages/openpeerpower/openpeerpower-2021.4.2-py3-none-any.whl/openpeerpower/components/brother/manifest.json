@@ -1,0 +1,10 @@
+{
+  "domain": "brother",
+  "name": "Brother Printer",
+  "documentation": "https://www.openpeerpower.io/integrations/brother",
+  "codeowners": [],
+  "requirements": ["brother==0.2.1"],
+  "zeroconf": [{ "type": "_printer._tcp.local.", "name": "brother*" }],
+  "config_flow": true,
+  "quality_scale": "platinum"
+}
