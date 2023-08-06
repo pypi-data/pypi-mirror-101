@@ -1,0 +1,18 @@
+#! /usr/bin/env/python
+import os
+import click
+
+def get_colors(ctx, args, incomplete):
+    colors = [('red', 'a warm color'),
+              ('blue', 'a cool color'),
+              ('green', 'the other starter color')]
+    return [c for c in colors if incomplete in c[0]]
+
+@click.command()
+@click.argument("color", type=click.STRING, autocompletion=get_colors)
+def cmd1(color):
+    click.echo('Chosen color is %s' % color)
+
+
+if __name__ == '__main__':
+    cmd1()

@@ -1,0 +1,36 @@
+#! /usr/bin/env/python
+import os
+import click
+
+@click.group()
+def main():
+    pass
+
+
+@main.command()
+@click.option('-i', '--input-path')
+@click.option('-o', '--output-path', default='')
+def video2frame(input_path, output_path):
+    import cv2
+    import moviepy.editor as mpy 
+    if output_path == '':
+        output_path = os.path.splitext(input_path)[0]
+    os.makedirs(output_path, exist_ok=True)
+
+    for i, frame in enumerate(mpy.VideoFileClip(input_path).iter_frames()):
+        cv2.imwrite(f'{output_path}/{i:05d}.png', frame[..., ::-1])
+
+    print(f'Save to {output_path}')
+
+
+@main.command()
+@click.option('-i', '--input-path')
+@click.option('-o', '--output-path', default='')
+def video2audio(input_path, output_path):
+    import moviepy.editor as mpy 
+    if output_path == '':
+        output_path = os.path.splitext(input_path)[0] + '.mp3'
+    mpy.VideoFileClip(input_path).audio.write_audiofile(output_path)
+
+if __name__ == '__main__':
+    main()
