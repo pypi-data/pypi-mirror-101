@@ -1,0 +1,28 @@
+#!/bin/bash
+
+mkdir -p ~/.awsee/tmp/
+rm awseeos_*  2> /dev/null
+
+external=0
+for var in "$@"
+do
+  if [[ "$var" == *-nt* ]]; then
+    external=1
+  fi
+  if [[ "$var" == *--new-terminal* ]]; then
+    external=1
+  fi
+done
+
+myrnd=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo '')
+mypid="pid_"$myrnd"_pid"
+
+#FILE_NAME="~/.awsee/tmp/awseeos_"$myrnd".txt"
+FILE_NAME="awseeos_"$myrnd".txt"
+awseepy "$@" > $FILE_NAME
+
+if [[ $external == 0 ]]; then
+   while IFS= read -r line; do
+     eval "$line"
+   done < $FILE_NAME
+fi
