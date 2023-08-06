@@ -1,0 +1,43 @@
+{
+  "aliases": {
+    "nr-all": {},
+    "nr-all-nresults": {}
+  },
+  "mappings": {
+    "date_detection": false,
+    "numeric_detection": false,
+    "dynamic": false,
+    "properties": {
+      "oarepo:extends": "nr-common-v1.0.0.json#/mappings/properties",
+      "N_certifyingAuthority": {
+        "type": "nr-taxonomies-Nresults-v1.0.0.json#/N_certifyingAuthority"
+      },
+      "N_dateCertified": {
+        "type": "date"
+      },
+      "N_economicalParemeters": {
+        "type": "text"
+      },
+      "N_internalID": {
+        "type": "keyword"
+      },
+      "N_referenceNumber": {
+        "type": "keyword"
+      },
+      "N_resultUsage": {
+        "type": "nr-taxonomies-Nresults-v1.0.0.json#/N_resultUsage"
+      },
+      "N_technicalParameters": {
+        "type": "text"
+      },
+      "N_type": {
+        "type": "nr-taxonomies-Nresults-v1.0.0.json#/N_type"
+      }
+    }
+  },
+  "settings": {
+    "index.mapping.total_fields.limit": 2000
+  }
+}
+
+
