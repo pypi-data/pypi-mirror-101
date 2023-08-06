@@ -1,0 +1,93 @@
+Metadata-Version: 1.2
+Name: libtemplate
+Version: 0.0.9.dev2
+Summary: Template for python packages generated with cookiecutter-pylibrary
+Home-page: https://github.com/jpardovega/libtemplate
+Author: Javier Pardo Vega
+Author-email: eljavico@gmail.com
+License: UNKNOWN
+Project-URL: Documentation, https://libtemplate.readthedocs.io/
+Project-URL: Changelog, https://libtemplate.readthedocs.io/en/latest/changelog.html
+Project-URL: Issue Tracker, https://github.com/jpardovega/libtemplate/issues
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        Template for python packages generated with cookiecutter-pylibrary
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install libtemplate
+        
+        You can also install the in-development version with::
+        
+            pip install https://github.com/jpardovega/libtemplate/archive/master.zip
+        
+        
+        Documentation
+        =============
+        
+        
+        https://libtemplate.readthedocs.io/
+        
+        
+        Development
+        ===========
+        
+        To run all the tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        
+        Changelog
+        =========
+        
+        0.0.1 (2021-04-08)
+        ------------------
+        
+        * Lots of new things
+        
+        0.0.0 (2021-04-05)
+        ------------------
+        
+        * First release on PyPI.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6

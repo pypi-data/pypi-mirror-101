@@ -1,0 +1,70 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:ionelmc/cookiecutter-pylibrary libtemplate
+#
+# See:
+#    https://pypi.org/project/cookiepatcher
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=libtemplate/.cookiecutterrc gh:ionelmc/cookiecutter-pylibrary
+
+default_context:
+
+    _extensions:               ['jinja2_time.TimeExtension']
+    _template:                 'gh:ionelmc/cookiecutter-pylibrary'
+    allow_tests_inside_package: 'no'
+    appveyor:                  'no'
+    c_extension_function:      'longest'
+    c_extension_module:        '_libtemplate'
+    c_extension_optional:      'no'
+    c_extension_support:       'no'
+    c_extension_test_pypi:     'no'
+    c_extension_test_pypi_username: 'jpardovega'
+    codacy:                    'no'
+    codacy_projectid:          '[Get ID from https://app.codacy.com/app/jpardovega/libtemplate/settings]'
+    codeclimate:               'no'
+    codecov:                   'yes'
+    command_line_interface:    'plain'
+    command_line_interface_bin_name: 'libtemplate'
+    coveralls:                 'no'
+    coveralls_token:           '[Required for Appveyor, take it from https://coveralls.io/github/jpardovega/libtemplate]'
+    distribution_name:         'libtemplate'
+    email:                     'eljavico@gmail.com'
+    full_name:                 'Javier Pardo Vega'
+    legacy_python:             'no'
+    license:                   'no'
+    linter:                    'flake8'
+    package_name:              'libtemplate'
+    pre_commit:                'yes'
+    project_name:              'LibTemplate'
+    project_short_description: 'Template for python packages generated with cookiecutter-pylibrary'
+    pypi_badge:                'yes'
+    pypi_disable_upload:       'no'
+    release_date:              'today'
+    repo_hosting:              'github.com'
+    repo_hosting_domain:       'github.com'
+    repo_name:                 'libtemplate'
+    repo_username:             'jpardovega'
+    requiresio:                'yes'
+    scrutinizer:               'no'
+    setup_py_uses_setuptools_scm: 'yes'
+    setup_py_uses_test_runner: 'no'
+    sphinx_docs:               'yes'
+    sphinx_docs_hosting:       'https://libtemplate.readthedocs.io/'
+    sphinx_doctest:            'no'
+    sphinx_theme:              'sphinx-rtd-theme'
+    test_matrix_configurator:  'no'
+    test_matrix_separate_coverage: 'no'
+    test_runner:               'pytest'
+    travis:                    'yes'
+    travis_osx:                'no'
+    version:                   '0.0.0'
+    website:                   'https://blog.ionelmc.ro'
+    year_from:                 '2021'
+    year_to:                   '2021'
