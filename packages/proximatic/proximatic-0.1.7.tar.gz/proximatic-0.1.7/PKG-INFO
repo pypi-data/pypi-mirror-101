@@ -1,0 +1,74 @@
+Metadata-Version: 2.1
+Name: proximatic
+Version: 0.1.7
+Summary: Python API and CLI for managing Proximatic configuration.
+Keywords: proxy,api,cli
+Author: Link Swanson
+Author-email: link@swanson.link
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Typing :: Typed
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: tabulate (>=0.8.9,<0.9.0)
+Requires-Dist: typer (>=0.3.2,<0.4.0)
+Description-Content-Type: text/markdown
+
+# Proximatic
+
+Python API for managing Proximatic configuration files.
+
+When installed, the `proximatic` command provides a CLI for managing Proximatic configuration.
+
+This Python package provides the core for the Proximatic system. 
+
+If you are looking for the turn-key production deployment of Proximatic, see [https://github.com/LunkRat/proximatic](https://github.com/LunkRat/proximatic).
+
+## Installation
+
+```bash
+pip install proximatic
+```
+
+## Usage
+
+### Command Line Interface (CLI)
+
+Open a Terminal and type:
+
+```bash
+proximatic
+```
+
+Use `proximatic --help` for available commands and options.
+
+### Python API programmatic interface
+
+```python
+from proximatic import Proximatic
+proximatic = Proximatic(yml_dir='/path/to/your/proximatic/data', fqdn='example.org')
+```
+
+### JSON REST API interface
+
+You can run the (experimental) REST API on your localhost by typing the command:
+
+```bash
+proximatic-http
+```
+
+It will try to open your browser to [http://localhost:8000](http://localhost:8000)
+
+## License
+
+The MIT License (MIT)
+
+## Author
+
+Link Swanson (LunkRat)

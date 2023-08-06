@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "proximatic"
+version = "0.1.7"
+description = "Python API and CLI for managing Proximatic configuration."
+authors = ["Link Swanson <link@swanson.link>"]
+readme = "README.md"
+keywords = ["proxy", "api", "cli"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Console",
+    "Programming Language :: Python :: 3 :: Only",
+    "Typing :: Typed"
+]
+
+[tool.poetry.scripts]
+proximatic = "proximatic.main:cli"
+proximatic-http = "proximatic.runhttp:http"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.25.1"
+PyYAML = "^5.4.1"
+typer = "^0.3.2"
+tabulate = "^0.8.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+uvicorn = "^0.13.4"
+fastapi = "^0.63.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
