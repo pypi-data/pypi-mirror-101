@@ -1,0 +1,34 @@
+base:
+  - python3-pip
+  - gcc
+  - ncurses-devel
+  - environment-modules
+
+autotools:
+  - autoconf
+  - automake
+  - texinfo
+  - gettext-devel
+  - libtool
+
+GCC-Toolchain:
+  - devtoolset-7-gcc-c++
+  - flex
+  - bison
+  - devtoolset-7-gcc-gfortran
+
+zlib:
+  - zlib-devel
+
+
+OpenSSL:
+  - openssl-devel
+
+libng:
+  - libpng-devel
+
+FreeType:
+  - freetype-devel
+
+bz2:
+  - freetype-devel

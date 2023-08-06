@@ -1,0 +1,147 @@
+#!python
+
+import coloredlogs
+import logging
+import json
+import argparse
+import sys
+import time
+import os
+import glob
+import threading
+
+from alibuild_helpers.utilities import detectArch
+
+import flp2rpm.config as config
+from flp2rpm.Package import Package
+from flp2rpm.Fpm import Fpm
+from flp2rpm.S3 import S3
+from flp2rpm.Repo import Repo
+from flp2rpm.helpers import runSubprocess
+
+
+def configureLogging():
+    coloredlogs.install(level=config.log_level)
+
+
+def setConfigArgs(args):
+    """ Sets the configuration variables as parsed """
+    if 'ali_prefix' in args:
+        config.ali_prefix = args.ali_prefix
+    logging.info("Using aliBuild work directory: %s" % (config.ali_prefix))
+
+    if 'release_tag' in args:
+        config.release_tag = args.release_tag
+
+    if 'target_rpm_dir' in args:
+        config.target_rpm_dir = os.path.join(args.target_rpm_dir, config.release_tag)
+    else:
+        config.target_rpm_dir = os.path.join(config.target_rpm_dir, config.release_tag)
+    logging.info("Using output directory: %s" % (config.target_rpm_dir))
+
+    if 'dry_run' in args:
+        config.dry_run = args.dry_run
+        logging.info("Starting dry run: %s" % (config.dry_run))
+
+    if 'skip_deps' in args:
+        config.skip_deps = args.skip_deps
+        logging.info("Skipping dependencies: %s" % (config.skip_deps))
+
+    if 'architecture' in args:
+        config.architecture = args.architecture
+    else:
+        config.architecture = detectArch()
+        logging.info('Detected aliBuild architecture: %s' % config.architecture)
+
+PROCESSED = []
+RPMS_GENERATED=[]
+FPM_THREADS = []
+
+
+def processDeps(name, version):
+    """ DSF dependency (recipies in alidist dir) tree traversal """
+    logging.debug("Processing %s %s" % (name, version))
+    if version == 'from_system':
+        return
+    package = Package(name, version)
+    deps = package.deps_with_versions()
+    extra_deps = package.get_extra_deps()
+
+    if not config.skip_deps:
+        for dep_name, dep_version in deps.items():
+            processDeps(dep_name, dep_version)
+
+    fpm = Fpm()
+    if name not in PROCESSED:
+        logging.info("Generating %s version %s:\n - deps: %s\n - extra deps: %s" % (name, version, json.dumps(deps), ', '.join(extra_deps) if len(extra_deps) > 0 else 'None'))
+        PROCESSED.append(name)
+        t = threading.Thread(target=fpm.run, args=(name, version, deps, extra_deps, RPMS_GENERATED))
+        t.start()
+        FPM_THREADS.append(t)
+
+def validateRpms():
+    """ Validates the generated RPMs by running a dry yum install """
+
+    # get the actual RPM paths to pass to yum and avoid subprocess using shell
+    rpmPaths = glob.glob(os.path.join(config.target_rpm_dir, '*.rpm'))
+    if rpmPaths == []:
+      logging.error("No RPMs found under %s, exiting", config.target_rpm_dir)
+      return
+    logging.info("Validating the RPMs under %s (will ask for sudo))", config.target_rpm_dir)
+    logging.debug("RPMs: \n%s", '\n'.join(rpmPaths))
+    yumCommand = ['sudo', 'yum', '-y', 'install',
+                  *rpmPaths,
+                  '--setopt', 'tsflags=test',
+                  '--setopt', 'skip_missing_names_on_install=False']
+    if config.dry_run:
+        print(*yumCommand)
+    else:
+        runSubprocess(yumCommand)
+
+def main(args):
+    start_main = time.time()
+    if 'log_level' in args:
+        config.log_level = args.log_level
+    configureLogging()
+    setConfigArgs(args)
+    if args.command == 'generate':
+        processDeps(args.package, args.version)
+        logging.info('Waiting for RPM generation to finish...')
+        for t in FPM_THREADS:
+            t.join()
+        logging.info('RPM generation completed in %.1f seconds' % (time.time() - start_main))
+    if args.command == 'validate':
+        start_validate = time.time()
+        validateRpms()
+        logging.info('RPM validation completed in %.1f seconds' % (time.time() - start_validate))
+    if args.command == 'sync' and not args.pull:
+        Repo().create()
+        S3().push_rpms()
+        logging.info('Sync push completed in %.1f seconds' % (time.time() - start_main))
+    if args.command == 'sync' and args.pull:
+        S3().pull_rpms()
+        logging.info('Sync pull completed in %.1f seconds' % (time.time() - start_main))
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dry-run', help='do a dry run, skipping fpm execution', action="store_true", required=False, default=argparse.SUPPRESS)
+    parser.add_argument('--target-rpm-dir', help='path to store RPMs in (=' + config.target_rpm_dir + ' by default)', required=False, default=argparse.SUPPRESS)
+    parser.add_argument('--release-tag', help='Release tag, this is mostly to provide correct dir structure', required=False, default=argparse.SUPPRESS)
+    parser.add_argument('--architecture', help='OS architecture', required=False, default=argparse.SUPPRESS)
+    parser.add_argument('--log-level', help='Set log level (DEBUG, INFO, WARN, ERROR)', required=False, default=argparse.SUPPRESS)
+    subparser = parser.add_subparsers(help='Available commands:', dest='command')
+    # generate command
+    parser_generate = subparser.add_parser('generate', help='Generate RPMs')
+    parser_generate.add_argument('--package', help='package name (as recipe name in aldiist)', required=True)
+    parser_generate.add_argument('--version', help='package version (as in modulefile: X.Y.Z-A)', required=True)
+    parser_generate.add_argument('--ali-prefix', help='path to alibuild dir', required=False, default=argparse.SUPPRESS)
+    parser_generate.add_argument('--skip-deps', help='Generate single RPM without dependencies', action="store_true", required=False, default=argparse.SUPPRESS)
+    # sync
+    parser_sync = subparser.add_parser('sync', help='Sync RPMs to S3')
+    parser_sync.add_argument('--pull', help='Pulls instead of pushing', action="store_true", required=False, default=False)
+    # validate
+    parser_validate = subparser.add_parser('validate', help='Validate RPMs')
+    args = parser.parse_args()
+    main(args)
+    sys.exit(0)
