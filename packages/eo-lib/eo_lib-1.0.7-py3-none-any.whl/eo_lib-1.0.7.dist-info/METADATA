@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: eo-lib
+Version: 1.0.7
+Summary: The Enterprise Ontology (EO) aims at establishing a common conceptualization on the Entreprise domain, including organizations, organizational units, people, roles, teams and projects. Currently, it as considered external to SEON.
+Home-page: https://gitlab.com/ontologyasaservice/data/core/enterprise-ontology-service
+Author: paulossjunior
+Author-email: paulossjunior@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: SQLAlchemy
+Requires-Dist: SQLAlchemy-Utils
+Requires-Dist: SQLAlchemy-serializer
+Requires-Dist: factory-boy
+Requires-Dist: psycopg2-binary
+
+# Eo
+
+## General Information
+* **Software**:EO_Ontology
+* **Author**:paulossjunior
+* **Author's e-mail**:paulossjunior@gmail.com
+* **Source Repository**: [https://gitlab.com/ontologyasaservice/data/core/enterprise-ontology-service](https://gitlab.com/ontologyasaservice/data/core/enterprise-ontology-service)  
+
+## Goal
+The Enterprise Ontology (EO) aims at establishing a common conceptualization on the Entreprise domain, including organizations, organizational units, people, roles, teams and projects. Currently, it as considered external to SEON.
+
+## Documentation
+
+The Documentation can be found in this [link](./docs/README.md)
+
+## Instalation
+
+To install eo_lib, run this command in your terminal:
+```bash
+pip install eo_lib
+```
+
+## Usage
+
+```python
+#put your example of code here!
+```
+
+## Copyright
+This lib was PowerRight by [SEON Application Lib Generator](https://gitlab.com/mdd_seon/ontology-as-a-service/from-ontology-information-model-to-services)
+
+
+
+
