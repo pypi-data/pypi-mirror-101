@@ -1,0 +1,149 @@
+.. meta::
+    :description: ECS Compose-X AWS S3 syntax reference
+    :keywords: AWS, AWS ECS, Docker, Compose, docker-compose, AWS S3, S3 Buckets
+
+.. _s3_syntax_reference:
+
+=====
+x-s3
+=====
+
+-----------------------------------------------------------------
+Create or use existing S3 buckets to use for your applications
+-----------------------------------------------------------------
+
+
+Properties
+===========
+
+For the properties, go to to `AWS CFN S3 Definition`_
+
+MacroParameters
+=================
+
+Some use-cases require special adjustments. This is what this section is for.
+
+* `NameSeparator`_
+* `ExpandRegionToBucket`_
+* `ExpandAccountIdToBucket`_
+
+NameSeparator
+--------------
+
+Default is **-** which separates the different parts of the bucket that you might have automatically
+added via the other MacroParameters
+
+As shown below, the separator between the bucket name and AWS::AccountId or AWS::Region is **-**. This parameter allows
+you to define something else.
+
+.. note::
+
+    I would recommend not more than 2 characters separator.
+
+.. warning::
+
+    The separator must allow for DNS compliance **[a-z0-9.-]**
+
+
+ExpandRegionToBucket
+---------------------
+
+When definining the `BucketName` in properties, if wanted to, for uniqueness or readability, you can append to that string
+the region id (which is DNS compliant) to the bucket name.
+
+.. code-block:: yaml
+
+    Properties:
+      BucketName: abcd-01
+    Settings:
+      ExpandRegionToBucket: True
+
+Results into
+
+.. code-block:: yaml
+
+    !Sub abcd-01-${AWS::Region}
+
+ExpandAccountIdToBucket
+------------------------
+
+Similar to ExpandRegionToBucket, it will append the account ID (additional or instead of).
+
+.. code-block:: yaml
+
+    Properties:
+      BucketName: abcd-01
+    Settings:
+      ExpandRegionToBucket: True
+
+Results into
+
+.. code-block:: yaml
+
+    !Sub 'abcd-01-${AWS::AccountId}'
+
+.. hint::
+
+    If you set both ExpandAccountIdToBucket and ExpandRegionToBucket, you end up with
+
+    .. code-block:: yaml
+
+        !Sub 'abcd-01-${AWS::Region}-${AWS::AccountId}'
+
+
+Services
+========
+
+As for all other resource types, you can define the type of access you want based to the S3 buckets.
+However, for buckets, this means distinguish the bucket and the objects resource.
+
+.. code-block:: yaml
+    :caption: permissions example
+
+    x-s3:
+      bucketA:
+        Properties: {}
+        Settings: {}
+        Services:
+          - name: service-01
+            access:
+              objects: RW
+              bucket: ListOnly
+
+Lookup
+=======
+
+Lookup is currently implemented for S3 buckets!
+
+.. hint::
+
+    For S3, if the S3 bucket has a default KMS key encryption, the services will automatically be granted KMS default
+    **EncryptDecrypt** permissions in order to allow using the KMS key for objects manipulation.
+
+IAM Permissions
+================
+
+For S3 buckets, the access types is expecting a object with **objects** and **bucket** to distinguish permissions for each.
+If you indicate a string, the default permissions (bucket: ListOnly and objects: RW) will be applied.
+
+.. literalinclude:: ../../../ecs_composex/s3/s3_perms.json
+    :caption: Full access types policies definitions
+    :language: json
+
+
+Examples
+=========
+
+.. literalinclude:: ../../../use-cases/s3/simple_s3_bucket.yml
+    :language: yaml
+    :caption: Create new S3 buckets
+
+.. literalinclude:: ../../../use-cases/s3/lookup_only.yml
+    :language: yaml
+    :caption: Lookup and use only existing buckets
+
+.. literalinclude:: ../../../use-cases/s3/full_s3_bucket_properties.yml
+    :language: yaml
+    :caption: Create new bucket with AWS CFN properties
+
+.. _AWS CFN S3 Definition: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html
