@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: easi-py-common
+Version: 0.0.56
+Summary: 
+Home-page: https://poetry.eustace.io/
+License: MIT
+Author: wangziqing
+Author-email: eininst@aliyun.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: boto3 (>=1.16.19,<2.0.0)
+Requires-Dist: flask (>=1.1.2,<2.0.0)
+Requires-Dist: flask-redis (>=0.4.0,<0.5.0)
+Requires-Dist: flask-sqlalchemy (>=2.4.4,<3.0.0)
+Requires-Dist: flask-uploads (>=0.2.1,<0.3.0)
+Requires-Dist: flask-wtf (>=0.14.3,<0.15.0)
+Requires-Dist: flaskerk (>=0.6.3,<0.7.0)
+Requires-Dist: gevent (>=20.9.0,<21.0.0)
+Requires-Dist: itsdangerous (>=1.1.0,<2.0.0)
+Requires-Dist: orjson (>=3.4.3,<4.0.0)
+Requires-Dist: pydantic (>=1.7.2,<2.0.0)
+Requires-Dist: pymysql (>=0.10.1,<0.11.0)
+Requires-Dist: pytz (>=2020.4,<2021.0)
+Requires-Dist: pyyaml (>=5.3.1,<6.0.0)
+Requires-Dist: requests (>=2.25.0,<3.0.0)
+Requires-Dist: werkzeug (>=1.0.1,<2.0.0)
+Project-URL: Documentation, https://github.com/infinitasx/easi-py-common
+Project-URL: Repository, https://github.com/infinitasx/easi-py-common
