@@ -1,0 +1,45 @@
+Metadata-Version: 2.1
+Name: maprule
+Version: 0.2.0
+Summary: package for validating values
+Home-page: https://github.com/rubbiekelvin/maprule
+Author: Rubbie Kelvin
+Author-email: dev.rubbie@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+
+# Maprule
+value validating library
+
+## Installation
+```bash
+python -m pip install -U maprule
+```
+
+### Update
+- __v0.2.0__: added error tracking
+
+
+## Usage
+```python
+from maprule import fields
+
+fields.Boolean().compare(True)
+
+fields.Integer().compare(0)
+fields.Integer(maximum=0).compare(1)
+
+fields.String(min_length=3).compare("he")
+
+fields.Dictionary(dict(
+	name=fields.String(min_length=3),
+	age=fields.Integer(minimum=0)
+)).compare(dict(name="rubbie", age=19))
+
+fields.Array(fields.String(min_length=3)).compare(["rubbie", "kelvin"])
+```
+
