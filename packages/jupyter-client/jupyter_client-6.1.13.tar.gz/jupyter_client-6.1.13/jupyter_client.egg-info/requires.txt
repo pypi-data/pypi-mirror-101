@@ -1,0 +1,25 @@
+traitlets
+jupyter_core>=4.6.0
+pyzmq>=13
+python-dateutil>=2.1
+tornado>=4.1
+nest-asyncio>=1.5
+
+[doc]
+sphinx>=1.3.6
+sphinx_rtd_theme
+sphinxcontrib_github_alt
+
+[test]
+async_generator
+ipykernel
+ipython
+mock
+pytest-asyncio
+pytest-timeout
+pytest
+mypy
+pre-commit
+
+[test:python_version <= "3.6"]
+jedi<0.18
