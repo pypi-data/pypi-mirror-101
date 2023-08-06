@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: typed-undefined
+Version: 0.1.0
+Summary: typed undefined
+Home-page: https://github.com/uriyyo/typed-undefined
+License: MIT
+Author: Yurii Karabas
+Author-email: 1998uriyyo@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: typing-extensions (>=3.7.4,<4.0.0)
+Project-URL: Repository, https://github.com/uriyyo/typed-undefined
+Description-Content-Type: text/markdown
+
+# Typed Undefined
+
+When `None` is not valid default value you can always use `undefined`.
+
+```python
+from undefined import Undefined, undefined, resolve
+
+
+def foo(bar: Undefined[int] = undefined) -> int:
+    return resolve(undefined, 10)
+
+
+foo(1)  # ok
+foo(1.0)  # error
+
+a: Undefined[int] = 1  # ok
+b: Undefined[int] = 0.5  # error
+```
+
+## mypy integration
+
+You should add `undefined_mypy` to list of mypy plugins:
+
+```buildoutcfg
+[mypy]
+plugins = undefined.mypy
+```
