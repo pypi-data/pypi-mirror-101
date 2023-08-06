@@ -1,0 +1,334 @@
+#!/bin/bash -e
+
+function usage()
+{
+    cat<<-HELPDOC
+NAME
+        $(basename "$0") - lava docker slave install script
+SYNOPSIS
+        $(basename "$0") -a <action> -p <prefix> -n <name> -v <version> -x <proxy> -m <master>
+        $(basename "$0") -a <action> -f <full_name> -v <version> -x <proxy> -m <master>
+DESCRIPTION
+        -a:     specify action of this script
+        -p:     prefix of worker name, fill in site please
+        -n:     unique name for user to distinguish other worker
+        -f:     full name specified, user need to assure it's unique, -n will be skip if -f specified
+        -v:     version of lava dispatcher, e.g. 2021.03, etc
+        -x:     local http proxy, e.g. http://apac.nics.nxp.com, http://emea.nics.nxp.com:8080, http://amec.nics.nxp.com:8080
+        -m:     the master this slave will connect to
+
+        Example:
+        build:   can skip this if want to use prebuilt customized docker image on dockerhub
+                 $(basename "$0") -a build -v 2021.03 -x http://apac.nics.nxp.com:8080
+        start:   new/start a lava docker slave
+                 $(basename "$0") -a start -p shanghai -n apple -v 2021.03 -x http://apac.nics.nxp.com:8080 -m https://lava.sw.nxp.com/
+        stop:    stop a lava docker slave
+                 $(basename "$0") -a stop -p shanghai -n apple
+        destroy: destroy a lava docker slave
+                 $(basename "$0") -a destroy -p shanghai -n apple
+        (Here, if docker host name is shubuntu1, then lava worker name will be shanghai-shubuntu1-docker-apple; if -f specified, will use user specified full name instead)
+HELPDOC
+}
+
+# get timezone
+function get_timezone()
+{
+    timezone=$(find /usr/share/zoneinfo/ -type f | xargs md5sum | \
+        grep $(md5sum /etc/localtime | cut -d ' ' -f1) | \
+        awk -F '/usr/share/zoneinfo/' '{print $2}' | tail -1)
+}
+
+# switch to correct token if needed
+function switch_token()
+{
+    docker run --rm -v $1:/tmp/worker busybox \
+        sh -c "rm -f /tmp/worker/token; cp -f /tmp/worker/token.$2 /tmp/worker/token > /dev/null 2>&1" || :
+}
+
+# start
+declare CFG_DIR=~/.config/lava_docker_slave
+mkdir -p $CFG_DIR
+cat > $CFG_DIR/advanced.json.sample<< EOF
+{
+    "volume": ["/host_folder_1:/container_folder_1", "/host_folder_2:/container_folder_2"],
+    "no_proxy": ".sw.nxp.com,.freescale.net,10.0.0.0/8",
+    "force_update": "true"
+}
+EOF
+
+# get options
+set +e
+parsed_args=$(getopt -o a:p:n:f:v:x:m: -n "$(basename "$0")" -- "$@")
+rc=$?
+set -e
+if [ 0 -ne $rc ]; then
+    usage
+    exit 1
+fi
+eval set -- "${parsed_args}"
+if [[ '--' == "$1" ]]; then
+    usage
+    exit 1
+fi
+
+# parse options
+while true
+do
+    case "$1" in
+        -a)
+            action=$2
+            shift 2
+            ;;
+        -p)
+            prefix=$2
+            shift 2
+            ;;
+        -n)
+            name=$2
+            shift 2
+            ;;
+        -f)
+            full=$2
+            shift 2
+            ;;
+        -v)
+            version=$2
+            shift 2
+            ;;
+        -x)
+            proxy=$2
+            shift 2
+            ;;
+        -m)
+            master=$2
+            shift 2
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            echo "Fatal: parameter error."
+            usage
+            exit 1
+    esac
+done
+
+if [ ${master::4} != "http" ]; then
+    echo "Fatal: url scheme http/https needed for -m $master"
+    exit 1
+fi
+
+http_proxy=$proxy
+url=$master
+master=${master#*://}
+master=${master%%/*}
+if [ $full ]; then
+    worker_name="--name $full"
+    container_name=$full
+elif [ $prefix ] && [ $name ]; then
+    worker_name="--name $prefix-$(hostname)-docker-$name"
+    container_name=$prefix-$(hostname)-docker-$name
+fi
+
+get_timezone
+
+# parse advanced configure
+volume_string=""
+no_proxy=".sw.nxp.com,.freescale.net,10.0.0.0/8"
+force_update="false"
+if [ -f $CFG_DIR/advanced.json ]; then
+    volume=$(candidate=$(cat $CFG_DIR/advanced.json) \
+        docker run --rm -e candidate endeveit/docker-jq \
+        sh -c 'echo "$candidate" | jq -r ". | select(.volume != null) | .volume[]"')
+
+    for per_volume in $volume
+    do
+        volume_string="$volume_string -v $per_volume"
+    done
+
+    no_proxy_candidate=$(candidate=$(cat $CFG_DIR/advanced.json) \
+        docker run --rm -e candidate endeveit/docker-jq \
+        sh -c 'echo "$candidate" | jq -r ". | select(.no_proxy != null) | .no_proxy"')
+    no_proxy=${no_proxy_candidate:-$no_proxy}
+
+    force_update_candidate=$(candidate=$(cat $CFG_DIR/advanced.json) \
+        docker run --rm -e candidate endeveit/docker-jq \
+        sh -c 'echo "$candidate" | jq -r ". | select(.force_update != null) | .force_update"')
+    force_update=${force_update_candidate:-$force_update}
+fi
+
+# start logic with different actions
+case "$action" in
+    build)
+        if [[ ! $version || ! $proxy ]]; then
+            echo "Fatal: -v, -x required for build!"
+            usage
+            exit 1
+        fi
+
+        docker build \
+            --build-arg build_from="$version" \
+            --build-arg http_proxy="$http_proxy" \
+            --no-cache \
+            -t lava-dispatcher:"$version" -f Dockerfile .
+        ;;
+
+    start)
+        if [[ ! $worker_name || ! $version || ! $proxy || ! $master ]]; then
+            echo "Fatal: -p, -n/-f, -v, -x, -m required for start!"
+            usage
+            exit 1
+        fi
+
+        switch_token $container_name $master
+
+        set +e
+        status=$(docker inspect --format '{{ .State.Status }}' "$container_name" 2>&1)
+        rc=$?
+        set -e
+        if [[ $rc -eq 0 ]]; then
+            if [[ $status == 'exited' ]]; then
+                echo "Slave existed, start it for you now."
+
+                echo "Try to stop adb server on host..."
+                sudo adb kill-server > /dev/null 2>&1 || true
+
+                echo "Try to stop tftp & nfs service on host..."
+                sudo modprobe nfsd
+                sudo service tftpd-hpa stop > /dev/null 2>&1 || true
+                sudo service rpcbind stop > /dev/null 2>&1 || true
+                sudo service nfs-kernel-server stop > /dev/null 2>&1 || true
+                sudo start-stop-daemon --stop --oknodo --quiet --name rpc.mountd --user 0 > /dev/null 2>&1 || true
+                sudo start-stop-daemon --stop --oknodo --quiet --name rpc.svcgssd --user 0 > /dev/null 2>&1 || true
+                sudo start-stop-daemon --stop --oknodo --quiet --name nfsd --user 0 --signal 2 > /dev/null 2>&1 || true
+
+                mkdir -p ~/.lava/"$container_name" && touch ~/.lava/"$container_name"/ser2net.conf
+                docker start "$container_name"
+            else
+                echo "Slave already running, no action perform."
+            fi
+        else
+            echo "Slave not exist, set a new for you now."
+
+            no=$(docker images -q lava-dispatcher:"$version" | wc -l)
+            if [[ $no -eq 0 ]]; then
+                echo "No local docker image found, use prebuilt image on dockerhub."
+                target_image=atline/lava-dispatcher:$version
+                if [[ $force_update == "true" ]]; then
+                    docker pull $target_image
+                fi
+            else
+                echo "Use local built docker image."
+                target_image=lava-dispatcher:$version
+            fi
+
+            mkdir -p ~/.config
+            touch ~/.config/lavacli.yaml
+            if [ ! -s ~/.config/lavacli.yaml ]; then
+                echo "{}" > ~/.config/lavacli.yaml
+            fi
+
+            echo "Try to stop tftp & nfs service on host..."
+            sudo modprobe nfsd
+            sudo service tftpd-hpa stop > /dev/null 2>&1 || true
+            sudo service rpcbind stop > /dev/null 2>&1 || true
+            sudo service nfs-kernel-server stop > /dev/null 2>&1 || true
+            sudo start-stop-daemon --stop --oknodo --quiet --name rpc.mountd --user 0 > /dev/null 2>&1 || true
+            sudo start-stop-daemon --stop --oknodo --quiet --name rpc.svcgssd --user 0 > /dev/null 2>&1 || true
+            sudo start-stop-daemon --stop --oknodo --quiet --name nfsd --user 0 --signal 2 > /dev/null 2>&1 || true
+
+            echo "Try to stop adb server on host..."
+            sudo adb kill-server > /dev/null 2>&1 || true
+
+            mkdir -p ~/.lava/"$container_name" && touch ~/.lava/"$container_name"/ser2net.conf
+
+            docker run -d --net=host --privileged \
+                -v /dev:/dev \
+                -v /boot:/boot:ro \
+                -v /lib/modules:/lib/modules:ro \
+                -v /var/run/docker.sock:/var/run/docker.sock \
+                -v /labScripts:/labScripts \
+                -v /local/lava-ref-binaries:/local/lava-ref-binaries \
+                -v /var/lib/lava/dispatcher/tmp:/var/lib/lava/dispatcher/tmp \
+                -v $container_name:/var/lib/lava/dispatcher/worker \
+                -v ~/.config/lavacli.yaml:/root/.config/lavacli.yaml \
+                -v ~/.lava/"$container_name"/ser2net.conf:/etc/ser2net.conf \
+                -v /sys/fs/cgroup:/sys/fs/cgroup \
+                -v /usr/local/share/ca-certificates:/usr/local/share/ca-certificates \
+                $volume_string \
+                -e WORKER_NAME="$worker_name" \
+                -e URL="$url" \
+                -e TZ="$timezone" \
+                -e http_proxy="$proxy" \
+                -e no_proxy="$no_proxy" \
+                -e master="$master" \
+                --name "$container_name" \
+                --hostname "$container_name" \
+                "$target_image"
+
+            echo -e "Communicate with lava server ongoing.\c"
+            cnt=0
+            while :
+            do
+                set +e
+                docker exec $container_name test -e /var/lib/lava/dispatcher/worker/token > /dev/null 2>&1
+                if [ $? -eq 0 ]; then
+                    echo
+                    break
+                fi
+                set -e
+                cnt=$((cnt+1))
+                if [ $cnt -eq 60 ]; then
+                    echo
+                    echo "Failure when connect to lava server."
+                    docker logs $container_name > $CFG_DIR/fatal.log 2>&1
+                    docker rm -f $container_name > /dev/null 2>&1
+                    exit 1
+                fi
+                sleep 2
+                echo -e ".\c"
+            done
+
+            docker exec $container_name cp -f /var/lib/lava/dispatcher/worker/token{,.$master}
+        fi
+        ;;
+
+    stop)
+        if [[ ! $worker_name ]]; then
+            echo "Fatal: -p, -n/-f required for stop!"
+            usage
+            exit 1
+        fi
+
+        docker stop "$container_name"
+
+        echo "Start to destory nfs port."
+        sudo start-stop-daemon --stop --oknodo --quiet --name rpc.mountd --user 0 > /dev/null 2>&1 || true
+        sudo start-stop-daemon --stop --oknodo --quiet --name rpc.svcgssd --user 0 > /dev/null 2>&1 || true
+        sudo start-stop-daemon --stop --oknodo --quiet --name nfsd --user 0 --signal 2 > /dev/null 2>&1 || true
+        ;;
+
+    destroy)
+        if [[ ! $worker_name ]]; then
+            echo "Fatal: -p, -n/-f required for destroy!"
+            usage
+            exit 1
+        fi
+
+        docker rm -f "$container_name"
+        docker volume rm -f "$container_name"
+
+        echo "Start to destory nfs port."
+        sudo start-stop-daemon --stop --oknodo --quiet --name rpc.mountd --user 0 > /dev/null 2>&1 || true
+        sudo start-stop-daemon --stop --oknodo --quiet --name rpc.svcgssd --user 0 > /dev/null 2>&1 || true
+        sudo start-stop-daemon --stop --oknodo --quiet --name nfsd --user 0 --signal 2 > /dev/null 2>&1 || true
+        ;;
+
+    *)
+        echo "Fatal: Unsupported action."
+        usage
+        exit 1
+esac
+
+echo "Congratulations, action performed successfully."
