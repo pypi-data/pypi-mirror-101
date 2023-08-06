@@ -1,0 +1,33 @@
+# Python / Byte-compiled / optimized / DLL
+*.py[cod]
+__pycache__/
+*.so
+.cache
+*.egg-info/
+/build/
+/dist/
+.coverage
+.eggs
+
+# OS or Editor files and folders
+._*
+.DS_Store
+Desktop.ini
+Thumbs.db
+.ipynb_checkpoints/
+.directory
+/.idea/
+.vscode/
+=19
+.Spotlight-V100
+.Trashes
+
+# Docs build
+docs/build
+docs/source/trisicell*
+
+# GUROBI
+gurobi.log
+
+# Trisicell specific
+trisicell.*
