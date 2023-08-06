@@ -1,0 +1,90 @@
+Metadata-Version: 2.1
+Name: knopt
+Version: 0.3.1
+Summary: Automatic command line apps
+Home-page: https://gitlab.com/pcapriotti/knopt
+Author: Paolo Capriotti
+Author-email: paolo@capriotti.io
+License: BSD3
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+
+# knopt
+
+Build command line applications by inspecting function signatures. Inspired by [optfunc](https://github.com/simonw/optfunc).
+
+## Quick start
+
+To create a simple command line application, annotate a function with `knopt.main`:
+
+```python
+from knopt import main
+
+@main
+def cli(input, output, verbose=False):
+    if verbose:
+        print('input:', input)
+        print('output:', output)
+```
+
+Command line arguments are automatically parsed using `argparse` and passed to the `cli` function.
+
+To use other features of the `argparse` library, you can use annotations on arguments. Pure type annotations work as expected:
+
+```python
+from knopt import main
+
+@main
+def double(number: int):
+    print(number * 2)
+```
+
+but for more control, you can use `knopt.arg` as an annotation and include options for `argparse`:
+
+```python
+from knopt import main, arg
+
+@main
+def search(directory: arg(help="directory to search"),
+           invert: arg('v', help="invert match") = False,
+           pattern: arg('e', help="search pattern") = ''):
+    """search files in a directory"""
+    print("searching",
+          ("~" if invert else "") + repr(pattern),
+          "in", directory)
+```
+
+Note that the docstring of `search` is used as a description for the program.
+
+## Commands
+
+You can also create a program accepting multiple commands by using the `knopt.main` annotation on a class. Every method of the class is converted to a command. For example:
+
+```python
+from knopt import main
+
+@main
+class Program:
+    """An example program with commands"""
+
+    def __init__(self, verbose: arg('v') = False):
+        self.verbose = verbose
+        self.files = []
+
+    def add(self, files: arg(nargs='*')):
+        """add files to a repository"""
+        if self.verbose:
+            print('adding', files)
+
+    def commit(self, all: arg('a') = False):
+        """commit files"""
+        if self.verbose:
+            print('committing')
+```
+
+This creates a program with two commands `add` and `commit`, and a global option `-v`/`--verbose`.
+
+
