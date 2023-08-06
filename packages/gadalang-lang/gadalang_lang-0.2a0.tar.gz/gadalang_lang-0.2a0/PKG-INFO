@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: gadalang_lang
+Version: 0.2a0
+Summary: Collection of lang nodes for gada
+Home-page: https://github.com/gadalang/gadalang-lang
+Author: Jeremy Morosi
+Author-email: jeremymorosi@hotmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/gadalang/gadalang-lang/issues
+Project-URL: Source Code, https://github.com/gadalang/gadalang-lang/
+Description: # gadalang-lang
+        
+        ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gadalang-lang)
+        [![Python package](https://img.shields.io/github/workflow/status/gadalang/gadalang-lang/Python%20package)](https://github.com/gadalang/gadalang-lang/actions/workflows/python-package.yml)
+        [![Documentation Status](https://readthedocs.org/projects/gadalang-lang/badge/?version=latest)](https://gadalang-lang.readthedocs.io/en/latest/?badge=latest)
+        [![Codecov](https://img.shields.io/codecov/c/gh/gadalang/gadalang-lang?token=4CSJTL1ZML)](https://codecov.io/gh/gadalang/gadalang-lang)
+        [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+        [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/gadalang/gadalang-lang/issues)
+        
+        Collection of [gada](https://github.com/gadalang/gada) nodes forming the core language.
+        
+        ## Install
+        
+        Using pip:
+        
+        ```bash
+        $ pip3 install gadalang-lang
+        ```
+        
+        ## Documentation
+        
+        Build the doc with:
+        
+        ```bash
+        $ make html
+        ```
+        
+        You can find the latest documentation on [gadalang-lang.readthedocs.io](https://gadalang-lang.readthedocs.io/).
+        
+        ## Testing
+        
+        The `test` directory contains many tests that you can run with:
+        
+        ```python
+        $ tox .
+        ```
+        
+        ## License
+        
+        Licensed under the [MIT](LICENSE) License.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
