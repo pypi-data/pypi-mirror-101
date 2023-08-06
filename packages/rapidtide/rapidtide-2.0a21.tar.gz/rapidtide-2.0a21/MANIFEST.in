@@ -1,0 +1,11 @@
+recursive-include rapidtide *.py
+recursive-include rapidtide/scripts *
+recursive-include rapidtide/workflows.py *
+recursive-include rapidtide/data/reference ASPECTS*
+recursive-include rapidtide/data/reference ATT*
+recursive-include rapidtide/data/reference HCP1200*
+recursive-include rapidtide/data/reference MNI152*
+recursive-include rapidtide/data/models *
+recursive-include rapidtide/data/examples/src sub-RAPIDTIDETEST* sub-HAPPYTEST* timecourse1.txt timecourse2.txt
+include versioneer.py
+include rapidtide/_version.py
