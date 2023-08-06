@@ -1,0 +1,23 @@
+distribution_file = plutarchia_occurrences.csv
+iucn_file = plutarchia_categories.csv
+
+taxonomic_groups_file = 
+taxonomic_assignments_file = plutarchia_groups.csv
+
+#kba_species_file = Colombia_IBA_trigger_species.csv
+#kba_directory = /home/nelson/Dropbox/Humboldt/Postdoc/KBA_by_IUCN/Colombia_KBA
+#kba_index = SitRecID
+
+outfile_root = devtest
+overwrite_output = True
+
+cell_size = 1
+offset_lat = 0.2
+offset_lon = 0.2
+
+pop_max_distance = 5 # Km
+
+eps = 0.2
+iters = 1000
+max_kba = 20
+congruency_factor = 1
