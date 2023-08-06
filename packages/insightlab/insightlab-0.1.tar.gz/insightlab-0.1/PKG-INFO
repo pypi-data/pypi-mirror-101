@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: insightlab
+Version: 0.1
+Summary: Library for interacting with Jira Cloud Insight API
+Home-page: https://github.com/idlab-org/insightlab
+Author: IDLab
+Author-email: it-admin@idlab.org
+License: UNKNOWN
+Description: ## insightlab
+        
+        Python library to interact with Jira Cloud Insight's API.
+        
+        If you want to run the tests in `examples/`, simply pip-install the current module and create the environnment variable `INSIGHT_TOKEN`, with a proper value.
+        ```
+        linux sh/bash/...:   export INSIGHT_TOKEN="<...>"
+        windows powershell:  $env:INSIGHT_TOKEN="<...>";
+        ```
+        
+        [Documentation](https://idlab-org.github.io/insightlab/)
+        
+Keywords: insight jira-cloud
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
