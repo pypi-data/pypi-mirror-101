@@ -1,0 +1,17 @@
+click
+oss2
+PyYAML
+aliyun-python-sdk-core
+aliyun-python-sdk-ecs
+
+[dev]
+coverage
+flake8
+pytest-cov
+bumpversion
+pip>=7.0.0
+
+[test]
+coverage
+flake8
+pytest-cov
