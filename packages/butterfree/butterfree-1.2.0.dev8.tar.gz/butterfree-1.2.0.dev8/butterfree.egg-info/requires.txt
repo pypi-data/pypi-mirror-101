@@ -1,0 +1,13 @@
+cassandra-driver<4.0,>=3.22.0
+mdutils<2.0,>=1.2.2
+pandas<1.1,>=0.24
+parameters-validation<2.0,>=1.1.5
+pyspark==3.*
+typer<0.4,>=0.3
+setuptools<42,>=41
+typing-extensions==3.7.4.3
+boto3==1.17.*
+
+[h3]
+cmake==3.16.3
+h3==3.4.2
