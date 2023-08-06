@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: herdpy
+Version: 0.0.4
+Summary: Building a project herd client library
+Home-page: https://github.com/istherepie/herd-python-client
+Author: Steffen Park
+Author-email: dev@istherepie.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/istherepie/herd-python-client/issues
+Description: # Herd python client
+        
+        Drafting a `project herd` client library
+        
+        ## Usage
+        
+        Install the library:
+        
+        ```
+        	python3 -m pip install herdpy
+        ```
+        
+        
+        Use the `new_report` helper to create and send reports to the herd server:
+        
+        ```
+        	from herdpy import new_report
+        
+        	r = new_report()
+        
+        	r.url = "http://nowhere.local"
+        	r.node_name = "testclient"
+        	r.group = "testgroup"
+        	r.status_code = "E200OK"
+        
+        	r.add_tag("test")
+        	r.add_tag("dev")
+        
+        	# Send the report to the server
+        	r.send()
+        
+        ```
+        
+        More to come...
+        
+        
+        ## License
+        
+        Distributed under the MIT License. See `LICENSE` for more information.
+        
+        
+        ## Author
+        
+        Steffen Park <dev@istherepie.com>
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
