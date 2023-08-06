@@ -1,0 +1,40 @@
+Metadata-Version: 1.2
+Name: nlpa
+Version: 0.1.0
+Summary: A very basic nlp automation
+Home-page: https://github.com/nerds-coding/nlpa
+Author: Anup Prakash
+Author-email: 2000.anupprakash@gmail.com
+License: MIT
+Description: NLPA =  Natural Language Processing Automation
+        
+        NLPA is python package which build with help of Pandas and NLTK libray.
+        NLPA integrate the some methods of the above mentioned libray to ease the task of cleaning 
+        the text data.
+        
+        Cleaning text data in which we have to perform the some basic task in repetition
+        like removing stowpword, word tokenizing ,lemmatizing , lowering text and etc... 
+        all these functionality can be achived in one single call.
+        
+        In this project we simply call the fucntions  cleanData and passing parameter into it and it return the 
+        clean text or we can call each individual fucntions and perform our cleaning as per our need.
+        
+        
+        Change Log
+        
+        ===============================================
+        
+        0.1.0 (First Release)
+        
+        ------------------------------------------------
+        
+        - Initial Release 
+        
+        8-April,2021
+Keywords: nlp automation
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3
