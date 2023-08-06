@@ -1,0 +1,16 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+module = "advertools"
+author = "Elias Dabbas"
+author-email = "eliasdabbas@gmail.com"
+home-page = "https://github.com/eliasdabbas/advertools"
+classifiers = ["License :: OSI Approved :: MIT License"]
+requires = [
+    "pandas",
+]
+description-file = 'README.rst'
+keywords = "marketing advertising adwords bingads search-engine-marketing online-marketing digital-marketing digital-advertising keywords"
+
