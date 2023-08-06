@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: ivy-robot
+Version: 1.1.4
+Summary: Functions and classes for gradient-based robot motion planning, written in Ivy.
+Home-page: https://ivy-dl.org/robot
+Author: Ivy Team
+Author-email: ivydl.team@gmail.com
+License: Apache 2.0
+Project-URL: Docs, https://ivy-dl.org/robot/
+Project-URL: Source, https://github.com/ivy-dl/robot
+Description: # What is Ivy Robot?
+        
+        Ivy robot provides functions and classes for gradient-based motion
+              planning and trajectory optimization. Classes are provided both for mobile robots and robot manipulators.
+              Ivy currently supports Jax, TensorFlow, PyTorch, MXNet and Numpy. Check out the [docs](https://ivy-dl.org/robot) for more info!
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
