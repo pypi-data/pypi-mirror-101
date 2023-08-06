@@ -1,0 +1,78 @@
+Metadata-Version: 2.1
+Name: dynamo-release
+Version: 0.96.0
+Summary: Mapping Vector Field of Single Cells
+Home-page: https://github.com/aristoteleo/dynamo-release
+Author: Xiaojie Qiu, Yan Zhang, Ke Ni
+Author-email: xqiu.sc@gmail.com
+License: BSD
+Download-URL: https://github.com/aristoteleo/dynamo-release
+Keywords: VectorField,singlecell,velocity,scNT-seq,sci-fate,NASC-seq,scSLAMseq,potential
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.18.1)
+Requires-Dist: pandas (>=0.25.1)
+Requires-Dist: scipy (>=1.0)
+Requires-Dist: scikit-learn (>=0.19.1)
+Requires-Dist: cvxopt (>=1.2.3)
+Requires-Dist: anndata (>=0.7.6)
+Requires-Dist: loompy (>=3.0.5)
+Requires-Dist: matplotlib (>=3.1.0)
+Requires-Dist: trimap (>=1.0.11)
+Requires-Dist: setuptools
+Requires-Dist: numdifftools (>=0.9.39)
+Requires-Dist: umap-learn (>=0.5.1)
+Requires-Dist: hdbscan (>=0.8.26)
+Requires-Dist: PATSY (>=0.5.1)
+Requires-Dist: statsmodels (>=0.9.0)
+Requires-Dist: numba (>=0.46.0)
+Requires-Dist: seaborn (>=0.9.0)
+Requires-Dist: colorcet (>=2.0.1)
+Requires-Dist: tqdm
+Requires-Dist: python-igraph (>=0.7.1)
+Requires-Dist: pynndescent (>=0.5.2)
+Requires-Dist: pre-commit
+Requires-Dist: networkx
+Provides-Extra: bigdata_visualization
+Requires-Dist: datashader (>=0.9.0) ; extra == 'bigdata_visualization'
+Requires-Dist: bokeh (>=1.4.0) ; extra == 'bigdata_visualization'
+Requires-Dist: holoviews (>=1.9.2) ; extra == 'bigdata_visualization'
+Provides-Extra: dimension_reduction
+Requires-Dist: fitsne (>=1.0.1) ; extra == 'dimension_reduction'
+Requires-Dist: dbmap (>=1.1.2) ; extra == 'dimension_reduction'
+Provides-Extra: interactive_plots
+Requires-Dist: plotly ; extra == 'interactive_plots'
+Provides-Extra: network
+Requires-Dist: networkx ; extra == 'network'
+Requires-Dist: nxviz ; extra == 'network'
+Requires-Dist: hiveplotlib ; extra == 'network'
+Provides-Extra: spatial
+Requires-Dist: pysal (>2.0.0) ; extra == 'spatial'
+Provides-Extra: test
+Requires-Dist: sympy (>=1.4) ; extra == 'test'
+Requires-Dist: networkx ; extra == 'test'
+
+[![package](https://github.com/aristoteleo/dynamo-release/workflows/Python%20package/badge.svg)](https://github.com/aristoteleo/dynamo-release/runs/950435412) [![package](https://github.com/aristoteleo/dynamo-release/workflows/Upload%20Python%20Package/badge.svg)](https://pypi.org/project/dynamo-release/) [![documentation](https://readthedocs.org/projects/dynamo-release/badge/?version=latest)](https://dynamo-release.readthedocs.io/en/latest/)
+## **Dynamo**: Mapping Vector Field of Single Cells
+
+Inclusive model of expression dynamics with metabolic labeling based scRNA-seq / multiomics, vector field reconstruction, potential landscape mapping and differential geometry analyses.
+
+[Installation](https://dynamo-release.readthedocs.io/en/latest/ten_minutes_to_dynamo.html#how-to-install) - [Ten minutes to dynamo](https://dynamo-release.readthedocs.io/en/latest/ten_minutes_to_dynamo.html) - [Tutorials](https://dynamo-release.readthedocs.io/en/latest/zebrafish.html) - [API](https://dynamo-release.readthedocs.io/en/latest/API.html) - [Citation](https://github.com/aristoteleo/dynamo-release/wiki/Dynamo-workflow#citation) - [Theory](https://github.com/aristoteleo/dynamo-release/wiki/Dynamo-workflow#theory-behind-dynamo)
+
+![Dynamo](https://user-images.githubusercontent.com/7456281/93838270-11d8da00-fc57-11ea-94de-d11b529731e1.png)
+
+Single-cell RNA-seq, together with RNA velocity and metabolic labeling, reveals cellular states and transitions at unprecedented resolution. Fully exploiting these data, however, requires dynamical models capable of predicting cell fate and unveiling the governing regulatory mechanisms. Here, we introduce dynamo, an analytical framework that reconciles intrinsic splicing and labeling kinetics to estimate absolute RNA velocities, reconstructs velocity vector fields that predict future cell fates, and finally employs differential geometry analyses to elucidate the underlying regulatory networks. We applied dynamo to a wide range of disparate biological processes including prediction of future states of differentiating hematopoietic stem cell lineages, deconvolution of glucocorticoid responses from orthogonal cell-cycle progression, characterization of regulatory networks driving zebrafish pigmentation, and identification of possible routes of resistance to SARS-CoV-2 infection. Our work thus represents an important step in going from qualitative, metaphorical conceptualizations of differentiation, as exemplified by Waddington’s epigenetic landscape, to quantitative and predictive theories.
+## Discussion 
+Please use github issue tracker to report coding related [issues](https://github.com/aristoteleo/dynamo-release/issues) of dynamo. For community discussion of novel usage cases, analysis tips and biological interpretations of dynamo, please join our public slack workspace: [dynamo-discussion](https://join.slack.com/t/dynamo-discussionhq/shared_invite/zt-itnzjdxs-PV~C3Hr9uOArHZcmv622Kg) (Only a working email address is required from the slack side).
+
+## Contribution 
+If you want to contribute to the development of dynamo, please check out CONTRIBUTION instruction: [Contribution](https://github.com/aristoteleo/dynamo-release/blob/master/CONTRIBUTING.md)
+
+## Acknowledgement
+We would like to sincerely thank the developers of velocyto (La Manno Gioele and others), scanpy (Alex Wolf and others) and svelo (Volker Bergen and others) on their amazing tools which demonstrate the best practice of scientific programming in Python. Dynamo takes various technical inspiration from those packages. It also provides full compatibilities with them. Velocity estimations from either velocyto or scvelo can both be used as input in dynamo to learn the functional form of vector field and then to predict the cell fate over extended time period as well as to map global cell state potential. 
+
+
