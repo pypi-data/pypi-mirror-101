@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: powerbot-backtesting
+Version: 1.0.3
+Summary: All of PowerBot's backtesting functions in one package
+Home-page: https://github.com/powerbot-trading/powerbot_backtesting
+Author: PowerBot Trading
+Author-email: techinfo@powerbot-trading.com
+License: MIT
+Description:  ![PowerBot Logo](https://www.powerbot-trading.com/wp-content/uploads/2018/03/PowerBot_Weblogo.png "PowerBot")
+        # **PowerBot Backtesting**
+        #### ***All of PowerBot's backtesting functions in one package***
+         
+        ***This package needs an up-to-date PowerBot client, generated with the Swagger editor. If you do not 
+        know how to generate such a client, please refer to the PowerBot Knowledge Base.***
+        
+        ***
+        ## Introduction
+        In general, the functions contained in PowerbotBacktesting are designed to make the process of loading, processing,
+        analysing and visualizing market data as simple as possible. With a few line of code you can load contracts within
+        a certain timeframe and utilize their IDs to load all relevant additional data like Revisions (including Orders), 
+        Trades, etc.. This data can then be used to process orderbooks and OHLC-data and subsequently visualize them. There
+        are also functions to run simple backtesting strategies, but these should be understood as templates to refine a 
+        strategy of your own.
+        
+        For a more detailed documentation, please visit our [Knowlegde Base](https://docs.powerbot-trading.com/articles/backtesting/).
+        
+        To see some exemplary scripts on how to use the functions in this package, please check out our 
+        [PowerBot Tools](https://github.com/powerbot-trading/powerbot_tools).
+        ***
+Platform: UNKNOWN
+Requires-Python: >= 3.7, <= 3.9
+Description-Content-Type: text/markdown
