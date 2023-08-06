@@ -1,0 +1,83 @@
+Metadata-Version: 2.1
+Name: cbmshell
+Version: 0.4
+Summary: Interactive shell to manipulate Commodore files
+Home-page: https://eden.mose.org.uk/gitweb/?p=python-cbmshell.git
+Author: Simon Rowe
+Author-email: srowe@mose.org.uk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Utilities
+Description-Content-Type: text/markdown
+Requires-Dist: cbmcodecs2
+Requires-Dist: cbmfiles
+Requires-Dist: cmd2
+Requires-Dist: d64
+
+# cbmshell
+
+This Python module provides an interactive shell to read and write files to disk image files (.d64, .d71, .d81) used by various Commodore microcomputer emulators and tools. Support for tape image files (.tap) is currently read-only.
+
+It permits moving files between images and the local file system as well as other actions such as directory listing and file deletion.
+
+It provides many common benefits of a traditional UNIX shell including filename completion, command history and output redirection.
+
+
+## Quickstart Guide
+
+The shell is started by running the `cbm-shell` command, this presents the prompt
+
+```
+(cbm)
+```
+
+The list of available commands is shown by the `help` command
+
+```
+(cbm) help
+
+Documented commands (use 'help -v' for verbose/'help <topic>' for details):
+===========================================================================
+alias   delete     edit  history  macro  run_pyscript  shell      unlist
+attach  detach     file  images   py     run_script    shortcuts
+copy    directory  help  list     quit   set           token_set
+```
+
+Detail information for a command is shown using `help <command>`.
+
+Disk images need to be attached to a drive number in order to be used.
+
+```
+(cbm) attach mydisk.d64
+Attached mydisk.d64 to 0
+```
+
+Up to ten images can be attached at any one time.
+
+Files in an image can be addressed by prefixing the drive number followed by a colon. For example, to list a BASIC program in the image
+
+```
+(cbm) list 0:PRINT
+5 INPUT"UPPER OR LOWER";C$:SA=0:IFC$="L"THENSA=7
+10 INPUT"FILENAME";F$
+11 OPEN4,4,SA
+15 OPEN2,8,2,F$+",S,R"
+20 GET#2,A$:IFST<>0THENPRINT#4:CLOSE4:CLOSE2:END
+21 IFA$="π"THENA$=","
+30 PRINT#4,A$;:GOTO20
+```
+
+Full documentation on [Read the Docs](https://cbmshell.readthedocs.io/en/latest/).
+
+
+## TODO
+
+* support writting .tap files
+* more commands
+
+
