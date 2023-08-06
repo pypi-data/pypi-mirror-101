@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: pyAFQ
+Version: 0.7
+Summary: pyAFQ: Automated Fiber Quantification ... in Python
+Home-page: https://yeatmanlab.github.io/pyAFQ
+Author: pyAFQ developers
+Author-email: arokem@gmail.com
+Maintainer: Ariel Rokem
+Maintainer-email: arokem@gmail.com
+License: BSD License
+Download-URL: https://github.com/yeatmanlab/pyAFQ
+Description: # pyAFQ
+        Automated Fiber Quantification ... in Python.
+        
+        
+        For details, see [Documentation](https://yeatmanlab.github.io/pyAFQ)
+        
+Platform: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Provides-Extra: fury
+Provides-Extra: fsl
+Provides-Extra: itk
+Provides-Extra: msmt
