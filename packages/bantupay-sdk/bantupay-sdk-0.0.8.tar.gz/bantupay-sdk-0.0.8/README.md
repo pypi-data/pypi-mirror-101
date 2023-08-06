@@ -1,0 +1,146 @@
+# BantuPay SDK
+
+## Installation
+
+Using pip to include bantupay-sdk in your own project:
+
+```shell
+ $ pip install bantupay-sdk
+
+```
+
+## Getting started
+
+### Use the following code to create key pair.
+
+```python
+from bantupay_sdk import account
+
+keyPair = account() # keyPair will now contain this structure {secret: '', publicKey: ''}
+```
+
+### Use the folowing code to sign http data
+
+```python
+from bantupay_sdk import signHttp
+
+httpSign = signHttp(
+  uri='/v2/user/',
+  body='{username: "proxie"}',
+  secretKey'SBVNK4S2NU2QSBDZBKQCGR7DX5FTQFDJVKGWVCZLIEOV4QMANLQYSLNI'
+); # Secret key gotten from the create account method.
+```
+
+### Use this to Sign a transaction
+
+```python
+from bantupay_sdk import signTxn
+
+signTxn = bantuSDK.signTxn(
+  secretKey="SDBG73M4LPCPCQ6NQ4CP4LCF7MOOQGUFJRRBD26P6QKIHW2ESP5R7DDN",
+  transactionXDR="AAAAAOKtdgWGQ02FzacmAD1WhAhI5Dp7kPRojOGjNQj3FBWvAAAAZAAcmBgAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAANQmFudHUuTmV0d29yawAAAAAAAAAAAAAAAAAAAA==",
+  networkPhrase="Bantu Testnet"
+);
+```
+
+# To make payment
+
+> The expressPay method is designed for making payments from bots or any other API like bulk payment engines, that does not need any userfeedback
+
+---
+
+```python
+from bantupay_sdk import expressPay
+
+# Example for making XBN payment
+# Please NOTE: - if you are making payment to Bantu's naitive assest you  MUST leave assetCode and assetIssuer empty, your request will look like this.
+
+expressPay(
+    username="proxie",
+    destination="long",
+    memo="Test 0",
+    amount="1",
+    secretKey="SBVNK4S2NU2QSBDZBKQCGR7DX5FTQFDJVKGWVCZLIEOV4QMANLQYSLNI",
+)
+
+
+# Let's make a BNR payment
+# for mainnet, BNR issuer is GARO4SCJCPO4QPW27EZQBDV5KY4GXXBH6FOLUQ73K73VC4NP5PGBANTU,
+# for testnet BNR issuer is GBNRQ56XX4JA3HKXP7EACLLXYPHCYCWBWOQZYSPGUIJSR5JSAD22EZXG
+# Please ensure that you use the right issuer
+expressPay(
+    username="proxie",
+    destination="long",
+    memo="Test 0",
+    amount="1",
+    secretKey="SBVNK4S2NU2QSBDZBKQCGR7DX5FTQFDJVKGWVCZLIEOV4QMANLQYSLNI",
+    assetIssuer="GARO4SCJCPO4QPW27EZQBDV5KY4GXXBH6FOLUQ73K73VC4NP5PGBANTU"
+    assetCode="BNR"
+    )
+```
+
+### Another way to make payment
+
+```python
+from bantupay_sdk import confirmPaymentDetail, makePayment
+
+firstCall = confirmPaymentDetail(
+    username="proxie",
+    destination="long",
+    memo="Test 0",
+    amount="1",
+    secretKey="SBVNK4S2NU2QSBDZBKQCGR7DX5FTQFDJVKGWVCZLIEOV4QMANLQYSLNI"
+)
+data = firstCall.json() # to extract json data from the  response.
+```
+
+## Note!
+
+> Pass the response of the first call in to the makePayment function.
+
+> confirmPayment will return the respnse gotten from the server, this contains, firstName, lastName, destinationThumbnail, which can be used in stuff like your mobile apps and the likes, networkPhrase, transaction which will be returned in the makePayment and lastly message with will contain info like extra fees or charges that may acrue.
+
+---
+
+```python
+
+if data.status_code == 202: # all is right, you can move on to the next step
+
+  payment = makePayment(
+    username="proxie",
+    serverResponse=firstCall,
+    secretKey="SBVNK4S2NU2QSBDZBKQCGR7DX5FTQFDJVKGWVCZLIEOV4QMANLQYSLNI",
+  )
+else:
+  # handle payment here.
+  pass
+
+# Let's make a BNR payment
+# for mainnet, BNR issuer is GARO4SCJCPO4QPW27EZQBDV5KY4GXXBH6FOLUQ73K73VC4NP5PGBANTU,
+# for testnet BNR issuer is GBNRQ56XX4JA3HKXP7EACLLXYPHCYCWBWOQZYSPGUIJSR5JSAD22EZXG
+# Please ensure that you use the right issuer
+
+firstCall = confirmPaymentDetail(
+    username="proxie",
+    destination="long",
+    memo="Test 0",
+    amount="1",
+    secretKey="SBVNK4S2NU2QSBDZBKQCGR7DX5FTQFDJVKGWVCZLIEOV4QMANLQYSLNI",
+    assetIssuer="GARO4SCJCPO4QPW27EZQBDV5KY4GXXBH6FOLUQ73K73VC4NP5PGBANTU"
+    assetCode="BNR"
+)
+
+data = firstCall.json()
+
+# If all is well, your status code will 200, then pass the response of the first call in to the makePayment function
+if data.status_code == 202:
+  payment = makePayment(
+    username="proxie",
+    serverResponse=firstCall,
+    secretKey="SBVNK4S2NU2QSBDZBKQCGR7DX5FTQFDJVKGWVCZLIEOV4QMANLQYSLNI",
+  )
+else:
+  # handle your errors here
+  print(data)
+
+```
