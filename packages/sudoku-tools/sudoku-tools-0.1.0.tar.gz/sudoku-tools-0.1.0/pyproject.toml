@@ -1,0 +1,83 @@
+[tool.poetry]
+name = "sudoku-tools"
+version = "0.1.0"
+description = "A collection of useful tools for generating, grading, solving, and transforming sudoku puzzles"
+authors = ["Dawson Booth <pypi@dawsonbooth.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/dawsonbooth/sudoku-tools"
+repository = "https://github.com/dawsonbooth/sudoku-tools"
+documentation = "https://dawsonbooth.github.io/sudoku-tools"
+keywords = []
+classifiers = [
+    "Environment :: Console",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+include = ["LICENSE"]
+packages = [{ include = "sudoku" }]
+
+[tool.poetry.scripts]
+sudoku-tools = "sudoku.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+numpy = "^1.20.2"
+
+[tool.poetry.dev-dependencies]
+autoflake = "^1.4"
+black = "^20.8b1"
+dustpan = "^0.3.2"
+flake8 = "^3.8.4"
+ghp-import = "^1.0.1"
+invoke = "^1.5.0"
+isort = "^5.7.0"
+mypy = "^0.790"
+portray = "^1.5.2"
+pytest = "^6.2.1"
+rope = "^0.18.0"
+
+[tool.black]
+line-length = 119
+
+[tool.dustpan]
+remove-empty-directories = true
+
+[tool.isort]
+line_length = 119
+profile = "black"
+
+[tool.portray]
+modules = ["sudoku"]
+
+[[tool.portray.extra_markdown_extensions]]
+[tool.portray.extra_markdown_extensions.toc]
+permalink = true
+
+[[tool.portray.extra_markdown_extensions]]
+[tool.portray.extra_markdown_extensions."pymdownx.highlight"]
+linenums = true
+
+[tool.portray.mkdocs]
+site_name = "sudoku-tools"
+site_url = "https://dawsonbooth.github.io/sudoku-tools/"
+edit_uri = "blob/master/"
+
+markdown_extensions = [
+    "admonition",
+    "codehilite",
+    "extra",
+    "pymdownx.details",
+    "pymdownx.superfences",
+]
+
+nav = [{ Overview = "README.md" }]
+
+[tool.portray.mkdocs.theme]
+name = "material"
+palette = { primary = "blue grey", accent = "red" }
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
