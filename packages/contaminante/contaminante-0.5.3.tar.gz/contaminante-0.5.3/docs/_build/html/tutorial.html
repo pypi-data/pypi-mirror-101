@@ -1,0 +1,767 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="python">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>How to use contaminante &#8212; contaminante 0.5.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="contaminante API" href="api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+</style>
+<div class="section" id="How-to-use-contaminante">
+<h1>How to use <code class="docutils literal notranslate"><span class="pre">contaminante</span></code><a class="headerlink" href="#How-to-use-contaminante" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial will show you how to use <code class="docutils literal notranslate"><span class="pre">contaminante</span></code>. If you’d like
+to try it yourself, you can use <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> online, in the cloud,
+for free! Click
+<a class="reference external" href="https://colab.research.google.com/github/christinahedges/contaminante/blob/master/tutorials/Colaboratory-Notebook.ipynb">here</a>
+to run <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> online using Google’s Colaboratory.</p>
+<div class="section" id="Using-contaminante-on-Kepler-data">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> on <em>Kepler</em> data<a class="headerlink" href="#Using-contaminante-on-Kepler-data" title="Permalink to this headline">¶</a></h2>
+<p>To demonstrate <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> we’ll first use <em>Kepler</em> data. First
+we’ll need a target to try <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> on. I’ve chosen <em>KIC
+6804648</em>. This target was observed during the prime <em>Kepler</em> mission,
+and was flagged as a planet candidate. In fact, the target has a
+contaminating eclipsing binary. This binary is only obvious in some of
+the <em>Kepler</em> quarters.</p>
+<p>Below we run the target through <code class="docutils literal notranslate"><span class="pre">contaminante</span></code>. Running this cell
+should take less than 5 minutes.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">contaminante</span> <span class="k">as</span> <span class="nn">ct</span>
+<span class="kn">import</span> <span class="nn">lightkurve</span> <span class="k">as</span> <span class="nn">lk</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tpfs</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_targetpixelfile</span><span class="p">(</span><span class="s1">&#39;KIC 6804648&#39;</span><span class="p">,</span> <span class="n">quarter</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span><span class="o">.</span><span class="n">download_all</span><span class="p">()</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mf">0.700606</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">131.59767</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">0.993</span><span class="o">/</span><span class="mi">24</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">result</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">calculate_contamination</span><span class="p">(</span><span class="n">tpfs</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">spline_period</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cbvs</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+Modeling TPFs:   0%|          | 0/3 [00:00&lt;?, ?it/s]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs:  33%|███▎      | 1/3 [00:06&lt;00:12,  6.13s/it]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs:  67%|██████▋   | 2/3 [00:11&lt;00:05,  5.81s/it]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs: 100%|██████████| 3/3 [00:16&lt;00:00,  5.61s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_5_1.png" src="_images/tutorial_5_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_5_2.png" src="_images/tutorial_5_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_5_3.png" src="_images/tutorial_5_3.png" />
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> we can see two pieces of evidence that this
+target is contaminated. 1. There is a significant offset between the
+center of the <strong>target</strong> (blue dot) in the image, and the <strong>source of
+the transiting signal</strong> (red dot). <strong>NOTE: The blue dot is the weighted
+average of the flux inside the pipeline aperture, for crowded sources
+this may not be accurate.</strong> 2. There is a significant difference between
+the <strong>target</strong> phase curve (blue phase curve) and the <strong>source of the
+transiting signal</strong> phase curve (red phase curve).</p>
+<p>We name the source of the transiting signal that <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> finds
+the &quot;contaminator&quot;.</p>
+<p>The result is a list of dictionaries contains the depth and positions of
+the target and the &quot;contamintor&quot; for each quarter, including errors. The
+user is encouraged to 1) look at the phase curves 2) look at the
+positions of the contaminator and target and 3) the transit depths of
+the contaminator and the target before claiming that a target is
+contaminated. In the above cases there is a significant difference
+between the contaminator and the target.</p>
+<p>To compare, we can look at a target that is a true, confirmed planet.
+Below I run the parameters for <strong>Kepler-10</strong> through <code class="docutils literal notranslate"><span class="pre">contaminate</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tpfs</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_targetpixelfile</span><span class="p">(</span><span class="s1">&#39;Kepler-10&#39;</span><span class="p">,</span> <span class="n">quarter</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">cadence</span><span class="o">=</span><span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="n">mission</span><span class="o">=</span><span class="s1">&#39;Kepler&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">download_all</span><span class="p">()</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mf">0.837491</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">2454964.57513</span> <span class="o">-</span> <span class="mi">2454833</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">1.8076</span><span class="o">/</span><span class="mi">24</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">calculate_contamination</span><span class="p">(</span><span class="n">tpfs</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+Modeling TPFs:   0%|          | 0/2 [00:00&lt;?, ?it/s]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs:  50%|█████     | 1/2 [00:07&lt;00:07,  7.96s/it]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs: 100%|██████████| 2/2 [00:16&lt;00:00,  8.11s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_8_1.png" src="_images/tutorial_8_1.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_8_2.png" src="_images/tutorial_8_2.png" />
+</div>
+</div>
+<p>Sometimes there will be no significant transiting source that was not
+the target, and so the <code class="docutils literal notranslate"><span class="pre">contaminator</span></code> and <code class="docutils literal notranslate"><span class="pre">target</span></code> fields will be
+very similar. Sometimes there will be a weak detection due to a slight
+difference in optimal aperture. If there is only a small change in
+centroid (<span class="math notranslate">\(&lt;&lt;\)</span> than a pixel width) and only a small change in
+transit depth, this would indicate there is no contaminant.</p>
+</div>
+<div class="section" id="Using-contaminante-on-TESS-Data">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> on <em>TESS</em> Data<a class="headerlink" href="#Using-contaminante-on-TESS-Data" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">contaminante</span></code> works on TESS data too. We don’t currently have a way
+to remove TESS background, so make sure to pass in TPFs that have
+already been background corrected.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># TESS Data</span>
+<span class="n">tpfs</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_targetpixelfile</span><span class="p">(</span><span class="s1">&#39;TIC 267263253&#39;</span><span class="p">,</span> <span class="n">sector</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mf">4.12688</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">2458325.78297</span> <span class="o">-</span> <span class="mi">2457000</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">calculate_contamination</span><span class="p">(</span><span class="n">tpfs</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+/Users/ch/.pyenv/versions/3.8.0/lib/python3.8/site-packages/lightkurve/search.py:346: LightkurveWarning: Warning: 2 files available to download. Only the first file has been downloaded. Please use `download_all()` or specify additional criteria (e.g. quarter, campaign, or sector) to limit your search.
+  warnings.warn(
+Modeling TPFs:   0%|          | 0/1 [00:00&lt;?, ?it/s]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:476: RuntimeWarning: invalid value encountered in log10
+  np.log10(np.nanmedian(np.nan_to_num(tpf.flux.value), axis=0)),
+Modeling TPFs: 100%|██████████| 1/1 [00:53&lt;00:00, 53.96s/it]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_11_1.png" src="_images/tutorial_11_1.png" />
+</div>
+</div>
+<p>In this case, it looks like there is a small offset, however the transit
+depth from contaminante is actually shallower. The aperture selected by
+<code class="docutils literal notranslate"><span class="pre">contaminante</span></code> is quite large, we can see this when we plot the two
+apertures side by side:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;target_aper&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;contaminator_aper&#39;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Pipeline Aperture&#39;</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;`contaminante` Aperture&#39;</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[6]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[Text(0.5, 1.0, &#39;`contaminante` Aperture&#39;), [], []]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_13_1.png" src="_images/tutorial_13_1.png" />
+</div>
+</div>
+<p>This causes <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> to produce a slightly shallower transit
+(because we’re including more noise and flux from objects that aren’t
+the target). Because the transit depth is shallower, even though there
+is a small offset, we shouldn’t believe this is a contaminant.</p>
+<p>If you want to see more of where the transit is coming from, you can
+look at the transit depth in each pixel.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;transit_depth&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;transit_depth_err&#39;</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sigificance of Transit Detection&quot;</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;Transit Depth/</span><span class="se">\n</span><span class="s2"> Transit Depth Err&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_15_0.png" src="_images/tutorial_15_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Using-contaminante-on-K2-Data">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> on <em>K2</em> Data<a class="headerlink" href="#Using-contaminante-on-K2-Data" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">contaminante</span></code> works on K2 data too. The motion noise is removed using
+a similar approach to the Self Flat Fielding technique used in
+<code class="docutils literal notranslate"><span class="pre">lightkurve</span></code>. Because of the K2 motion the results may be a little
+harder to interpret. For example, below there is a slight shift in the
+centroid, but the light curve from that target is not different from the
+main target. This is likely due to the pipeline apertures for K2 being
+slightly too small.</p>
+<p>Below are a couple of examples of the tool running on K2 data</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tpfs</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_targetpixelfile</span><span class="p">(</span><span class="s2">&quot;EPIC 211732801&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">download_all</span><span class="p">()</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mf">2.1316925</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">2308.407161</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">calculate_contamination</span><span class="p">(</span><span class="n">tpfs</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sff</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+Modeling TPFs:   0%|          | 0/3 [00:00&lt;?, ?it/s]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs:  33%|███▎      | 1/3 [00:09&lt;00:18,  9.49s/it]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs:  67%|██████▋   | 2/3 [00:24&lt;00:12, 12.62s/it]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs: 100%|██████████| 3/3 [00:31&lt;00:00, 10.67s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_17_1.png" src="_images/tutorial_17_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_17_2.png" src="_images/tutorial_17_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_17_3.png" src="_images/tutorial_17_3.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tpfs</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_targetpixelfile</span><span class="p">(</span><span class="s2">&quot;EPIC 201127519&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">download_all</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mf">6.178369</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">2457585.55131</span> <span class="o">-</span> <span class="mi">2454833</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">calculate_contamination</span><span class="p">(</span><span class="n">tpfs</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sff</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+Warning: 25% (854/3384) of the cadences will be ignored due to the quality mask (quality_bitmask=1130799).
+Modeling TPFs:   0%|          | 0/1 [00:00&lt;?, ?it/s]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs: 100%|██████████| 1/1 [00:09&lt;00:00,  9.70s/it]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_18_1.png" src="_images/tutorial_18_1.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">contaminante</span></code> does try to produce reasonable results for saturated
+targets, but especially for K2 this can be quite hard.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tpfs</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_targetpixelfile</span><span class="p">(</span><span class="s2">&quot;K2-92&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">download_all</span><span class="p">()</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mf">0.7018484</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">2229.0703797</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">calculate_contamination</span><span class="p">(</span><span class="n">tpfs</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sff</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">spline_period</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">cbvs</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+Modeling TPFs:   0%|          | 0/1 [00:00&lt;?, ?it/s]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs: 100%|██████████| 1/1 [00:18&lt;00:00, 18.66s/it]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_20_1.png" src="_images/tutorial_20_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tpfs</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">search_targetpixelfile</span><span class="p">(</span><span class="s2">&quot;K2-78&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">download_all</span><span class="p">()</span>
+<span class="n">period</span> <span class="o">=</span> <span class="mf">2.29016</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">2457065.1444</span> <span class="o">-</span> <span class="mi">2454833</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="mf">0.1204</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">calculate_contamination</span><span class="p">(</span><span class="n">tpfs</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sff</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">spline_period</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">cbvs</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="stderr output_area docutils container">
+<div class="highlight"><pre>
+Modeling TPFs:   0%|          | 0/3 [00:00&lt;?, ?it/s]/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:279: RuntimeWarning: invalid value encountered in true_divide
+  aper = create_threshold_mask(thumb / err, 3) &amp; aper
+Modeling TPFs:  33%|███▎      | 1/3 [00:15&lt;00:31, 15.63s/it]Warning: aperture mask contains zero pixels.
+/Users/ch/.pyenv/versions/3.8.0/lib/python3.8/site-packages/numpy/lib/nanfunctions.py:1113: RuntimeWarning: All-NaN slice encountered
+  r, k = function_base._ureduce(a, func=_nanmedian, axis=axis, out=out,
+&lt;__array_function__ internals&gt;:5: RuntimeWarning: Degrees of freedom &lt;= 0 for slice.
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:476: RuntimeWarning: invalid value encountered in log10
+  np.log10(np.nanmedian(np.nan_to_num(tpf.flux.value), axis=0)),
+Modeling TPFs:  67%|██████▋   | 2/3 [00:53&lt;00:28, 28.49s/it]Warning: aperture mask contains zero pixels.
+/Users/ch/.pyenv/versions/3.8.0/lib/python3.8/site-packages/numpy/lib/nanfunctions.py:1113: RuntimeWarning: All-NaN slice encountered
+  r, k = function_base._ureduce(a, func=_nanmedian, axis=axis, out=out,
+&lt;__array_function__ internals&gt;:5: RuntimeWarning: Degrees of freedom &lt;= 0 for slice.
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+WARNING: Input data contains invalid values (NaNs or infs), which were automatically clipped. [astropy.stats.sigma_clipping]
+/Users/ch/K2/projects/contaminante/contaminante/contaminante.py:476: RuntimeWarning: invalid value encountered in log10
+  np.log10(np.nanmedian(np.nan_to_num(tpf.flux.value), axis=0)),
+Modeling TPFs: 100%|██████████| 3/3 [00:59&lt;00:00, 19.76s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_21_1.png" src="_images/tutorial_21_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_21_2.png" src="_images/tutorial_21_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_21_3.png" src="_images/tutorial_21_3.png" />
+</div>
+</div>
+<p>We can take a look at the best contaminante aperture and compare it to
+the pipeline aperture:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">tpfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aperture_mask</span><span class="o">=</span><span class="n">tpfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pipeline_mask</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Pipeline&#39;</span><span class="p">)</span>
+<span class="n">tpfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aperture_mask</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;contaminator_aper&#39;</span><span class="p">],</span> <span class="n">scale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;contamainante&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[12]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;contamainante&#39;}, xlabel=&#39;Pixel Column Number&#39;, ylabel=&#39;Pixel Row Number&#39;&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorial_23_1.png" src="_images/tutorial_23_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Usage-notes">
+<h2>Usage notes<a class="headerlink" href="#Usage-notes" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><strong>Different quarters, campaigns and sectors.</strong> If a target has
+multiple quarters, campaigns or sectors you can expect each dataset
+to have some slight offset, due to the target falling on different
+pixels.</li>
+<li><strong>Shallower contaminator light curves.</strong> <code class="docutils literal notranslate"><span class="pre">Contaminante</span></code> looks at
+each pixel individually to see if there is a significant transit
+signal. Because faint pixels can contribute a transiting signal at a
+lower, less significant level, some faint pixels can be missed in
+contaminante. In the case that the contaminator light curve is
+<strong>shallower</strong> than the target light curve, it is likely that some
+faint pixels have been missed from the optimum aperture. This does
+not indicate that there is any contamination.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">contaminante</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-does-it-work.html">How does <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> work?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Using-contaminante-on-Kepler-data">Using <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> on <em>Kepler</em> data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-contaminante-on-TESS-Data">Using <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> on <em>TESS</em> Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-contaminante-on-K2-Data">Using <code class="docutils literal notranslate"><span class="pre">contaminante</span></code> on <em>K2</em> Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Usage-notes">Usage notes</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="api.html" title="previous chapter"><cite>contaminante</cite> API</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial.ipynb.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Christina Hedges.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/tutorial.ipynb.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
