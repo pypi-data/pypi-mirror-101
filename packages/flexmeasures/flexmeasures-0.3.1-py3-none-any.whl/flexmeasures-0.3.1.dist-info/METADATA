@@ -1,0 +1,136 @@
+Metadata-Version: 2.1
+Name: flexmeasures
+Version: 0.3.1
+Summary: FlexMeasures - A free platform for real-time optimization of flexible energy.
+Home-page: https://github.com/seitabv/flexmeasures
+Author: Seita BV
+Author-email: nicolas@seita.nl
+License: UNKNOWN
+Keywords: smart grid,renewables,balancing,forecasting,scheduling
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7.1
+Requires-Dist: alembic (==1.5.8)
+Requires-Dist: altair (==3.0.0)
+Requires-Dist: arrow (==1.0.3)
+Requires-Dist: attrs (==20.3.0)
+Requires-Dist: bcrypt (==3.2.0)
+Requires-Dist: beautifulsoup4 (==4.9.3)
+Requires-Dist: blinker (==1.4)
+Requires-Dist: bokeh (==1.0.4)
+Requires-Dist: certifi (==2020.12.5)
+Requires-Dist: cffi (==1.14.5)
+Requires-Dist: cftime (==1.4.1)
+Requires-Dist: chardet (==4.0.0)
+Requires-Dist: click (==7.1.2)
+Requires-Dist: colour (==0.1.5)
+Requires-Dist: cycler (==0.10.0)
+Requires-Dist: dnspython (==2.1.0)
+Requires-Dist: email-validator (==1.1.2)
+Requires-Dist: entrypoints (==0.3)
+Requires-Dist: filelock (==3.0.12)
+Requires-Dist: flask-classful (==0.14.2)
+Requires-Dist: flask-cors (==3.0.10)
+Requires-Dist: flask-json (==0.3.4)
+Requires-Dist: flask-login (==0.5.0)
+Requires-Dist: flask-mail (==0.9.1)
+Requires-Dist: flask-marshmallow (==0.14.0)
+Requires-Dist: flask-migrate (==2.7.0)
+Requires-Dist: flask-principal (==0.4.0)
+Requires-Dist: flask-security-too (==4.0.0)
+Requires-Dist: flask-sqlalchemy (==2.5.1)
+Requires-Dist: flask-sslify (==0.1.5)
+Requires-Dist: flask-wtf (==0.14.3)
+Requires-Dist: flask (==1.1.2)
+Requires-Dist: forecastiopy (==0.22)
+Requires-Dist: greenlet (==1.0.0)
+Requires-Dist: humanize (==3.3.0)
+Requires-Dist: idna (==2.10)
+Requires-Dist: importlib-metadata (==3.10.0)
+Requires-Dist: inflect (==5.3.0)
+Requires-Dist: inflection (==0.5.1)
+Requires-Dist: iso8601 (==0.1.14)
+Requires-Dist: isodate (==0.6.0)
+Requires-Dist: itsdangerous (==1.1.0)
+Requires-Dist: jinja2 (==2.11.3)
+Requires-Dist: joblib (==1.0.1)
+Requires-Dist: jsonschema (==3.2.0)
+Requires-Dist: kiwisolver (==1.3.1)
+Requires-Dist: mako (==1.1.4)
+Requires-Dist: markupsafe (==1.1.1)
+Requires-Dist: marshmallow-sqlalchemy (==0.24.2)
+Requires-Dist: marshmallow (==3.11.1)
+Requires-Dist: matplotlib (==3.4.1)
+Requires-Dist: netcdf4 (==1.5.6)
+Requires-Dist: nose (==1.3.7)
+Requires-Dist: numexpr (==2.7.3)
+Requires-Dist: numpy (==1.20.2)
+Requires-Dist: openturns (==1.16)
+Requires-Dist: packaging (==20.9)
+Requires-Dist: pandas-bokeh (==0.4.3)
+Requires-Dist: pandas (==1.2.3)
+Requires-Dist: passlib (==1.7.4)
+Requires-Dist: patsy (==0.5.1)
+Requires-Dist: pillow (==8.2.0)
+Requires-Dist: ply (==3.11)
+Requires-Dist: properscoring (==0.1)
+Requires-Dist: protobuf (==3.15.6)
+Requires-Dist: pscript (==0.7.5)
+Requires-Dist: psycopg2-binary (==2.8.6)
+Requires-Dist: pvlib (==0.8.1)
+Requires-Dist: pycparser (==2.20)
+Requires-Dist: pyomo (==5.7.3)
+Requires-Dist: pyparsing (==2.4.7)
+Requires-Dist: pyrsistent (==0.17.3)
+Requires-Dist: python-dateutil (==2.8.1)
+Requires-Dist: python-dotenv (==0.16.0)
+Requires-Dist: python-editor (==1.0.4)
+Requires-Dist: pytz (==2021.1)
+Requires-Dist: pyutilib (==6.0.0)
+Requires-Dist: pyyaml (==5.4.1)
+Requires-Dist: redis (==3.5.3)
+Requires-Dist: requests-file (==1.5.1)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: rq-dashboard (==0.6.1)
+Requires-Dist: rq (==1.8.0)
+Requires-Dist: scikit-learn (==0.24.1)
+Requires-Dist: scipy (==1.6.2)
+Requires-Dist: selenium (==3.141.0)
+Requires-Dist: siphon (==0.9)
+Requires-Dist: six (==1.15.0)
+Requires-Dist: sklearn (==0.0)
+Requires-Dist: soupsieve (==2.2.1)
+Requires-Dist: sqlalchemy (==1.4.5)
+Requires-Dist: statsmodels (==0.12.2)
+Requires-Dist: tables (==3.6.1)
+Requires-Dist: threadpoolctl (==2.1.0)
+Requires-Dist: timely-beliefs (==1.3.0)
+Requires-Dist: timetomodel (==0.6.9)
+Requires-Dist: tldextract (==3.1.0)
+Requires-Dist: toolz (==0.11.1)
+Requires-Dist: tornado (==6.1)
+Requires-Dist: tzlocal (==2.1)
+Requires-Dist: urllib3 (==1.26.4)
+Requires-Dist: webargs (==7.0.1)
+Requires-Dist: werkzeug (==1.0.1)
+Requires-Dist: wtforms (==2.3.3)
+Requires-Dist: xlrd (==2.0.1)
+Requires-Dist: zipp (==3.4.1)
+
+The *FlexMeasures Platform* is a tool for scheduling flexible actions for energy assets.
+For this purpose, it performs monitoring, forecasting and scheduling services.
+
+FlexMeasures is fully usable via APIs, which are inspired by the Universal Smart Energy Framework (USEF).
+Some algorithms are included, but projects will usually write their own (WIP).
+
+Energy Flexibility is one of the key ingredients to reducing CO2. FlexMeasures is meant
+to facilitate the transition to a carbon-free energy system. By open-sourcing FlexMeasures,
+we hope to speed up this transition world-wide.
+
+Please visit https://flexmeasures.io to learn more.
+
+
