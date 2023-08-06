@@ -1,0 +1,10 @@
+dagster
+ipykernel!=5.4.0,!=5.4.1,>=4.9.0
+jupyter-client!=6.1.13
+nbconvert<6.0.0,>=5.4.0
+scrapbook>=0.5.0
+papermill<2.0.0,>=1.0.0
+
+[test]
+matplotlib
+scikit-learn>=0.19.0
