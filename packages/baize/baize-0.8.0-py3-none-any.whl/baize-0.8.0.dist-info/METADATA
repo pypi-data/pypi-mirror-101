@@ -1,0 +1,124 @@
+Metadata-Version: 2.1
+Name: baize
+Version: 0.8.0
+Summary: Powerful and exquisite WSGI/ASGI framework/toolkit.
+Home-page: https://github.com/abersheeran/baize
+License: Apache-2.0
+Author: abersheeran
+Author-email: me@abersheeran.com
+Requires-Python: >=3.6,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI
+Classifier: Topic :: Internet :: WWW/HTTP :: WSGI :: Application
+Provides-Extra: multipart
+Requires-Dist: python-multipart (>=0.0.5,<0.0.6); extra == "multipart"
+Requires-Dist: typing-extensions (>=3.7.4,<4.0.0); python_version < "3.8"
+Project-URL: Repository, https://github.com/abersheeran/baize
+Description-Content-Type: text/markdown
+
+# BáiZé
+
+[![Codecov](https://img.shields.io/codecov/c/github/abersheeran/baize?style=flat-square)](https://codecov.io/gh/abersheeran/baize)
+
+Powerful and exquisite WSGI/ASGI framework/toolkit.
+
+The minimize implementation of methods required in the Web framework. No redundant implementation means that you can freely customize functions without considering the conflict with baize's own implementation.
+
+Under the ASGI/WSGI protocol, the interface of the request object and the response object is almost the same, only need to add or delete `await` in the appropriate place. In addition, it should be noted that ASGI supports WebSocket but WSGI does not.
+
+- Support range file response, server-sent event response
+- Support WebSocket (only ASGI)
+- WSGI, ASGI routing to combine any application like [Django(wsgi)](https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/)/[Pyramid](https://trypyramid.com/)/[Bottle](https://bottlepy.org/)/[Flask](https://flask.palletsprojects.com/) or [Django(asgi)](https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/)/[Index.py](https://index-py.aber.sh/)/[Starlette](https://www.starlette.io/)/[FastAPI](https://fastapi.tiangolo.com/)/[Sanic](https://sanic.readthedocs.io/en/stable/)/[Quart](https://pgjones.gitlab.io/quart/)
+
+## Install
+
+```
+pip install -U baize
+```
+
+Or install from GitHub master branch
+
+```
+pip install -U git+https://github.com/abersheeran/baize@setup.py
+```
+
+## Document and other website
+
+[BáiZé Document](https://baize.aber.sh/)
+
+If you have questions or idea, you can send it to [Discussions](https://github.com/abersheeran/baize/discussions).
+
+## Quick Start
+
+A short example for WSGI application, if you don't know what is WSGI, please read [PEP3333](https://www.python.org/dev/peps/pep-3333/).
+
+```python
+from baize.wsgi import request_response, Router, Request, Response, PlainTextResponse
+
+
+@request_response
+def sayhi(request: Request) -> Response:
+    return PlainTextResponse("hi, " + request.path_params["name"])
+
+
+@request_response
+def echo(request: Request) -> Response:
+    return PlainTextResponse(request.body)
+
+
+application = Router(
+    ("/", PlainTextResponse("homepage")),
+    ("/echo", echo),
+    ("/sayhi/{name}", sayhi),
+)
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(application, interface="wsgi", port=8000)
+```
+
+A short example for ASGI application, if you don't know what is ASGI, please read [ASGI Documention](https://asgi.readthedocs.io/en/latest/).
+
+```python
+from baize.asgi import request_response, Router, Request, Response, PlainTextResponse
+
+
+@request_response
+async def sayhi(request: Request) -> Response:
+    return PlainTextResponse("hi, " + request.path_params["name"])
+
+
+@request_response
+async def echo(request: Request) -> Response:
+    return PlainTextResponse(await request.body)
+
+
+application = Router(
+    ("/", PlainTextResponse("homepage")),
+    ("/echo", echo),
+    ("/sayhi/{name}", sayhi),
+)
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(application, interface="asgi3", port=8000)
+```
+
+## License
+
+Apache-2.0.
+
+You can do whatever you want with the permission of the license.
+
