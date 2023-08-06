@@ -1,0 +1,30 @@
+- 20210413: We could probably trivially support other OGG container based
+  audio files.
+
+- 20210413: TOC title for MP3 files should be read from previous metadata
+  present in the audio file, not from the Markdown. Other file formats have
+  no TOC title.
+
+- 20210413: M4A tagging requires FFMPEG. Can we drop that dependency?
+
+- 20210412: Manage correctly the presence of Markdown tags, links, "#", ";",
+  "=", newline, etc in the chapter names.
+
+- 20210411: Document that existing metadata not related to chapters or TOC,
+  is not altered.
+
+- 20210410: MP3 VBR: Parse the frames and provide byteoffset for the chapters.
+  ¿Players would suppport it?
+
+- 20210409: Being able to write timestamps in the markdown to tag sections
+  without being added as chapters. For instance, using () instead of [].
+
+- 20210409: Tests should create temporal files in memory, not in the harddisk.
+
+- 20210409: Apparently "flit" doesn't allow me to add links in the PYPI
+  "Project links" of my project, like "repository" or "changelog".
+
+- 20210409: Publishing ReST to PYPI I lose "warnings" and "notes".
+
+- 20210408: We don't know how long audio is, so we don't know how long is the
+  last chapter. For now we asume "24 hours" and hope no audio player crashes.
