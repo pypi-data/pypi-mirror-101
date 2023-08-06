@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: dcor-control
+Version: 0.4.6
+Summary: CLI for maintaining DCOR installations
+Home-page: https://github.com/DCOR-dev/dcor_control/
+Author: Paul Müller
+Author-email: dev@craban.de
+License: GPLv3+
+Keywords: RT-DC,DCOR
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Intended Audience :: Science/Research
+Requires-Dist: appdirs
+Requires-Dist: click (>=7)
+Requires-Dist: ckanext-dc-log-view
+Requires-Dist: ckanext-dc-serve
+Requires-Dist: ckanext-dc-view
+Requires-Dist: ckanext-dcor-depot
+Requires-Dist: ckanext-dcor-schemas
+Requires-Dist: ckanext-dcor-theme
+Requires-Dist: dcor-shared
+
+UNKNOWN
+
+
