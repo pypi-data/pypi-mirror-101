@@ -1,0 +1,56 @@
+Metadata-Version: 2.1
+Name: mptool
+Version: 0.1.0
+Summary: Enumeration and sampling of minimal pathways in metabolic (sub)networks.
+Home-page: https://gitlab.com/csb.ethz/mptool
+Author: Ove Øyås
+Author-email: ove.oyas@nmbu.no
+License: UNKNOWN
+Project-URL: Source, https://gitlab.com/csb.ethz/mptool
+Project-URL: Bug Tracker, https://gitlab.com/csb.ethz/mptool/-/issues
+Keywords: metabolism,metabolic networks,metabolic pathways,minimal pathways,pathway analysis,pathway enumeration,pathway sampling,constraint-based modeling
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Programming Language :: Python :: 3
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: cobra (>=0.17.1)
+Requires-Dist: networkx (>=2.4)
+Requires-Dist: numpy (>=1.18.1)
+Requires-Dist: pytest (>=4.6.9)
+
+# Enumeration and sampling of minimal pathways in metabolic (sub)networks
+
+Minimal pathways (MPs) are minimal sets of reactions that need to be active (have non-zero flux) in a metabolic (sub)network to satisfy all constraints on the network as a whole [1]. They can also be defined as the set of *support-minimal* elementary flux vectors (EFVs) [2].
+
+An MP can be found by direct minimization of a mixed-integer linear program (MILP) or by iterative minimization of multiple linear programs (LPs). Enumeration of MPs is implemented using both of these approaches, in the iterative case by computing minimal cut sets (MCSs) in a separate binary integer program (BIP) [3]. For iterative minimzation, enumeration can be accelerated by using a graph defined by the known MPs to predict unknown MPs, or it can be randomized to allow random sampling of MPs in cases where complete enumeration is inconvenient or infeasible.
+
+## Installation
+
+Most of the minimal requirements (`cobra`, `networkx`, `numpy`, and `pytest`) are installed automatically when `mptool` is installed through pip:
+```
+pip install mptool
+```
+The [Gurobi Optimizer](https://www.gurobi.com/) (tested with versions 7.5.2, 8.1.0, and 9.0.0) and its Python interface `gurobipy` need to be installed separately (free academic licenses).
+
+## Citation
+
+If you use `mptool` for a scientific publication please cite [our paper](https://www.biorxiv.org/content/10.1101/2020.07.31.230177v2) [1].
+
+## References
+
+[1] O. Øyås and J. Stelling. "Scalable metabolic pathway analysis". *biorXiv* (2020).
+
+[2] S. Klamt et al. "From elementary flux modes to elementary flux vectors: Metabolic pathway analysis with arbitrary linear flux constraints". *PLoS Computational Biology* 13.4 (2017).
+
+[3] H.S. Song et al. "Sequential computation of elementary modes and minimal cut sets in genome-scale metabolic networks using alternate integer linear programming". *Bioinformatics* 33.15 (2017).
+
+[4] Z.A. King et al. "BiGG Models: A platform for integrating, standardizing, and sharing genome-scale models" *Nucleic Acids Research* 44.D1 (2016).
+
+[5] A. Noronha et al. "The Virtual Metabolic Human database: integrating human and gut microbiome metabolism with nutrition and disease" *Nucleic Acids Research* 47.D1 (2018).
+
