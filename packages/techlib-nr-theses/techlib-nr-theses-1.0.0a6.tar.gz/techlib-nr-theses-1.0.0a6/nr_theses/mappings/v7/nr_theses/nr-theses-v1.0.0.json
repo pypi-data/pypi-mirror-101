@@ -1,0 +1,35 @@
+{
+  "aliases": {
+    "{PREFIX}nr-all": {},
+    "{PREFIX}nr-all-theses": {}
+  },
+  "mappings": {
+    "date_detection": false,
+    "numeric_detection": false,
+    "dynamic": false,
+    "properties": {
+      "oarepo:extends": "nr-common-v1.0.0.json#/mappings/properties",
+      "dateDefended": {
+        "type": "keyword",
+        "copy_to": "dateAll",
+        "fields": {
+          "date": {
+            "type": "date",
+            "format": "yyyy-MM-dd||yyyy-MM||yyyy"
+          }
+        }
+      },
+      "defended": {
+        "type": "boolean"
+      },
+      "studyField": {
+        "type": "nr-taxonomies-studyfield-v1.0.0.json#/studyField"
+      },
+      "degreeGrantor": {
+        "type": "nr-taxonomies-institution-v1.0.0.json#/Institution"
+      }
+    }
+  }
+}
+
+
