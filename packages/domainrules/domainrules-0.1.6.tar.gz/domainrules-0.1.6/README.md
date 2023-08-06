@@ -1,0 +1,1 @@
+Describe rules for domain
