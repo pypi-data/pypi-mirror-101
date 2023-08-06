@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: pyquil
+Version: 3.0.0rc8
+Summary: 
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Provides-Extra: docs
+Requires-Dist: Sphinx (>=3.5.2,<4.0.0); extra == "docs"
+Requires-Dist: importlib-metadata (>=3.7.3,<4.0.0); python_version < "3.8"
+Requires-Dist: ipython (>=7.21.0,<8.0.0)
+Requires-Dist: lark (>=0.11.1,<0.12.0)
+Requires-Dist: nbsphinx (>=0.8.2,<0.9.0); extra == "docs"
+Requires-Dist: networkx (>=2.5,<3.0)
+Requires-Dist: numpy (>=1.20,<2.0)
+Requires-Dist: qcs-api-client (>=0.7.0,<0.8.0)
+Requires-Dist: recommonmark (>=0.7.1,<0.8.0); extra == "docs"
+Requires-Dist: rpcq (>=3.6.0,<4.0.0)
+Requires-Dist: scipy (>=1.6.1,<2.0.0)
+Requires-Dist: sphinx-autodoc-typehints (>=1.11.1,<2.0.0); extra == "docs"
+Requires-Dist: sphinx-rtd-theme (>=0.5.1,<0.6.0); extra == "docs"
