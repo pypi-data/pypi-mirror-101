@@ -1,0 +1,52 @@
+Youtube-Playlist-Videos-Scraper-Python is a python library to scrap playlist videos data using browser automation. 
+It currently runs only on windows.
+
+### Example
+In this example we first import library, then we opened playlist link and fetched videos data.
+```sh
+from youtube_playlist_videos_scraper_python import *
+response=youtube.get_playlist_videos(playlist_link='https://www.youtube.com/playlist?list=PLkwj3jpG3Xo1Ng54dBAXyH2GkE2tIU0Q8')
+data=response['body']
+#data=[{"Title": "Budget 2021 | Privatisation Move Fulfils a Long-Pending Demand: Neelkanth Mishra", "Video_Link": "https://www.youtube.com/watch?v=ez64hN3Z6j4&list=PLkwj3jpG3Xo1Ng54dBAXyH2GkE2tIU0Q8&index=1"}]
+```
+
+This module depends on the following python modules
+* [requests](https://pypi.org/project/requests/)
+* [bot_studio](https://pypi.org/project/bot_studio/)
+
+#### BotStudio
+[bot_studio](https://pypi.org/project/bot_studio/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up. To get playlist videos data, first need to open the playlist videos link.
+
+Complete documentation for YouTube Automation available [here](https://youtube-api.datakund.com/en/latest/)
+
+### Installation
+
+```sh
+pip install youtube-playlist-videos-scraper-python
+```
+
+### Import
+```sh
+from youtube_playlist_videos_scraper_python import *
+```
+
+### Open playlist url
+```sh
+youtube.open("playlist videos url")
+```
+
+### Get Playlist Videos Data
+```sh
+response=youtube.get_playlist_videos(playlist_link='playlist_link')
+data=response['body']
+```
+
+### Send Feedback to Developers
+```sh
+bot_studio.send_feedback(feedback="Need help with this ......")
+```
+
+### Contact Us
+* [Telegram](https://t.me/datakund)
+* [Website](https://datakund.com)
+
