@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: mosaik.HDF5-Storage
+Version: 0.1.0rc20210408000940
+Summary: Store any simulator metric into a HDF5 database using a common scheme.
+Home-page: UNKNOWN
+Author: Bengt Lüers
+Author-email: bengt.lueers@gmail.com
+Maintainer: Bengt Lüers
+Maintainer-email: bengt.lueers@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Description-Content-Type: text/markdown
+Requires-Dist: h5py (>=3.1.0)
+
+# Mosaik.HDF5-Storage
+
+Store any simulator metric into a HDF5 database using a common scheme.
+
+## Status
+
+[![pipeline status](https://gitlab.com/offis.energy/mosaik/mosaik.hdf5_semver/badges/master/pipeline.svg)](https://gitlab.com/offis.energy/mosaik/mosaik.hdf5_semver/pipelines)
+[![coverage report](https://gitlab.com/offis.energy/mosaik/mosaik.hdf5_semver/badges/master/coverage.svg)](https://gitlab.com/offis.energy/mosaik/mosaik.hdf5_semver/-/jobs)
+[![libraries status](https://img.shields.io/librariesio/release/pypi/mosaik.HDF5-semver)](https://libraries.io/pypi/mosaik.HDF5-semver)
+[![Python Versions](https://img.shields.io/pypi/pyversions/mosaik.HDF5-semver)](https://pypi.org/project/mosaik.HDF5-semver)
+[![license badge](https://img.shields.io/pypi/l/mosaik.HDF5-semver)](#)
+
+
