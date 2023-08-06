@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "myneta"
+version = "0.0.1"
+description = "A CLI to interact/extract data from myneta"
+authors = ["kracekumar <me@kracekumar.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.2.3"
+click = "^7.1.2"
+lxml = "^4.6.3"
+requests = "^2.25.1"
+ipython = "^7.22.0"
+beautifulsoup4 = "^4.9.3"
+html5lib = "^1.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
