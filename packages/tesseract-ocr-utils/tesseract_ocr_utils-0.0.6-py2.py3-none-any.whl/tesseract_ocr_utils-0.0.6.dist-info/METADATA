@@ -1,0 +1,151 @@
+Metadata-Version: 2.1
+Name: tesseract-ocr-utils
+Version: 0.0.6
+Summary: Python tools for interacting with Tesseract
+Home-page: https://github.com/envinorma/ocr_utils
+Author: Rémi Delbouys
+Author-email: remi.delbouys@laposte.net
+License: MIT license
+Keywords: ocr_utils
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy (>=1.20.1)
+Requires-Dist: opencv-python-headless (>=4.5.1.48)
+Requires-Dist: pdf2image
+Requires-Dist: pytesseract (>=0.3.7)
+Requires-Dist: svgwrite (>=1.4.1)
+Requires-Dist: alto-xml (>=0.0.3)
+Requires-Dist: tqdm (>=4.59.0)
+Provides-Extra: all
+Requires-Dist: numpy (>=1.20.1) ; extra == 'all'
+Requires-Dist: opencv-python-headless (>=4.5.1.48) ; extra == 'all'
+Requires-Dist: pdf2image ; extra == 'all'
+Requires-Dist: pytesseract (>=0.3.7) ; extra == 'all'
+Requires-Dist: svgwrite (>=1.4.1) ; extra == 'all'
+Requires-Dist: alto-xml (>=0.0.3) ; extra == 'all'
+Requires-Dist: tqdm (>=4.59.0) ; extra == 'all'
+Requires-Dist: pytest-runner (>=5.2) ; extra == 'all'
+Requires-Dist: black (>=19.10b0) ; extra == 'all'
+Requires-Dist: codecov (>=2.1.4) ; extra == 'all'
+Requires-Dist: isort (>=5.7.0) ; extra == 'all'
+Requires-Dist: flake8 (>=3.8.3) ; extra == 'all'
+Requires-Dist: flake8-debugger (>=3.2.1) ; extra == 'all'
+Requires-Dist: pytest (>=5.4.3) ; extra == 'all'
+Requires-Dist: pytest-cov (>=2.9.0) ; extra == 'all'
+Requires-Dist: pytest-raises (>=0.11) ; extra == 'all'
+Requires-Dist: pytest-mypy (>=0.8.0) ; extra == 'all'
+Requires-Dist: bump2version (>=1.0.1) ; extra == 'all'
+Requires-Dist: coverage (>=5.1) ; extra == 'all'
+Requires-Dist: ipython (>=7.15.0) ; extra == 'all'
+Requires-Dist: m2r2 (>=0.2.7) ; extra == 'all'
+Requires-Dist: Sphinx (>=3.4.3) ; extra == 'all'
+Requires-Dist: sphinx-rtd-theme (>=0.5.1) ; extra == 'all'
+Requires-Dist: tox (>=3.15.2) ; extra == 'all'
+Requires-Dist: twine (>=3.1.1) ; extra == 'all'
+Requires-Dist: wheel (>=0.34.2) ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: pytest-runner (>=5.2) ; extra == 'dev'
+Requires-Dist: black (>=19.10b0) ; extra == 'dev'
+Requires-Dist: codecov (>=2.1.4) ; extra == 'dev'
+Requires-Dist: isort (>=5.7.0) ; extra == 'dev'
+Requires-Dist: flake8 (>=3.8.3) ; extra == 'dev'
+Requires-Dist: flake8-debugger (>=3.2.1) ; extra == 'dev'
+Requires-Dist: pytest (>=5.4.3) ; extra == 'dev'
+Requires-Dist: pytest-cov (>=2.9.0) ; extra == 'dev'
+Requires-Dist: pytest-raises (>=0.11) ; extra == 'dev'
+Requires-Dist: pytest-mypy (>=0.8.0) ; extra == 'dev'
+Requires-Dist: bump2version (>=1.0.1) ; extra == 'dev'
+Requires-Dist: coverage (>=5.1) ; extra == 'dev'
+Requires-Dist: ipython (>=7.15.0) ; extra == 'dev'
+Requires-Dist: m2r2 (>=0.2.7) ; extra == 'dev'
+Requires-Dist: Sphinx (>=3.4.3) ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme (>=0.5.1) ; extra == 'dev'
+Requires-Dist: tox (>=3.15.2) ; extra == 'dev'
+Requires-Dist: twine (>=3.1.1) ; extra == 'dev'
+Requires-Dist: wheel (>=0.34.2) ; extra == 'dev'
+Provides-Extra: setup
+Requires-Dist: pytest-runner (>=5.2) ; extra == 'setup'
+Provides-Extra: test
+Requires-Dist: black (>=19.10b0) ; extra == 'test'
+Requires-Dist: codecov (>=2.1.4) ; extra == 'test'
+Requires-Dist: isort (>=5.7.0) ; extra == 'test'
+Requires-Dist: flake8 (>=3.8.3) ; extra == 'test'
+Requires-Dist: flake8-debugger (>=3.2.1) ; extra == 'test'
+Requires-Dist: pytest (>=5.4.3) ; extra == 'test'
+Requires-Dist: pytest-cov (>=2.9.0) ; extra == 'test'
+Requires-Dist: pytest-raises (>=0.11) ; extra == 'test'
+Requires-Dist: pytest-mypy (>=0.8.0) ; extra == 'test'
+
+# OCR utils
+
+[![Build Status](https://github.com/envinorma/ocr_utils/workflows/Build%20Main/badge.svg)](https://github.com/envinorma/ocr_utils/actions)
+[![Documentation](https://github.com/envinorma/ocr_utils/workflows/Documentation/badge.svg)](https://envinorma.github.io/ocr_utils/)
+[![Code Coverage](https://codecov.io/gh/envinorma/ocr_utils/branch/main/graph/badge.svg)](https://codecov.io/gh/envinorma/ocr_utils)
+
+Python tools for interacting with Tesseract
+
+---
+
+## Features
+
+-   Detects tables in PDF/images and performs OCR on each cell
+-   Performs OCR on PDF and generates SVG image
+
+## Quick Start
+
+```python
+from ocr_utils import pdf_to_svg
+
+pdf_to_svg(
+    input_filename='in.pdf',
+    output_filename='out.svg',
+    detect_tables=True,
+    lang='eng',
+)
+```
+
+## Execution example
+
+### Input pdf
+
+![Input pdf](example_execution/example_with_table.png)
+
+### Output svg
+
+![Output svg](example_execution/example_with_table_out/detect_tables_true.svg)
+
+## Installation
+
+**Stable Release:** `pip install tesseract_ocr_utils`<br>
+**Development Head:** `pip install git+https://github.com/envinorma/ocr_utils.git`
+
+This library is built upon [pytesseract](https://pypi.org/project/pytesseract/) and [pdf2image](https://pypi.org/project/pdf2image/) which have non-pip requirements.
+Visit these libraries installation pages to install dependencies.
+
+For example, on ubuntu, the following libraries need to be installed:
+
+```bash
+apt-get install libarchive13
+apt-get install tesseract-ocr
+apt-get install poppler-utils
+```
+
+## Documentation
+
+For full package documentation please visit [envinorma.github.io/ocr_utils](https://envinorma.github.io/ocr_utils).
+
+## Development
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for information related to developing the code.
+
+**MIT license**
+
+
