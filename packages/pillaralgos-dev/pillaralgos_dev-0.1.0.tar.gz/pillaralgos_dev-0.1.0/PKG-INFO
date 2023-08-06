@@ -1,0 +1,41 @@
+Metadata-Version: 2.1
+Name: pillaralgos-dev
+Version: 0.1.0
+Summary: Library containing some basic, commonly used functions during the creation and analysis of algorithms for Pillar
+License: MIT
+Author: Peter Gates
+Author-email: pgate89@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: boto3 (>=1.17.49,<2.0.0)
+Requires-Dist: matplotlib (>=3.4.1,<4.0.0)
+Requires-Dist: numpy (>=1.20.2,<2.0.0)
+Requires-Dist: pandas (>=1.2.3,<2.0.0)
+Requires-Dist: seaborn (>=0.11.1,<0.12.0)
+Project-URL: Bug Tracker, https://github.com/pillargg/twitch_chat_analysis/issues
+Project-URL: Github, https://github.com/pillargg/twitch_chat_analysis/
+Project-URL: Pillar, https://pillar.gg
+Description-Content-Type: text/markdown
+
+# Dev Tools
+
+Common functions to help in developing `pillaralgos` library. Includes 
+* `dev_helpers.awsBucketAPI` to connect to aws (assuming AWS Cli is installed locally), download files.
+* `dev_helpers.plot_with_time` to create a time series plot with conveniently formatted xaxis
+* `sanity_checks` future site of error catchers
+
+# How To
+Connect to AWS bucket, download random files.
+```
+from pillaralgos_dev import dev_helpers as dev
+aws = dev.awsBucketAPI()
+names = aws.get_random_file_names(n=5)
+aws.save_files(names)
+```
+Check sanity:
+```
+from pillaralgos_dev import sanity_checks as sane
+```
