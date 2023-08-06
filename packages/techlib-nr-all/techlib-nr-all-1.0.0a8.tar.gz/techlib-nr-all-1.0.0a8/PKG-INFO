@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: techlib-nr-all
+Version: 1.0.0a8
+Summary: Czech National Repository index that store all records from all metadata models
+Author: Daniel Kopecký
+Author-email: Daniel.Kopecky@techlib.cz
+Requires-Python: >=3.8,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: techlib-nr-Nresults (>=1.0.0a13,<2.0.0)
+Requires-Dist: techlib-nr-common (>=3.0.0a45,<4.0.0)
+Requires-Dist: techlib-nr-events (>=1.0.0a14,<2.0.0)
+Requires-Dist: techlib-nr-generic (>=1.0.0a2,<2.0.0)
+Requires-Dist: techlib-nr-theses (>=1.0.0a3,<2.0.0)
+Description-Content-Type: text/markdown
+
+# nr-all
+Czech National Repository index that store all records from all metadata models.
+
