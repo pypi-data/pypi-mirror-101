@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "nth_iteration_ended.json",
+    "type": "object",
+    "required": [
+	"training_step",	
+	"training_session_id",
+	"model_id",
+	"cycle_time_total",
+	"cycle_mem_phys_available",	
+	"mem_phys_total"
+    ],    
+    "properties": {
+	"model_id": {"type": "number", "Description": "Model ID set by the frontend, generates a large random int in case nothing is sent from frontend"},	
+	"training_session_id": {"type": "string"},
+	"training_step": {"type": "number", "description": "How many training steps have been completed"},
+	"mem_phys_total": {"type": "number", "description": "From 'psutil.virtual_memory().total'. Sampled at the end of the cycle"},	
+	"cycle_time_total": {
+	    "type": "object",
+	    "description": "Percentiles and average time spent in the previous N iteration cycles [s]",
+	    "required": ["p25", "p50", "p75", "avg", "min", "max"],
+	    "properties": {
+		"p25": {"type": "number", "description": "25th percentile"},
+		"p50": {"type": "number", "description": "50th percentile"},
+		"p75": {"type": "number", "description": "75th percentile"},
+		"avg": {"type": "number", "description": "Average value"},
+		"min": {"type": "number", "description": "Min value"},
+		"max": {"type": "number", "description": "Max value"}		
+	    }
+	},
+	"cycle_mem_phys_available": {
+	    "type": "object",
+	    "description": "Percentiles and average memory during the previous N iteration cycles [s]",
+	    "required": ["p25", "p50", "p75", "avg", "min", "max"],
+	    "properties": {
+		"p25": {"type": "number", "description": "25th percentile"},
+		"p50": {"type": "number", "description": "50th percentile"},
+		"p75": {"type": "number", "description": "75th percentile"},
+		"avg": {"type": "number", "description": "Average value"},
+		"min": {"type": "number", "description": "Min value"},
+		"max": {"type": "number", "description": "Max value"}		
+	    }
+	}
+    }    
+}

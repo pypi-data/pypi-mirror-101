@@ -1,0 +1,1462 @@
+{% from 'tf1x_utils.j2' import session, check_input_vars, representative_dataset_gen %}
+
+{% macro train_normal(layer_spec, graph_spec) %}
+        
+        sess = self._sess
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}
+        self._checkpoint_save_path = '{{layer_spec.checkpoint_path}}'
+
+        def train_step(sess):
+            if not self._headless:
+                _, self._predicted_object, self._predicted_class, self._predicted_normalized_box, self._classification_loss_training, self._bbox_loss_training, self._loss_training, self._accuracy_training, \
+                    self._image_accuracy, self._layer_outputs, self._layer_weights, self._layer_biases, \
+                    self._layer_gradients \
+                    = sess.run([
+                        self._weights, self._pred_obj, self._pred_class, self._pred_norm_box, self._class_loss, self._bbox_loss, self._loss, self._acc,
+                        self._image_acc, self._layer_output, self._layer_weight, self._layer_bias, self._layer_gradient
+                    ])
+                
+            else:
+                _, self._classification_loss_training, self._bbox_loss_training, self._loss_training, self._accuracy_training, \
+                    = sess.run([
+                        self._weights, self._class_loss, self._bbox_loss, self._loss, self._acc
+                    ])
+
+        def validation_step(sess):
+            if not self._headless:
+                self._predicted_object, self._predicted_class, self._predicted_normalized_box, self._classification_loss_validation, self._bbox_loss_validation, self._loss_validation, self._accuracy_validation, \
+                    self._image_accuracy, self._layer_outputs, self._layer_weights, self._layer_biases, \
+                    self._layer_gradients \
+                    = sess.run([
+                        self._pred_obj, self._pred_class, self._pred_norm_box, self._class_loss, self._bbox_loss, self._loss, self._acc,
+                        self._image_acc, self._layer_output, self._layer_weight, self._layer_bias, self._layer_gradient
+                    ])
+            else:
+                self._classification_loss_validation, self._bbox_loss_validation, self._loss_validation, self._accuracy_validation, \
+                    = sess.run([
+                        self._class_loss, self._bbox_loss, self._loss, self._acc
+                    ])
+
+        log.info("Entering training loop")
+        
+        # Training loop
+        self._epoch = 0
+        while self._epoch < self._n_epochs and not self._stopped:
+            t0 = time.perf_counter()
+            self._training_iteration = 0
+            self._validation_iteration = 0
+            self._status = 'training'
+            sess.run(self._trn_init)            
+            try:
+                while not self._stopped:
+                    train_step(sess)
+                    yield YieldLevel.SNAPSHOT
+                    self._training_iteration += 1
+            except tf.errors.OutOfRangeError:
+                pass
+
+            self._status = 'validation'
+            sess.run(self._val_init)            
+            try:
+                while not self._stopped:
+                    validation_step(sess)
+                    yield YieldLevel.SNAPSHOT                    
+                    self._validation_iteration += 1
+            except tf.errors.OutOfRangeError:
+                pass
+            log.info(
+                f"Finished epoch {self._epoch+1}/{self._n_epochs} - "
+                f"loss training, validation: {self.loss_training:.6f}, {self.loss_validation:.6f} - "
+                f"acc. training, validation: {self.accuracy_training:.6f}, {self.accuracy_validation:.6f}"
+            )
+            log.info(f"Epoch duration: {round(time.perf_counter() - t0, 3)} s")
+
+            if self._stop_condition == "TargetAccuracy" and self._accuracy_training * 100 >= self._target_acc:
+                break             
+            self._epoch += 1
+
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}            
+        self._status = 'finished'
+        self.on_export(self._checkpoint_save_path, 'checkpoint')   
+        yield YieldLevel.SNAPSHOT
+        sess.close()
+{% endmacro %}
+
+
+{% macro test_normal(layer_spec, graph_spec) %}
+        
+        sess = self._sess
+        self._epoch = 0
+
+        def test_step(sess):
+            self._batch_size = 1
+            self._predicted_object, self._predicted_class, self._predicted_normalized_box, self._accuracy_testing, \
+                self._image_accuracy, self._layer_outputs \
+                = sess.run([
+                    self._pred_obj, self._pred_class, self._pred_norm_box, self._loss,
+                    self._image_acc, self._layer_output
+                ])
+        
+        log.info("Entering testing loop")
+        self._status = 'testing'
+
+        self._testing_iteration = 0
+        sess.run(self._tst_init)                                
+        while not self._stopped:
+            try:
+                test_step(sess)
+                yield YieldLevel.SNAPSHOT
+                self._testing_iteration += 1
+            except tf.errors.OutOfRangeError:
+                self._testing_iteration = 0
+                sess.run(self._tst_init)
+                test_step(sess)   
+                yield YieldLevel.SNAPSHOT
+        
+        self._status = 'finished'
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}
+        yield YieldLevel.SNAPSHOT
+        sess.close()
+
+{% endmacro %}
+
+{% macro init_normal(mode) %}
+        self._status = 'initializing'
+
+        self._grid_size = {{layer_spec.grid_size}}
+        self._classes = ['rectangle','triangle','circle']
+        self._num_class = len(self._classes)
+        self._num_box = {{layer_spec.num_box}} #number of boxes per cell
+        
+        w_img = 224
+        h_img = 224
+
+        self._lambdaclass = {{layer_spec.lambdaclass}}
+        self._lambdanoobj = {{layer_spec.lambdanoobj}}
+        
+        self._batch_size = {{layer_spec.batch_size}}
+        # we need classes
+
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.connection_predictions is not none %}
+                output_layer_id = "{{graph_spec.nodes_by_id[layer_spec.connection_predictions.src_id].sanitized_name}}"
+            {% else %}
+                output_layer_id = None
+            {% endif %}
+        {% endfilter %}
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.connection_labels is not none %}
+                target_layer_id = "{{graph_spec.nodes_by_id[layer_spec.connection_labels.src_id].sanitized_name}}"
+            {% else %}
+                target_layer_id = None
+            {% endif %}
+        {% endfilter %}
+        
+        input_data_nodes = graph.get_direct_data_nodes(output_layer_id)
+        label_data_nodes = graph.get_direct_data_nodes(target_layer_id)
+        assert len(input_data_nodes) == 1
+        assert len(label_data_nodes) == 1
+        input_data_node = input_data_nodes[0]
+        label_data_node = label_data_nodes[0]
+
+        self._input_data_node = input_data_node.layer_id
+
+        self._trn_sz_tot = input_data_node.layer.size_training
+        self._val_sz_tot = input_data_node.layer.size_validation
+        self._tst_sz_tot = input_data_node.layer.size_testing
+
+        input_sample = input_data_node.layer_instance.sample
+        label_sample = label_data_node.layer_instance.sample        
+
+        
+        dataset_trn = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                input_data_node.layer_instance.make_generator_training,
+                output_shapes={k: v.shape for k, v in input_sample.items()},
+                output_types={k: v.dtype for k, v in input_sample.items()}
+            ),
+            tf.data.Dataset.from_generator(
+                label_data_node.layer_instance.make_generator_training,
+                output_shapes={k: v.shape for k, v in label_sample.items()},
+                output_types={k: v.dtype for k, v in label_sample.items()}
+            )
+        ))
+
+        # Make validation set
+        dataset_val = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                input_data_node.layer_instance.make_generator_validation,
+                output_shapes={k: v.shape for k, v in input_sample.items()},
+                output_types={k: v.dtype for k, v in input_sample.items()}
+            ),
+            tf.data.Dataset.from_generator(
+                label_data_node.layer_instance.make_generator_validation,
+                output_shapes={k: v.shape for k, v in label_sample.items()},
+                output_types={k: v.dtype for k, v in label_sample.items()}
+            )
+        ))
+
+        # Make testing set
+        dataset_tst = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                input_data_node.layer_instance.make_generator_testing,
+                output_shapes={k: v.shape for k, v in input_sample.items()},
+                output_types={k: v.dtype for k, v in input_sample.items()}
+            ),
+            tf.data.Dataset.from_generator(
+                label_data_node.layer_instance.make_generator_testing,
+                output_shapes={k: v.shape for k, v in label_sample.items()},
+                output_types={k: v.dtype for k, v in label_sample.items()}
+            )
+        ))
+        dataset_trn = dataset_trn.batch(self._batch_size)
+        dataset_val = dataset_val.batch(self._batch_size)
+        dataset_tst = dataset_tst.batch(1)                
+
+        self._export_data_gen = input_data_node.layer_instance.make_generator_training()
+        
+        # Make initializers
+        with tf.variable_scope('{{layer_spec.sanitized_name}}/train', reuse=tf.AUTO_REUSE):
+            is_training = tf.get_variable(name="is_train", dtype=tf.bool, initializer=False)
+        
+        iterator = tf.data.Iterator.from_structure(dataset_trn.output_types, dataset_trn.output_shapes)
+        trn_init = iterator.make_initializer(dataset_trn)
+        val_init = iterator.make_initializer(dataset_val)
+        tst_init = iterator.make_initializer(dataset_tst)        
+        input_tensor, label_tensor = iterator.get_next()
+
+        # Build the TensorFlow graph # TODO: perhaps this part can be delegated to the graph?
+
+        def build_graph(input_tensor, label_tensor):
+            layer_output_tensors = {
+                input_data_node.layer_id: input_tensor,
+                label_data_node.layer_id: label_tensor
+            }
+
+            for dst_node in graph.inner_nodes:
+                inputs = {
+                    dst_var: layer_output_tensors[src_node.layer_id][src_var]
+                    for src_node, src_var, dst_var in graph.get_input_connections(dst_node)
+                }
+                y = dst_node.layer_instance(
+                    inputs,
+                    is_training=is_training
+                )
+                layer_output_tensors[dst_node.layer_id] = y
+
+            return layer_output_tensors
+        
+        layer_output_tensors = build_graph(input_tensor, label_tensor)
+        # TODO(anton.k): temporary solution before refactor
+        
+        output_tensor = None
+        target_tensor = None
+        
+        for src_node, src_var, dst_var in graph.get_input_connections(graph.active_training_node):
+            if dst_var == 'predictions':
+                output_tensor = layer_output_tensors[output_layer_id][src_var]
+                output_var_name = src_var
+            if dst_var == 'labels':
+                target_tensor = layer_output_tensors[target_layer_id][src_var]
+        # ----
+    
+        # Create an exportable version of the TensorFlow graph
+
+        self._input_tensor_export = {
+            key: tf.placeholder(shape=shape, dtype=type_)
+            for (key, shape), (_, type_) in zip(dataset_trn.output_shapes[0].items(), dataset_trn.output_types[0].items())            
+        }
+    
+        self._output_tensor_export = build_graph(
+            self._input_tensor_export,
+            {                                                                                                                                                                       
+                key: tf.placeholder(shape=shape, dtype=type_)
+                for (key, shape), (_, type_) in zip(dataset_trn.output_shapes[1].items(), dataset_trn.output_types[1].items())
+            }             
+        )[output_layer_id]
+        
+        # loss function here
+        def compute_iou(boxes1, boxes2):
+            """calculate ious
+            Args:
+            boxes1: 5-D tensor [self._batch_size, self._grid_size, self._grid_size, self._num_box, 4]  ====> (x_center, y_center, w, h)
+            boxes2: 5-D tensor [self._batch_size, self._grid_size, self._grid_size, self._num_box, 4] ===> (x_center, y_center, w, h)
+            Return:
+            iou: 4-D tensor [self._batch_size, self._grid_size, self._grid_size, self._num_box]
+            """
+            # transform (x_center, y_center, w, h) to (x1, y1, x2, y2)
+            boxes1_t = tf.stack([boxes1[..., 0] - boxes1[..., 2] / 2.0,
+                                boxes1[..., 1] - boxes1[..., 3] / 2.0,
+                                boxes1[..., 0] + boxes1[..., 2] / 2.0,
+                                boxes1[..., 1] + boxes1[..., 3] / 2.0],
+                                axis=-1)
+
+            boxes2_t = tf.stack([boxes2[..., 0] - boxes2[..., 2] / 2.0,
+                                boxes2[..., 1] - boxes2[..., 3] / 2.0,
+                                boxes2[..., 0] + boxes2[..., 2] / 2.0,
+                                boxes2[..., 1] + boxes2[..., 3] / 2.0],
+                                axis=-1)
+            # calculate the left up point & right down point
+            lu = tf.maximum(boxes1_t[..., :2], boxes2_t[..., :2])
+            rd = tf.minimum(boxes1_t[..., 2:], boxes2_t[..., 2:])
+            # intersection
+            intersection = tf.maximum(0.0, rd - lu)
+            inter_square = intersection[..., 0] * intersection[..., 1]
+            # calculate the boxs1 square and boxs2 square
+            square1 = boxes1[..., 2] * boxes1[..., 3]
+            square2 = boxes2[..., 2] * boxes2[..., 3]
+            union_square = tf.maximum(square1 + square2 - inter_square, 1e-10)
+            return tf.clip_by_value(inter_square / union_square, 0.0, 1.0)  
+
+        def loss_fn(output, labels):
+            """calculate loss function
+            Args:
+            output: 4-D tensor [self._batch_size, self._grid_size, self._grid_size, 5*self._num_box+self._num_class] 
+            labels: 4-D tensor [self._batch_size, self._grid_size, self._grid_size, 5+self._num_class]
+            Return:
+            loss: scalar
+            """
+            # first step: reshape the output
+            #output = tf.reshape(output, shape = [self._batch_size, self._grid_size, self._grid_size, 5*self._num_box+self._num_class])
+            offset = np.transpose(np.reshape(np.array(
+                [np.arange(self._grid_size)] * self._grid_size * self._num_box),
+                (self._num_box, self._grid_size, self._grid_size)), (1, 2, 0))
+            offset = offset[None, :]
+            offset = tf.constant(offset, dtype=tf.float32)
+            offset_tran = tf.transpose(offset, (0, 2, 1, 3))
+            
+            predicted_object = output[..., :self._num_box]
+            
+            predict_box_offset = tf.reshape(output[...,self._num_box:5*self._num_box], (-1, self._grid_size, self._grid_size, self._num_box, 4))
+            
+            
+            predicted_class = output[...,5*self._num_box:]
+            
+            
+            predicted_normalized_box = tf.stack(
+                                        [(predict_box_offset[..., 0] + offset) / self._grid_size,
+                                        (predict_box_offset[..., 1] + offset_tran) / self._grid_size,
+                                        tf.square(predict_box_offset[..., 2]),
+                                        tf.square(predict_box_offset[..., 3])], axis=-1)
+
+            
+            true_object = labels[..., :1]
+            true_box = tf.reshape(labels[..., 1:5], (-1, self._grid_size, self._grid_size, 1, 4))
+            
+            true_normalized_box = tf.tile(true_box, (1, 1, 1, self._num_box, 1))/w_img
+            true_class = labels[..., 5:]
+            
+            true_box_offset =  tf.stack(
+                                        [true_normalized_box[..., 0] * self._grid_size - offset,
+                                        true_normalized_box[..., 1] * self._grid_size - offset_tran,
+                                        tf.sqrt(true_normalized_box[..., 2]),
+                                        tf.sqrt(true_normalized_box[..., 3])], axis=-1)
+            
+            predict_iou = compute_iou(true_normalized_box, predicted_normalized_box)
+            
+            object_mask = tf.reduce_max(predict_iou, 3, keepdims=True)  
+                        
+            object_mask = tf.cast((predict_iou>=object_mask), tf.float32)*true_object
+
+            noobject_mask = tf.ones_like(object_mask) - object_mask
+            
+            ## class loss
+            class_delta = true_object*(predicted_class - true_class)
+            class_loss = tf.reduce_mean(tf.reduce_sum(tf.square(class_delta), axis=[1,2,3]))
+            
+            ## object loss
+            object_delta = object_mask*(predicted_object - predict_iou)
+            object_loss = tf.reduce_mean(tf.reduce_sum(tf.square(object_delta), axis=[1,2,3]))
+            
+            ## noobject loss
+            noobject_delta = noobject_mask*predicted_object
+            noobject_loss = tf.reduce_mean(tf.reduce_sum(tf.square(noobject_delta), axis=[1,2,3]))
+            
+            ## coord loss
+            box_mask = tf.expand_dims(object_mask, 4)
+            box_delta = box_mask*(predict_box_offset - true_box_offset)
+            box_loss = tf.reduce_mean(tf.reduce_sum(tf.square(box_delta), axis=[1,2,3]))
+            
+
+            loss = self._lambdaclass*class_loss + object_loss + self._lambdanoobj*noobject_loss + 10*box_loss
+            ## accuracy
+            correct_predictions = tf.equal(tf.argmax(predicted_class, axis =3), tf.argmax(true_class, axis = 3) )
+            iou_scores = tf.reduce_max(predict_iou, 3)  
+            correct_classification = tf.equal(tf.cast(correct_predictions, tf.float32), tf.cast(iou_scores, tf.float32))
+            image_accuracy =  tf.reduce_mean(tf.cast(correct_classification, tf.float32), axis = [1,2])[-1]
+            total_accuracy =tf.reduce_mean(tf.cast(correct_classification, tf.float32))
+            # tp
+
+            return loss, class_loss, box_loss, predicted_object, predicted_class, predicted_normalized_box, image_accuracy, total_accuracy
+
+        loss_tensor, classification_loss_tensor, bbox_loss_tensor, predicted_object, predicted_class, predicted_normalized_box, image_accuracy_tensor, accuracy_tensor = loss_fn(output_tensor, target_tensor)
+        
+        #training
+        global_step = None
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.optimizer == 'SGD' %}
+                optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate={{layer_spec.learning_rate}})
+            {% elif layer_spec.optimizer == 'Momentum' %}
+                global_step = tf.Variable(0)
+                learning_rate_momentum = tf.train.exponential_decay(
+                    learning_rate={{layer_spec.learning_rate}},
+                    global_step=global_step,
+                    decay_steps={{layer_spec.decay_steps}},
+                    decay_rate={{layer_spec.decay_rate}},
+                    staircase=True
+                )
+                optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate_momentum, momentum={{layer_spec.momentum}})
+            {% elif layer_spec.optimizer == 'ADAM' %}
+                optimizer = tf.train.AdamOptimizer(learning_rate={{layer_spec.learning_rate}}, beta1={{layer_spec.beta1}}, beta2={{layer_spec.beta2}})
+            {% elif layer_spec.optimizer == 'adagrad' %}
+                optimizer = tf.compat.v1.train.AdagradOptimizer(learning_rate={{layer_spec.learning_rate}})            
+            {% elif layer_spec.optimizer == 'RMSprop' %}
+                optimizer = tf.compat.v1.train.RMSPropOptimizer(learning_rate={{layer_spec.learning_rate}})                        
+            {% else %}
+                raise NotImplementedError('Optimizer {{layer_spec.optimizer}} not supported yet')
+            {% endif %}
+        {% endfilter %}
+
+        layer_weight_tensors = {}
+        layer_bias_tensors = {}        
+        layer_gradient_tensors = {}
+        for node in graph.inner_nodes:
+            if not isinstance(node.layer, Tf1xLayer): # In case of pure custom layers...
+                continue
+            
+            layer_weight_tensors[node.layer_id] = node.layer.weights
+            layer_bias_tensors[node.layer_id] = node.layer.biases            
+            
+            if len(node.layer.trainable_variables) > 0:
+                gradients = {}
+                for name, tensor in node.layer.trainable_variables.items():
+                    grad_tensor = tf.gradients(loss_tensor, tensor)
+                    if any(x is None for x in grad_tensor):
+                        grad_tensor = tf.constant(0)
+                    gradients[name] = grad_tensor
+                layer_gradient_tensors[node.layer_id] = gradients
+                
+        # trainable_vars = tf.trainable_variables() # TODO: safer to get from nodes. Especially with split graph in mind.
+        # grads = tf.gradients(loss_tensor, trainable_vars)
+        # update_weights = optimizer.apply_gradients(list(zip(grads, trainable_vars)), global_step=global_step)
+
+        grads_and_vars = optimizer.compute_gradients(loss_tensor)
+        update_weights = optimizer.apply_gradients(grads_and_vars, global_step=global_step)
+
+        # update_weights = optimizer.minimize(loss_tensor, global_step=global_step)
+
+        sess = None
+        {{session(sess, use_gpu=not layer_spec.use_cpu) | indent(width=8)}}         
+        self._sess = sess
+
+        trackable_variables = {}
+        trackable_variables.update({x.name: x for x in tf.trainable_variables() if isinstance(x, Trackable)})
+        trackable_variables.update({k: v for k, v in locals().items() if isinstance(v, Trackable) and not isinstance(v, tf.compat.v1.data.Iterator)}) # TODO: Iterators based on 'stateful functions' cannot be serialized.
+        self._checkpoint = tf.train.Checkpoint(**trackable_variables)
+        
+        sess.run(tf.global_variables_initializer())
+        
+        checkpoint_directory = '{{layer_spec.checkpoint_path}}'
+        use_checkpoint = {{layer_spec.load_checkpoint}}
+        if use_checkpoint:
+            path = tf.train.latest_checkpoint(checkpoint_directory)
+            if path is not None:
+                status = self._checkpoint.restore(path)
+                status.run_restore_ops(session=self._sess)
+            elif path is None and self._mode == 'testing':
+                log.error('There are no saved checkpoint files for this model.')
+                self._sess.close()
+
+        self._layer_gradient = layer_gradient_tensors
+        self._layer_bias = layer_bias_tensors
+        self._layer_weight = layer_weight_tensors
+        self._layer_output = layer_output_tensors
+        self._image_acc = image_accuracy_tensor
+        self._acc = accuracy_tensor
+        self._loss = loss_tensor
+        self._bbox_loss = bbox_loss_tensor
+        self._class_loss = classification_loss_tensor
+        self._pred_norm_box = predicted_normalized_box
+        self._pred_class = predicted_class
+        self._pred_obj = predicted_object
+        self._weights = update_weights
+
+        self._trn_init = trn_init
+        self._val_init = val_init
+        self._tst_init = tst_init
+{% endmacro %}
+
+{% macro layer_tf1x_object_detection(layer_spec, graph_spec) %} #
+import itertools
+import cv2
+import copy
+class {{layer_spec.sanitized_name}}(ObjectDetectionLayer):
+    def __init__(self):
+        {{ check_input_vars(layer_spec, ['labels', 'predictions'])|indent(width=8)}}        
+        self._n_epochs = {{layer_spec.n_epochs}}
+        self._batch_size = {{layer_spec.batch_size}}
+
+        self._target_acc = {{layer_spec.target_acc}}
+        self._stop_condition = '{{layer_spec.stop_condition}}'
+
+        self._stopped = False
+        self._paused = False
+        self._headless = False
+        self._status = 'created'
+        
+        self._loss_training = 0.0
+        self._loss_validation = 0.0
+        self._loss_testing = 0.0  
+
+        self._bbox_loss_training = 0.0
+        self._bbox_loss_validation = 0.0
+        self._bbox_loss_testing = 0.0  
+        
+        self._classification_loss_training = 0.0
+        self._classification_loss_validation = 0.0
+        self._classification_loss_testing = 0.0  
+
+        self._input_data_node = ''
+        self._predicted_object = []
+        self._predicted_class = []
+        self._predicted_normalized_box = [0.0]
+
+        self._accuracy_training = 0.0
+        self._accuracy_validation = 0.0
+        self._accuracy_testing = 0.0
+        
+        self._image_accuracy = 0.0
+
+        self._variables = {}
+        self._layer_outputs = {}
+        self._layer_weights = {}
+        self._layer_biases = {}        
+        self._layer_gradients = {}
+
+        self._training_iteration = 0
+        self._validation_iteration = 0
+        self._testing_iteration = 0
+
+        self._trn_sz_tot = 0
+        self._val_sz_tot = 0
+        self._tst_sz_tot = 0
+
+        self._checkpoint = None
+    
+    def init_layer(self, graph: Graph, mode = 'initializing'):
+        
+        self._mode = mode
+        {% if not layer_spec.distributed -%}
+            {{ init_normal() }}
+        {% endif %}
+
+    def train(self, graph:Graph):
+        """Training is done when this function is called. Once the training ends, checkpoint files are saved.
+        """
+
+        {% if not layer_spec.distributed -%}
+            {{ train_normal(layer_spec, graph_spec) }}
+        {% endif %} 
+
+    def test(self, graph:Graph):
+        """Testing is done when this function is called. 
+        """
+
+        {% if not layer_spec.distributed -%}
+            {{ test_normal(layer_spec, graph_spec) }}
+        {% endif %} 
+        
+    def run(self, graph: Graph, mode = 'initializing'):
+        """Called as the main entry point for training. Responsible for training the model.
+
+        Args:
+            graph: A PerceptiLabs Graph object containing references to all layers objects included in the model produced by this training layer.
+        """  
+
+        self.init_layer(graph, mode)
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)} 
+        
+        if mode == 'training':
+            yield from self.train(graph)
+        elif mode == 'testing':
+            yield from self.test(graph)
+
+    def on_export(self, path: str, mode: str) -> None:
+        """Called when the export button is clicked in the frontend.
+        It is up to the implementing layer to save the model to disk.
+        
+        Args:
+            path: the directory where the exported model will be stored.
+            mode: how to export the model. Made available to frontend via 'export_modes' property."""
+
+        log.debug(f"Export called. Project path = {path}, mode = {mode}")
+        if mode in ['TFModel', 'TFLite', 'TFQuantized']:
+            import shutil
+            pb_path = os.path.join(path, '1')
+            if os.path.exists(pb_path):
+                shutil.rmtree(pb_path)
+            
+            time.sleep(.0000000000000001) #Force your computer to do a clock cycle to avoid Windows permission exception
+
+            os.makedirs(pb_path, exist_ok=True)
+        
+        # Export non-compressed model
+        if mode in ['TFModel']:
+            tf.compat.v1.saved_model.simple_save(self._sess, pb_path, inputs=self._input_tensor_export, outputs=self._output_tensor_export)
+
+        # Export compressed model
+        if mode in ['TFLite']:
+            frozen_path = os.path.join(pb_path, 'frozen_model.pb')
+            converter = tf.lite.TFLiteConverter.from_session(self._sess, list(self._input_tensor_export.values()), list(self._output_tensor_export.values()))
+            converter.post_training_quantize = True
+            tflite_model = converter.convert()
+            with open(frozen_path, "wb") as f:
+                f.write(tflite_model)
+                
+        # Export fully quantized model
+        if mode in ['TFQuantized']:
+            {{representative_dataset_gen('self._export_data_gen') | indent(width=12)}}
+            tflite_path = os.path.join(pb_path, 'tflite_model.tflite')
+            converter = tf.lite.TFLiteConverter.from_session(self._sess, [self._input_tensor_export['output']], [self._output_tensor_export['output']])
+            converter.optimizations = [tf.lite.Optimize.DEFAULT]
+            converter.representative_dataset = representative_dataset_gen
+            converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8, tf.lite.OpsSet.TFLITE_BUILTINS, tf.lite.OpsSet.SELECT_TF_OPS]
+            converter.inference_input_type = tf.uint8
+            converter.inference_output_type = tf.uint8
+            tflite_model = converter.convert()
+            with open(tflite_path, "wb") as f:
+                f.write(tflite_model)
+        
+        # Export checkpoint
+        if mode in ['checkpoint']:
+            os.makedirs(path, exist_ok=True)
+            for fname in os.listdir(path):
+                if fname.endswith('.json'):
+                    pass
+                else:
+                    os.remove(os.path.join(path,fname))
+            {% filter remove_lspaces(8) %}
+                {% if layer_spec.distributed %}
+                    self._saver.save(self._sess, os.path.join(path, 'model.ckpt'), global_step=0)
+                {% else %}
+                    self._checkpoint.save(file_prefix=os.path.join(path, 'model.ckpt'), session=self._sess)
+                {% endif %}
+            {% endfilter %}
+            
+    def on_stop(self) -> None:
+        """Called when the save model button is clicked in the frontend. 
+        It is up to the implementing layer to save the model to disk."""
+        self.on_export(self._checkpoint_save_path, 'checkpoint')   
+        self._stopped = True
+
+    def on_headless_activate(self) -> None:
+        """"Called when the statistics shown in statistics window are not needed.
+        Purose is to speed up the iteration speed significantly."""
+        self._headless = True
+
+        self._layer_outputs = {} 
+        self._layer_weights = {}
+        self._layer_biases = {}
+        self._layer_gradients = {}
+
+    def on_headless_deactivate(self) -> None:
+        """"Called when the statistics shown in statistics window are needed.
+        May slow down the iteration speed of the training."""
+        import time
+        log.info(f"Set to headless_off at time {time.time()}")
+        self._headless = False
+
+    @property
+    def export_modes(self) -> List[str]:
+        """Returns the possible modes of exporting a model."""        
+        return [
+            'TFModel',
+            'TFLite'
+            'TFQuantized',
+            'checkpoint'            
+        ]
+        
+    @property
+    def is_paused(self) -> None:
+        """Returns true when the training is paused."""        
+        return self._paused
+
+    @property
+    def batch_size(self):
+        """ Size of the current training batch """        
+        return self._batch_size
+    
+    @property
+    def get_input_data_node(self):
+        """ node corresponding to input tensor"""
+        return self._input_data_node
+
+    @property
+    def grid_size(self):
+        """ size of the grid """
+        return self._grid_size
+    
+    @property
+    def classes(self):
+        """classes in the dataset"""
+        return self._classes
+
+    @property
+    def num_class(self):
+        """ number of classes in the dataset"""
+        return self._num_class
+
+    @property   
+    def num_box(self):
+        """ number of boxes per grid"""
+        return self._num_box 
+
+    @property
+    def lambdaclass(self):
+        return self._lambdaclass
+        
+    @property
+    def lambdanoobj(self):  
+        return self._lambdanoobj
+
+    @property
+    def status(self):
+        """Called when the pause button is clicked in the frontend. It is up to the implementing layer to pause its execution."""        
+        return self._status
+    
+    @property
+    def epoch(self):
+        """The current epoch"""        
+        return self._epoch
+
+    @property
+    def variables(self):
+        """Any variables belonging to this layer that should be rendered in the frontend.
+        
+        Returns:
+            A dictionary with tensor names for keys and picklable for values.
+        """
+        return self._variables.copy()        
+
+    @property
+    def sample(self) -> Dict[str, Dict[str, Picklable]]: 
+        """Returns a single data sample"""        
+        return {'output': np.array(self._predicted_normalized_box)}
+
+    @property
+    def size_training(self) -> int:
+        """Returns the size of the training dataset"""
+        return self._trn_sz_tot
+
+    @property
+    def size_validation(self) -> int:
+        """Returns the size of the validation dataset"""                                            
+        return self._val_sz_tot
+
+    @property
+    def size_testing(self) -> int:
+        """Returns the size of the testing dataset"""
+        return self._tst_sz_tot
+
+    def make_generator_training(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of training data. In the case of a training layer, this typically yields the model output."""        
+        # Simply call sess.run on the output & target tensors :)  #TODO: how to make generators generic? We have two datasets here, but not all datasets will be labeled. Distinguish between supervised/unsupervised data layers and instead REQUIRE pairs of data layers for supervised?
+        yield from []
+        
+    def make_generator_validation(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of validation data. In the case of a training layer, this typically yields the model output."""                
+        yield from []
+        
+    def make_generator_testing(self) -> Generator[np.ndarray, None, None]:
+        """Returns a generator yielding single samples of testing data. In the case of a training layer, this typically yields the model output."""                        
+        yield from []
+
+    @property
+    def accuracy_training(self) -> float:
+        """Returns the current accuracy of the training phase"""        
+        return self._accuracy_training
+    
+    @property
+    def accuracy_validation(self) -> float:
+        """Returns the current accuracy of the validation phase"""                
+        return self._accuracy_validation
+
+    @property
+    def accuracy_testing(self) -> float:
+        """Returns the current accuracy of the testing phase"""                        
+        return self._accuracy_testing
+
+    @property
+    def loss_training(self) -> float:
+        """Returns the current loss of the training phase"""                
+        return self._loss_training        
+
+    @property
+    def loss_validation(self) -> float:
+        """Returns the current loss of the validation phase"""                        
+        return self._loss_validation   
+
+    @property
+    def loss_bbox_training(self) -> float:
+        """Returns the current loss of the training phase"""                
+        return self._bbox_loss_training        
+
+    @property
+    def loss_bbox_validation(self) -> float:
+        """Returns the current loss of the validation phase"""                        
+        return self._bbox_loss_validation        
+
+    @property
+    def loss_bbox_testing(self) -> float:
+        """Returns the current loss of the testing phase"""                
+        return self._bbox_loss_testing
+
+    @property
+    def loss_testing(self) -> float:
+        """Returns the current loss of the testing phase"""                
+        return self._loss_testing
+
+    @property
+    def loss_classification_training(self) -> float:
+        """Returns the current loss of the training phase"""                
+        return self._classification_loss_training        
+
+    @property
+    def loss_classification_validation(self) -> float:
+        """Returns the current classification loss of the validation phase"""                        
+        return self._classification_loss_validation        
+
+    @property
+    def loss_classification_testing(self) -> float:
+        """Returns the current loss of the testing phase"""                
+        return self._classification_loss_testing
+
+    @property
+    def get_predicted_normalized_boxes(self) -> np.ndarray:
+        """ returns the images with predicted bboxes"""
+        return self._predicted_normalized_box[-1]
+
+    @property
+    def get_predicted_classes(self) -> np.ndarray:
+        """ returns the images with predicted bboxes"""
+        return self._predicted_class[-1]
+
+    @property
+    def get_predicted_objects(self) -> np.ndarray:
+        """ returns the images with predicted bboxes"""
+        return self._predicted_object[-1]
+
+    @property
+    def layer_weights(self) -> Dict[str, Dict[str, Picklable]]:
+        """The weight values of each layer in the input Graph during the training.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain weight name and value pairs. The values must be picklable.
+        """
+        # w = copy.deepcopy(self._layer_weights)
+        # for layer_name in w:
+        #     for layer_type in w[layer_name]:
+        #         weights = w[layer_name][layer_type]
+        #         Wshapes=weights.shape
+        #         if len(Wshapes)==2:
+        #             weights = np.average(weights,axis=0)
+        #         elif len(Wshapes)==3:
+        #             weights=np.expand_dims(np.average(weights[:,:,-1],1),axis=0)
+        #         elif len(Wshapes)==4:
+        #             weights= np.average(weights[:,:,:,-1],2)
+        #         elif len(Wshapes)==5:
+        #             weights=np.average(weights[:,:,:,:,-1],3)
+
+        #         w[layer_name][layer_type] = weights
+
+        return self._layer_weights
+
+    @property
+    def layer_biases(self) -> Dict[str, Dict[str, Picklable]]:
+        """The bias values of each layer in the input Graph during the training.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain weight name and value pairs. The values must be picklable.
+        """
+        return self._layer_biases
+    
+    @property
+    def layer_gradients(self) -> Dict[str, Dict[str, Picklable]]:
+        """
+        The gradients with respect to the loss of all trainable variables of each layer in the input Graph.
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain gradient name and value pairs. The values must be picklable.
+        """
+        # gradients =  copy.deepcopy(self._layer_gradients)
+        # for layer in self._layer_gradients:
+        #     for name, grad in self._layer_gradients[layer].items():
+        #         grad = np.asarray(grad)
+        #         layer_min = np.min(grad)
+        #         layer_max = np.max(grad)
+        #         layer_avg = np.average(grad)
+        #         gradients[layer][name] = [layer_min, layer_max, layer_avg]
+        
+        return self._layer_gradients
+    
+    @property
+    def layer_outputs(self) -> Dict[str, Dict[str, Picklable]]:
+        """The output values of each layer in the input Graph during the training (e.g., tf.Tensors evaluated for each iteration)
+
+        Returns:
+            A dictionary of nested dictionaries, where each key is a layer id. The nested dictionaries contain variable name and value pairs. The values must be picklable.
+        """
+        return self._layer_outputs
+
+    @property
+    def training_iteration(self) -> int:
+        """The current training iteration"""
+        return self._training_iteration
+
+    @property
+    def validation_iteration(self) -> int:
+        """The current validation iteration"""        
+        return self._validation_iteration
+
+    @property
+    def testing_iteration(self) -> int:
+        """The current testing iteration"""                
+        return self._testing_iteration
+    
+    @property
+    def image_accuracy(self) -> float:
+        return self._image_accuracy
+
+    @property 
+    def bbox_images(self) -> np.ndarray:
+
+        return images
+
+
+    @property
+    def columns(self) -> List[str]: 
+        """Column names. Corresponds to each column in a sample """
+        return []
+
+    @property
+    def progress(self) -> float:
+        """A number indicating the overall progress of the training
+        
+        Returns:
+            A floating point number between 0 and 1
+        """        
+        n_iterations_per_epoch = np.ceil(self.size_training / self._batch_size) + \
+                                 np.ceil(self.size_validation / self._batch_size)
+        n_iterations_total = self._n_epochs * n_iterations_per_epoch
+
+        iteration = self.epoch * n_iterations_per_epoch + \
+                    self.training_iteration + self.validation_iteration
+        
+        progress = min(iteration/(n_iterations_total - 1), 1.0) 
+        return progress
+{% endmacro %}
+
+
+#################################################### Distributed Training #################################################
+{% macro run_distributed(layer_spec, graph_spec) %}
+        INCLUDE_KERAS_METRICS = False
+
+        self_layer_name = '{{layer_name}}' # this is passed as input
+        output_layer_id = '{{output_layer}}'
+        target_layer_id = '{{target_layer}}'
+        input_data_nodes = graph.get_direct_data_nodes(output_layer_id)
+        label_data_nodes = graph.get_direct_data_nodes(target_layer_id)
+
+        assert len(input_data_nodes) == 1
+        assert len(label_data_nodes) == 1
+        input_data_node = input_data_nodes[0]
+        label_data_node = label_data_nodes[0]
+
+        self._trn_sz_tot = input_data_node.layer.size_training
+        self._val_sz_tot = input_data_node.layer.size_validation
+        self._tst_sz_tot = input_data_node.layer.size_testing
+
+        # Set Devices and Distribution Strategy
+        n_devices = 4
+        config = tf.ConfigProto(device_count={"CPU": n_devices, "GPU": 0},
+                               gpu_options={"allow_growth": True},
+                               inter_op_parallelism_threads=n_devices,
+                               intra_op_parallelism_threads=1)
+        # config = tf.ConfigProto(gpu_options={"allow_growth": True}, log_device_placement=True, allow_soft_placement=True)
+
+        sess = tf.Session(config=config)
+        tf.keras.backend.set_session(sess) # since we use keras metrics
+        self._sess = sess
+
+        strategy = tf.distribute.MirroredStrategy(devices=[f'/CPU:{i}' for i in range(n_devices)]) # TODO: not needed under real circumstances, should default to all.
+
+        BATCH_SIZE_PER_REPLICA = self._batch_size # TODO: should this be batch_size divided by n_devices or not?
+        GLOBAL_BATCH_SIZE = BATCH_SIZE_PER_REPLICA * n_devices
+
+        # Make training set
+        dataset_trn = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                input_data_node.layer_instance.make_generator_training,
+                output_shapes=input_data_node.layer_instance.sample.shape,
+                output_types=np.float32                
+            ),
+            tf.data.Dataset.from_generator(
+                label_data_node.layer_instance.make_generator_training,
+                output_shapes=label_data_node.layer_instance.sample.shape,
+                output_types=np.float32
+            )
+        ))
+
+        # Make validation set
+        dataset_val = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                input_data_node.layer_instance.make_generator_validation,
+                output_shapes=input_data_node.layer_instance.sample.shape,
+                output_types=np.float32                
+            ),
+            tf.data.Dataset.from_generator(
+                label_data_node.layer_instance.make_generator_validation,
+                output_shapes=label_data_node.layer_instance.sample.shape,
+                output_types=np.float32
+            )
+        ))
+
+        # Make testing set
+        dataset_tst = tf.data.Dataset.zip((
+            tf.data.Dataset.from_generator(
+                input_data_node.layer_instance.make_generator_testing,
+                output_shapes=input_data_node.layer_instance.sample.shape,
+                output_types=np.float32                
+            ),
+            tf.data.Dataset.from_generator(
+                label_data_node.layer_instance.make_generator_testing,
+                output_shapes=label_data_node.layer_instance.sample.shape,
+                output_types=np.float32
+            )
+        ))
+
+        train_dataset = dataset_trn.batch(GLOBAL_BATCH_SIZE)
+        validation_dataset = dataset_val.batch(GLOBAL_BATCH_SIZE)
+        test_dataset = dataset_tst.batch(1) # Since the batch size for test is 1, it does not make sense to divide the batch over several replicas. Do testing as usual.
+
+        # NOTE: A key difference for distributed: we have one _iterator_ per dataset, as opposed to one _initializer_ per dataset in the normal case.
+        # This means that we have to create a different version of all metrics (accuracy, f1, auc, etc), the gradients and more importantly: 'all tensors'.
+
+        with strategy.scope():
+            train_iterator = strategy.make_dataset_iterator(train_dataset)
+            validation_iterator = strategy.make_dataset_iterator(validation_dataset)
+
+        test_iterator = tf.data.Iterator.from_structure(test_dataset.output_types, test_dataset.output_shapes)
+        test_iterator_init = test_iterator.make_initializer(test_dataset)
+
+        def create_model():
+            # The tensors generated by distributed iterators are only accessible locally from each replica. Therefore,
+            # each replica must create its own version of the model. This has the following two consequences:
+            #
+            #     * all tensorflow variables/operations must be executed on device, once per replica => the wrapped layers are further wrapped as a Model.
+            #     * we must keep track of the created variables, so that the validation steps can reuse the trained variables => we use get_variable instead of tf.Variable, with a var-scope for each layer.
+            #     * we will have several instances/copies of non-trainable/non-tensorflow variables. => Each layer wrapper tracks the number of times it's been created, or they would overwrite eachother.
+            
+            class Model:
+                def __init__(self):
+                    pass
+                
+                def __call__(self, x, y):
+                    layer_output_tensors = {
+                        input_data_node.layer_id: x,
+                        label_data_node.layer_id: y
+                    }
+
+                    for node in graph.inner_nodes:
+                        args = []
+                        for input_node in graph.get_input_nodes(node):
+                            args.append(layer_output_tensors[input_node.layer_id])
+                        y = node.layer_instance(*args)
+                        layer_output_tensors[node.layer_id] = y
+
+                    return layer_output_tensors 
+            
+            return Model()
+
+        with strategy.scope():
+
+            model = create_model()
+            
+            train_iterator_init = train_iterator.initialize()
+            validation_iterator_init = validation_iterator.initialize()
+
+            global_step = None
+            {% filter remove_lspaces(8) %}        
+                {% if optimizer == 'tf.compat.v1.train.GradientDescentOptimizer' %}
+                    optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate={{learning_rate}}*n_devices)
+                {% elif optimizer == 'tf.compat.v1.train.MomentumOptimizer' %}
+                    global_step = tf.Variable(0)
+                    learning_rate_momentum = tf.train.exponential_decay(
+                        learning_rate={{learning_rate}}*n_devices,
+                        global_step=global_step,
+                        decay_steps={{decay_steps}},
+                        decay_rate={{decay_rate}},
+                        staircase=True
+                    )
+                    optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate_momentum, momentum={{momentum}})
+                {% elif optimizer == 'tf.compat.v1.train.AdamOptimizer' %}
+                    optimizer = tf.train.AdamOptimizer(learning_rate={{learning_rate}}*n_devices, beta1={{beta1}}, beta2={{beta2}})
+                {% elif optimizer == 'tf.compat.v1.train.AdagradOptimizer' %}
+                    optimizer = tf.compat.v1.train.AdagradOptimizer(learning_rate={{learning_rate}}*n_devices)            
+                {% elif optimizer == 'tf.compat.v1.train.RmsPropOptimizer' %}
+                    optimizer = tf.compat.v1.train.RMSPropOptimizer(learning_rate={{learning_rate}}*n_devices)                        
+                {% else %}
+                    raise NotImplementedError('Optimizer {{optimizer}} not supported yet')
+                {% endif %}
+            {% endfilter %}
+            
+
+            def compute_iou(boxes1, boxes2):
+                """calculate ious
+                Args:
+                boxes1: 5-D tensor [self._batch_size, self._grid_size, self._grid_size, self._num_box, 4]  ====> (x_center, y_center, w, h)
+                boxes2: 5-D tensor [self._batch_size, self._grid_size, self._grid_size, self._num_box, 4] ===> (x_center, y_center, w, h)
+                Return:
+                iou: 4-D tensor [self._batch_size, self._grid_size, self._grid_size, self._num_box]
+                """
+                # transform (x_center, y_center, w, h) to (x1, y1, x2, y2)
+                boxes1_t = tf.stack([boxes1[..., 0] - boxes1[..., 2] / 2.0,
+                                    boxes1[..., 1] - boxes1[..., 3] / 2.0,
+                                    boxes1[..., 0] + boxes1[..., 2] / 2.0,
+                                    boxes1[..., 1] + boxes1[..., 3] / 2.0],
+                                    axis=-1)
+
+                boxes2_t = tf.stack([boxes2[..., 0] - boxes2[..., 2] / 2.0,
+                                    boxes2[..., 1] - boxes2[..., 3] / 2.0,
+                                    boxes2[..., 0] + boxes2[..., 2] / 2.0,
+                                    boxes2[..., 1] + boxes2[..., 3] / 2.0],
+                                    axis=-1)
+                # calculate the left up point & right down point
+                lu = tf.maximum(boxes1_t[..., :2], boxes2_t[..., :2])
+                rd = tf.minimum(boxes1_t[..., 2:], boxes2_t[..., 2:])
+                # intersection
+                intersection = tf.maximum(0.0, rd - lu)
+                inter_square = intersection[..., 0] * intersection[..., 1]
+                # calculate the boxs1 square and boxs2 square
+                square1 = boxes1[..., 2] * boxes1[..., 3]
+                square2 = boxes2[..., 2] * boxes2[..., 3]
+                union_square = tf.maximum(square1 + square2 - inter_square, 1e-10)
+                return tf.clip_by_value(inter_square / union_square, 0.0, 1.0)  
+
+            def loss_fn(output, labels, batch_size):
+                """calculate loss function
+                Args:
+                output: 4-D tensor [batch_size, self._grid_size, self._grid_size, 5*self._num_box+self._num_class] 
+                labels: 4-D tensor [batch_size, self._grid_size, self._grid_size, 5+self._num_class]
+                Return:
+                loss: scalar
+                """
+                # first step: reshape the output
+                output = tf.reshape(output, shape = [batch_size, self._grid_size, self._grid_size, 5*self._num_box+self._num_class])
+                offset = np.transpose(np.reshape(np.array(
+                    [np.arange(self._grid_size)] * self._grid_size * self._num_box),
+                    (self._num_box, self._grid_size, self._grid_size)), (1, 2, 0))
+                offset = offset[None, :]
+                offset = tf.constant(offset, dtype=tf.float32)
+                offset_tran = tf.transpose(offset, (0, 2, 1, 3))
+                
+                predicted_object = output[..., :self._num_box]
+                
+                
+                predict_box_offset = tf.reshape(output[...,self._num_box:5*self._num_box], (-1, self._grid_size, self._grid_size, self._num_box, 4))
+                
+                
+                predicted_class = output[...,5*self._num_box:]
+                
+                
+                predicted_normalized_box = tf.stack(
+                                            [(predict_box_offset[..., 0] + offset) / self._grid_size,
+                                            (predict_box_offset[..., 1] + offset_tran) / self._grid_size,
+                                            tf.square(predict_box_offset[..., 2]),
+                                            tf.square(predict_box_offset[..., 3])], axis=-1)
+
+                
+                true_object = labels[..., :1]
+                true_box = tf.reshape(labels[..., 1:5], (-1, self._grid_size, self._grid_size, 1, 4))
+                
+                true_normalized_box = tf.tile(true_box, (1, 1, 1, self._num_box, 1))/w_img
+                true_class = labels[..., 5:]
+                
+                true_box_offset =  tf.stack(
+                                            [true_normalized_box[..., 0] * self._grid_size - offset,
+                                            true_normalized_box[..., 1] * self._grid_size - offset_tran,
+                                            tf.sqrt(true_normalized_box[..., 2]),
+                                            tf.sqrt(true_normalized_box[..., 3])], axis=-1)
+                
+                predict_iou = compute_iou(true_normalized_box, predicted_normalized_box)
+                
+                object_mask = tf.reduce_max(predict_iou, 3, keepdims=True)  
+                            
+                object_mask = tf.cast((predict_iou>=object_mask), tf.float32)*true_object
+
+                noobject_mask = tf.ones_like(object_mask) - object_mask
+                
+                ## class loss
+                class_delta = true_object*(predicted_class - true_class)
+                class_loss = tf.reduce_mean(tf.reduce_sum(tf.square(class_delta), axis=[1,2,3]))
+                
+                ## object loss
+                object_delta = object_mask*(predicted_object - predict_iou)
+                object_loss = tf.reduce_mean(tf.reduce_sum(tf.square(object_delta), axis=[1,2,3]))
+                
+                ## noobject loss
+                noobject_delta = noobject_mask*predicted_object
+                noobject_loss = tf.reduce_mean(tf.reduce_sum(tf.square(noobject_delta), axis=[1,2,3]))
+                
+                ## coord loss
+                box_mask = tf.expand_dims(object_mask, 4)
+                box_delta = box_mask*(predict_box_offset - true_box_offset)
+                box_loss = tf.reduce_mean(tf.reduce_sum(tf.square(box_delta), axis=[1,2,3]))
+                
+
+                loss = self._lambdaclass*class_loss + object_loss + self._lambdanoobj*noobject_loss + 10*box_loss
+
+                # accuracy
+                correct_predictions = tf.equal(tf.argmax(predicted_class, axis =3), tf.argmax(true_class, axis = 3) )
+                iou_scores = tf.reduce_max(predict_iou, 3)  
+                correct_classification = tf.equal(tf.cast(correct_predictions, tf.float32), tf.cast(iou_scores, tf.float32))
+                image_accuracy =  tf.reduce_mean(tf.cast(correct_classification, tf.float32), axis = [1,2])[-1]
+                total_accuracy =tf.reduce_mean(tf.cast(correct_predictions, tf.float32))
+                return loss, class_loss, box_loss, predicted_object, predicted_class, predicted_normalized_box, image_accuracy, total_accuracy
+
+            def train_step(inputs):
+                x, y = inputs
+                layer_output_tensors = model(x, y)
+                output_tensor = layer_output_tensors[output_layer_id]
+                target_tensor = layer_output_tensors[target_layer_id]
+
+                
+                loss_tensor, classification_loss_tensor, bbox_loss_tensor, predicted_object, predicted_class, predicted_normalized_box, image_accuracy_tensor, accuracy_tensor = loss_fn(output_tensor, target_tensor)
+                loss_tensor = loss_tensor/GLOBAL_BATCH_SIZE
+                bbox_loss_tensor = bbox_loss_tensor/GLOBAL_BATCH_SIZE
+                classification_loss_tensor = classification_loss_tensor/GLOBAL_BATCH_SIZE
+                
+                layer_weight_tensors = {}
+                layer_bias_tensors = {}        
+                layer_gradient_tensors = {}
+                for node in graph.inner_nodes:
+                    if not isinstance(node.layer, Tf1xLayer): # In case of pure custom layers...
+                        continue
+                    
+                    layer_weight_tensors[node.layer_id] = node.layer.weights
+                    layer_bias_tensors[node.layer_id] = node.layer.biases            
+                    
+                    if len(node.layer.trainable_variables) > 0:
+                        gradients = {}
+                        for name, tensor in node.layer.trainable_variables.items():
+                            grad_tensor = tf.gradients(loss_tensor, tensor)
+                            if any(x is None for x in grad_tensor):
+                                grad_tensor = tf.constant(0)
+                            if type(grad_tensor) is list and len(grad_tensor) == 1:
+                                gradients[name] = grad_tensor[0]
+                            else:
+                                gradients[name] = grad_tensor
+                        layer_gradient_tensors[node.layer_id] = gradients
+                        self._layer_gradients[node.layer_id] = {name: [] for name in node.layer.trainable_variables.keys()} # Initialize
+
+                grads_and_vars = optimizer.compute_gradients(loss_tensor)        
+                update_weights = optimizer.apply_gradients(grads_and_vars, global_step=global_step)
+
+                
+                update_ops = [update_weights]
+
+                with tf.control_dependencies(update_ops):
+                    def add_identity(x):
+                        if isinstance(x, dict):
+                            return {k: add_identity(v) for k, v in x.items()}
+                        else:
+                            return tf.identity(x)
+                    
+                    # Only tensors CREATED in this scope will be affected. Therefore, we pass them through the identity operation.
+                    return add_identity(predicted_object), add_identity(predicted_class), add_identity(predicted_normalized_box), add_identity(loss_tensor), add_identity(classification_loss_tensor), add_identity(bbox_loss_tensor), add_identity(image_accuracy_tensor), add_identity(accuracy_tensor), add_identity(layer_output_tensors), add_identity(layer_weight_tensors), add_identity(layer_bias_tensors), add_identity(layer_gradient_tensors)
+
+            def validation_step(inputs):
+                x, y = inputs
+                layer_output_tensors = model(x, y)
+                output_tensor = layer_output_tensors[output_layer_id]
+                target_tensor = layer_output_tensors[target_layer_id]
+
+                loss_tensor, classification_loss_tensor, bbox_loss_tensor, predicted_object, predicted_class, predicted_normalized_box, image_accuracy_tensor, accuracy_tensor = loss_fn(output_tensor, target_tensor)
+                loss_tensor = loss_tensor/GLOBAL_BATCH_SIZE
+                bbox_loss_tensor = bbox_loss_tensor/GLOBAL_BATCH_SIZE
+                classification_loss_tensor = classification_loss_tensor/GLOBAL_BATCH_SIZE
+
+                layer_weight_tensors = {}
+                layer_bias_tensors = {}        
+                layer_gradient_tensors = {}
+                for node in graph.inner_nodes:
+                    layer_weight_tensors[node.layer_id] = node.layer.weights
+                    layer_bias_tensors[node.layer_id] = node.layer.biases            
+                    
+                    if len(node.layer.trainable_variables) > 0:
+                        gradients = {}
+                        for name, tensor in node.layer.trainable_variables.items():
+                            grad_tensor = tf.gradients(loss_tensor, tensor)
+                            if any(x is None for x in grad_tensor):
+                                grad_tensor = tf.constant(0)
+                            if type(grad_tensor) is list and len(grad_tensor) == 1:
+                                gradients[name] = grad_tensor[0]
+                            else:
+                                gradients[name] = grad_tensor
+                        layer_gradient_tensors[node.layer_id] = gradients
+                        self._layer_gradients[node.layer_id] = {name: [] for name in node.layer.trainable_variables.keys()} # Initialize
+
+                
+                update_ops = []
+
+                with tf.control_dependencies(update_ops):
+                    def add_identity(x):
+                        if isinstance(x, dict):
+                            return {k: add_identity(v) for k, v in x.items()}
+                        else:
+                            return tf.identity(x)
+                    
+                    return add_identity(predicted_object), add_identity(predicted_class), add_identity(predicted_normalized_box), add_identity(loss_tensor), add_identity(classification_loss_tensor), add_identity(bbox_loss_tensor), add_identity(image_accuracy_tensor), add_identity(accuracy_tensor), add_identity(layer_output_tensors), add_identity(layer_weight_tensors), add_identity(layer_bias_tensors), add_identity(layer_gradient_tensors)
+
+
+            if n_devices > 1:
+                def reduce_per_replica(nested_dict):
+                    for variable, node in nested_dict.items():
+                        if type(node) is dict:
+                            nested_dict[variable] = reduce_per_replica(node)
+                        else:
+                            tensors = [node.get(device) for device in node.devices \
+                                    if node.get(device) is not None]
+                            nested_dict[variable] = tensors[0]
+                    return nested_dict
+
+                ###### this is not done yet. Need to look into the other outputs from loss function ##########
+                ##### Training statistics #####
+                dist_loss_train, accuracy_train, \
+                    layer_outputs_train, layer_weights_train, layer_biases_train, \
+                    layer_gradients_train = 
+                
+                predicted_object, predicted_class, predicted_normalized_box,\ 
+                    dist_loss_train, dist_classification_loss_train, dist_bbox_loss_tensor,\
+                    image_accuracy_train, accuracy_train, \
+                    layer_output_train, layer_weight_train, layer_bias_train, \
+                    layer_gradient_train = strategy.experimental_run(train_step, train_iterator)
+
+                dist_loss_train = [dist_loss_train.get(device) for device in dist_loss_train.devices]
+                loss_train = tf.reduce_sum(dist_loss_train)
+
+                accuracy_train = tf.reduce_mean(accuracy_train.values) # TODO: how to aggregate?
+
+                layer_outputs_train = reduce_per_replica(layer_outputs_train)
+                layer_gradients_train = reduce_per_replica(layer_gradients_train)
+                layer_weights_train = reduce_per_replica(layer_weights_train)
+                layer_biases_train = reduce_per_replica(layer_biases_train)
+                
+                ##### Validation statistics #####
+                dist_loss_val, accuracy_val, \
+                layer_outputs_val, layer_weights_val, layer_biases_val, \
+                layer_gradients_val = strategy.experimental_run(validation_step, validation_iterator)
+
+                dist_loss_val = dist_loss_val.values
+                loss_val = tf.reduce_sum(dist_loss_val)
+
+                accuracy_val = tf.reduce_mean(accuracy_val.values)
+                layer_gradients_val = {k: v for k, v in layer_gradients_val.items() if v is not None}
+                
+                layer_outputs_val = reduce_per_replica(layer_outputs_val)
+                layer_gradients_val = reduce_per_replica(layer_gradients_val)
+                layer_weights_val = reduce_per_replica(layer_weights_val)
+                layer_biases_val = reduce_per_replica(layer_biases_val)
+
+                # Create an exportable version of the TensorFlow graph
+                self._input_tensor_export = tf.placeholder(shape=[None] + dataset_trn.output_shapes[0].as_list(), dtype=dataset_trn.output_types[0])
+                
+                self._output_tensor_export = model(
+                    self._input_tensor_export,
+                    tf.placeholder(shape=[None] + dataset_trn.output_shapes[1].as_list(), dtype=dataset_trn.output_types[1])
+                )[output_layer_id]
+            else:
+                #dist_loss, dist_grads_train, dist_locals = strategy.experimental_run(train_step, train_iterator)
+                #dist_test = strategy.experimental_run(test_step, test_iterator) # TODO: implement this.
+
+                raise NotImplementedError
+
+            sess.run(tf.global_variables_initializer())
+
+            self._variables = {k: v for k, v in locals().items() if can_serialize(v)}        
+            
+            savables = tf.global_variables()
+            self._savables=savables
+            self._saver = tf.compat.v1.train.Saver(savables)
+
+            # Restore from checkpoint if specified
+            {% filter remove_lspaces(8) %}
+                {% if export_directory is not none %}
+                    path = tf.train.latest_checkpoint('{{export_directory}}')
+                    self._saver.restore(sess, path)
+                {% endif %}
+            {% endfilter %}
+
+            #import pdb; pdb.set_trace()      
+            log.info("Entering training loop")
+
+            self._epoch = 0
+            while self._epoch < self._n_epochs and not self._stopped: 
+                t0 = time.perf_counter()               
+                self._training_iteration = 0
+                self._validation_iteration = 0
+                self._status = 'training'
+
+                sess.run(train_iterator_init)                
+                try:
+                    while not self._stopped:
+                        self._loss_training, self._accuracy_training, \
+                            self._layer_outputs, self._layer_weights, self._layer_biases, \
+                            self._layer_gradients = sess.run([loss_train, accuracy_train, layer_outputs_train, layer_weights_train, layer_biases_train, layer_gradients_train])         
+                        
+                        if INCLUDE_KERAS_METRICS:
+                            auc_train.reset_states()
+                            recall_train.reset_states()
+                            precision_train.reset_states()     
+                        yield YieldLevel.SNAPSHOT
+                        self._training_iteration += 1 * n_devices
+                except tf.errors.OutOfRangeError:
+                    pass
+
+                sess.run(validation_iterator_init)
+                self._status = 'validation'
+                try:
+                    while not self._stopped:
+                        self._loss_validation, self._accuracy_validation, \
+                            self._layer_outputs, self._layer_weights, self._layer_biases, \
+                            self._layer_gradients = sess.run([loss_val, accuracy_val, layer_outputs_val, layer_weights_val, layer_biases_val, layer_gradients_val])
+
+                        yield YieldLevel.SNAPSHOT
+                        self._validation_iteration += 1 * n_devices     
+                except tf.errors.OutOfRangeError:
+                    pass
+                log.info(
+                    f"Finished epoch {self._epoch+1}/{self._n_epochs} - "
+                    f"loss training, validation: {self.loss_training:.6f}, {self.loss_validation:.6f} - "
+                    f"acc. training, validation: {self.accuracy_training:.6f}, {self.accuracy_validation:.6f}"
+                )
+                log.info(f"Epoch duration: {round(time.perf_counter() - t0, 3)} s")            
+                self._epoch += 1
+            
+            self._testing_iteration = 0
+            self._status = 'testing'
+            sess.run(test_iterator_init)
+            x, y = test_iterator.get_next()
+            layer_output_tensors = model(x, y)
+            try:
+                while not self._stopped:
+                    self._layer_outputs = sess.run(layer_output_tensors)
+                    yield YieldLevel.SNAPSHOT                                    
+                    self._testing_iteration += 1
+            except tf.errors.OutOfRangeError:
+                pass
+
+            self._status = 'finished'
+            self._variables = {k: v for k, v in locals().items() if can_serialize(v)}
+            yield YieldLevel.SNAPSHOT
+{% endmacro %}
