@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    {% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/quasar@1.15.10/dist/quasar.min.css" rel="stylesheet" type="text/css">
+    {% block links %}{% endblock %}
+</head>
+<body>
+    <div id="q-app">
+        {% block content %}{% endblock %}
+    </div>
+    {% set quasar_conf = config.get("QUASAR_CONF") %}
+    {% if quasar_conf %}
+    <script>
+        window.quasarConfig = {{ quasar_conf }}
+    </script>
+    {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.1/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@1.15.10/dist/quasar.umd.min.js"></script>
+    {% block js %}
+    {% endblock %}
+    <script>
+        new Vue({
+            el: '#q-app',
+            delimiters: ['<{','}>'],
+            store: new Vuex.Store({
+                {% block vuex %}{% endblock %}
+            }),
+            router: new VueRouter({
+                {% block vue_router %}{% endblock %}
+            }),
+            {% block vue %}{% endblock %}
+        })
+    </script>
+</body>
+</html>
