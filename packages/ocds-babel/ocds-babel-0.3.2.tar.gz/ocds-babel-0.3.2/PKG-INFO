@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: ocds-babel
+Version: 0.3.2
+Summary: Provides Babel extractors and translation methods for standards like OCDS or BODS
+Home-page: https://github.com/open-contracting/ocds-babel
+Author: Open Contracting Partnership
+Author-email: data@open-contracting.org
+License: BSD
+Description: |PyPI Version| |Build Status| |Lint Status| |Coverage Status| |Python Version|
+        
+        This Python package provides `Babel extractors <http://babel.pocoo.org/en/latest/messages.html>`__ and translation methods for standards like:
+        
+        * Open Contracting Data Standard (OCDS), plus its extensions and profiles
+        * Open Contracting for Infrastructure Data Standard (OC4IDS)
+        * Beneficial Ownership Data Standard (BODS)
+        * Social Investment Data Lab Specification (SEDL)
+        
+        If you are viewing this on GitHub or PyPi, open the `full documentation <https://ocds-babel.readthedocs.io/>`__ for additional details.
+        
+        .. |PyPI Version| image:: https://img.shields.io/pypi/v/ocds-babel.svg
+           :target: https://pypi.org/project/ocds-babel/
+        .. |Build Status| image:: https://github.com/open-contracting/ocds-babel/workflows/CI/badge.svg
+        .. |Lint Status| image:: https://github.com/open-contracting/ocds-babel/workflows/Lint/badge.svg
+        .. |Coverage Status| image:: https://coveralls.io/repos/github/open-contracting/ocds-babel/badge.svg?branch=main
+           :target: https://coveralls.io/github/open-contracting/ocds-babel?branch=main
+        .. |Python Version| image:: https://img.shields.io/pypi/pyversions/ocds-babel.svg
+           :target: https://pypi.org/project/ocds-babel/
+        
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/x-rst
+Provides-Extra: markdown
+Provides-Extra: test
+Provides-Extra: docs
