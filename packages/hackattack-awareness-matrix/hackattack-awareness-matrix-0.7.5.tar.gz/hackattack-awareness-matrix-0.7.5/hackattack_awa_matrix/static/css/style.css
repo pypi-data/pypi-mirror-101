@@ -1,0 +1,40 @@
+.m-h-1{
+    min-height:50px !important;
+}
+.m-h-2{
+    min-height:100px !important;
+}
+
+.opacity-0{
+    opacity:0 !important
+}
+.opacity-1{
+    opacity:0.1 !important
+}
+
+.opacity-5{
+    opacity:0.5 !important
+}
+
+.opacity-8{
+    opacity:0.8 !important
+}
+.content-drop{
+    position:relative;
+}
+.content-drop:before{
+    content:"hierhin ziehen";
+    color:#fff;
+    position:absolute;
+    left:0;right:0;
+    margin:0 auto;
+    top:10px;
+    text-align:center;
+}
+.m-h-2.content-drop:before{
+    top:25px;
+}
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+}

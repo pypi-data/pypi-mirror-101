@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Bedrohungen{% endblock %}
+
+{% block header %}
+    {% if threat is defined %}
+        <h1>Bedrohung bearbeiten</h1>
+    {% else %}
+        <h1>Neue Bedrohung erstellen</h1>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-name">Name:</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Bedrohungsname" name="name" id="name" aria-label="Name" aria-describedby="label-name" required value="{{ threat['name'] if threat is defined and threat['name'] is defined }}">
+      </div>
+     <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Beschreibung:</span>
+      </div>
+      <textarea class="form-control" id="description" name="description" aria-label="Beschreibung">{{ threat['description'] if threat is defined and threat['description'] is defined }}</textarea>
+    </div>
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-priority"><i class="far fa-question-circle mr-1" data-toggle="tooltip" data-placement="top" title="Numerischer Wert; 1 = sehr hohe Priorität; 2 = weniger hoch; ..."></i>Priorität:</span>
+      </div>
+      <input name="priority" class="form-control" id="priority" aria-describedby="label-priority" type="number" min="1" value="{{ threat['priority'] if threat is defined and threat['priority'] is defined }}">
+      </div>
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="label-due_date"><i class="far fa-question-circle mr-1" data-toggle="tooltip" data-placement="top" title="Das Fälligkeits-Datum ist optional"></i> Fälligkeits-Datum: </span>
+      </div>
+      <input type="date" class="form-control" aria-label="Fälligkeits-Datum" aria-describedby="label-due_date"  name="due_date" id="due_date" value="{{ threat['due_date'].strftime("%Y-%m-%d") if threat is defined and threat['due_date'] is defined  and threat['due_date'] is not none}}">
+    </div>
+     <div class="input-group mb-3">
+    {% if threat is defined %}
+        <input type="submit" class="btn btn-secondary" value="Speichern">
+    {% else %}
+        <input type="submit" class="btn btn-secondary" value="Erstellen">
+    {% endif %}
+        &nbsp;<input type="button" class="btn btn-secondary" value="Zurück" onclick="history.back()">
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,40 @@
+<div class="modal" tabindex="-1" role="dialog" id="deleteDialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form id="delete-modal-form" method="post">
+          <div class="modal-header">
+            <h5 class="modal-title">Löschen</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <p>Soll dieses Element ganz sicher gelöscht werden?</p>
+              <p><strong>Name: </strong><span id="delete-modal-todelete-name"></span></p>
+              <input type="hidden" id="delete-modal-todelete-id" name="deletion_object_id" value="">
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger" id="btn_delete_dialog_delete"><i class="fas fa-trash"></i> Löschen</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function() {
+        $(document).on("click", ".open-delete-dialog", function () {
+             var myElementId = $(this).data('id');
+             var myElementName = $(this).data('name');
+             var formAction = $(this).data('form-delete-action')
+             $('#delete-modal-todelete-name').text(myElementName);
+             $('#delete-modal-todelete-id').val(myElementId);
+             $('#delete-modal-form').attr('action', formAction);
+
+        });
+    });
+</script>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% if session is defined and session['user_id'] is defined %}
+<div class="jumbotron text-center" style="margin-bottom:0; display:none;">
+{% else %}
+<div class="jumbotron" style="margin-bottom:0">
+{% endif %}
+  <h1 class="display-4">HACKATTACK - Awareness Matrix</h1>
+  <p class="lead">Das Programm unterstützt bei der Umsetzung von Awarenessmaßnahmen</p>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        {% if session is defined and session['user_id'] is defined %}
+            <h3>Meine Projekte</h3>
+
+            {% include 'project/project_table.html' %}
+        {% else %}
+            <h3>Bitte loggen Sie sich ein!</h3>
+            <hr>
+
+            {% include 'auth/login_form.html' %}
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

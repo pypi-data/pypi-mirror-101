@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Bedrohungen{% endblock %}
+
+{% block header %}
+    <h1>Awarenessmaßnahmen einer Bedrohung zuweisen</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 alert alert-secondary" role="alert">
+            <p>Bitte verwenden Sie <a href="#" class="alert-link">Drag & Drop</a> um die Awarenessmaßnahmen zuzuweisen!</p>
+        </div>
+        <div class="col-6">
+            <h3>Zugewiesene Awarenessmaßnahmen</h3>
+            <ul class="list-group bg-success p-1 m-h-1 content-drop" id="already_assigned_awarenessmeasures">
+                {% for cm in assigned_awarenessmeasures %}
+                    <li class="list-group-item" data-awarenessmeasure-id="{{ cm['id'] }}">{{ cm['name'] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-6">
+            <h3>Nicht zugewiesene Awarenessmaßnahmen</h3>
+            <ul class="list-group bg-secondary p-1 m-h-1 content-drop" id="still_available_awarenessmeasures">
+                {% for cm in still_available_awarenessmeasures %}
+                    <li class="list-group-item" data-awarenessmeasure-id="{{ cm['id'] }}">{{ cm['name'] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-12">
+            <div class="float-right">
+                <button type="button" class="btn" id="btn_back">Zurück!</button>
+                <button type="button" class="btn" id="btn_save_threat_awarenessmeasures">Speichern!</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var already_assigned_awarenessmeasures = document.getElementById('already_assigned_awarenessmeasures');
+            var still_available_awarenessmeasures = document.getElementById('still_available_awarenessmeasures');
+
+            Sortable.create(already_assigned_awarenessmeasures, {
+              animation: 100,
+              group: 'assigned_awarenessmeasures',
+              draggable: '.list-group-item',
+              handle: '.list-group-item',
+              filter: '.sortable-disabled',
+              chosenClass: 'active'
+            });
+
+            Sortable.create(still_available_awarenessmeasures, {
+              group: 'assigned_awarenessmeasures',
+              handle: '.list-group-item',
+              chosenClass: 'active'
+            });
+
+            $('#btn_back').click(function() {
+                window.location = document.referrer;
+            });
+
+            $('#btn_save_threat_awarenessmeasures').click(function() {
+                var elements_to_save = $('#already_assigned_awarenessmeasures li');
+
+                var awarenessmeasure_ids_to_save = [];
+
+                for(var i = 0; i < elements_to_save.length; i++) {
+                    var elem = $(elements_to_save[i]);
+                    awarenessmeasure_ids_to_save.push(elem.data('awarenessmeasure-id'));
+                }
+
+                $.ajax({
+                    url: "{{ url_for('threat.save_awarenessmeasures', project_id=project['id'], threat_id=threat['id']) }}",
+                    method: "POST",
+                    data: { awarenessmeasure_ids_to_save: awarenessmeasure_ids_to_save }
+                }).done(function(data, textStatus, jqXHR) {
+                    if(data === "success") {
+                        window.location = document.referrer;
+                    }
+                });
+            });
+        });
+
+    </script>
+
+{% endblock %}

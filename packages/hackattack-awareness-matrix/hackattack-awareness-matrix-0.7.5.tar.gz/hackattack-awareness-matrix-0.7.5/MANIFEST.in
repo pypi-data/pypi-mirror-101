@@ -1,0 +1,4 @@
+include hackattack_awa_matrix/schema.sql
+graft hackattack_awa_matrix/static
+graft hackattack_awa_matrix/templates
+global-exclude *.pyc
