@@ -1,0 +1,13 @@
+bidsphysio.base>=21.4.12
+bidsphysio.session>=21.1.28
+bidsphysio.events>=21.1.28
+h5py>=2.9.0
+Cython>=0.29.13
+pandas>=1.1.0
+numpy>=1.17.1
+
+[all]
+pytest
+
+[tests]
+pytest
