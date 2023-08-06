@@ -1,0 +1,5 @@
+<div class="auth_form_wrapper">
+  {% for field in form %}
+    {% include 'authens/form_field_snippet.html' with field=field %}
+  {% endfor %}
+</div>

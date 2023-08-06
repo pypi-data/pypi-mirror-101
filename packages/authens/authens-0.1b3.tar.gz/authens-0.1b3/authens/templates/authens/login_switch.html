@@ -1,0 +1,30 @@
+{% extends "authens/base.html" %}
+{% load i18n %}
+
+{% block container-title %}
+{% trans "Mode de connexion" %}
+{% endblock %}
+
+{% block content %}
+<div id="container-content">
+    <a class="big-button cas" href="{% url "authens:login.cas" %}?next={{ next| urlencode }}">
+        {% trans "Clipper" %}
+    </a>
+    {% if password %}
+    <a class="big-button exte" href="{% url "authens:login.pwd" %}?next={{ next| urlencode }}">
+        {% trans "Mot de passe" %}
+    </a>
+    {% endif %}
+    {% if oldcas %}
+    <a class="big-button oldcas" href="{% url "authens:login.oldcas" %}?next={{ next| urlencode }}">
+        {% trans "Vieilleux" %}
+    </a>
+    {% endif %}
+</div>
+{% if oldcas %}
+<div id="container-footer">
+    {% url "authens:reset.pwd" as url_reset %}
+    <p>{% blocktrans %}Si votre fin de scolarité approche, créez un mot de passe pour votre compte pour bénéficier de la connexion vieilleux : <a href="{{ url_reset }}">créer un mot de passe</a>.{% endblocktrans %}</p>
+</div>
+{% endif %}
+{% endblock %}
