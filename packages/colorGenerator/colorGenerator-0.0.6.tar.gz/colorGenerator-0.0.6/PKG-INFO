@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: colorGenerator
+Version: 0.0.6
+Summary: This package help you find complementary colors
+Home-page: https://github.com/tttienthinh/colorGenerator.git
+Author: tttienthinh
+Author-email: tranthuongtienthinh@gmail.com
+License: UNKNOWN
+Project-URL: Download, https://pypi.org/project/colorGenerator/
+Project-URL: Source Code, https://github.com/tttienthinh/colorGenerator.git
+Project-URL: Documentation, https://colorgenerator.readthedocs.io
+Project-URL: Bug Tracker, https://github.com/tttienthinh/colorGenerator/issues
+Description: # Color Generator ![alt text](https://www.python.org/static/community_logos/python-powered-w-100x40.png)
+        Handle color calculation in a pythonic way !
+        
+        ## Installation
+        https://pypi.org/project/colorGenerator/  
+        Install from Pypi :
+        ```bash
+        pip install colorGenerator
+        ```
+        Import into your code and ready to go
+        ```python
+        import colorGenerator as cG
+        ```
+        ### Uploading the distribution archives
+        You can use twine to upload the distribution packages. You’ll need to install Twine:
+        ```bash
+        pip install --upgrade twine
+        ```
+        Once installed, run Twine to upload all of the archives under dist:
+        ```bash
+        twine upload dist/*
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
