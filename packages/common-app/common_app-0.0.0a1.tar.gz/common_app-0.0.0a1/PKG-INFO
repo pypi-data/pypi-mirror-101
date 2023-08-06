@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: common-app
+Version: 0.0.0a1
+Summary: Reserved package name
+Home-page: https://github.com/KyleKing/not-on-pypi
+Author: Kyle King
+Author-email: dev.act.kyle@gmail.com
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Project-URL: Bug Tracker, https://github.com/KyleKing/not-on-pypi/issues
+Project-URL: Documentation, https://github.com/KyleKing/not-on-pypi
+Project-URL: Repository, https://github.com/KyleKing/not-on-pypi
+Description-Content-Type: text/markdown
+
+# Not On PyPi
+
+This is a reserved package name to prevent [dependency confusion / substitution attack](https://redhuntlabs.com/blog/dependency-confusion-attack-what-why-and-how.html). If installed, will immediately raise an error indicating that the wrong PyPi repository was used.
+
+If someone would like to use this package name, I would be happy to discuss handoff. Please contact me through a Github issue on [KyleKing/not-on-pypi](https://github.com/KyleKing/not-on-pypi) or if I don't respond, you can try my `gmail` account `dev.act.kyle`
+
