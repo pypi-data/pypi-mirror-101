@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: airobot
+Version: 0.1.2
+Summary: aichat
+Home-page: https://github.com/August/sampleproject
+Author: August
+Author-email: august@163.com
+License: UNKNOWN
+Description: # Ming
+        ``` python
+        from airobot import AiPlat
+        
+        app_id = ''
+        app_key = ''
+        # 初始化
+        ai=AiPlat(app_id,app_key)
+        # 发送数据
+        msg = ''
+        data=ai.getNlpTextChat(msg)
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
