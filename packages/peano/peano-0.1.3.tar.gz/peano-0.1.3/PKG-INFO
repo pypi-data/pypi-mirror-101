@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: peano
+Version: 0.1.3
+Summary: Measures performance and reports to InfluxDB
+Home-page: https://github.com/apanchenko/peano
+License: MIT
+Keywords: measure,tps,latency,influx,influxdb
+Author: Anton Panchenko
+Author-email: apanchenko@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Typing :: Typed
+Requires-Dist: influxdb-client (>=1.14.0,<2.0.0)
+Project-URL: Repository, https://github.com/apanchenko/peano
+Description-Content-Type: text/markdown
+
+# Peano
+
+Decorator for performance measurement
+
+- Measures function calls: TPS and Latency
+- Reports to InfluxDB
+
+## Example
+
+```python
+        peano.init(url, organization, token, bucket)
+
+        @measured()
+        def do_something()
+```
+
+## TODO
+
+- tests
+- async commit to influx
+
+## dev
+
+poetry shell
+poetry update
+pytest
+poetry build
