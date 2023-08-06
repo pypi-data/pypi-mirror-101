@@ -1,0 +1,95 @@
+Amazon-Search-Results-Scraper is a python library to search product on amazon and get search results automatically using browser automation. 
+It currently runs only on windows.
+
+### Example1
+In this example we first import library, then we search keyword and get search results.
+```sh
+from amazon_search_results_scraper import *
+amazon.open("https://www.amazon.in/")
+amazon.search(keyword='shoes')
+
+response=amazon.search_results()
+search_results=response['body']
+
+#search_results=[{"Title": "Men's Running Shoe", "Link": "https://www.amazon.in/T-Rock-Weight-Sports-Running-Numeric_8/dp/B08HQY8H9N/ref=sr_1_9?dchild=1&keywords=shoes&qid=1613390901&sr=8-9", "Price": "349"}]
+```
+
+### Example2:- Get Search Results of first 5 pages
+In this example we first import library, then we search keyword and get search results of first 5 pages.
+```sh
+from amazon_search_results_scraper import *
+amazon.open("https://www.amazon.in/")
+amazon.search(keyword='shoes')
+
+for i in range(0,5):
+	response=amazon.search_results()
+	search_results=response['body']
+	#search_results=[{"Title": "Men's Running Shoe", "Link": "https://www.amazon.in/T-Rock-Weight-Sports-Running-Numeric_8/dp/B08HQY8H9N/ref=sr_1_9?dchild=1&keywords=shoes&qid=1613390901&sr=8-9", "Price": "349"}]
+	amazon.click_next() #clicks on next page
+```
+
+This module depends on the following python modules
+* [requests](https://pypi.org/project/requests/)
+* [bot_studio](https://pypi.org/project/bot_studio/)
+
+#### BotStudio
+[bot_studio](https://pypi.org/project/bot_studio/) is needed for browser automation. As soon as this library is imported in code, automated browser will open up in which search will be done.
+
+Complete documentation for Amazon Automation available [here](https://amazon-api.datakund.com/en/latest/)
+
+### Installation
+
+```sh
+pip install amazon-search-results-scraper
+```
+
+### Import
+```sh
+from amazon_search_results_scraper import *
+```
+
+### Login with credentials
+```sh
+amazon.login(password='place password here', email='place email here')
+```
+
+### Login with cookies
+```sh
+amazon.login_cookie(cookies=list_of_cookies)
+```
+
+### Search keyword
+```sh
+amazon.search(keyword='shoes')
+```
+
+### Select category
+```sh
+amazon.select_category(category='category') #e.g Baby
+```
+
+### Select brand
+```sh
+amazon.select_brand(brand='brand') #e.g. Nike
+```
+
+### Get search results
+```sh
+response=amazon.search_results()
+search_results=response['body']
+```
+
+### Move to next page
+```sh
+amazon.click_next()
+```
+
+### Send Feedback to Developers
+```sh
+bot_studio.send_feedback(feedback="Need help with this ......")
+```
+
+### Contact Us
+* [Telegram](https://t.me/datakund)
+* [Website](https://datakund.com)
+
