@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: katsdpmodels
+Version: 0.2
+Summary: Interfaces to access models used in MeerKAT SDP
+Home-page: https://github.com/ska-sa/katsdpmodels
+Author: MeerKAT SDP Team
+Author-email: sdpdev+katsdpmodels@ska.ac.za
+License: Modified BSD
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: numpy
+Requires-Dist: astropy
+Requires-Dist: h5py (>=2.9)
+Requires-Dist: strict-rfc3339
+Requires-Dist: typing-extensions
+Provides-Extra: aiohttp
+Requires-Dist: aiohttp ; extra == 'aiohttp'
+Requires-Dist: aiohttp-retry (>=2.0) ; extra == 'aiohttp'
+Provides-Extra: doc
+Requires-Dist: sphinx ; extra == 'doc'
+Requires-Dist: sphinxcontrib-tikz ; extra == 'doc'
+Requires-Dist: sphinx-rtd-theme ; extra == 'doc'
+Provides-Extra: requests
+Requires-Dist: requests ; extra == 'requests'
+Provides-Extra: test
+Requires-Dist: aioresponses ; extra == 'test'
+Requires-Dist: katsdptelstate[aio] ; extra == 'test'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pytest-asyncio ; extra == 'test'
+Requires-Dist: pytest-mock ; extra == 'test'
+Requires-Dist: responses ; extra == 'test'
+Requires-Dist: tornado ; extra == 'test'
+
+katsdpmodels
+============
+
+Interfaces to access various models (such as sky models, primary beam models
+and so on) for processing radio astronomy data. The actual models are not
+stored here, just code.
+
+Documentation is hosted at `readthedocs`_.
+
+.. _readthedocs: https://katsdpmodels.readthedocs.io/
+
+
