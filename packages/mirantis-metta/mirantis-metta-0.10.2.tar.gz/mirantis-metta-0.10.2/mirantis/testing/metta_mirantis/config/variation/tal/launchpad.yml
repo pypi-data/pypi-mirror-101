@@ -1,0 +1,70 @@
+
+# not actually used for anything.
+name: "{{variables:id}}"
+
+# Set some cli options
+cli:
+    accept-license: true
+    disable-telemetry: true
+    disable-upgrade-check: true
+
+# the example tf plans need launchpad to run in the plan root
+working_dir: "{{variables:terraform_plan}}"
+# put the launchpad yml file in the project folder
+config_file: "{{variables:files_path}}/{{variables:files_prefix}}.launchpad.yaml"
+
+api:
+  # MKE Access point (What about MSR?)
+  accesspoint: "{{output::mke_lb?special::None}}"
+  username: "{{variables:admin_user?admin}}"
+  password: "{{variables:admin_password?orcaorcaorca}}"
+
+# Provide launchpad config inline.
+
+# Option 1 : source from a metta output such as from terraform
+# config: "{{output::mke_cluster?special::None}}"
+
+# Options 2 : source from a file
+# config: "{{file::path/to/file.yml}}"
+
+# Option 3: assumble from parts
+#
+# This is nice because it is readable, but it presents some problems when it
+# comes to the List values such as the installFlags.  We need to effectively
+# replicate what are orca defaults on some installFlags in order to get values
+# that can be overridden.
+config:
+    apiVersion: launchpad.mirantis.com/mke/v1.2
+    kind: mke+msr
+
+    metadata:
+      name: "{{name}}"
+
+    spec:
+      hosts: "{{output::mke_cluster/spec.hosts?special::[]}}"
+
+      mcr:
+        channel: "{{variables:mcr_channel}}"
+        installURLLinux: "{{variables:mcr_install_url_linux}}"
+        installURLWindows: "{{variables:mcr_install_url_windows}}"
+        repoURL: "{{variables:mcr_repo_url}}"
+        version: "{{variables:mcr_version}}"
+
+      mke:
+        imageRepo: "{{variables:mke_image_repo}}"
+        installFlags:
+        - "--admin-username={{admin_user?admin}}"
+        - "--admin-password={{admin_password?orcaorcaorca}}"
+        - "--san={{output::mke_lb?NoSanConfigured}}"
+        - "--nodeport-range={{variables:mke_install_nodeport_range}}"
+        upgradeFlags:
+        - "--force-recent-backup"
+        - "--force-minimums"
+        version: "{{variables:mke_version}}"
+
+      msr:
+        imageRepo: "{{variables:msr_image_repo}}"
+        installFlags:
+        - "--ucp-insecure-tls"
+        replicaIDs: "{{variables:msr_replicaids?sequential}}"
+        version: "{{variables:msr_version}}"
