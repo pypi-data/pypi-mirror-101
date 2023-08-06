@@ -1,0 +1,12 @@
+appdirs
+pyyaml
+requests
+
+[:python_version == "3.6"]
+numpy<1.20,>1.13
+
+[:python_version == "3.7"]
+numpy<1.21,>1.13
+
+[:python_version >= "3.8"]
+numpy
