@@ -1,0 +1,1 @@
+This package is for runing bots built with botstudio.
