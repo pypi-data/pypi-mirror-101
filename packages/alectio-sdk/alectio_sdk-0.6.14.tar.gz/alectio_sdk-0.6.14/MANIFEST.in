@@ -1,0 +1,15 @@
+include LICENSE CHANGES README.rst requirements.txt
+recursive-exclude * __pycache__
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
+recursive-exclude * *.orig
+recursive-exclude test *
+recursive-exclude examples *
+include backend
+include internal
+include torch_utils
+include tools
+include proto
+include filesync
+include api
+include cli
