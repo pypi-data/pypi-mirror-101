@@ -1,0 +1,2 @@
+# pythonal
+Functional Python Library
