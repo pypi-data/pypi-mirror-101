@@ -1,0 +1,6 @@
+[distutils.setup_keywords]
+use_pipfile = setuptools_pipfile.keyword:use_pipfile
+
+[setuptools.finalize_distribution_options]
+setuptools_pipfile = setuptools_pipfile.keyword:finalize_dist
+
