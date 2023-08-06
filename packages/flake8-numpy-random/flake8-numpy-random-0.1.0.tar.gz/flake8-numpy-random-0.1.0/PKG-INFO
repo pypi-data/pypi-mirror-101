@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: flake8-numpy-random
+Version: 0.1.0
+Summary: Plugin for Flake8 that forbids usage of numpy.random()
+Home-page: https://github.com/aevtikheev/flake8-numpy-random
+License: MIT
+Keywords: flake8,flake8-plugin,linting,linter,code quality
+Author: Andrey Evtikheev
+Author-email: eft000@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Environment :: Console
+Classifier: Framework :: Flake8
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Dist: flake8 (>=3.9.0,<4.0.0)
+Project-URL: Repository, https://github.com/aevtikheev/flake8-numpy-random
+Description-Content-Type: text/markdown
+
+# flake8-numpy-random
+Plugin for Flake8 that forbids usage of numpy.random()
+
+## Installation
+```bash
+pip install flake8-numpy-random
+```
+
+## Error codes
+| Error code |       Description         |
+|:----------:|:-------------------------:|
+|    NPR001  | do not use numpy.random() |
+
+## License
+MIT
