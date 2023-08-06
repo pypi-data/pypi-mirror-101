@@ -1,0 +1,14 @@
+Source: km
+Section: utility
+Priority: extra
+Maintainer: Julien Tous <tous@tuxfamily.org>
+Build-Depends: cdbs, debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: km
+Architecture: all
+Depends: python-serial
+Description: km is a set of script to download files from keymaze300 GPS
+  km is a set of script to download files from keymaze300 GPS from decathlon.
+  It can handle way points and trackpoints. 
+  More information (maybe) at http://gpsd4.tuxfamily.org/

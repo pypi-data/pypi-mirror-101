@@ -1,0 +1,7 @@
+#!python
+
+import km
+from km import downloadkeymaze300
+import sys
+
+km.downloadkeymaze300.main(sys.argv[1:])

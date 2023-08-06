@@ -1,0 +1,5 @@
+include README INSTALL NEWS AUTHORS TODO LICENCE
+recursive-include km *.py
+recursive-include etc *
+recursive-include usr/share *.bin
+recursive-include usr km-download
