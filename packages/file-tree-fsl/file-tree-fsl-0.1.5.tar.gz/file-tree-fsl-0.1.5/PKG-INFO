@@ -1,0 +1,27 @@
+Metadata-Version: 1.2
+Name: file-tree-fsl
+Version: 0.1.5
+Summary: Filetree definitions for the FSL neuroimaging library
+Home-page: https://git.fmrib.ox.ac.uk/ndcn0236/file-tree-fsl
+Author: Michiel Cottaar
+Author-email: MichielCottaar@protonmail.com
+License: MIT
+Project-URL: Documentation, https://open.win.ox.ac.uk/pages/ndcn0236/file-tree/
+Description: Filetree definitions for the FSL neuroimaging library.
+        
+        Add new filetree definitions to the file_tree_fsl/trees directory.
+        
+        After installation of these filetrees (`pip install file-tree-fsl`), 
+        you do not have to import this library. `file-tree` will detect
+        it automatically and these trees will be available to load directly
+        or as sub-trees.
+        
+        For documentation see the main file-tree package (https://open.win.ox.ac.uk/pages/ndcn0236/file-tree/)
+        and the FSL wiki (https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/).
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
