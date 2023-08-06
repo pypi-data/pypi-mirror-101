@@ -1,0 +1,98 @@
+Metadata-Version: 2.1
+Name: az-messaging
+Version: 1.0.1a2
+Summary: Messaging for django
+Home-page: https://github.com/ali-zahedi/az-messaging
+Author: Ali Zahedi Gol
+Author-email: zahedi@aparnik.com
+License: BSD License
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Description-Content-Type: text/markdown
+Requires-Dist: six
+Requires-Dist: Django (>=2.2)
+
+<!--![GitHub All Releases](https://img.shields.io/github/downloads/ali-zahedi/az-iranian-bank-gateways/total)-->
+<!--![GitHub issues](https://img.shields.io/github/issues/ali-zahedi/az-iranian-bank-gateways)-->
+![GitHub](https://img.shields.io/github/license/ali-zahedi/az-messaging)
+![GitHub](https://img.shields.io/pypi/pyversions/az-messaging.svg?maxAge=2592000)
+![GitHub](https://img.shields.io/pypi/v/az-messaging.svg?maxAge=2592000)
+# AZ Messaging config
+
+[[_TOC_]]
+
+
+``pip install az-messaging``
+
+
+### settings.py
+
+
+ ``` python
+INSTALLED_APPS = [
+    # ....
+    'azmessaging',
+    # ...
+]
+AZ_MESSAGING = {
+
+}
+ ```
+
+### Migrate
+
+```
+python manage.py migrate
+```
+
+
+# TODO
+
+- [ ] Documentation
+
+- [ ] Support multiple provider 
+
+- [ ] SMS Support
+
+- [ ] SMS Support SNS AWS
+
+- [ ] SMS Support Twilio
+
+- [ ] SMS Base on country
+
+- [ ] SMS Batch 
+
+- [ ] Push notification
+
+- [ ] Console
+
+- [ ] Websocket
+
+- [ ] Telegram bot
+
+## Develop
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+
+
+
