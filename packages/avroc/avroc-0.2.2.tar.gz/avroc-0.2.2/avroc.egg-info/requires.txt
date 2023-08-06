@@ -1,0 +1,17 @@
+python-snappy
+zstandard
+
+[:python_version < "3.9.0"]
+astunparse
+
+[dev]
+pytest
+fastavro
+flake8
+black
+mypy
+pytest
+sphinx
+
+[doc]
+sphinx
