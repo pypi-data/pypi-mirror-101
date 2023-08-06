@@ -1,0 +1,6 @@
+[console_scripts]
+logiskip=logiskip.cli:logiskip
+
+[logiskip.load]
+roundcube=logiskip.loads.roundcube
+
