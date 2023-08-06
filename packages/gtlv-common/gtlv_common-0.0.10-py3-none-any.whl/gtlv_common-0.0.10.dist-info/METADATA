@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: gtlv-common
+Version: 0.0.10
+Summary: GTL Ville common packages
+Home-page: https://gitlab.inria.fr/gtl-ville/gv-common
+Author: Vadim BERTRAND
+Author-email: vadim.bertrand@gipsa-lab.fr
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.7
+Requires-Dist: aiodns
+Requires-Dist: aiofiles
+Requires-Dist: aiohttp
+Requires-Dist: aioredis
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: python-dotenv
+Requires-Dist: pytz
+Requires-Dist: shapely
+
+UNKNOWN
+
+
