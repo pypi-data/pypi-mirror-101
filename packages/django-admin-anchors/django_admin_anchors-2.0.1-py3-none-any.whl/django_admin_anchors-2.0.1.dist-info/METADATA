@@ -1,0 +1,135 @@
+Metadata-Version: 2.1
+Name: django-admin-anchors
+Version: 2.0.1
+Summary: Link related objects in Django admin using decorators
+Home-page: https://github.com/DoctorJohn/django-admin-anchors
+Author: Jonathan Ehwald
+Author-email: pypi@ehwald.info
+License: MIT License
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: django (>=2.2)
+Provides-Extra: dev
+Requires-Dist: flake8 (~=3.9.0) ; extra == 'dev'
+Requires-Dist: black (~=20.8b1) ; extra == 'dev'
+Requires-Dist: pre-commit (~=2.11.0) ; extra == 'dev'
+Requires-Dist: pytest (~=6.2.2) ; extra == 'dev'
+Requires-Dist: pytest-cov (~=2.11.1) ; extra == 'dev'
+Requires-Dist: pytest-django (~=4.1.0) ; extra == 'dev'
+Requires-Dist: tox (~=3.23.0) ; extra == 'dev'
+Requires-Dist: twine (~=3.4.1) ; extra == 'dev'
+
+# Django Admin Anchors
+
+[![PyPI][pypi-image]][pypi-url]
+[![License][license-image]][license-url]
+[![Tests][tests-image]][tests-url]
+
+[pypi-image]: https://img.shields.io/pypi/v/django-admin-anchors
+[pypi-url]: https://pypi.org/project/django-admin-anchors/
+[license-image]: https://img.shields.io/pypi/l/django-admin-anchors
+[license-url]: https://github.com/DoctorJohn/django-admin-anchors/blob/master/LICENSE
+[tests-image]: https://github.com/DoctorJohn/django-admin-anchors/workflows/Tests/badge.svg
+[tests-url]: https://github.com/DoctorJohn/django-admin-anchors/actions
+
+Turn Django admin list display items into clickable links to related objects using
+decorators.
+
+## Installation
+
+`pip install django-admin-anchors`
+
+## Usage
+
+Take a look at the `tests/project` directory to see a runnable example project.
+
+### Add links to the object list page
+
+```python
+from django.contrib import admin
+from admin_anchors import admin_anchor
+from yourapp.models import Team
+
+
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "captain_link", "captains_profile_link", "members_link"]
+
+    @admin_anchor("captain")
+    def captain_link(self, instance):
+        return str(instance.captain)
+
+    @admin_anchor("captain.profile")
+    def captains_profile_link(self, instance):
+        return "Captains profile"
+
+    @admin_anchor("members")
+    def members_link(self, instance):
+        return f"{instance.members.count()} members"
+```
+
+### Add links to the object edit page
+
+```python
+from django.contrib import admin
+from admin_anchors import admin_anchor
+from yourapp.models import Player
+
+
+@admin.register(Player)
+class PlayerAdmin(admin.ModelAdmin):
+    readonly_fields = ["profile_link"]
+
+    @admin_anchor("profile")
+    def profile_link(self, instance):
+        return "Profile"
+```
+
+## Contributing
+
+### Setup
+
+1. Clone the repository and enter the cloned folder
+2. (optional) Create and activate a dedicated Python virtual environment
+3. Run `pip install -e ".[dev]"` to install the projects requirements
+4. (optional) Run `pre-commit install` to install the pre-commit hook
+
+### Pre-commit hook
+
+Our pre-commit hook formats and lints the code.
+
+### Formatting and linting
+
+- Run `black admin_anchors tests` to format the code
+- Run `flake8 admin_anchors tests` to lint the code
+
+### Testing
+
+- Run `py.test --cov admin_anchors tests` to run the tests in the current Python env
+- Run `tox` to run the tests in all supported Python and Django environments
+
+### Makefile
+
+All commands listed above have shortcut make recipes.
+Take a look at the `Makefile` to learn more.
+
+
