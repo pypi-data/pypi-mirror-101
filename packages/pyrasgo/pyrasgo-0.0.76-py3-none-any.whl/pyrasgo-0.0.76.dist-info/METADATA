@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pyrasgo
+Version: 0.0.76
+Summary: Alpha version of the Rasgo Python interface.
+Home-page: https://www.rasgoml.com/
+Author: Patrick Dougherty
+Author-email: patrick@rasgoml.com
+License: MPL 2.0
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3.7
+Requires-Dist: idna (<3,>=2.5)
+Requires-Dist: more-itertools
+Requires-Dist: pandas
+Requires-Dist: pyarrow (>=3.0.0)
+Requires-Dist: pydantic
+Requires-Dist: pyyaml
+Requires-Dist: requests
+Requires-Dist: snowflake-connector-python (>=2.4.0)
+Requires-Dist: snowflake-connector-python[pandas]
+Requires-Dist: tqdm
+
+Alpha version of the Rasgo Python interface.
+
+
