@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: fractal-toolkit
+Version: 0.1.0
+Summary: Fractal is a scaffolding toolkit for building SOLID logic for your Python applications.
+Home-page: https://github.com/douwevandermeij/fractal
+Author: Douwe van der Meij
+Author-email: douwe@karibu-online.nl
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python
+Requires-Dist: python-dotenv
+Requires-Dist: black ; extra == "test"
+Requires-Dist: flake8 ; extra == "test"
+Requires-Dist: isort ; extra == "test"
+Provides-Extra: test
+
+# Fractal
+
+Fractal is a scaffolding toolkit for building SOLID logic for your Python applications.
+
