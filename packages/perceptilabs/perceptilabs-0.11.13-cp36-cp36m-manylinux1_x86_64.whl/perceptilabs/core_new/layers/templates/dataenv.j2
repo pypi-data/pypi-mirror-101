@@ -1,0 +1,95 @@
+{% macro layer_dataenvironment(layer_spec, graph_spec=None) %}
+class {{layer_spec.sanitized_name}}(DataReinforce):
+    """Class responsible for running the gym environment."""    
+    def __init__(self):
+        self._variables = {}
+        self._env_name = '{{layer_spec.environment_name}}'
+        self._unity_env_path = '{{layer_spec.unity_env_path}}'
+        self._timeout_wait = {{layer_spec.timeout_wait}}
+        self._env = None
+        self.set_environment()
+
+    def set_environment(self):
+        {% filter remove_lspaces(8) %}
+            {% if layer_spec.use_unity %}
+                self.reset_parameters = EnvironmentParametersChannel()
+                self.engine_config = EngineConfigurationChannel()
+
+                if self._env_name not in list(default_registry.keys()) and self._unity_env_path is not None:
+                    registry = UnityEnvRegistry()
+                    registry.register_from_yaml(self._unity_env_path)
+                    self._unity_env = registry[self._env_name].make(timeout_wait=self._timeout_wait, side_channels=[self.reset_parameters, self.engine_config])
+
+                else:
+                    self._unity_env = default_registry[self._env_name].make(timeout_wait=self._timeout_wait, side_channels=[self.reset_parameters, self.engine_config])
+
+                self.engine_config.set_configuration_parameters(time_scale=20.0)
+                self.reset_parameters.set_float_parameter("train-mode", 1.0)
+                self._env = UnityToGymWrapper(self._unity_env, flatten_branched=True)
+            {% else %}
+                self._env = gym.make(self._env_name)
+            {% endif %}
+        {% endfilter %}
+        sample = self._env.reset()
+        action_space = self._env.action_space.n
+        self._variables = {k: v for k, v in locals().items() if can_serialize(v)}
+
+    @property
+    def variables(self) -> Dict[str, Picklable]:
+        """Returns any variables that the layer should make available and that can be pickled."""
+        return self._variables
+
+    @property
+    def sample(self) -> np.ndarray:
+        """Returns the new state of the environment after taking a random step"""                    
+        gen = (self.make_generator())
+        next(gen)
+        sample = gen.send(None)
+        return sample
+
+    @property
+    def action_space(self) -> List[int]:
+        """ Returns the action space of the environment"""
+        n_actions = self._env.action_space.n
+        return list(range(0,n_actions))
+
+    def make_generator(self) -> Generator[np.ndarray, None, None]:
+        """Returns a sample from gym environment."""                                        
+        def gen():
+            {% filter remove_lspaces(8) %}
+                {% if layer_spec.use_unity %}
+                    env = self._env
+                {% else %}
+                    env = gym.make(self._env_name)
+                {% endif %}
+            {% endfilter %}
+            start_state = env.reset()
+            while True:
+                action = yield
+                if not action:
+                    action = env.action_space.sample()
+                    [new_state, reward, done, info] = env.step(action)
+                elif action == 'reset':
+                    new_state, reward, done, info = env.reset(), None, False, {}
+                else:
+                    [new_state, reward, done, info] = env.step(action)
+                    
+                state_info = {'output': new_state, 'reward': reward, 'done': done, 'info': info}
+                yield state_info
+        return gen()
+
+    def reset_environment(self, generator) -> np.ndarray:
+        """ resets the environment"""
+        state = generator.send('reset')
+        next(generator)
+        return state
+
+    def take_action(self, generator, action) -> List:
+        """ takes a step in the current environment given action and returns the new state information"""
+        if action not in self.action_space:
+            raise ValueError("Invalid action: valid actions are {}.".format(self.action_space))
+        new_state_info = generator.send(action)
+        next(generator)
+        return new_state_info
+
+{% endmacro %}

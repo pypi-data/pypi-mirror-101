@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "lwcore_finished.json",
+    "type": "object",
+    "required": [
+	"time_total",
+	"has_cache",
+	"t_cache_lookup",
+	"t_compute",
+	"t_cache_insert",
+	"used_cache"			
+    ],    
+    "properties": {
+	"time_total": {"type": "number", "description": "Duration of the lwcore run call"},
+	"has_cache": {"type": "boolean", "description": "Whether a lwcore cache was available "},
+	"t_cache_lookup": {"type": "array", "items": {"type": "number"}, "description": "Time spent on the cache lookup for a single layer"},
+	"t_compute": {"type": "array", "items": {"type": "number"}, "description": "Time spent on computing the outputs of a layer (includes rendering the code)"},
+	"t_cache_insert": {"type": "array", "items": {"type": "number"}, "description": "Time spent on the cache insertionfor a single layer"},
+	"used_cache": {"type": "array", "items": {"type": "boolean"}, "description": "Whether a cache entry was found or not."}	
+    }    
+}
