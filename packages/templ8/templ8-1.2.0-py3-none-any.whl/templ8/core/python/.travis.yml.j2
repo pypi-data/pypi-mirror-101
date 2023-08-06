@@ -1,0 +1,57 @@
+language: python
+python: 3.8
+
+os: linux
+dist: xenial
+
+before_install:
+  - pip install .[all]
+  - nvm install 14
+  - npm install
+  - npm install -g grunt-cli
+
+cache:
+  - pip
+  - npm
+
+jobs:
+  include:
+    - stage: Linters
+      script: grunt lint
+      {% if travis_test_envlist | length == 1 %}
+
+      stage: Unit tests
+      python: {{ travis_test_envlist[0] }}
+      script: grunt tests:unit    
+      {% endif %}
+      {% if travis_test_envlist | length > 1 %}
+
+    - &unittests
+      stage: Unit tests
+      python: {{ travis_test_envlist | first }}
+      script: grunt tests:unit    
+      {% for env in travis_test_envlist | without_ends %}
+
+    - <<: *unittests
+      python: {{ env }}
+      {% endfor %}
+
+    - <<: *unittests
+      python: {{ travis_test_envlist | last }}
+      after_success: python-codacy-coverage -r coverage.xml
+      env:
+        secure:
+      {% endif %}
+
+    - stage: Publish
+      script: echo This version refers to $(git describe --tags)
+      deploy:
+        provider: pypi
+        distributions: sdist bdist_wheel
+        username: "__token__"
+        password:
+          secure: 
+        on:
+          tags: true
+          branch: master
+          

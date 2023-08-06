@@ -1,0 +1,64 @@
+[metadata]
+name = {{ package_name }}
+version = {{ version }}
+
+description = {{ description | safe }}
+url = {{ repository }}
+
+license_file = LICENSE.md
+long-description = file: README.md
+long_description_content_type = text/markdown
+
+author = {{ author }}
+author-email = {{ author_email }}
+
+project_urls =
+   Bug Tracker   = {{ issues | default( repository + "/issues") }}
+   CI            = {{ ci | default("https://travis-ci.com/github/%s" | format(repository | to_handle)) }}
+   Documentation = https://{{ readthedocs_slug | default(project_name) }}.readthedocs.io/en/latest/
+   Source Code   = {{ repository }}
+{% if keywords %}
+
+keywords =
+    {{ keywords | join("\n") | indent(4) }}
+{% endif %}
+{% if classifiers %}
+
+classifiers =
+    {{ classifiers | join("\n") | indent(4) }}
+{% endif %}
+{% if is_portfolio %}
+
+[portfolio]
+project_type = {{ project_type }}
+status = {{ status_level | to_lifecycle_stage }}
+homepage = {{ homepage | default(repository) }}
+{% if languages %}
+
+languages =
+    {{ languages | join("\n") | indent(4) }}
+{% endif %}
+{% if frameworks %}
+
+frameworks =
+    {{ frameworks | join("\n") | indent(4) }}
+{% endif %}
+{% if paradigms %}
+
+paradigms =
+    {{ paradigms | join("\n") | indent(4) }}
+{% endif %}
+{% endif %}
+
+[options]
+packages = find:
+include_package_data = True
+python_requires = >={{ python_requires }}
+setup_requires = setuptools
+
+[options.packages.find]
+exclude =
+    *.tests
+    *.tests.*
+    tests.*
+    tests

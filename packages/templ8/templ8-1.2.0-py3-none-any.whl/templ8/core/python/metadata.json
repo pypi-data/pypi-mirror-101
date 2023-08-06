@@ -1,0 +1,28 @@
+{
+  "default_variables": {
+    "classifiers": [
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python :: 3.7",
+      "Programming Language :: Python :: 3.8",
+      "Programming Language :: Python :: 3.9",
+      "Topic :: Software Development :: Libraries :: Python Modules"
+    ],
+    "console_scripts": [],
+    "tox_envlist": ["py36", "py37", "py38"],
+    "travis_test_envlist": ["3.6", "3.7", "3.8"],
+    "frameworks": [],
+    "install_requires": [],
+    "is_portfolio": false,
+    "keywords": [],
+    "languages": ["Python"],
+    "paradigms": ["Object oriented programming"],
+    "project_type": "Pypi package",
+    "pytest_ignore_glob": null,
+    "python_requires": 3.6,
+    "status_level": 1
+  },
+  "dynamic_folders": { "src": "package_name" },
+  "initialization": ["python -m venv venv --without-pip"]
+}
