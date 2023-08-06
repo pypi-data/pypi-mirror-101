@@ -1,0 +1,63 @@
+# Python Image Utility (pyimgutil)
+
+## About
+
+This is a simple command-line utility, written in Python, for processing
+images individually or in bulk.
+
+There are a number of excellent programs out there that already do what this
+program does, but sometimes a quick, lightweight, solution is nice to have
+handy, too.
+
+Current features:
+
+* crop
+* resize
+
+Future features being considered:
+
+* convert
+* alter image quality
+* rotate
+* thumbnail
+* transpose
+
+If you find this program useful and you would like a feature sooner or have
+a feature you would like to suggest, see [CONTRIBUTING](CONTRIBUTING.md) for
+more details.
+
+## How to Get Started
+
+### Compatibility
+
+If you're running Python 3.7+ on any operating system, you're most likely
+good-to-go.
+
+For more details, view the [compatiblity docs](docs/compatibility.md).
+
+### Installation
+
+This program is available through pip. Running `pip install pyimgutil` will
+install it.
+
+For more details, view the [installation docs](docs/installation.md).
+
+### Usage
+
+After installing, `pyimgutil -h` will help you get started.
+
+For command explanations and examples, view the [usage docs](docs/usage.md).
+
+## Contributing
+
+Please report any bugs to the
+[GitLab issue tracker](https://gitlab.com/emerac/pyimgutil/-/issues).
+See [CONTRIBUTING](CONTRIBUTING.md) for more details.
+
+## License
+
+This program is free software and is licensed under the GNU General
+Public License. For the full license text, view the [LICENSE](LICENSE)
+file.
+
+Copyright © 2021 emerac
