@@ -1,0 +1,4 @@
+global-include requirements.txt
+include openhivenpy/*.env
+global-exclude *__pycache__*/
+graft openhivenpy
