@@ -1,0 +1,177 @@
+name: CI
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+    branches:
+      - "*"
+  schedule:
+    - cron: "0 13 * * 1"
+
+jobs:
+  detect-ci-trigger:
+    name: detect ci trigger
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
+    outputs:
+      triggered: ${{ steps.detect-trigger.outputs.trigger-found }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - uses: xarray-contrib/ci-trigger@v1
+        id: detect-trigger
+        with:
+          keyword: "[skip-ci]"
+
+  build:
+    name: Build (${{ matrix.python-version }} | ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+        python-version: ["3.6", "3.7", "3.8"]
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+      - uses: actions/checkout@v2
+      - name: Cache conda
+        uses: actions/cache@v1
+        env:
+          # Increase this value to reset cache if ci/environment.yml has not changed
+          CACHE_NUMBER: 0
+        with:
+          path: ~/conda_pkgs_dir
+          key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('ci/environment-py${{ matrix.python-version }}.yml') }}
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          channels: conda-forge
+          mamba-version: '*'
+          channel-priority: strict
+          activate-environment: test_env_cmip6_preprocessing # Defined in ci/environment*.yml
+          auto-update-conda: false
+          python-version: ${{ matrix.python-version }}
+          environment-file: ci/environment-py${{ matrix.python-version }}.yml
+          use-only-tar-bz2: true # IMPORTANT: This needs to be set for caching to work properly!
+      - name: Conda List (pre)
+        shell: bash -l {0}
+        run: conda list
+      - name: Set up conda environment
+        shell: bash -l {0}
+        run: python -m pip install -e . --no-deps --force-reinstall
+      - name: Conda List
+        shell: bash -l {0}
+        run: conda list
+      - name: Check Machine Config
+        shell: bash -l {0}
+        run: lscpu
+      - name: Run Tests
+        shell: bash -l {0}
+        run: |
+          pytest --cov=./ --cov-report=xml --ignore=tests/test_preprocessing_cloud.py
+      - name: Upload code coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage.xml
+          flags: unittests
+          env_vars: OS,PYTHON
+          name: codecov-umbrella
+          fail_ci_if_error: false
+
+  upstream-dev:
+    name: Build (upstream-dev)
+    runs-on: ubuntu-latest
+    needs: detect-ci-trigger
+    if: needs.detect-ci-trigger.outputs.triggered == 'false'
+    steps:
+    - name: Cancel previous runs
+      uses: styfle/cancel-workflow-action@0.8.0
+      with:
+        access_token: ${{ github.token }}
+    - uses: actions/checkout@v2
+    - name: Cache conda
+      uses: actions/cache@v1
+      env:
+        # Increase this value to reset cache if ci/environment-upstream-dev.yml has not changed
+        CACHE_NUMBER: 0
+      with:
+        path: ~/conda_pkgs_dir
+        key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('ci/environment-upstream-dev.yml') }}
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        channels: conda-forge
+        mamba-version: '*'
+        channel-priority: strict
+        activate-environment: test_env_cmip6_preprocessing # Defined in ci/environment-upstream-dev.yml
+        auto-update-conda: false
+        python-version: 3.8
+        environment-file: ci/environment-upstream-dev.yml
+        use-only-tar-bz2: true # IMPORTANT: This needs to be set for caching to work properly!
+    - name: Set up conda environment
+      shell: bash -l {0}
+      run: python -m pip install -e . --no-deps --force-reinstall
+    - name: Conda List
+      shell: bash -l {0}
+      run: conda list
+    - name: Check Machine Config
+      shell: bash -l {0}
+      run: lscpu
+    - name: Run Tests
+      shell: bash -l {0}
+      run: |
+        pytest --ignore=tests/test_preprocessing_cloud.py
+
+  cloud-tests:
+    name: Build (cloud-data-tests | ${{ matrix.variable_id }} | ${{ matrix.experiment_id }} | ${{ matrix.grid_label }})
+    strategy:
+      fail-fast: false
+      matrix:
+        variable_id: ["thetao", "o2", "so", "uo"]
+        experiment_id: ["historical", "ssp585"]
+        grid_label: ["gn", "gr"]
+    runs-on: ubuntu-latest
+    needs: detect-ci-trigger
+    if: needs.detect-ci-trigger.outputs.triggered == 'false'
+    steps:
+    - name: Cancel previous runs
+      uses: styfle/cancel-workflow-action@0.8.0
+      with:
+        access_token: ${{ github.token }}
+    - uses: actions/checkout@v2
+    - name: Cache conda
+      uses: actions/cache@v1
+      env:
+        # Increase this value to reset cache if ci/environment-upstream-dev.yml has not changed
+        CACHE_NUMBER: 0
+      with:
+        path: ~/conda_pkgs_dir
+        key: ${{ runner.os }}-conda-${{ env.CACHE_NUMBER }}-${{ hashFiles('ci/environment-upstream-dev.yml') }}
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        channels: conda-forge
+        mamba-version: '*'
+        channel-priority: strict
+        activate-environment: test_env_cmip6_preprocessing # Defined in ci/environment-upstream-dev.yml
+        auto-update-conda: false
+        python-version: 3.8
+        environment-file: ci/environment-cloud-test.yml
+        use-only-tar-bz2: true # IMPORTANT: This needs to be set for caching to work properly!
+    - name: Set up conda environment
+      shell: bash -l {0}
+      run: python -m pip install -e . --no-deps --force-reinstall
+    - name: Conda List
+      shell: bash -l {0}
+      run: conda list
+    - name: Check Machine Config
+      shell: bash -l {0}
+      run: lscpu
+    - name: Run Tests
+      shell: bash -l {0}
+      run: |
+        pwd
+        echo $PYTHONPATH
+        pytest --reruns 1 --reruns-delay 5 tests/test_preprocessing_cloud.py --gl ${{ matrix.grid_label }} --ei ${{ matrix.experiment_id }} --vi ${{ matrix.variable_id }}

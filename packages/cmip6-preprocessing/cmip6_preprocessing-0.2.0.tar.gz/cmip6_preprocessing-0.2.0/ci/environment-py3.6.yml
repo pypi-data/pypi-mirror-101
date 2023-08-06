@@ -1,0 +1,15 @@
+name: test_env_cmip6_preprocessing
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6
+  - xarray
+  - xgcm
+  - pyproj
+  - matplotlib
+  - cftime
+  - pip
+  - pip:
+    - codecov
+    - pytest-cov
+    - pytest-xdist
