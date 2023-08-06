@@ -1,0 +1,9 @@
+[invenio_db.alembic]
+nr_common=nr_common:alembic
+
+[invenio_jsonschemas.schemas]
+nr_common=nr_common.jsonschemas
+
+[oarepo_mapping_includes]
+nr_common=nr_common.mapping_includes
+
