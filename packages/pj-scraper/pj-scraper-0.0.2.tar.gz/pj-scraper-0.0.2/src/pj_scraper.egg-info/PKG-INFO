@@ -1,0 +1,89 @@
+Metadata-Version: 1.2
+Name: pj-scraper
+Version: 0.0.2
+Summary: none
+Home-page: https://github.com/mdhor/pj-scraper
+Author: Mattias Hornum
+Author-email: mattiashornum@gmail.com
+License: MIT
+Project-URL: Changelog, https://github.com/mdhor/pj-scraper/blob/master/CHANGELOG.rst
+Project-URL: Issue Tracker, https://github.com/mdhor/pj-scraper/issues
+Description: ========
+        Overview
+        ========
+        
+        
+        
+        none
+        
+        * Free software: MIT license
+        
+        Installation
+        ============
+        
+        ::
+        
+            pip install pj-scraper
+        
+        You can also install the in-development version with::
+        
+            pip install https://github.com/mdhor/pj-scraper/archive/master.zip
+        
+        
+        Documentation
+        =============
+        
+        
+        To use the project:
+        
+        .. code-block:: python
+        
+            import pj_scraper
+            pj_scraper.longest()
+        
+        
+        Development
+        ===========
+        
+        To run all the tests run::
+        
+            tox
+        
+        Note, to combine the coverage data from all the tox environments run:
+        
+        .. list-table::
+            :widths: 10 90
+            :stub-columns: 1
+        
+            - - Windows
+              - ::
+        
+                    set PYTEST_ADDOPTS=--cov-append
+                    tox
+        
+            - - Other
+              - ::
+        
+                    PYTEST_ADDOPTS=--cov-append tox
+        
+        
+        Changelog
+        =========
+        
+        0.0.0 (2021-04-09)
+        ------------------
+        
+        * First release on PyPI.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
