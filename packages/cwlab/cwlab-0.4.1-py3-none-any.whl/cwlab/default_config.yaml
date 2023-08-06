@@ -1,0 +1,11 @@
+WEB_SERVER_HOST: localhost 
+
+WEB_SERVER_PORT: 5000
+
+ENABLE_USERS: False
+
+EXEC_PROFILES:
+  cwltool_local: 
+    type: python
+    py_module: cwlab.exec.default_exec_profiles
+    py_class: CwltoolLocal
