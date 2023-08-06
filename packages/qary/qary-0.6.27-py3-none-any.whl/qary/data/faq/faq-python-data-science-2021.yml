@@ -1,0 +1,48 @@
+-
+  Q: What are some time management tricks I could use to improve my productivity?
+  A: Have you ever tried a "power hour" with a colleague or a friend? Set a regular time to meet with someone on Zoom or video conference. At the beginning of the meeting you just say hello and maybe explain what you hope to accomplish in the hour. The other person does the same. Then you just put yourselves on mute. Having the video of someone watching you can help keep you focused, due to some natural instincts that all social mammals share. We care what other people (and even animals) think of us.
+-
+  Q: Are there any tricks for helping me get good (more efficient, more productive) at writing software?
+  A: Every time you solve a bug or succeed quickly at some programming task, reflect on it and think about what worked. Did you use Duck.com for a particular word or phrase from an error message? Did you dive right in and start coding a solution or did you pause to think and write a documentation string before writing your first line of code? Whatever it was, write it down. Take note of what works (and what doesn't). Just the act of writing it down will make you more mindful of th egood and bad decisions you make during the day. 
+-
+  Q: What are some time management tricks I could use to improve my productivity?
+  A: Have you ever tried a "power hour" with a colleague or a friend? Set a regular time to meet with someone on Zoom or video conference. At the beginning of the meeting you just say hello and maybe explain what you hope to accomplish in the hour. The other person does the same. Then you just put yourselves on mute. Having the video of someone watching you can help keep you focused, due to some natural instincts that all social mammals share. We care what other people (and even animals) think of us.
+-
+  Q: Should I work for a large company or a startup for my first job? Isn't it a bad thing if the company goes bankrupt after a few months on the job?
+  A: I like working for startups. You get to work with smart people and learn all different aspects of the business. Follow your curiosity. Read job descriptions and look for ones that interest you and find out what skills are popular for jobs like that. Build up your skills and professional network to make yourself valuable to those companies that interest you.
+-
+  Q: |
+    This is the command to train the model, which the authors have provided in their github -- 
+    `python train.py -task abs -mode train -bert_data_path BERT_DATA_PATH -dec_dropout 0.2 -model_path MODEL_PATH -sep_optim true -lr_bert 0.002 -lr_dec 0.2 -save_checkpoint_steps 2000 -batch_size 140 -train_steps 200000 -report_every 50 -accum_count 5 -use_bert_emb true -use_interval true -warmup_steps_bert 20000 -warmup_steps_dec 10000 -max_pos 512 -visible_gpus 0,1,2,3  -log_file ../logs/abs_bert_cnndm`.
+    If you observe, the train_steps is 200000, which is a huge number. Should we proceed with the default values that they have given or reduce the train_steps? I am not sure how much impact it's gonna have on the training time and accuracy.
+  A: Try to estimate the runtime to answer your own question. If you haven't already, run the training on a smaller number of samples from your dataset and a smaller number of training steps (epochs) to help you compute this estimate.
+-
+  Q: Although the code enables the distributed training if it detects multiple gpus, Is there any way to verify manually if we are utilizing all the GPU's while training?
+  A: "Ask that question on DuckDuckGo.com. (spoiler alert: `nvidia-smi`)"
+-
+  Q: Since, training takes a lot of time, even on the GPU server, If I  move away from my laptop and if it enters into sleep mode, will the training still continues or it halts? Because, in Google colab, if the user is idle for some amount of time training stops.
+  A: "Good question. any time you run a command on a remote server you need to be able to disconnect from the ssh session and have the process continue to run in the background. Duck.com for \"tmux\" and \"ssh connection disconnects server\""
+-
+  Q: Is there any way to start the training and return back to it once it finishes, without being worried about the idle timeout, or sleep issues, which I mentioned in the previous question about disconnecting from the server when my laptop sleeps?
+  A: The `tmux` application will solve this challenge. Also the script should be saving checkpoints in the background, so you can always halt the process (ctrl-C) and you will still have the last checkpoints that you can load in order to restart the training from that point.
+-
+  Q: I have a time series of assignments in a 10 week self-paced online college course. I have data for several STEM and non-STEM courses. I'd like to predict student's passing the course.
+  A: First process the raw data to create a binary feature for completed an assignment. Discretize the data into days, with one day for each day in the course. All dates are relative to the beginning of that particular course for that particular student. Then compute a rolling window mean of the binary variable 14 days in the future. This can become your target variable. The feature variable is the actual zeros and ones for that day. You can have a column for the zeros and ones for the assignments completed today. Another column for zeros and ones for the assignment completed yesterday, and so on, going back in time as far as you like. So if you went back in time 7 days for your features your would have 7 binary columns for features. And you would have one target variable for the 14 day mean in the future.
+-
+  Q: My jupyter kernel keeps crashing. 
+  A: You need to monitor you memory usage and make sure it isn't swapping.
+-
+  Q: Is swap when you are creating variables?
+  A: No. Swap is when you overflow the RAM (volatile memory) and it has to create variables and objects on disk (persistent memory). Disk writing and reading is 100x or 1000x slower than reading and writing from RAM. And if you CPU gets bogged down with multiple processes reading and writing from disk it can freeze or crash the kernel.
+-
+  Q: How can I reduce my memory (RAM) usage?
+  A: "First you have to find out which lines of code are using the most memory. For that you can run `htop` in a terminal window or tab to the side of your screen. on mac: `brew install htop`. On linux `sudo -apt-get install htop`"
+-
+  Q: How can I monitor my memory (RAM) usage?
+  A: "Run `htop` in a terminal window or tab to the side of your screen as you run your code a few lines at a time. If you need more detailed information about which functions and "
+-
+  Q: Which lines of python code are using up the most RAM?
+  A: Focus your attention on objects that contain training or testsets for machine learning, especially processed images or natural language. Use an external tool like `htop` to monitor CPU and memory usage. Some python tools and packages can also measure memory usage. The builtin `sys` package contains the `getsizeof()` function which can tell you the approximate number of bytes used by any python object. Also, this [pluralsight tutorial](https://www.pluralsight.com/blog/tutorials/how-to-profile-memory-usage-in-python) suggests a tools called `hpy` within guppy (pip install guppy). It displays all the objects in your heap and their memory usage. 
+-
+  Q: In a job interview for a data science position they are asking me business questions about how I can determine the objective or problem statement for a data science project.
+  A: Explain to the itnerviewer that you would need to interview the business stakeholders (managers) to find out what their objectives are and see if there are ways to measure these variables in existing datasets that are collected regularly. Unfortunately, that will usually bias the model towards short term business success (profit and revenue), because that's what most business managers care about the most. It can help to try to build a predict variables like profit and revenue a year in advance. This will ensure you are optimizing for long term business success. It would be even better if you could interview users (the forgotten stakeholder) rather than business managers. You want to find out how they interact with your system when they are extremely satisfied or dissatisfied with your product. You will also need to watch out for confounding variables or spurious correlations. You can check for the dosage effect -- the error (residuals) should be uniformly distributed around your predictions, irrespective of the magnitude of the predicted variable. The accuracy or power of the machine learning model for the predictive variables should be high. Using Lasso or Ridge or other machine learning model regularization techniques can help ensure this. Normalizing for as many variables as possible by including them as machine learning features in your training dataset can help. Engineering many features based on the residual plots can also help ensure that confounding variables have been normalized away. Also, there needs to be a theoretical or physical reason for why the business managers sustpect that the dominant feature variables could cause the target variable to change. In the end, the only way to be sure the effect is causal, is to perform an experiment, like an A/B test or a randomized controled trial (preferably double-blind). 
