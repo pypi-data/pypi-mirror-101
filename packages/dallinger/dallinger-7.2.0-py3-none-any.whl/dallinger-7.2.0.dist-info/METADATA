@@ -1,0 +1,84 @@
+Metadata-Version: 2.1
+Name: dallinger
+Version: 7.2.0
+Summary: Laboratory automation for the behavioral and social sciences
+Home-page: http://github.com/Dallinger/Dallinger
+Maintainer: Jordan Suchow
+Maintainer-email: suchow@berkeley.edu
+License: MIT
+Keywords: science,cultural evolution,experiments,psychology
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Framework :: Pytest
+Requires-Dist: APScheduler
+Requires-Dist: cached-property
+Requires-Dist: boto3
+Requires-Dist: build
+Requires-Dist: click
+Requires-Dist: faker
+Requires-Dist: Flask-Sockets
+Requires-Dist: Flask
+Requires-Dist: flask-crossdomain
+Requires-Dist: flask-login
+Requires-Dist: Flask-WTF
+Requires-Dist: future
+Requires-Dist: gevent
+Requires-Dist: greenlet
+Requires-Dist: gunicorn
+Requires-Dist: localconfig
+Requires-Dist: pexpect
+Requires-Dist: pip-tools
+Requires-Dist: psycopg2
+Requires-Dist: psutil
+Requires-Dist: redis
+Requires-Dist: requests
+Requires-Dist: rq
+Requires-Dist: selenium
+Requires-Dist: six
+Requires-Dist: SQLAlchemy
+Requires-Dist: sqlalchemy-postgres-copy
+Requires-Dist: tabulate
+Requires-Dist: timeago
+Requires-Dist: tzlocal
+Requires-Dist: ua-parser
+Requires-Dist: user-agents
+Requires-Dist: importlib-metadata ; python_version <= "3.7"
+Provides-Extra: data
+Requires-Dist: pandas ; extra == 'data'
+Requires-Dist: tablib[all] ; extra == 'data'
+Provides-Extra: dev
+Requires-Dist: alabaster ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: bumpversion ; extra == 'dev'
+Requires-Dist: coverage ; extra == 'dev'
+Requires-Dist: coverage-pth ; extra == 'dev'
+Requires-Dist: codecov ; extra == 'dev'
+Requires-Dist: flake8 ; extra == 'dev'
+Requires-Dist: mock ; extra == 'dev'
+Requires-Dist: pre-commit ; extra == 'dev'
+Requires-Dist: pycodestyle ; extra == 'dev'
+Requires-Dist: pypandoc ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-rerunfailures ; extra == 'dev'
+Requires-Dist: recommonmark ; extra == 'dev'
+Requires-Dist: sphinxcontrib-spelling ; extra == 'dev'
+Requires-Dist: Sphinx ; extra == 'dev'
+Requires-Dist: tox ; extra == 'dev'
+Requires-Dist: sphinx-js ; extra == 'dev'
+Requires-Dist: sphinx-rtd-theme ; extra == 'dev'
+Provides-Extra: docker
+Requires-Dist: docker ; extra == 'docker'
+Requires-Dist: docker-compose ; extra == 'docker'
+Provides-Extra: jupyter
+Requires-Dist: jupyter ; extra == 'jupyter'
+Requires-Dist: ipywidgets ; extra == 'jupyter'
+
+UNKNOWN
+
+
