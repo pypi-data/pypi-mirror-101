@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "pytest-rocketchat"
+version = "1.0.2"
+description = "Pytest to Rocket.Chat reporting plugin"
+authors = ["Aleksandr Kotlyar <ask.kotlyar@gmail.com>"]
+license = "MIT license"
+readme = "README.md"
+keywords = ['pytest', 'py.test', 'rocketchat']
+homepage = "http://github.com/aleksandr-kotlyar/pytest-rocketchat"
+packages = [{ include = "pytest_rocketchat" }]
+classifiers = [
+    'Framework :: Pytest',
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+]
+
+[tool.poetry.plugins]
+pytest11 = { pytest-rocketchat = 'pytest_rocketchat.plugin' }
+
+[tool.poetry.dependencies]
+python = "^3.6"
+rocketchat-API = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = [
+    "pytest_rocketchat/__init__.py:__version__",
+    "pyproject.toml:version",
+]
+branch = "master"
+build_command = "pip install -m poetry && poetry build"
