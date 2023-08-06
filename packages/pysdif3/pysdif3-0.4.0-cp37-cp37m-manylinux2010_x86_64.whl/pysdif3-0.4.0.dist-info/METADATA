@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: pysdif3
+Version: 0.4.0
+Summary: Wrapper for the SDIF library for audio analysis
+Home-page: https://github.com/gesellkammer/pysdif
+Author: Eduardo Moguillansky
+Author-email: eduardo.moguillansy@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Programming Language :: C
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+Classifier: Topic :: Multimedia :: Sound/Audio :: Sound Synthesis
+Classifier: Topic :: Multimedia :: Sound/Audio :: Speech
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Requires-Dist: numpy (>=1.8)
+
+
+SDIF for python
+
+This is a wrapper to IRCAM's SDIF C library, written mostly in Cython.
+
+Needs Cython >= 0.22
+
+It allows to read and write any kind of SDIF file, to define new
+kinds of frames and matrices and to read and write metadata. 
+
+The matrices read from a sdif file are exposed as numpy arrays.
+
+
+See release notes and changes at http://github.com/gesellkammer/pysdif
+
+
