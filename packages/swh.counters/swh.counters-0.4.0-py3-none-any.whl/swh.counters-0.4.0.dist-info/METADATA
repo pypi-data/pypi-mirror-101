@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: swh.counters
+Version: 0.4.0
+Summary: Software Heritage Next gen counters
+Home-page: https://forge.softwareheritage.org/source/swh-counters
+Author: Software Heritage developers
+Author-email: swh-devel@inria.fr
+License: UNKNOWN
+Project-URL: Bug Reports, https://forge.softwareheritage.org/maniphest
+Project-URL: Funding, https://www.softwareheritage.org/donate
+Project-URL: Source, https://forge.softwareheritage.org/source/swh-counters
+Project-URL: Documentation, https://docs.softwareheritage.org/devel/swh-counters/
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: Flask
+Requires-Dist: redis
+Requires-Dist: swh.core[http] (>=0.3)
+Requires-Dist: swh.journal
+Provides-Extra: testing
+Requires-Dist: pytest ; extra == 'testing'
+Requires-Dist: pytest-mock ; extra == 'testing'
+Requires-Dist: confluent-kafka ; extra == 'testing'
+Requires-Dist: pytest-redis ; extra == 'testing'
+Requires-Dist: requests-mock ; extra == 'testing'
+
+.. _swh-counters:
+
+swh-counters
+============
+
+Service providing efficient estimates of the number of objects in the SWH archive, using
+Redis's Hyperloglog
+
+
