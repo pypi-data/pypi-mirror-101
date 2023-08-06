@@ -1,0 +1,27 @@
+{% extends layout_data.main_layout|default:"django_bkendoz/layout.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="heading-flex">
+
+    <h1>
+        {{ form_title }}
+        <div class="subheading">
+            <ul>
+                <li>
+                </li>
+            </ul>
+        </div>
+    </h1>
+    {% if form_type == 'update' %}
+        {% include 'django_bkendoz/templates/detail-menu.html' %}
+    {% else %}
+        {% include 'django_bkendoz/templates/list-menu.html' %}
+    {% endif %}
+</div>
+
+{% include 'django_bkendoz/templates/form.html' %}
+
+{% endblock %}

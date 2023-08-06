@@ -1,0 +1,47 @@
+{% extends settings.LAYOUT.main_layout %}
+{% load i18n %}
+{% load templates %}
+
+{% block content %}
+
+{% include 'django_bkendoz/templates/list-header.html' with menu=list_menu title=list_title hide_search=True %}
+
+<div class="modal modal-datatable" id="{{ css_modal_id }}">
+  <div>
+    <div class="modal-header">
+      <h1 class="modal-title">
+      </h1>
+      <button type="button" class="modal-close">
+        <i class="fa fa-window-close"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div>
+      </div>
+    </div>
+    <div class="modal-footer">
+
+      <button type="button" class="modal-close">
+          {% trans 'Fermer' %}
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<table
+    id=""
+    class="datatable table table-striped table-bordered"
+    style="width:100%"
+    data-server-side="true"
+    data-ajax="{{ api_url }}?format=datatables">
+    <thead>
+        <tr>
+            {% for data, name, head in fields %}
+            <th data-data="{{ data }}" data-name="{{ name }}">{{ head }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+</table>
+{% endblock %}
