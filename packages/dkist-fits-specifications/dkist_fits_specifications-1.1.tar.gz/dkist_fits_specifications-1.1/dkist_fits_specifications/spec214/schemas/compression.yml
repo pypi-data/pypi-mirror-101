@@ -1,0 +1,59 @@
+spec214:
+  section_122: compression
+  copy: False
+  required: false
+  units: null
+  expand: False
+---
+ZIMAGE:
+  description: "The value field of this keyword shall contain the logical value T to indicate that the FITS binary-table extension contains a compressed image, and that logically this extension should be interpreted as an image rather than a table."
+  copy: true
+  type: bool
+  values:
+    - True
+ZTENSION:
+  description: "This keyword must contain the original XTENSION keyword in the uncompressed image."
+  type: str
+ZPCOUNT:
+  description: "This keyword must contain the original PCOUNT keyword in the uncompressed image."
+  type: int
+ZGCOUNT:
+  description: "This keyword must contain the original GCOUNT keyword in the uncompressed image"
+  type: int
+ZQUANTIZ:
+  description: "This keyword shall contain the name of the algorithm that was used to quantize floating-point image pixels into integer values, which were then passed to the compression algorithm. If this keyword is not present, the default is to assume that no dithering was applied during quantization."
+  type: str
+ZCMPTYPE:
+  description: "The value field of this keyword shall contain a character string giving the name of the algorithm that was used to compress the image. Only these values are permitted; [RICE_1, GZIP_1, GZIP_2, PLIO_1, HCOMPRESS_1, NOCOMPRESS]. Each value references a compression algorithm, with NOCOMPRESS meaning the HDU remains uncompressed."
+  type: str
+  copy: true
+ZBITPIX:
+  description: "Mandatory keyword describing the number of bits per pixel in the data. Permitted values are: 8, 16, 32, 64, -32, -64"
+  type: int
+  copy: true
+  units: bits/px
+ZNAXIS:
+  description: "Mandatory keyword. Value depends on keyword position in file, i.e. whether the keyword is located in the primary HDU, or an extension HDU.
+   Generally, the value field shall contain a non-negative integer no greater than 999 representing the number of axes in the associated data array. A value of zero signifies that no data follow the header in the HDU."
+  type: int
+  copy: true
+ZNAXISn:
+  description: "ZNAXISn keywords. The ZNAXISn keywords must be present for all values n = 1, ..., ZNAXIS, in increasing order of n, and for no other values of n. The value field of this indexed keyword shall contain a non-negative integer representing the number of elements along axis n of a data array. A value of zero for any of the ZNAXISn signifies that no data follow the header in the HDU (however, the random groups structure has ZNAXIS1 = 0, but will have data following the header if the other ZNAXISn keywords are non-zero). If ZNAXIS is equal to 0, there shall not be any ZNAXISn keywords."
+  type: int
+  copy: true
+  expand: True
+ZTILEn:
+  description: "This keyword shall contain a positive integer representing the number of pixels along axis n of the compression tiles. Each tile of pixels is compressed separately and stored in a row of a variable-length vector column in the binary table. The size of each image dimension (given by ZNAXISn) is not required to be an integer multiple of ZTILEn, and if it is not, then the last tile along that dimension of the image will contain fewer image pixels than the other tiles.
+                If the ZTILEn keywords are not present then the default ’row by row’ tiling will be assumed such that ZTILE1 = ZNAXIS1, and the value of all the other ZTILEn keywords equals 1.
+                The compressed image tiles are stored in the binary table in the same order that the first pixel in each tile appears in the FITS image; the tile containing the first pixel in the image appears in the first row of the table, and the tile containing the last pixel in the image appears in the last row of the binary table."
+  type: int
+  units: px
+  expand: True
+ZNAMEi:
+  description: "This is a keyword with ZVALi. This pair of optional array keywords supply the compression block size and the pixels per block, respectively."
+  type: str
+  expand: True
+ZVALi:
+  description: "This is a keyword with ZNAMEi. This pair of optional array keywords supply the pixels per block and the compression block size, respectively. Possible values: 1, 2, 4, or 8."
+  type: int
+  expand: True

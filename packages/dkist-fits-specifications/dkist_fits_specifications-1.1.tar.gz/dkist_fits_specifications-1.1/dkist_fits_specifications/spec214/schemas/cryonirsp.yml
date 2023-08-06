@@ -1,0 +1,32 @@
+spec214:
+  section_122: cryonirsp
+  copy: True
+  required: false
+  expand: False
+  units: null
+---
+CNARMID:
+  rename: "CRSP_001"
+  description: "Identifier for Cryo-NIRSP arm that generated the data"
+CNTASK:
+  rename: "CRSP_002"
+  description: "CryoNIRSP sub-task name from the Instrument Program Task (Observe, Dark, Gain, etc) addressed by the Instrument Program that led to the acquisition of this data."
+CNMODNST:
+  rename: "CRSP_041"
+  description: "Selected number of polarization states (default: 8, CustomObs: 5-12, Engineering: 4-360, if the spinning mode is Off:1)"
+CNMODCST:
+  rename: "CRSP_042"
+  description: "Current polarization state"
+CNCAMDT:
+  rename: "CRSP_056"
+  description: "Computed deadtime between frame readouts."
+  units: s
+CNCAMMD:
+  rename: "CRSP_060"
+  description: "Selected camera readout mode."
+CNNNDR:
+  rename: "CRSP_062"
+  description: "Computed total number of frames (also called NDR), including those not directly usable (such as reset and bias frames) depending on the camera readout mode acquired per ramp for this DSP"
+CNCNDR:
+  rename: "CRSP_063"
+  description: "Current frame number of the current ramp"
