@@ -1,0 +1,104 @@
+Metadata-Version: 2.1
+Name: BoneTeX
+Version: 0.0.2
+Summary: BoneTeX Core是一个自动生成LaTeX代码的辅助库，
+    你也可以使用Python高效的完成LaTeX文档的编写，
+    同时支持将MarkDown、Excel等文件转换成LaTeX代码。
+Home-page: https://gitee.com/zrr1999/bonetex
+Author: 六个骨头
+Author-email: 2742392377@qq.com
+License: UNKNOWN
+Description: # BoneTex
+        
+        [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+        
+        BoneTeX Core是一个自动生成LaTeX代码的辅助库，你也可以使用Python高效的完成LaTeX文档的编写，
+        同时支持将MarkDown、Excel等文件转换成LaTeX代码。
+        LaTex语法并不是使用本库必须的要求，但是熟悉LaTex语法有助于更好的使用本库。
+        
+        ## 背景
+        
+        
+        ## 优势
+        - 相比LaTex
+            1. 借助Python语言强大的IDE，本辅助工具可以有效避免很多错误。
+            2. 借助Python语言丰富的扩展库，本辅助工具可以提供比纯LaTeX更多的功能。
+            3. 本辅助工具在插入图片、生成表格等方面有巨大优势。
+        - 相比Word
+            1. 本辅助库可以更加自由地编写文档。
+            2. 借助Python语言丰富的扩展库，本辅助工具可以提供比纯LaTeX更多的功能。
+        
+        
+        ## 安装[![Downloads](https://pepy.tech/badge/bone-tex)](https://pepy.tech/project/bonetex)
+        
+        这个项目使用 [Python](https://www.python.org/downloads/) 开发，
+        同时需要[LaTeX环境](https://zhuanlan.zhihu.com/p/136931926)，请确保你本地安装了它们。
+        
+        建议使用pip安装本库。
+        
+        ```sh
+        $ pip install .
+        ```
+        
+        ## 使用说明
+        
+        
+        ## 示例
+        
+        完整代码可以参考work.py文件。
+        
+        ## 特色功能
+        
+        
+        ## 计划实现功能
+        [] BoneTeX解析模块、文档生成模块与服务器模块解耦。
+        [] 神经网络结构可视化，输入处理形状变换可视化。
+        [] 更好地和sympy交互。
+        [] Python端编辑公式。
+        [] Python端添加文献。
+        [] 图制作。
+        [] 自动包引用
+        [] 自动添加resources目录
+        [] 分块更新
+        [] :=text-var1, :=python
+        [ ] 基础
+        [ ] 公式
+        [ ] 编程
+        [ ] 作图
+        [ ] 分块编译 pdf组合
+        [ ] 检测tex文件变化（快速检测）
+        [ ] 多文件生成
+        [ ] 全面支持latex3
+        [ ] OOXML支持
+        [ ] label 拼音
+        ## 更新日志
+        
+        
+        ## 维护者
+        
+        [@詹荣瑞](https://github.com/zrr1999)
+        
+        ## 如何贡献
+        
+        非常欢迎你的加入！[提一个 Issue](https://github.com/zrr1999/bonetex/issues/new) 或者提交一个 Pull Request。
+        
+        ### 贡献者
+        
+        感谢以下参与项目的人：
+        
+        ## 使用许可
+        
+        禁止将本项目上传到百度网盘。
+        未经许可，禁止商用。
+        [GNU](LICENSE) © Rongrui Zhan
+Platform: any
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Provides-Extra: docs
+Provides-Extra: matrices
+Provides-Extra: matplotlib
+Provides-Extra: quantities
+Provides-Extra: testing
+Provides-Extra: convert_to_py2
