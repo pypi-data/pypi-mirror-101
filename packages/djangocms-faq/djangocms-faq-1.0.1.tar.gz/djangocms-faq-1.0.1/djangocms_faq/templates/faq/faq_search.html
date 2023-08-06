@@ -1,0 +1,145 @@
+{% load cms_tags sekizai_tags i18n %}
+
+{% addtoblock "css" %}
+    <style type="text/css">
+        .djangocms_faq_input{
+          font-size: 1.2em;
+        }
+
+        .djangocms_faq_results{
+          list-style-type: none;
+        }
+
+        .djangocms_faq_results li{
+          margin: 3px;
+          padding: 3px;
+          border-radius: 3px;
+          border: 1px solid #ddd;
+        }
+
+        .djangocms_faq_results li a{
+          display: flex;
+          justify-content: space-between;
+          text-decoration: none;
+        }
+
+        .djangocms_faq_result_question{
+          font-size: 1.1em;
+          max-width: 80%;
+        }
+
+        .djangocms_faq_result_keyword{
+          font-size: 0.9em;
+          background-color: #eee;
+          padding: 3px;
+          margin: 3px;
+          border-radius: 3px;
+          border: 1px solid #ccc;
+        }
+    </style>
+{% endaddtoblock %}
+
+<h1>{{ instance.name }}</h1>
+
+<form method="GET" action="{{ request.path }}" >
+    <input
+      type="text"
+      name="question"
+      id="autocomplete_question_{{ instance.id }}"
+      autocomplete="off"
+      class="djangocms_faq_input"
+      {% if request.GET.question %}value="{{ request.GET.question }}"{% endif %}
+    />
+    <input
+      type="hidden"
+      name="search_in"
+      id="search_in_{{ instance.id }}"
+      value="{% for search in instance.search_in.all %}{{ search.id }}{% if not forloop.last %} {% endif %}{% endfor %}"
+    />
+</form>
+<ul class="djangocms_faq_results" id="djangocms_faq_results_{{ instance.id }}">
+  {% if answers %}
+    {% for answer in answers %}
+    <li>
+      <a href="{% page_url answer.placeholder.page %}#{{ answer.slug }}">
+        <span class="djangocms_faq_result_question">
+          {{ answer.question }}
+        </span>
+        {% if show_keywords_answer %}
+          <span class="djangocms_faq_result_keywords">
+          {% for keyword in answer.keywords.all %}
+            <span class="djangocms_faq_result_keyword">
+              {{ keyword }}
+            </span>
+          {% endfor %}
+          </span>
+        {% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  {% elif request.GET.question %}
+    <li>{% trans "No result found." %}</li>
+  {% endif %}
+</ul>
+
+
+
+{% addtoblock "js" %}
+<script async>
+
+    let input = document.getElementById("autocomplete_question_{{ instance.id }}");
+    let search_in = document.getElementById("search_in_{{ instance.id }}");
+    let ul = document.getElementById("djangocms_faq_results_{{ instance.id }}");
+    let timer;
+
+    input.addEventListener('keyup', event => {
+      while(ul.firstChild){
+        ul.removeChild(ul.firstChild);
+      }
+
+      if(input.value.length > 2 && event.code != "Backspace"){
+
+        if(timer)
+          clearTimeout(timer);
+
+        timer = setTimeout(function (){
+          fetch('/djangocms-faq/?question=' + input.value + '&search_in=' + search_in.value)
+          .then((response) => {
+              return response.json()
+          })
+          .then((data) => {
+              if(data.length < 1){
+                  li = document.createElement('li');
+                  li.innerHTML = "{% trans 'No result found.' %}";
+                  ul.appendChild(li);
+              }
+              data.forEach(function(answer){
+                  li = document.createElement('li');
+                  a = document.createElement('a');
+                  a.href = answer['url'] + "#" + answer['slug'];
+                  span = document.createElement('span');
+                  span.innerHTML = answer['question'];
+                  span.classList.add("djangocms_faq_result_question");
+                  a.appendChild(span);
+                  li.appendChild(a);
+                  {% if show_keywords_answer %}
+                    span_kw = document.createElement('span');
+                    span_kw.classList.add("djangocms_faq_result_keywords");
+                    answer['keywords'].forEach(function(keyword){
+                        span = document.createElement('span');
+                        span.innerHTML = keyword;
+                        span.classList.add("djangocms_faq_result_keyword");
+                        span_kw.appendChild(span);
+                    })
+                    a.appendChild(span_kw);
+                  {% endif %}
+                  ul.appendChild(li);
+              });
+          });
+        },1000);
+
+      }
+    });
+
+</script>
+{% endaddtoblock %}

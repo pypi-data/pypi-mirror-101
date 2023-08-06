@@ -1,0 +1,69 @@
+{% load cms_tags sekizai_tags %}
+
+
+{% addtoblock "css" %}
+    <style type="text/css">
+        .djangocms_faq_question{
+          padding: 5px;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+        .djangocms_faq_question:target{
+          box-shadow: 0 0 10px 5px grey;
+        }
+        .djangocms_faq_keyword{
+          color: #333;
+          display: inline-block;
+          font-family: monospace;
+          background-color: #eee;
+          border: 1px solid #bbb;
+          border-radius: 3px;
+          padding: 3px;
+          font-style: italic;
+        }
+
+        .djangocms_faq_question .djangocms_faq_keywords, .djangocms_faq_question .djangocms_faq_child{
+          margin-left: 30px;
+        }
+
+        .djangocms_faq_question_str h2{
+          max-width: 95%;
+        }
+    </style>
+{% endaddtoblock %}
+
+
+{% addtoblock "js" %}
+    <script>
+        let id = location.hash.slice(1);
+        if(id){
+          document.getElementById(id).open = true;
+        }
+    </script>
+{% endaddtoblock %}
+
+
+
+
+<details class="djangocms_faq_question" id="{{ instance.slug }}">
+
+  <summary class="djangocms_faq_question_str">
+      <h2 style="display: inline-block">{{ instance.question }}</h2>
+  </summary>
+  {% if show_keywords_question %}
+    <p class="djangocms_faq_keywords">
+      {% for keyword in instance.keywords.all %}
+        <span class="djangocms_faq_keyword">
+          {{ keyword }}
+        </span>
+      {% endfor %}
+    </p>
+  {% endif %}
+
+  <div class="djangocms_faq_child">
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+  </div>
+
+</details>

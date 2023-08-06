@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+include CONTRIBUTING.md
+recursive-include djangocms_faq/templates *.html djangocms_faq/locales *.po *.mo

@@ -1,0 +1,9 @@
+{% load cms_tags %}
+
+<div class="djangocms_faq_container">
+    <h1>{{ instance.title }}</h1>
+
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+</div>
