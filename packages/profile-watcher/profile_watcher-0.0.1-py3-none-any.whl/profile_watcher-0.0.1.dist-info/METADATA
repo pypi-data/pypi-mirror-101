@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: profile-watcher
+Version: 0.0.1
+Summary: Get updates when anything change in any social media profile.
+Home-page: https://github.com/TheShubhendra/profile-watcher
+Author: Shubhendra Kushwaha
+Author-email: shubhendrakushwaha94@gmail.com
+License: GNU-AGPL
+Keywords: social media,quora
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: Free For Educational Use
+Classifier: License :: Free For Home Use
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: apscheduler
+Requires-Dist: pyprofiles (==0.0.2)
+
+# profile-watcher
+
+[![Upload Python Package](https://github.com/TheShubhendra/profile-watcher/actions/workflows/python-publish.yml/badge.svg)](https://github.com/TheShubhendra/profile-watcher/actions/workflows/python-publish.yml)
+
+
+# Installation
+
+`pip install profile-watcher`
+
+
