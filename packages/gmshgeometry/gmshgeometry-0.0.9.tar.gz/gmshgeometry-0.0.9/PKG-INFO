@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: gmshgeometry
+Version: 0.0.9
+Summary: gmsh-based geometry controller
+Home-page: https://gitlab.com/cm2lab/geodata_module
+Author: CM2Lab
+Author-email: s.park@openest.eu
+License: UNKNOWN
+Description: # Sources
+        - `GeometryController.py`
+        - `NearestNeighbor.py`
+        - `VoronoiController.py`
+        
+        # Required pacakges
+        - numpy: `conda intall numpy`
+        - scikit-learn: `conda install scikit-learn`
+        - gmsh: `[your anaconda env]/bin/pip install gmsh` <br>
+        Be sure to install gmsh API using the pip. Gmsh API in conda-forge is not gmsh API.
+        
+        # Last update:
+        - April 07, 2021.
+Keywords: gmsh geometry
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
