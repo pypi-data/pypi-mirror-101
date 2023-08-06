@@ -1,0 +1,11 @@
+Value Required ifname (\S+)
+Value Required peerHostname (\S+)
+Value description (.*)
+Value peerIfname (\S+)
+
+Start
+ ^Interface:.*$$ -> Continue.Record
+ ^Interface:\s+${ifname}, .*$$
+ ^\s+SysName:\s+ ${peerHostname}.*$$
+ ^\s+SysDescr:\s+ ${description}.*$$
+ ^\s+PortID:\s+ifname\s+${peerIfname}.*$$
