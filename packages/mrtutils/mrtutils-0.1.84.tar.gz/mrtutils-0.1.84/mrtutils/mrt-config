@@ -1,0 +1,103 @@
+#!/usr/bin/python3
+
+import sys
+import os
+from mrtutils.modsync import *
+import tempfile
+
+from kconfiglib import Kconfig, \
+                       Symbol, MENU, COMMENT, \
+                       BOOL, TRISTATE, STRING, INT, HEX, UNKNOWN, \
+                       expr_value, \
+                       TRI_TO_STR
+
+from menuconfig import menuconfig
+
+remoteUrl = "git@bitbucket.org/uprev/uprev-mrt.git"
+remoteRepo = Repo(remoteUrl, remote = True)
+remoteRepo.isBitbucket = True
+localRepo = Repo(os.getcwd())
+args = None
+parser = None
+mods_to_add = []
+mods_to_remove = []
+
+os.environ["MENUCONFIG_STYLE"] = "default separator=fg:black,bg:blue,bold frame=fg:black,bg:red,bold"
+
+
+#   "default": """
+#     path=fg:black,bg:white,bold
+#     separator=fg:black,bg:blue,bold
+#     list=fg:black,bg:white
+#     selection=fg:white,bg:blue,bold
+#     inv-list=fg:red,bg:white
+#     inv-selection=fg:red,bg:blue
+#     help=path
+#     show-help=list
+#     frame=fg:black,bg:blue,bold
+#     body=fg:white,bg:black
+#     edit=fg:white,bg:blue
+#     jump-edit=edit
+#     text=list
+#     """,
+
+
+
+class MrtKConfig(Kconfig):
+    global remoteRepo
+    global localRepo
+
+    def write_config(self, filename):
+        for sym in self.defined_syms:
+            if sym.str_value == 'y':
+                newMod = remoteRepo.findMod(sym.name.replace("ENABLE_",""))
+                if newMod != None:
+                    if not newMod.exists:
+                        mods_to_add.append(newMod)
+            else:
+                newMod = remoteRepo.findMod(sym.name.replace("ENABLE_",""))
+                if newMod != None:
+                    if newMod.exists:
+                        mods_to_remove.append(newMod)
+        
+        return True
+
+def main():
+    global _kconf
+    kconf_file = tempfile.NamedTemporaryFile(mode = "w")
+    remoteRepo.getSubModules()
+    localRepo.getSubModules()
+
+
+    relativePath = "MrT"
+
+    if len(sys.argv) > 1:
+        relativePath = sys.argv[1]
+
+    localRepo.setRelativePath(relativePath+"/")
+
+    #check for git repo
+    if not os.path.exists("/.git"):
+        subprocess.check_output(['git','init'] )
+
+
+    remoteRepo.crossCheckMods(localRepo)
+    fileText = remoteRepo.dir.dirs['Modules'].getKConfigString(0)
+    kconf_file.write(fileText)
+    kconf_file.seek(0,0)
+    kconf = MrtKConfig(kconf_file.name)
+
+    kconf_file.close()
+    
+    menuconfig(kconf)
+
+    for mod in mods_to_add:
+        localRepo.addSubModule(mod)
+
+    for mod in mods_to_remove:
+        localRepo.removeSubModule(mod)
+
+        
+
+if __name__ == "__main__":
+    main()
