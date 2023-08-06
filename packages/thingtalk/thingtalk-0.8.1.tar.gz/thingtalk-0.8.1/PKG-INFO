@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: thingtalk
+Version: 0.8.1
+Summary: Web of Things framework, high performance, easy to learn, fast to code, ready for production
+Home-page: https://github.com/hidaris/thingtalk
+License: MPL-2.0
+Keywords: web-of-things,webthing,iot
+Author: hidaris
+Author-email: zuocool@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Provides-Extra: docs
+Requires-Dist: async-cron (>=1.6.2,<2.0.0)
+Requires-Dist: cached-property (>=1.5,<2.0); python_version >= "3.7" and python_version < "3.8"
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: dynaconf (>=3.1.2,<4.0.0)
+Requires-Dist: email_validator (>=1.1.1,<2.0.0)
+Requires-Dist: fastapi (>=0.63.0,<0.64.0)
+Requires-Dist: gmqtt (>=0.6.9,<0.7.0)
+Requires-Dist: httpx (>=0.17.0,<0.18.0)
+Requires-Dist: ifaddr (>=0.1.7,<0.2.0)
+Requires-Dist: jsonschema (>=3.2.0,<4.0.0)
+Requires-Dist: loguru (>=0.5.2,<0.6.0)
+Requires-Dist: mkdocs-material (>=7.0.0,<8.0.0); extra == "docs"
+Requires-Dist: pyee (>=8.1.0,<9.0.0)
+Requires-Dist: rich (>=10.0.0,<11.0.0)
+Requires-Dist: ujson (>=4.0.0,<5.0.0)
+Requires-Dist: uvicorn[standard] (>=0.13.0,<0.14.0)
+Requires-Dist: zeroconf (>=0.29.0,<0.30.0)
+Project-URL: Bug Tracker, https://github.com/hidaris/thingtalk/issues
+Project-URL: Documentation, https://github.com/hidaris/thingtalk/blob/master/README.md
+Project-URL: Repository, https://github.com/hidaris/thingtalk
+Description-Content-Type: text/markdown
+
+<h1 align="center">Project thingTalk</h1>
+
+<h2 align="center">Thing as a Service</h2>
+
+[![pypi-v](https://img.shields.io/pypi/v/thingtalk.svg)](https://pypi.python.org/pypi/thingtalk)
+[![python](https://img.shields.io/pypi/pyversions/thingtalk.svg)](https://github.com/hidaris/thingtalk)
+
+## What is `thingTalk`?
+`thingTalk` is a web of things implementation, currently supporting a dialect protocol called webthings.
+
+## Project Vision:
+To provide a communication layer for spatial computing, and make iot interoperable with xr.
+
+### The key features are:
+* Layered design -- Provide services such as rule engines on top of the core protocol layer.
+* Scalability -- Can be based on MQTT to achieve distributed deployment.
+* Standards-based -- Compatibility with community standards[WoT].
+* Fast: Very high performance, on par with NodeJS and Go (thanks to FastAPI).
+* Robust: Get production-ready code. With automatic interactive documentation.
+* Fast to code: Increase the speed to develop features by about 200% to 300%. *
+
+## Installation
+thingtalk can be installed via pip, as such:
+
+`$ pip install thingtalk`
+
