@@ -1,0 +1,7 @@
+include *.txt
+include COPYING
+include LICENSE
+include tox.ini
+recursive-include pyhumour *.json
+recursive-include pyhumour *.py
+recursive-include pyhumour *.txt
