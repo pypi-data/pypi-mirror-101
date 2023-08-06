@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: sopel-plugins.channelmgnt
+Version: 2.0.1
+Summary: Channelmgnt plugin for Sopel
+Home-page: https://github.com/MirahezeBots/sopel-channelmgnt
+Author: MirahezeBot Contributors
+Author-email: staff@mirahezebots.org
+License: Eiffel Forum License, version 2
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: Eiffel Forum License (EFL)
+Classifier: License :: OSI Approved :: Eiffel Forum License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Communications :: Chat :: Internet Relay Chat
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: sopel (<8,>=7.0.5)
+Requires-Dist: MirahezeBots-jsonparser (<2.0.0,>=1.0.1)
+Requires-Dist: wheel (<0.37.0,>=0.36.2)
+
+# sopel-channelmgnt
+Channelmgnt plug-in for sopel
+
+
