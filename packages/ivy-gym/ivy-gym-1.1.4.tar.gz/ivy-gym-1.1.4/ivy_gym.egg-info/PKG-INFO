@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: ivy-gym
+Version: 1.1.4
+Summary: Fully differentiable reinforcement learning environments, written in Ivy.
+Home-page: https://ivy-dl.org/gym
+Author: Ivy Team
+Author-email: ivydl.team@gmail.com
+License: Apache 2.0
+Project-URL: Docs, https://ivy-dl.org/gym/
+Project-URL: Source, https://github.com/ivy-dl/gym
+Description: # What is Ivy Gym?
+        
+        Ivy Gym opens the door for intersectional research between supervised
+            learning (SL), reinforcement learning (RL), and trajectory optimization (TO), by implementing RL environments in a
+            fully differentiable manner.
+        
+        
+            Specifically, Ivy gym provides differentiable implementations of the classic control tasks from OpenAI Gym, as well
+            as a new Swimmer task, which illustrates the simplicity of creating new tasks using Ivy. The differentiable nature
+            of the environments means that the cumulative reward can be directly optimized for in a supervised manner, without
+            need for reinforcement learning, which is the de facto approach for optimizing cumulative rewards. Ivy currently
+            supports Jax, TensorFlow, PyTorch, MXNet and Numpy. Check out the [docs](https://ivy-dl.org/gym) for more info!
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
