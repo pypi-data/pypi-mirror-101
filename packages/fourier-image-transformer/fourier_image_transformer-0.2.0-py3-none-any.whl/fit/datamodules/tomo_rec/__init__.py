@@ -1,0 +1,2 @@
+from .TRecFCDataset import TRecFourierCoefficientDataset
+from .TRecDataModule import MNIST_TRecFITDM, LoDoPaB_TRecFITDM, CropLoDoPaB_TRecFITDM, Kanji_TRecFITDM
