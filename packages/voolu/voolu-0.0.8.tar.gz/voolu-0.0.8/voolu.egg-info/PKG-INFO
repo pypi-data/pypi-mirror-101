@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: voolu
+Version: 0.0.8
+Summary: SSH is so last year.
+Home-page: https://github.com/voolu/vcli
+Author: Voolu Cloud
+Author-email: support@voolu.io
+License: MIT
+Description: # Voolu CLI
+        
+        ## Create an account
+        
+        ```bash
+        vacc create
+        ```
+        
+        ## Login
+        
+        ```bash
+        vacc login
+        ```
+        
+        ## Connect host
+        
+        ```bash
+        vhost my-host
+        ```
+        
+        ## Connect clients
+        
+        ```bash
+        vsh my-host
+        ```
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.7
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
