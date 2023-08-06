@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pdf-mailmerge"
+version = "0.1.1"
+description = "easy command line mail merge to pdf"
+authors = ["Joshua <joshua.flies.planes@gmail.org>"]
+
+[tool.poetry.dependencies]
+python = "^3.7.1"
+pandas = "^1.2.3"
+numpy = "^1.20.1"
+tqdm = "^4.59.0"
+pdfkit = "^0.6.1"
+Jinja2 = "^2.11.3"
+PyYAML = "^5.4.1"
+argparse = "^1.4.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

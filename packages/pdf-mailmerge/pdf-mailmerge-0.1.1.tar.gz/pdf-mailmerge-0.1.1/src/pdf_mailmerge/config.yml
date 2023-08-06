@@ -1,0 +1,20 @@
+data: Some.csv
+
+identifier_columns:
+  - "col1"
+  - "col2"
+
+filename_columns:
+  - "col3"
+  - "col4"
+  - "course_cd"
+
+output_folders:
+  - "col1"
+  - "col5"
+
+sort:
+  - "col2"
+  - "col3"
+
+template: "Some_jinja.html"
