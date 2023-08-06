@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: wikitrad
+Version: 0.1.0
+Summary: 
+Author: Ewen Le Bihan
+Author-email: hey@ewen.works
+Requires-Python: >=3.9,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: beautifulsoup4 (>=4.9.3,<5.0.0)
+Requires-Dist: docopt (>=0.6.2,<0.7.0)
+Requires-Dist: langdetect (>=1.0.8,<2.0.0)
+Requires-Dist: requests (>=2.25.1,<3.0.0)
+Requires-Dist: rich (>=10.1.0,<11.0.0)
