@@ -1,0 +1,5 @@
+[console_scripts]
+yolo-detect=pytorchyolo.detect:run
+yolo-test=pytorchyolo.test:run
+yolo-train=pytorchyolo.train:run
+
