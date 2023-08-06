@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: simplejwt-session
+Version: 0.0.5
+Summary: Generates an authenticated requests `Session` into a Django API authenticated w/ `django-rest-framework-simplejwt`
+Home-page: https://github.com/akhtariali/agron_session
+Author: Ali Akhtari
+Author-email: hi@aliakh.me
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: autopep8 (==1.5.6)
+Requires-Dist: certifi (==2020.12.5)
+Requires-Dist: chardet (==4.0.0)
+Requires-Dist: idna (==2.10)
+Requires-Dist: pycodestyle (==2.7.0)
+Requires-Dist: python-dotenv (==0.17.0)
+Requires-Dist: requests (==2.25.1)
+Requires-Dist: requests-toolbelt (==0.9.1)
+Requires-Dist: toml (==0.10.2)
+Requires-Dist: urllib3 (==1.26.4)
+
+Creates an authenticated `requests.Session` instance for a Django API authenticated w/ `django-rest-framework-simplejwt`. Optionally set `API_PASSWORD`, `API_EMAIL`, and `API_BASE_URL` env vars or pass them directly to the method.
+
+
