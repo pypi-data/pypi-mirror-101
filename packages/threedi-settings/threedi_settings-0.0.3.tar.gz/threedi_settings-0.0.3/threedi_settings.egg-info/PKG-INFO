@@ -1,0 +1,86 @@
+Metadata-Version: 2.1
+Name: threedi-settings
+Version: 0.0.3
+Summary: Export legacy 3Di model settings to the 3Di API V3
+Home-page: https://github.com/nens/threedi-settings
+Author: Lars Claussen
+Author-email: claussen.lars@nelen-schuurmans.nl
+License: MIT license
+Description: ## threedi-settings
+        
+        
+        Convert legacy model ini settings files to API V3 resources.
+        
+        
+        ### Installation
+        
+        To get all functionalities this package as to offer, install with all extras
+        
+            $ pip install threedi-settings[cmd, api]
+        
+        ### Usage
+        
+        Ths will give you access to the command line interface that let's you convert 3Di model settings to
+        3Di API resources like so
+        
+            $ import_simulation_setings <simulation id> <path to model ini file>
+        
+        The example above requires a `simulation_id` argument as settings can be defined
+        on a per simulation basis in the API. That gives you much more flexibility to experiment
+        with different configurations.
+        
+        
+        ### Internal Usage
+        
+        This package is also used to retrieve simulation settings resources from the API to further
+        convert them to an internal format that the 3Di calculation core is able to read and process.
+        
+        The package therefore can be installed without the extras mentioned above or a
+        single extra like `api` which will give you the `threedi-api-client` requirement
+        and therefore access to the http module.
+        
+        
+        * Free software: MIT license
+        * Documentation: https://threedi-settings.readthedocs.io.
+        
+        
+        
+        #### Credits
+        
+        This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and the [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage) project template.
+        
+        
+        
+        ## History
+        
+        0.0.3 (2021-04-07)
+        ------------------
+        
+        - Unit tests.
+        
+        
+        0.0.2 (2021-03-26)
+        
+        - Setup proper package incl readme.
+        
+        - Docstrings and code organisation.
+        
+        
+        ### 0.0.1 (2021-03-18)
+        
+        * First release on PyPI.
+        
+Keywords: threedi_settings
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Provides-Extra: cmd
+Provides-Extra: api
