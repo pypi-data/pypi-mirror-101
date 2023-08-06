@@ -1,0 +1,109 @@
+Metadata-Version: 2.1
+Name: pymcdm
+Version: 1.0.3.post2
+Summary: Python library for Multi-Criteria Decision-Making
+Home-page: https://gitlab.com/shekhand/mcda
+Author: Andrii Shekhovtsov
+Author-email: andrii-shekhovtsov@zut.edu.pl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+
+# PyMCDM
+
+Python 3 library for solving multi-criteria decision-making (MCDM) problems.
+
+
+# Installation
+
+You can download and install `pymcdm` library using pip:
+
+```Bash
+pip install pymcdm
+```
+
+# Available methods
+
+The library contains:
+* MCDA methods:
+    * TOPSIS
+    * VIKOR
+    * COPRAS
+    * PROMETHEE I and II
+    * COMET
+    * SPOTIS
+
+* Weighting methods:
+    * Equal weights
+    * Entropy method
+    * Std method
+
+* Normalization methods:
+    * Linear
+    * Max
+    * Sum
+    * Vector
+    * Logarithmic
+
+* Correlation coefficients:
+    * Spearman
+    * Pearson
+    * Weighted Spearman
+    * Rank Similarity Coefficient
+    * Kendall Tau
+    * Goodman and Kruskal Gamma
+
+* Helpers
+    * rankdata
+    * rrankdata
+
+
+# Usage example
+
+Here's a small example of how use this library to solve MCDM problem.
+For more examples with explanation see [examples](https://gitlab.com/shekhand/mcda/-/blob/master/examples/examples.ipynb).
+
+```python
+import numpy as np
+from pymcdm.methods import TOPSIS
+from pymcdm.helpers import rrankdata
+
+# Define decision matrix (2 criteria, 4 alternative)
+alts = np.array([
+    [4, 4],
+    [1, 5],
+    [3, 2],
+    [4, 2]
+], dtype='float')
+
+# Define weights and types
+weights = np.array([0.5, 0.5])
+types = np.array([1, -1])
+
+# Create object of the method
+topsis = TOPSIS()
+
+# Determine preferences and ranking for alternatives
+pref = topsis(alts, weights, types)
+ranking = rrankdata(pref)
+
+for r, p in zip(ranking, pref):
+    print(r, p)
+```
+
+And the output of this example (numbers are rounded):
+
+```bash
+3 0.6126
+4 0.0
+2 0.7829
+1 1.0
+```
+
+
+
