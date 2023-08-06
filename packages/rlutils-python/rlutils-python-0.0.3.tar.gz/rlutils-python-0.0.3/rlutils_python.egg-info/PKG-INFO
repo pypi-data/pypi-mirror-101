@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: rlutils-python
+Version: 0.0.3
+Summary: Reinforcement Learning Utilities
+Home-page: https://github.com/vermouth1992/rlutils
+Author: Chi Zhang
+Author-email: czhangseu@gmail.com
+License: Apache 2.0
+Description: # Reinforcement learning utility
+        
+        This package includes common utilities to build novel reinforcement learning algorithms. Users can use either Tensorflow
+        or Pytorch.
+        
+        ## Install
+        
+        Note that the dependencies will not be installed automatically. Please check dependencies by running
+        
+        ```bash
+        python -m rlutils.check_dependencies
+        ```
+        
+        ## Documentation
+        
+        TODO
+        
+        ## LICENSE
+        
+        Apache License 2.0
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
