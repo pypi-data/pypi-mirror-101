@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: sahibinden-pkg
+Version: 0.0.8.1
+Summary: Sample Data Processing of Sahibinden
+Home-page: https://pypi.org/project/sahibinden-pkg/
+Author: Servet Guney
+Author-email: servetguney@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Dist: setuptools (>=42)
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: statistics
+Requires-Dist: soupsieve
+Requires-Dist: lxml
+Requires-Dist: wheel
+Requires-Dist: numpy
+
+In this package, it is being used for sample processing of sahibinden.com live data for different categories.
+
+
