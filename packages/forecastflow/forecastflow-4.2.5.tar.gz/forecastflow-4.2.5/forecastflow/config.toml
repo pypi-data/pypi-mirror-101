@@ -1,0 +1,12 @@
+[firebase]
+# Camel case bacause of firebase convention.
+apiKey = 'AIzaSyA3sC-Nt0V5SdwHCsTMlNjnGBAl54FgvVk'
+authDomain = 'echo-dolphin.firebaseapp.com'
+databaseURL = 'https://echo-dolphin.firebaseio.com'
+storageBucket = 'echo-dolphin-datasources'
+
+[forecastflow]
+api_base_url = 'https://api.echodolphin.org'
+
+[gcp]
+project_name = 'echo-dolphin'
