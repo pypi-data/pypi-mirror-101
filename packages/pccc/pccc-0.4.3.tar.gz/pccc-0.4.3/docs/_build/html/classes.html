@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classes &#8212; pccc 0.4.3 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Functions" href="functions.html" />
+    <link rel="prev" title="README" href="readme.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="classes">
+<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="conventionalcommit">
+<h2>ConventionalCommit<a class="headerlink" href="#conventionalcommit" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pccc.ConventionalCommit">
+<em class="property">class </em><code class="sig-prename descclassname">pccc.</code><code class="sig-name descname">ConventionalCommit</code><a class="headerlink" href="#pccc.ConventionalCommit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class describing a conventional commit.</p>
+<p>Data structure containg the raw commit message, cleaned commit
+message, parsed conventional commit tokens, and parser exceptions
+for further use.</p>
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommit.raw">
+<code class="sig-name descname">raw</code><a class="headerlink" href="#pccc.ConventionalCommit.raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>An unprocessed commit message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommit.cleaned">
+<code class="sig-name descname">cleaned</code><a class="headerlink" href="#pccc.ConventionalCommit.cleaned" title="Permalink to this definition">¶</a></dt>
+<dd><p>A cleaned, unparsed commit message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommit.header">
+<code class="sig-name descname">header</code><a class="headerlink" href="#pccc.ConventionalCommit.header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Header fields and values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">header[&quot;type&quot;]</code></dt>
+<dd><p>Header type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">header[&quot;scope&quot;]</code></dt>
+<dd><p>Header scope.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">header[&quot;description&quot;]</code></dt>
+<dd><p>Header description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">header[&quot;length&quot;]</code></dt>
+<dd><p>The length of the header.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommit.body">
+<code class="sig-name descname">body</code><a class="headerlink" href="#pccc.ConventionalCommit.body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Body fields and values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">body[&quot;paragraphs&quot;]</code></dt>
+<dd><p>The paragraphs of the body.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">body[&quot;longest&quot;]</code></dt>
+<dd><p>The length of the longest body line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommit.breaking">
+<code class="sig-name descname">breaking</code><a class="headerlink" href="#pccc.ConventionalCommit.breaking" title="Permalink to this definition">¶</a></dt>
+<dd><p>Breaking change fields and values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">breaking[&quot;flag&quot;]</code></dt>
+<dd><p>The breaking change flag is present, or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">breaking[&quot;token&quot;]</code></dt>
+<dd><p>A string representing the breaking change token; either
+“BREAKING CHANGE” or “BREAKING-CHANGE” (for footer
+compatibility).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">breaking[&quot;separator&quot;]</code></dt>
+<dd><p>A string representing the breaking change separator; either “: ”
+or ” #” (supposedly).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt>
+<code class="sig-name descname">breaking[&quot;value&quot;]</code></dt>
+<dd><p>The breaking change value (description).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommit.footers">
+<code class="sig-name descname">footers</code><a class="headerlink" href="#pccc.ConventionalCommit.footers" title="Permalink to this definition">¶</a></dt>
+<dd><p>An array of footer dicts, which are identical to the breaking
+dicts, without a “flag” field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommit.exc">
+<code class="sig-name descname">exc</code><a class="headerlink" href="#pccc.ConventionalCommit.exc" title="Permalink to this definition">¶</a></dt>
+<dd><p>ParseException raised during parsing, or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="conventionalcommitrunner">
+<h2>ConventionalCommitRunner<a class="headerlink" href="#conventionalcommitrunner" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pccc.ConventionalCommitRunner">
+<em class="property">class </em><code class="sig-prename descclassname">pccc.</code><code class="sig-name descname">ConventionalCommitRunner</code><a class="headerlink" href="#pccc.ConventionalCommitRunner" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">ConventionalCommit()</span></code> subclass with methods for execution.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">ConventionalCommit()</span></code> with addtional methods for loading,
+cleaning, and parsing a raw commit message as well as an
+<code class="docutils literal notranslate"><span class="pre">Config()</span></code> attribute for loading and accessing configuration
+information.</p>
+<dl class="py attribute">
+<dt id="pccc.ConventionalCommitRunner.options">
+<code class="sig-name descname">options</code><a class="headerlink" href="#pccc.ConventionalCommitRunner.options" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <code class="docutils literal notranslate"><span class="pre">Config()</span></code> object for handling configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clean a commit before parsing.</p>
+<p>Remove all comment lines (matching the regular expression
+<code class="docutils literal notranslate"><span class="pre">&quot;^\\s*#.*$&quot;</span></code>) from a commit message before parsing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a commit from a file or <code class="docutils literal notranslate"><span class="pre">STDIN</span></code>.</p>
+<p>Loads a the commit message from the file specified in the
+configuration, defaulting to <code class="docutils literal notranslate"><span class="pre">STDIN</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a conventional commit message.</p>
+<p>Parse a conventional commit message according to the
+<a class="reference external" href="https://www.conventionalcommits.org/en/v1.0.0/#specification">specification</a>,
+including user defined types, scopes, and footers.</p>
+<p>BNF for conventional commit (v1.0.0):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>type :: ( feat | fix | &#39;user defined types&#39; )
+scope :: ( &#39;(&#39; &#39;user defined scopes&#39; &#39;)&#39; )
+header-breaking-flag :: !
+header-sep :: &#39;: &#39;
+header-desc :: .*
+header :: type scope? header-breaking-flag? header-sep header-desc
+breaking-token :: ( BREAKING CHANGE | BREAKING-CHANGE )
+footer-sep :: ( &#39;: &#39; | &#39; #&#39; )
+breaking-value :: .*
+breaking :: breaking-token footer-sep breaking-value
+footer-token :: ( &#39;user defined footers&#39; )
+footer-value :: .*
+footer :: footer-token footer-sep footer-value
+line :: .*
+newline :: &#39;\n&#39;
+skip :: newline newline
+par :: ( line newline )+
+body :: skip par+
+commit-msg :: header body? breaking? footer*
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.post_process">
+<code class="sig-name descname">post_process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.post_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process commit after parsing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.should_ignore">
+<code class="sig-name descname">should_ignore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.should_ignore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decide whether a commit message should be ignored.</p>
+<p>Check if <code class="docutils literal notranslate"><span class="pre">self.options.ignore_generated_commits</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>
+and if the commit matches one of the regular expressions in
+<code class="docutils literal notranslate"><span class="pre">self.options.generated_commits</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the commit matches a generated commit pattern
+and ignoring generated commits is allowed, <code class="docutils literal notranslate"><span class="pre">False</span></code>
+otherwise.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a commit after parsing.</p>
+<p>Validate a commit on header and body lengths.  Currently,
+there is no need to validate other fields as the commit will
+not parse if these are invalid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True, if the commit validates.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Indicates the commit did not validate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.validate_body_length">
+<code class="sig-name descname">validate_body_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.validate_body_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that maximum body length is correct.</p>
+<p>Check that the maximum body line length is less than or equal
+to <code class="docutils literal notranslate"><span class="pre">self.options.body_length</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True, if the body length validates.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Indicates the commit message body has a line that exceeds
+    its configured maximum length.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.validate_header_length">
+<code class="sig-name descname">validate_header_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.validate_header_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that header length is correct.</p>
+<p>Check that header length is less than or equal to
+<code class="docutils literal notranslate"><span class="pre">self.options.header_length</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True, if the header length validates.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Indicates the commit message header exceeds its configured
+    length.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.ConventionalCommitRunner.wrap">
+<code class="sig-name descname">wrap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.ConventionalCommitRunner.wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap a commit body to a given length.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="config">
+<h2>Config<a class="headerlink" href="#config" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pccc.Config">
+<em class="property">class </em><code class="sig-prename descclassname">pccc.</code><code class="sig-name descname">Config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">config_file</span><span class="o">=</span><span class="default_value">'./pyproject.toml'</span></em>, <em class="sig-param"><span class="n">header_length</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">body_length</span><span class="o">=</span><span class="default_value">72</span></em>, <em class="sig-param"><span class="n">repair</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">rewrap</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">spell_check</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ignore_generated_commits</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">generated_commits</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">types</span><span class="o">=</span><span class="default_value">['feat', 'fix']</span></em>, <em class="sig-param"><span class="n">scopes</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">footers</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">required_footers</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pccc.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for accessing and loading pccc configuration options.</p>
+<p>Provides default values for all pccc configuration options and
+loading methods for reading pyproject.toml and CLI options.</p>
+<dl class="py attribute">
+<dt id="pccc.Config.commit">
+<code class="sig-name descname">commit</code><a class="headerlink" href="#pccc.Config.commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Commit message location; default is <code class="docutils literal notranslate"><span class="pre">STDIN</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.config_file">
+<code class="sig-name descname">config_file</code><a class="headerlink" href="#pccc.Config.config_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration file path; default is <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.header_length">
+<code class="sig-name descname">header_length</code><a class="headerlink" href="#pccc.Config.header_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum header length; default is 50.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.body_length">
+<code class="sig-name descname">body_length</code><a class="headerlink" href="#pccc.Config.body_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum body line length; default is 72.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.repair">
+<code class="sig-name descname">repair</code><a class="headerlink" href="#pccc.Config.repair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Repair commit, implying spell check and rewrap; default is
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.rewrap">
+<code class="sig-name descname">rewrap</code><a class="headerlink" href="#pccc.Config.rewrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rewrap body; default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.spell_check">
+<code class="sig-name descname">spell_check</code><a class="headerlink" href="#pccc.Config.spell_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spell check header and body; default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.ignore_generated_commits">
+<code class="sig-name descname">ignore_generated_commits</code><a class="headerlink" href="#pccc.Config.ignore_generated_commits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ignore generated commits which match <code class="docutils literal notranslate"><span class="pre">generated_commits</span></code>
+regular expressions; default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>boolean</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.generated_commits">
+<code class="sig-name descname">generated_commits</code><a class="headerlink" href="#pccc.Config.generated_commits" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of generated commits, as Python regular expressions;
+default is <code class="docutils literal notranslate"><span class="pre">[]</span></code>.  For TOML files, it’s probably best to use
+the multiline single quote strings to reduce escaping
+problems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.types">
+<code class="sig-name descname">types</code><a class="headerlink" href="#pccc.Config.types" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of header types; default is <code class="docutils literal notranslate"><span class="pre">['feat',</span> <span class="pre">'fix']</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.scopes">
+<code class="sig-name descname">scopes</code><a class="headerlink" href="#pccc.Config.scopes" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of header scopes; default is <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.footers">
+<code class="sig-name descname">footers</code><a class="headerlink" href="#pccc.Config.footers" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of footers; default is <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pccc.Config.required_footers">
+<code class="sig-name descname">required_footers</code><a class="headerlink" href="#pccc.Config.required_footers" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of required footers; default is <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>[string]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.Config.config_as_dict">
+<code class="sig-name descname">config_as_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.Config.config_as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a <code class="docutils literal notranslate"><span class="pre">Config()</span></code> object to a <code class="docutils literal notranslate"><span class="pre">dict</span></code>.</p>
+<p>Convert a <code class="docutils literal notranslate"><span class="pre">Config()</span></code> object’s configuration parameters to a
+<code class="docutils literal notranslate"><span class="pre">dict</span></code> for using in dumping TOML and JSON data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A <code class="docutils literal notranslate"><span class="pre">dict</span></code> containing key-value pairs of the configuration
+parameters and their values.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.Config.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pccc.Config.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load configuration options.</p>
+<p>Load configuration options from defaults (class constructor),
+file (either default or specified on CLI), then CLI, with
+later values overriding previous values.</p>
+<p>Unset values are explicitly <code class="docutils literal notranslate"><span class="pre">None</span></code> at each level.</p>
+<p>Handles any <code class="docutils literal notranslate"><span class="pre">FileNotFound</span></code>, <code class="docutils literal notranslate"><span class="pre">JSONDecodeError</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">TomlDecodeError</span></code> exceptions that arise during loading of
+configuration file by ignoring the file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.Config.set_format">
+<code class="sig-name descname">set_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pccc.Config.set_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the output format.</p>
+<p>Set the output format of <code class="docutils literal notranslate"><span class="pre">Config().__str__()</span></code> to either
+<code class="docutils literal notranslate"><span class="pre">&quot;TOML&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;JSON&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.Config.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pccc.Config.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a configuration.</p>
+<p>Update the current configuration object from the provided
+dictionary, ignoring any keys that are not attributes and
+values that are <code class="docutils literal notranslate"><span class="pre">None</span></code>.  The provided key/value pairs
+override the original values in self.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>dict</em>) – Key/value pairs of configuration options.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pccc.Config.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pccc.Config.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a configuration.</p>
+<p>Validate the current configuration object to ensure compliance
+with the conventional commit specification.  Current checks
+include: ensure that ‘fix’ and ‘feat’ are present in the
+<code class="docutils literal notranslate"><span class="pre">types</span></code> list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True for a valid configuration, raises on invalid
+configuration.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>boolean</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – Indicates a configuration value is incorrect.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">pccc</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">README</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#what-is-pccc">What is pccc?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#roadmap">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#usage">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#configuration">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#copyright-and-license">Copyright and License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readme.html#author">Author</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Classes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#conventionalcommit">ConventionalCommit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conventionalcommitrunner">ConventionalCommitRunner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#config">Config</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="readme.html" title="previous chapter">README</a></li>
+      <li>Next: <a href="functions.html" title="next chapter">Functions</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Jeremy A Gray.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/classes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
