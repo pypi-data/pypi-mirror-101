@@ -1,0 +1,48 @@
+Metadata-Version: 2.1
+Name: PyRYD
+Version: 0.1.1
+Summary: python variant to read data from RYD (previously known as TankTaler) ODB2 Adapter
+Home-page: https://github.com/Yannik25/pyryd
+Author: Yannik25
+Author-email: yannik92@me.com
+License: MIT
+Keywords: python ryd tanktaler home automation car obd adapter
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+
+# pyryd
+
+Still work in progress
+
+Based on the [ioBroker component by @NemoN](https://github.com/NemoN/ioBroker.ryd)
+
+Also thanks to [@nielstron](https://github.com/nielstron) for his constant help
+
+python variant to read data from ryd (formaly Tanktaler)
+
+# Installation
+
+```bash
+pip install PyRYD
+```
+For developers, clone this repository and run the following command in the repository root:
+
+```bash
+pip install -e .
+```
+
+# Demo
+
+In `example.py` enter the api_url, email and your password, then run
+```bash
+python3 example.py
+```
+
+An sample output can be found in `/pyryd/sample.json`.
+
+
