@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: femap-neutral-parser
+Version: 0.1.0
+Summary: FEMAP neutral file parser
+Home-page: https://framagit.org/numenic/femap_neutral_parser
+Author: Nicolas Cordier
+Author-email: nicolas.cordier@numeric-gmbh.ch
+License: MIT license
+Keywords: femap_neutral_parser
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.8
+Requires-Dist: numpy
+
+====================
+FEMAP neutral Parser
+====================
+
+
+FEMAP neutral file parser
+
+
+* Free software: MIT license
+
+
+Features and limitations
+------------------------
+
+Parse and render FEMAP neutral files. For now, three blocks are interpreted:
+
+* Block 100 "Neutral File Header"
+* Block 450 "Output Sets"
+* Block 451 "Output Data Vectors"
+
+Additionally, MYSTRAN outputs (which makes use of different titles than FEMAP) are harmonized: Access to total translation using the same title as FEMAP ("Total Translation" *vs* "RSS translations").
+
+
+
+=======
+History
+=======
+
+0.1.0 (2021-03-24)
+------------------
+
+* First release on PyPI.
+
+
