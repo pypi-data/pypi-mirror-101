@@ -1,0 +1,16 @@
+pycryptodome>=3.9.7
+dataclasses_json==0.5.2
+
+[:python_version < "3.8"]
+importlib-metadata
+
+[test]
+setuptools
+setuptools_scm
+wheel
+pytest
+pytest-cov
+pytest-asyncio
+pytest-cases
+tox
+mypy
