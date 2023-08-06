@@ -1,0 +1,9 @@
+typeable
+uvicorn
+falcon>=3.0.0
+
+[dev]
+pytest
+pytest-cov
+tox
+sphinx
