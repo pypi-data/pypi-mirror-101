@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: blackducklib
+Version: 0.0.2
+Summary: Library to execute bd commands
+Home-page: UNKNOWN
+Author: Ritesh M
+Author-email: mailriteshm@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Education
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+
+This is to maintain the files related BlackDuck library.
+
+The user will execute blackduck.py with all the required arguments. The blackduck.py will internally call blackducklib.py
+
+The test_blackduck.py file is used to add the unit test.
+
+CHANGE LOG
+
+================================
+
+0.0.1 (30/03/2021)
+--------------------------------
+- First Release
+
+0.0.2 (07/04/2021)
+--------------------------------
+- Second Release
+
