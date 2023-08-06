@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: neutrino-torch
+Version: 1.0.0
+Summary: Torch backend for Deeplite Neutrino engine.
+Home-page: https://www.deeplite.ai
+Author: Deeplite
+Author-email: support@deeplite.ai
+License: Proprietary
+Keywords: optimizer deep_neural_network deep_learning neural_architecture_search torch
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Natural Language :: English
+Classifier: License :: Other/Proprietary License
+Classifier: Environment :: Console
+Description-Content-Type: text/markdown
+Requires-Dist: neutrino-engine (>=4.4.0)
+Requires-Dist: deeplite-profiler[torch]
+Requires-Dist: torch (==1.4.0)
+Requires-Dist: Augmentor (==0.2.8)
+
+<p align="center">
+  <img src="https://github.com/Deeplite/neutrino-torch/raw/master/deeplite-logo-color.png" />
+</p>
+
+[![Build Status](https://travis-ci.com/Deeplite/neutrino-torch.svg?token=kodd5rKMpjxQDqRCxwiV&branch=master)](https://travis-ci.com/Deeplite/neutrino-torch)
+[![codecov](https://codecov.io/gh/Deeplite/neutrino-torch/branch/master/graph/badge.svg?token=I7AE3NN5UJ)](https://codecov.io/gh/Deeplite/neutrino-torch)
+
+# Neutrino Torch
+
+Neutrino is a deep learning library for optimizing and accelerating deep neural networks to make them faster, smaller and more energy-efficient. Neural network designers can specify a variety of pre-trained models, datasets and target computation constraints and ask the engine to optimize the network. High-level APIs are provided to make the optimization process easy and transparent to the user. Neutrino can be biased to concentrate on compression (relative to disk size taken by the model) or latency (forward call’s execution time) optimization.
+
+<p align="center">
+  <img src="https://github.com/Deeplite/neutrino-torch/raw/master/engine_figure.png" />
+</p>
+
+# Community Release
+
+Our community edition, provides many important features to experience the usability and the optimization power of Neutrino. Community edition is primarily targetted to verify the smooth integration of Neutrino into the existing process and pipeline of various products. Feel `free` to use it! The aim of the community edition is multi-fold, as follows:
+
+- Users could hands-on experience the power and capacity of model architecture optimization achieved using `Deeplite Neutrino`
+- Users could compare the performance obtained using `Deeplite Neutrino` with other open-source and industry model architecture optimization frameworks
+- Users could export an optimized model to test integration with their end applications
+- Users could verify the integration of `Deeplite Neutrino` with their business-as-usual
+- Users could use `Deeplite Neutrino` to accelerate academic research and report results in research papers
+- Users could just play around with `Deeplite Neutrino` and enjoy the usability of model architecure optimization in various use-cases 
+
+For detailed comparison of features on our community and production editions, refer to the [documentation](https://docs.deeplite.ai/neutrino/features.html)
+
+# Installation
+
+Use ``pip`` to install `neutrino-engine` and `neutrino-torch` from PyPi repository. We recommend creating a new python virtualenv, then pip install using the following commands.
+
+```{.python}
+    pip install --upgrade pip
+    pip install neutrino-engine
+    pip install neutrino-torch
+```
+
+For other methods of installation and detailed instructions, refer to the [documentation](https://docs.deeplite.ai/neutrino/install.html)
+
+# Get Your Free Community License
+
+The community license key is completely free-to-obtain and free-to-use. [Fill out this simple form](<https://info.deeplite.ai/community>) to obtain the license key for the Community Version of Deeplite Neutrino™.
+
+
+
