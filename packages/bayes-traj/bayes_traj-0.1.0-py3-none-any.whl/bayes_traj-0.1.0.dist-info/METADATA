@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: bayes-traj
+Version: 0.1.0
+Summary: bayes_traj
+Home-page: https://github.com/acil-bwh/bayes_traj
+Author: James Ross
+Author-email: jross@bwh.harvard.edu
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+Requires-Dist: provenance-tools (>=0.0.4)
+Requires-Dist: pandas (>=1.1.1)
+Requires-Dist: numpy (>=1.19.1)
+Requires-Dist: matplotlib (>=3.3.1)
+Requires-Dist: scipy (>=1.5.2)
+Requires-Dist: argparse (>=1.1)
+Requires-Dist: statsmodels (>=0.11.1)
+
+# bayes_traj
+Algorithms and tools for Bayesian trajectory modeling
+
+pip install provenance_tools
+pip install bayes_traj
+
