@@ -1,0 +1,39 @@
+Metadata-Version: 2.1
+Name: biocircuits
+Version: 0.1.0
+Summary: Python utilities for the Caltech course BE 150: Design Principles of Genetic Circuits
+Home-page: https://github.com/justinbois/biocircuits
+Author: Justin Bois
+Author-email: bois@caltech.edu
+License: BSD
+Download-URL: https://github.com/justinbois/biocircuits/tarball/0.1.0
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas
+Requires-Dist: numba
+Requires-Dist: tqdm
+Requires-Dist: bokeh
+Requires-Dist: matplotlib
+Requires-Dist: colorcet
+Requires-Dist: eqtk
+
+# biocircuits
+
+Utilities to accompany *Biological Circuit Design* by Michael Elowitz and Justin Bois.
+
+
+## Installation
+
+To install use pip:
+
+    pip install biocircuits
+
+
+## Documentation
+
+You can access the docs from the [Biological Circuit Design website](https://biocircuits.github.io/package_docs/index.html).
+
