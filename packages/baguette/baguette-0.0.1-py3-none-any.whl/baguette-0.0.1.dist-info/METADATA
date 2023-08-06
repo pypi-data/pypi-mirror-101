@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: baguette
+Version: 0.0.1
+Summary: Asynchronous web framework based on Uvicorn.
+Home-page: https://github.com/takos22/baguette
+Author: takos22
+License: MIT
+Project-URL: Documentation, https://baguette.readthedocs.io/en/latest/
+Project-URL: Issue tracker, https://github.com/takos22/baguette/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.6
+Description-Content-Type: text/x-rst
+Requires-Dist: uvicorn
+
+baguette - asynchronous web framework
+
+baguette is an asynchronous web framework based on `uvicorn <https://www.uvicorn.org/>`_.
+
+
