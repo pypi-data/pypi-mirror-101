@@ -1,0 +1,620 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    <title>Público em Geral / Nota Fiscal Eletrônica / Consulta Completa da NFC-e</title>
+    <link type="text/css" rel="stylesheet" href="../../include/sefazNFE.css" />
+    <link type="text/css" rel="stylesheet" href="../../include/estilo_aaeNFE.css" />
+    <link type="text/css" rel="stylesheet" href="../../include/AAENovo.css" />
+    <link type="text/css" rel="stylesheet" href="tableNFe.css" />
+    
+    <script type="text/javascript" src="../../include/SEF_funcoes.js"></script>
+
+    <script type="text/javascript">
+
+        var naoimprimirTitulo = true;
+        var botaovoltar = true;
+
+        function trocaAba(aba) {
+            form1.aba.value = aba;
+            form1.submit();
+        }
+
+        //retorna imagem adequada, ou logo NF-e ou brasao RS
+        function imagemLogo() {
+            if(getUf()['uf'] == 'RS') return 'brasao_rs_small.png';
+            return 'logo_nfe_p.gif';
+        }
+        
+        //retorna UF para layout de impressão
+        function getUf() {
+            var uf = ''.substring(0,2);
+            switch (uf) {
+                case '12': return {'uf':'AC', 'ext':'do Acre' };
+                case '27': return {'uf':'AL', 'ext':'de Alagoas' };
+                case '13': return {'uf':'AM', 'ext':'do Amapá' };
+                case '16': return {'uf':'AP', 'ext':'do Amazonas' };
+                case '29': return {'uf':'BA', 'ext':'da Bahia' };
+                case '23': return {'uf':'CE', 'ext':'do Ceará' };
+                case '53': return {'uf':'DF', 'ext':'do Distrito Federal' };
+                case '32': return {'uf':'ES', 'ext':'do Espírito Santo' };
+                case '52': return {'uf':'GO', 'ext':'de Goiás' };
+                case '21': return {'uf':'MA', 'ext':'do Maranhão' };
+                case '31': return {'uf':'MG', 'ext':'do Mato Grosso' };
+                case '50': return {'uf':'MS', 'ext':'do Mato Grosso do Sul' };
+                case '51': return {'uf':'MT', 'ext':'de Minas Gerais' };
+                case '15': return {'uf':'PA', 'ext':'da Paraíba' };
+                case '25': return {'uf':'PB', 'ext':'do Paraná' };
+                case '26': return {'uf':'PE', 'ext':'de Pernambuco' };
+                case '22': return {'uf':'PI', 'ext':'do Piauí' };
+                case '41': return {'uf':'PR', 'ext':'do Paraná' };
+                case '33': return {'uf':'RJ', 'ext':'do Rio de Janeiro' };
+                case '24': return {'uf':'RN', 'ext':'do Rio Grande do Norte' };
+                case '11': return {'uf':'RO', 'ext':'de Rondônia' };
+                case '14': return {'uf':'RR', 'ext':'de Roraima' };
+                case '43': return {'uf':'RS', 'ext':'do Rio Grande do Sul' };
+                case '42': return {'uf':'SC', 'ext':'de Santa Catarina' };
+                case '28': return {'uf':'SE', 'ext':'de Sergipe' };
+                case '35': return {'uf':'SP', 'ext':'de São Paulo' };
+                case '17': return {'uf':'TO', 'ext':'do Tocantins' };
+            }
+        }
+        
+        
+        function abrirAutorizacaoUso() {
+            var par = '?chaveNFe=';
+            par += '&HML=';
+            par += '&acao=AUT';
+            par += '&MsgUsuario=';
+            
+            window.open('SAT-WEB-NFE_IMPRESSAO.asp' + par, 'autorizacaoUso', 'top=50,left=50,width=760,height=600,scrollbars=yes');
+        }
+        
+        function novaConsulta(){
+           
+            self.location='SAT-WEB-NFE-NFC_1.asp'
+        }
+        
+        function visualizarAbas(){
+            
+            var chave = '?chaveNFe=';
+            chave += '&HML=false';
+            chave += '&NF=F082C5B49'
+            self.location='SAT-WEB-NFE-COM_2.asp' + chave + ''
+        }
+        
+    </script>
+
+</head>
+<body style="margin: 0px;">
+
+    <script type="text/javascript" src="../../include/AAE_Cabecalho.js"></script>
+
+    <script type="text/javascript">
+        function consultaDigitacao() {
+
+            self.location = 'SAT-WEB-NFE-NFC_1.asp'
+        }
+
+       
+        function imprimirNFe() {
+            var dataAtual = new Date();
+            var janela = window.open('', 'winNFeCompleta', 'top=50,left=50,width=550,height=650,scrollbars=yes');
+            var HTML = '<html>';
+
+            HTML += '<LINK rel=\"STYLESHEET\" href=\"Estilos/nfe-vis.css\" type=\"text/css\">';
+            HTML += '<style type"text/css" media="print">';
+            HTML += '.notprint {display: none;}'
+            HTML += '.body{  margin: 25mm 60mm 25mm 25mm;}'
+            HTML += '</style>';
+            HTML += '<style type="text/css">';
+            HTML += '.toggle { background-image:none !important; }';
+            HTML += '.toggable { display: block !important; }';
+            HTML += '</style>';
+            HTML += '<title>Impressão NFC-e</title><body><div class="notprint"><input type="button" value="Imprimir" onClick="window.print();">&nbsp;&nbsp;&nbsp;<input type="button" value="Fechar" onClick="window.close();"><hr noshade></div>';
+            HTML += '<table width="450" align="center" border="0" cellpadding="0" cellspacing="0" class="textoVerdana9bold">';
+            HTML += '<tr><td width="70" align="center"><img src="Imagens/' + imagemLogo() + '" height="67"></td>';
+            HTML += '<td align="center" valign="middle"><strong>GOVERNO DO ESTADO ' + getUf()['ext'].toUpperCase() + '<br>SECRETARIA DA FAZENDA<br><br>DANFE NFC-e - Nota Fiscal do Consumidor Eletrônica<br>Impresso ' + dataAtual.toLocaleDateString() + ' às ' + dataAtual.toLocaleTimeString() + '</strong></td></tr></table><br>';
+            HTML += document.getElementById('nfce').innerHTML;
+            HTML += '<br />';
+            HTML += '<tr> <td align="left" style="padding-left:23px"><br /><table><tr><td width="200"><b>Administração Tributária:</b>';
+            HTML += '</td><td>&nbsp;Receita Estadual RS</td></tr><tr><td><b>Data/Hora da Consulta:</b></td>';
+            HTML += '<td>&nbsp;11/08/2020&nbsp;12:32:46</td></tr></table></td></tr>';
+            HTML += '</body></html>';
+
+            janela.document.write(HTML);
+            janela.document.close();
+        }
+        
+    </script>
+    
+    <script type="text/javascript" src="../include/AAE_Cabecalho.js"></script>
+    <div id="nfce">
+   <table width="500px" id="respostaWS" cellspacing="0" cellpadding="5" border="0">
+        <tr>
+            <td>
+            <?xml version="1.0" encoding="utf-8"?><link rel="stylesheet" type="text/css" href="https://nfe-extranet.sefazrs.rs.gov.br/ws/consNFCeXslt/css/sefaz_nfce.css" xmlns:n="http://www.portalfiscal.inf.br/nfe" xmlns:chave="http://exslt.org/chaveacesso" xmlns:r="http://www.serpro.gov.br/nfe/remessanfe.xsd">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" xmlns:n="http://www.portalfiscal.inf.br/nfe" xmlns:chave="http://exslt.org/chaveacesso" xmlns:r="http://www.serpro.gov.br/nfe/remessanfe.xsd">
+  <tr class="linhacabec">
+    <td><b>CONSULTA DA NFC-e</b></td>
+  </tr>
+  <tr>
+    <td><br></td>
+  </tr>
+  <tr>
+    <td style="padding-left:15px">
+      <table width="500" border="1" cellspacing="0" cellpadding="0" bordercolor="#0D000A" bgcolor="#FFFFEA">
+        <tr>
+          <td>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td rowspan="4" align="left"><img src="https://nfe-extranet.sefazrs.rs.gov.br/ws/consNFCeXslt/img/logoMarcaNFC.PNG" alt="NFC-e" width="80" height="50"></td>
+                      <td class="NFCCabecalho_SubTitulo" align="left">ATACADAO S.A.</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo1" align="left">
+                        CNPJ:
+                        75.315.333/0121-15      
+                        Inscrição Estadual: 1090362886</td>
+                    </tr>
+                  </table>
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo1" align="left">ROD RST 287,
+                        5500,
+                        CAMOBI,
+                        SANTA MARIA,
+                        RS</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="NFCCabecalho_Titulo NFCBold" align="center">DANFE NFC-e - Documento Auxiliar da Nota Fiscal Eletrônica para Consumidor Final - Via Consumidor</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">NFC-e não permite aproveitamento de crédito de ICMS</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_Titulo NFCBold" align="center">Emissão normal</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table border="0" style="width: 100%;">
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">
+                        NFC-e nº: 103456
+                        Série: 508
+                        Data de Emissão: 27/04/2019 20:30:03</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">Consulte pela Chave de Acesso em https://www.sefaz.rs.gov.br/NFCE</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo NFCBold" align="center">CHAVE DE ACESSO</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">4319 0475 3153 3301 2115 6550 8000 1034 5610 4857 9173</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="center">
+                        Protocolo de Autorização: 143190572294814</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-top">
+                  <table border="0" style="width: 100%;">
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo NFCBold" align="center" width="290">CONSUMIDOR</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCCabecalho_SubTitulo" align="left" width="300">
+                          CPF:
+                          044.272.479-97</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="left" style="width: 60px;">Código</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="left" style="width: 230px;">Descrição</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="center" style="width: 50px;">Qtde</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="left" style="width: 10px;">Un</td>
+                      <td class="borda-pontilhada-3D NFCDetalhe_Item" align="right" style="width: 60px;">Vl Unit</td>
+                      <td class="borda-pontilhada-top-botton" align="right" style="width: 60px;">Vl Total</td>
+                    </tr>
+                    <tr id="Item + 1">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">14201952</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">LEITE L.VIDA MOLICO</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">4</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">3,2</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">12,80</td>
+                    </tr>
+                    <tr id="Item + 2">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">41497915</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">ERVA MATE SAPHIRA</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">8,79</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">8,79</td>
+                    </tr>
+                    <tr id="Item + 3">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">55374981</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">CR.DENTAL COLGATE</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">27,45</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">27,45</td>
+                    </tr>
+                    <tr id="Item + 4">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">46505956</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">GOMA MANDIOCA BEIJU</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">2</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">11,98</td>
+                    </tr>
+                    <tr id="Item + 5">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">11874800</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">FEIJAO KICALDO</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">6,1</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">6,10</td>
+                    </tr>
+                    <tr id="Item + 6">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">61164927</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">ACUCAR MASCAVO</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">9,98</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">9,98</td>
+                    </tr>
+                    <tr id="Item + 7">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">54636962</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">BISC.CLUB SOCIAL</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,18</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,18</td>
+                    </tr>
+                    <tr id="Item + 8">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">51583990</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">SAC INST.BIO 60X70</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">2</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">0,2</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">0,40</td>
+                    </tr>
+                    <tr id="Item + 9">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">3186904</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">AVEIA NATUS FLOCOS</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">2</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,15</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">10,30</td>
+                    </tr>
+                    <tr id="Item + 10">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">28999978</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">EXTRATO FUGINI POUCH</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">2</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">1,79</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">3,58</td>
+                    </tr>
+                    <tr id="Item + 11">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">9961968</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">MAC.ORQUIDEA</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,28</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,28</td>
+                    </tr>
+                    <tr id="Item + 12">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">59113962</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">RF.QUEIJO PRATO FAT.</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">12,98</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">12,98</td>
+                    </tr>
+                    <tr id="Item + 13">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">59114921</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">QJO MUSS.FAT.FRIMES</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">12,98</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">12,98</td>
+                    </tr>
+                    <tr id="Item + 14">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">8709976</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">TOMATE S/PEL.MASTRO.</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">3</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">3,95</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">11,85</td>
+                    </tr>
+                    <tr id="Item + 15">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">54149963</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">TOMATE S/PELE CUBOS</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">2</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,25</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">4,50</td>
+                    </tr>
+                    <tr id="Item + 16">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">28850933</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">AGUA M.FLORESTA PET</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">4</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">4,29</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">17,16</td>
+                    </tr>
+                    <tr id="Item + 17">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">23914965</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">AGUA COCO SOCOCO</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">6,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">6,99</td>
+                    </tr>
+                    <tr id="Item + 18">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">55748948</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">OLEO COCO DUCOCO</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">12,9</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">12,90</td>
+                    </tr>
+                    <tr id="Item + 19">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">34320950</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">MACA DISNEY</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,5</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,50</td>
+                    </tr>
+                    <tr id="Item + 20">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">41213970</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">LEITE FERM.ACTIVIA</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">10,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">10,99</td>
+                    </tr>
+                    <tr id="Item + 21">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">41552997</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">CAFE BOM JESUS VAC.T</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">8,4</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">8,40</td>
+                    </tr>
+                    <tr id="Item + 22">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">28865914</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">MASSA PIZZA ROMENA</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">3</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">8,97</td>
+                    </tr>
+                    <tr id="Item + 23">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">32150906</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">PAO FORMA S.BOYS</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">4,6</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">4,60</td>
+                    </tr>
+                    <tr id="Item + 24">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">41208971</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">LEITE FERM.ACTIVIA M</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">10,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">10,99</td>
+                    </tr>
+                    <tr id="Item + 25">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">25606910</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">MANT.ELEGE TABLETE</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,99</td>
+                    </tr>
+                    <tr id="Item + 26">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">41666903</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">CREME LEITE TIROL</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">2</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">1,89</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">3,78</td>
+                    </tr>
+                    <tr id="Item + 27">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">28961968</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">CHA BARAO VERDE</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">2</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,4</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">4,80</td>
+                    </tr>
+                    <tr id="Item + 28">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">39425934</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">FILTRO.CAFE BRIGITTA</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,99</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,99</td>
+                    </tr>
+                    <tr id="Item + 29">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">13347932</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">LARANJA MIMO DO CEU</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1,626</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">KG</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">7,3</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">11,87</td>
+                    </tr>
+                    <tr id="Item + 30">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">7081919</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">AZEITE GALLO VDO</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">17,49</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">17,49</td>
+                    </tr>
+                    <tr id="Item + 31">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">63424984</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">VINAGRE ROSINA FRUTA</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,45</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,45</td>
+                    </tr>
+                    <tr id="Item + 32">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">64141987</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">MAC.ORQ.ESPAGUETE</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,39</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">2,39</td>
+                    </tr>
+                    <tr id="Item + 33">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">62248998</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">ATUM ROBINSON</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">4</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">4,29</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">17,16</td>
+                    </tr>
+                    <tr id="Item + 34">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">62246979</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">ATUM ROBINSON CRUSOE</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">4</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,19</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">20,76</td>
+                    </tr>
+                    <tr id="Item + 35">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">53895956</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">RF.CARNE MOIDA BDJ</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">10,65</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">10,65</td>
+                    </tr>
+                    <tr id="Item + 36">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">36874148</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">KIWI</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">3</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">5,6</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">16,80</td>
+                    </tr>
+                    <tr id="Item + 37">
+                      <td class="NFCDetalhe_Item" align="left" style="width: 60px;">58250984</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 300px;">LASANHA BOLONHESA</td>
+                      <td class="NFCDetalhe_Item" align="center" style="width: 50px;">1</td>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 10px;">UN</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">14,5</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">14,50</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton">
+                  <table class="NFCCabecalho" border="0">
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;">Valor total R$</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">358,08</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;">Valor descontos R$</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">1,20</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;">FORMA PAGAMENTO</td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 120px;">VALOR PAGO R$</td>
+                    </tr>
+                    <tr>
+                      <td class="NFCDetalhe_Item" align="left" style="width: 410px;"></td>
+                      <td class="NFCDetalhe_Item" align="right" style="width: 70px;">NaN</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="borda-pontilhada-botton NFCDetalhe_Item " align="right" style="FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 10px;"><strong>Versão XSLT: 1.10</strong></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+            </td>
+            
+        </tr>
+    </table>
+    </div>
+    
+    <table>
+        <tr>
+            <td style="padding-bottom:10px" align="left">
+             
+            <input type="button" class="button" value="Imprimir DANFE NFC-e" onclick="imprimirNFe();" />
+            <input type="button" class="button" value="Visualizar em Abas" onclick="visualizarAbas();" />
+                
+            <input type="button" class="button" value="Nova Consulta" onclick="novaConsulta();" /><br />
+            </td>
+        </tr>
+        
+        <tr>
+            <td align="left" style="padding-left:23px">
+                <table>
+                    <tr>
+                        <td width="200">
+                            <b>Administração Tributária:</b>
+                        </td>
+                        <td>
+                            &nbsp;Receita Estadual RS
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Data/Hora da Consulta:</b>
+                        </td>
+                        <td>
+                            &nbsp;11/08/2020&nbsp;12:32:46
+                        </td>
+                    </tr>
+                </table>
+                </td>
+        </tr>       
+    </table>
+
+    <script type="text/javascript" src="../include/AAE_fim.js"></script>
+
+</body>
+</html>
