@@ -1,0 +1,71 @@
+{
+  "aliases": {
+    "{PREFIX}nr-all": {},
+    "{PREFIX}nr-all-events": {}
+  },
+  "mappings": {
+    "date_detection": false,
+    "numeric_detection": false,
+    "dynamic": false,
+    "properties": {
+      "oarepo:extends": "nr-common-v1.0.0.json#/mappings/properties",
+      "events": {
+        "type": "object",
+        "properties": {
+          "nameOriginal": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "nameAlternate": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword"
+              }
+            }
+          },
+          "nameUnified": {
+            "type": "nr-taxonomies-nameunified-v1.0.0.json#/nameUnified"
+          },
+          "date": {
+            "type": "keyword",
+            "fields": {
+              "date": {
+                "type": "date",
+                "format": "YYYY",
+                "ignore_malformed": true
+              }
+            }
+          },
+          "location": {
+            "type": "nested",
+            "properties": {
+              "place": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword"
+                  }
+                }
+              },
+              "country": {
+                "type": "taxonomy-term",
+                "properties": {
+                  "title": {
+                    "type": "multilingual"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
