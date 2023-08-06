@@ -1,0 +1,20 @@
+circum
+click
+
+[lint]
+flake8
+flake8-import-order
+flake8-builtins
+flake8-comprehensions
+flake8-bandit
+flake8-bugbear
+
+[pykinect]
+pykinect@ https://github.com/LumineerLabs/PTVS/archive/9c9b02416e46a8661fd324a5d66f9b32dff0b55a.zip
+
+[pykinect2]
+pykinect2@ https://github.com/LumineerLabs/PyKinect2/archive/81f9a55d5ceeec342dc0c95b0f8084b5816aca08.zip
+
+[test]
+pytest
+pytest-cov
