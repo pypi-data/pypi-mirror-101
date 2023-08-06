@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% set title = "Riego - Ventilboxen" %}
+{% set active_menu = "boxes" %}
+
+
+{% block content %}
+<h1>Boxes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Hostname</th>
+            <th scope="col">ip_address</th>
+            <th scope="col">online_since</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td><a href="{{url('boxes_item_view', item_id=item['id']) }}">{{ item['name'] }}</a></td>
+            <td>{{ item['hostname'] }} </td>
+            <td><a href="http://{{item['ip_address']}}" target="_parent">{{item['ip_address']}}</td>
+            <td>{{ item['online_since']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>
+    <a href="{{url('boxes_new')}}">New</a>
+</p>
+
+{% endblock %}
