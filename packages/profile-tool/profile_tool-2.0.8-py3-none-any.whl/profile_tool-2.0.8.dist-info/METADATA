@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: profile-tool
+Version: 2.0.8
+Summary: Wrapper tool to retrieve Idaptive profiles for the AWS CLI.
+Home-page: UNKNOWN
+Author: Youssef Riahi
+Author-email: y.riahi@gmail.com
+License: Apache License 2.0
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.0
+Requires-Dist: boto3 (==1.17.27)
+Requires-Dist: certifi (==2020.12.5)
+Requires-Dist: colorama (==0.4.4)
+Requires-Dist: requests (==2.25.1)
+
+UNKNOWN
+
+
