@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: ivy-vision
+Version: 1.1.4
+Summary: 3D Vision functions with end-to-end support for deep learning developers, written in Ivy.
+Home-page: https://ivy-dl.org/vision
+Author: Ivy Team
+Author-email: ivydl.team@gmail.com
+License: Apache 2.0
+Project-URL: Docs, https://ivy-dl.org/vision/
+Project-URL: Source, https://github.com/ivy-dl/vision
+Description: # What is Ivy Vision?
+        
+        Ivy vision focuses predominantly on 3D vision, with functions for
+              camera geometry, image projections, co-ordinate frame transformations, forward warping, inverse warping, optical flow,
+              depth triangulation, voxel grids, point clouds, signed distance functions, and others.
+              Ivy currently supports Jax, TensorFlow, PyTorch, MXNet and Numpy. Check out the [docs](https://ivy-dl.org/vision) for more info!
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: Apache Software License
+Description-Content-Type: text/markdown
