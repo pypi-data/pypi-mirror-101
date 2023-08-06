@@ -1,0 +1,107 @@
+{
+  "நீட்சி": {
+    "த": "நீர்லீ"
+  },
+  "பெயர்": {
+    "த": "நீ"
+  },
+  "பதிப்புகள்": {
+    "": [
+      "start : ( ruledef | directive ) +",
+      "directive : \"@\" NAME ( STRING | NAME ) \n         | \"@\" JS -> js_code",
+      "ruledef : NAME \"->\" expansions \n       | NAME REGEXP \"->\" expansions -> macro",
+      "expansions : expansion ( \"|\" expansion ) *",
+      "expansion : expr + js",
+      "?expr : item ( \":\" /[+*?]/ ) ?",
+      "?item : rule | string | regexp | null \n     | \"(\" expansions \")\"",
+      "rule : NAME",
+      "string : STRING",
+      "regexp : REGEXP",
+      "null : \"null\"",
+      "JS : /{%.*?%}/s",
+      "js : JS ?",
+      "COMMENT : /#[^\\n]*/",
+      "REGEXP : /\\[.*?\\]/",
+      "%import common . ESCAPED_STRING -> STRING",
+      "%import common . WS",
+      "%ignore WS",
+      "%ignore COMMENT"
+    ]
+  },
+  "விதிகள்": {
+    "start : ( ruledef | directive ) +": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "directive : \"@\" NAME ( STRING | NAME ) \n         | \"@\" JS -> js_code": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "ruledef : NAME \"->\" expansions \n       | NAME REGEXP \"->\" expansions -> macro": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "expansions : expansion ( \"|\" expansion ) *": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "expansion : expr + js": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "?expr : item ( \":\" /[+*?]/ ) ?": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "?item : rule | string | regexp | null \n     | \"(\" expansions \")\"": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "rule : NAME": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "string : STRING": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "regexp : REGEXP": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "null : \"null\"": {
+      "பெயர்ப்பு": {}
+    },
+    "JS : /{%.*?%}/s": {
+      "பெயர்ப்பு": {}
+    },
+    "js : JS ?": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "COMMENT : /#[^\\n]*/": {
+      "பெயர்ப்பு": {}
+    },
+    "REGEXP : /\\[.*?\\]/": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%import common . ESCAPED_STRING -> STRING": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%import common . WS": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%ignore WS": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    },
+    "%ignore COMMENT": {
+      "பெயர்ப்பு": {},
+      "தேவை": false
+    }
+  },
+  "மொழிபெயர்ப்பாளர்கள்": []
+}

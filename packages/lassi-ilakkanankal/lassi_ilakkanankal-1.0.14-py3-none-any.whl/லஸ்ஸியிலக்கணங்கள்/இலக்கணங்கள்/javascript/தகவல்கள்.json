@@ -1,0 +1,21 @@
+{
+  "பெயர்": "javascript",
+  "நீட்சி": "js",
+  "இலக்கணம் ஆரம்பம்": "start",
+  "மொழி": "en",
+  "எண்ணுரு": "latin",
+  "இனங்காட்டி கிளைகள்": {
+    "variable_declaration": 0,
+    "function_declaration": 0,
+    "class_declaration": 0,
+    "formal_parameter_list": true
+  },
+  "இலக்கணம்": "javascript.lark",
+  "படிமுறைத்_தீர்வு": "earley",
+  "சோதனைகள்": [
+    {
+      "கிட்": "https://github.com/tc39/test262.git",
+      "வழி": "test262/test/language/**/*.js"
+    }
+  ]
+}
