@@ -1,0 +1,67 @@
+Metadata-Version: 2.1
+Name: flaskmng
+Version: 1.0.2
+Summary: Tool that makes managing Flask easy.
+Home-page: https://github.com/kritibytes/flaskmng#readme
+Author: kritibytes
+Author-email: kritibytes@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development
+Classifier: Natural Language :: English
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Welcome to flaskmng
+
+## What is flaskmng?
+
+**flaskmng** is a tool that manages Flask project. It is designed in MVT architecture.
+
+## Usage
+
+First of all, you must create virtual environment.
+
+```bash
+> python -m venv env
+```
+
+To activate,
+
+```bash
+> . env/Scripts/activate # for Windows
+> source env/bin/activate # for Linux
+```
+
+Then, for installing flaskmng to the virtual environment you must use pip. After installing pip enter the command given below:
+
+```bash
+> pip install flaskmng 
+```
+
+### Startproject
+
+For creating main structure of your flask application and starting project: 
+
+```bash
+> flaskmng startproject
+```
+
+Don't forget to add your virtual environment name to .gitignore file.
+
+### Startapp
+Then, you can add multiple apps to your project. For creating single app structure:
+
+```bash
+> flaskmng startapp
+```
+
+## Conclusion
+In conclusion, your flask project ready to development. Enjoy the advantages of flaskmng.
+
+**Thanks for using!**
+
+
