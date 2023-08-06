@@ -1,0 +1,26 @@
+Metadata-Version: 2.0
+Name: nutritranslate
+Version: 0.5.4
+Summary: A service that translates and normalizes food nutrients
+Home-page: https://github.com/ineeve/nutrients-translator
+Author: Renato Campos
+Author-email: renatoineeve@gmail.com
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+# Use instructions
+
+```python
+from nutritranslate import nt
+engTerm = nt.translate('energía')
+```
+
+# Publish new version
+Update the version in setup.py
+```bash
+python3 setup.py sdist bdist_wheel
+twine upload dist/*
+```
+
