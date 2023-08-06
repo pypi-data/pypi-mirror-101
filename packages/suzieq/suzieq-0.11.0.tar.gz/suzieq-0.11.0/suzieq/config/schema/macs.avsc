@@ -1,0 +1,81 @@
+{
+    "namespace": "suzieq",
+    "name": "macs",
+    "type": "record",
+    "fields": [
+        {
+	    "name": "sqvers",
+	    "type": "string",
+	    "partition": 0,
+	    "default": "1.0"
+	},
+        {
+            "name": "oif",
+            "type": "string",
+            "display": 4
+        },
+        {
+            "name": "macaddr",
+            "type": "string",
+            "key": 3,
+            "display": 3	    
+        },
+        {
+            "name": "mackey",
+            "type": "string",
+            "key": 2
+        },
+        {
+            "name": "protocol",
+            "type": "string"
+        },
+        {
+            "name": "bd",
+            "type": "string",
+            "display": 6
+        },
+        {
+            "name": "vlan",
+            "type": "long",
+            "display": 2
+        },
+        {
+            "name": "remoteVtepIp",
+            "type": "string",
+            "display": 5	    
+        },
+        {
+            "name": "flags",
+            "type": "string",
+            "display": 7
+        },
+	{
+            "name": "moveCount",
+            "type": "long",
+	    "description": "Number of times this MAC has moved for duration",
+	    "depends": "namespace hostname mackey macaddr oif remoteVtepIp"
+	},
+        {
+            "name": "hostname",
+            "type": "string",
+            "key": 1,
+            "display": 1,
+	    "partition": 2
+        },
+        {
+            "name": "namespace",
+            "type": "string",
+            "key": 0,
+            "display": 0,
+	    "partition": 1
+        },
+        {
+            "name": "timestamp",
+            "type": "timestamp"
+        },
+        {
+            "name": "active",
+            "type": "boolean"
+        }
+    ]
+}

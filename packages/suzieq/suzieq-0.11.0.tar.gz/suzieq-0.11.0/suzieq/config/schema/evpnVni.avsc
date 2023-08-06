@@ -1,0 +1,124 @@
+{
+    "namespace": "suzieq",
+    "name": "evpnVni",
+    "type": "record",
+    "fields": [
+        {
+	    "name": "sqvers",
+	    "type": "string",
+	    "partition": 0,
+	    "default": "1.0"
+	},
+        {
+            "name": "routerMac",
+            "type": "string"
+        },
+        {
+            "name": "secVtepIp",
+            "type": "string",
+	    "display": 8
+        },
+        {
+            "name": "vrf",
+            "type": "string"
+        },
+        {
+            "name": "advGateway",
+            "type": "boolean"
+        },
+        {
+            "name": "state",
+            "type": "string",
+	    "display": 5
+        },
+        {
+            "name": "mcastGroup",
+            "type": "string",
+	    "display": 6
+        },
+        {
+            "name": "ifname",
+            "type": "string"
+        },
+        {
+            "name": "vlan",
+            "type": "long",
+            "display": 4
+        },
+        {
+            "name": "replicationType",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "display": 3
+        },
+        {
+            "name": "numArpNd",
+            "type": "long"
+        },
+        {
+            "name": "remoteVtepList",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "name": "remoteVtep"
+                }
+            },
+            "display": 7
+        },
+        {
+            "name": "vniFilter",
+            "type": "string"
+        },
+        {
+            "name": "vni",
+            "type": "long",
+            "key": 2,
+            "display": 2
+        },
+        {
+            "name": "l2VniList",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "long",
+                    "name": "l2Vni"
+                }
+            }
+        },
+        {
+            "name": "numMacs",
+            "type": "long"
+        },
+        {
+            "name": "priVtepIp",
+            "type": "string",
+	    "display": 7
+        },
+        {
+            "name": "hostname",
+            "type": "string",
+            "key": 1,
+            "display": 1,
+	    "partition": 2
+        },
+        {
+            "name": "namespace",
+            "type": "string",
+            "key": 0,
+	    "display": 0,
+	    "partition": 1
+        },
+        {
+            "name": "timestamp",
+            "type": "timestamp"
+        },
+        {
+            "name": "active",
+            "type": "boolean"
+        }
+    ]
+}

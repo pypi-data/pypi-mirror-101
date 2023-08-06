@@ -1,0 +1,149 @@
+{
+    "namespace": "suzieq",
+    "name": "mlag",
+    "type": "record",
+    "fields": [
+        {
+	    "name": "sqvers",
+	    "type": "string",
+	    "partition": 0,
+	    "default": "1.0"
+	},
+        {
+            "name": "portsErrDisabled",
+            "type": "string"
+        },
+        {
+            "name": "mlagDualPortsList",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "name": "mlagDualPort"
+                }
+            }
+        },
+        {
+            "name": "mlagSinglePortsList",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "name": "mlagSinglePort"
+                }
+            }
+        },
+        {
+            "name": "mlagErrorPortsList",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "name": "mlagErrorPort"
+                }
+            }
+        },
+        {
+            "name": "vtepIP",
+            "type": "string"
+        },
+        {
+            "name": "peerRole",
+            "type": "string"
+        },
+        {
+            "name": "backupActive",
+            "type": "boolean"
+        },
+        {
+            "name": "mlagSinglePortsCnt",
+            "type": "long",
+            "display": 8
+        },
+        {
+            "name": "role",
+            "type": "string",
+            "display": 5
+        },
+        {
+            "name": "usesLinkLocal",
+            "type": "boolean"
+        },
+        {
+            "name": "mlagDualPortsCnt",
+            "type": "long",
+            "display": 7
+        },
+        {
+            "name": "state",
+            "type": "string",
+            "display": 3
+        },
+        {
+            "name": "peerMacAddress",
+            "type": "string"
+        },
+        {
+            "name": "mlagErrorPortsCnt",
+            "type": "long",
+            "display": 9
+        },
+        {
+            "name": "peerLink",
+            "type": "string",
+            "display": 6
+        },
+        {
+            "name": "configSanity",
+            "type": "string"
+        },
+        {
+            "name": "backupReason",
+            "type": "string"
+        },
+        {
+            "name": "systemId",
+            "type": "string",
+            "display": 2
+        },
+        {
+            "name": "backupIP",
+            "type": "string"
+        },
+        {
+            "name": "peerAddress",
+            "type": "string",
+            "display": 4
+        },
+        {
+            "name": "peerLinkStatus",
+            "type": "string"
+        },
+        {
+            "name": "domainId",
+            "type": "string"
+        },
+        {
+            "name": "hostname",
+            "type": "string",
+            "key": 1,
+            "display": 1,
+	    "partition": 2
+        },
+        {
+            "name": "namespace",
+            "type": "string",
+            "key": 0,
+            "display": 0,
+	    "partition": 1
+        },
+        {
+            "name": "timestamp",
+            "type": "timestamp"
+        },
+        {
+            "name": "active",
+            "type": "boolean"
+        }
+    ]
+}

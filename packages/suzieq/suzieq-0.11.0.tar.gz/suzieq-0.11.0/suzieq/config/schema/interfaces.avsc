@@ -1,0 +1,149 @@
+{
+    "namespace": "suzieq",
+    "name": "interfaces",
+    "type": "record",
+    "fields": [
+        {
+            "name": "sqvers",
+            "type": "string",
+            "partition": 0,
+            "default": "3.0"
+        },
+        {
+            "name": "ifindex",
+            "type": "long"
+        },
+        {
+            "name": "reason",
+            "type": "string"
+        },
+        {
+            "name": "routeDistinguisher",
+            "type": "string"
+        },
+        {
+            "name": "macaddr",
+            "type": "string"
+        },
+        {
+            "name": "interfaceMac",
+            "type": "string"
+        },
+        {
+            "name": "type",
+            "type": "string",
+            "display": 5
+        },
+        {
+            "name": "description",
+            "type": "string"
+        },
+        {
+            "name": "numChanges",
+            "type": "long"
+        },
+        {
+            "name": "speed",
+            "type": "long"
+        },
+        {
+            "name": "vlan",
+            "type": "int",
+            "display": 7
+        },
+        {
+            "name": "innerVlan",
+            "type": "int"
+        },
+        {
+            "name": "vlanName",
+            "type": "string"
+        },
+        {
+            "name": "ipAddressList",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "name": "ipAddress"
+                }
+            },
+            "display": 9
+        },
+        {
+            "name": "srcVtepIp",
+            "type": "string"
+        },
+        {
+            "name": "state",
+            "type": "string",
+            "display": 3
+        },
+        {
+            "name": "adminState",
+            "type": "string",
+	    "display": 4
+        },
+        {
+            "name": "master",
+            "type": "string",
+            "display": 8
+        },
+        {
+            "name": "ifname",
+            "type": "string",
+            "key": 2,
+            "display": 2
+        },
+        {
+            "name": "statusChangeTimestamp",
+            "type": "double"
+        },
+        {
+            "name": "vni",
+            "type": "int"
+        },
+        {
+            "name": "ip6AddressList",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "name": "ip6Address"
+                }
+            },
+            "display": 10
+        },
+        {
+            "name": "lacpBypass",
+            "type": "boolean"
+        },
+        {
+            "name": "mtu",
+            "type": "long",
+            "display": 6
+        },
+        {
+            "name": "hostname",
+            "type": "string",
+            "key": 1,
+            "display": 1,
+            "partition": 2
+        },
+        {
+            "name": "namespace",
+            "type": "string",
+            "key": 0,
+            "display": 0,
+            "partition": 1
+        },
+        {
+            "name": "timestamp",
+            "type": "timestamp"
+        },
+        {
+            "name": "active",
+            "type": "boolean"
+        }
+    ]
+}
