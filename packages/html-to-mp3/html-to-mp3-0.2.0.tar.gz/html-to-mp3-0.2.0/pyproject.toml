@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "html-to-mp3"
+description = "Convert HTML and text to mp3s"
+version = "0.2.0"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/michaelwooley/html-to-mp3"
+authors = ["Michael Wooley <wm.wooley@gmail.com>"]
+
+[tool.poetry.scripts]
+html2mp3 = 'html_to_mp3.html_to_mp3:html2mp3'
+
+
+[tool.poetry.dependencies]
+python = "^3.9"
+beautifulsoup4 = "^4.9.3"
+requests = "^2.25.1"
+click = "^7.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^20.8b1"
+pylint = "^2.7.4"
+ipython = "^7.22.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
