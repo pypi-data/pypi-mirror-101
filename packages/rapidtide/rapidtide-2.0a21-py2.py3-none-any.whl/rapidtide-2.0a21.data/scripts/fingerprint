@@ -1,0 +1,238 @@
+#!python
+# -*- coding: latin-1 -*-
+#
+#   Copyright 2016-2021 Blaise Frederick
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+#
+#
+import argparse
+import os
+import sys
+from argparse import RawTextHelpFormatter
+from os.path import expanduser
+from os.path import join as pjoin
+
+import numpy as np
+import pandas as pd
+
+import rapidtide.fit as tide_fit
+import rapidtide.io as tide_io
+
+
+def fingerprint_main(
+    themapname,
+    whichtemplate,
+    whichatlas,
+    outputroot,
+    fitorder,
+    themaskname=None,
+    intercept=True,
+    debug=False,
+):
+    # read the data
+    referencedir = os.path.join(
+        os.path.split(os.path.split(os.path.split(__file__)[0])[0])[0],
+        "rapidtide",
+        "data",
+        "reference",
+    )
+
+    if whichtemplate == "lag":
+        thetemplatename = os.path.join(referencedir, "HCP1200_lag_2mm.nii.gz")
+    elif whichtemplate == "strength":
+        thetemplatename = os.path.join(referencedir, "HCP1200_strength_2mm.nii.gz")
+    elif whichtemplate == "sigma":
+        thetemplatename = os.path.join(referencedir, "HCP1200_sigma_2mm.nii.gz")
+    else:
+        print("illegal template:", whichtemplate)
+        sys.exit()
+
+    if whichatlas == "ASPECTS":
+        theatlasname = os.path.join(referencedir, "ASPECTS_2mm.nii.gz")
+        theatlasregionsname = os.path.join(referencedir, "ASPECTS_regions.txt")
+    elif whichatlas == "ATT":
+        theatlasname = os.path.join(referencedir, "ATTbasedFlowTerritories_split_2mm.nii.gz")
+        theatlasregionsname = os.path.join(
+            referencedir, "ATTbasedFlowTerritories_split_regions.txt"
+        )
+    else:
+        print("illegal atlas:", whichatlas)
+        sys.exit()
+
+    (
+        thetemplate,
+        thetemplate_data,
+        thetemplate_hdr,
+        thetemplatedims,
+        thetemplatesizes,
+    ) = tide_io.readfromnifti(thetemplatename)
+    atlas, atlas_data, atlas_hdr, atlasdims, atlassizes = tide_io.readfromnifti(theatlasname)
+    atlaslabels = pd.read_csv(theatlasregionsname, delimiter="\t", header=None, names=["Region"])
+    (
+        themap,
+        themap_data,
+        themap_hdr,
+        themapdims,
+        thetemplatesizes,
+    ) = tide_io.readfromnifti(themapname)
+    if themaskname is None:
+        themask_data = None
+    else:
+        (
+            themask,
+            themask_data,
+            themask_hdr,
+            themaskdims,
+            thetemplatesizes,
+        ) = tide_io.readfromnifti(themaskname)
+
+    # do the fit
+    thefitmap, thecoffs, theRs = tide_fit.territorydecomp(
+        themap_data,
+        thetemplate_data,
+        atlas_data.astype(int),
+        inputmask=themask_data,
+        fitorder=fitorder,
+        intercept=intercept,
+        debug=True,
+    )
+
+    # present the data
+    atlaslabels["R"] = theRs
+    newcols = pd.DataFrame(np.asarray(thecoffs))
+    columnnames = []
+    if intercept:
+        startpt = 0
+    else:
+        startpt = 1
+    for i in range(startpt, fitorder + 1):
+        columnnames += str(i)
+    newcols.columns = columnnames
+    atlaslabels = pd.concat([atlaslabels, newcols], axis=1)
+    atlaslabels.to_csv(outputroot + "_fits.tsv", sep="\t")
+    if debug:
+        print(atlaslabels)
+
+    # save the data
+    tide_io.savetonifti(thefitmap, themap_hdr, outputroot + "_fit")
+    diffmap = themap_data - thefitmap
+    diffmap[np.where(atlas_data < 1)] = 0.0
+    tide_io.savetonifti(diffmap, themap_hdr, outputroot + "_fitdiff")
+
+
+if __name__ == "__main__":
+
+    class FullPaths(argparse.Action):
+        """Expand user- and relative-paths"""
+
+        def __call__(self, parser, namespace, values, option_string=None):
+            if values == "":
+                setattr(namespace, self.dest, "__EMPTY__")
+            else:
+                setattr(namespace, self.dest, os.path.abspath(os.path.expanduser(values)))
+
+    def is_dir(dirname):
+        """Checks if a path is an actual directory"""
+        if not os.path.isdir(dirname):
+            msg = "{0} is not a directory".format(dirname)
+            raise argparse.ArgumentTypeError(msg)
+        else:
+            return dirname
+
+    def is_file(filename):
+        """Checks if a file exists"""
+        if not os.path.exists(filename):
+            msg = "{0} does not exist".format(filename)
+            raise argparse.ArgumentTypeError(msg)
+        else:
+            return filename
+
+    parser = argparse.ArgumentParser(
+        description=(
+            "Fit a rapidtide output map to a canonical delay map, by vascular territory.\n"
+        ),
+        formatter_class=RawTextHelpFormatter,
+    )
+
+    parser.add_argument(
+        "inputfile",
+        help="rapidtide output map to decompose by vascular territory",
+        action=FullPaths,
+        type=is_file,
+    )
+
+    parser.add_argument(
+        "outputroot",
+        help="name root for output files",
+        action=FullPaths,
+        type=str,
+    )
+
+    parser.add_argument(
+        "--maskname",
+        help="mask defining voxels with valid values",
+        type=is_file,
+        default=None,
+    )
+
+    parser.add_argument(
+        "--atlas",
+        help="Atlas.  Options are\n"
+        "\tASPECTS:  ASPECTS territory atlas\n"
+        "\tATT:      Arterial transit time flow territories\n",
+        default="ASPECTS",
+    )
+
+    parser.add_argument(
+        "--fitorder",
+        help="order of polynomial fit to template\n",
+        type=int,
+        default=1,
+    )
+
+    parser.add_argument(
+        "--nointercept",
+        help="do not use the zeroth order component when fitting",
+        action="store_true",
+    )
+
+    parser.add_argument(
+        "--template",
+        help="Template.  Options are\n"
+        "\tlag:      time lag in seconds\n"
+        "\tstrength: correlation coefficient\n"
+        "\tsigma:    correlation peak width in seconds\n",
+        default="lag",
+    )
+
+    parser.add_argument(
+        "--debug",
+        help="output additionnal debugging information",
+        action="store_true",
+    )
+
+    args = parser.parse_args()
+    if args.debug:
+        print(args)
+
+    fingerprint_main(
+        args.inputfile,
+        args.template,
+        args.atlas,
+        args.outputroot,
+        args.fitorder,
+        intercept=not (args.nointercept),
+        themaskname=args.maskname,
+        debug=args.debug,
+    )
