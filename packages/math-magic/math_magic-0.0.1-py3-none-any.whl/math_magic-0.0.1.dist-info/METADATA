@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: math-magic
+Version: 0.0.1
+Summary: For basic math calculations
+Home-page: https://github.com/dmonisankar/math_magic
+Author: Monisankar Das
+Author-email: das.monisankar@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+
+# math magic
+
+Do basic math operations.
+
+## Instructions
+
+1. Install:
+
+```
+pip install math-magic
+```
+
+2. Compute LCM and GCD:
+
+```python
+from math_magic import basic_math
+
+# compute GCD
+gcd_result = basic_math.compute_gcd(24,16)
+# compute LCM
+lcm_result = basic_math.compute_lcm(24,16)
+
+```
+
+
