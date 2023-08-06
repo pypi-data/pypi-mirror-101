@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "text-dedup"
+version = "0.0.6"
+description = "Text deduplication with fuzzy match and more"
+authors = ["Chenghao Mou <mouchenghao@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+strsimpy = "^0.2.0"
+pandas = "^1.2.3"
+pytest = "^6.2.2"
+alive-progress = "^1.6.2"
+pytest-benchmark = "^3.2.3"
+sentence-transformers = "^1.0.3"
+datasets = "^1.5.0"
+datasketch = {extras = ["scipy"], version = "^1.5.3"}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
