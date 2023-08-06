@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "rapdevpy"
+version = "0.3.0"
+description = "A (personal) rapid development Python library that manages common tasks, tests and knowledge."
+
+license = "MIT"
+authors = ["Mislav Jaksic <jaksicmislav@gmail.com>"]
+maintainers = []
+readme = "README.md"
+
+homepage = "https://github.com/MislavJaksic/rapdevpy"
+repository = "https://github.com/MislavJaksic/rapdevpy"
+documentation = "https://github.com/MislavJaksic/rapdevpy"
+
+keywords = []
+
+classifiers = []
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.22.0"
+lxml = "^4.6.2"
+networkx = "^2.5.1"
+
+[tool.poetry.dev-dependencies]
+pytest-cov = "^2.8.1"
+black = "^19.10b0"
+pytest = "^5.2"
+sphinx = "^2.3.1"
+
+[tool.poetry.scripts]
+rapdevpy = "rapdevpy.runner:run"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
