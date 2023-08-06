@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: atomnlp
+Version: 0.0.1a4
+Summary: Atomic Natural Language Processing
+Home-page: https://github.com/GaoangLiu/atomnlp
+Author: GaoangLau
+Author-email: byteleap@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: colorlog (>=4.6.1)
+Requires-Dist: tqdm (>=4.56.0)
+
+A toy NLP toolkit. Atom stands for **Simple and Fast**.
+
+## usage
+```bash
+pip install atomnlp
+
+# bidirectional-match based segment method, quick but weak.
+atom -seg '服务不要云服务' 
+# output ['服务', '不要', '云服务']
+```
+
+
+
