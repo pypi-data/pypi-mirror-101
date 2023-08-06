@@ -1,0 +1,200 @@
+UVVM: ID_CONSTRUCTOR                     0.0 ns  AXILITE_VVC,1                  VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  AXILITE_VVC,1                  Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  AXILITE_VVC,1                  Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR                     0.0 ns  CLOCK_GENERATOR_VVC,1          VVC instantiated.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  CLOCK_GENERATOR_VVC,1          Command queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CONSTRUCTOR_SUB                 0.0 ns  CLOCK_GENERATOR_VVC,1          Result queue instantiated and will give a warning when reaching 1000 elements in queue.
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  CLOCK_GENERATOR_VVC,1            ..Interpreter: Waiting for command
+UVVM: ID_CTRL                            0.0 ns  AXILITE_VVC                    enable: instance 1 enabled.'SB AXILITE Enabled'
+UVVM: ID_CTRL                            0.0 ns  AXILITE_VVC                    config: config applied to instance 1.
+UVVM: ID_CTRL                            0.0 ns  AXILITE_VVC                    enable_log_msg: : message id id_data enabled
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  CLOCK_GENERATOR_VVC,1            ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                   0.0 ns  TB seq.(uvvm)                  ->start_clock(CLOCK_GENERATOR_VVC,1): 'Start clock generator'. [1]
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_CMD_INTERPRETER                 0.0 ns  CLOCK_GENERATOR_VVC,1            start_clock(CLOCK_GENERATOR_VVC,1). Command received  [1]
+UVVM: ID_UVVM_CMD_ACK                    0.0 ns  TB seq.(uvvm)                      ACK received.   [1]
+UVVM: ID_CMD_EXECUTOR                    0.0 ns  CLOCK_GENERATOR_VVC,1            start_clock(CLOCK_GENERATOR_VVC,1) - Will be executed  [1]
+UVVM: ID_CMD_INTERPRETER_WAIT            0.0 ns  CLOCK_GENERATOR_VVC,1            ..Interpreter: Waiting for command
+UVVM: ID_CLOCK_GEN                       0.0 ns  CLOCK_GENERATOR_VVC,1          Clock Clock started
+UVVM: ID_CMD_EXECUTOR_WAIT               0.0 ns  CLOCK_GENERATOR_VVC,1            ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 100.0 ns  TB seq.(uvvm)                  ->axilite_write(AXILITE_VVC,1, x"10", x"0000010"): 'set coef a'. [2]
+UVVM: ID_CMD_INTERPRETER               100.0 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"10", x"0000010"). Command received  [2]
+UVVM: ID_UVVM_CMD_ACK                  100.0 ns  TB seq.(uvvm)                      ACK received.   [2]
+UVVM: ID_CMD_EXECUTOR                  100.0 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"10", x"0000010") - Will be executed  [2]
+UVVM: ID_UVVM_SEND_CMD                 100.0 ns  TB seq.(uvvm)                  ->axilite_write(AXILITE_VVC,1, x"14", x"000000F"): 'set coef b'. [3]
+UVVM: ID_CMD_INTERPRETER_WAIT          100.0 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               100.0 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"14", x"000000F"). Command received  [3]
+UVVM: ID_UVVM_CMD_ACK                  100.0 ns  TB seq.(uvvm)                      ACK received.   [3]
+UVVM: ID_CMD_INTERPRETER_WAIT          100.0 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_BFM                           132.5 ns  AXILITE_VVC,1                  axilite_write(A:x"10", x"00000010") completed. 'set coef a'  [2]
+UVVM: ID_CMD_EXECUTOR                  132.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"14", x"000000F") - Will be executed  [3]
+UVVM: ID_BFM                           162.5 ns  AXILITE_VVC,1                  axilite_write(A:x"14", x"0000000F") completed. 'set coef b'  [3]
+UVVM: ID_CMD_EXECUTOR_WAIT             162.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->axilite_read(AXILITE_VVC,1, x"18"): 'read sum and diff'. [4]
+UVVM: ID_CMD_INTERPRETER               200.0 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"18"). Command received  [4]
+UVVM: ID_UVVM_CMD_ACK                  200.0 ns  TB seq.(uvvm)                      ACK received.   [4]
+UVVM: ID_CMD_EXECUTOR                  200.0 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"18") - Will be executed  [4]
+UVVM: ID_UVVM_SEND_CMD                 200.0 ns  TB seq.(uvvm)                  ->await_completion(AXILITE_VVC,1, 100 ns): 'wait for read to complete'. [5]
+UVVM: ID_CMD_INTERPRETER_WAIT          200.0 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               200.0 ns  AXILITE_VVC,1                    await_completion(AXILITE_VVC,1, 100 ns). Command received  [5]
+UVVM: ID_IMMEDIATE_CMD_WAIT            200.0 ns  AXILITE_VVC,1                    ..await_completion() - Pending completion wait for read to complete  [5]
+UVVM: ID_BFM                           222.5 ns  AXILITE_VVC,1                  axilite_read(A:x"18")=> x"1001F". 'read sum and diff'  [4]
+UVVM: ID_IMMEDIATE_CMD                 222.5 ns  AXILITE_VVC,1                  await_completion()  => Finished. wait for read to complete  [5]
+UVVM: ID_CMD_EXECUTOR_WAIT             222.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_CMD_ACK                  222.5 ns  TB seq.(uvvm)                      ACK received.   [5]
+UVVM: ID_UVVM_SEND_CMD                 222.5 ns  TB seq.(uvvm)                  ->fetch_result(AXILITE_VVC,1, 4): . [6]
+UVVM: ID_CMD_INTERPRETER_WAIT          222.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               222.5 ns  AXILITE_VVC,1                    fetch_result(AXILITE_VVC,1, 4). Command received  [6]
+UVVM: ID_IMMEDIATE_CMD                 222.5 ns  AXILITE_VVC,1                  fetch_result(AXILITE_VVC,1, 4) Requested result is found.   [6]
+UVVM: ID_UVVM_CMD_ACK                  222.5 ns  TB seq.(uvvm)                      ACK received.   [6]
+UVVM: ID_UVVM_CMD_RESULT               222.5 ns  TB seq.(uvvm)                  fetch_result(AXILITE_VVC,1, 4): Legal=>true, Result=> [6]
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                       222.5 ns  TB seq.                        result = 0001001F
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                       222.5 ns  TB seq.                        check_value() => OK, for slv x"001F"'. 'sum  (a + b)'
+UVVM: ID_POS_ACK                       222.5 ns  TB seq.                        check_value() => OK, for slv x"0001"'. 'diff (a - b)'
+UVVM: ID_CMD_INTERPRETER_WAIT          222.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 322.5 ns  TB seq.(uvvm)                  ->axilite_read(AXILITE_VVC,1, x"08"): 'ident register'. [7]
+UVVM: ID_CMD_INTERPRETER               322.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"08"). Command received  [7]
+UVVM: ID_UVVM_CMD_ACK                  322.5 ns  TB seq.(uvvm)                      ACK received.   [7]
+UVVM: ID_CMD_EXECUTOR                  322.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"08") - Will be executed  [7]
+UVVM: ID_UVVM_SEND_CMD                 322.5 ns  TB seq.(uvvm)                  ->await_completion(AXILITE_VVC,1, 100 ns): 'wait for read to complete'. [8]
+UVVM: ID_CMD_INTERPRETER_WAIT          322.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               322.5 ns  AXILITE_VVC,1                    await_completion(AXILITE_VVC,1, 100 ns). Command received  [8]
+UVVM: ID_IMMEDIATE_CMD_WAIT            322.5 ns  AXILITE_VVC,1                    ..await_completion() - Pending completion wait for read to complete  [8]
+UVVM: ID_BFM                           342.5 ns  AXILITE_VVC,1                  axilite_read(A:x"08")=> x"A1B2C3D4". 'ident register'  [7]
+UVVM: ID_IMMEDIATE_CMD                 342.5 ns  AXILITE_VVC,1                  await_completion()  => Finished. wait for read to complete  [8]
+UVVM: ID_CMD_EXECUTOR_WAIT             342.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_CMD_ACK                  342.5 ns  TB seq.(uvvm)                      ACK received.   [8]
+UVVM: ID_UVVM_SEND_CMD                 342.5 ns  TB seq.(uvvm)                  ->fetch_result(AXILITE_VVC,1, 7): . [9]
+UVVM: ID_CMD_INTERPRETER_WAIT          342.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               342.5 ns  AXILITE_VVC,1                    fetch_result(AXILITE_VVC,1, 7). Command received  [9]
+UVVM: ID_IMMEDIATE_CMD                 342.5 ns  AXILITE_VVC,1                  fetch_result(AXILITE_VVC,1, 7) Requested result is found.   [9]
+UVVM: ID_UVVM_CMD_ACK                  342.5 ns  TB seq.(uvvm)                      ACK received.   [9]
+UVVM: ID_UVVM_CMD_RESULT               342.5 ns  TB seq.(uvvm)                  fetch_result(AXILITE_VVC,1, 7): Legal=>true, Result=> [9]
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                       342.5 ns  TB seq.                        result = A1B2C3D4
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UVVM: ID_POS_ACK                       342.5 ns  TB seq.                        check_value() => OK, for slv x"A1B2C3D4"'. 'ident register'
+UVVM: ID_CMD_INTERPRETER_WAIT          342.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 442.5 ns  TB seq.(uvvm)                  ->axilite_write(AXILITE_VVC,1, x"04", x"03000000"): 'set color'. [10]
+UVVM: ID_CMD_INTERPRETER               442.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"03000000"). Command received  [10]
+UVVM: ID_UVVM_CMD_ACK                  442.5 ns  TB seq.(uvvm)                      ACK received.   [10]
+UVVM: ID_CMD_EXECUTOR                  442.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"03000000") - Will be executed  [10]
+UVVM: ID_CMD_INTERPRETER_WAIT          442.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_BFM                           472.5 ns  AXILITE_VVC,1                  axilite_write(A:x"04", x"03000000") completed. 'set color'  [10]
+UVVM: ID_CMD_EXECUTOR_WAIT             472.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 542.5 ns  TB seq.(uvvm)                  ->axilite_write(AXILITE_VVC,1, x"04", x"00000000"): 'set color'. [11]
+UVVM: ID_CMD_INTERPRETER               542.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"00000000"). Command received  [11]
+UVVM: ID_UVVM_CMD_ACK                  542.5 ns  TB seq.(uvvm)                      ACK received.   [11]
+UVVM: ID_CMD_EXECUTOR                  542.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"00000000") - Will be executed  [11]
+UVVM: ID_CMD_INTERPRETER_WAIT          542.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_BFM                           572.5 ns  AXILITE_VVC,1                  axilite_write(A:x"04", x"00000000") completed. 'set color'  [11]
+UVVM: ID_CMD_EXECUTOR_WAIT             572.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 642.5 ns  TB seq.(uvvm)                  ->axilite_write(AXILITE_VVC,1, x"04", x"04000000"): 'set color'. [12]
+UVVM: ID_CMD_INTERPRETER               642.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"04000000"). Command received  [12]
+UVVM: ID_UVVM_CMD_ACK                  642.5 ns  TB seq.(uvvm)                      ACK received.   [12]
+UVVM: ID_CMD_EXECUTOR                  642.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"04000000") - Will be executed  [12]
+UVVM: ID_CMD_INTERPRETER_WAIT          642.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_BFM                           672.5 ns  AXILITE_VVC,1                  axilite_write(A:x"04", x"04000000") completed. 'set color'  [12]
+UVVM: ID_CMD_EXECUTOR_WAIT             672.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 742.5 ns  TB seq.(uvvm)                  ->axilite_read(AXILITE_VVC,1, x"00"): 'read color'. [13]
+UVVM: ID_CMD_INTERPRETER               742.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"00"). Command received  [13]
+UVVM: ID_UVVM_CMD_ACK                  742.5 ns  TB seq.(uvvm)                      ACK received.   [13]
+UVVM: ID_CMD_EXECUTOR                  742.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"00") - Will be executed  [13]
+UVVM: ID_UVVM_SEND_CMD                 742.5 ns  TB seq.(uvvm)                  ->await_completion(AXILITE_VVC,1, 100 ns): 'wait for read to complete'. [14]
+UVVM: ID_CMD_INTERPRETER_WAIT          742.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               742.5 ns  AXILITE_VVC,1                    await_completion(AXILITE_VVC,1, 100 ns). Command received  [14]
+UVVM: ID_IMMEDIATE_CMD_WAIT            742.5 ns  AXILITE_VVC,1                    ..await_completion() - Pending completion wait for read to complete  [14]
+UVVM: ID_BFM                           762.5 ns  AXILITE_VVC,1                  axilite_read(A:x"00")=> x"X3000000". 'read color'  [13]
+UVVM: ID_IMMEDIATE_CMD                 762.5 ns  AXILITE_VVC,1                  await_completion()  => Finished. wait for read to complete  [14]
+UVVM: ID_CMD_EXECUTOR_WAIT             762.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_CMD_ACK                  762.5 ns  TB seq.(uvvm)                      ACK received.   [14]
+UVVM: ID_UVVM_SEND_CMD                 762.5 ns  TB seq.(uvvm)                  ->fetch_result(AXILITE_VVC,1, 13): . [15]
+UVVM: ID_CMD_INTERPRETER_WAIT          762.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               762.5 ns  AXILITE_VVC,1                    fetch_result(AXILITE_VVC,1, 13). Command received  [15]
+UVVM: ID_IMMEDIATE_CMD                 762.5 ns  AXILITE_VVC,1                  fetch_result(AXILITE_VVC,1, 13) Requested result is found.   [15]
+UVVM: ID_UVVM_CMD_ACK                  762.5 ns  TB seq.(uvvm)                      ACK received.   [15]
+UVVM: ID_UVVM_CMD_RESULT               762.5 ns  TB seq.(uvvm)                  fetch_result(AXILITE_VVC,1, 13): Legal=>true, Result=> [15]
+UVVM: ID_POS_ACK                       762.5 ns  TB seq.                        check_value() => OK, for int 3. 'pipeline output'
+UVVM: ID_UVVM_SEND_CMD                 762.5 ns  TB seq.(uvvm)                  ->axilite_write(AXILITE_VVC,1, x"04", x"05000000"): 'set color'. [16]
+UVVM: ID_CMD_INTERPRETER_WAIT          762.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               762.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"05000000"). Command received  [16]
+UVVM: ID_UVVM_CMD_ACK                  762.5 ns  TB seq.(uvvm)                      ACK received.   [16]
+UVVM: ID_CMD_EXECUTOR                  762.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"05000000") - Will be executed  [16]
+UVVM: ID_CMD_INTERPRETER_WAIT          762.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_BFM                           792.5 ns  AXILITE_VVC,1                  axilite_write(A:x"04", x"05000000") completed. 'set color'  [16]
+UVVM: ID_CMD_EXECUTOR_WAIT             792.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 862.5 ns  TB seq.(uvvm)                  ->axilite_read(AXILITE_VVC,1, x"00"): 'read color'. [17]
+UVVM: ID_CMD_INTERPRETER               862.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"00"). Command received  [17]
+UVVM: ID_UVVM_CMD_ACK                  862.5 ns  TB seq.(uvvm)                      ACK received.   [17]
+UVVM: ID_CMD_EXECUTOR                  862.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"00") - Will be executed  [17]
+UVVM: ID_UVVM_SEND_CMD                 862.5 ns  TB seq.(uvvm)                  ->await_completion(AXILITE_VVC,1, 100 ns): 'wait for read to complete'. [18]
+UVVM: ID_CMD_INTERPRETER_WAIT          862.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               862.5 ns  AXILITE_VVC,1                    await_completion(AXILITE_VVC,1, 100 ns). Command received  [18]
+UVVM: ID_IMMEDIATE_CMD_WAIT            862.5 ns  AXILITE_VVC,1                    ..await_completion() - Pending completion wait for read to complete  [18]
+UVVM: ID_BFM                           882.5 ns  AXILITE_VVC,1                  axilite_read(A:x"00")=> x"X0000000". 'read color'  [17]
+UVVM: ID_IMMEDIATE_CMD                 882.5 ns  AXILITE_VVC,1                  await_completion()  => Finished. wait for read to complete  [18]
+UVVM: ID_CMD_EXECUTOR_WAIT             882.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_CMD_ACK                  882.5 ns  TB seq.(uvvm)                      ACK received.   [18]
+UVVM: ID_UVVM_SEND_CMD                 882.5 ns  TB seq.(uvvm)                  ->fetch_result(AXILITE_VVC,1, 17): . [19]
+UVVM: ID_CMD_INTERPRETER_WAIT          882.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               882.5 ns  AXILITE_VVC,1                    fetch_result(AXILITE_VVC,1, 17). Command received  [19]
+UVVM: ID_IMMEDIATE_CMD                 882.5 ns  AXILITE_VVC,1                  fetch_result(AXILITE_VVC,1, 17) Requested result is found.   [19]
+UVVM: ID_UVVM_CMD_ACK                  882.5 ns  TB seq.(uvvm)                      ACK received.   [19]
+UVVM: ID_UVVM_CMD_RESULT               882.5 ns  TB seq.(uvvm)                  fetch_result(AXILITE_VVC,1, 17): Legal=>true, Result=> [19]
+UVVM: ID_POS_ACK                       882.5 ns  TB seq.                        check_value() => OK, for int 0. 'pipeline output'
+UVVM: ID_UVVM_SEND_CMD                 882.5 ns  TB seq.(uvvm)                  ->axilite_write(AXILITE_VVC,1, x"04", x"01000000"): 'set color'. [20]
+UVVM: ID_CMD_INTERPRETER_WAIT          882.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               882.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"01000000"). Command received  [20]
+UVVM: ID_UVVM_CMD_ACK                  882.5 ns  TB seq.(uvvm)                      ACK received.   [20]
+UVVM: ID_CMD_EXECUTOR                  882.5 ns  AXILITE_VVC,1                    axilite_write(AXILITE_VVC,1, x"04", x"01000000") - Will be executed  [20]
+UVVM: ID_CMD_INTERPRETER_WAIT          882.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_BFM                           912.5 ns  AXILITE_VVC,1                  axilite_write(A:x"04", x"01000000") completed. 'set color'  [20]
+UVVM: ID_CMD_EXECUTOR_WAIT             912.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_SEND_CMD                 982.5 ns  TB seq.(uvvm)                  ->axilite_read(AXILITE_VVC,1, x"00"): 'read color'. [21]
+UVVM: ID_CMD_INTERPRETER               982.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"00"). Command received  [21]
+UVVM: ID_UVVM_CMD_ACK                  982.5 ns  TB seq.(uvvm)                      ACK received.   [21]
+UVVM: ID_CMD_EXECUTOR                  982.5 ns  AXILITE_VVC,1                    axilite_read(AXILITE_VVC,1, x"00") - Will be executed  [21]
+UVVM: ID_UVVM_SEND_CMD                 982.5 ns  TB seq.(uvvm)                  ->await_completion(AXILITE_VVC,1, 100 ns): 'wait for read to complete'. [22]
+UVVM: ID_CMD_INTERPRETER_WAIT          982.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER               982.5 ns  AXILITE_VVC,1                    await_completion(AXILITE_VVC,1, 100 ns). Command received  [22]
+UVVM: ID_IMMEDIATE_CMD_WAIT            982.5 ns  AXILITE_VVC,1                    ..await_completion() - Pending completion wait for read to complete  [22]
+UVVM: ID_BFM                          1002.5 ns  AXILITE_VVC,1                  axilite_read(A:x"00")=> x"X4000000". 'read color'  [21]
+UVVM: ID_IMMEDIATE_CMD                1002.5 ns  AXILITE_VVC,1                  await_completion()  => Finished. wait for read to complete  [22]
+UVVM: ID_CMD_EXECUTOR_WAIT            1002.5 ns  AXILITE_VVC,1                    ..Executor: Waiting for command
+UVVM: ID_UVVM_CMD_ACK                 1002.5 ns  TB seq.(uvvm)                      ACK received.   [22]
+UVVM: ID_UVVM_SEND_CMD                1002.5 ns  TB seq.(uvvm)                  ->fetch_result(AXILITE_VVC,1, 21): . [23]
+UVVM: ID_CMD_INTERPRETER_WAIT         1002.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM: ID_CMD_INTERPRETER              1002.5 ns  AXILITE_VVC,1                    fetch_result(AXILITE_VVC,1, 21). Command received  [23]
+UVVM: ID_IMMEDIATE_CMD                1002.5 ns  AXILITE_VVC,1                  fetch_result(AXILITE_VVC,1, 21) Requested result is found.   [23]
+UVVM: ID_UVVM_CMD_ACK                 1002.5 ns  TB seq.(uvvm)                      ACK received.   [23]
+UVVM: ID_UVVM_CMD_RESULT              1002.5 ns  TB seq.(uvvm)                  fetch_result(AXILITE_VVC,1, 21): Legal=>true, Result=> [23]
+UVVM: ID_POS_ACK                      1002.5 ns  TB seq.                        check_value() => OK, for int 4. 'pipeline output'
+UVVM: ID_CMD_INTERPRETER_WAIT         1002.5 ns  AXILITE_VVC,1                    ..Interpreter: Waiting for command
+UVVM:      
+UVVM:      ====================================================================================================================================================================
+UVVM:      *** FINAL SUMMARY OF ALL ALERTS ***
+UVVM:      ====================================================================================================================================================================
+UVVM:                                REGARDED   EXPECTED  IGNORED      Comment?
+UVVM:                NOTE         :      0         0         0         ok
+UVVM:                TB_NOTE      :      0         0         0         ok
+UVVM:                WARNING      :      0         0         0         ok
+UVVM:                TB_WARNING   :      0         0         0         ok
+UVVM:                MANUAL_CHECK :      0         0         0         ok
+UVVM:                ERROR        :      0         0         0         ok
+UVVM:                TB_ERROR     :      0         0         0         ok
+UVVM:                FAILURE      :      0         0         0         ok
+UVVM:                TB_FAILURE   :      0         0         0         ok
+UVVM:      ====================================================================================================================================================================
+UVVM:      >> Simulation SUCCESS: No mismatch between counted and expected serious alerts
+UVVM:      ====================================================================================================================================================================
+UVVM:      
+UVVM:      
+UVVM: 
+UVVM: 
+UVVM: ID_LOG_HDR                      1102.5 ns  TB seq.(uvvm)                  SIMULATION COMPLETED
+UVVM: -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
