@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: virtual-warehouse
+Version: 0.0.1
+Summary: Warehouse visualisation app
+Home-page: https://github.com/Breta01/virtual-warehouse
+Keywords: visualization,warehouse
+Author: Břetislav Hájek
+Author-email: info@bretahajek.com
+Requires-Python: >=3.6,<3.9
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: Owlready2 (==0.29)
+Requires-Dist: PySide2 (==5.15.0)
+Requires-Dist: openpyxl (>=3.0.7,<4.0.0)
+Requires-Dist: rdflib (>=5.0.0,<6.0.0)
+Requires-Dist: xlrd (==1.2.0)
+Project-URL: Documentation, https://virtual-warehouse.readthedocs.io
+Project-URL: Repository, https://github.com/Breta01/virtual-warehouse
+Description-Content-Type: text/markdown
+
+# Virtual Warehouse
+[![Documentation Status](https://readthedocs.org/projects/virtual-warehouse/badge/?version=latest)](https://virtual-warehouse.readthedocs.io/en/latest/?badge=latest) 
+[![DeepSource](https://deepsource.io/gh/Breta01/virtual-warehouse.svg/?label=active+issues&show_trend=true)](https://deepsource.io/gh/Breta01/virtual-warehouse/?ref=repository-badge)
+
+Visualisation of warehouse
+
