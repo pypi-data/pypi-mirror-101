@@ -1,0 +1,14 @@
+click==7.1.2
+clint==0.5.1
+halo==0.0.31
+requests==2.25.1
+requests-toolbelt==0.9.1
+marshmallow==3.0.0a1
+pytz>=2016.10
+tabulate==0.8.7
+pathlib2==2.3.5
+PyYAML
+raven
+
+[:python_version < "3.5"]
+scandir
