@@ -1,0 +1,115 @@
+Metadata-Version: 2.1
+Name: snapsheets
+Version: 0.4.0
+Summary: Wget snapshots of google sheets
+Home-page: https://shotakaha.gitlab.io/snapsheets/
+License: MIT
+Keywords: wget,curl,googlesheet
+Author: shotakaha
+Author-email: shotakaha+py@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: Japanese
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: Deprecated (>=1.2.12,<2.0.0)
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: icecream (>=2.1.0,<3.0.0)
+Requires-Dist: pendulum (>=2.1.2,<3.0.0)
+Requires-Dist: toml (>=0.10.2,<0.11.0)
+Project-URL: Repository, https://gitlab.com/shotakaha/snapsheets
+Description-Content-Type: text/markdown
+
+![GitLab pipeline](https://img.shields.io/gitlab/pipeline/shotakaha/snapsheets?style=for-the-badge)
+![PyPI - Licence](https://img.shields.io/pypi/l/snapsheets?style=for-the-badge)
+![PyPI](https://img.shields.io/pypi/v/snapsheets?style=for-the-badge)
+![PyPI - Status](https://img.shields.io/pypi/status/snapsheets?style=for-the-badge)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/snapsheets?style=for-the-badge)
+
+
+# Snapsheets
+
+Wget snapshots of Google Spreadsheets
+
+This package enables to wget Google Spreadsheets without login.
+(Spreadsheets should be shared with public link)
+
+
+---
+
+# Usage
+
+```python
+>>> import snapsheets as ss
+>>> ss.add_config('test_config.yml')
+>>> ss.get('test1', by='wget')
+```
+
+---
+
+## Configuration
+
+- Make your config files in ``./config/``
+
+
+```yaml
+volumes:
+  snapd: 'snapd/'
+  logd: 'varlogs/'
+
+options:
+  wget:
+    '--quiet'
+
+datefmt:
+  '%Y%m%dT%H%M%S'
+
+sheets:
+  test1:
+    key: '1NbSH0rSCLkElG4UcNVuIhmg5EfjAk3t8TxiBERf6kBM'
+    gid: 'None'
+    format: 'xlsx'
+    sheet_name:
+      - 'シート1'
+      - 'シート2'
+    stem: 'test_sheet'
+    datefmt: '%Y'
+```
+
+## ``volumes``
+
+- directories to save data
+
+## ``options``
+
+- set options for ``wget``
+
+## ``datefmt``
+
+- set prefix to saved spreadsheet
+
+## ``sheet``
+
+- google spreadsheet info
+
+
+---
+
+# Documents
+
+- https://shotakaha.gitlab.io/snapsheets/
+
+---
+
+# Stats
+
+![PyPI - Downloads](https://img.shields.io/pypi/dd/snapsheets?style=for-the-badge)
+![PyPI - Downloads](https://img.shields.io/pypi/dw/snapsheets?style=for-the-badge)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/snapsheets?style=for-the-badge)
+
