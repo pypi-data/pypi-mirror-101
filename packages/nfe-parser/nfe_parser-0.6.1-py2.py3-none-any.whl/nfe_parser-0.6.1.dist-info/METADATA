@@ -1,0 +1,47 @@
+Metadata-Version: 2.1
+Name: nfe-parser
+Version: 0.6.1
+Summary: A simple lib for downloading nfe's
+Home-page: https://github.com/gmagno/nfe_parser
+Author: Goncalo Magno
+Author-email: goncalo@gmagno.dev
+License: MIT license
+Keywords: nfe_parser
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.8
+Requires-Dist: pytz
+Requires-Dist: beautifulsoup4
+Requires-Dist: requests
+Requires-Dist: requests[socks]
+Requires-Dist: requests[security]
+Requires-Dist: fake-useragent
+Requires-Dist: rich
+Requires-Dist: numpy
+Requires-Dist: opencv-python
+Requires-Dist: imutils
+Requires-Dist: pyzbar
+
+==========
+NFE Parser
+==========
+
+
+A simple lib for parsing nfe's
+
+
+
+=======
+History
+=======
+
+0.1.0 (2020-08-06)
+------------------
+
+* First release on PyPI.
+
+
