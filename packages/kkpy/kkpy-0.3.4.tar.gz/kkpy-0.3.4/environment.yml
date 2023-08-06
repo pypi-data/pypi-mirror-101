@@ -1,0 +1,24 @@
+name: kkpy
+channels:
+- conda-forge
+dependencies:
+- numpy
+- pandas
+- scipy
+- matplotlib
+- dask
+- netcdf4
+- cartopy
+- wradlib
+- arm_pyart
+- xarray
+- geopandas
+- descartes
+- bottleneck
+- scikit-image
+- astropy
+- parse
+- pip
+- pip:
+  - haversine
+
