@@ -1,0 +1,46 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "pyimporters_csv"
+author = "Olivier Terrier"
+author-email = "olivier.terrier@kairntech.com"
+home-page = "https://kairntech.com/"
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Internet :: WWW/HTTP",
+]
+requires = [
+    "pyimporters_plugins>=0.1.62",
+    "pandas==1.2.3",
+    "xlrd",
+    "openpyxl"
+]
+dist-name = "pyimporters-csv"
+description-file = "README.md"
+requires-python = ">=3.8"
+
+[tool.flit.entrypoints."pyimporters.plugins"]
+text = "pyimporters_csv.text:TXTKnowledgeParser"
+csv = "pyimporters_csv.csv:CSVKnowledgeParser"
+excel = "pyimporters_csv.excel:ExcelKnowledgeParser"
