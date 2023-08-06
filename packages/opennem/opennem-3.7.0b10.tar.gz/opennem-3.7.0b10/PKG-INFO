@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: opennem
+Version: 3.7.0b10
+Summary: OpenNEM Australian Energy Data Python Client
+Home-page: https://opennem.org.au
+License: MIT
+Keywords: opennem,analysis,energy,data,electricity,australia
+Author: Nik Cubrilovic
+Author-email: nik@infotorch.org
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: PyYAML (>=5.3,<6.0)
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Requires-Dist: pandas (>=1.2.2,<2.0.0)
+Requires-Dist: pydantic (>=1.5.1,<2.0.0)
+Requires-Dist: python-dateutil (>=2.8.1,<3.0.0)
+Requires-Dist: python-dotenv (>=0.15.0,<0.16.0)
+Requires-Dist: requests (>=2.23.0,<3.0.0)
+Requires-Dist: requests_cache (>=0.5.2,<0.6.0)
+Requires-Dist: tomlkit (>=0.7.0,<0.8.0)
+Project-URL: Repository, https://github.com/opennem/opennempy
+Description-Content-Type: text/markdown
+
+# OpenNEM Energy Market Data Access
+
+![PyPI](https://img.shields.io/pypi/v/opennem) ![Tests](https://github.com/opennem/opennempy/workflows/Tests/badge.svg) ![PyPI - License](https://img.shields.io/pypi/l/opennem)
+
+The OpenNEM project aims to make the wealth of public National Electricity Market (NEM) data more accessible to a wider audience.
+
+This client library for Python enables accessing the Opennem API and data sets.
+
+Project homepage at https://opennem.org.au
+
+Currently supports:
+
+- Australia NEM: https://www.nemweb.com.au/
+- Australia WEM (West Australia): http://data.wa.aemo.com.au/
+- APVI rooftop solar data for Australia
+
+## Requirements
+
+- Python 3.8+ (see `.python-version` with `pyenv`)
+- Docker and `docker-compose` if you want to run the local dev stack
+
+## Quickstart
+
+```sh
+$ pip install opennem
+```
+
+```
+>>> import opennem
+```
+
