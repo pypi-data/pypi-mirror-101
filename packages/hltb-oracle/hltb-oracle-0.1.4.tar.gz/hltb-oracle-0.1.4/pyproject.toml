@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "hltb-oracle"
+version = "0.1.4"
+description = ""
+authors = ["Matteo Silvestro <matteosilvestro@live.it>"]
+
+[tool.poetry.dependencies]
+python = "^3.5"
+requests = "^2.25.1"
+fake-useragent = "^0.1.11"
+beautifulsoup4 = "^4.9.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+isort = "^5.8.0"
+pre-commit = "^2.11.1"
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
