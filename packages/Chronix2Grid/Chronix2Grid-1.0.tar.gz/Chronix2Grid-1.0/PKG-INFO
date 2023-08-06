@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: Chronix2Grid
+Version: 1.0
+Summary: A python package to generate "en-masse" chronics for loads and productions (thermal, renewable)
+Home-page: https://github.com/mjothy/chronix2grid
+Author: Mario Jothy, Nicolas Megel, Vincent Renault
+Author-email:  mario.jothy@artelys.com
+License: Mozilla Public License 2.0 (MPL 2.0)
+Description: Chronix2Grid is a python package, providing a command-line application as well, that allows to generate synthetic but realistic consumption, renewable production, electricity loss (dissipation) and economic dispatched productions chronics given a power grid. Reference data that you provide will serve to calibrate the parameters so that the synthetic data reproduce some realistic criteria (KPIs) from the reference data.
+Keywords: ML powergrid optmization RL power-systems chronics generation production load network
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Provides-Extra: optional
+Provides-Extra: docs
