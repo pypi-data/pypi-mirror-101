@@ -1,0 +1,61 @@
+Metadata-Version: 2.1
+Name: wikinet
+Version: 0.0.3
+Summary: Network of wikipedia articles
+Home-page: https://github.com/harangju/wikinet
+Author: Harang Ju
+Author-email: harangju@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/harangju/wikinet/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: jupyter
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: pandas (>1.0.0)
+Requires-Dist: networkx
+Requires-Dist: gensim
+Requires-Dist: mpmath
+Requires-Dist: cython
+Requires-Dist: sphinx
+Requires-Dist: nbconvert (==5.6.1)
+Requires-Dist: plotly
+Requires-Dist: psutil
+Requires-Dist: leidenalg
+Requires-Dist: python-igraph
+Requires-Dist: bctpy (>=0.5.2)
+Requires-Dist: mwparserfromhell
+Requires-Dist: sklearn
+Requires-Dist: dionysus
+Requires-Dist: pybind11
+Requires-Dist: cpnet
+Requires-Dist: powerlaw
+Requires-Dist: sphinx-rtd-theme
+Requires-Dist: cufflinks
+Requires-Dist: dill
+Requires-Dist: rpy2
+Requires-Dist: build
+Requires-Dist: twine
+
+# WikiNet
+This repository contains code for analysis used in [Ju et al. (2020)](https://arxiv.org/abs/2010.08381).
+
+## Getting started
+1. In the terminal, `git clone https://github.com/harangju/wikinet.git`
+2. `cd wikinet`
+3. `conda env create -f environment.yml`
+    * Download [anaconda](https://www.anaconda.com).
+4. `conda activate wikinet`
+5. `jupyter notebook`
+
+## Data
+Wikipedia XML dumps are available at https://dumps.wikimedia.org/enwiki. Only two files are required for reproduction: (1) enwiki-DATE-pages-articles-multistream.xml.bz2 and (2) enwiki-DATE-pages-articles-multistream-index.txt.bz2, where DATE is the date of the dump. Both files are multistreamed versions of the zipped files, which allow the user to access an article without unpacking the whole file. In this study, we used the archived zipped file from August 1, 2019, which is available [here](https://www.dropbox.com/sh/kwsubhwf787p74k/AAA0Wf_3-SZggcvRYdrdzXBba?dl=0).
+
+## Other options
+* `gensim` added a [`WikiCorpus`](https://radimrehurek.com/gensim/corpora/wikicorpus.html#module-gensim.corpora.wikicorpus) class that parses through Wikipedia dumps.
+
+
