@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "netlint"
+version = "0.1.0"
+description = "Performs static analysis on network device configuration files."
+authors = ["Leo Kirchner <leo@kirchne.red>"]
+license = "GPLv3"
+readme = "README.md"
+homepage = "https://netlint.readthedocs.io"
+repository = "https://github.com/Kircheneer/netlint"
+keywords = ["lint", "networking"]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Quality Assurance",
+]
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+ciscoconfparse = "^1.5.30"
+click = "^7.1.2"
+sphinx = { version = "^3.5.3", optional = true }
+sphinx-rtd-theme = { version = "^0.5.2", optional = true }
+m2r2 = {version = "^0.2.7", optional = true }
+sphinx-click = {version = "^2.7.1", optional = true }
+typing-extensions = "^3.7.4"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.812"
+black = "^20.8b1"
+flake8 = "^3.9.0"
+pytest = "^6.2.3"
+coverage = "^5.5"
+sphinx = "^3.5.3"
+sphinx-rtd-theme = "^0.5.2"
+m2r2 = "^0.2.7"
+sphinx-click = "^2.7.1"
+pre-commit = "^2.12.0"
+flake8-docstrings = "^1.6.0"
+
+[tool.poetry.extras]
+# The following section is required to install docs dependencies
+# until RTD fully supports poetry: https://github.com/rtfd/readthedocs.org/issues/4912
+docs = ["sphinx", "sphinx_rtd_theme", "m2r2", "spinx-click"]
+
+[tool.poetry.scripts]
+netlint = 'netlint.main:cli'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
