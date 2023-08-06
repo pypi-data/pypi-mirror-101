@@ -1,0 +1,112 @@
+Metadata-Version: 2.1
+Name: RockyRoad
+Version: 0.0.23
+Summary: Python wrapper for the RockyRoad API
+Home-page: https://github.com/pypa/sampleproject
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/pypa/sampleproject/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: uplink
+
+# RockyRoad
+
+This package provides a Python wrapper for the RockyRoad API.
+
+RockyRoad is a part of the PyPi repository and can be installed via
+
+    pip install RockyRoad
+
+    export OCP_APIM_SUBSCRIPTION_KEY="INSERT_YOUR_SUBSCRIPTION_KEY"
+
+
+    Usage Examples - Data Services:
+
+        from rockyroad.rockyroad import build
+
+        service = build(serviceName="data-services", version="v1", base_url='INSERT_URL_FOR_API')
+
+        api_response = service.helloWorld().list()
+
+        service.docs().swagger().content
+        service.docs().redocs().content
+        service.docs().openapi()
+
+        api_response = service.alerts().requests().list()
+        api_response = service.alerts().requests().list(creator_email='user@acme.com')
+        api_response = service.alerts().requests().insert(new_alert_request_json)
+        api_response = service.alerts().requests().delete(brand=brand, alert_request_id=alert_request_id)
+
+        api_response = service.alerts().reports().list()
+        api_response = service.alerts().reports().list(creator_email='user@acme.com')
+
+        api_response = service.machines().utilData().list(brand=brand, time_period='today')
+        api_response = service.machines().utilData().stats().list()
+
+        api_response = service.dealers().list()
+        api_response = service.customers().list(dealer_name=dealer_name)
+
+        api_response = service.accounts().list()
+        api_response = service.accounts().list(account="c123")
+        api_response = service.accounts().insert(new_account=new_account)
+        api_response = service.accounts().update(account=update_account)
+
+        api_response = service.accounts().delete(account="d123")
+        api_response = service.accounts().set_is_dealer(account="d123", is_dealer=True)
+        api_response = service.accounts().assign_dealer(customer_account="c123", dealer_account="d123")
+        api_response = service.accounts().unassign_dealer(customer_account="c123", dealer_account="d123")
+
+        api_response = service.accounts().customers().list()
+        api_response = service.accounts().customers().list(dealer_account="D123")
+
+        api_response = service.accounts().dealers().list()
+        api_response = service.accounts().dealers().list(customer_account="A123")
+
+        api_response = service.apbs().list()
+        api_response = service.apbs().list(apb_id=6)
+        api_response = service.apbs().list(brand="brand", model="model", serial="1234")
+
+        api_response = service.apbs().insert(new_apb=new_apb)
+        api_response = service.apbs().delete(apb_id=7)
+        api_response = service.apbs().update(apb=updated_apb)
+
+        api_response = service.apbs().status().list(apb_id=8)
+        api_response = service.apbs().status().insert(new_apb_status=new_apb_status)
+        api_response = service.apbs().status().delete(apb_id=8, apb_status_id=19)
+        api_response = service.apbs().status().update(apb_status=updated_apb_status)
+
+        api_response = service.machines().catalog().list()
+        api_response = service.machines().catalog().list(machine_catalog_id=3)
+        api_response = service.machines().catalog().insert(new_machine_catalog=new_machine_catalog)
+        api_response = service.machines().catalog().delete(machine_catalog_id=4)
+        api_response = service.machines().catalog().update(machine_catalog=machine_catalog)
+
+        api_response = service.machines().list()
+        api_response = service.machines().list(account="a123")
+        api_response = service.machines().list(brand="brand", model="model", serial="1234")
+        api_response = service.machines().insert(new_machine=new_machine)
+        api_response = service.machines().delete(machine_id=10)
+        api_response = service.machines().update(machine=updated_machine)
+
+    Usage Examples - Email Services:
+
+        from rockyroad.rockyroad import build
+
+        service = build(serviceName="email-services", version="v1", base_url='INSERT_URL_FOR_API')
+
+        email_message = {
+            "recipient": "someone@acme.com",
+            "subject": "Sending Email Message via API",
+            "html_message": "This email send via the API!",
+            "text_message": "This email send via the API!",
+            }
+
+        api_response = service.emails().send(email_message_json)
+        print(api_response)
+
+
+
