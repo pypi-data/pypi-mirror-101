@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "twist_moe"
+version = "1.1.0"
+description = "twist.moe client"
+authors = ["witherornot <damemem@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "*"
+pycryptodome = "*"
+
+[tool.poetry.scripts]
+twist = 'twist_moe.tui:main'
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
