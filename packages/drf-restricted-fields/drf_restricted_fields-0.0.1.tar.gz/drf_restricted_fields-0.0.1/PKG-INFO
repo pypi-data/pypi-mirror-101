@@ -1,0 +1,105 @@
+Metadata-Version: 2.1
+Name: drf_restricted_fields
+Version: 0.0.1
+Summary: Restrict fields returned by DRF serializers
+Home-page: https://github.com/tj-django/drf-restricted-fields
+Author: Tonye Jack
+Author-email: jtonye@ymail.com
+License: MIT license
+Description: =====================
+        drf-restricted-fields
+        =====================
+        
+        .. image:: https://img.shields.io/pypi/v/drf_restricted_fields.svg
+                :target: https://pypi.python.org/pypi/drf_restricted_fields
+        
+        .. image:: https://github.com/tj-django/drf-restricted-fields/actions/workflows/test.yml/badge.svg
+                :target: https://github.com/tj-django/drf-restricted-fields/actions/workflows/test.yml
+        
+        
+        .. image:: https://readthedocs.org/projects/drf-restricted-fields/badge/?version=latest
+                :target: https://drf-restricted-fields.readthedocs.io/en/latest/?version=latest
+                :alt: Documentation Status
+        
+        .. image:: https://pyup.io/repos/github/tj-django/drf-restricted-fields/shield.svg
+             :target: https://pyup.io/repos/github/tj-django/drf-restricted-fields/
+             :alt: Updates
+        
+        
+        Features
+        ========
+        
+        Restrict fields returned by DRF serializers using the ``only`` query parameter
+        ------------------------------------------------------------------------------
+        
+        .. code-block:: console
+        
+            GET http://127.0.0.1:8000/api/users/?only=id&only=name
+        
+        
+        Serialize only the `id` and `name` fields.
+        
+        .. code-block:: console
+        
+            {
+                "count": 198,
+                "next": "http://127.0.0.1:8000/api/users/?only=id&only=name&page=1",
+                "previous": null,
+                "results":[
+                    {
+                        "id": 1,
+                        "name": "Test"
+                    },
+                    ...
+                ],
+            }
+        
+        
+        Defer fields returned by DRF serializers using the ``defer`` query parameter
+        ----------------------------------------------------------------------------
+        
+        .. code-block:: console
+        
+            GET http://127.0.0.1:8000/api/users/?defer=name&defer=age
+        
+        
+        Serialize only the `id` and `name` fields.
+        
+        .. code-block:: console
+        
+            {
+                "count": 198,
+                "next": "http://127.0.0.1:8000/api/users/?defer=name&defer=age&page=1",
+                "previous": null,
+                "results":[
+                    {
+                        "id": 1,
+                    },
+                    ...
+                ],
+            }
+        
+        
+        * Free software: MIT license
+        * Documentation: https://drf-restricted-fields.readthedocs.io.
+        
+        
+Keywords: drf_restricted_fields,restricted_fields
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=2.6
+Description-Content-Type: text/x-rst
+Provides-Extra: development
+Provides-Extra: test
+Provides-Extra: lint
+Provides-Extra: deploy
+Provides-Extra: docs
