@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: slakh-dataset
+Version: 0.1.2
+Summary: Unofficial PyTorch dataset for Slakh
+Author: Henrik Grønbech
+Author-email: henrikgronbech@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: PyYAML (>=5.4.1,<6.0.0)
+Requires-Dist: pretty_midi (>=0.2.9,<0.3.0)
+Requires-Dist: torch (>=1.8.1,<2.0.0)
+Requires-Dist: torchaudio (>=0.8.1,<0.9.0)
+Requires-Dist: tqdm (>=4.60.0,<5.0.0)
