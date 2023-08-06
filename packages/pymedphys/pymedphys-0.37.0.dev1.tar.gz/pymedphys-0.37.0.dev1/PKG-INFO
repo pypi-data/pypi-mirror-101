@@ -1,0 +1,299 @@
+Metadata-Version: 2.1
+Name: pymedphys
+Version: 0.37.0.dev1
+Summary: Medical Physics library
+Home-page: https://pymedphys.com
+License: Apache-2.0
+Author: PyMedPhys Contributors
+Author-email: developers@pymedphys.com
+Requires-Python: >=3.7,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Classifier: Topic :: Scientific/Engineering :: Physics
+Provides-Extra: comparables
+Provides-Extra: dev
+Provides-Extra: dicom
+Provides-Extra: docs
+Provides-Extra: doctests
+Provides-Extra: icom
+Provides-Extra: mosaiq
+Provides-Extra: propagate
+Provides-Extra: tests
+Provides-Extra: user
+Requires-Dist: Pillow; extra == "dev" or extra == "user"
+Requires-Dist: PyYAML; extra == "dev" or extra == "user"
+Requires-Dist: attrs; extra == "dev" or extra == "user"
+Requires-Dist: black (>=20.8b1,<21.0); extra == "dev" or extra == "doctests" or extra == "propagate"
+Requires-Dist: dbfread; extra == "dev" or extra == "user"
+Requires-Dist: dicompyler-core; extra == "dev" or extra == "user"
+Requires-Dist: doc8; extra == "dev"
+Requires-Dist: flashgamma; extra == "comparables"
+Requires-Dist: fsspec; extra == "dev" or extra == "user"
+Requires-Dist: hypothesis (<6); extra == "dev" or extra == "tests"
+Requires-Dist: imageio; extra == "dev" or extra == "user"
+Requires-Dist: jupyter-book (>=0.8.3); extra == "dev" or extra == "docs"
+Requires-Dist: keyring; extra == "dev" or extra == "user"
+Requires-Dist: matplotlib; extra == "dev" or extra == "user"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: natsort; extra == "dev" or extra == "user"
+Requires-Dist: networkx; extra == "dev" or extra == "docs"
+Requires-Dist: numpy (>=1.20.2); extra == "dev" or extra == "icom" or extra == "user"
+Requires-Dist: packaging; extra == "dev" or extra == "user"
+Requires-Dist: pandas (>=1.0.0); extra == "dev" or extra == "mosaiq" or extra == "user"
+Requires-Dist: plotly; extra == "dev" or extra == "user"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: psutil; extra == "dev" or extra == "tests"
+Requires-Dist: pydicom (>=2.0.0); extra == "dev" or extra == "dicom" or extra == "user"
+Requires-Dist: pylinac (==2.3.2); extra == "dev" or extra == "doctests" or extra == "user"
+Requires-Dist: pylint; extra == "dev" or extra == "tests"
+Requires-Dist: pymedphys-pylibjpeg-libjpeg; extra == "dev" or extra == "user"
+Requires-Dist: pymssql; extra == "dev" or extra == "mosaiq" or extra == "user"
+Requires-Dist: pynetdicom; extra == "dev" or extra == "dicom" or extra == "user"
+Requires-Dist: pytest-rerunfailures; extra == "dev" or extra == "tests"
+Requires-Dist: pytest-sugar; extra == "dev" or extra == "tests"
+Requires-Dist: pytest; extra == "dev" or extra == "tests"
+Requires-Dist: python-dateutil; extra == "dev" or extra == "tests" or extra == "user"
+Requires-Dist: readme-renderer; extra == "dev"
+Requires-Dist: reportlab (<=3.5.54); extra == "dev" or extra == "user"
+Requires-Dist: requests; extra == "dev" or extra == "user"
+Requires-Dist: rope; extra == "dev"
+Requires-Dist: scikit-image (>=0.18.1); extra == "dev" or extra == "user"
+Requires-Dist: scikit-learn; extra == "dev" or extra == "mosaiq" or extra == "user"
+Requires-Dist: scipy; extra == "dev" or extra == "user"
+Requires-Dist: shapely (>=1.7.0); extra == "dev" or extra == "user"
+Requires-Dist: sphinx-argparse; extra == "dev" or extra == "docs"
+Requires-Dist: sphinx-book-theme; extra == "dev" or extra == "docs" or extra == "doctests"
+Requires-Dist: sphinxcontrib-napoleon; extra == "dev" or extra == "docs"
+Requires-Dist: sqlalchemy; extra == "dev" or extra == "mosaiq" or extra == "user"
+Requires-Dist: streamlit (==0.78.0); extra == "dev" or extra == "user"
+Requires-Dist: streamlit-ace (==0.0.4); extra == "dev" or extra == "user"
+Requires-Dist: streamlit-analytics (==0.1.2); extra == "dev" or extra == "user"
+Requires-Dist: tabulate; extra == "dev" or extra == "doctests"
+Requires-Dist: timeago; extra == "dev" or extra == "user"
+Requires-Dist: tomlkit; extra == "dev" or extra == "propagate" or extra == "user"
+Requires-Dist: tqdm; extra == "dev" or extra == "user"
+Requires-Dist: typing-extensions
+Requires-Dist: watchdog; extra == "dev" or extra == "user"
+Requires-Dist: xarray; extra == "dev" or extra == "user"
+Requires-Dist: xlsxwriter; extra == "dev" or extra == "user"
+Requires-Dist: xmltodict; extra == "dev" or extra == "user"
+Project-URL: Documentation, https://docs.pymedphys.com
+Project-URL: Repository, https://github.com/pymedphys/pymedphys
+Description-Content-Type: text/x-rst
+
+|logo|
+
+.. |logo| image:: https://github.com/pymedphys/pymedphys/raw/ca501275227f190a77e641a75af925d9070952b6/lib/pymedphys/docs/_static/pymedphys_title.svg
+    :target: https://docs.pymedphys.com/
+
+.. START_OF_DOCS_IMPORT
+
+**A community effort to develop an open standard library for Medical Physics
+in Python. We build high quality, transparent software together via peer review
+and open source distribution. Open code is better science.**
+
+|online-app| |build| |pypi| |python| |license|
+
+.. |online-app| image:: https://img.shields.io/github/workflow/status/pymedphys/pymedphys/OnlineApp?event=schedule&label=online-app
+    :target: https://app.pymedphys.com
+
+.. |build| image:: https://img.shields.io/github/workflow/status/pymedphys/pymedphys/Library
+    :target: https://github.com/pymedphys/pymedphys/actions
+
+.. |pypi| image:: https://img.shields.io/pypi/v/pymedphys
+    :target: https://pypi.org/project/pymedphys/
+
+.. |python| image:: https://img.shields.io/pypi/pyversions/pymedphys
+    :target: https://pypi.org/project/pymedphys/
+
+.. |license| image:: https://img.shields.io/pypi/l/pymedphys
+    :target: https://choosealicense.com/licenses/apache-2.0/
+
+
+What is PyMedPhys?
+==================
+
+PyMedPhys is an open-source Medical Physics python library built by an open
+community that values and prioritises code sharing, review, improvement, and
+learning from each other. It is inspired by the collaborative work of our
+physics peers in astronomy and the `Astropy Project`_. PyMedPhys is available
+on `PyPI`_ and `GitHub`_.
+
+.. _`Astropy Project`: http://www.astropy.org/
+.. _`PyPI`: https://pypi.org/project/pymedphys/
+.. _`GitHub`: https://github.com/pymedphys/pymedphys
+
+Beta level of development
+*************************
+
+PyMedPhys is currently within the ``beta`` stage of its life-cycle. It will
+stay in this stage until the version number leaves ``0.x.x`` and enters
+``1.x.x``. While PyMedPhys is in ``beta`` stage, **no API is guaranteed to be
+stable from one release to the next.** In fact, it is very likely that the
+entire API will change multiple times before a ``1.0.0`` release. In practice,
+this means that upgrading ``pymedphys`` to a new version will possibly break
+any code that was using the old version of pymedphys. We try to be abreast of
+this by providing details of any breaking changes from one release to the next
+within the `Release Notes`_.
+
+Community
+**************
+
+PyMedPhys has a `Discourse community <https://pymedphys.discourse.group/>`_
+to both help you find your feet using PyMedPhys and to facilitate collaboration
+and general discussion. Please reach out over there and we'd love to get to
+know you!
+
+Documentation
+=============
+
+The PyMedPhys documentation is split into five categories:
+
+1. `App Users Guide`_: for those who only wish to use ready-made PyMedPhys
+   tools.
+2. `Library Users Guide`_: for those building their own Python apps, scripts
+   and other tools who wish to incorporate elements of the PyMedPhys library.
+3. `CLI Users Guide`_: for those who wish to use PyMedPhys' ready-made command
+   line interface (e.g. to help automate existing workflows with minimal
+   programming).
+4. `Contributors Guide`_: for those who wish to make new contributions to
+   either the PyMedPhys library or the PyMedPhys app.
+5. `General`_: Material that may apply to any visitor to PyMedPhys.
+
+
+Our Team
+========
+
+PyMedPhys is what it is today due to its maintainers and contributors, both past
+and present. Here is our team.
+
+Maintainers
+***********
+
+* `Simon Biggs`_
+    * `Riverina Cancer Care Centre`_, Australia
+
+.. _`Simon Biggs`: https://github.com/SimonBiggs
+
+* `Stuart Swerdloff`_
+    * `ELEKTA Pty Ltd`_: New Zealand
+
+.. _`Stuart Swerdloff`: https://github.com/sjswerdloff
+
+* `Matthew Jennings`_
+    * `Royal Adelaide Hospital`_, Australia
+
+.. _`Matthew Jennings`: https://github.com/Matthew-Jennings
+
+
+|rccc| |sjs| |rah|
+
+Active contributors
+****************************
+
+* `Phillip Chlap`_
+    * `University of New South Wales`_, Australia
+    * `Ingham Institute`_, Australia
+
+.. _`Phillip Chlap`: https://github.com/pchlap
+
+* `Derek Lane`_
+    * `ELEKTA AB`_, Houston TX
+
+.. _`Derek Lane`: https://github.com/dg1an3
+
+* `Jake Rembish`_
+    * `UT Health San Antonio`_, USA
+
+.. _`Jake Rembish`: https://github.com/rembishj
+
+* `Matthew Cooper`_
+
+.. _`Matthew Cooper`: https://github.com/matthewdeancooper
+
+* `Pedro Martinez`_
+    * `University of Calgary`_, Canada
+    * `Tom Baker Cancer Centre`_, Canada
+
+.. _`Pedro Martinez`: https://github.com/peterg1t
+
+* `Rafael Ayala`_
+    * `Hospital General Universitario Gregorio Marañón`_, Spain
+
+.. _`Rafael Ayala`: https://github.com/ayalalazaro
+
+
+|uth| |uoc| |hgugm|
+
+
+Past contributors
+****************************
+
+* `Matthew Sobolewski <https://github.com/msobolewski>`_
+* `Paul King <https://github.com/kingrpaul>`_
+* `Jacob McAloney <https://github.com/JacobMcAloney>`_
+
+
+.. |rccc| image:: https://github.com/pymedphys/pymedphys/raw/3f8d82fc3b53eb636a75336477734e39fa406110/docs/logos/rccc_200x200.png
+    :target: `Riverina Cancer Care Centre`_
+
+.. |rah| image:: https://github.com/pymedphys/pymedphys/raw/3f8d82fc3b53eb636a75336477734e39fa406110/docs/logos/gosa_200x200.png
+    :target: `Royal Adelaide Hospital`_
+
+.. |uoc| image:: https://github.com/pymedphys/pymedphys/raw/363b544281aab282a56b297dc8fdd521233c6a63/logos/uoc_200x200.png
+    :target: `University of Calgary`_
+
+.. |uth| image:: https://github.com/pymedphys/pymedphys/raw/3f8d82fc3b53eb636a75336477734e39fa406110/docs/logos/UTHSA_logo.png
+    :target: `UT Health San Antonio`_
+
+.. |hgugm| image:: https://github.com/pymedphys/pymedphys/raw/3f8d82fc3b53eb636a75336477734e39fa406110/docs/logos/HGUGM_200x200.png
+    :target: `Hospital General Universitario Gregorio Marañón`_
+
+.. |sjs| image:: https://github.com/pymedphys/pymedphys/raw/7e9204656e0468b0843533472553a03a99387386/logos/swerdloff.png
+    :target: `Swerdloff Family`_
+
+.. _`Riverina Cancer Care Centre`: https://www.riverinacancercare.com.au/
+
+.. _`ELEKTA Pty Ltd`: https://www.elekta.com/
+
+.. _`ELEKTA AB`: https://www.elekta.com/
+
+.. _`Royal Adelaide Hospital`: https://www.rah.sa.gov.au/
+
+.. _`University of New South Wales`: https://www.unsw.edu.au/
+
+.. _`South Western Sydney Local Health District`: https://www.swslhd.health.nsw.gov.au/
+
+.. _`Anderson Regional Cancer Center`: https://www.andersonregional.org/services/cancer-care/
+
+.. _`Northern Beaches Cancer Care`: https://www.northernbeachescancercare.com.au/
+
+.. _`University of Calgary`: https://www.ucalgary.ca/
+
+.. _`Tom Baker Cancer Centre`: https://www.ahs.ca/tbcc
+
+.. _`UT Health San Antonio`: https://www.uthscsa.edu/academics/biomedical-sciences/programs/radiological-sciences-phd
+
+.. _`Hospital General Universitario Gregorio Marañón`: https://www.comunidad.madrid/hospital/gregoriomaranon/
+
+.. _`Swerdloff Family`: https://github.com/sjswerdloff
+
+.. _`Ingham Institute`: https://inghaminstitute.org.au/
+
+.. END_OF_DOCS_IMPORT
+
+.. _`Release Notes`: ./CHANGELOG.md
+
+.. _`Library Users Guide`: https://docs.pymedphys.com/lib/index.html
+.. _`CLI Users Guide`: https://docs.pymedphys.com/cli/index.html
+.. _`App Users Guide`: https://docs.pymedphys.com/app/index.html
+.. _`Contributors Guide`: https://docs.pymedphys.com/contrib/index.html
+.. _`General`: https://docs.pymedphys.com/general/index.html
+
