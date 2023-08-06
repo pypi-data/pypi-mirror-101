@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: nxfvars
+Version: 0.2
+Summary: Access nextflow variables from Python
+Home-page: https://github.com/grst/nxfvars
+Author: Gregor Sturm
+Author-email: gregor.sturm@i-med.ac.at
+Requires-Python: >= 3.8
+Description-Content-Type: text/x-rst
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: pytoml
+Requires-Dist: pyyaml
+Requires-Dist: jupytext
+Requires-Dist: nbconvert>=4.2
+Requires-Dist: ipykernel
+Requires-Dist: pytest ; extra == "test"
+Requires-Dist: black ; extra == "test"
+Provides-Extra: test
+
+nxfvars python library
+======================
+
+A python library to access variables from nextflow. 
+For more information, see the main README at https://github.com/grst/nxfvars. 
+
