@@ -1,0 +1,909 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "AuditStamp": {
+            "properties": {
+                "actor": {
+                    "type": "string"
+                },
+                "time": {
+                    "format": "date-time",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "DataPlatform": {
+            "enum": [
+                "DOCUMENTDB",
+                "DYNAMODB",
+                "ELASTICSEARCH",
+                "LOOKER",
+                "MYSQL",
+                "POSTGRESQL",
+                "RDS",
+                "REDIS",
+                "REDSHIFT",
+                "S3",
+                "SNOWFLAKE",
+                "UNKNOWN"
+            ],
+            "type": "string"
+        },
+        "Dataset": {
+            "properties": {
+                "comments": {
+                    "items": {
+                        "$ref": "#/definitions/DatasetComment"
+                    },
+                    "type": "array"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "documentation": {
+                    "$ref": "#/definitions/DatasetDocumentation"
+                },
+                "downstream": {
+                    "$ref": "#/definitions/DatasetDownstream",
+                    "description": "DatasetDownstream captures downstream lineages from this dataset"
+                },
+                "entityType": {
+                    "enum": [
+                        "DASHBOARD",
+                        "DATASET",
+                        "GROUP",
+                        "PERSON",
+                        "PROJECT"
+                    ],
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastModifiedAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "logicalId": {
+                    "$ref": "#/definitions/DatasetLogicalId",
+                    "description": "Identify an entity \"logically\", besides the system generated UUID.\nEach entity must have a logicalId to be ingested.\nA compelling use-case is that this allows a producer to create an\ninstance of the Entity without requiring a unique UUID to be\nobtained prior to instantiation, potentially resulting in two round-trips"
+                },
+                "ownership": {
+                    "$ref": "#/definitions/Ownership"
+                },
+                "properties": {
+                    "$ref": "#/definitions/Properties"
+                },
+                "schema": {
+                    "$ref": "#/definitions/DatasetSchema"
+                },
+                "statistics": {
+                    "$ref": "#/definitions/DatasetStatistics",
+                    "description": "DatasetStatistics captures operational information about the dataset, e.g. the number of records or the last refresh time."
+                },
+                "upstream": {
+                    "$ref": "#/definitions/DatasetUpstream",
+                    "description": "DatasetUpstream captures upstream lineages from data sources to this dataset"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetComment": {
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "content": {
+                    "default": "",
+                    "type": "string"
+                },
+                "created": {
+                    "$ref": "#/definitions/AuditStamp"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "deleted": {
+                    "$ref": "#/definitions/AuditStamp"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "field": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "parent": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetDocumentation": {
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "datasetDocumentations": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "fieldDocumentations": {
+                    "items": {
+                        "$ref": "#/definitions/FieldDocumentation"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetDownstream": {
+            "description": "DatasetDownstream captures downstream lineages from this dataset",
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "datasets": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/DatasetLogicalId"
+                    },
+                    "type": "array"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetField": {
+            "properties": {
+                "dataset": {
+                    "$ref": "#/definitions/DatasetLogicalId"
+                },
+                "field": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetLogicalId": {
+            "properties": {
+                "name": {
+                    "default": "",
+                    "type": "string"
+                },
+                "platform": {
+                    "$ref": "#/definitions/DataPlatform"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetSchema": {
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "fields": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/SchemaField"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastModified": {
+                    "$ref": "#/definitions/AuditStamp"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "schemaType": {
+                    "$ref": "#/definitions/SchemaType"
+                },
+                "sqlSchema": {
+                    "$ref": "#/definitions/SqlSchema"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetStatistics": {
+            "description": "DatasetStatistics captures operational information about the dataset, e.g. the number of records or the last refresh time.",
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "dataSize": {
+                    "type": "number"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastUpdated": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "recordCount": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "DatasetUpstream": {
+            "description": "DatasetUpstream captures upstream lineages from data sources to this dataset",
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "executorUrl": {
+                    "type": "string"
+                },
+                "fieldMappings": {
+                    "items": {
+                        "$ref": "#/definitions/FieldMapping"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "sourceCodeUrl": {
+                    "type": "string"
+                },
+                "sources": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/DatasetLogicalId"
+                    },
+                    "type": "array"
+                },
+                "transformation": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Deprecation": {
+            "properties": {
+                "deprecatedBy": {
+                    "$ref": "#/definitions/AuditStamp"
+                },
+                "reason": {
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "EventHeader": {
+            "properties": {
+                "appName": {
+                    "default": "",
+                    "type": "string"
+                },
+                "server": {
+                    "default": "",
+                    "type": "string"
+                },
+                "time": {
+                    "format": "date-time",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "FieldDocumentation": {
+            "properties": {
+                "documentation": {
+                    "default": "",
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "default": "",
+                    "type": "string"
+                },
+                "tests": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "FieldMapping": {
+            "properties": {
+                "destination": {
+                    "default": "",
+                    "type": "string"
+                },
+                "sources": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/DatasetField"
+                    },
+                    "type": "array"
+                },
+                "transformation": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ForeignKey": {
+            "properties": {
+                "fieldPath": {
+                    "default": "",
+                    "type": "string"
+                },
+                "parent": {
+                    "$ref": "#/definitions/DatasetLogicalId"
+                },
+                "parentField": {
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Group": {
+            "properties": {
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "entityType": {
+                    "enum": [
+                        "DASHBOARD",
+                        "DATASET",
+                        "GROUP",
+                        "PERSON",
+                        "PROJECT"
+                    ],
+                    "type": "string"
+                },
+                "groupInfo": {
+                    "$ref": "#/definitions/GroupInfo"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastModifiedAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "logicalId": {
+                    "$ref": "#/definitions/GroupId",
+                    "description": "Identify an entity \"logically\", besides the system generated UUID.\nEach entity must have a logicalId to be ingested.\nA compelling use-case is that this allows a producer to create an\ninstance of the Entity without requiring a unique UUID to be\nobtained prior to instantiation, potentially resulting in two round-trips"
+                }
+            },
+            "type": "object"
+        },
+        "GroupId": {
+            "properties": {
+                "groupName": {
+                    "default": "",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "GroupInfo": {
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "admins": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/PersonId"
+                    },
+                    "type": "array"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "members": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/PersonId"
+                    },
+                    "type": "array"
+                },
+                "subgroups": {
+                    "items": {
+                        "$ref": "#/definitions/GroupId"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "GroupOwner": {
+            "properties": {
+                "group": {
+                    "$ref": "#/definitions/GroupId"
+                },
+                "role": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "MaterializationType": {
+            "enum": [
+                "TABLE",
+                "VIEW"
+            ],
+            "type": "string"
+        },
+        "ObjectId": {
+            "description": "A class representation of the BSON ObjectId type.",
+            "properties": {
+                "generationTime": {
+                    "description": "The generation time of this ObjectId instance",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "Ownership": {
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "groups": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/GroupOwner"
+                    },
+                    "type": "array"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "people": {
+                    "default": [
+                    ],
+                    "items": {
+                        "$ref": "#/definitions/PersonOwner"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Person": {
+            "description": "A person entity represents any individual who is a member of the organization (or beyond) and can\npotentially have some relation to the other entities in our application",
+            "properties": {
+                "avatarUrl": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "entityType": {
+                    "enum": [
+                        "DASHBOARD",
+                        "DATASET",
+                        "GROUP",
+                        "PERSON",
+                        "PROJECT"
+                    ],
+                    "type": "string"
+                },
+                "firstName": {
+                    "default": "",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastModifiedAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "lastName": {
+                    "default": "",
+                    "type": "string"
+                },
+                "logicalId": {
+                    "$ref": "#/definitions/PersonId",
+                    "description": "Identify an entity \"logically\", besides the system generated UUID.\nEach entity must have a logicalId to be ingested.\nA compelling use-case is that this allows a producer to create an\ninstance of the Entity without requiring a unique UUID to be\nobtained prior to instantiation, potentially resulting in two round-trips"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "PersonId": {
+            "properties": {
+                "email": {
+                    "default": "unknown@example.com",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "PersonOwner": {
+            "properties": {
+                "person": {
+                    "$ref": "#/definitions/PersonId"
+                },
+                "role": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Properties": {
+            "properties": {
+                "_id": {
+                    "$ref": "#/definitions/ObjectId"
+                },
+                "aspectType": {
+                    "enum": [
+                        "DATASET_COMMENT",
+                        "DATASET_DOCUMENTATION",
+                        "DATASET_DOWNSTREAM",
+                        "DATASET_SCHEMA",
+                        "DATASET_STATISTICS",
+                        "DATASET_UPSTREAM",
+                        "GROUP_INFO",
+                        "OWNERSHIP",
+                        "PERSON_EDITABLE_INFO",
+                        "PROPERTIES"
+                    ],
+                    "type": "string"
+                },
+                "createdAt": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "deprecated": {
+                    "$ref": "#/definitions/Deprecation"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "entityId": {
+                    "default": "",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "latest": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "tags": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "SchemaField": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "fieldPath": {
+                    "default": "",
+                    "type": "string"
+                },
+                "nativeType": {
+                    "default": "",
+                    "type": "string"
+                },
+                "nullable": {
+                    "default": true,
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "SchemaType": {
+            "enum": [
+                "AVRO",
+                "DYNAMODB",
+                "JSON",
+                "ORC",
+                "PARQUET",
+                "PROTOBUF",
+                "SCHEMALESS",
+                "SQL"
+            ],
+            "type": "string"
+        },
+        "SqlSchema": {
+            "properties": {
+                "foreignKey": {
+                    "items": {
+                        "$ref": "#/definitions/ForeignKey"
+                    },
+                    "type": "array"
+                },
+                "materialization": {
+                    "$ref": "#/definitions/MaterializationType"
+                },
+                "primaryKey": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "tableSchema": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "dataset": {
+            "$ref": "#/definitions/Dataset"
+        },
+        "eventHeader": {
+            "$ref": "#/definitions/EventHeader"
+        },
+        "group": {
+            "$ref": "#/definitions/Group"
+        },
+        "person": {
+            "$ref": "#/definitions/Person",
+            "description": "A person entity represents any individual who is a member of the organization (or beyond) and can\npotentially have some relation to the other entities in our application"
+        },
+        "tenant": {
+            "default": "",
+            "type": "string"
+        }
+    },
+    "type": "object"
+}
+
