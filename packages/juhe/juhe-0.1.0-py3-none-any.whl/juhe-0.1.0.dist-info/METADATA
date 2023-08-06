@@ -1,0 +1,58 @@
+Metadata-Version: 2.1
+Name: juhe
+Version: 0.1.0
+Summary: 聚合数据接口 juhe
+Home-page: https://github.com/ramwin/juhe
+Author: Xiang Wang
+Author-email: ramwin@qq.com
+License: GNU
+Keywords: datetime week
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pydash
+Requires-Dist: requests
+Provides-Extra: dev
+Requires-Dist: check-manifest ; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: coverage ; extra == 'test'
+
+# juhe
+
+# Install
+
+    sudo pip3 install juhe
+    from juhe import API
+
+
+# Usage
+
+* [汇率](https://www.juhe.cn/docs/api/id/80)
+
+    ```
+    API().query_exchange("输入你的Key")
+    >>> [
+        ['美元', '100', '653.04', '648.46', '655.72', '655.72'],
+        ['瑞典克朗', '100', '75.69', '73.53', '76.26', '76.26'],
+        ['新西兰元', '100', '458.89', '445.76', '465.11', '462.34'],
+        ['韩元', '100', '0.5826', '0.5662', '0.6036', '0.6036'],
+        ['日元', '100', '5.9405', '5.7706', '5.9858', '5.9858'],
+        ['港币', '100', '83.89', '83.3', '84.23', '84.23'],
+        ['英镑', '100', '901.72', '875.93', '908.51', '908.51'],
+        ['欧元', '100', '775.76', '753.35', '780.97', '780.97'],
+        ['瑞士法郎', '100', '702.11', '682.03', '707.4', '707.4'],
+        ['加拿大元', '100', '518.17', '503.35', '522.07', '522.07'],
+        ['澳大利亚元', '100', '497.52', '483.29', '501.27', '501.27']
+    ]
+    ```
+
+
