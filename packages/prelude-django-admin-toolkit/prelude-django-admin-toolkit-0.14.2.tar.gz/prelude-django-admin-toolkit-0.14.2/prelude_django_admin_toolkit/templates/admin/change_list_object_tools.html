@@ -1,0 +1,23 @@
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+<div class="uk-float-right">
+	  <ul class="uk-subnav uk-subnav-pill uk-padding-small uk-margin-remove">
+		{% if has_add_permission %}
+		  <li>
+			{% url cl.opts|admin_urlname:'add' as add_url %}
+			<a class="uk-text-success uk-text-bold" href="{% add_preserved_filters add_url is_popup to_field %}"><span uk-icon="icon: plus; ratio: 1.3"></span> 
+			  {# In case of regret {% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %} #}
+			</a>
+		  </li>
+          {% endif %}
+          {% if cl.has_filters or cl.date_hierarchy %}
+          <li>  
+            <a href="#filters-modal" uk-toggle><span uk-icon="icon: thumbnails; ratio: 1.3"></span>
+            {# % blocktrans %}Filters{% endblocktrans %} #}
+            </a>
+          </li>
+          {% endif %}
+	</ul>
+</div>
+{% endblock %}
