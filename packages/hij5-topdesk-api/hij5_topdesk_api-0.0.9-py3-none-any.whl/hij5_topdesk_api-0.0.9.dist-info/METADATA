@@ -1,0 +1,25 @@
+Metadata-Version: 2.1
+Name: hij5-topdesk-api
+Version: 0.0.9
+Summary: A package to interact with the (currently 3.3.0) newest version of Topdesk.
+Home-page: UNKNOWN
+Author: Jeroen van der Laan
+Author-email: j.vanderlaan@hij5.nl
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+
+## Hoe update je dit ding?
+
+1. Pas de versie aan in setup.cfg
+1. Maak de `dist` folder leeg. 
+1. `python -m build`
+   Als je geen twine geinstalleerd hebt:
+   `python -m pip install twine`
+1. `python -m twine upload --skip-existing dist/*`
+1. Gebruik als username `__token__` en als password de API token.
+
