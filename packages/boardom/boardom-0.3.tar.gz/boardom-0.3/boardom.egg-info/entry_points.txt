@@ -1,0 +1,4 @@
+[console_scripts]
+bd-plot = boardom.plot.csvplot:plot_csv
+boardom = boardom.board.server:run_server
+
