@@ -1,0 +1,10 @@
+[tool.black]
+line-length = 80
+
+[tool.isort]
+profile = "black"
+line_length = 80
+
+[tool.pytest.ini_options]
+testpaths = ["averager", "tests"]
+addopts = "--doctest-modules"
