@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: ubase
+Version: 0.1.0
+Summary: μBase is oversimpistic key-value database wrapper on top of aiosqlite
+License: Unlicense
+Author: Grigory Bakunov
+Author-email: thebobuk@ya.ru
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: aiosqlite (>=0.17.0,<0.18.0)
+Requires-Dist: ujson (>=4.0.2,<5.0.0)
