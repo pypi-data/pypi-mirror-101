@@ -1,0 +1,10 @@
+# Licenses
+include GPL
+
+# Include readme manually (because it has md extension)
+include README.rst
+
+# Force test subdirectories
+recursive-include test *.py
+
+include milad/res/*
