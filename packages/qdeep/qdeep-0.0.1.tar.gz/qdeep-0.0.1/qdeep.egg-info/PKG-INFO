@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: qdeep
+Version: 0.0.1
+Summary: Simple Deep Q Learning framework.
+Home-page: https://github.com/Talendar/qdeep
+Author: Gabriel Guedes Nogueira (Talendar)
+Author-email: gabriel.gnogueira@gmail.com
+License: MIT License
+Download-URL: https://github.com/Talendar/qdeep/releases
+Description: # Deep Q Learning Framework
+        
+        Simple Deep Q Learning framework. This is just a slightly modified version of
+        [DeepMind Acme](https://github.com/deepmind/acme)'s implementation of a deep Q network,
+        with a few extra utilities. You can install it with `pip` by using the following command:
+        
+        ``
+        $ pip install qdeep
+        ``
+        
+Keywords: machine-learning reinforcement-learning deep-q-learning
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
