@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: antp
+Version: 0.0.1
+Summary: Python Template Processor for Jinja templates
+Home-page: https://github.com/anttin/antp
+Author: anttin
+Author-email: muut.py@antion.fi
+License: UNKNOWN
+Description: # antp
+        
+        Module & app for processing Jinja template files with json data and environment variables.
+        
+        
+        TODO:
+        - write readme
+        - add support for env vars
+        
+         % echo "--- {{ env['FOO'] }} --- {{ data['jorma']['pallo'] }} ja {{ data['ilma'] }}" | FOO=bar python3 -m antp -d a.json,b.json
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
