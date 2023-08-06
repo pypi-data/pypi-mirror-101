@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: fastapi-di
+Version: 0.0.1
+Summary: Extracted the dependency injection process from fastapi.
+Home-page: https://github.com/sasano8/fastapi_di
+License: MIT
+Author: sasano8
+Author-email: y-sasahara@ys-method.com
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: fastapi (>=0.63.0,<0.64.0)
+Requires-Dist: pydantic (>=1.8.1,<2.0.0)
+Project-URL: Repository, https://github.com/sasano8/fastapi_di
+Description-Content-Type: text/markdown
+
+# fastapi_di
+Extracted the dependency injection process from fastapi.
+Dependency injection by fastapi_di is only available in the async environment.
+
+# Requirement
+
+- Python 3.8+
+
+# Installation
+``` shell
+poetry install fastapi_di
+```
+
+# Getting started
+Dependency injection is done by decorating the function and calling do as follows.
+
+
+``` Python
+import asyncio
+from fastapi import Depends
+from fastapi_di import DI
+
+di = DI()
+
+
+def get_db():
+    yield {1: {"id": 1, "name": "bob", "memo": ""}}
+
+
+@di.task()
+async def update_user(db=Depends(get_db), *, user_id: int, memo: str):
+    record = db[user_id]
+    record["memo"] = memo
+    return record
+
+
+async def main():
+    return await update_user.do(user_id=1, memo="test")
+
+
+result = asyncio.run(main())
+print(result)
+# => {'id': 1, 'name': 'bob', 'memo': 'test'}}
+```
+
+# warning
+This library is in the experimental stage.
+
+
