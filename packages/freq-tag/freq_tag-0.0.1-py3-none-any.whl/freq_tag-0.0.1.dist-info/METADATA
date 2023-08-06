@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: freq-tag
+Version: 0.0.1
+Summary: A Python package facilitating the analysis of frequency-tagging data
+Home-page: https://github.com/Frequency-Tagging/freq-tag
+Maintainer: Evgenii Kalenkovich
+Maintainer-email: e.kalenkovich@gmail.com
+License: new BSD
+Download-URL: https://github.com/Frequency-Tagging/freq-tag
+Platform: UNKNOWN
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development
+Classifier: Topic :: Scientific/Engineering
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/x-rst
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: mne
+Provides-Extra: docs
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-gallery ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme ; extra == 'docs'
+Requires-Dist: numpydoc ; extra == 'docs'
+Requires-Dist: matplotlib ; extra == 'docs'
+Provides-Extra: tests
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-cov ; extra == 'tests'
+
+.. -*- mode: rst -*-
+
+|GHActions|_ |Codecov|_ |CircleCI|_
+
+.. |GHActions| image:: https://github.com/Frequency-Tagging/freq-tag/workflows/build/badge.svg
+.. _GHActions: https://github.com/Frequency-Tagging/freq-tag/actions
+
+.. |Codecov| image:: https://codecov.io/gh/Frequency-Tagging/freq-tag/branch/master/graph/badge.svg
+.. _Codecov: https://codecov.io/gh/Frequency-Tagging/freq-tag
+
+.. |CircleCI| image:: https://circleci.com/gh/Frequency-Tagging/freq-tag.svg?style=svg
+.. _CircleCI: https://circleci.com/gh/Frequency-Tagging/freq-tag/tree/master
+
+freq-tag - A Python package facilitating the analysis of frequency-tagging data
+===============================================================================
+
+.. _documentation: https://frequency-tagging.github.io/freq-tag/
+
+Refer to the documentation_ for examples.
+
+
