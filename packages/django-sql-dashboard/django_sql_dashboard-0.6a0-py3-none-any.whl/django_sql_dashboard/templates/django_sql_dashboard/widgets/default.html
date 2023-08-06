@@ -1,0 +1,74 @@
+{% load django_sql_dashboard %}<div class="query-results">
+  {% if saved_dashboard %}<pre>{{ result.sql }}</pre>{% else %}<textarea
+    name="sql"
+    rows="{{ result.textarea_rows }}"
+  >{{ result.sql|default:"" }}</textarea>{% endif %}
+  {% if not saved_dashboard %}<p>
+    <input
+      class="btn"
+      type="submit"
+      value="Run quer{% if query_results|length > 1 %}ies{% else %}y{% endif %}"
+    />
+  </p>{% endif %}
+  {% if result.truncated %}Results were truncated{% endif %}
+  {% if result.error %}
+  <p style="background-color: pink; padding: 1em; margin: 1em 0">
+    {{ result.error }}
+  </p>
+  {% endif %}
+  <table>
+    <thead>
+      <tr>
+        {% for column in result.description %}
+        <th alt="{{ column }}">{{ column.name }}{% if user_can_execute_sql %} [<a href="{% url 'django_sql_dashboard-index' %}?sql={% filter sign_sql %}select "{{ column.name }}", count(*) as n from ({{ result.sql|safe }}) as results group by "{{ column.name }}" order by n desc{% endfilter %}{{ result.extra_qs }}">count</a>]{% endif %}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in result.row_lists %}
+      <tr>
+        {% for item in row %}
+        <td>{% if item is None %}<span class="null">- null -</span>{% else %}{{ item }}{% endif %}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <details style="margin-top: 1em;"><summary style="font-size: 0.7em; margin-bottom: 0.5em; cursor: pointer;">Copy data</summary>
+    <textarea id="copyable-{{ result.index }}" style="height: 10em">{{ result|sql_dashboard_tsv }}</textarea>
+  </details>
+  {% if not saved_dashboard %}<p>
+    <input
+      class="btn"
+      type="submit"
+      value="Run quer{% if query_results|length > 1 %}ies{% else %}y{% endif %}"
+    />
+  </p>{% endif %}
+  </details>
+  <p>Duration: {{ result.duration_ms|floatformat:2 }}ms</p>
+  <!-- templates considered: {{ result.templates|join:", " }} -->
+  <script>
+  (function() {
+    var ta = document.querySelector("#copyable-{{ result.index }}");
+    var button = document.createElement("button");
+    button.className = "copyable-copy-button btn";
+    button.style.fontSize = '0.6em';
+    button.innerHTML = "Copy to clipboard";
+    button.onclick = (ev) => {
+      ev.preventDefault();
+      ta.select();
+      document.execCommand("copy");
+      button.innerHTML = "Copied!";
+      setTimeout(() => {
+          button.innerHTML = "Copy to clipboard";
+      }, 1500);
+    };
+    var p = document.createElement('p');
+    p.style.marginTop = '0.2em';
+    ta.insertAdjacentElement("afterend", p);
+    console.log(button);
+    console.log(ta);
+    p.insertAdjacentElement("afterbegin", button);
+  })();
+  </script>
+</div>
