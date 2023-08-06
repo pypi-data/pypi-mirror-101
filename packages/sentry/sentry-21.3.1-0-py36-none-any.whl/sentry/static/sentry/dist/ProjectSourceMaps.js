@@ -1,0 +1,2 @@
+(self.webpackChunk=self.webpackChunk||[]).push([["ProjectSourceMaps"],{"./app/views/settings/projectSourceMaps/index.tsx":(e,t,n)=>{"use strict";n.r(t),n.d(t,{default:()=>i});var a=n("../../../../node_modules/react/index.js");const i=(0,n("./app/utils/withOrganization.tsx").Z)((function(e){var t=e.children,n=e.organization,i=e.project;return a.isValidElement(t)?a.cloneElement(t,{organization:n,project:i}):null}))}}]);
+//# sourceMappingURL=ProjectSourceMaps.js.map
