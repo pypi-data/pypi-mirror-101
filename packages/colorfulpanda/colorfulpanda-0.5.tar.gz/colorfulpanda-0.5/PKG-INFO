@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: colorfulpanda
+Version: 0.5
+Summary: a colorful printer
+Home-page: https://github.com/PandaTea/colorfulPanda
+Author: LeePanda
+Author-email: leepandapia@gmail.com
+License: UNKNOWN
+Description: # colorfulPanda
+        一些花里胡哨的东西
+        
+        ## 使用方法
+        
+        `pip3 install colorfulpanda`
+        
+        `from colorfulpanda.mov.BlinkBlock import main as mov`
+        
+        `mov("helloworld")`
+        
+        ## 维护方法
+        `python3 setup.py check`
+        `python3 setup.py sdist`
+        `twine upload dist/*`
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
