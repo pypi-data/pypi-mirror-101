@@ -1,0 +1,8 @@
+# Manifest syntax https://docs.python.org/2/distutils/sourcedist.html
+include *.md
+include datawidgets/ui/style.css
+
+# exclude tests from package
+recursive-exclude tests *
+recursive-exclude site *
+exclude tests
