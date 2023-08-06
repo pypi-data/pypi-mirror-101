@@ -1,0 +1,44 @@
+Metadata-Version: 2.1
+Name: datawidgets
+Version: 0.0.5.post1
+Summary: Widgets to explore data
+Home-page: UNKNOWN
+Author: Rahul Somani
+Author-email: rsomani95@gmail.com
+License: Private
+Keywords: synopsis,film,video,label
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Framework :: IPython
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: <4,>=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: pyarrow
+Requires-Dist: tqdm
+Requires-Dist: requests
+Requires-Dist: ipython (>=7.19)
+Requires-Dist: os-utilities
+Requires-Dist: scipy
+Requires-Dist: pathos
+Requires-Dist: notebook
+Requires-Dist: jupyter-contrib-nbextensions
+Requires-Dist: ipywidgets
+Requires-Dist: ipyevents
+Requires-Dist: ipyvuetify
+Provides-Extra: all
+Requires-Dist: icevision ; extra == 'all'
+Requires-Dist: torchvision ; extra == 'all'
+Requires-Dist: torch ; extra == 'all'
+Provides-Extra: dev
+Requires-Dist: black (<21,>=20.8b1) ; extra == 'dev'
+Requires-Dist: pytest (<7,>=6) ; extra == 'dev'
+Requires-Dist: jupyter (<2,>=1.0.0) ; extra == 'dev'
+Requires-Dist: pre-commit (<3,>=2.8.2) ; extra == 'dev'
+
+**NOTE:** This library is in extremely early stages. Check back after some time :)
+
+
