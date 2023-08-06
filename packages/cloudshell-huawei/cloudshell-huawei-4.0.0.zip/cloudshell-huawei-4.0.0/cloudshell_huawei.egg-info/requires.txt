@@ -1,0 +1,10 @@
+tftpy
+cloudshell-shell-flows<2,>=1.0
+cloudshell-shell-connectivity-flow<3.0,>=2.0
+cloudshell-cli<5,>=4.0
+cloudshell-snmp<5,>=4.0
+cloudshell-snmp-autoload<2.0,>=1.0
+cloudshell-shell-standards~=1.2
+
+[:python_version <= "2.7"]
+functools32
