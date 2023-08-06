@@ -1,0 +1,50 @@
+Metadata-Version: 2.1
+Name: kt-line
+Version: 0.3.1
+Summary: Ferramenta de linha de comando para calcular linha de tendencia e linha de canal
+Home-page: https://github.com/vfranca/kt-line
+License: GPL-2.0-only
+Keywords: cli,trading
+Author: Valmir Franca
+Author-email: vfranca3@gmail.com
+Requires-Python: >=3.9,<4.0
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Natural Language :: Portuguese (Brazilian)
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Adaptive Technologies
+Classifier: Topic :: Office/Business :: Financial :: Investment
+Requires-Dist: click (>=7.1.2,<8.0.0)
+Project-URL: Repository, https://github.com/vfranca/kt-line
+Description-Content-Type: text/markdown
+
+# kt-line
+Calcula o próximo preço das linhas de canal.  
+
+## Pré-requisitos
+Python instalado e disponível no terminal de comandos.  
+
+## Instalação
+```cmd
+> pip install kt-line
+```
+
+## Uso
+```cmd
+> l <PRECO1> <PRECO2>
+```
+
+Onde:  
+PRECO1 e PRECO2 são dois topos ou dois fundos.  
+Exemplo:  
+```cmd
+> l 26.00 27.00  
+28.00
+```
+Dois fundos mais altos 26.00 e 27.00 desenham uma linha cujo próximo ponto está em 28.00.  
+
