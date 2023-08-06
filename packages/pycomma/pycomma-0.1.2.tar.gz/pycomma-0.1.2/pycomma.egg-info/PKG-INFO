@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: pycomma
+Version: 0.1.2
+Summary: Python library for processing CSV files
+Home-page: https://github.com/JordanKobeWade/pycomma
+Author: Sean Hwang
+Author-email: seanphwang@gmail.com
+License: MIT
+Download-URL: https://github.com/JordanKobeWade/pycomma/releases
+Description: ## pycomma
+        A python library designed to allow csv data processing workflows completely within a python shell 
+        
+        [Documentation](https://jordankobewade.github.io/pycomma)
+        
+        [PyPi](https://pypi.org/project/pycomma/)
+        
+        ### Quickstart
+        
+        ``` pip install pycomma ```
+        ``` 
+        from pycomma.comma import Comma 
+        comma = Comma("data.csv")
+        comma.prepare()
+        comma.show()
+        ```
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
