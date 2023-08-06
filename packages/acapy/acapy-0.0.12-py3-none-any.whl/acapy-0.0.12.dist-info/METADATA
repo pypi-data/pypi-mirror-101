@@ -1,0 +1,375 @@
+Metadata-Version: 2.1
+Name: acapy
+Version: 0.0.12
+Summary: AVALDATA AcapLib2 Python wrapper.
+Home-page: https://www.avaldata.co.jp/contact
+Author: AVALDATA
+Author-email: 
+License: 3-Clause BSD License
+Keywords: AVALDATA acapy
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Natural Language :: Japanese
+Classifier: Operating System :: Microsoft :: Windows :: Windows 10
+Classifier: Programming Language :: Python :: 3.6
+Description-Content-Type: text/markdown
+
+acapy package (Python bindings for AVALDATA AcapLib2 ) Prerelease version
+
+## Installation
+
+```
+pip install acapy
+```
+
+
+
+## Requirment
+
+- AcapLib2 (AVALDATA SDK)
+- numpy
+- Pillow
+
+
+
+## LICENSE
+
+```
+BSD 3-Clause License
+
+Copyright (c) 2021, AVALDATA
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+
+
+# AcaPy class
+
+Python bindings for AVALDATA AcapLib2
+
+## Examples
+
+### Snap sample
+
+```Python
+import sys
+
+import cv2
+import acapy
+
+# AcaPyクラスのインスタンス
+capture = acapy.AcaPy()
+
+if capture.is_opened == False:
+    # キャプチャボードが見つからないときは終了
+    del(capture)
+    sys.exit(0)
+
+# iniファイル（カメラ設定ファイル）の読込
+capture.load_inifile("./AreaSensor_mono.ini")
+
+while(True):
+    # 画像を１枚取得
+    ret, frame = capture.snap() # カラーのときはBGR(OpenCVのMatと互換)
+    # 画像の表示
+    cv2.imshow ("Image", frame )
+
+    if cv2.waitKey(1) > 0:
+        # キー入力待ち
+        break
+
+cv2.destroyAllWindows()
+```
+
+### Grab sample
+
+```python
+import sys
+
+import cv2
+import acapy
+
+# AcaPyクラスのインスタンス
+capture = acapy.AcaPy()
+
+if capture.is_opened == False:
+    # キャプチャボードが見つからないときは終了
+    del(capture)
+    sys.exit(0)
+
+# iniファイル（カメラ設定ファイル）の読込
+capture.load_inifile("./AreaSensor_mono.ini")
+
+# grab(連続画像取込)の開始
+capture.grab_start()
+
+while(True):
+
+    # 前回のフレームの次から今回のフレームまでを取得
+    ret, frames, count, frame_no = capture.read_frames()# カラーのときはBGR(OpenCVのMatと互換)
+    if ret != acapy.AcaPy.OK:
+        # リングバッファが上書きされたとき
+        print("Frame dropped")
+    # 最後に取得した画像を表示
+    cv2.imshow ("Image", frames[count - 1] )
+
+    if cv2.waitKey(1) > 0:
+        # キー入力待ち
+        break
+
+# grab(連続画像取込)の停止
+capture.grab_stop()
+
+cv2.destroyAllWindows()
+```
+
+
+
+## Constructors
+
+| Constructors                         | Descriptoin                                                  |
+| ------------------------------------ | ------------------------------------------------------------ |
+| AcaPy([board_id, ch[, debug_print]]) | ボードIDとチャンネル番号を指定してAcaPyクラスをインスタンスします。エラー情報などコマンドプロンプトへ表示しない場合は debug_print = Falseにします。 |
+
+
+
+## Properties
+
+| Properties                    | Descriptoin                                                  | Get/Set | ini  parameter                           |
+| ----------------------------- | ------------------------------------------------------------ | :-----: | ---------------------------------------- |
+| a_cw_ccw                      | エンコーダA相の回転方向を取得します。                        |   ●/-   |                                          |
+| b_cw_ccw                      | エンコーダB相の回転方向を取得します。                        |   ●/-   |                                          |
+| bayer_enable                  | ベイヤー変換の有効／無効を取得・設定します。                 |   ●/●   | USER_BAYER_ENABLE                        |
+| bayer_grid                    | ベイヤー変換開始位置のパターンを取得・設定します。           |   ●/●   | USER_BAYER_GRID                          |
+| bayer_input_bit               | Bayer画像のBit数を取得・設定します。                         |   ●/●   | USER_BAYER_INPUT_BIT                     |
+| bayer_lut_data                | 編集するLUTデータ配列(リスト)を取得・設定します。            |   ●/●   |                                          |
+| bayer_lut_edit                | BayerLUTの編集を開始・停止します。                           |   ●/●   |                                          |
+| bayer_output_bit              | Bayer変換後のBit数を取得・設定します。                       |   ●/●   | USER_BAYER_OUTPUT_BIT                    |
+| board_bit                     | ボードで確保する画像用メモリのビット幅を取得・設定します。   |   ●/●   | USER_GRABBER_BIT_DEPTH                   |
+| board_id                      | 初期化されたボードIDを取得します。                           |   ●/-   |                                          |
+| board_error                   | ボードエラーを取得・クリアします。                           |   ●/●   |                                          |
+| board_name                    | 初期化されたボード名を取得します。                           |   ●/-   |                                          |
+| board_temp                    | 基板温度を取得します。                                       |   ●/-   |                                          |
+| buffer_zero_fill              | 初期化時にバッファをゼロクリアするかを取得・設定します。     |   ●/●   |                                          |
+| camera_bit                    | カメラから入力する画像のビット数を取得・設定します。         |   ●/●   | USER_CAMERA_BIT_DEPTH                    |
+| camera_state                  | カメラの接続状態を取得します。                               |   ●/-   |                                          |
+| capture_flag                  | キャプチャ状況を取得します。                                 |   ●/-   |                                          |
+| cc_cycle                      | CC信号の周期[usec]を取得・設定します。                       |   ●/●   | USER_SW_TRIGGER_CYCLE                    |
+| cc_cycle_ex                   | CC信号の周期[100nsec]を取得・設定します。                    |   ●/●   | USER_SW_TRIGGER_CYCLE                    |
+| cc_delay                      | CC信号の出力遅延時間[usec]を取得・設定します。               |   ●/●   | USER_CC_DELAY                            |
+| cc_out_no                     | CC信号の番号(1～4)を取得・設定します。                       |   ●/●   | USER_CL_CC_OUT_NO                        |
+| cc_polarity                   | CC信号の論理を取得・設定します。                             |   ●/●   | USER_SW_TRIGGER_POLARITY                 |
+| cc1_polarity                  | CC1信号の出力レベルを取得・設定します。                      |   ●/●   | USER_CL_CC1_POLARITY                     |
+| cc2_polarity                  | CC2信号の出力レベルを取得・設定します。                      |   ●/●   | USER_CL_CC2_POLARITY                     |
+| cc3_polarity                  | CC3信号の出力レベルを取得・設定します。                      |   ●/●   | USER_CL_CC3_POLARITY                     |
+| cc4_polarity                  | CC4信号の出力レベルを取得・設定します。                      |   ●/●   | USER_CL_CC4_POLARITY                     |
+| cc_stop                       | 画像入力停止後、CC出力を行うかの設定を取得・設定します。     |   ●/●   | USER_CC_STOP                             |
+| cancel_initialize             | 初期化と内部バッファ確保の設定を取得・設定します。           |   ●/●   | USER_CANCEL_INITIALIZE                   |
+| ch                            | 初期化されたチャンネル番号を取得します。                     |   ●/-   |                                          |
+| chatter_separate              | 外部トリガ検出無効時間の設定方法を取得・設定します。         |   ●/●   | USER_EXTERNAL_TRIGGER  _CHATTER_SEPARATE |
+| count_cc                      | CC信号の出力回数を取得します。                               |   ●/-   |                                          |
+| count_exttrig                 | EXTTRIG(外部トリガ)信号の入力回数を取得します。              |   ●/-   |                                          |
+| count_fval                    | FVAL信号の入力回数を取得します。                             |   ●/-   |                                          |
+| count_lval                    | LVAL信号の入力回数を取得します。                             |   ●/-   |                                          |
+| count_reset                   | すべてのカウンタをリセットします。                           |   -/●   |                                          |
+| cxp_acquision  _start_address | CXP規格のAcquisitionStartのアドレスを取得・設定します。      |   ●/●   | USER_CXP_ACQUISION  _START_ADDRESS       |
+| cxp_acquision  _start_value   | CXP規格のAcquisitionStartのアドレスに指定する値を取得・設定します。 |   ●/●   | USER_CXP_ACQUISION  _START_VALUE         |
+| cxp_acquision  _stop_address  | CXP規格のAcquisitionStopのアドレスを取得・設定します。       |   ●/●   | USER_CXP_ACQUISION  _STOP_ADDRESS        |
+| cxp_acquision  _stop_value    | CXP規格のAcquisitionStopのアドレスに指定する値を取得・設定します。 |   ●/●   | USER_CXP_ACQUISION  _STOP_VALUE          |
+| cxp_bitrate                   | CXPのビットレートを取得・設定します。                        |   ●/●   | USER_CXP_PHY_BITRATE                     |
+| cxp_link_reset                | CoaXPressカメラ、ボードに対してリンクリセットを行います。    |   -/●   |                                          |
+| cxp_link_speed                | CXPのリンク速度を取得・設定します。                          |   ●/●   | USER_CXP_PHY_LINKSPEED                   |
+| cxp_pixel_format              | CXP規格のPixelFormatアドレスに指定する値を取得・設定します。 |   ●/●   | USER_CXP_PIXEL_FORMAT                    |
+| cxp_pixel  _format_address    | CXP規格のPixelFormatアドレス値を取得・設定します。           |   ●/●   | USER_CXP_PIXEL  _FORMAT_ADDRESS          |
+| data_mask_lower               | カメラリンクポートA～Dのマスク値を取得・設定します。         |   ●/●   | USER_DATA_MASK_LOWER                     |
+| data_mask_upper               | カメラリンクポートE～Hのマスク値を取得・設定します。         |   ●/●   | USER_DATA_MASK_UPPER                     |
+| dval_enable                   | カメラデータ入力時のDVAL信号参照の有効(1)／無効(0)を取得・設定します。 |   ●/●   | USER_DVAL_SIGNAL_ENABLE                  |
+| encoder_abs_count             | エンコーダ絶対カウンタ値を取得します。                       |   ●/-   |                                          |
+| encoder_abs_start             | 絶多値エンコーダの開始／停止の制御値を取得・設定します。     |   ●/●   |                                          |
+| encoder_agr_count             | 相対位置エンコーダ使用時の一致パルス数を取得します。         |   ●/-   |                                          |
+| encoder_all_count             | 相対位置エンコーダ使用時の総カウント値を取得します。         |   ●/-   |                                          |
+| encoder_compare_reg_1         | エンコーダ比較レジスタ１の値を取得・設定します。             |   ●/●   | USER_ENCODER  _COMPARE_REG_1             |
+| encoder_compare_reg_2         | エンコーダ比較レジスタ2の値を取得・設定します。              |   ●/●   | USER_ENCODER  _COMPARE_REG_2             |
+| encoder_count                 | エンコーダ相対カウンタ値を取得します。                       |   ●/-   |                                          |
+| encoder_direction             | エンコーダ入力パルス方向を取得・設定します。                 |   ●/●   | USER_ENCODER_PULSE                       |
+| encoder_enable                | エンコーダの有効／無効／使用方法を取得・設定します。         |   ●/●   | USER_ENCODER_ENABLE                      |
+| encoder_mode                  | エンコーダ動作モードを取得・設定します。                     |   ●/●   | USER_ENCODER_MODE                        |
+| encoder_phase                 | エンコーダ入力パルス選択を取得・設定します。                 |   ●/●   | USER_ENCODER_PHASE                       |
+| encoder_start                 | 外部トリガをエンコーダで使用する方法を取得・設定します。     |   ●/●   | USER_ENCODER_START                       |
+| encoder_z_phase               | エンコーダ起動にZ相を使用するかの設定を取得・設定します。    |   ●/●   | USER_ENCODER_Z_PHASE                     |
+| exposure                      | CC信号の出力幅（露光時間）[usec]を取得・設定します。         |   ●/●   | USER_SW_TRIGGER_WIDTH                    |
+| exposure_ex                   | CC信号の出力幅（露光時間）[100nsec]を取得・設定します。      |   ●/●   | USER_SW_TRIGGER_WIDTH                    |
+| express_link                  | PCI-Expressバスに接続されているリンク幅を取得します。        |   ●/-   |                                          |
+| external_pin_sel              | 使用する外部トリガピンをBitで取得・設定します。              |   ●/●   | USER_EXTERNAL  _TRIGGER_PINSEL           |
+| external_trigger_chatter      | 外部トリガ検出無効時間[usec]を取得・設定します。             |   ●/●   | USER_EXTERNAL_TRIGGER  _CHATTER          |
+| external_trigger_delay        | 外部トリガ検出遅延時間[usec]を取得・設定します。             |   ●/●   | USER_EXTERNAL_TRIGGER  _DELAY            |
+| external_trigger_enable       | 外部トリガに使用する信号選択を取得・設定します。             |   ●/●   | USER_EXTERNAL_TRIGGER  _ENABLE           |
+| external_trigger_mode         | 外部トリガを使用してCC信号を出力する方法を取得・設定します。 |   ●/●   | USER_EXTERNAL_TRIGGER  _POLARITY         |
+| fifo_full                     | FIFOステータスを取得します。                                 |   ●/-   |                                          |
+| fpga_temp                     | FPGA温度を取得します。                                       |   ●/-   |                                          |
+| fpga_version                  | FPGAバージョンを取得します。                                 |   ●/-   |                                          |
+| freq_a                        | エンコーダA相の周波数(Hz)を取得します。                      |   ●/-   |                                          |
+| freq_b                        | エンコーダB相の周波数(Hz)を取得します。                      |   ●/-   |                                          |
+| freq_fval                     | FVALの周波数(kHz)を取得します。                              |   ●/-   |                                          |
+| freq_lval                     | LVALの周波数(kHz)を取得します。                              |   ●/-   |                                          |
+| freq_ttl1                     | TTL1の周波数(Hz)を取得します。                               |   ●/-   |                                          |
+| freq_ttl2                     | TTL2の周波数(Hz)を取得します。                               |   ●/-   |                                          |
+| freq_z                        | エンコーダZ相の周波数(Hz)を取得します。                      |   ●/-   |                                          |
+| gpin_pol                      | GP_INのレベルをBit情報で取得します。                         |   ●/-   |                                          |
+| gpin_pin_sel                  | GP_INピンの入力設定を取得・設定します。                      |   ●/●   | USER_GPIN_SEL                            |
+| gpout_pol                     | GP_OUTピンの出力レベルを取得・設定します。                   |   ●/●   | USER_GPOUT_POL                           |
+| gpout_sel                     | GP_OUTピンの出力設定を取得・設定します。                     |   ●/●   | USER_GPOUT_SEL                           |
+| handle                        | 初期化されたボードハンドルを取得します。                     |   ●/-   |                                          |
+| height                        | 画像入力サイズの高さを取得・設定します。                     |   ●/●   | USER_Y_SIZE                              |
+| interval_exttrig_1            | 認識した外部トリガ間隔の時間（カウント値）の最新の値を取得します。 |   ●/-   |                                          |
+| interval_exttrig_2            | 認識した外部トリガ間隔の時間（カウント値）の２番目に新しい値を取得します。 |   ●/-   |                                          |
+| interval_exttrig_3            | 認識した外部トリガ間隔の時間（カウント値）の3番目に新しい値を取得します。 |   ●/-   |                                          |
+| interval_exttrig_4            | 認識した外部トリガ間隔の時間（カウント値）の4番目に新しい値を取得します。 |   ●/-   |                                          |
+| is_grab                       | Grab中かどうかを取得します。                                 |   ●/-   |                                          |
+| is_opened                     | ボードの初期化が成功したかどうかを取得します。               |   ●/-   |                                          |
+| line_reverse                  | カメラから入力したラインデータの左右反転設定を取得・設定します。 |   ●/●   | USER_CAMERALINK  _LINE_REVERSE           |
+| interrupt_line                | １フレーム入力ライン数カウント間隔を取得・設定します。       |   ●/●   | USER_DATA_INTERRUPU_LINE                 |
+| lval_delay                    | カメラから入力するLVALのX方向遅延量(clock)を取得・設定します。 |   ●/●   | USER_CAMERALINK  _LVAL_DELAY             |
+| lvds_cclk_sel                 | カメラ駆動クロックを取得・設定します。                       |   ●/●   | USER_LVDS_CCLK_SEL                       |
+| lvds_phase_sel                | 入力サンプリングの位相を取得・設定します。                   |   ●/●   | USER_LVDS_PHASE_SEL                      |
+| lvds_synclt_sel               | SYNCLTピンの入出力を取得・設定します。                       |   ●/●   |                                          |
+| mem_num                       | リングバッファの画像面数を取得・設定します。                 |   ●/●   | USER_MEMORY_NUM                          |
+| narrow10bit_enable            | データ詰め転送の有効(1)／無効(0)を取得・設定します。         |   ●/●   | USER_NARROW10BIT_ENABLE                  |
+| opt_link_reset                | Opt-C:Linkボードに対してリンクリセットを行います。           |   -/●   |                                          |
+| pocl_lite_enable              | PoCL-Liteカメラ用設定の有効(1)／無効(0)を取得・設定します。  |   ●/●   | USER_POCL_LITE_ENABLE                    |
+| power_state                   | カメラ電源エラー状態を取得・クリアします。                   |   ●/●   |                                          |
+| power_supply                  | カメラへの給電状態を取得します。給電の設定はset_power_supply()メソッド |   ●/-   |                                          |
+| pix_shift                     | カメラから入力するデータを右シフトするビット数を取得・設定します。 |   ●/●   | USER_PIXEL_DATA_SHIFT                    |
+| reverse_dma_enable            | 上下反転DMAの有効(1)／無効(0)を取得・設定します。            |   ●/●   | USER_REVERSE_DMA_ENABLE                  |
+| rolling_shutter               | ローリングシャッタの有効(1)／無効(0)を取得・設定します。     |   ●/●   | USER_ROLLING_SHUTTER  _TRIGGER_ENABLE    |
+| scan_system                   | 取込を行うカメラの種類を取得・設定します。                   |   ●/●   | USER_INTERLACE_TYPE                      |
+| start_frame_no                | 取込を開始するフレーム番号(1, 2, 3…)を取得・設定します。     |   ●/●   |                                          |
+| strobe_delay                  | ストロボ信号出力遅延時間[usec]を取得・設定します。           |   ●/●   | USER_STROBE_DELAY_COUNT                  |
+| strobe_enable                 | ストロボ出力信号の有効(1)／無効(0)を取得・設定します。       |   ●/●   | USER_STROBE_ENABLE                       |
+| strobe_pol                    | ストロボの極性を取得・設定します。                           |   ●/●   |                                          |
+| strobe_time                   | ストロボ信号出力時間[usec]を取得・設定します。               |   ●/●   | USER_STROBE_TIME_COUNT                   |
+| sync_ch                       | 指定チャンネルの取込をどのchに同期されるかを取得・設定します。 |   ●/●   | USER_SYNC_CH                             |
+| sync_lt                       | CC信号の出力をSYNCLT入力に同期されるかどうかを取得・設定します。 |   ●/●   | USER_SYNC_LT                             |
+| tap_arrage                    | カメラ入力タップの並べ替え方法を取得・設定します。           |   ●/●   | USER_CAMERALINK  _REARRANGEMENT_ENABLE   |
+| tap_arrage_x_size             | カメラが１ラインとして出力する総画素数をを取得・設定します。 |   ●/●   | USER_CAMERALINK  _REARRENGEMENT_XSIZE    |
+| tap_num                       | 入力タップ数を取得・設定します。                             |   ●/●   | USER_X_TAPS_PER_CH                       |
+| timeout                       | grab_stop()メソッドのフレーム入力待ちタイムアウト時間をミリ秒単位で取得・設定します。 |   ●/●   | USER_TIMEOUT1                            |
+| trigger_cycle                 | CC信号の周期[usec]を取得・設定します。                       |   ●/●   | USER_SW_TRIGGER_CYCLE                    |
+| trigger_cycle_ex              | CC信号の周期[100nsec]を取得・設定します。                    |   ●/●   | USER_SW_TRIGGER_CYCLE                    |
+| trigger_enable                | CC信号出力の有効(1)／無効(0)を取得・設定します。             |   ●/●   | USER_SW_TRIGGER_ENABLE                   |
+| trigger_width                 | CC信号の出力幅（露光時間）[usec]を取得・設定します。         |   ●/●   | USER_SW_TRIGGER_WIDTH                    |
+| trigger_width_ex              | CC信号の出力幅（露光時間）[100nsec]を取得・設定します。      |   ●/●   | USER_SW_TRIGGER_WIDTH                    |
+| vertical_remap                | Y方向特殊DMAの設定／無効(0)を取得・設定します。              |   ●/●   | USER_VERTICAL_REMAP  _ENABLE             |
+| virtual_comport               | 仮想COMポート番号を取得します。                              |   ●/-   |                                          |
+| width                         | 画像入力サイズの幅を取得・設定します。                       |   ●/●   | USER_X_SIZE                              |
+| x_delay                       | カメラ入力のX方向遅延量を取得・設定します。                  |   ●/●   | USER_X_FRONT_PORCH                       |
+| y_delay                       | カメラ入力のY方向遅延行数を取得・設定します。                |   ●/●   | USER_Y_FRONT_PORCH                       |
+| y_total                       | カメラから入力する行数を取得・設定します。                   |   ●/●   | USER_Y_TOTAL_SIZE                        |
+
+※設定値の詳細は、AcapLib2のマニュアル「SDK-AcapLib2 Library Manual for Windows(OM15018*).pdf」を参照願います。
+
+
+
+## Methods
+
+| Methods                             | Descriptoin                                                  |
+| ----------------------------------- | ------------------------------------------------------------ |
+| bgr2rgb(image)                      | カラー画像のとき、BGRからRGBへ並びを入れ替えます。           |
+| get_boardInfo()                     | PCに接続されているボード一覧の情報を取得します。(static method) |
+| get_frame_no()                      | 現在の画像取得枚数（1,2,3・・・）を取得します。              |
+| get_last_error([error_reset])       | 最後に発生したエラー情報を取得します。                       |
+| get_info(value_id[, memnum])        | 設定IDを指定してボードの設定値を取得します。                 |
+| grab_abort()                        | 画像入力を強制停止します。                                   |
+| grab_start([input_num])             | 画像入力枚数を指定し、画像入力を開始します。                 |
+| grab_stop()                         | 画像入力を停止します。                                       |
+| load_inifile(filename)              | ボード設定ファイル(*.ini)を読込、ボードの設定を行います。    |
+| print_acapy_values()                | ボードに設定されている値をコマンドプロンプトへ表示します。   |
+| print_last_error()                  | 最後に発生したエラー情報をコマンドプロンプトへ表示します。   |
+| read()                              | 現在のフレームの入力完了を待って画像を取得します。           |
+| read_frames()                       | 前回取得したフレームの次から、現在のフレームまでの画像を取得します。 |
+| refrect_param()                     | プロパティで設定した値をボードへ反映させます。               |
+| set_info(value_id, value[, memnum]) | ボードへ設定IDを指定して値を設定します。                     |
+| set_power_supply(wait_time, value)  | カメラクロック確認待機時間(waite_time)をmsecで指定し、給電のON(1)/OFF(0)をvalueに設定します。 |
+| snap()                              | １フレームの取込を行います。                                 |
+| wait_frame_end()                    | 1フレームの入力完了を待ちます。                              |
+| wait_grab_end()                     | 連続入力の完了を待ちます。                                   |
+
+
+
+# GraphicsBox class
+
+Inherit the Tkinter Canvas class
+
+
+
+## Constructors
+
+| Constructors                             | Descriptoin                             |
+| ---------------------------------------- | --------------------------------------- |
+| GraphicsBox(parent, option = value, ...) | option設定はTkinterのCanvasクラスと同じ |
+
+
+
+## Properties
+
+| Properties       | Descriptoin                                                  | Get/Set |
+| ---------------- | ------------------------------------------------------------ | :-----: |
+| affine_matrix    | 画像表示に使用している3x3のアフィン変換行列を取得・設定します。 |   ●/●   |
+| bright_enabled   | 輝度値の表示(True)／非表示(False)の設定を取得・設定します。  |   ●/●   |
+| cross_beam_color | プロファイル用十字線の色を取得・設定します。                 |   ●/●   |
+| disp_scale       | 画像表示倍率を取得します。                                   |   ●/-   |
+| grid_color       | グリッド線の色を取得・設定します。                           |   ●/●   |
+| grid_disp_scale  | グリッド線を表示する画像の最小倍率を取得・設定します。       |   ●/●   |
+| grid_enabled     | 画像拡大時のグリッド線の表示(True)／非表示(False)の設定を取得・設定します。 |   ●/●   |
+| profile_enabled  | プロファイルの表示(True)／非表示(False)の設定を取得・設定します。 |   ●/●   |
+| profile_hight    | プロファイルグラフの高さを取得・設定します。                 |   ●/●   |
+| x_profile_color  | 横方向のプロファイルの線色を取得・設定します。               |   ●/●   |
+| y_profile_color  | 縦方向のプロファイルの線色を取得・設定します。               |   ●/●   |
+| zoomup_direction | 画像拡大時のホイールの回転方向を取得・設定します。  <br />-1:下へ回転、1:上へ回転 |   ●/●   |
+
+
+
+## Methods
+
+| Methods                                                      | Descriptoin                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| draw_image(image)                                            | 画像をGraphicsBoxへ表示します。                              |
+| open_image_file(filename, file_filter, disp_image, zoom_fit) | 画像ファイルを選択し、GraphicsBoxへ画像を表示します。        |
+| redraw_image()                                               | 画像を再描画します。                                         |
+| reset_transform()                                            | 画像表示を初期状態（左上に等倍率）に戻します。               |
+| scale_at(scale, cx, cy)                                      | 指定した点を中心に拡大縮小します。                           |
+| scale_transform(scale)                                       | 画像表示の相対倍率を指定し拡大縮小します。                   |
+| translate(offset_x, offset_y)                                | 画像表示位置を平行移動します。                               |
+| zoom_fit(image_width, image_height)                          | 画像の幅と高さを指定し、ウィジェット全体に画像を表示します。 |
+
+
+
+
+
+
