@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: csv-reconcile-levenshtein
+Version: 0.1.1
+Summary: Levenshtein distance scoring plugin for csv-reconcile
+Home-page: https://github.com/gitonthescene/csv-reconcile-levenshtein
+License: MIT
+Keywords: OpenRefine,reconcile,fuzzy search,Levenshtein
+Author: Douglas Mennella
+Author-email: trx2358-pypi@yahoo.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Requires-Dist: csv-reconcile (>=0.1.0,<0.2.0)
+Requires-Dist: python-Levenshtein (>=0.12.2,<0.13.0)
+Project-URL: Repository, https://github.com/gitonthescene/csv-reconcile-levenshtein
+Description-Content-Type: text/markdown
+
+
+# Table of Contents
+
+1.  [CSV Reconcile Levenshtein distance scoring plugin](#orgaad35af)
+
+
+<a id="orgaad35af"></a>
+
+# CSV Reconcile Levenshtein distance scoring plugin
+
+A scoring plugin for [csv-reconcile](https://github.com/gitonthescene/csv-reconcile) using [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance).  See csv-reconcile for details.
+
+
