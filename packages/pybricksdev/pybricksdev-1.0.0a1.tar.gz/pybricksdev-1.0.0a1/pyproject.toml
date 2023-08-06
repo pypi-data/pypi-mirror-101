@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "pybricksdev"
+version = "1.0.0a1"
+description = "Pybricks developer tools"
+authors = ["The Pybricks Authors <dev@pybricks.com>"]
+maintainers = ["Laurens Valk <laurens@pybricks.com>", "David Lechner <david@pybricks.com>" ]
+license = "MIT"
+readme = "README.rst"
+homepage = "https://pybricks.com"
+repository = "https://github.com/pybricks/pybricksdev"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+]
+include = [
+    "AUTHORS.md"
+]
+
+[tool.poetry.scripts]
+pybricksdev = 'pybricksdev.cli:main'
+
+[tool.poetry.dependencies]
+aioserial = "^1.3.0"
+argcomplete = "^1.11.1"
+asyncssh = "^2.2.1"
+bleak = "^0.11.0"
+mpy-cross = "==1.12"
+python = "~3.8"
+tqdm = "^4.46.1"
+validators = "^0.18.2"
+pyusb = "^1.0.2"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.8.3"
+pytest = "^5.2"
+pybricks = { git = "https://github.com/pybricks/pybricks-api.git", branch = "master" }
+notebook = "^6.0.3"
+ipykernel = "^5.3.1"
+nbstripout = "^0.3.8"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
