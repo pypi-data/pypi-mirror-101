@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: reloci
+Version: 1
+Summary: Organize photos based on exif
+Home-page: UNKNOWN
+Author: Arne de Laat
+Author-email: arne@delaat.net
+Maintainer: Arne de Laat
+Maintainer-email: arne@delaat.net
+License: MIT
+Project-URL: homepage, https://github.com/153957/reloci/
+Description: # reloci
+        
+        This can be used to reorganise photos into directories by date.
+        
+        
+        ## Setup
+        
+        Create a new virtual env with Python 3.9 and install the requirements:
+        
+            conda create -n reloci python=3.9 --yes
+            pip install -e .[test]
+        
+        
+        ## Usage
+        
+        TBD
+        
+Keywords: photos,exif,date,directories,organize
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Desktop Environment :: File Managers
+Description-Content-Type: text/markdown
+Provides-Extra: test
+Provides-Extra: pypi
