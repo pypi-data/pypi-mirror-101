@@ -1,0 +1,22 @@
+{
+  repository(owner: "{OWNER}", name: "{REPOSITORY_NAME}") {
+    release(tagName: "{TAG_NAME}") {
+      id
+    }
+    releases(last: 50) {
+      edges {
+        node {
+          id
+          releaseAssets(name: "{ASSET_NAME}", last: 10) {
+            edges {
+              node {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
